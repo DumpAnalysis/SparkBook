@@ -1,5 +1,5 @@
 {
-  "version": 55,
+  "version": 56,
   "scope": "Exercise-based current outcomes and printed recorded-run lookup. Records keep separate execution dates and scopes.",
   "exercises": [
     {
@@ -8,6 +8,11 @@
       "evidence_note": "Recorded result  The WSL2 inventory captured the guest configuration and the mapped NVIDIA query.\nScope  The management query establishes device visibility. Exercise 14 tests computation.",
       "recorded_run_ids": [
         "001.01"
+      ],
+      "book_page": 19,
+      "companion_files": [
+        "inventory.sh",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -16,6 +21,12 @@
       "evidence_note": "Recorded result  For 4096 tokens the stated layer, head and element counts predict a 224 MiB KV cache.\nScope  The 224 MiB estimate covers the stated FP16 cache geometry at 4096 tokens.",
       "recorded_run_ids": [
         "002.01"
+      ],
+      "book_page": 24,
+      "companion_files": [
+        "reader/capture.py",
+        "reader/new_run.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -24,6 +35,11 @@
       "evidence_note": "Recorded result  The fixture returned HTTP 200 for a valid request and HTTP 404 for each of two rejected requests.\nScope  A loopback fixture returned these responses without loading weights.",
       "recorded_run_ids": [
         "003.01"
+      ],
+      "book_page": 27,
+      "companion_files": [
+        "reader/new_run.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -33,6 +49,10 @@
       "recorded_run_ids": [
         "004.01",
         "004.02"
+      ],
+      "book_page": 30,
+      "companion_files": [
+        "setup_wsl.py"
       ]
     },
     {
@@ -43,6 +63,10 @@
         "005.01",
         "005.02",
         "005.03"
+      ],
+      "book_page": 35,
+      "companion_files": [
+        "serve.sh"
       ]
     },
     {
@@ -52,6 +76,12 @@
       "recorded_run_ids": [
         "006.01",
         "006.02"
+      ],
+      "book_page": 39,
+      "companion_files": [
+        "prompt.txt",
+        "reader/new_run.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -60,6 +90,11 @@
       "evidence_note": "Recorded result  The timing fixture separates individual latency, nearest-rank p95 and aggregate output rate.\nScope  The rates come from a labelled timing fixture.",
       "recorded_run_ids": [
         "007.01"
+      ],
+      "book_page": 43,
+      "companion_files": [
+        "example-benchmark.json",
+        "spark_lab.py"
       ]
     },
     {
@@ -69,6 +104,12 @@
       "recorded_run_ids": [
         "008.01",
         "008.02"
+      ],
+      "book_page": 44,
+      "companion_files": [
+        "prompt.txt",
+        "reader/new_run.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -78,6 +119,12 @@
       "recorded_run_ids": [
         "009.01",
         "009.02"
+      ],
+      "book_page": 46,
+      "companion_files": [
+        "reader/new_run.sh",
+        "reader/ready.txt",
+        "stream.py"
       ]
     },
     {
@@ -90,6 +137,13 @@
         "010.03",
         "010.04",
         "010.05"
+      ],
+      "book_page": 50,
+      "companion_files": [
+        "prompt.txt",
+        "reader/new_run.sh",
+        "serve.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -102,6 +156,13 @@
         "011.03",
         "011.04",
         "011.05"
+      ],
+      "book_page": 56,
+      "companion_files": [
+        "prompt.txt",
+        "serve.sh",
+        "setup_wsl.py",
+        "spark_lab.py"
       ]
     },
     {
@@ -115,6 +176,13 @@
         "012.04",
         "012.05",
         "012.06"
+      ],
+      "book_page": 62,
+      "companion_files": [
+        "prompt.txt",
+        "reader/new_run.sh",
+        "serve.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -125,6 +193,10 @@
         "013.01",
         "013.02",
         "013.03"
+      ],
+      "book_page": 68,
+      "companion_files": [
+        "reader/invalid_model.sh"
       ]
     },
     {
@@ -137,6 +209,10 @@
         "014.03",
         "014.04",
         "014.05"
+      ],
+      "book_page": 77,
+      "companion_files": [
+        "gpu_probe.py"
       ]
     },
     {
@@ -145,6 +221,12 @@
       "evidence_note": "Recorded result  The retrieval exercise retained the selected evidence for comparison with the R17 question.\nScope  The retrieval check identifies the supplied passages. Their presence does not validate an answer.",
       "recorded_run_ids": [
         "015.01"
+      ],
+      "book_page": 82,
+      "companion_files": [
+        "corpus.json",
+        "reader/new_run.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -154,6 +236,12 @@
       "recorded_run_ids": [
         "016.01",
         "016.02"
+      ],
+      "book_page": 83,
+      "companion_files": [
+        "grounded.txt",
+        "reader/new_run.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -162,6 +250,12 @@
       "evidence_note": "Recorded result  The controller replayed the supplied planner actions and recorded tool receipts for the teaching incident.\nScope  The planner actions and context-limit incident are scripted inputs.",
       "recorded_run_ids": [
         "017.01"
+      ],
+      "book_page": 87,
+      "companion_files": [
+        "agent-actions.json",
+        "agent.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -170,6 +264,12 @@
       "evidence_note": "Recorded result  The controller rejected the requested shell action before execution.\nScope  The rejected shell request is fixture text. The evidence is the controller’s denial before execution.",
       "recorded_run_ids": [
         "018.01"
+      ],
+      "book_page": 89,
+      "companion_files": [
+        "agent-denied.json",
+        "agent.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -178,6 +278,11 @@
       "evidence_note": "Recorded result  The live planner read the request and then produced a final answer without reading the limits or runtime fields.\nScope  The local model selected tools against a fictional incident.",
       "recorded_run_ids": [
         "019.01"
+      ],
+      "book_page": 91,
+      "companion_files": [
+        "agent.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -188,6 +293,12 @@
         "020.01",
         "020.02",
         "020.03"
+      ],
+      "book_page": 92,
+      "companion_files": [
+        "agent.py",
+        "capture_evidence.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -198,6 +309,13 @@
         "021.01",
         "021.02",
         "021.03"
+      ],
+      "book_page": 98,
+      "companion_files": [
+        "prompt.txt",
+        "reader/new_run.sh",
+        "serve.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -206,13 +324,17 @@
       "evidence_note": "Recorded result  BLOCKED — No laptop-wide disconnected inference executed.\nScope  An unshare capability probe does not exercise inference with the whole laptop disconnected.",
       "recorded_run_ids": [
         "022.01"
-      ]
+      ],
+      "book_page": 102,
+      "companion_files": []
     },
     {
       "number": 23,
       "title": "Write a diagnostic conclusion",
       "evidence_note": "Recorded result  PASSED — Intentional teaching-case writing; no measured incident.\nScope  R17 is a fictional case. The written diagnosis is assessed against the supplied facts.",
-      "recorded_run_ids": []
+      "recorded_run_ids": [],
+      "book_page": 104,
+      "companion_files": []
     },
     {
       "number": 24,
@@ -220,6 +342,10 @@
       "evidence_note": "Recorded result  PASSED — CPU synthetic-data generation and portable tests.\nScope  The generated records test the preparation pipeline on synthetic examples.",
       "recorded_run_ids": [
         "024.01"
+      ],
+      "book_page": 111,
+      "companion_files": [
+        "training_data.py"
       ]
     },
     {
@@ -228,6 +354,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CUDA BF16 LoRA training.\nScope  The bounded training run establishes that the adapter can be updated and saved. Exercise 26 evaluates its answers.",
       "recorded_run_ids": [
         "025.01"
+      ],
+      "book_page": 112,
+      "companion_files": [
+        "finetune.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -237,6 +368,11 @@
       "recorded_run_ids": [
         "026.01",
         "026.02"
+      ],
+      "book_page": 116,
+      "companion_files": [
+        "finetune.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -245,6 +381,12 @@
       "evidence_note": "Recorded result  Save and reload PASSED. Strict equivalence FAILED. The merged BF16 checkpoint was written and compared with its adapter reference. The maximum absolute logit difference was 0.375, and all four greedy continuations differed.\nScope  The merge comparison applies to the named adapter, base and tested inputs.",
       "recorded_run_ids": [
         "027.01"
+      ],
+      "book_page": 119,
+      "companion_files": [
+        "compare_merge.py",
+        "finetune.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -255,6 +397,12 @@
         "028.01",
         "028.02",
         "028.03"
+      ],
+      "book_page": 121,
+      "companion_files": [
+        "prompt.txt",
+        "serve.sh",
+        "spark_lab.py"
       ]
     },
     {
@@ -268,6 +416,10 @@
         "029.04",
         "029.05",
         "029.06"
+      ],
+      "book_page": 125,
+      "companion_files": [
+        "large_model.py"
       ]
     },
     {
@@ -278,7 +430,9 @@
         "030.01",
         "030.02",
         "030.03"
-      ]
+      ],
+      "book_page": 133,
+      "companion_files": []
     },
     {
       "number": 31,
@@ -286,6 +440,10 @@
       "evidence_note": "Recorded result  PASSED — CPU inventory only.\nScope  Tool discovery alone gives no evidence of a running CUDA kernel.",
       "recorded_run_ids": [
         "031.01"
+      ],
+      "book_page": 141,
+      "companion_files": [
+        "cuda/inventory_tools.py"
       ]
     },
     {
@@ -297,6 +455,10 @@
         "032.02",
         "032.03",
         "032.04"
+      ],
+      "book_page": 144,
+      "companion_files": [
+        "cuda/build.sh"
       ]
     },
     {
@@ -307,7 +469,9 @@
         "033.01",
         "033.02",
         "033.03"
-      ]
+      ],
+      "book_page": 146,
+      "companion_files": []
     },
     {
       "number": 34,
@@ -316,6 +480,11 @@
       "recorded_run_ids": [
         "034.01",
         "034.02"
+      ],
+      "book_page": 149,
+      "companion_files": [
+        "cuda/dump_values.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -324,7 +493,9 @@
       "evidence_note": "Recorded result  BLOCKED — CPU host-prerequisite inspection; no debugger launch.\nScope  A live device-debugger stop is still required for the debugger criterion.",
       "recorded_run_ids": [
         "035.01"
-      ]
+      ],
+      "book_page": 152,
+      "companion_files": []
     },
     {
       "number": 36,
@@ -332,7 +503,9 @@
       "evidence_note": "Recorded result  BLOCKED — CPU prerequisite inspection; no GPU fault executed.\nScope  The retained prerequisite check does not contain an executed GPU fault.",
       "recorded_run_ids": [
         "036.01"
-      ]
+      ],
+      "book_page": 154,
+      "companion_files": []
     },
     {
       "number": 37,
@@ -341,7 +514,9 @@
       "recorded_run_ids": [
         "037.01",
         "037.02"
-      ]
+      ],
+      "book_page": 157,
+      "companion_files": []
     },
     {
       "number": 38,
@@ -351,7 +526,9 @@
         "038.01",
         "038.02",
         "038.03"
-      ]
+      ],
+      "book_page": 159,
+      "companion_files": []
     },
     {
       "number": 39,
@@ -360,6 +537,10 @@
       "recorded_run_ids": [
         "039.01",
         "039.02"
+      ],
+      "book_page": 162,
+      "companion_files": [
+        "reader/new_run.sh"
       ]
     },
     {
@@ -369,6 +550,10 @@
       "recorded_run_ids": [
         "040.01",
         "040.02"
+      ],
+      "book_page": 165,
+      "companion_files": [
+        "cuda/trace_sqlite.py"
       ]
     },
     {
@@ -377,6 +562,10 @@
       "evidence_note": "Recorded result  BLOCKED — GPU workload and attempted hardware-counter collection.\nScope  Hardware-counter attribution requires a successful counter collection.",
       "recorded_run_ids": [
         "041.01"
+      ],
+      "book_page": 167,
+      "companion_files": [
+        "reader/new_run.sh"
       ]
     },
     {
@@ -385,6 +574,11 @@
       "evidence_note": "Recorded result  PASSED — GPU framework allocation and selected values; CPU own-snapshot inspection.\nScope  The dump concerns the selected process allocation and recorded tensor values.",
       "recorded_run_ids": [
         "042.01"
+      ],
+      "book_page": 170,
+      "companion_files": [
+        "cuda/torch_evidence.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -393,13 +587,22 @@
       "evidence_note": "Recorded result  BLOCKED — GPU framework workload; actual trace inspected.\nScope  Host ranges cannot supply missing device timestamps.",
       "recorded_run_ids": [
         "043.01"
+      ],
+      "book_page": 171,
+      "companion_files": [
+        "cuda/torch_evidence.py",
+        "reader/new_run.sh"
       ]
     },
     {
       "number": 44,
       "title": "Trace the process that actually runs the model",
       "evidence_note": "Recorded result  BLOCKED — No model profiling performed.\nScope  Profiling the actual model remains a separate execution.",
-      "recorded_run_ids": []
+      "recorded_run_ids": [],
+      "book_page": 173,
+      "companion_files": [
+        "cuda/profile_llama.sh"
+      ]
     },
     {
       "number": 45,
@@ -408,6 +611,10 @@
       "recorded_run_ids": [
         "045.01",
         "045.02"
+      ],
+      "book_page": 176,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -416,6 +623,10 @@
       "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  Numerical agreement applies to the tested shapes and inputs.",
       "recorded_run_ids": [
         "046.01"
+      ],
+      "book_page": 178,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -424,6 +635,10 @@
       "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  Numerical agreement applies to the tested shapes and inputs.",
       "recorded_run_ids": [
         "047.01"
+      ],
+      "book_page": 180,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -432,6 +647,10 @@
       "evidence_note": "Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.\nScope  The numerical control and the additional observation required by this exercise have separate acceptance checks.",
       "recorded_run_ids": [
         "048.01"
+      ],
+      "book_page": 182,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -440,6 +659,10 @@
       "evidence_note": "Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.\nScope  The numerical control and the additional observation required by this exercise have separate acceptance checks.",
       "recorded_run_ids": [
         "049.01"
+      ],
+      "book_page": 184,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -448,6 +671,10 @@
       "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  The CPU reference checks values at the tested boundaries.",
       "recorded_run_ids": [
         "050.01"
+      ],
+      "book_page": 186,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -456,6 +683,10 @@
       "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  The CPU reference checks values at the tested boundaries.",
       "recorded_run_ids": [
         "051.01"
+      ],
+      "book_page": 189,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -464,6 +695,10 @@
       "evidence_note": "Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.\nScope  The numerical control alone leaves the requested diagnostic observation open.",
       "recorded_run_ids": [
         "052.01"
+      ],
+      "book_page": 190,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -473,6 +708,10 @@
       "recorded_run_ids": [
         "053.01",
         "053.02"
+      ],
+      "book_page": 194,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -482,6 +721,11 @@
       "recorded_run_ids": [
         "054.01",
         "054.02"
+      ],
+      "book_page": 196,
+      "companion_files": [
+        "kernels/timing_summary.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -490,6 +734,10 @@
       "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  Matching reference values does not by itself supply sanitizer or hardware-counter evidence.",
       "recorded_run_ids": [
         "055.01"
+      ],
+      "book_page": 199,
+      "companion_files": [
+        "kernels/build.sh"
       ]
     },
     {
@@ -498,6 +746,12 @@
       "evidence_note": "Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.\nScope  Matching reference values does not by itself supply sanitizer or hardware-counter evidence.",
       "recorded_run_ids": [
         "056.01"
+      ],
+      "book_page": 200,
+      "companion_files": [
+        "kernels/build.sh",
+        "kernels/run_cases.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -506,6 +760,10 @@
       "evidence_note": "Recorded result  PASSED — GPU custom operator and CPU extension compilation.\nScope  The operator is qualified for the compiled extension and tested framework environment.",
       "recorded_run_ids": [
         "057.01"
+      ],
+      "book_page": 205,
+      "companion_files": [
+        "advanced/torch_operator.py"
       ]
     },
     {
@@ -515,6 +773,10 @@
       "recorded_run_ids": [
         "058.01",
         "058.02"
+      ],
+      "book_page": 207,
+      "companion_files": [
+        "advanced/torch_operator.py"
       ]
     },
     {
@@ -523,6 +785,11 @@
       "evidence_note": "Recorded result  PASSED — CPU independent reference and actual CUDA float64 tensor implementation.\nScope  The comparison uses the documented precision, tolerances and inputs.",
       "recorded_run_ids": [
         "059.01"
+      ],
+      "book_page": 211,
+      "companion_files": [
+        "advanced/transformer_torch.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -531,7 +798,9 @@
       "evidence_note": "Recorded result  PASSED — CPU teaching transformer negative control and source repair.\nScope  The defect and repair belong to the small teaching transformer.",
       "recorded_run_ids": [
         "060.01"
-      ]
+      ],
+      "book_page": 212,
+      "companion_files": []
     },
     {
       "number": 61,
@@ -539,6 +808,10 @@
       "evidence_note": "Recorded result  BLOCKED — GPU warp reduction numerical check; sanitizer unavailable.\nScope  The numerical warp-reduction result and sanitizer coverage are separate.",
       "recorded_run_ids": [
         "061.01"
+      ],
+      "book_page": 215,
+      "companion_files": [
+        "advanced/build.sh"
       ]
     },
     {
@@ -548,7 +821,9 @@
       "recorded_run_ids": [
         "062.01",
         "062.02"
-      ]
+      ],
+      "book_page": 217,
+      "companion_files": []
     },
     {
       "number": 63,
@@ -556,7 +831,9 @@
       "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
       "recorded_run_ids": [
         "063.01"
-      ]
+      ],
+      "book_page": 220,
+      "companion_files": []
     },
     {
       "number": 64,
@@ -565,7 +842,9 @@
       "recorded_run_ids": [
         "064.01",
         "064.02"
-      ]
+      ],
+      "book_page": 222,
+      "companion_files": []
     },
     {
       "number": 65,
@@ -573,7 +852,9 @@
       "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
       "recorded_run_ids": [
         "065.01"
-      ]
+      ],
+      "book_page": 224,
+      "companion_files": []
     },
     {
       "number": 66,
@@ -581,6 +862,11 @@
       "evidence_note": "Recorded result  PASSED — CPU numerical reference.\nScope  The INT4 arithmetic here is a CPU reference calculation.",
       "recorded_run_ids": [
         "066.01"
+      ],
+      "book_page": 226,
+      "companion_files": [
+        "advanced/reference.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -589,7 +875,9 @@
       "evidence_note": "Recorded result  BLOCKED — GPU packing/dequantization; sanitizer unavailable.\nScope  The GPU packing control supplies values. The requested sanitizer coverage remains open.",
       "recorded_run_ids": [
         "067.01"
-      ]
+      ],
+      "book_page": 227,
+      "companion_files": []
     },
     {
       "number": 68,
@@ -597,6 +885,10 @@
       "evidence_note": "Recorded result  PASSED — GPU training diagnostics.\nScope  The evidence is the bounded training state and the updates actually compared.",
       "recorded_run_ids": [
         "068.01"
+      ],
+      "book_page": 230,
+      "companion_files": [
+        "advanced/training_diagnostics.py"
       ]
     },
     {
@@ -605,6 +897,11 @@
       "evidence_note": "Recorded result  PASSED — GPU training diagnostics.\nScope  The evidence is the bounded training state and the updates actually compared.",
       "recorded_run_ids": [
         "069.01"
+      ],
+      "book_page": 232,
+      "companion_files": [
+        "advanced/training_diagnostics.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -613,6 +910,10 @@
       "evidence_note": "Recorded result  PASSED — Intentional CPU teaching fixtures.\nScope  The cases are deliberate inputs to a teaching controller.",
       "recorded_run_ids": [
         "070.01"
+      ],
+      "book_page": 234,
+      "companion_files": [
+        "advanced/casebook.py"
       ]
     },
     {
@@ -621,6 +922,11 @@
       "evidence_note": "Recorded result  PASSED — Intentional CPU synthetic controller replay.\nScope  The cases are deliberate inputs to a teaching controller.",
       "recorded_run_ids": [
         "071.01"
+      ],
+      "book_page": 239,
+      "companion_files": [
+        "advanced/diagnostic_agent.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -631,6 +937,11 @@
         "072.01",
         "072.02",
         "072.03"
+      ],
+      "book_page": 240,
+      "companion_files": [
+        "advanced/diagnostic_agent.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -641,7 +952,9 @@
         "073.01",
         "073.02",
         "073.03"
-      ]
+      ],
+      "book_page": 244,
+      "companion_files": []
     },
     {
       "number": 74,
@@ -649,6 +962,11 @@
       "evidence_note": "Recorded result  PASSED — CPU baseline inventory and CUDA memory/capability query.\nScope  The inventory and capability query precede the embedding workload.",
       "recorded_run_ids": [
         "074.01"
+      ],
+      "book_page": 829,
+      "companion_files": [
+        "advanced/measure.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -659,6 +977,11 @@
         "075.01",
         "075.02",
         "075.03"
+      ],
+      "book_page": 250,
+      "companion_files": [
+        "embeddings/evidence/minilm-source.json",
+        "embeddings/fetch_model.py"
       ]
     },
     {
@@ -667,6 +990,10 @@
       "evidence_note": "Recorded result  PASSED — CPU numerical controls.\nScope  The small pooling vectors isolate masking and normalization effects.",
       "recorded_run_ids": [
         "076.01"
+      ],
+      "book_page": 253,
+      "companion_files": [
+        "embeddings/pooling_demo.py"
       ]
     },
     {
@@ -675,6 +1002,10 @@
       "evidence_note": "Recorded result  PASSED — CPU synthetic teaching corpus.\nScope  The teaching corpus uses a fixed artificial partition.",
       "recorded_run_ids": [
         "077.01"
+      ],
+      "book_page": 255,
+      "companion_files": [
+        "embeddings/data.py"
       ]
     },
     {
@@ -683,6 +1014,11 @@
       "evidence_note": "Recorded result  PASSED — CPU real sentence-encoder inference.\nScope  The measured representation comes from the named CPU encoder and input corpus.",
       "recorded_run_ids": [
         "078.01"
+      ],
+      "book_page": 256,
+      "companion_files": [
+        "embeddings/encode.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -691,6 +1027,11 @@
       "evidence_note": "Recorded result  PASSED — CPU actual-vector projections.\nScope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.",
       "recorded_run_ids": [
         "079.01"
+      ],
+      "book_page": 259,
+      "companion_files": [
+        "embeddings/project.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -699,6 +1040,10 @@
       "evidence_note": "Recorded result  PASSED — CPU fixed-basis held-out transform.\nScope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.",
       "recorded_run_ids": [
         "080.01"
+      ],
+      "book_page": 261,
+      "companion_files": [
+        "embeddings/heldout.py"
       ]
     },
     {
@@ -708,7 +1053,9 @@
       "recorded_run_ids": [],
       "shared_capture_exercises": [
         79
-      ]
+      ],
+      "book_page": 263,
+      "companion_files": []
     },
     {
       "number": 82,
@@ -717,6 +1064,11 @@
       "recorded_run_ids": [
         "082.01",
         "082.02"
+      ],
+      "book_page": 265,
+      "companion_files": [
+        "embeddings/project.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -725,6 +1077,11 @@
       "evidence_note": "Recorded result  PASSED — CPU actual encoder training and held-out evaluation.\nScope  The saved tokenizer, corpus split and selected checkpoint define the training comparison.",
       "recorded_run_ids": [
         "083.01"
+      ],
+      "book_page": 268,
+      "companion_files": [
+        "embeddings/train_bert.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -734,6 +1091,10 @@
       "recorded_run_ids": [
         "084.01",
         "084.02"
+      ],
+      "book_page": 270,
+      "companion_files": [
+        "embeddings/inspect_bert.py"
       ]
     },
     {
@@ -742,6 +1103,11 @@
       "evidence_note": "Recorded result  PASSED — CPU actual encoder training and held-out evaluation.\nScope  The saved tokenizer, corpus split and selected checkpoint define the training comparison.",
       "recorded_run_ids": [
         "085.01"
+      ],
+      "book_page": 273,
+      "companion_files": [
+        "embeddings/train_bert.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -752,6 +1118,12 @@
         "086.01",
         "086.02",
         "086.03"
+      ],
+      "book_page": 275,
+      "companion_files": [
+        "embeddings/encode.py",
+        "embeddings/finetune.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -760,6 +1132,11 @@
       "evidence_note": "Recorded result  PASSED — CPU actual encoder training and held-out evaluation.\nScope  Pair training and downstream retrieval have separate evaluation criteria.",
       "recorded_run_ids": [
         "087.01"
+      ],
+      "book_page": 278,
+      "companion_files": [
+        "embeddings/finetune.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -768,6 +1145,11 @@
       "evidence_note": "Recorded result  PASSED — CPU actual encoder training and held-out evaluation.\nScope  Pair training and downstream retrieval have separate evaluation criteria.",
       "recorded_run_ids": [
         "088.01"
+      ],
+      "book_page": 280,
+      "companion_files": [
+        "embeddings/finetune.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -777,6 +1159,12 @@
       "recorded_run_ids": [
         "089.01",
         "089.02"
+      ],
+      "book_page": 283,
+      "companion_files": [
+        "embeddings/diagnose.py",
+        "embeddings/search.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -785,6 +1173,11 @@
       "evidence_note": "Recorded result  BLOCKED — GPU actual embedding/training pipeline and CPU projection; tracing unavailable.\nScope  The learned workload ran on CUDA. Kernel timing still requires a usable trace.",
       "recorded_run_ids": [
         "090.01"
+      ],
+      "book_page": 285,
+      "companion_files": [
+        "embeddings/encode.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -793,6 +1186,10 @@
       "evidence_note": "Recorded result  PASSED — CPU collector qualification; no GPU workload.\nScope  The tests qualify collector behavior on controlled inputs.",
       "recorded_run_ids": [
         "091.01"
+      ],
+      "book_page": 289,
+      "companion_files": [
+        "metrics/validate_metrics.py"
       ]
     },
     {
@@ -801,6 +1198,12 @@
       "evidence_note": "Recorded result  PASSED — Intentional simulation rendered on CPU.\nScope  The rendered activity comes from an explicitly simulated trace.",
       "recorded_run_ids": [
         "092.01"
+      ],
+      "book_page": 292,
+      "companion_files": [
+        "metrics/fixture.py",
+        "metrics/plot.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -809,6 +1212,12 @@
       "evidence_note": "Recorded result  PASSED — CPU real host wrapper and guest sampling; GPU disabled.\nScope  GPU collection was disabled for this host-sampling control.",
       "recorded_run_ids": [
         "093.01"
+      ],
+      "book_page": 296,
+      "companion_files": [
+        "metrics/make_plan.py",
+        "metrics/monitor.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -817,6 +1226,12 @@
       "evidence_note": "Recorded result  PASSED — CPU sampling of actual device-wide provider; no intentional GPU workload.\nScope  The samples describe the device as a whole during the observation window.",
       "recorded_run_ids": [
         "094.01"
+      ],
+      "book_page": 298,
+      "companion_files": [
+        "metrics/make_plan.py",
+        "metrics/monitor.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -826,6 +1241,12 @@
       "recorded_run_ids": [
         "095.01",
         "095.02"
+      ],
+      "book_page": 300,
+      "companion_files": [
+        "metrics/make_plan.py",
+        "metrics/monitor.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -835,6 +1256,12 @@
       "recorded_run_ids": [
         "096.01",
         "096.02"
+      ],
+      "book_page": 304,
+      "companion_files": [
+        "metrics/make_plan.py",
+        "metrics/monitor.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -843,6 +1270,10 @@
       "evidence_note": "Recorded result  PASSED — GPU actual inference; paired CPU monitoring-control conditions.\nScope  The comparison uses the retained paired trials and their sampling conditions.",
       "recorded_run_ids": [
         "097.01"
+      ],
+      "book_page": 307,
+      "companion_files": [
+        "metrics/compare.py"
       ]
     },
     {
@@ -851,7 +1282,9 @@
       "evidence_note": "Recorded result  PASSED — CPU diagnostic analysis of actual GPU-inference telemetry; detailed trace capability blocked.\nScope  Attribution to an individual GPU process or kernel requires additional evidence.",
       "recorded_run_ids": [
         "098.01"
-      ]
+      ],
+      "book_page": 309,
+      "companion_files": []
     },
     {
       "number": 99,
@@ -859,6 +1292,11 @@
       "evidence_note": "Recorded result  PASSED — CPU and GPU actual FP64 reference and FP32/BF16 candidates.\nScope  The retained intermediate tensors can expose a numerical error even when the selected class stays the same.",
       "recorded_run_ids": [
         "099.01"
+      ],
+      "book_page": 312,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -869,6 +1307,11 @@
         "100.01",
         "100.02",
         "100.03"
+      ],
+      "book_page": 313,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -877,6 +1320,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CPU compiler control: five calls at sizes 8, 12, 8, 16 and 12 produced three static FX captures and one dynamic capture, with eager-reference agreement. A separate fixed-shape Python-argument guard test is retained. These are capture counts, not CUDA kernel counts or a speed comparison.\nScope  The graph counts and compilation behavior depend on the tested shapes and compiler settings.",
       "recorded_run_ids": [
         "101.01"
+      ],
+      "book_page": 316,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -888,6 +1336,11 @@
         "102.02",
         "102.03",
         "102.04"
+      ],
+      "book_page": 319,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -897,6 +1350,11 @@
       "recorded_run_ids": [
         "103.01",
         "103.02"
+      ],
+      "book_page": 323,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -907,6 +1365,11 @@
         "104.01",
         "104.02",
         "104.03"
+      ],
+      "book_page": 324,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -915,6 +1378,11 @@
       "evidence_note": "Recorded result  PASSED — Executed CPU analytic fixture with hypothetical 100 GB/s bandwidth and 10 TFLOP/s compute ceilings. The arithmetic and an independent doubled-ceiling control passed. The regenerated plot is deliberately synthetic; its points are upper-bound predictions, not measured RTX Spark performance.\nScope  The roofline uses hypothetical bandwidth and compute ceilings.",
       "recorded_run_ids": [
         "105.01"
+      ],
+      "book_page": 328,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -924,7 +1392,9 @@
       "recorded_run_ids": [
         "106.01",
         "106.02"
-      ]
+      ],
+      "book_page": 330,
+      "companion_files": []
     },
     {
       "number": 107,
@@ -933,6 +1403,11 @@
       "recorded_run_ids": [
         "107.01",
         "107.02"
+      ],
+      "book_page": 332,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -943,6 +1418,11 @@
         "108.01",
         "108.02",
         "108.03"
+      ],
+      "book_page": 334,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -951,6 +1431,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CPU bounded-stall control captured its waiting stack and ended the owned child with SIGTERM (−15). The supervisor returned zero because it successfully collected the intended failure. Wrapper success is distinct from child progress; the full stack and event record remain in the companion.\nScope  The controlled child and its supervisor define which waiting and recovery events were observed.",
       "recorded_run_ids": [
         "109.01"
+      ],
+      "book_page": 337,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -960,6 +1445,11 @@
       "recorded_run_ids": [
         "110.01",
         "110.02"
+      ],
+      "book_page": 338,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -968,6 +1458,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CPU OpenTelemetry instrumentation of a synthetic request produced six spans, zero error spans and three correlated log records.\nScope  It is a trace of the teaching pipeline; the named embedding and generation stages do not establish model or GPU execution.",
       "recorded_run_ids": [
         "111.01"
+      ],
+      "book_page": 341,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -977,6 +1472,11 @@
       "recorded_run_ids": [
         "112.01",
         "112.02"
+      ],
+      "book_page": 342,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -986,6 +1486,11 @@
       "recorded_run_ids": [
         "113.01",
         "113.02"
+      ],
+      "book_page": 345,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -994,7 +1499,9 @@
       "evidence_note": "Recorded result  PASSED — Fresh real-retrieval comparison uses 12 frozen queries, existing base/tuned embeddings, two context builders and decoding variants. The builders produced equivalent context content, and decoding comparisons received identical input tokens. Semantic answer quality remains UNSCORED; this recorded comparison neither retrained those embeddings nor demonstrated a quality improvement.\nScope  A retrieved identifier and a correct generated answer have separate checks.",
       "recorded_run_ids": [
         "114.01"
-      ]
+      ],
+      "book_page": 346,
+      "companion_files": []
     },
     {
       "number": 115,
@@ -1002,6 +1509,11 @@
       "evidence_note": "Recorded result  PASSED — The retained PAD/TRIGGER failure oracle was reduced to a one-minimal example: deleting any remaining single element removes the failure. This is a property of the recorded oracle and reduction strategy, not a proof of the globally smallest reproducer.\nScope  Minimality and the first failing configuration apply to the tested deletion or scan order.",
       "recorded_run_ids": [
         "115.01"
+      ],
+      "book_page": 349,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1010,7 +1522,9 @@
       "evidence_note": "Recorded result  PASSED — Actual CPU configuration scan returned false, false, true, false, true. The first failing configuration is 3, but failure is nonmonotonic. A binary search that assumes all later versions fail would be unjustified; the full scan is the discriminating control.\nScope  Minimality and the first failing configuration apply to the tested deletion or scan order.",
       "recorded_run_ids": [
         "116.01"
-      ]
+      ],
+      "book_page": 350,
+      "companion_files": []
     },
     {
       "number": 117,
@@ -1018,6 +1532,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CPU controls damaged copies of trace records to test missing events, duplicate correlation, stale values, backward times and unit mismatches. Detection passed for the stated predicates. Synthetic corruptions test the validator, not the reliability of a live GPU trace provider.\nScope  The deliberately altered inputs test whether the monitoring path detects those faults.",
       "recorded_run_ids": [
         "117.01"
+      ],
+      "book_page": 352,
+      "companion_files": [
+        "diagnostics/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1026,6 +1545,10 @@
       "evidence_note": "Recorded result  PASSED — Twenty-four fresh portable diagnostic regression checks passed. Earlier cumulative checks are historical and are not added to this new run’s total.\nScope  Evidence repair and monitoring-path checks remain scoped to their inputs; CUDA counter and device-event support are separate qualifications.",
       "recorded_run_ids": [
         "118.01"
+      ],
+      "book_page": 353,
+      "companion_files": [
+        "diagnostics/validate.py"
       ]
     },
     {
@@ -1034,7 +1557,9 @@
       "evidence_note": "Recorded result  PASSED — The 12-pattern catalog was read successfully in this WSL session. Catalog navigation is an executed CPU exercise; the patterns remain teaching abstractions rather than 12 newly observed GPU incidents.\nScope  The catalog and worked diagnosis use a teaching case with known evidence.",
       "recorded_run_ids": [
         "119.01"
-      ]
+      ],
+      "book_page": 356,
+      "companion_files": []
     },
     {
       "number": 120,
@@ -1042,7 +1567,9 @@
       "evidence_note": "Recorded result  PASSED — A fresh worked diagnosis was generated from the retained CPU ownership fixture. It separates observation, hypothesis, discriminating action and repair.\nScope  The diagnosis concerns that controlled reproducer; it does not transform the catalog’s historical examples into newly executed evidence.",
       "recorded_run_ids": [
         "120.01"
-      ]
+      ],
+      "book_page": 360,
+      "companion_files": []
     },
     {
       "number": 121,
@@ -1050,7 +1577,9 @@
       "evidence_note": "Recorded result  BLOCKED — An account was submitted for all six familiar cards. It can be used for guided comparison. Card C05 remains explicitly illustrative.\nScope  The cards were familiar to the recorded investigator. Only a new, unseen card set can yield a blind score.",
       "recorded_run_ids": [
         "121.01"
-      ]
+      ],
+      "book_page": 362,
+      "companion_files": []
     },
     {
       "number": 122,
@@ -1058,6 +1587,10 @@
       "evidence_note": "Recorded result  PASSED — Worked answers were opened after the account was saved, with prior knowledge of the answers recorded. A separate capstone retains real retrieval and a token-budget investigation in distinct evidence/answer files. These are useful comparison exercises; neither restores the invalidated blind score of Exercise 121.\nScope  A worked comparison can refine an earlier account. It cannot retroactively make the original cards unseen.",
       "recorded_run_ids": [
         "122.01"
+      ],
+      "book_page": 364,
+      "companion_files": [
+        "diagnostics/casebook.py"
       ]
     },
     {
@@ -1066,6 +1599,11 @@
       "evidence_note": "Recorded result  PASSED — Actual WSL inventory reports Gloo and NCCL availability and one CUDA device. Import flags and device enumeration are prerequisites, not proof of collective execution. Exercise 129 separately records the native DDP failure, logical-node success and one-device NCCL result.\nScope  Enumerating a backend or one GPU does not establish multi-device training.",
       "recorded_run_ids": [
         "123.01"
+      ],
+      "book_page": 368,
+      "companion_files": [
+        "distributed/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1075,6 +1613,11 @@
       "recorded_run_ids": [
         "124.01",
         "124.02"
+      ],
+      "book_page": 369,
+      "companion_files": [
+        "distributed/pipe_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1084,6 +1627,12 @@
       "recorded_run_ids": [
         "125.01",
         "125.02"
+      ],
+      "book_page": 371,
+      "companion_files": [
+        "distributed/lab.py",
+        "distributed/pipe_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1094,6 +1643,11 @@
         "126.01",
         "126.02",
         "126.03"
+      ],
+      "book_page": 373,
+      "companion_files": [
+        "distributed/pipe_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1102,6 +1656,11 @@
       "evidence_note": "Recorded result  PASSED — A new process resumed a saved training state after two updates and continued to four, agreeing with the recorded reference losses. Checkpoint tensor payloads are excluded from this handoff; their receipts and derived results remain attributed to the laptop run.\nScope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.",
       "recorded_run_ids": [
         "127.01"
+      ],
+      "book_page": 375,
+      "companion_files": [
+        "distributed/pipe_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1110,6 +1669,11 @@
       "evidence_note": "Recorded result  PASSED — Actual two-worker CPU column sharding reported zero forward and gradient error against its reference. This demonstrates the algebra and communication boundary of the small fixture.\nScope  It does not establish multi-GPU sharding performance or memory isolation.",
       "recorded_run_ids": [
         "128.01"
+      ],
+      "book_page": 377,
+      "companion_files": [
+        "distributed/pipe_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1122,6 +1686,12 @@
         "129.03",
         "129.04",
         "129.05"
+      ],
+      "book_page": 378,
+      "companion_files": [
+        "distributed/lab.py",
+        "distributed/nodes.py",
+        "distributed/worker.py"
       ]
     },
     {
@@ -1130,6 +1700,11 @@
       "evidence_note": "Recorded result  PASSED — Actual one-owner CUDA service used two CPU clients, accepted 16 requests and formed eight batches. Independent vector checks passed. The model’s 82,176 weight bytes exclude allocator/context overhead. A single owner can reduce duplicate weights, but admission and total memory still require measurement.\nScope  Process count, client count and model-owner count are distinct quantities.",
       "recorded_run_ids": [
         "130.01"
+      ],
+      "book_page": 385,
+      "companion_files": [
+        "reader/new_run.sh",
+        "sharing/service.py"
       ]
     },
     {
@@ -1139,6 +1714,11 @@
       "recorded_run_ids": [
         "131.01",
         "131.02"
+      ],
+      "book_page": 387,
+      "companion_files": [
+        "reader/new_run.sh",
+        "sharing/service.py"
       ]
     },
     {
@@ -1148,6 +1728,11 @@
       "recorded_run_ids": [
         "132.01",
         "132.02"
+      ],
+      "book_page": 388,
+      "companion_files": [
+        "reader/new_run.sh",
+        "sharing/service.py"
       ]
     },
     {
@@ -1156,6 +1741,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CUDA training kept one model/optimizer owner with two CPU preparers. Four ordered AdamW updates agreed with the serial reference to maximum absolute error 5.960×10⁻⁸; checkpoint next_step=4. This is a training-owner experiment, not DDP or a demonstrated checkpoint resume.\nScope  Process count, client count and model-owner count are distinct quantities.",
       "recorded_run_ids": [
         "133.01"
+      ],
+      "book_page": 390,
+      "companion_files": [
+        "reader/new_run.sh",
+        "sharing/train.py"
       ]
     },
     {
@@ -1165,6 +1755,11 @@
       "recorded_run_ids": [
         "134.01",
         "134.02"
+      ],
+      "book_page": 391,
+      "companion_files": [
+        "reader/new_run.sh",
+        "sharing/plot.py"
       ]
     },
     {
@@ -1173,6 +1768,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CPU control-plane faults distinguish admission rejection, logical cancellation/expiry and lost ownership. Owner exit 17 leaves an interrupted request outcome UNKNOWN; recovery uses read-only evidence.\nScope  These controls do not qualify recovery from GPU out-of-memory or prove that cancelling a request interrupts a running kernel.",
       "recorded_run_ids": [
         "135.01"
+      ],
+      "book_page": 393,
+      "companion_files": [
+        "reader/new_run.sh",
+        "sharing/faults.py"
       ]
     },
     {
@@ -1181,6 +1781,11 @@
       "evidence_note": "Recorded result  PASSED — Actual live CPU HTTP embedding fixture passed request/response and independent vector checks. This is a small NumPy model with a bounded API contract. It exercises serving boundaries without implying a learned embedding model or GPU backend.\nScope  An admitted request, a rejected request and a completed model response belong to different populations.",
       "recorded_run_ids": [
         "136.01"
+      ],
+      "book_page": 398,
+      "companion_files": [
+        "reader/new_run.sh",
+        "serving/lab.py"
       ]
     },
     {
@@ -1189,6 +1794,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CPU HTTP lifecycle checks observed loading/unready, failure and draining states, plus the server’s real exit. A health endpoint and a successful process spawn answer different questions. Keep state changes, request outcomes and cleanup together.\nScope  An admitted request, a rejected request and a completed model response belong to different populations.",
       "recorded_run_ids": [
         "137.01"
+      ],
+      "book_page": 399,
+      "companion_files": [
+        "reader/new_run.sh",
+        "serving/lab.py"
       ]
     },
     {
@@ -1199,6 +1809,11 @@
         "138.01",
         "138.02",
         "138.03"
+      ],
+      "book_page": 400,
+      "companion_files": [
+        "reader/new_run.sh",
+        "serving/lab.py"
       ]
     },
     {
@@ -1207,6 +1822,11 @@
       "evidence_note": "Recorded result  PASSED — Actual native CUDA llama.cpp Q4 generation completed a stream: first content 242.3 ms and total client time 818.26 ms. The full SSE objects, content and terminal marker are retained.\nScope  The answer’s simplified description of GPU memory is not an endorsed explanation of this unified-memory laptop; semantic quality remains unscored.",
       "recorded_run_ids": [
         "139.01"
+      ],
+      "book_page": 403,
+      "companion_files": [
+        "reader/new_run.sh",
+        "serving/lab.py"
       ]
     },
     {
@@ -1215,6 +1835,10 @@
       "evidence_note": "Recorded result  PASSED — Actual ARM64 Docker 29.9.2 access, pinned Python base identity, image build and nonroot configuration were captured. The compact build transcript is printed below; inspection and acquisition records remain in the companion. An image build qualifies the build, not readiness or a GPU workload.\nScope  Image construction, device injection and a numerically correct response are separate deployment checks.",
       "recorded_run_ids": [
         "140.01"
+      ],
+      "book_page": 405,
+      "companion_files": [
+        "serving/docker/BOOTSTRAP.txt"
       ]
     },
     {
@@ -1224,6 +1848,12 @@
       "recorded_run_ids": [
         "141.01",
         "141.02"
+      ],
+      "book_page": 408,
+      "companion_files": [
+        "reader/new_run.sh",
+        "serving/client.py",
+        "serving/docker/compose.yaml"
       ]
     },
     {
@@ -1234,6 +1864,11 @@
         "142.01",
         "142.02",
         "142.03"
+      ],
+      "book_page": 410,
+      "companion_files": [
+        "kernels/build.sh",
+        "serving/lab.py"
       ]
     },
     {
@@ -1243,6 +1878,10 @@
       "recorded_run_ids": [
         "143.01",
         "143.02"
+      ],
+      "book_page": 413,
+      "companion_files": [
+        "serving/docker/compose.yaml"
       ]
     },
     {
@@ -1252,6 +1891,11 @@
       "recorded_run_ids": [
         "144.01",
         "144.02"
+      ],
+      "book_page": 416,
+      "companion_files": [
+        "reader/new_run.sh",
+        "serving/deploy.py"
       ]
     },
     {
@@ -1261,7 +1905,9 @@
       "recorded_run_ids": [
         "145.01",
         "145.02"
-      ]
+      ],
+      "book_page": 418,
+      "companion_files": []
     },
     {
       "number": 146,
@@ -1270,7 +1916,9 @@
       "recorded_run_ids": [
         "146.01",
         "146.02"
-      ]
+      ],
+      "book_page": 419,
+      "companion_files": []
     },
     {
       "number": 147,
@@ -1279,6 +1927,11 @@
       "recorded_run_ids": [
         "147.01",
         "147.02"
+      ],
+      "book_page": 421,
+      "companion_files": [
+        "reader/new_run.sh",
+        "serving/deploy.py"
       ]
     },
     {
@@ -1289,6 +1942,10 @@
         "148.01",
         "148.02",
         "148.03"
+      ],
+      "book_page": 424,
+      "companion_files": [
+        "serving/docker/run_backend.sh"
       ]
     },
     {
@@ -1300,6 +1957,11 @@
         "149.02",
         "149.03",
         "149.04"
+      ],
+      "book_page": 428,
+      "companion_files": [
+        "reader/new_run.sh",
+        "serving/client.py"
       ]
     },
     {
@@ -1313,6 +1975,12 @@
         "150.04",
         "150.05",
         "150.06"
+      ],
+      "book_page": 431,
+      "companion_files": [
+        "reader/new_run.sh",
+        "serving/backend_control.py",
+        "serving/build_repository.py"
       ]
     },
     {
@@ -1342,6 +2010,15 @@
         "151.20",
         "151.21",
         "151.22"
+      ],
+      "book_page": 435,
+      "companion_files": [
+        "cuda/timestamp_probe/SUPPORT-REPORT.md",
+        "cuda/timestamp_probe/reproduce_timestamps.py",
+        "cuda/timestamp_probe/timestamp_matrix.cu",
+        "reader/new_run.sh",
+        "serving/build_repository.py",
+        "serving/onnx_control.py"
       ]
     },
     {
@@ -1351,6 +2028,11 @@
       "recorded_run_ids": [
         "152.01",
         "152.02"
+      ],
+      "book_page": 441,
+      "companion_files": [
+        "ecosystem/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1359,6 +2041,11 @@
       "evidence_note": "Recorded result  PASSED — Two fresh GPU container processes passed cuDF aggregation against the CPU fixture: each route has 12 accepted requests and mean latency 15.75 ms. These constructed latency values are input data, not GPU serving measurements. The complete combined RAPIDS capture also covers Exercises 154 and 155.\nScope  Keep the library allocator, process storage and device-wide counters separate.",
       "recorded_run_ids": [
         "153.01"
+      ],
+      "book_page": 444,
+      "companion_files": [
+        "ecosystem/rapids_target.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1368,7 +2055,9 @@
       "recorded_run_ids": [],
       "shared_capture_exercises": [
         153
-      ]
+      ],
+      "book_page": 446,
+      "companion_files": []
     },
     {
       "number": 155,
@@ -1376,7 +2065,9 @@
       "evidence_note": "Recorded result  PASSED — Two separate RAPIDS processes recorded RMM current, peak and cumulative allocations alongside CUDA free/total memory. The second complete capture appears here.\nScope  RMM counts its own resource; the CUDA free-memory change includes other costs and is not a second allocation total to add to RMM.",
       "recorded_run_ids": [
         "155.01"
-      ]
+      ],
+      "book_page": 448,
+      "companion_files": []
     },
     {
       "number": 156,
@@ -1385,6 +2076,11 @@
       "recorded_run_ids": [],
       "shared_capture_exercises": [
         152
+      ],
+      "book_page": 451,
+      "companion_files": [
+        "ecosystem/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1394,6 +2090,11 @@
       "recorded_run_ids": [],
       "shared_capture_exercises": [
         152
+      ],
+      "book_page": 452,
+      "companion_files": [
+        "ecosystem/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1403,6 +2104,11 @@
       "recorded_run_ids": [
         "158.01",
         "158.02"
+      ],
+      "book_page": 453,
+      "companion_files": [
+        "ecosystem/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1411,6 +2117,11 @@
       "evidence_note": "Recorded result  PASSED — The real MiniLM encoder was exported with masked mean pooling and L2 normalization. CPU ONNX Runtime passed three batch comparisons and held-out retrieval used the same text IDs, labels and vectors. Export parity tests conversion fidelity; it does not create a new semantic-quality benchmark. Original weights were preserved.\nScope  Read the actual provider placement and numerical comparisons for the graph being tested.",
       "recorded_run_ids": [
         "159.01"
+      ],
+      "book_page": 455,
+      "companion_files": [
+        "ecosystem/export_encoder_target.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1419,6 +2130,11 @@
       "evidence_note": "Recorded result  PASSED — TensorRT 11.3.0.99 imported in the current ARM64 environment and a 4,096-element CUDA arithmetic check passed. Installation failures, cancellation, the resumed hash-verified wheel and package reports are retained. This qualifies the selected runtime, not every TensorRT feature or precision.\nScope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.",
       "recorded_run_ids": [
         "160.01"
+      ],
+      "book_page": 458,
+      "companion_files": [
+        "ecosystem/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1428,6 +2144,11 @@
       "recorded_run_ids": [
         "161.01",
         "161.02"
+      ],
+      "book_page": 460,
+      "companion_files": [
+        "ecosystem/tensorrt_target.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1436,7 +2157,9 @@
       "evidence_note": "Recorded result  PASSED — Actual TensorRT execution retained build time, five warm-ups and twenty CUDA-event enqueue measurements per batch; a separate trtexec run included transfers and disabled CUDA graphs/spin wait. These timing definitions are not interchangeable. Optional Nsight export has 19,265 runtime records and 1,780 NVTX events but zero kernel events, so no device timeline is claimed.\nScope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.",
       "recorded_run_ids": [
         "162.01"
-      ]
+      ],
+      "book_page": 463,
+      "companion_files": []
     },
     {
       "number": 163,
@@ -1445,6 +2168,11 @@
       "recorded_run_ids": [
         "163.01",
         "163.02"
+      ],
+      "book_page": 466,
+      "companion_files": [
+        "ecosystem/make_triton_plan.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1453,6 +2181,11 @@
       "evidence_note": "Recorded result  PASSED — Fresh CPU quantization controls compared per-tensor and per-channel weights. The small output channel benefits from its own scale. The teaching payload is 32 INT8 weight bytes plus 16 scale bytes versus 128 FP32 weight bytes; the inspectable QDQ graph still contains FP32 initializers.\nScope  Its file size is not the compressed payload size.",
       "recorded_run_ids": [
         "164.01"
+      ],
+      "book_page": 469,
+      "companion_files": [
+        "ecosystem/lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1462,7 +2195,9 @@
       "recorded_run_ids": [],
       "shared_capture_exercises": [
         164
-      ]
+      ],
+      "book_page": 471,
+      "companion_files": []
     },
     {
       "number": 166,
@@ -1470,6 +2205,11 @@
       "evidence_note": "Recorded result  PASSED — The corrected TensorRT builder executed the explicit QDQ graph and retained layer/tactic inspection showing actual INT8 regions. The engine is mixed precision; not every operation is INT8. QDQ nodes were not removed to obtain success, and numerical error remains part of the result.\nScope  The selected calibration samples and the actual execution precision delimit the comparison.",
       "recorded_run_ids": [
         "166.01"
+      ],
+      "book_page": 472,
+      "companion_files": [
+        "ecosystem/tensorrt_target.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1480,13 +2220,20 @@
         "167.01",
         "167.02",
         "167.03"
-      ]
+      ],
+      "book_page": 474,
+      "companion_files": []
     },
     {
       "number": 168,
       "title": "Audit data splits and supervised token masks",
       "evidence_note": "Recorded result  PASSED — Fresh byte-token controls and real Qwen chat-template/NeMo dataset inspection found no all-masked examples or exact split overlap. The byte control is only a transparent teaching fixture. Actual rendered token masks and label identities were audited separately before training.\nScope  The split, base identity, trainable state and held-out behavior are separate parts of the adaptation record.",
-      "recorded_run_ids": []
+      "recorded_run_ids": [],
+      "book_page": 479,
+      "companion_files": [
+        "ecosystem/lab.py",
+        "reader/new_run.sh"
+      ]
     },
     {
       "number": 169,
@@ -1494,6 +2241,11 @@
       "evidence_note": "Recorded result  PASSED — The pinned NeMo AutoModel container completed four optimizer updates on Qwen3-0.6B LoRA with 32 training and eight validation HellaSwag rows. Initial acquisition downloaded the publisher splits before selecting those rows; 40 used rows does not mean only 40 rows were downloaded. WSL driver aliases and a supplementary container group corrected lookup/permission boundaries. Full effective recipes and checkpoints are owner-recorded.\nScope  The split, base identity, trainable state and held-out behavior are separate parts of the adaptation record.",
       "recorded_run_ids": [
         "169.01"
+      ],
+      "book_page": 480,
+      "companion_files": [
+        "ecosystem/nemo_prepare_target.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1504,6 +2256,11 @@
         "170.01",
         "170.02",
         "170.03"
+      ],
+      "book_page": 488,
+      "companion_files": [
+        "ecosystem/nemo_hooks/fixed/sitecustomize.py",
+        "ecosystem/nemo_hooks/observe/sitecustomize.py"
       ]
     },
     {
@@ -1513,6 +2270,11 @@
       "recorded_run_ids": [
         "171.01",
         "171.02"
+      ],
+      "book_page": 499,
+      "companion_files": [
+        "ecosystem/nemo_export_target.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1522,6 +2284,10 @@
       "recorded_run_ids": [
         "172.01",
         "172.02"
+      ],
+      "book_page": 504,
+      "companion_files": [
+        "media/inventory.py"
       ]
     },
     {
@@ -1530,6 +2296,11 @@
       "evidence_note": "Recorded result  PASSED — Fresh CPU image/audio fixtures preserve known shapes, a two-second 48 kHz tone, correct 16 kHz resampling, a false-rate header, antiphase cancellation and digital silence. These are deliberately constructed inputs for actual GPU model tests, not generated model successes.\nScope  A valid media file or successful environment probe precedes scoring the model output.",
       "recorded_run_ids": [
         "173.01"
+      ],
+      "book_page": 506,
+      "companion_files": [
+        "media/controls.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1543,6 +2314,10 @@
         "174.04",
         "174.05",
         "174.06"
+      ],
+      "book_page": 507,
+      "companion_files": [
+        "media/assets.py"
       ]
     },
     {
@@ -1551,6 +2326,10 @@
       "evidence_note": "Recorded result  PASSED — All 25 fresh media contract tests passed in the current WSL environment. They cover formats, resampling, leakage, bounded requests, scoring and silence gating.\nScope  Passing a wrapper contract does not prove that a pretrained recognizer will return an empty answer for silence; Exercise 198 tests that separately.",
       "recorded_run_ids": [
         "175.01"
+      ],
+      "book_page": 511,
+      "companion_files": [
+        "media/validate.py"
       ]
     },
     {
@@ -1559,6 +2338,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CUDA Qwen2.5-VL-3B inference correctly named the clean fixture’s shapes, colors and positions in the supplied review. Retained preprocessing shows bfloat16 model weights, a 1×36×36 visual grid, 356 input tokens and 65 generated tokens. The full answer is preserved.\nScope  Score each statement against the specific image supplied to that request.",
       "recorded_run_ids": [
         "176.01"
+      ],
+      "book_page": 513,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1569,6 +2353,11 @@
         "177.01",
         "177.02",
         "177.03"
+      ],
+      "book_page": 515,
+      "companion_files": [
+        "media/data/larger-diagram.png",
+        "media/targets.py"
       ]
     },
     {
@@ -1580,6 +2369,11 @@
         "178.02",
         "178.03",
         "178.04"
+      ],
+      "book_page": 518,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1588,6 +2382,10 @@
       "evidence_note": "Recorded result  BLOCKED — The Windows-elevated WSL2 retry still lacks usable kernel timestamps. Earlier vision inference, host ranges and allocator records remain; no vision workload was rerun. See Exercise 151 for the complete shared follow-up captures.\nScope  A completed multimodal response cannot supply missing device timestamps.",
       "recorded_run_ids": [
         "179.01"
+      ],
+      "book_page": 521,
+      "companion_files": [
+        "media/targets.py"
       ]
     },
     {
@@ -1597,6 +2395,10 @@
       "recorded_run_ids": [],
       "shared_capture_exercises": [
         181
+      ],
+      "book_page": 525,
+      "companion_files": [
+        "media/validate.py"
       ]
     },
     {
@@ -1605,6 +2407,11 @@
       "evidence_note": "Recorded result  PASSED — The actual CPU teaching denoiser has 4,610 parameters and completed 3,000 updates. Held-out noise MSE decreased from 0.9321 to 0.3841, and 512 finite samples were retained. This small two-dimensional experiment remains CPU evidence; SDXL GPU evidence begins at Exercise 184.\nScope  The small point-distribution experiment illustrates selected diffusion operations.",
       "recorded_run_ids": [
         "181.01"
+      ],
+      "book_page": 526,
+      "companion_files": [
+        "media/diffusion_control.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1613,7 +2420,9 @@
       "evidence_note": "Recorded result  PASSED — Fresh radius quantiles and occupancy checks accompany the newly retained point-cloud plot. The learned samples blur the eight modes despite lower noise error.\nScope  A finite output and a decreasing loss do not establish mode coverage or image quality.",
       "recorded_run_ids": [
         "182.01"
-      ]
+      ],
+      "book_page": 527,
+      "companion_files": []
     },
     {
       "number": 183,
@@ -1622,6 +2431,11 @@
       "recorded_run_ids": [
         "183.01",
         "183.02"
+      ],
+      "book_page": 530,
+      "companion_files": [
+        "reader/guide.py",
+        "reader/records.py"
       ]
     },
     {
@@ -1630,6 +2444,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CUDA SDXL produced the bounded 512×512 image with 20 steps, guidance 5 and seed 1606. The supplied review found the requested blue notebook and red cup.\nScope  A valid image file and a successful prompt on one seed do not establish population quality.",
       "recorded_run_ids": [
         "184.01"
+      ],
+      "book_page": 533,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1639,6 +2458,10 @@
       "recorded_run_ids": [
         "185.01",
         "185.02"
+      ],
+      "book_page": 535,
+      "companion_files": [
+        "media/targets.py"
       ]
     },
     {
@@ -1649,6 +2472,10 @@
         "186.01",
         "186.02",
         "186.03"
+      ],
+      "book_page": 540,
+      "companion_files": [
+        "media/targets.py"
       ]
     },
     {
@@ -1658,6 +2485,10 @@
       "recorded_run_ids": [
         "187.01",
         "187.02"
+      ],
+      "book_page": 546,
+      "companion_files": [
+        "media/targets.py"
       ]
     },
     {
@@ -1667,6 +2498,11 @@
       "recorded_run_ids": [
         "188.01",
         "188.02"
+      ],
+      "book_page": 550,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1675,6 +2511,11 @@
       "evidence_note": "Recorded result  PASSED — The actual generated MusicGen waveform and STFT were retained and checked for frame/rate consistency. Spectral magnitude is not calibrated loudness or a music-quality score. Listening remains a separate assessment.\nScope  File duration and waveform measurements do not grade musical quality.",
       "recorded_run_ids": [
         "189.01"
+      ],
+      "book_page": 552,
+      "companion_files": [
+        "media/analyze.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1683,6 +2524,11 @@
       "evidence_note": "Recorded result  PASSED — The 512-token MusicGen request produced 325,760 frames at 32 kHz, or 10.18 seconds, versus 161,920 frames and 5.06 seconds for 256 tokens.\nScope  The recorded inference real-time factor excludes load/export and does not measure first-audio latency; these complete-waveform calls are not streaming.",
       "recorded_run_ids": [
         "190.01"
+      ],
+      "book_page": 554,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1692,6 +2538,11 @@
       "recorded_run_ids": [
         "191.01",
         "191.02"
+      ],
+      "book_page": 555,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1700,6 +2551,11 @@
       "evidence_note": "Recorded result  PASSED — Actual CUDA MMS English synthesis generated 62,464 frames at 16 kHz, or 3.904 seconds. Raw float waveform and PCM WAV are retained. The program performed no playback or microphone capture.\nScope  The saved waveform and the recorded listening observations answer different questions.",
       "recorded_run_ids": [
         "192.01"
+      ],
+      "book_page": 559,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1708,6 +2564,11 @@
       "evidence_note": "Recorded result  PASSED — The fresh waveform/STFT figure now uses the actual CUDA synthesis output. Independent decoding confirms a maximum float-to-PCM difference of approximately 3.70e-5.\nScope  Encoding quantization is a separate boundary from model output and from perceived speech quality.",
       "recorded_run_ids": [
         "193.01"
+      ],
+      "book_page": 560,
+      "companion_files": [
+        "media/analyze.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1719,6 +2580,11 @@
         "194.02",
         "194.03",
         "194.04"
+      ],
+      "book_page": 562,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1730,6 +2596,11 @@
         "195.02",
         "195.03",
         "195.04"
+      ],
+      "book_page": 565,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1738,6 +2609,12 @@
       "evidence_note": "Recorded result  PASSED — Actual CUDA Whisper tiny transcribed the retained MMS utterance. Preserve raw leading whitespace and the explicitly normalized word-error calculation. This is a synthetic TTS-to-ASR round trip, not an independent human-labelled speech benchmark.\nScope  Keep the reference wording, acoustic input and normalization policy with each recognition score.",
       "recorded_run_ids": [
         "196.01"
+      ],
+      "book_page": 571,
+      "companion_files": [
+        "media/data/reference.txt",
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1750,6 +2627,11 @@
         "197.03",
         "197.04",
         "197.05"
+      ],
+      "book_page": 572,
+      "companion_files": [
+        "media/controls.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1760,6 +2642,11 @@
         "198.01",
         "198.02",
         "198.03"
+      ],
+      "book_page": 577,
+      "companion_files": [
+        "media/targets.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1770,6 +2657,11 @@
         "199.01",
         "199.02",
         "199.03"
+      ],
+      "book_page": 579,
+      "companion_files": [
+        "media/chunk_audio.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1780,6 +2672,12 @@
         "200.01",
         "200.02",
         "200.03"
+      ],
+      "book_page": 582,
+      "companion_files": [
+        "media/adapt_asr.py",
+        "media/prepare_adaptation.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1790,6 +2688,11 @@
         "201.01",
         "201.02",
         "201.03"
+      ],
+      "book_page": 585,
+      "companion_files": [
+        "media/image_adapter.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1799,6 +2702,11 @@
       "recorded_run_ids": [
         "202.01",
         "202.02"
+      ],
+      "book_page": 594,
+      "companion_files": [
+        "media/voice.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1808,6 +2716,11 @@
       "recorded_run_ids": [
         "203.01",
         "203.02"
+      ],
+      "book_page": 597,
+      "companion_files": [
+        "media/controls.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1816,6 +2729,11 @@
       "evidence_note": "Recorded result  PASSED — The fresh public NGC metadata receipt identifies the pinned CLI resource, its publisher, architecture, byte count and checksum. Acquisition identity and permission to redistribute remain separate questions. The recorded run used the existing catalogue pin; it did not relabel it as the latest release.\nScope  Catalog and image metadata precede execution of the selected asset.",
       "recorded_run_ids": [
         "204.01"
+      ],
+      "book_page": 603,
+      "companion_files": [
+        "catalogs/ngc_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1825,6 +2743,11 @@
       "recorded_run_ids": [
         "205.01",
         "205.02"
+      ],
+      "book_page": 604,
+      "companion_files": [
+        "catalogs/ngc_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1833,6 +2756,11 @@
       "evidence_note": "Recorded result  PASSED — The immutable ARM64 NGC PyTorch image was pulled and ran the numerical CUDA probe successfully. Its PyTorch 2.14.0a0+b2c75dd062.nv26.09 reports framework CUDA 13.4, device capability 12.1 and zero error for the small oracle. Those container identities differ from host PyTorch 2.14.1+cu130.\nScope  Successful execution of this image does not certify every NGC container or model.",
       "recorded_run_ids": [
         "206.01"
+      ],
+      "book_page": 608,
+      "companion_files": [
+        "catalogs/ngc_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1841,6 +2769,11 @@
       "evidence_note": "Recorded result  PASSED — Fresh CPU manifest controls rejected a missing ARM64 entry, a duplicate ARM64 selection and a changed digest before launching GPU work.\nScope  These intentional mutations exercise the acquisition boundary; they are not observed publisher incidents or GPU failures.",
       "recorded_run_ids": [
         "207.01"
+      ],
+      "book_page": 613,
+      "companion_files": [
+        "catalogs/ngc_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1849,6 +2782,11 @@
       "evidence_note": "Recorded result  PASSED — The recorded run rechecked pinned Hugging Face model and dataset identities through public metadata and retained the receipts.\nScope  A repository revision, card and file inventory identify candidate inputs; they do not establish trained quality or permission for every downstream use.",
       "recorded_run_ids": [
         "208.01"
+      ],
+      "book_page": 617,
+      "companion_files": [
+        "catalogs/hf_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1857,6 +2795,11 @@
       "evidence_note": "Recorded result  PASSED — Selective acquisition retained the pinned small model snapshot and verified its selected files. The complete receipt records the revision and hashes. This acquisition is separate from the offline CPU/CUDA execution that follows.\nScope  The snapshot and dataset checks apply to the recorded immutable revisions.",
       "recorded_run_ids": [
         "209.01"
+      ],
+      "book_page": 619,
+      "companion_files": [
+        "catalogs/hf_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1866,6 +2809,11 @@
       "recorded_run_ids": [
         "210.01",
         "210.02"
+      ],
+      "book_page": 621,
+      "companion_files": [
+        "catalogs/hf_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1874,6 +2822,11 @@
       "evidence_note": "Recorded result  PASSED — The retained audit reports five training and five test rows, no exact identifier or normalized-text overlap, and rejection of an injected overlap. Training readiness remains NOT ESTABLISHED because card provenance and licensing are incomplete.\nScope  The snapshot and dataset checks apply to the recorded immutable revisions.",
       "recorded_run_ids": [
         "211.01"
+      ],
+      "book_page": 624,
+      "companion_files": [
+        "catalogs/hf_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1882,6 +2835,11 @@
       "evidence_note": "Recorded result  PASSED — Pinned native ARM64 Prometheus and Grafana downloads passed the retained checksum/version checks. These are tool identities. Exporter semantics, a working query backend, displayed series and workload correlation are qualified separately in the following exercises.\nScope  Identifying the monitoring binaries precedes scraping a live target.",
       "recorded_run_ids": [
         "212.01"
+      ],
+      "book_page": 628,
+      "companion_files": [
+        "observability/setup_tools.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1890,6 +2848,10 @@
       "evidence_note": "Recorded result  PASSED — Fresh intentional field simulations distinguish a real zero from unavailable, stale and malformed measurements, and check unit conversion and histogram contracts. CPU execution of these controls is current laptop evidence; the injected GPU counters remain synthetic.\nScope  A missing field, a present zero and an unreachable target require three different interpretations.",
       "recorded_run_ids": [
         "213.01"
+      ],
+      "book_page": 630,
+      "companion_files": [
+        "observability/test_exporter.py"
       ]
     },
     {
@@ -1898,6 +2860,10 @@
       "evidence_note": "Recorded result  PASSED — Prometheus scraped the fixture, and the native WSL2 stack returned series through Grafana’s data-source backend. Record 214.01 ends with “No WSL2/GPU/Docker execution claimed”. The current integration.py prints “GPU measurements in this integration use the simulated fixture.” Both messages refer to the fixture values.\nScope  A missing field, a present zero and an unreachable target require three different interpretations.",
       "recorded_run_ids": [
         "214.01"
+      ],
+      "book_page": 631,
+      "companion_files": [
+        "observability/integration.py"
       ]
     },
     {
@@ -1908,6 +2874,10 @@
         "215.01",
         "215.02",
         "215.03"
+      ],
+      "book_page": 634,
+      "companion_files": [
+        "observability/browser_capture.py"
       ]
     },
     {
@@ -1920,6 +2890,12 @@
         "216.03",
         "216.04",
         "216.05"
+      ],
+      "book_page": 637,
+      "companion_files": [
+        "observability/client.py",
+        "observability/fixture.py",
+        "observability/stack.py"
       ]
     },
     {
@@ -1929,6 +2905,11 @@
       "recorded_run_ids": [
         "217.01",
         "217.02"
+      ],
+      "book_page": 641,
+      "companion_files": [
+        "observability/integration.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1943,6 +2924,10 @@
         "218.05",
         "218.06",
         "218.07"
+      ],
+      "book_page": 643,
+      "companion_files": [
+        "observability/linear_service_check.py"
       ]
     },
     {
@@ -1955,6 +2940,11 @@
         "219.03",
         "219.04",
         "219.05"
+      ],
+      "book_page": 651,
+      "companion_files": [
+        "observability/docker_config.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1963,6 +2953,11 @@
       "evidence_note": "Recorded result  PASSED — The orchestration packages were installed in a separate environment, with pip check and exact versions retained. All 86 distributions in the original CUDA exercise environment remained unchanged. Interpreter, framework and model-server identities must be read from the environment actually used by each command.\nScope  Grade tool selection and final evidence claims independently of transport success.",
       "recorded_run_ids": [
         "220.01"
+      ],
+      "book_page": 658,
+      "companion_files": [
+        "orchestration/environment.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1972,6 +2967,11 @@
       "recorded_run_ids": [
         "221.01",
         "221.02"
+      ],
+      "book_page": 659,
+      "companion_files": [
+        "orchestration/langchain_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1982,6 +2982,11 @@
         "222.01",
         "222.02",
         "222.03"
+      ],
+      "book_page": 661,
+      "companion_files": [
+        "orchestration/client_contract.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1990,6 +2995,11 @@
       "evidence_note": "Recorded result  PASSED — The fresh LangGraph control retained a SQLite checkpoint, exited its Python process and resumed in another process. The scripted evidence and model remain intentional controls.\nScope  Successful local restart does not establish multi-host recovery or exactly-once side effects.",
       "recorded_run_ids": [
         "223.01"
+      ],
+      "book_page": 666,
+      "companion_files": [
+        "orchestration/graph_control.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -1998,6 +3008,11 @@
       "evidence_note": "Recorded result  PASSED — The fresh continuation controls rejected the wrong thread and handled duplicate continuation according to the retained state contract. Inspect the committed checkpoint and event identity, rather than treating a second successful API call as a second legitimate action.\nScope  The persisted thread identity and approval determine which action can resume.",
       "recorded_run_ids": [
         "224.01"
+      ],
+      "book_page": 668,
+      "companion_files": [
+        "orchestration/graph_control.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2007,6 +3022,11 @@
       "recorded_run_ids": [
         "225.01",
         "225.02"
+      ],
+      "book_page": 669,
+      "companion_files": [
+        "orchestration/graph_control.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2015,6 +3035,11 @@
       "evidence_note": "Recorded result  PASSED — The new local LangSmith SDK control retained nested trace relationships, an error and explicit redaction behavior without sending a hosted request.\nScope  A locally serialized trace is observable evidence, but it does not establish hosted ingestion, indexing or dashboard visibility.",
       "recorded_run_ids": [
         "226.01"
+      ],
+      "book_page": 673,
+      "companion_files": [
+        "orchestration/langsmith_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2023,6 +3048,11 @@
       "evidence_note": "Recorded result  PASSED — The offline evaluation ran again and preserved its failing cases. The teaching dataset and scripted outputs remain synthetic.\nScope  Keep each case’s expected result, observed result and evaluator identity; an aggregate score does not explain a diagnostic failure.",
       "recorded_run_ids": [
         "227.01"
+      ],
+      "book_page": 675,
+      "companion_files": [
+        "orchestration/langsmith_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2031,6 +3061,11 @@
       "evidence_note": "Recorded result  BLOCKED — The fixed synthetic LangSmith request plan was executed again but not sent.\nScope  LANGSMITH_API_KEY is absent; hosted ingestion, readback and UI qualification remain BLOCKED.",
       "recorded_run_ids": [
         "228.01"
+      ],
+      "book_page": 676,
+      "companion_files": [
+        "orchestration/langsmith_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2039,6 +3074,11 @@
       "evidence_note": "Recorded result  PASSED — Fresh PydanticAI controls rejected plausible but invalid structured findings and exercised retry behavior through real SDK code.\nScope  Schema validity, evidence support and diagnostic correctness are separate checks; the scripted model is not a learned-model evaluation.",
       "recorded_run_ids": [
         "229.01"
+      ],
+      "book_page": 679,
+      "companion_files": [
+        "orchestration/pydantic_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2047,6 +3087,11 @@
       "evidence_note": "Recorded result  PASSED — The fresh control bounded persistent invalid output and retained the exhausted retry/budget outcome.\nScope  A retry limit is an operational boundary; it does not make the final invalid answer acceptable.",
       "recorded_run_ids": [
         "230.01"
+      ],
+      "book_page": 680,
+      "companion_files": [
+        "orchestration/pydantic_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2055,6 +3100,11 @@
       "evidence_note": "Recorded result  PASSED — The typed agent completed against the actual local CUDA model endpoint. A separate attempt after the server stopped failed with exit 1, and its full transport error remains in the companion.\nScope  Typed-output acceptance does not prove factual or diagnostic correctness, and a stopped endpoint must not silently fall back to a fixture.",
       "recorded_run_ids": [
         "231.01"
+      ],
+      "book_page": 681,
+      "companion_files": [
+        "orchestration/pydantic_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2063,6 +3113,11 @@
       "evidence_note": "Recorded result  PASSED — The fresh local Jev controls exercised Choice, Score and Noul response contracts with explicit simulated payloads. The code and adapter ran; no hosted Jev model was called. Versioned fields, abstention and normalization remain part of the contract.\nScope  The local contract and calibration records have different evidentiary scope from a hosted model response.",
       "recorded_run_ids": [
         "232.01"
+      ],
+      "book_page": 684,
+      "companion_files": [
+        "orchestration/jev_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2071,6 +3126,11 @@
       "evidence_note": "Recorded result  PASSED — The six-row calibration control is intentionally synthetic. Independent arithmetic reproduces Brier score 0.2916666666666667 and the recorded risk/coverage points.\nScope  Confidence thresholding can reduce coverage without reducing risk on this tiny example; this is not measured calibration of Jev, Qwen or any deployed model.",
       "recorded_run_ids": [
         "233.01"
+      ],
+      "book_page": 686,
+      "companion_files": [
+        "orchestration/jev_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2079,6 +3139,11 @@
       "evidence_note": "Recorded result  BLOCKED — The fixed synthetic Jev request plan was executed again but not sent.\nScope  TYPESAFE_API_KEY is absent; hosted model behavior and service UI qualification remain BLOCKED.",
       "recorded_run_ids": [
         "234.01"
+      ],
+      "book_page": 688,
+      "companion_files": [
+        "orchestration/jev_lab.py",
+        "reader/new_run.sh"
       ]
     },
     {
@@ -2088,6 +3153,11 @@
       "recorded_run_ids": [
         "235.01",
         "235.02"
+      ],
+      "book_page": 693,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/ollama_archive.py"
       ]
     },
     {
@@ -2096,6 +3166,11 @@
       "evidence_note": "Recorded result  PASSED — Ollama imported the pinned Qwen 1.5B GGUF and retained its model digest, template, capabilities, raw streamed response and terminal status. The actual GPU model request is the main illustration. A length-limited terminal event is distinct from a normally completed answer even when transport succeeds.\nScope  Loaded model identity, request completion and output quality require separate observations.",
       "recorded_run_ids": [
         "236.01"
+      ],
+      "book_page": 695,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/probe.py"
       ]
     },
     {
@@ -2104,6 +3179,11 @@
       "evidence_note": "Recorded result  PASSED — The actual EmbeddingGemma request returned three finite, nonzero sentence vectors of a consistent dimension. Publisher identity, model license and raw response are retained.\nScope  Shape and finite-value checks qualify the API result; they do not measure retrieval ranking, semantic separation or transfer quality.",
       "recorded_run_ids": [
         "237.01"
+      ],
+      "book_page": 699,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/probe.py"
       ]
     },
     {
@@ -2114,6 +3194,11 @@
         "238.01",
         "238.02",
         "238.03"
+      ],
+      "book_page": 700,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/probe.py"
       ]
     },
     {
@@ -2123,6 +3208,11 @@
       "recorded_run_ids": [
         "239.01",
         "239.02"
+      ],
+      "book_page": 705,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/lab.py"
       ]
     },
     {
@@ -2131,6 +3221,11 @@
       "evidence_note": "Recorded result  PASSED — Actual Unsloth QLoRA completed five CUDA optimizer updates with 9,232,384 trainable parameters, sequence length 256, microbatch 1 and accumulation 4. The recorded evaluation loss fell from 5.8703 to 3.5985; peak PyTorch allocation was about 1.35 GiB and reservation 1.68 GiB. Those allocator counters exclude other process/driver use. The four heldout synthetic examples are too few for a generalization claim.\nScope  A successful training update or valid output syntax does not by itself establish task improvement.",
       "recorded_run_ids": [
         "240.01"
+      ],
+      "book_page": 707,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/train_unsloth.py"
       ]
     },
     {
@@ -2139,6 +3234,11 @@
       "evidence_note": "Recorded result  PASSED — Training resumed the saved step-5 checkpoint through global step 10 with the same bound base and training contract; recorded evaluation loss reached 2.6536. Optimizer, scheduler and RNG payload identities were retained locally, but their bytes are excluded from this export. This demonstrates the recorded continuation, not bitwise equivalence to an uninterrupted ten-step run.\nScope  A successful training update or valid output syntax does not by itself establish task improvement.",
       "recorded_run_ids": [
         "241.01"
+      ],
+      "book_page": 711,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/train_unsloth.py"
       ]
     },
     {
@@ -2148,6 +3248,11 @@
       "recorded_run_ids": [
         "242.01",
         "242.02"
+      ],
+      "book_page": 715,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/merge_unsloth.py"
       ]
     },
     {
@@ -2158,7 +3263,9 @@
         "243.01",
         "243.02",
         "243.03"
-      ]
+      ],
+      "book_page": 722,
+      "companion_files": []
     },
     {
       "number": 244,
@@ -2170,6 +3277,11 @@
         "244.03",
         "244.04",
         "244.05"
+      ],
+      "book_page": 724,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/probe.py"
       ]
     },
     {
@@ -2179,6 +3291,11 @@
       "recorded_run_ids": [
         "245.01",
         "245.02"
+      ],
+      "book_page": 727,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/probe.py"
       ]
     },
     {
@@ -2189,6 +3306,11 @@
         "246.01",
         "246.02",
         "246.03"
+      ],
+      "book_page": 730,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/probe.py"
       ]
     },
     {
@@ -2199,6 +3321,11 @@
         "247.01",
         "247.02",
         "247.03"
+      ],
+      "book_page": 733,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/acquire.py"
       ]
     },
     {
@@ -2210,6 +3337,11 @@
         "248.02",
         "248.03",
         "248.04"
+      ],
+      "book_page": 735,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/lab.py"
       ]
     },
     {
@@ -2221,6 +3353,11 @@
         "249.02",
         "249.03",
         "249.04"
+      ],
+      "book_page": 739,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/probe.py"
       ]
     },
     {
@@ -2235,6 +3372,11 @@
         "250.05",
         "250.06",
         "250.07"
+      ],
+      "book_page": 744,
+      "companion_files": [
+        "reader/new_run.sh",
+        "runtimes/probe.py"
       ]
     },
     {
@@ -2249,6 +3391,13 @@
         "251.05",
         "251.06",
         "251.07"
+      ],
+      "book_page": 750,
+      "companion_files": [
+        "memory_budget/probe.py",
+        "memory_budget/run.py",
+        "memory_budget/test_controls.py",
+        "reader/new_run.sh"
       ]
     }
   ]

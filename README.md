@@ -1,10 +1,10 @@
 # Local AI on RTX Spark Laptops
 
-This is the Version 55 learner companion to *Local AI on RTX Spark Laptops*. It contains code, fixtures, and guides for 251 hands-on WSL2 exercises. The worked system is a 64 GB unified-memory RTX Spark laptop using the NVIDIA driver mapped into WSL2 from Windows.
+Version 56 of the learner companion supplies the code, fixtures and guides for all 251 exercises in *Local AI on RTX Spark Laptops*. The worked system is a 64 GB unified-memory RTX Spark laptop with the Windows NVIDIA driver mapped into WSL2.
 
 ## Start in WSL2
 
-Clone the repository into a staging directory, then verify the companion against its manifest.
+Clone the repository into a staging directory. Run the integrity check before creating a working lab.
 
 ```bash
 mkdir -p ~/work
@@ -14,7 +14,7 @@ python3 reader/verify_package.py
 python3 reader/guide.py 1
 ```
 
-For a first installation, create a separate working lab. The destination must be new. If you already have a qualified lab at `~/work/spark-book`, keep it and choose a fresh sibling directory for these commands.
+For a first installation, create your working project under a **new** directory. If you already use `~/work/spark-book`, choose a fresh sibling path in both commands.
 
 ```bash
 python3 reader/new_lab.py ~/work/spark-book
@@ -22,24 +22,35 @@ cd ~/work/spark-book
 python3 reader/preflight.py --require-wsl
 ```
 
-Follow the setup guide to prepare the exercise environment. Start with Exercises 1–9, then use Exercise 23 to record the acceptance result for your first inference run. [Start here](spark-book/reader/START_HERE.txt) · [Fresh setup](spark-book/reader/FRESH_SETUP.txt)
+Follow [Start here](spark-book/reader/START_HERE.txt) and [Fresh setup](spark-book/reader/FRESH_SETUP.txt) to prepare the environment. Exercises 1–9 lead to the first native model run. Exercise 23 records its acceptance result. Each later exercise identifies the packages, model or image downloads, hardware, and service credentials it needs.
 
-## Find an exercise or a recorded run
+## Find a procedure and read its transcript
 
-The guides cover inference, fine-tuning, embeddings, multimodal generation, CUDA programming, GPU diagnostics, observability, and deployment. Each exercise number matches its entry in the book. To see the learning routes, browse the index, or inspect the recorded scope of distributed training, use the following commands from the companion or working lab.
+From the working lab, use the same exercise number as the book. The lookup shows the printed page, execution scope, outcome and files you can open locally.
 
 ```bash
-cat reader/ROUTES.txt
 python3 reader/guide.py --list
 python3 reader/guide.py 129
-python3 reader/records.py 129
+python3 reader/records.py 129 --files
 ```
 
-The record index identifies what ran on the laptop and which checks passed, failed, or remain blocked. For original command metadata, stdout, and stderr, restore the separate Evidence Version 48 pack and use `reader/records.py NUMBER --files`. [Evidence guide](spark-book/reader/EVIDENCE.txt) · [Exercise guides](spark-book/reader/exercises)
+Readers with the Word edition can also export the 483 published transcripts to `runs/book-transcripts/`. Supply the path to your DOCX. The exporter checks each transcript before writing it. Readers using the printed book or PDF can use the page numbers directly. [Transcript guide](spark-book/reader/EVIDENCE.txt)
 
-## Public companion contents
+```bash
+python3 reader/import_transcripts.py /path/to/Local_AI_on_RTX_Spark_Laptops_Version56.docx
+python3 reader/records.py 129 --files
+```
 
-All 251 guides and the exercise programs match the reviewed Version 55 companion. The public copy omits the historical NGC image-configuration file, `catalogs/controls/ngc-image/config.json`, which contains upstream container build history. The retained `image.json`, OCI index, and manifest provide the image identity and ARM64 platform used by the offline catalog exercises. Three saved PyTorch checkpoint files from the distributed and GPU-sharing controls are also omitted. The checkpoint-specific assertions in `distributed/validate.py` and `sharing/validate.py` require those original fixtures. The [distributed](spark-book/distributed/README.txt) and [sharing](spark-book/sharing/README.txt) guides describe how to run fresh recovery and training experiments. The two package inventories reflect the public file set.
+## Checkpoint and tool exercises
+
+The distributed-training fixtures include the rank-zero checkpoints after steps 2 and 4. The GPU-sharing training fixture includes the single-owner checkpoint after step 4. In the exercise Python environment with PyTorch and NumPy available, check the saved states from the working lab.
+
+```bash
+python distributed/validate.py
+python sharing/validate.py
+```
+
+The [CUDA timestamp probe](spark-book/cuda/timestamp_probe) and [NeMo recovery hooks](spark-book/ecosystem/nemo_hooks) accompany Exercises 151 and 170. The [learning routes](spark-book/reader/ROUTES.txt) describe where to start for other topics.
 
 ## License
 

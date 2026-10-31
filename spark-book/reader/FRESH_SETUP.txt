@@ -113,9 +113,4 @@ Containerized RAPIDS, TensorRT, NeMo and serving paths each retain their own
 image digest, architecture and runtime record. Do not merge them indiscriminately
 into the qualified framework environment.
 
-First-time walkthrough status
-legacy/qualification-v46/reader-walkthrough.json in the publisher archive records the
-editorial clean-directory checks. The available editorial machine is not the
-owner’s WSL2 CUDA laptop. GPU qualification, fresh native downloads, the real
-wheel reconstruction and model serving remain explicitly unexecuted in that
-walkthrough. Use FIRST_RUN_CHECKLIST.txt for the corresponding laptop run.
+Use reader/FIRST_RUN_CHECKLIST.txt to record your own first WSL2 run.

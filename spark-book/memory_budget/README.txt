@@ -1,7 +1,6 @@
-Recorded source paths in this note resolve under the separately restored evidence root.
-See reader/EVIDENCE.txt for path lookup.
+Historical commands retain their original working paths. Use reader/guide.py for a fresh run and reader/records.py for the corresponding book pages.
 
-CURRENT READER EDITION — VERSION 55
+CURRENT READER EDITION — VERSION 56
 Start with reader/START_HERE.txt at the companion root. Use
 reader/guide.py NUMBER for the portable entry procedure and the book for
 current verified outcomes. Source-era environment/transcript statements below
@@ -24,9 +23,8 @@ every-byte verification, final exits and release observations. Verified
 Use python reader/records.py 251 --files to locate the complete records.
 The original terminal pastes remain historical REPORTED queries in
 USER-OBSERVATIONS.txt. Missing timestamps, stderr and exits are not invented.
-The archive retains earlier preparation controls and the exact six-file
-source subset executed by the owner. After restoration, that source subset
-is in exercises/251/resources/source/ under SPARK_BOOK_EVIDENCE.
+Use the probe.py, run.py and test_controls.py files in this directory to repeat
+the published procedure with fresh outputs and current memory guards.
 The pilot includes two sampled guest swap-out intervals. The target includes
 none in eight intervals, without proving no paging or physical residency.
 Windows samples supply host observations and additional live guards.

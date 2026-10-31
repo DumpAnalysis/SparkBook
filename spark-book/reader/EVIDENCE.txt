@@ -1,39 +1,22 @@
-Working procedures and recorded runs — Version 55
+Find a recorded run
 
-Follow reader/guide.py NUMBER and the matching book exercise. The same exercise
-number locates its recorded examples:
-  python reader/records.py 25
-A label such as 025.01 means the first printed capture for Exercise 25.
-The suffix orders records within that exercise; it is not a prerequisite.
-Each record retains its own date, environment and execution scope. Records
-are not combined into a fictitious continuous terminal session.
+From the companion or the working lab, display the guide and recorded results:
+  python3 reader/guide.py 25
+  python3 reader/records.py 25 --files
 
-To inspect complete raw files, extract the Evidence Version 48 ZIP into a
-staging directory. From its spark-book-evidence/ directory:
-  python3 restore.py --out ~/work/spark-book-evidence
-Choose a NEW destination outside the extracted pack. Allow about 2.2 GB for
-restored files. Restoration verifies hashes and executes no captured program.
+A run such as 025.01 identifies an observation in the book. The index shows
+the printed page, the execution scope and what to inspect first. Some exercises
+share a capture or have a recorded assessment without a separate printed command.
+Use the page and run ID to read the transcript in the printed or digital book.
 
-Back in ~/work/spark-book:
-  export SPARK_BOOK_EVIDENCE="$HOME/work/spark-book-evidence"
-  python reader/records.py 25 --files
-  python reader/records.py 251 --files
+Optional text export from the Version 56 Word book
+From your working lab, run:
+  python3 reader/import_transcripts.py /path/to/Local_AI_on_RTX_Spark_Laptops_Version56.docx
+  python3 reader/records.py 25 --files
 
-The restored exercises/ directory provides the exercise view. Its raw streams
-and metadata are byte-identical to the original evidence. Original paths and
-source identifiers remain only in the archive and unchanged raw records;
-they are not learning stages. The archive's recorded-run-provenance.json
-provides the exact crosswalk for auditing.
-
-The book prints the selected commands, stdout, stderr and exits. In the published
-copy of record 151.01, [Windows account omitted] replaces one user field. The
-restored stdout contains the original value and retains its source hash. Additional source files, linked
-artifacts, failed attempts and original acceptance records remain in the
-archive. A receipt does not supply excluded models, binaries or checkpoints.
-Archived launchers may depend on the owner's absolute paths or excluded assets;
-use portable guides and fresh output directories for a new run.
-
-The optional publisher archive contains publication history and editorial
-verification. It is unnecessary for following the learning routes.
-
-Use the Version 55 book and learner guides with the Version 48 evidence pack. A named command duration is an observed stage on the example laptop. Add your own setup, download and interpretation time.
+The exporter reads the DOCX without running embedded commands. It verifies
+all 483 published capture digests and creates runs/book-transcripts/ with one
+UTF-8 file per run. The file for the example is 025.01.txt. The destination
+must be new. Historical paths retain their original spelling. The published
+account mask is preserved. Use reader/capture.py and a fresh run directory
+to capture your own stdout, stderr and exit status.

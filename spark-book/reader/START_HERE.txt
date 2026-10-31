@@ -11,16 +11,15 @@ reader/ material deliberately. Do not unpack a new companion over your only
 copy of a working experiment. A new archive cannot remove obsolete files from
 an older extraction.
 
-For a first installation, extract the learner companion into a staging directory
-inside WSL2. From the extracted spark-book directory, run:
+For a first installation, clone https://github.com/DumpAnalysis/SparkBook into a
+staging directory in WSL2 or download its ZIP. From spark-book/, run:
 
 python3 reader/new_lab.py ~/work/spark-book
 
 The destination must not exist. The helper copies teaching sources and required
 fixtures, but no archived evidence, downloaded models, environments or run
 outputs. If ~/work/spark-book already exists, choose a new sibling directory.
-Restore the separate evidence pack when inspecting complete recorded runs.
-Read reader/EVIDENCE.txt. The working lab is where we create new results.
+Use reader/records.py NUMBER for printed transcript pages. Read reader/EVIDENCE.txt. The working lab is where we create new results.
 
 cd ~/work/spark-book
 python3 reader/preflight.py --require-wsl
@@ -80,8 +79,8 @@ the execution origin without turning one successful check into a general pass.
 
 Compare a result by exercise number:
   python reader/records.py 25
-Use --files after restoring the evidence pack. See reader/EVIDENCE.txt.
+Add --files for the local guide, exercise files and exported book transcripts.
 Follow the exercise prerequisites and learning routes; record labels are
 references, not additional learning stages.
 
-Use the Version 55 book and learner guides with the Version 48 evidence pack. A named command duration is an observed stage on the example laptop. Add your own setup, download and interpretation time.
+Use the Version 56 book and the matching GitHub companion. A named command duration is an observed stage on the example laptop. Add your own setup, download and interpretation time.

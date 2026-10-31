@@ -1,4 +1,4 @@
-CURRENT TRANSCRIPT AND EVIDENCE POLICY — VERSION 55
+CURRENT TRANSCRIPT AND EVIDENCE POLICY — VERSION 56
 
 Navigate by exercise number and recorded-run label. Use the newest verified
 observation for the operation it actually covers; recency alone does not
@@ -17,18 +17,8 @@ Identify supplied laptop GPU execution, supplied laptop CPU execution,
 simulation, historical preparation, reported observation, editorial check,
 and unexecuted procedure. CPU controls retain their proper labels.
 
-The book preserves all 483 selected complete command captures. Times, paths,
-commands, stdout, stderr and exits remain unchanged. Exercise labels are
-editorial navigation; raw records remain byte-identical. Each capture keeps
-its own environment and date. A set of records is not one continuous session.
-Original source names inside raw text establish provenance, not prerequisites.
-
-reader/guide.py displays a portable entry procedure. reader/records.py displays
-record references. Neither helper executes an experiment. The evidence pack
-restores original source files plus an exercise view after hash checks.
-Missing weights, binaries and checkpoint payloads remain missing.
-
-The learner distribution contains current working material. The evidence pack
-contains raw records and their source crosswalk; the optional publisher archive
-contains publication history. Version 55 verifies editorial changes against the retained sources.
-The recorded executions keep their original dates and qualification scope. Follow reader/FIRST_RUN_CHECKLIST.txt on the laptop.
+The book prints 483 selected command captures. One published user field in
+151.01 masks a Windows account. The export reproduces the published lines.
+Run IDs, exit status and execution scope distinguish each observation.
+Use reader/records.py for page references and reader/capture.py for new work.
+Each run retains its original environment and date.

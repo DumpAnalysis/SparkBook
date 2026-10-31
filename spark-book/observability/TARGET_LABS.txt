@@ -2,7 +2,7 @@ Current reader entry points
 Use reader/guide.py 214 for strict integration, 215 for rendered dashboard states, and 218 for the three unmonitored and three monitored trials. The manual procedures below expose each part separately.
 
 HISTORICAL PROCEDURE NOTES
-Book Version 55 and reader/exercises/ are the current reader instructions.
+Book Version 56 and reader/exercises/ are the current reader instructions.
 These retained source-era notes explain concepts and repeat procedures; their
 old environment and execution-status statements are historical. Superseded
 preparation transcript blocks remain omitted. Use the evidence map for current

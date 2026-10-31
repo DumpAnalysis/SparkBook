@@ -8,7 +8,7 @@ root = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--book', type=Path, help='verify the original, unedited DOCX file')
 args = parser.parse_args()
-name = 'VERSION55_MANIFEST.json'
+name = 'VERSION56_MANIFEST.json'
 manifest = json.loads((root / name).read_text())
 
 
@@ -28,7 +28,12 @@ if found != expected:
     parser.exit(1, 'Unexpected or missing files. Check a pristine extraction.\n')
 result = {'status':'PASSED','files':len(manifest['files']),'gpu_execution':False}
 if args.book:
-    if not args.book.is_file() or checksum(args.book) != manifest['book']['sha256']:
-        parser.exit(1, 'Manuscript missing or checksum mismatch. Expected the unedited ' + manifest['book']['name'] + '\n')
-    result['matched_manuscript'] = manifest['book']['name']
+    books = [manifest['book'], *manifest.get('compatible_books', [])]
+    digest = checksum(args.book) if args.book.is_file() else None
+    match = next((book for book in books if book['sha256'] == digest), None)
+    if match is None:
+        parser.exit(1, 'Manuscript missing or checksum mismatch. Expected an unedited matching book.\n')
+    result['matched_manuscript'] = match['name']
+    if match != manifest['book']:
+        result['page_index_for'] = manifest['book']['name']
 print(json.dumps(result, indent=2))

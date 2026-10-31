@@ -1,9 +1,9 @@
 Local AI on RTX Spark Laptops
-Learner companion Version 55 — 31 October 2026
+Learner companion Version 56 — 31 October 2026
 
 START HERE
-Read reader/START_HERE.txt. Extract this learner ZIP into a staging directory
-in WSL2, then create a new working project from the extracted spark-book/:
+Read reader/START_HERE.txt. Clone https://github.com/DumpAnalysis/SparkBook or unzip the companion
+in a staging directory in WSL2. Open spark-book/ and create the working lab:
 
 python3 reader/new_lab.py ~/work/spark-book
 
@@ -21,33 +21,18 @@ The first-inference route is Exercises 1–9, then 23. It uses the native
 runtime and does not require PyTorch. Exercise 14 qualifies the framework
 before its routes; Exercise 251 remains an advanced memory investigation.
 
-PACKAGES
-This learner package contains teaching programs, required small fixtures,
-dependency records, 251 standalone guides and the current evidence map.
-Model weights, containers, environments and user runs are not included.
+MATERIALS
+The working programs, 251 exercise guides, test data, training checkpoints and
+module-specific dependency lists are in the spark-book/ directory. The public
+repository is https://github.com/DumpAnalysis/SparkBook. Use the exercise's
+instructions to acquire its model weights, runtime or container image.
 
-The separate Evidence Version 48 ZIP contains the supplied execution records.
-Extract it into staging and run its restore.py into a NEW evidence directory.
-Set SPARK_BOOK_EVIDENCE to that restored directory when inspecting captures.
-The optional Publisher Version 55 ZIP holds old inventories, reviews and
-publication history. It is not needed for the first-inference route.
-
-Read reader/EVIDENCE.txt for restoration and path examples. Use python reader/records.py NUMBER
-to inspect an exercise’s records, adding --files to locate restored files.
-The helper prints information and executes no experiment.
-The book retains complete selected transcripts; all supplied execution files are
-preserved in the evidence pack. Historical absolute paths remain historical.
+Run python3 reader/records.py NUMBER --files to find the guide and printed run
+pages. To read the printed commands and results in local text files, run
+python3 reader/import_transcripts.py /path/to/book.docx from your working lab.
+See reader/EVIDENCE.txt for the output location and scope.
 
 VALIDATION
-python3 reader/verify_package.py
-VERSION55_MANIFEST.json defines this learner distribution. The source
-inventory used by new_lab.py is reader/workspace-files.json. Run package
-verification on a fresh extraction before creating personal files.
-TRANSCRIPT_POLICY.txt is the current policy; old amendments are archived.
-No new laptop execution is claimed by an editorial publication version.
-
-Version 55 pairs this learner guide with the Version 55 manuscript. The recorded inputs are in Evidence Version 48. Each timing is for its named captured command; preparation, reading and later steps take additional time.
-
-Verify a pristine extraction and its matching unedited Word manuscript together:
-  python3 reader/verify_package.py --book /path/to/Local_AI_on_RTX_Spark_Laptops_Version55.docx
-Use a manuscript stored outside the extracted package. Personal edits change its checksum.
+Run python3 reader/verify_package.py in a pristine checkout or extraction.
+Add --book /path/to/book.docx to verify the matching manuscript.
+The portable tests and the recorded laptop trials have separate scopes.

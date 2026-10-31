@@ -1,6 +1,6 @@
 First-time reader acceptance checklist
 
-Use a new working lab, preserve the separate evidence reference, and record actual
+Use a new working lab, keep the checkout pristine, and record actual
 commands with reader/capture.py. Never relabel a preparation check as WSL2 GPU
 execution. The checklist is a procedure, not a completed transcript.
 

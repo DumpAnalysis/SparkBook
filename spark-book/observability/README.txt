@@ -1,7 +1,6 @@
-Recorded source paths in this note resolve under the separately restored evidence root.
-See reader/EVIDENCE.txt for path lookup.
+Historical commands retain their original working paths. Use reader/guide.py for a fresh run and reader/records.py for the corresponding book pages.
 
-CURRENT READER EDITION — VERSION 55
+CURRENT READER EDITION — VERSION 56
 Start with reader/START_HERE.txt at the companion root. Use
 reader/guide.py NUMBER for the portable entry procedure and the book for
 current verified outcomes. Source-era environment/transcript statements below
