@@ -1,0 +1,14 @@
+{
+  "status": "EXPECTED_FAILURE",
+  "failure": {
+    "kind": "timeout",
+    "sequence": 1,
+    "missing": [
+      1
+    ]
+  },
+  "exitcodes": [
+    1,
+    1
+  ]
+}

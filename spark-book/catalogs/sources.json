@@ -1,0 +1,114 @@
+[
+  {
+    "reference": 170,
+    "publisher": "NVIDIA",
+    "title": "NGC catalog user guide",
+    "url": "https://docs.nvidia.com/ngc/latest/ngc-catalog-user-guide.html",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 171,
+    "publisher": "NVIDIA",
+    "title": "NGC user guide and account access",
+    "url": "https://docs.nvidia.com/ngc/latest/ngc-user-guide.html",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 172,
+    "publisher": "NVIDIA",
+    "title": "NGC CLI setup with pinned 4.34.10 installation commands",
+    "url": "https://catalog.ngc.nvidia.com/orgs/nvidia/ngc-apps/resources/ngc_cli/-/setup",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 173,
+    "publisher": "NVIDIA",
+    "title": "NGC CLI registry resource info, including --files",
+    "url": "https://docs.ngc.nvidia.com/cli/cmd_registry.html#info_repeat11",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 174,
+    "publisher": "NVIDIA",
+    "title": "PyTorch release 26.09",
+    "url": "https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel-26-09.html",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 175,
+    "publisher": "Docker",
+    "title": "Buildx imagetools inspect",
+    "url": "https://docs.docker.com/reference/cli/docker/buildx/imagetools/inspect/",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 176,
+    "publisher": "Hugging Face",
+    "title": "Hub overview",
+    "url": "https://huggingface.co/docs/hub/index",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 177,
+    "publisher": "Hugging Face",
+    "title": "Model cards",
+    "url": "https://huggingface.co/docs/hub/en/model-cards",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 178,
+    "publisher": "Hugging Face",
+    "title": "Dataset cards",
+    "url": "https://huggingface.co/docs/hub/main/datasets-cards",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 179,
+    "publisher": "Hugging Face",
+    "title": "Tiny random BERT repository at the selected revision",
+    "url": "https://huggingface.co/hf-internal-testing/tiny-random-bert/tree/f171d7baecaf37b5da5a3616d8833b9969753535",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 180,
+    "publisher": "Hugging Face",
+    "title": "lhoestq demo1 dataset at the selected revision",
+    "url": "https://huggingface.co/datasets/lhoestq/demo1/tree/87ecf163bedca9d80598b528940a9c4f99e14c11",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 181,
+    "publisher": "Hugging Face",
+    "title": "User access tokens",
+    "url": "https://huggingface.co/docs/hub/en/security-tokens",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 182,
+    "publisher": "Hugging Face",
+    "title": "Gated models",
+    "url": "https://huggingface.co/docs/hub/en/models-gated",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 183,
+    "publisher": "Hugging Face",
+    "title": "Hub download API 0.36.0",
+    "url": "https://huggingface.co/docs/huggingface_hub/v0.36.0/package_reference/file_download",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 184,
+    "publisher": "Hugging Face",
+    "title": "Hub cache behavior 0.36.0",
+    "url": "https://huggingface.co/docs/huggingface_hub/v0.36.0/en/guides/manage-cache",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 185,
+    "publisher": "Hugging Face",
+    "title": "Hub environment variables 0.36.0",
+    "url": "https://huggingface.co/docs/huggingface_hub/v0.36.0/package_reference/environment_variables",
+    "consulted": "2026-10-28"
+  }
+]

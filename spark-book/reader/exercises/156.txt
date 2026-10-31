@@ -1,0 +1,39 @@
+Exercise 156  Build and inspect a small dynamic graph
+
+Question
+Can the exported graph accept the intended dynamic input shape?
+
+Before you start
+Exercise 152 (establish data and environment provenance)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+8.4 s for Fresh CPU controls (record 152.01).
+
+Check for success
+Inspect ONNX input/output names, symbolic dimension and initializer shapes, then run the structural checker.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python ecosystem/lab.py onnx --src ecosystem/controls/fixture --out "$LAB_RUN/onnx"
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Keep $LAB_RUN/onnx with the command and exit that produced it.
+
+Handoff
+Pass linear.onnx and the original fixture.npz to the ONNX Runtime comparisons in Exercises 157–158 and the TensorRT build in Exercise 161.
+
+Recorded result  PASSED — Fresh CPU ONNX checker and shape inference passed for the three-node dynamic-batch linear graph. The complete ecosystem control sequence is printed in Exercise 152. The exported graph inventory preserves structure and initializer identities; graph weight bytes are excluded from this handoff.
+Scope  Read the actual provider placement and numerical comparisons for the graph being tested.
+
+Recorded files
+python reader/records.py 156 --files

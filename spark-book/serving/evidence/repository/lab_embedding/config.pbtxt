@@ -1,0 +1,11 @@
+name: "lab_embedding"
+backend: "python"
+max_batch_size: 8
+input [ { name: "TOKENS" data_type: TYPE_INT64 dims: [16] } ]
+output [ { name: "EMBEDDINGS" data_type: TYPE_FP32 dims: [64] } ]
+instance_group [ { count: 1 kind: KIND_CPU } ]
+version_policy: { specific: { versions: [1] } }
+dynamic_batching {
+  max_queue_delay_microseconds: 2000
+  default_queue_policy { max_queue_size: 16 timeout_action: REJECT default_timeout_microseconds: 1000000 }
+}

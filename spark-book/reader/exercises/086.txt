@@ -1,0 +1,40 @@
+Exercise 86  Turn the custom encoder into a sentence model
+
+Question
+What changes when a token encoder becomes a sentence retrieval model?
+
+Before you start
+Exercise 83 (train WordPiece and a small BERT from scratch) · Exercise 78 (measure search before changing the model)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+5.0 s for Custom contrastive training (record 086.02).
+
+Check for success
+Check masked pooling and normalization, then compare held-out retrieval before and after training under the same relevance labels.
+
+Run in your lab
+The entry trains a sentence objective from your custom encoder. Repeat encode.py on the saved sentence model to compare before/after retrieval on unchanged partitions.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${BERT_MODEL:?Set BERT_MODEL to the selected model directory from Exercise 83}"
+python embeddings/encode.py --model "$BERT_MODEL" --bert --device cpu --out "$LAB_RUN/custom-before"
+python embeddings/finetune.py --model "$BERT_MODEL" --bert --device cpu --lr 0.0001 --epochs 3 --out "$LAB_RUN/custom-sentence"
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep $LAB_RUN/custom-before, $LAB_RUN/custom-sentence with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU learned sentence wrapper and pair training.
+Scope  Pair training and downstream retrieval have separate evaluation criteria.
+
+Recorded files
+python reader/records.py 86 --files

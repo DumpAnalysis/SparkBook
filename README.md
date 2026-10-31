@@ -36,3 +36,11 @@ python3 reader/records.py 129
 ```
 
 The record index identifies what ran on the laptop and which checks passed, failed, or remain blocked. For original command metadata, stdout, and stderr, restore the separate Evidence Version 48 pack and use `reader/records.py NUMBER --files`. [Evidence guide](spark-book/reader/EVIDENCE.txt) · [Exercise guides](spark-book/reader/exercises)
+
+## Public companion contents
+
+All 251 guides and the exercise programs match the reviewed Version 55 companion. The public copy omits the historical NGC image-configuration file, `catalogs/controls/ngc-image/config.json`, which contains upstream container build history. The retained `image.json`, OCI index, and manifest provide the image identity and ARM64 platform used by the offline catalog exercises. Three saved PyTorch checkpoint files from the distributed and GPU-sharing controls are also omitted. The checkpoint-specific assertions in `distributed/validate.py` and `sharing/validate.py` require those original fixtures. The [distributed](spark-book/distributed/README.txt) and [sharing](spark-book/sharing/README.txt) guides describe how to run fresh recovery and training experiments. The two package inventories reflect the public file set.
+
+## License
+
+The original SparkBook materials use the [PolyForm Strict License 1.0.0](LICENSE.md). Third-party components and models retain their own licenses.

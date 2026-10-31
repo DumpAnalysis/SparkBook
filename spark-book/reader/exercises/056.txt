@@ -1,0 +1,41 @@
+Exercise 56  Write stable softmax and complete the regression set
+
+Question
+What prevents overflow when softmax receives a very large logit?
+
+Before you start
+Exercise 55 (write RMS normalization)
+NVCC and host C++ compiler; small bounded tensors, no model download.
+
+Recorded step time
+0.88 s for Write stable softmax and complete the regression set — reference check (record 056.01).
+
+Check for success
+Check subtraction of the row maximum, finite values and the row sum. Run the full regression case set after the repair.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+bash kernels/build.sh starter
+./kernels/bin/kernel-student softmax 3 769
+python kernels/run_cases.py kernels/bin/kernel-student --out "$LAB_RUN/all-kernels.json"
+
+Interpret the result
+Validate values and bounds before comparing performance.
+
+If the check fails
+Reduce the failing shape and inspect indexing, synchronization and launch arguments.
+
+Finish
+Keep $LAB_RUN/all-kernels.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.
+Scope  Matching reference values does not by itself supply sanitizer or hardware-counter evidence.
+
+Recorded files
+python reader/records.py 56 --files

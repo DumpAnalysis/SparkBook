@@ -1,0 +1,35 @@
+Exercise 155  Account for RMM allocations and device headroom
+
+Question
+What does the RMM allocator report under alternative pool policies?
+
+Before you start
+Exercise 153 (compare a cuDF aggregation with the CPU control)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+17.4 s for RAPIDS allocator comparison — second process (record 155.01).
+
+Check for success
+Match each allocator record to its process and policy. Compare live allocation, pool behavior and independently sampled headroom.
+
+Run in your lab
+Inspect the RMM allocation observations in the qualified RAPIDS run and compare their scope with the simultaneous device/guest views. Do not sum unlike counters.
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Save compatible engine/profile or adapter/base identities; close owned services.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Two separate RAPIDS processes recorded RMM current, peak and cumulative allocations alongside CUDA free/total memory. The second complete capture appears here.
+Scope  RMM counts its own resource; the CUDA free-memory change includes other costs and is not a second allocation total to add to RMM.
+
+Recorded files
+python reader/records.py 155 --files

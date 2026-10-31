@@ -1,0 +1,39 @@
+Exercise 134  Visualize waiting and qualify CUDA streams
+
+Question
+Do host service spans and CUDA events support the same overlap claim?
+
+Before you start
+Exercise 130 (share one encoder across request workers) · Exercise 63 (implement a double buffer with explicit ownership)
+One GPU owner by default; replicas duplicate weights. Bound clients and batches before increasing concurrency.
+
+Recorded step time
+3.3 s for Streams (record 134.02).
+
+Check for success
+Verify the numerical stream results, then inspect device event intervals. Report overlap as undetermined if only host spans exist.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${SHARING_RUN:?Set SHARING_RUN to the request-owner output directory from Exercise 132}"
+python sharing/plot.py --run "$SHARING_RUN" --out "$LAB_RUN/sharing-plot"
+
+Interpret the result
+Count errors and waits as well as successes; distinguish batching from parallel execution.
+
+If the check fails
+Check admission, ownership and cancellation state before adding workers.
+
+Finish
+Keep $LAB_RUN/sharing-plot with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — Actual two-stream CUDA computations matched their CPU references, with maximum errors 3.814697×10⁻⁵ and 4.577636×10⁻⁵. The profiler retained host events but no kernel/copy device events. Overlap remains UNDETERMINED, so the trace qualification is BLOCKED. The adjacent owner-service figure contains 80 actual host spans, not GPU execution intervals.
+Scope  CUDA stream creation and a correct value do not establish device-side overlap.
+
+Recorded files
+python reader/records.py 134 --files

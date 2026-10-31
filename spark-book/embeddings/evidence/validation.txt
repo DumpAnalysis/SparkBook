@@ -1,0 +1,20 @@
+$ python embeddings/validate_embeddings.py
+[stderr]
+test_bad_pooling_detected (__main__.EmbeddingTests.test_bad_pooling_detected) ... ok
+test_cosine_scale (__main__.EmbeddingTests.test_cosine_scale) ... ok
+test_duplicate_family (__main__.EmbeddingTests.test_duplicate_family) ... ok
+test_duplicate_text (__main__.EmbeddingTests.test_duplicate_text) ... ok
+test_empty_pool (__main__.EmbeddingTests.test_empty_pool) ... ok
+test_family_disjoint (__main__.EmbeddingTests.test_family_disjoint) ... ok
+test_metric_exact (__main__.EmbeddingTests.test_metric_exact) ... ok
+test_metric_wrong (__main__.EmbeddingTests.test_metric_wrong) ... ok
+test_multiple_relevant (__main__.EmbeddingTests.test_multiple_relevant) ... ok
+test_nonfinite_rejected (__main__.EmbeddingTests.test_nonfinite_rejected) ... ok
+test_padding_invariance (__main__.EmbeddingTests.test_padding_invariance) ... ok
+test_zero_rejected (__main__.EmbeddingTests.test_zero_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.022s
+
+OK
+exit=0

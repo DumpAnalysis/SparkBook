@@ -1,0 +1,39 @@
+Exercise 202  Connect speech recognition to a local language model and speech synthesis
+
+Question
+Can a voice-pipeline error be localized to recognition, generation or synthesis?
+
+Before you start
+Exercise 5 (start the baseline server) · Exercise 192 (synthesize a short diagnostic statement) · Exercise 196 (transcribe the retained speech control)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+32.7 s for Voice (record 202.01).
+
+Check for success
+Keep input and output artifacts for each stage. Verify the silence guard and trace a successful input through to the final WAV.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${AUDIO:?Set AUDIO to the WAV file produced by the preceding music or speech exercise}"
+python media/voice.py --audio "$AUDIO" --model-name local-model --out "$LAB_RUN/voice"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/voice with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The serial pipeline ran actual CUDA ASR and TTS around a local text-model request, reusing the recorded workload speech input. Child commands, timings, separate stdout/stderr, recognized text, exact HTTP request/response and final waveform are retained. Silence, endpoint and length guards remain separate CPU controls. The wrapper never executes recognized or generated commands.
+Scope  A completed pipeline does not establish listening quality or factual correctness of the spoken answer.
+
+Recorded files
+python reader/records.py 202 --files

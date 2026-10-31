@@ -1,0 +1,42 @@
+Exercise 3  Verify the client without a model
+
+Question
+Can a client send the right request before a model is available?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Python standard library, local loopback networking and a new output path. No model download or GPU is needed.
+
+Recorded step time
+0.62 s for Fixture (record 003.01).
+
+Check for success
+Open fixture.json. Verify status 200 and the fixture text under valid, then status 404 under both wrong_route and wrong_model.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python spark_lab.py fixture --out "$LAB_RUN/fixture.json"
+
+Inspect
+Read the fixture JSON and its success/error cases. Confirm that the client retains HTTP failures as well as successful responses.
+
+Interpret the result
+This proves the client path against a labelled CPU fixture. It does not prove model loading, CUDA computation or answer quality.
+
+If the check fails
+Check the selected interpreter, writable output path and local networking before changing GPU settings.
+
+Finish
+Retain the fixture result. Its temporary server should have exited.
+
+Handoff
+Keep fixture.json. If the live request later fails, use this control to check the client independently of the model.
+
+Recorded result  The fixture returned HTTP 200 for a valid request and HTTP 404 for each of two rejected requests.
+Scope  A loopback fixture returned these responses without loading weights.
+
+Recorded files
+python reader/records.py 3 --files

@@ -1,0 +1,101 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: spark-lab
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-fixture
+  namespace: spark-lab
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 900
+  selector:
+    matchLabels:
+      app: spark-fixture
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: spark-fixture
+    spec:
+      terminationGracePeriodSeconds: 30
+      automountServiceAccountToken: false
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: server
+        image: local/spark-serving:book-v13
+        imagePullPolicy: Never
+        ports:
+        - name: http
+          containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: '1'
+            memory: 512Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        startupProbe:
+          httpGet:
+            path: /readyz
+            port: http
+          periodSeconds: 5
+          timeoutSeconds: 2
+          failureThreshold: 24
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: http
+          periodSeconds: 2
+          timeoutSeconds: 2
+          failureThreshold: 1
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        env: []
+        livenessProbe:
+          httpGet:
+            path: /livez
+            port: http
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
+      volumes:
+      - name: tmp
+        emptyDir:
+          sizeLimit: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-fixture
+  namespace: spark-lab
+spec:
+  type: ClusterIP
+  selector:
+    app: spark-fixture
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http

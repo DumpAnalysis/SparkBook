@@ -1,0 +1,619 @@
+HISTORICAL PROCEDURE NOTES
+Book Version 55 and reader/exercises/ are the current reader instructions.
+These retained source-era notes explain concepts and repeat procedures; their
+old environment and execution-status statements are historical. Superseded
+preparation transcript blocks remain omitted. Use the evidence map for current
+recorded outcomes and fresh output paths for new work.
+
+72  Inference services and request diagnostics
+
+A model becomes a service when callers depend on its request contract, readiness, response identity and failure behavior. We carry Chapter 71’s single-owner design into an HTTP service, then use the same client evidence discipline for llama.cpp, vLLM and NVIDIA Triton Inference Server. The latter is a model-serving system; it is distinct from the Triton GPU kernel language.
+
+All new files are in serving/. The live HTTP controls below were EXECUTED on x86-64 Linux with Python 3.12.14 and NumPy 2.3.5. They use the small offline embedding fixture from Chapter 71 on the CPU. The container, Kubernetes, vLLM and Triton deployment commands are TARGET procedures for the ARM64 WSL2 laptop. Their success is not inferred from these controls. Full driver transcripts, response bodies, structured server logs and generated repositories are included.
+
+The laptop remains a 64 GB unified-memory system with about 30 GB reported for the GPU. A container or pod creates no additional physical memory. Keep the existing Windows NVIDIA driver mapping into WSL2. The reported CUDA 13.4 installation is a separate observation from the runtime inside a serving image. A successful native CUDA program, an ARM64 image pull and an actual container model inference are three different qualification steps.
+
+Exercise 136 Establish an inference API contract
+
+server.py runs one NumPy inference executor behind a local HTTP endpoint. Admission is limited to two outstanding inference requests; transport threads are limited separately to sixteen. Input contains one to four strings, each one to sixteen UTF-8 bytes, and the JSON body is limited to 4,096 bytes. This deliberately small contract makes rejection behavior easy to reproduce. The byte tokenizer, padded mean pooling and fixed weights are diagnostic controls, not a useful sentence encoder.
+
+The response preserves input order and returns sixty-four float32 values per input, the model name and a weight revision. Valid request IDs are echoed. Unknown models return 404, invalid inputs 400 and oversized bodies 413. The retained numerical result is compared with the separately expressed Chapter 71 oracle. A 200 response alone is insufficient: inspect shape, ordering, revision and values.
+
+
+For manual interaction, start the server in one WSL terminal and use the client in another. All run directories must be new. The service implements a small OpenAI-shaped embeddings contract; this does not claim complete OpenAI API compatibility. No external API account is needed.
+
+python -m pip install -r serving/requirements.txt
+
+python serving/server.py --port 8088
+
+python serving/client.py embed --out runs/http-one
+
+curl --fail http://127.0.0.1:8088/v1/models
+
+curl --fail http://127.0.0.1:8088/metrics
+
+To substitute a trained sentence encoder from Chapters 49–56, preserve its actual tokenizer, attention mask, pooling, normalization, model revision and dimensionality. Run a local-versus-service vector comparison and a held-out retrieval test before changing the API’s model identity. The fixture’s byte tokenizer and sixty-four dimensions must not silently stand in for BERT or a fine-tuned embedding model.
+
+Exercise 137 Separate liveness readiness and draining
+
+The lifecycle control delays loading, sends a request after warmup, then terminates the process while that request is admitted. A second process injects a load failure. Liveness answers whether the process can respond; readiness answers whether it should receive inference requests. A load failure remains visible as live but unready. The admitted request finishes before the normal process exits.
+
+
+SIGTERM first changes the service phase to draining and stops accepting new sockets. Existing handlers and the single executor are joined. The outer control bounds shutdown to ten seconds; the deployment examples allow thirty seconds. There is no active-kernel cancellation API. A client timeout does not prove that computation stopped, and a request ID is not an idempotency implementation. Retrying an agent action or training update requires the stronger commit protocol discussed in Chapter 71.
+
+Exercise 138 Observe overload and queue delay
+
+Eight clients enter together while the CPU owner has an injected 100 ms delay per inference. Two requests are admitted and six receive 429 with Retry-After. Complete bodies and every status are retained, including errors. This experiment tests the capacity contract; its latency and throughput are not GPU or laptop performance measurements.
+
+
+Join the accepted request IDs with accepted_ns, start_ns and end_ns in server.jsonl. Queue time is owner-start minus admission; inference time includes the injected delay. HTTP latency also includes parsing, serialization and transport. The metrics use bounded route/status labels, with request IDs kept in logs rather than metric labels. A transport-capacity rejection occurs before the application handler and is not included in its counters; client outcomes therefore remain the end-to-end record.
+
+python serving/client.py load --requests 64 \
+
+  --concurrency 2 --out runs/http-load-2
+
+python serving/client.py load --requests 64 \
+
+  --concurrency 4 --out runs/http-load-4
+
+Compare all status counts, successful request rate and successful latency together. The client uses a closed loop with a bounded thread pool. It does not represent an independent arrival process, and rejected requests are excluded from success-latency quantiles. Use longer repeated runs after warmup for a target SLO; a sixteen-request p95 is only a diagnostic sample. For open-loop testing, additionally retain offered arrival times and shed load rather than allowing an unbounded generator queue.
+
+Exercise 139 Measure generation streaming correctly
+
+The parser control contains a heartbeat, a role-only event, two content events and a terminal marker. It tests parsing only. The target client records time to first nonempty content delta, all received events and total completion time. A content delta can contain multiple tokens, so this is first-content latency, not a claim about a tokenizer’s first token. A missing terminal marker is retained as incomplete.
+
+
+Run the existing pinned llama.cpp server with serve.sh and its qualified model directory, then issue the following request. The API alias is local-model. llama.cpp’s server exposes generation endpoints and optional metrics; retain the actual server build and flags with every comparison. [3]
+
+bash serve.sh start 4096 1 99 gpu q4_k_m
+
+python serving/client.py stream \
+
+  --base http://127.0.0.1:8080 --model local-model \
+
+  --out runs/llama-stream
+
+bash serve.sh stop
+
+Correlate prefill and decode observations with Chapters 33 and 57–60. GPU utilization alone cannot distinguish queued requests, tokenization, prefill, decode or network delay. Keep model revision, prompt length, output cap, cache state, concurrency and measurement windows fixed. For agents, direct bounded requests to one qualified service instead of loading one model per agent. Treat tool-call output as untrusted input to the agent’s existing action policy.
+
+73  Docker deployment inside WSL2
+
+This chapter chooses native Docker Engine inside the WSL distribution so the daemon, paths and Linux tooling are explicit. Docker’s Ubuntu installation guide includes ARM64; it does not by itself qualify every GPU image on this laptop. If Docker Desktop already supplies the daemon, identify the active context before changing anything. The companion’s docker/BOOTSTRAP.txt supplies the Ubuntu repository and NVIDIA Container Toolkit commands for the native-Engine route. [105, 106]
+
+The CPU image proves packaging and HTTP behavior without depending on a GPU runtime. The GPU stage then adds the container runtime, model files and device execution. Keep model weights outside the image, mounted read-only from the WSL Linux filesystem. The image digest identifies software bytes; a separate model revision and weight hashes identify the model. Container image size is neither resident memory nor the model’s GPU footprint.
+
+Exercise 140 Build and inspect the CPU service image
+
+First record uname -m, docker context show, docker version and docker info. Use the bootstrap guide only if the required engine is absent. Select the ARM64 Python base image and retain its immutable repository digest. The discovery tag below is a candidate, not a claimed immutable artifact. qualify_image.sh pulls for linux/arm64, verifies the local image architecture and writes image.json, digests.txt and its complete command transcript. It stops if pull or architecture checks fail.
+
+mkdir -p runs
+
+bash serving/docker/qualify_image.sh \
+
+  python:3.12-slim runs/python-image
+
+cat runs/python-image/digests.txt
+
+export PYTHON_IMAGE="$(head -n 1 \
+
+  runs/python-image/digests.txt)"
+
+docker build --platform linux/arm64 \
+
+  --build-arg PYTHON_IMAGE="$PYTHON_IMAGE" \
+
+  -f serving/docker/Dockerfile \
+
+  -t local/spark-serving:book-fixture .
+
+docker image inspect local/spark-serving:book-fixture \
+
+  > runs/fixture-image.json
+
+The Dockerfile copies only the fixture, service and pinned NumPy requirement. It runs as UID/GID 10001, with an HTTP readiness health check. Its Dockerfile-specific ignore file keeps unrelated model files and previous evidence out of the build context. Record the resolved base digest, build output and final image ID. The package pin is a version pin, not a fully hashed dependency lock.
+
+Exercise 141 Run a bounded container and inspect its lifecycle
+
+docker compose -f serving/docker/compose.yaml config
+
+docker compose -f serving/docker/compose.yaml up -d
+
+docker compose -f serving/docker/compose.yaml ps
+
+python serving/client.py embed --out runs/docker-embed
+
+docker compose -f serving/docker/compose.yaml logs \
+
+  --no-color > runs/docker-service.log
+
+docker compose -f serving/docker/compose.yaml stop
+
+docker compose -f serving/docker/compose.yaml down
+
+The Compose service publishes only 127.0.0.1:8088, drops capabilities, uses a read-only root filesystem and has a writable temporary mount. Its CPU and memory limits are teaching budgets. A Docker health check reports status; it does not automatically restart an unhealthy container in this configuration. Send the same vector request before shutdown and retain the actual exit status. No health or deployment output is fabricated in this book.
+
+The service binds 0.0.0.0 inside its container because container loopback is different from host loopback. The published host port remains local. These labs do not configure public ingress, TLS or authentication. Before exposing a service beyond the local machine, place it behind an authenticated transport boundary and test access to every endpoint, including metrics and administrative routes.
+
+Exercise 142 Add the GPU runtime and a generation image
+
+The NVIDIA Container Toolkit configures device/runtime access. It does not replace the Windows display driver mapped into WSL. The bootstrap uses nvidia-ctk for Docker and restarts that daemon before workloads begin. A container nvidia-smi report can help identify the device, but only an actual CUDA/model computation qualifies execution. Do not install Linux display-driver packages to repair a container failure. [106]
+
+llama.cpp documents ARM64 CUDA 13 container variants. Resolve a candidate image by digest and inspect its server version before comparing it with the book’s b11898 native binary. A floating image can contain a different build; do not present that comparison as same-version packaging overhead. The script requires the basename of the first split GGUF shard and mounts the entire directory so all shards remain available. [120]
+
+bash serving/docker/qualify_image.sh \
+
+  ghcr.io/ggml-org/llama.cpp:server-cuda13 \
+
+  runs/llama-image
+
+export LLAMA_IMAGE="$(head -n 1 \
+
+  runs/llama-image/digests.txt)"
+
+export GGUF_DIR=/absolute/path/to/qualified/gguf
+
+export FIRST_SHARD=actual-first-shard.gguf
+
+bash serving/docker/run_backend.sh llama \
+
+  "$LLAMA_IMAGE" "$GGUF_DIR" "$FIRST_SHARD"
+
+docker logs spark-llama > runs/llama-container.log 2>&1
+
+curl --fail http://127.0.0.1:8080/health
+
+python serving/client.py stream \
+
+  --base http://127.0.0.1:8080 --model local-model \
+
+  --out runs/docker-llama-stream
+
+docker inspect spark-llama > runs/llama-inspect.json
+
+docker stop spark-llama
+
+docker rm spark-llama
+
+Replace the two path placeholders with existing qualified files. Wait for actual readiness before sending inference; if the health request fails, inspect logs and repeat it after the load completes. The wrapper uses one server slot, context 4,096 and GPU offload. These are initial qualification settings, not optimal settings or a promise that every model fits. The 20 GiB container host-memory limit and approximately 30 GB GPU report measure different accounting domains; neither is an isolated 30 GB allocation for this process.
+
+Exercise 143 Classify container failures before changing limits
+
+Retain the command, image digest, host architecture, container state, exit code and logs for each failed stage. An exec-format failure suggests architecture or executable format. A missing GPU runtime or library belongs to device injection/runtime qualification. A model-load error can be path permissions, incomplete shards, format or backend support. A CUDA out-of-memory report and a cgroup OOM kill need different evidence; exit 137 alone does not establish the cause.
+
+docker inspect spark-llama
+
+docker logs spark-llama
+
+docker stats --no-stream spark-llama
+
+docker events --since 10m --until 0s \
+
+  --filter container=spark-llama
+
+Run these inspection commands before removing a failed container. Read State.OOMKilled and available cgroup/daemon evidence; compare framework allocation logs with external GPU counters where supported. A larger host-memory limit will not fix an unsupported CUDA kernel. Reduce model size, context or concurrency only after recording the failure. A large-model CPU offload experiment must budget host allocations and transfers, and is separate from the baseline GPU container qualification.
+
+The preparation environment has no Docker daemon or NVIDIA device tools. Its complete executable inventory is retained below. UNAVAILABLE is a preparation limitation, not a verdict on the laptop.
+
+
+74  Kubernetes deployment and GPU scheduling
+
+A single-node K3s cluster inside WSL2 provides a local Kubernetes laboratory: Deployments, Services, probes, rollouts and resource scheduling. It does not emulate multiple physical GPUs or independent failure domains. CPU pods are the first control. A working Docker GPU container does not prove that the separate K3s containerd can expose a GPU to a pod.
+
+Exercise 144 Deploy the CPU service to a local cluster
+
+Use a dedicated local lab cluster. Confirm systemd is active in WSL and inspect the installer before executing it. The selected K3s version is v1.37.0+k3s1. The examples omit Traefik and the service load balancer. Keep the API reachable from the local node and pod network, and retain the WSL networking and Windows firewall settings with the cluster evidence. The following commands install and modify the local cluster; they were not executed during book preparation. [107]
+
+ps -p 1 -o comm=
+
+curl -fsSL https://get.k3s.io -o runs/install-k3s.sh
+
+less runs/install-k3s.sh
+
+sudo env INSTALL_K3S_VERSION=v1.37.0+k3s1 \
+
+  sh runs/install-k3s.sh server \
+
+  --disable traefik --disable servicelb
+
+sudo k3s kubectl get nodes -o wide
+
+docker save local/spark-serving:book-fixture \
+
+  -o runs/fixture-image.tar
+
+sudo k3s ctr images import runs/fixture-image.tar
+
+python serving/deploy.py fixture \
+
+  --image local/spark-serving:book-fixture \
+
+  --out runs/fixture.yaml
+
+sudo k3s kubectl create namespace spark-lab
+
+sudo k3s kubectl apply --dry-run=server \
+
+  -f runs/fixture.yaml
+
+sudo k3s kubectl apply -f runs/fixture.yaml
+
+sudo k3s kubectl -n spark-lab rollout status \
+
+  deployment/spark-fixture --timeout=180s
+
+The namespace is created before server-side validation of namespaced objects. If it already exists, retain that response and continue without deleting existing resources. A successful YAML parse in preparation is not a Kubernetes API validation. The image is imported into K3s because its image store is separate from Docker’s. imagePullPolicy Never makes a missing import visible instead of attempting an unintended registry pull.
+
+sudo k3s kubectl -n spark-lab port-forward \
+
+  --address 127.0.0.1 service/spark-fixture 8088:8080
+
+Leave port-forward running in that terminal; send the embedding client request from a second terminal after stopping the Compose service that previously used port 8088. Save pod logs and the returned vectors. A port-forward selects a pod and may end when that pod terminates; it is not a load-balancing or rollout-availability test. For Service routing, use an in-cluster client and inspect EndpointSlices.
+
+
+Exercise 145 Explain probes scaling and a failed rollout
+
+The generated fixture Deployment has separate startup, readiness and liveness probes. Startup gates the other probes; readiness controls eligibility for service traffic; liveness can restart a stuck container. An overloaded model should usually reject work or become unready rather than enter a liveness restart loop. The local CPU lifecycle exercise gives the behavioral reference; cluster probe timing still requires target observation. [110]
+
+sudo k3s kubectl -n spark-lab scale \
+
+  deployment/spark-fixture --replicas=2
+
+sudo k3s kubectl -n spark-lab get pods -o wide
+
+sudo k3s kubectl -n spark-lab get endpointslices
+
+sudo k3s kubectl -n spark-lab set image \
+
+  deployment/spark-fixture server=local/missing:book-fixture
+
+sudo k3s kubectl -n spark-lab rollout status \
+
+  deployment/spark-fixture --timeout=30s
+
+sudo k3s kubectl -n spark-lab describe pods
+
+sudo k3s kubectl -n spark-lab rollout undo \
+
+  deployment/spark-fixture
+
+sudo k3s kubectl -n spark-lab rollout status \
+
+  deployment/spark-fixture --timeout=180s
+
+sudo k3s kubectl -n spark-lab scale \
+
+  deployment/spark-fixture --replicas=1
+
+The missing image is an intentional fault. With Never pull policy, an unimported image should prevent the new pod from starting. Retain the actual event reason and the failed rollout return code; do not hard-code a transcript. The CPU rolling policy permits one surge pod and no planned unavailable replicas. It does not guarantee availability when the node itself fails. A rollback restores a prior pod template; it does not restore mutated external model files. [123]
+
+Exercise 146 Qualify GPU discovery separately
+
+Install the toolkit from Chapter 73, ensure nvidia-container-runtime is on the system service PATH, then restart K3s before running workloads. K3s ships RuntimeClass definitions for supported runtimes and adds detected NVIDIA runtimes to its containerd configuration at startup. Inspect the resulting configuration rather than overwriting its generated containerd file. The generic native-Linux driver installation examples in runtime guides must not be applied to this WSL driver mapping. [108]
+
+command -v nvidia-container-runtime
+
+sudo systemctl restart k3s
+
+sudo k3s kubectl get runtimeclass
+
+sudo journalctl -u k3s -n 100 --no-pager
+
+The next commands assume Helm is installed from https://helm.sh/docs/intro/install/ and use the local K3s administrator kubeconfig through sudo. Pin chart 0.20.1 and inspect its values before installation. The device plugin may still fail on this ARM64 WSL configuration; its presence is not a compatibility guarantee. Keep failOnInitError enabled so initialization failures remain visible. No time-slicing, MPS or MIG sharing configuration is enabled. [111]
+
+sudo helm repo add nvdp \
+
+  https://nvidia.github.io/k8s-device-plugin
+
+sudo helm repo update
+
+sudo helm show values nvdp/nvidia-device-plugin \
+
+  --version 0.20.1 > runs/device-plugin-values.yaml
+
+sudo helm upgrade --install nvdp \
+
+  nvdp/nvidia-device-plugin --version 0.20.1 \
+
+  --kubeconfig /etc/rancher/k3s/k3s.yaml \
+
+  --namespace nvidia-device-plugin --create-namespace \
+
+  --set runtimeClassName=nvidia --set failOnInitError=true
+
+sudo k3s kubectl -n nvidia-device-plugin get pods
+
+sudo k3s kubectl -n nvidia-device-plugin logs \
+
+  -l app.kubernetes.io/name=nvidia-device-plugin \
+
+  --all-containers=true
+
+sudo k3s kubectl describe nodes
+
+Continue only when the actual node advertises an allocatable nvidia.com/gpu resource and the runtime works. Then require a real model inference from a GPU pod. A missing resource belongs to discovery; a Pending pod belongs first to scheduling; a started pod with an inference failure belongs to runtime/model execution. If the plugin is unsupported, retain that result, keep the CPU Kubernetes lab, and serve the GPU model through the previously qualified native or Docker route.
+
+Exercise 147 Deploy one GPU owner and retain scheduling evidence
+
+Generate a llama.cpp Deployment using the qualified digest and files from Chapter 73. hostPath refers to this K3s node’s WSL filesystem, not a Windows drive or a path inside Docker Desktop’s VM. UID 10001 needs directory traversal and read access; fsGroup does not automatically repair all hostPath permissions. This one-node teaching mount is not a portable multi-node storage design.
+
+python serving/deploy.py llama --image "$LLAMA_IMAGE" \
+
+  --model-dir "$GGUF_DIR" --first-shard "$FIRST_SHARD" \
+
+  --out runs/llama.yaml
+
+sudo k3s kubectl apply --dry-run=server -f runs/llama.yaml
+
+sudo k3s kubectl apply -f runs/llama.yaml
+
+sudo k3s kubectl -n spark-lab rollout status \
+
+  deployment/spark-llama --timeout=900s
+
+sudo k3s kubectl -n spark-lab get pods -o wide
+
+sudo k3s kubectl -n spark-lab logs deployment/spark-llama
+
+sudo k3s kubectl -n spark-lab port-forward \
+
+  --address 127.0.0.1 service/spark-llama 8080:8080
+
+Stop the Docker GPU owner first. Send the streaming client request from another terminal and retain model output, pod identity and actual device evidence. The pod requests one whole nvidia.com/gpu through its limit, uses runtimeClassName nvidia and starts with one replica. Kubernetes extended-resource scheduling does not divide the reported 30 GB into per-pod memory quotas. The Recreate policy avoids a planned overlap of old and new GPU owners, at the cost of service downtime. [109, 123]
+
+sudo k3s kubectl -n spark-lab scale \
+
+  deployment/spark-llama --replicas=2
+
+sudo k3s kubectl -n spark-lab get pods
+
+sudo k3s kubectl -n spark-lab get events \
+
+  --sort-by=.metadata.creationTimestamp
+
+sudo k3s kubectl -n spark-lab scale \
+
+  deployment/spark-llama --replicas=1
+
+On a node advertising one unshared GPU, the second GPU-requesting pod should remain Pending for insufficient capacity. Explain the observed scheduler event. Do not make it run by silently removing the GPU request, adding fake capacity or enabling unqualified sharing. For this laptop, prefer one model owner with bounded clients. Horizontal scaling on one physical GPU does not create independent GPU capacity or high availability.
+
+Before cleanup, save manifests, pod descriptions, events, logs, model/image identities and client records. Delete only the lab namespace after all tests: sudo k3s kubectl delete namespace spark-lab. The shared cluster and device-plugin installation remain separately administered; the companion performs no global prune or automatic cluster uninstall.
+
+75  vLLM and NVIDIA Triton Inference Server
+
+Use vLLM for the generation-serving experiments and NVIDIA Triton Inference Server for a versioned embedding repository. This division makes the scheduling models visible: generation changes active sequences while tokens are produced; the Triton embedding experiment combines independent stateless requests into bounded model batches. Neither service is automatically faster for every workload. Compare correctness, memory, queue delay and response latency using a fixed workload. We retain vLLM 0.26.0 because its ARM64 image and serving options were checked for this runbook; it is not a latest-release recommendation. Re-qualify newer releases independently.
+
+Version 0.26.0 is the selected standalone vLLM documentation baseline. Its ARM64 Docker guidance includes builds for particular Grace systems; that is not proof that a prebuilt tag or kernel works on this RTX Spark WSL2 laptop. Triton container 26.09 uses CUDA 13.4.1 according to its release notes. That container runtime and the owner-reported host CUDA 13.4 are separate facts. Resolve an actual ARM64 image and qualify its backend and driver compatibility before proceeding. [112, 115]
+
+Exercise 148 Qualify a vLLM image and a small generation model
+
+Keep the baseline small: the pinned Qwen2.5-1.5B-Instruct checkpoint, one GPU, context 2,048, at most two active sequences and an explicit 1 GiB KV-cache budget. The exact cache flag takes precedence over the utilization-based cache calculation in this vLLM baseline. It is not a limit on total process memory; weights, workspaces, runtime allocations and host memory still need headroom. Eager execution simplifies the first qualification by avoiding CUDA graph capture. [113]
+
+bash serving/docker/qualify_image.sh \
+
+  vllm/vllm-openai:v0.26.0 runs/vllm-image
+
+export VLLM_IMAGE="$(head -n 1 \
+
+  runs/vllm-image/digests.txt)"
+
+export VLLM_MODEL_DIR="$PWD/models/vllm-qwen-1.5b"
+
+python - <<'MODEL'
+
+import os
+
+from huggingface_hub import snapshot_download
+
+snapshot_download(
+
+    "Qwen/Qwen2.5-1.5B-Instruct",
+
+    revision="989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+
+    local_dir=os.environ["VLLM_MODEL_DIR"])
+
+MODEL
+
+bash serving/docker/run_backend.sh vllm \
+
+  "$VLLM_IMAGE" "$VLLM_MODEL_DIR"
+
+docker logs spark-vllm > runs/vllm-startup.log 2>&1
+
+curl --fail http://127.0.0.1:8000/health
+
+curl --fail http://127.0.0.1:8000/v1/models
+
+python serving/client.py stream \
+
+  --base http://127.0.0.1:8000 --model local-model \
+
+  --out runs/vllm-stream
+
+The wrapper keeps the root filesystem read-only and sets HOME=/tmp, XDG_CACHE_HOME=/tmp/cache, TRITON_CACHE_DIR=/tmp/triton, HF_HOME=/tmp/hf and VLLM_CACHE_ROOT=/tmp/vllm. Kernel caches need writable paths even with eager execution. vLLM and Triton use a 1024-task Docker PID limit, which includes threads; inspect pids.current, pids.max and pids.events for thread-creation failures. The 1 GiB /tmp limit is also adjustable from evidence. Kubernetes PID limits are node policy, not a generated per-container resource.
+
+Use the already qualified Hugging Face environment for the download and record its package versions. The container receives a local checkpoint path, so it does not need credentials in the image. Wait for actual readiness, inspect the model alias and record a complete generation. If the image lacks an ARM64 manifest or required kernels, stop at that boundary. A source build is a separate qualification project: pin its commit, choose the measured GPU architecture, limit build jobs and retain compiler/CUDA/attention-backend versions. Do not substitute x86 emulation as a GPU success result.
+
+Exercise 149 Diagnose vLLM concurrency and deploy the qualified owner
+
+curl --fail http://127.0.0.1:8000/metrics \
+
+  > runs/vllm-before.prom
+
+python serving/client.py chat-load \
+
+  --base http://127.0.0.1:8000 --model local-model \
+
+  --requests 32 --concurrency 1 --out runs/vllm-load-1
+
+python serving/client.py chat-load \
+
+  --base http://127.0.0.1:8000 --model local-model \
+
+  --requests 32 --concurrency 2 --out runs/vllm-load-2
+
+curl --fail http://127.0.0.1:8000/metrics \
+
+  > runs/vllm-after.prom
+
+docker logs spark-vllm > runs/vllm-final.log 2>&1
+
+docker stop spark-vllm
+
+docker rm spark-vllm
+
+vLLM exposes Prometheus metrics at /metrics. Inspect the actual names and HELP text from the qualified release rather than copying a dashboard for another version. Compare running/waiting requests, cache use, request latency and token counters where available. Use counter deltas over the same interval; do not treat a cumulative sum as an instantaneous rate. Repeated prompts can benefit from prefix caching, so retain that setting and use a separate cold/unique-prompt study when measuring cache effects. [114]
+
+chat-load retains complete non-streaming bodies and success/error counts; it is not a token-throughput benchmark. Use server tokenizer-based usage/counters for tokens per second and the streaming records for first-content timing. Each request here has a 64-token output cap. Client concurrency and max-num-seqs are different limits: queued HTTP callers can exceed active model sequences. Admission, timeouts and retry backoff must still be managed at the caller or gateway.
+
+python serving/deploy.py vllm --image "$VLLM_IMAGE" \
+
+  --model-dir "$VLLM_MODEL_DIR" --out runs/vllm.yaml
+
+sudo k3s kubectl apply --dry-run=server -f runs/vllm.yaml
+
+sudo k3s kubectl apply -f runs/vllm.yaml
+
+sudo k3s kubectl -n spark-lab rollout status \
+
+  deployment/spark-vllm --timeout=900s
+
+sudo k3s kubectl -n spark-lab port-forward \
+
+  --address 127.0.0.1 service/spark-vllm 8000:8000
+
+Remove or scale down the previous GPU Deployment before this step. The generator uses one GPU, Recreate, a bounded shared-memory mount, read-only model files and startup/readiness probes. It deliberately omits a liveness probe based only on /health; qualify a failure detector before enabling automatic restarts of a heavily loaded model. The 20 GiB host-memory limit is a starting budget to adjust from measured peaks, not a GPU memory quota. Retain the generated YAML and server-side validation result. K3s pulls the digest-pinned image into its separate store when absent; Docker’s copy is not visible there. Allow for this download in the rollout timeout and K3s service proxy settings. Retain kubectl describe pod output if the pull fails. The manifest sets the same writable cache paths as Docker. [108]
+
+Exercise 150 Build and serve a versioned Triton embedding model
+
+The companion creates lab_embedding/config.pbtxt, a numeric version directory 1, model.py and weights.npz. Configuration fixes the input TOKENS to INT64 with sixteen elements per sample and the output EMBEDDINGS to FP32 with sixty-four values. max_batch_size is eight; one KIND_CPU instance is selected. A two-millisecond collection delay and a bounded queue make batching policy inspectable. Queue timeout and queue size do not define a total end-to-end deadline. [116, 118, 119]
+
+
+The Python backend receives a list of inference requests. Our execute implementation explicitly concatenates their input batches, makes one vectorized NumPy call and splits the results back into original request sizes. That behavior is tested with a lightweight API double using unequal batch sizes. This is an executed Python logic test, not execution of Triton’s scheduler, HTTP protocol or backend process. [117]
+
+
+Resolve the Triton image and use the generated repository. The raw HTTP V2 client avoids depending on a Triton client wheel; release 26.09 notes an ARM SBSA client-wheel caveat. This initial model runs on CPU even if the laptop contains a GPU. Publishing a model from Triton is not evidence of GPU execution. [115]
+
+bash serving/docker/qualify_image.sh \
+
+  nvcr.io/nvidia/tritonserver:26.09-py3 runs/triton-image
+
+export TRITON_IMAGE="$(head -n 1 \
+
+  runs/triton-image/digests.txt)"
+
+python serving/build_repository.py --out runs/triton-repo
+
+export TRITON_REPO="$PWD/runs/triton-repo"
+
+bash serving/docker/run_backend.sh triton \
+
+  "$TRITON_IMAGE" "$TRITON_REPO"
+
+curl --fail http://127.0.0.1:8000/v2/health/ready
+
+curl --fail \
+
+  http://127.0.0.1:8000/v2/models/lab_embedding/ready
+
+python serving/client.py triton \
+
+  --base http://127.0.0.1:8000 --model lab_embedding \
+
+  --out runs/triton-one
+
+python serving/check_triton.py \
+
+  runs/triton-one/responses.json
+
+python serving/client.py triton-load \
+
+  --base http://127.0.0.1:8000 --model lab_embedding \
+
+  --requests 32 --concurrency 4 --out runs/triton-load
+
+curl --fail http://127.0.0.1:8002/metrics \
+
+  > runs/triton-metrics.prom
+
+docker logs spark-triton > runs/triton.log 2>&1
+
+docker stop spark-triton
+
+docker rm spark-triton
+
+The API model name uses an underscore, lab_embedding; the earlier teaching HTTP service uses lab-embedding. Validate every returned vector before interpreting throughput. Compare Triton request, inference and execution counters from the actual metrics endpoint to study batching, keeping requests, samples and model executions distinct. A scheduler batch may contain several requests; a request itself can contain two samples. The Python backend must combine them explicitly to reduce its numerical call count.
+
+To deploy this CPU repository on Kubernetes, generate a triton manifest without --gpu. Apply it with the same server-side dry run and rollout procedure used earlier. Stop the Docker instance first to reuse the local port. The service port is 8000; metrics are available on container port 8002 and can be inspected with a pod port-forward. The generator exposes only the inference HTTP port through its Service.
+
+python serving/deploy.py triton --image "$TRITON_IMAGE" \
+
+  --model-dir "$TRITON_REPO" --out runs/triton.yaml
+
+sudo k3s kubectl apply --dry-run=server -f runs/triton.yaml
+
+sudo k3s kubectl apply -f runs/triton.yaml
+
+sudo k3s kubectl -n spark-lab rollout status \
+
+  deployment/spark-triton --timeout=180s
+
+sudo k3s kubectl -n spark-lab port-forward \
+
+  --address 127.0.0.1 service/spark-triton 8000:8000
+
+Exercise 151 Qualify an ONNX GPU backend and version changes
+
+The optional export expresses the same lookup, mean, projection, tanh and normalization as an ONNX graph. It uses opset 18 and IR version 9 explicitly; the exporter package version is recorded separately. The executed control checks the serialized graph with ONNX’s checker and CPU reference evaluator. It does not exercise ONNX Runtime or a GPU execution provider. [122]
+
+
+The GPU repository is named lab_embedding_gpu and requests one KIND_GPU ONNX Runtime instance. Qualify that backend’s presence and CUDA execution for the resolved ARM64 image. KIND_GPU alone does not prove that every operator executes on the GPU; inspect provider/backend logs and a qualified device trace. The graph accepts token IDs, not arbitrary text. Keep token range and shape validation at the serving boundary for a production adapter.
+
+python serving/build_repository.py --onnx \
+
+  --out runs/triton-gpu-repo
+
+export TRITON_GPU_REPO="$PWD/runs/triton-gpu-repo"
+
+TRITON_GPU=1 bash serving/docker/run_backend.sh triton \
+
+  "$TRITON_IMAGE" "$TRITON_GPU_REPO"
+
+python serving/client.py triton \
+
+  --base http://127.0.0.1:8000 --model lab_embedding_gpu \
+
+  --out runs/triton-gpu-one
+
+python serving/check_triton.py \
+
+  runs/triton-gpu-one/responses.json
+
+docker logs spark-triton > runs/triton-gpu.log 2>&1
+
+docker stop spark-triton
+
+docker rm spark-triton
+
+python serving/deploy.py triton --gpu \
+
+  --image "$TRITON_IMAGE" --model-dir "$TRITON_GPU_REPO" \
+
+  --out runs/triton-gpu.yaml
+
+Wait for /v2/models/lab_embedding_gpu/ready before sending the request. Apply the GPU manifest only after the Chapter 74 device-plugin gate and after stopping other GPU owners. Use the same dry-run, apply, rollout, port-forward and vector-check sequence. If the backend cannot load or CUDA placement fails, retain its complete error and stop the GPU branch. Do not relabel the working CPU repository as a GPU result.
+
+For a version exercise, copy version 1 into a new version 2 directory, change the fixture deliberately, update the specific version policy and retain both weight hashes. Verify a numerical difference against the intended new reference. The supplied model-control-mode is none, so editing files is not an automatic reload procedure. Restart the owner or qualify an explicit model-control workflow. A rollback must restore both the selected version/configuration and the immutable model files. Loading old and new large models together can exceed memory; use a deliberate downtime window on this laptop. [116]
+
+For a real fine-tuned sentence encoder, export and compare its tokenizer, masked pooling, normalization and output vectors with the training checkpoint before serving it. Test multilingual and long-input boundaries, retrieval relevance and numerical tolerance. Increasing Triton instance count can create more model copies and workspace pressure; start with one instance and measure batch behavior first. Triton’s optional vLLM or TensorRT-LLM backends are separate integrations with their own compatibility and lifecycle requirements, not implied by these two standalone labs.
+
+Completion evidence
+
+Twenty new checks cover live HTTP contracts, numerical outputs, loading and draining, bounded overload, logs/metrics, SSE parsing, Python backend batch splitting, serialized ONNX results and static deployment invariants. Container engines and cluster APIs were unavailable during preparation. Supply target evidence for actual image resolution, server readiness, inference, device activity, failure classification and rollback before marking those exercises complete.
+
+python serving/validate.py
+
+python serving/reproduce.py --out runs/serving-repeat
+
+python serving/validate.py --evidence runs/serving-repeat

@@ -1,0 +1,5 @@
+[
+  {"id":"E1","text":"R17 was accepted by service A at 10:00. Service A reported waiting for service B at 10:01."},
+  {"id":"E2","text":"The client timed out for request R17 at 10:02. There are no logs from service B in the evidence set."},
+  {"id":"E3","text":"A later unrelated request R99 succeeded. Its success does not establish what happened to R17."}
+]

@@ -1,0 +1,37 @@
+Exercise 118  Repair aggregation and test the monitoring path
+
+Question
+Does the repaired aggregate weight the underlying observations correctly?
+
+Before you start
+Exercise 117 (detect missing and inconsistent evidence)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+1.4 s for Portable regressions (record 118.01).
+
+Check for success
+Recompute the numerator and denominator from the original groups. Run the monitoring controls against both the repair and the fault.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python diagnostics/validate.py
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep weighted aggregation and 24 portable checks.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Twenty-four fresh portable diagnostic regression checks passed. Earlier cumulative checks are historical and are not added to this new run’s total.
+Scope  Evidence repair and monitoring-path checks remain scoped to their inputs; CUDA counter and device-event support are separate qualifications.
+
+Recorded files
+python reader/records.py 118 --files

@@ -1,0 +1,39 @@
+Exercise 230  Bound persistent invalid output
+
+Question
+What stops the agent when every model response violates the schema?
+
+Before you start
+Exercise 229 (reject a plausible but invalid finding)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+0.62 s for Budget (record 230.01).
+
+Check for success
+Count requests and retries against the configured limit. Preserve the final failure and message sequence.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/pydantic_lab.py budget --out "$LAB_RUN/budget.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/budget.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The fresh control bounded persistent invalid output and retained the exhausted retry/budget outcome.
+Scope  A retry limit is an operational boundary; it does not make the final invalid answer acceptable.
+
+Recorded files
+python reader/records.py 230 --files

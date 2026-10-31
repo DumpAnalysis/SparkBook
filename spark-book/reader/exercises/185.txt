@@ -1,0 +1,39 @@
+Exercise 185  Compare resident execution with CPU offload
+
+Question
+Where does memory pressure move when model components are offloaded?
+
+Before you start
+Exercise 184 (generate one bounded image)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+57.6 s for Sequential offload (record 185.02).
+
+Check for success
+Compare matched resident and offload trials across elapsed time, process peak RSS and GPU memory. Keep their sampling scopes explicit.
+
+Run in your lab
+Compare both offload trials with Exercise 184’s resident baseline. The prompt, dimensions, number of steps, seed and guidance are held fixed.
+
+: "${LAB_RUN:?Start a new lab run first}"
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 512 --height 512 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/model-offload"
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 512 --height 512 --steps 20 --guidance 5 --seed 1606 --placement sequential-offload --out "$LAB_RUN/sequential-offload"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep model-offload, sequential-offload with their output images and result files. Record timings and placement for each separate process.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The same bounded SDXL request completed in resident, model-offload and sequential-offload modes. The retained phase/allocator counters, guest pressure and Windows samples must be read together. Their overlapping memory views are not additive.
+Scope  This compares placement strategies; SDXL here is not a demonstrated larger-than-30-GB checkpoint.
+
+Recorded files
+python reader/records.py 185 --files

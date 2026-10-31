@@ -1,0 +1,26 @@
+# All GPU fixtures explicitly have source="fixture"; choose source="wsl" for live.
+lab_gpu_busy_ratio{source="wsl"}
+lab_gpu_memory_used_bytes{source="wsl"} / 1024^3
+lab:gpu_memory_used:ratio{source="wsl"}
+lab_gpu_field_available{source="wsl"}
+lab_gpu_field_status{source="wsl",status!="ok"}
+up{job="gpu"}
+time() - lab_exporter_last_poll_timestamp_seconds
+scrape_duration_seconds{job="gpu"}
+scrape_samples_scraped{job="gpu"}
+process_resident_memory_bytes{job="prometheus"}
+count({job="gpu"})
+# Synthetic CPU instrumentation: not model benchmarks.
+sum(rate(lab_demo_requests_total[1m]))
+sum(rate(lab_demo_requests_total{status="503"}[1m])) / sum(rate(lab_demo_requests_total[1m]))
+histogram_quantile(0.95, sum by(le)(rate(lab_demo_request_duration_seconds_bucket[1m])))
+sum(rate(lab_demo_request_duration_seconds_sum[1m])) / sum(rate(lab_demo_request_duration_seconds_count[1m]))
+resets(lab_demo_requests_total[5m])
+# Use only when these series and types exist in your captured server endpoint.
+histogram_quantile(0.95, sum by(le)(rate(vllm:e2e_request_latency_seconds_bucket{engine="vllm"}[1m])))
+histogram_quantile(0.95, sum by(le)(rate(vllm:time_to_first_token_seconds_bucket{engine="vllm"}[1m])))
+sum(vllm:num_requests_waiting{engine="vllm"})
+# Triton mean successful-request latency in seconds, not p95.
+sum(rate(nv_inference_request_duration_us{engine="triton"}[1m])) / sum(rate(nv_inference_request_success{engine="triton"}[1m])) / 1e6
+sum(rate(nv_inference_queue_duration_us{engine="triton"}[1m])) / sum(rate(nv_inference_request_success{engine="triton"}[1m])) / 1e6
+# Retain model/version labels when comparing models, rather than pooling them.

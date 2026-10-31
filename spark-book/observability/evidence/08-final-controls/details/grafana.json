@@ -1,0 +1,9 @@
+{
+  "database": "ok",
+  "version": "13.3.0",
+  "datasource_uid": "lab-prometheus",
+  "datasource_url": "http://127.0.0.1:9090",
+  "dashboard_uid": "wsl-gpu-lab",
+  "panel_count": 13,
+  "scope": "provisioning only; query backend not qualified"
+}

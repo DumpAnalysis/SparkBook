@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "text": "GPU memory",
+  "events": [
+    "{\"choices\":[{\"delta\":{\"role\":\"assistant\"}}]}",
+    "{\"choices\":[{\"delta\":{\"content\":\"GPU\"}}]}",
+    "{\"choices\":[{\"delta\":{\"content\":\" memory\"}}]}",
+    "[DONE]"
+  ],
+  "scope": "parser fixture, no LLM execution"
+}

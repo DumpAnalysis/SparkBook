@@ -1,0 +1,42 @@
+Exercise 147  Deploy one GPU owner and retain scheduling evidence
+
+Question
+Was the single GPU assigned to the intended owner?
+
+Before you start
+Exercise 146 (qualify GPU discovery separately)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+35.3 s for Expected two ready timeout (record 147.02).
+
+Check for success
+Inspect the pod's resource request, scheduling events and native placement log. Confirm an actual served response.
+
+Run in your lab
+Use the same qualified image and model files from the container exercise. Inspect the generated manifest before applying it.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${FIRST_SHARD:?Set FIRST_SHARD to the basename of the first GGUF shard, with every shard present}"
+: "${LLAMA_IMAGE:?Set LLAMA_IMAGE to the qualified ARM64 llama.cpp image pinned by digest}"
+: "${MODEL_DIR:?Set MODEL_DIR to the absolute model directory available to the container or cluster node}"
+python serving/deploy.py llama --image "$LLAMA_IMAGE" --model-dir "$MODEL_DIR" --first-shard "$FIRST_SHARD" --gpu --out "$LAB_RUN/llama.yaml"
+kubectl apply -f "$LAB_RUN/llama.yaml"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/llama.yaml with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual Kubernetes Q4 generation used one GPU owner. Scaling to two left the second pod Pending with Insufficient nvidia.com/gpu and the expected bounded rollout timeout. Scaling back restored the one-owner configuration, then released it.
+Scope  This demonstrates scheduling one real resource; it does not manufacture GPU capacity or qualify sharing.
+
+Recorded files
+python reader/records.py 147 --files

@@ -1,0 +1,84 @@
+rule_files: [rules.yml]
+evaluation_interval: 5s
+tests:
+- name: pressure waits then fires and resolves
+  interval: 5s
+  input_series:
+  - series: 'lab_gpu_memory_used_bytes{gpu="fixture-gpu",source="fixture"}'
+    values: '95+0x7 40+0x4'
+  - series: 'lab_gpu_memory_total_bytes{gpu="fixture-gpu",source="fixture"}'
+    values: '100+0x12'
+  alert_rule_test:
+  - eval_time: 15s
+    alertname: GpuMemoryPressure
+    exp_alerts: []
+  - eval_time: 25s
+    alertname: GpuMemoryPressure
+    exp_alerts:
+    - exp_labels: {gpu: fixture-gpu, source: fixture, severity: warning}
+  - eval_time: 50s
+    alertname: GpuMemoryPressure
+    exp_alerts: []
+- name: unavailable is distinct from zero busy
+  interval: 5s
+  input_series:
+  - series: 'lab_gpu_field_available{gpu="fixture-gpu",source="fixture",field="utilization.gpu"}'
+    values: '0+0x6 1+0x6'
+  - series: 'lab_gpu_busy_ratio{gpu="fixture-gpu",source="fixture"}'
+    values: '_ _ _ _ _ _ _ 0+0x6'
+  alert_rule_test:
+  - eval_time: 25s
+    alertname: GpuBusyCounterUnavailable
+    exp_alerts:
+    - exp_labels: {gpu: fixture-gpu, source: fixture, field: utilization.gpu, severity: info}
+  - eval_time: 50s
+    alertname: GpuBusyCounterUnavailable
+    exp_alerts: []
+- name: down target still exists
+  interval: 5s
+  input_series:
+  - series: 'up{job="gpu",instance="127.0.0.1:9400"}'
+    values: '0+0x8'
+  alert_rule_test:
+  - eval_time: 10s
+    alertname: GpuExporterDown
+    exp_alerts: []
+  - eval_time: 25s
+    alertname: GpuExporterDown
+    exp_alerts:
+    - exp_labels: {job: gpu, instance: '127.0.0.1:9400', severity: warning}
+  - eval_time: 25s
+    alertname: GpuJobMissing
+    exp_alerts: []
+- name: absent job is distinct from down
+  alert_rule_test:
+  - eval_time: 40s
+    alertname: GpuJobMissing
+    exp_alerts:
+    - exp_labels: {job: gpu, severity: warning}
+- name: stale producer with healthy HTTP
+  interval: 5s
+  input_series:
+  - series: 'up{job="gpu",instance="127.0.0.1:9400"}'
+    values: '1+0x20'
+  - series: 'lab_exporter_last_poll_timestamp_seconds{job="gpu",instance="127.0.0.1:9400"}'
+    values: '0+0x20'
+  alert_rule_test:
+  - eval_time: 60s
+    alertname: GpuCollectorStale
+    exp_alerts: []
+  - eval_time: 80s
+    alertname: GpuCollectorStale
+    exp_alerts:
+    - exp_labels: {job: gpu, instance: '127.0.0.1:9400', severity: warning}
+- name: invalid denominator has no ratio
+  interval: 5s
+  input_series:
+  - series: 'lab_gpu_memory_used_bytes{gpu="fixture-gpu",source="fixture"}'
+    values: '10+0x4'
+  - series: 'lab_gpu_memory_total_bytes{gpu="fixture-gpu",source="fixture"}'
+    values: '0+0x4'
+  promql_expr_test:
+  - expr: lab:gpu_memory_used:ratio
+    eval_time: 15s
+    exp_samples: []

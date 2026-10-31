@@ -1,0 +1,38 @@
+Exercise 49  Write a two-stage sum
+
+Question
+How do independent blocks produce one correct sum?
+
+Before you start
+Exercise 48 (reorder a tile through shared memory)
+NVCC and host C++ compiler; small bounded tensors, no model download.
+
+Recorded step time
+0.87 s for Write a two-stage sum — reference check (record 049.01).
+
+Check for success
+Inspect block partials and their final sum for ragged input. Check that threads with no input still reach each required barrier.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+bash kernels/build.sh starter
+./kernels/bin/kernel-student reduce 1003 256
+
+Interpret the result
+Validate values and bounds before comparing performance.
+
+If the check fails
+Reduce the failing shape and inspect indexing, synchronization and launch arguments.
+
+Finish
+Keep partial results and synchronization checks.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.
+Scope  The numerical control and the additional observation required by this exercise have separate acceptance checks.
+
+Recorded files
+python reader/records.py 49 --files

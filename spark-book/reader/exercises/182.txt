@@ -1,0 +1,35 @@
+Exercise 182  Inspect reverse sampling and distribution coverage
+
+Question
+Which parts of the teaching distribution does reverse sampling reproduce?
+
+Before you start
+Exercise 181 (train and retain a tiny diffusion model)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+1.4 s for Distribution coverage (record 182.01).
+
+Check for success
+Compare reference and generated point clouds using the saved seed and sampling schedule. Inspect coverage of each mode.
+
+Run in your lab
+Inspect the retained samples and loss from Exercise 181. Compare coverage with the source distribution; loss alone does not show that reverse samples cover it.
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep reference and generated point clouds with explicit limits.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Fresh radius quantiles and occupancy checks accompany the newly retained point-cloud plot. The learned samples blur the eight modes despite lower noise error.
+Scope  A finite output and a decreasing loss do not establish mode coverage or image quality.
+
+Recorded files
+python reader/records.py 182 --files

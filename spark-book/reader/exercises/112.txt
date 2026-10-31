@@ -1,0 +1,40 @@
+Exercise 112  Distinguish slow retrieval from retries
+
+Question
+Is the long request caused by one slow retrieval or several attempts?
+
+Before you start
+Exercise 111 (retain correlated spans and logs)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+0.63 s for Trace the slow retrieval path (record 112.01).
+
+Check for success
+Compare the retrieval span's duration with retry count and child spans. Explain the same end-to-end symptom using the recorded structure.
+
+Run in your lab
+Repeat the request diagnosis with one injected retrieval delay and one retry scenario. Compare span parentage, attempt counts and end-to-end latency.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py request --mode slow --out "$LAB_RUN/slow-request"
+python diagnostics/lab.py request --mode retry --out "$LAB_RUN/retry-request"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/slow-request, $LAB_RUN/retry-request with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU synthetic controls distinguish a slow retrieval path (six spans, zero errors, three logs) from a retry path (seven spans, one error, four logs). Correlation and ordering were checked independently. The plot uses host time and intentionally injected delays.
+Scope  The spans describe a deliberately instrumented request.
+
+Recorded files
+python reader/records.py 112 --files

@@ -1,0 +1,38 @@
+Exercise 33  Inspect device code and its target
+
+Question
+Which instructions and targets are actually present in the built device image?
+
+Before you start
+Exercise 32 (build debug and performance variants)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+0.82 s for Check the optimized build (record 033.03).
+
+Check for success
+Match the binary hash to its PTX and SASS listings. Identify the target recorded by the tool.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+cuobjdump --list-elf cuda/bin/cuda-lab
+cuobjdump --dump-ptx cuda/bin/cuda-lab
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep device listings and build hashes.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU code inspection/compilation and GPU O3 numerical control.
+Scope  The listing describes static code. The optimized numerical control checks the executed result.
+
+Recorded files
+python reader/records.py 33 --files

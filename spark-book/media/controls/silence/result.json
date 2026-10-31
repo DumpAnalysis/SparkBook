@@ -1,0 +1,103 @@
+{
+  "status": "ok",
+  "device": "cpu",
+  "seed": 1606,
+  "phases": [
+    {
+      "name": "verify",
+      "wall_s": 0.1423326510048355
+    },
+    {
+      "name": "load",
+      "wall_s": 0.23997718500322662
+    },
+    {
+      "name": "preprocess",
+      "wall_s": 0.0072709309970377944
+    },
+    {
+      "name": "infer",
+      "wall_s": 0.3732727220049128
+    },
+    {
+      "name": "decode",
+      "wall_s": 0.0005724950024159625
+    }
+  ],
+  "input_sha256": "20eaebffe1816e0ffa6f7f854f5ef4ea80d5349faaf0ce1fec1b713e7fde58fa",
+  "model": {
+    "repo": "openai/whisper-tiny",
+    "revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+    "license": "apache-2.0",
+    "allow_patterns": [
+      "*.json",
+      "*.txt",
+      "*.model",
+      "*.safetensors",
+      "*.jinja",
+      "README.md",
+      "LICENSE*"
+    ]
+  },
+  "environment": {
+    "python": "3.12.14",
+    "machine": "x86_64",
+    "torch": "2.10.0+cpu",
+    "torch_cuda": null,
+    "packages": {
+      "transformers": "4.57.1",
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "Pillow": "12.3.0",
+      "safetensors": "0.6.2"
+    }
+  },
+  "arguments": {
+    "kind": "asr",
+    "model": "../models/whisper",
+    "out": "media/controls/silence",
+    "device": "cpu",
+    "input": "media/controls/fixtures/silence.wav",
+    "text": "The graphics processor has thirty gigabytes available.",
+    "reference": null,
+    "seed": 1606,
+    "tokens": 128,
+    "max_pixels": 401408,
+    "width": 512,
+    "height": 512,
+    "steps": 20,
+    "guidance": 3.0,
+    "strength": 0.5,
+    "placement": "resident",
+    "tiling": false,
+    "trace_steps": false,
+    "profile": false,
+    "snapshot": false
+  },
+  "audio": {
+    "frames": 32000,
+    "channels": 1,
+    "sample_rate": 16000,
+    "duration_s": 2.0,
+    "peak": 0.0,
+    "rms": 0.0,
+    "clipped_fraction": 0.0
+  },
+  "source": {
+    "source_rate": 16000,
+    "source_frames": 32000,
+    "source_channels": 1,
+    "source_sha256": "20eaebffe1816e0ffa6f7f854f5ef4ea80d5349faaf0ce1fec1b713e7fde58fa"
+  },
+  "feature_shape": [
+    1,
+    80,
+    3000
+  ],
+  "text": " you",
+  "inference_rtf": 0.1866363610024564,
+  "output_sha256": {
+    "output.txt": "6d2339b1eec5fb089597a4582f6475d84e11bf3795dee1ad6e7952e8222a6ad2"
+  },
+  "total_s": 2.941024956999172
+}

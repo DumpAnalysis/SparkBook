@@ -1,0 +1,38 @@
+Exercise 146  Qualify GPU discovery separately
+
+Question
+Does Kubernetes advertise the GPU that the container runtime can already use?
+
+Before you start
+Exercise 144 (deploy the CPU service to a local cluster) · Exercise 142 (add the GPU runtime and a generation image)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+2 min 18 s for Roll out the NVIDIA device-plugin DaemonSet (record 146.02).
+
+Check for success
+Check plugin placement, discovery and node allocatable resources. Keep the separate container arithmetic result beside them.
+
+Run in your lab
+These are read-only discovery commands. Confirm the GPU resource and plugin behavior separately; a Ready node is not a GPU qualification.
+
+kubectl get nodes -o json
+kubectl get pods -A -o wide
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep target deployment; retained qualification evidence.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual device-plugin qualification required more than a successful rollout command: default chart affinity selected zero WSL nodes. Project-local Helm 4.3.1 and chart 0.20.1 were rerun with that gate removed and placement restricted to the already qualified node hostname, keeping failOnInitError=true. The plugin registered; a later node read advertised one nvidia.com/gpu after propagation. No MIG, MPS or time-slicing capability was established.
+Scope  Rollout and scheduler readiness precede validation of the served model.
+
+Recorded files
+python reader/records.py 146 --files

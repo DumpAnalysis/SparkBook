@@ -1,0 +1,37 @@
+Exercise 31  Inventory development tools independently
+
+Question
+Which CUDA tools are present, and which capabilities still need a workload test?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+1.3 s for Tool inventory (record 031.01).
+
+Check for success
+Record each executable, version and query status separately. Leave untested capability fields open.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python cuda/inventory_tools.py
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep tool versions and capability ledger.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU inventory only.
+Scope  Tool discovery alone gives no evidence of a running CUDA kernel.
+
+Recorded files
+python reader/records.py 31 --files

@@ -1,0 +1,8 @@
+**
+!sharing/
+!sharing/core.py
+!serving/
+!serving/infer.py
+!serving/server.py
+!serving/docker/
+!serving/docker/requirements.txt

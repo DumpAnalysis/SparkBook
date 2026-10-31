@@ -1,0 +1,37 @@
+Exercise 172  Qualify a separate media environment
+
+Question
+Which installed media dependencies and device path does this interpreter actually use?
+
+Before you start
+Exercise 14 (run a small synchronized computation)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+12.5 s for Torchvision native CUDA (record 172.02).
+
+Check for success
+Record interpreter and package identities and require a small CUDA operation from the selected media dependency.
+
+Run in your lab
+Qualify the actual media interpreter and dependencies; package installation by itself does not pass this exercise.
+
+python media/inventory.py --require-cuda
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep interpreter packages architecture and CUDA operation.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The owner deliberately reused .venv-exercises rather than creating the older proposed media environment. CPython 3.14.4, PyTorch 2.14.1+cu130, CUDA matrix multiplication and torchvision native CUDA NMS passed. All 75 existing package versions were preserved; eleven dependencies were added, for 86 total. This qualified route supersedes the older printed CPU installation example.
+Scope  A valid media file or successful environment probe precedes scoring the model output.
+
+Recorded files
+python reader/records.py 172 --files

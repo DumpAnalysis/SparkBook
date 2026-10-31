@@ -1,0 +1,7 @@
+$ python ecosystem/lab.py quantize --src ecosystem/controls/fixture --out ecosystem/controls/quantize
+test: clipped=0 MAE=0.001023 max_error=0.007568
+shifted: clipped=1 MAE=0.024090 max_error=2.841093
+small-channel weight MAE: per-tensor=0.0011620 per-channel=0.0000132
+INT8 weight payload=32 bytes; scales=16 bytes; FP32 weights=128 bytes
+QDQ teaching graph retains FP32 W: graph size is not compressed payload size
+[exit 0]

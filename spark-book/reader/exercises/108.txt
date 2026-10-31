@@ -1,0 +1,39 @@
+Exercise 108  Separate live bytes from allocator reserve
+
+Question
+Why can reserved CUDA memory stay high after tensors are released?
+
+Before you start
+Exercise 107 (locate a retained owner)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+3.4 s for Retain live CUDA tensors (record 108.01).
+
+Check for success
+Compare live, allocated and reserved bytes at the same checkpoints, including clear and empty_cache.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py memory --device cuda --mode release --out "$LAB_RUN/memory-release"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/memory-release with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CUDA retention, release and varying-size controls include allocator-history snapshots. Retained allocation grew to 2,097,152 bytes; clearing the owner left allocated=0 and reserved=2,097,152, then empty_cache left both zero. The captured snapshots concern this process’s allocator, not a device-wide GPU memory dump. The editor checked JSON counters without loading pickle snapshots.
+Scope  Live tensor bytes and allocator reserve measure different lifetimes.
+
+Recorded files
+python reader/records.py 108 --files

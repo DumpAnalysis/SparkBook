@@ -1,0 +1,59 @@
+Command or interpreter not found
+Exercises 1, 31, 172, 220
+Check the terminal, active environment, architecture and executable path.
+
+Wheel or dependency rejected
+Exercises 14, 25, 75, 172
+Read pip check and the installer report; use the fresh-setup branches.
+
+Model will not load
+Exercises 4, 5, 13, 28–30
+Check shards and format, loader dependencies, then measured headroom.
+
+Service healthy but CUDA placement unclear
+Exercises 5, 95, 142, 148
+Inspect effective placement and native backend logs.
+
+Out of memory or growing memory
+Exercises 2, 28–30, 42, 107–108, 251
+Identify the allocating phase, retained owner and each counter’s scope.
+
+GPU looks idle
+Exercises 91–98, 103–104, 213
+Distinguish unsupported sampling from missing work or input starvation.
+
+Empty or zero-duration GPU trace
+Exercises 39–44, 179, 186, 191, 195
+Check a tiny activity probe first; keep the measurement outcome blocked.
+
+Wrong values or gradients
+Exercises 37–38, 45–58, 68, 99–100
+Compare a small independent oracle and locate the first divergent value.
+
+Training resumes differently
+Exercises 69, 127, 170, 241
+Inspect all state, iterator order and recovery scope.
+
+Retrieval or answer quality regresses
+Exercises 16, 26, 78–89, 113–114, 167, 250
+Freeze held-out inputs and locate the changed semantic boundary.
+
+Workers stall or requests disappear
+Exercises 109–112, 125–135
+Inspect ownership, progress, rank/operation identity and cancellation.
+
+Container or pod will not serve
+Exercises 140–151
+Check image architecture, process, readiness, scheduling and model files.
+
+Grafana panel empty
+Exercises 213–218
+Follow exporter, scrape, query and panel availability in order.
+
+Agent retries or resumes incorrectly
+Exercises 18, 221–231
+Check bounded tool contracts, thread IDs, continuation and retained errors.
+
+Audio sounds wrong or ASR hallucinates
+Exercises 189, 193–200
+Inspect sample rate, waveform, normalization and nonspeech inputs first.

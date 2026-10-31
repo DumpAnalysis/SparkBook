@@ -1,0 +1,39 @@
+Exercise 181  Train and retain a tiny diffusion model
+
+Question
+Did the tiny denoiser learn anything on held-out noise targets?
+
+Before you start
+Exercise 180 (verify forward corruption and an oracle reconstruction)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+9.5 s for Tiny diffusion (record 181.01).
+
+Check for success
+Compare held-out noise error before and after training using the same fixed evaluation input. Identify the saved checkpoint.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/diffusion_control.py --out "$LAB_RUN/diffusion"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/diffusion with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The actual CPU teaching denoiser has 4,610 parameters and completed 3,000 updates. Held-out noise MSE decreased from 0.9321 to 0.3841, and 512 finite samples were retained. This small two-dimensional experiment remains CPU evidence; SDXL GPU evidence begins at Exercise 184.
+Scope  The small point-distribution experiment illustrates selected diffusion operations.
+
+Recorded files
+python reader/records.py 181 --files

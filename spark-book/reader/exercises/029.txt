@@ -1,0 +1,37 @@
+Exercise 29  Plan, acquire, and load the larger model
+
+Question
+Can a weight file larger than the reported dedicated budget serve a real request?
+
+Before you start
+Exercise 2 (calculate before allocating) · Exercise 28 (learn partial offload with the small model)
+Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.
+
+Recorded step time
+4 min 14 s for Complete the second guarded load (record 029.03).
+
+Check for success
+Verify the nine shard identities, layer placement and completed requests. Keep the first guard stop distinct from the successful trial.
+
+Run in your lab
+The entry command plans only. Download with --download after admission checks; then follow Chapter 24–25 for the measured partial-offload launch. Do not use the 18 GiB allocation result as model-fit proof.
+
+python large_model.py
+
+Interpret the result
+A model that exceeds the reported GPU budget may require host-backed placement; success still depends on the actual host and guest budget.
+
+If the check fails
+Check dataset/tokenizer identity and memory at the failing phase before changing precision.
+
+Finish
+Stop the larger model before changing settings. Preserve the admission decision even if the load was not attempted.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — actual CUDA/CPU partial offload, after one retained guard-stopped attempt.
+Scope  The successful guarded attempt used the retained host and guest settings.
+
+Recorded files
+python reader/records.py 29 --files

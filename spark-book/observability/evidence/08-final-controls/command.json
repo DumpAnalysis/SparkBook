@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "python3",
+    "observability/integration.py",
+    "--tools",
+    "../../tools-v22/tools.json",
+    "--run-dir",
+    "../../runtime-v22e",
+    "--evidence",
+    "observability/evidence/08-final-controls/details",
+    "--allow-unavailable-grafana-backend"
+  ],
+  "start_ns": 1793190170996886872,
+  "end_ns": 1793190265753355866,
+  "exit": 0
+}

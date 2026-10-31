@@ -1,0 +1,198 @@
+[
+  {
+    "reference": 227,
+    "publisher": "Ollama",
+    "title": "Linux installation",
+    "url": "https://docs.ollama.com/linux",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 228,
+    "publisher": "Ollama",
+    "title": "Release v0.40.11 and archive digests",
+    "url": "https://github.com/ollama/ollama/releases/tag/v0.40.11",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 229,
+    "publisher": "Ollama",
+    "title": "FAQ on local mode, residency and concurrency",
+    "url": "https://docs.ollama.com/faq",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 230,
+    "publisher": "Ollama",
+    "title": "API schema and model metadata",
+    "url": "https://github.com/ollama/ollama/blob/main/docs/openapi.yaml",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 231,
+    "publisher": "Ollama",
+    "title": "Generation API",
+    "url": "https://docs.ollama.com/api/generate",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 232,
+    "publisher": "Ollama",
+    "title": "Embedding API",
+    "url": "https://docs.ollama.com/api/embed",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 233,
+    "publisher": "Ollama",
+    "title": "Importing a model",
+    "url": "https://docs.ollama.com/import",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 234,
+    "publisher": "Ollama",
+    "title": "GPU compatibility",
+    "url": "https://docs.ollama.com/gpu",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 235,
+    "publisher": "Unsloth",
+    "title": "Native requirements",
+    "url": "https://unsloth.ai/docs/get-started/fine-tuning-for-beginners/unsloth-requirements",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 236,
+    "publisher": "Unsloth",
+    "title": "Installation with WSL instructions",
+    "url": "https://unsloth.ai/docs/get-started/install/windows-installation",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 237,
+    "publisher": "Unsloth",
+    "title": "Official FastLanguageModel training script",
+    "url": "https://github.com/unslothai/unsloth/blob/main/unsloth-cli.py",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 238,
+    "publisher": "Unsloth on PyPI",
+    "title": "Release metadata observed as 2026.10.10",
+    "url": "https://pypi.org/pypi/unsloth/json",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 239,
+    "publisher": "Qwen",
+    "title": "Qwen2.5-1.5B-Instruct model and pinned snapshot",
+    "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/tree/989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 240,
+    "publisher": "Hugging Face",
+    "title": "Transformers Trainer and checkpoint continuation",
+    "url": "https://huggingface.co/docs/transformers/main_classes/trainer",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 241,
+    "publisher": "Unsloth",
+    "title": "Merged weights, GGUF export and template diagnosis",
+    "url": "https://unsloth.ai/docs/basics/inference-and-deployment/saving-to-gguf",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 242,
+    "publisher": "LM Studio",
+    "title": "Headless service and llmster",
+    "url": "https://lmstudio.ai/docs/developer/core/headless",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 243,
+    "publisher": "LM Studio",
+    "title": "System requirements",
+    "url": "https://lmstudio.ai/docs/app/system-requirements",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 244,
+    "publisher": "LM Studio",
+    "title": "Runtime management CLI",
+    "url": "https://lmstudio.ai/docs/cli/runtime/runtime",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 245,
+    "publisher": "LM Studio",
+    "title": "Importing local model files",
+    "url": "https://lmstudio.ai/docs/cli/local-models/import",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 246,
+    "publisher": "LM Studio",
+    "title": "Loading, offload estimates and TTL",
+    "url": "https://lmstudio.ai/docs/cli/local-models/load",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 247,
+    "publisher": "LM Studio",
+    "title": "Local server bind and port",
+    "url": "https://lmstudio.ai/docs/cli/serve/server-start",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 248,
+    "publisher": "LM Studio",
+    "title": "OpenAI-compatible endpoints",
+    "url": "https://lmstudio.ai/docs/developer/openai-compat",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 249,
+    "publisher": "NVIDIA",
+    "title": "Nemotron 3 Nano 30B A3B model card",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 250,
+    "publisher": "ggml-org",
+    "title": "Pinned Nemotron GGUF conversion files",
+    "url": "https://huggingface.co/ggml-org/NVIDIA-Nemotron-3-Nano-30B-A3B-GGUF/tree/fe801509a580ff84a5728d4a9104e3f6f7e9b0dd",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 251,
+    "publisher": "Hugging Face",
+    "title": "Nemotron conversion catalog metadata with blob identities",
+    "url": "https://huggingface.co/api/models/ggml-org/NVIDIA-Nemotron-3-Nano-30B-A3B-GGUF?blobs=true",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 252,
+    "publisher": "Unsloth",
+    "title": "Nemotron inference and fine-tuning guidance",
+    "url": "https://unsloth.ai/docs/models/nemotron-3",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 253,
+    "publisher": "NVIDIA",
+    "title": "Nemotron 3 Nano NVFP4 representation",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 254,
+    "publisher": "Qwen",
+    "title": "Pinned single-file small chat GGUF",
+    "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/tree/91cad51170dc346986eccefdc2dd33a9da36ead9",
+    "consulted": "2026-10-28"
+  }
+]

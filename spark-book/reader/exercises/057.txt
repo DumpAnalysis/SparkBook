@@ -1,0 +1,37 @@
+Exercise 57  Register and build the operator
+
+Question
+Can PyTorch dispatch the new operator with the declared tensor contract?
+
+Before you start
+Exercise 14 (run a small synchronized computation) · Exercise 31 (inventory development tools independently) · Exercise 56 (write stable softmax and complete the regression set)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+46.4 s for Operator build and checks (record 057.01).
+
+Check for success
+Check registration, dtype/device validation and output agreement. Keep the build identity with the forward test.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+MAX_JOBS=2 python advanced/torch_operator.py
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep dispatcher contract, build record, and forward tests.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU custom operator and CPU extension compilation.
+Scope  The operator is qualified for the compiled extension and tested framework environment.
+
+Recorded files
+python reader/records.py 57 --files

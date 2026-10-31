@@ -1,0 +1,39 @@
+Exercise 131  Compare independent model owners
+
+Question
+How much model state is duplicated when each worker owns an encoder?
+
+Before you start
+Exercise 130 (share one encoder across request workers)
+One GPU owner by default; replicas duplicate weights. Bound clients and batches before increasing concurrency.
+
+Recorded step time
+3.8 s for GPU replicas (record 131.01).
+
+Check for success
+Count owners and weight bytes, then inspect each process's allocator record. Keep device-wide headroom separate.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python sharing/service.py --mode replicas --device cuda --workers 4 --batch 1 --out "$LAB_RUN/replicas"
+
+Interpret the result
+Count errors and waits as well as successes; distinguish batching from parallel execution.
+
+If the check fails
+Check admission, ownership and cancellation state before adding workers.
+
+Finish
+Keep $LAB_RUN/replicas with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU four-replica execution held 328,704 weight bytes; actual CUDA two-owner execution held 164,352. These are duplicate model payload counts.
+Scope  Each process’s CUDA accounting is not an independently enforced physical-memory quota, and multiple owners do not create additional GPUs.
+
+Recorded files
+python reader/records.py 131 --files

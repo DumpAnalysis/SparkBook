@@ -1,0 +1,37 @@
+Exercise 77  Export and audit the partitions
+
+Question
+Do held-out query families stay outside the training partition?
+
+Before you start
+Exercise 75 (prepare the environment and freeze the encoder)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+0.06 s for Export partitions (record 077.01).
+
+Check for success
+Check family IDs across all partitions, document/query pairing and the exported data digest.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python embeddings/data.py
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep family counts, JSONL files and data digest.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU synthetic teaching corpus.
+Scope  The teaching corpus uses a fixed artificial partition.
+
+Recorded files
+python reader/records.py 77 --files

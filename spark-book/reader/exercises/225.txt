@@ -1,0 +1,39 @@
+Exercise 225  Put a bounded model call behind review
+
+Question
+Can a graph wait for review before making its bounded model call?
+
+Before you start
+Exercise 223 (resume after the Python process exits) · Exercise 222 (qualify the HTTP boundary and local model)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+3.5 s for Graph resume (record 225.02).
+
+Check for success
+Inspect the interruption, saved state, approval and subsequent model messages in their recorded order.
+
+Run in your lab
+The entry is a bounded control. A learned call uses graph_lab.py start/resume with explicit database, thread and local-model arguments after reviewing the proposed continuation.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/graph_control.py agent --out "$LAB_RUN/graph-agent"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/graph-agent with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The learned-model graph paused for review and resumed in a separate invocation, with the local CUDA endpoint and checkpoint retained. Its resumed agent made one tool call and stopped normally. The tool still supplies simulated 28/30 GiB memory evidence; the run qualifies graph/model integration, not an actual diagnosis of this machine.
+Scope  The persisted thread identity and approval determine which action can resume.
+
+Recorded files
+python reader/records.py 225 --files

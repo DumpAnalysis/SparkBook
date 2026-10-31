@@ -1,0 +1,39 @@
+Exercise 226  Preserve nested traces, errors and redaction
+
+Question
+Can nested operations and failures be inspected locally while protecting sensitive fields?
+
+Before you start
+Exercise 220 (isolate and identify the orchestration environment)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+0.42 s for Control (record 226.01).
+
+Check for success
+Follow parent/child trace IDs, retained error state and redacted values. Check the offline connection guard.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/langsmith_lab.py control --out "$LAB_RUN/langsmith.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/langsmith.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The new local LangSmith SDK control retained nested trace relationships, an error and explicit redaction behavior without sending a hosted request.
+Scope  A locally serialized trace is observable evidence, but it does not establish hosted ingestion, indexing or dashboard visibility.
+
+Recorded files
+python reader/records.py 226 --files

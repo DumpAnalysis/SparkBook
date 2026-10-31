@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "bytes": 548,
+      "path": "config.json",
+      "sha256": "54f9f0001ec62b6a53072a7c9d1b630e346ae51fca14a5799e54f0d918281872"
+    },
+    {
+      "bytes": 520212,
+      "path": "model.safetensors",
+      "sha256": "965f02b6a7e5520fc12f710e4e3b6132f697f1c8f648819553c5ade86752d2de"
+    },
+    {
+      "bytes": 112,
+      "path": "special_tokens_map.json",
+      "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+    },
+    {
+      "bytes": 12930,
+      "path": "tokenizer.json",
+      "sha256": "dd65e2c292bcc86c93a547f53117b419711310c1467a90da2aac6ec6d5ee1c6b"
+    },
+    {
+      "bytes": 321,
+      "path": "tokenizer_config.json",
+      "sha256": "9a8ed9b01c8a56b555dcdc31cd526ba9e488cfc16ee5a101b3ce64af81d34f3d"
+    },
+    {
+      "bytes": 4679,
+      "path": "vocab.txt",
+      "sha256": "130f1804e2dd52ff08aee3df4c216167f86e7ee4e2fed48bbe0537d61e8dd117"
+    }
+  ],
+  "publisher_license": "UNSPECIFIED in pinned metadata",
+  "repo_id": "hf-internal-testing/tiny-random-bert",
+  "repo_type": "model",
+  "revision": "f171d7baecaf37b5da5a3616d8833b9969753535",
+  "weights_in_companion": false
+}

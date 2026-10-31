@@ -1,0 +1,42 @@
+Exercise 132  Batch compatible work and bound admission
+
+Question
+Who benefits from larger request batches, and who waits longer?
+
+Before you start
+Exercise 130 (share one encoder across request workers)
+One GPU owner by default; replicas duplicate weights. Bound clients and batches before increasing concurrency.
+
+Recorded step time
+5.0 s for Profile the first batch-size-four trial (record 132.02).
+
+Check for success
+Compare owner calls, queue delay, p50 and p95 under matched request counts. Verify every vector before interpreting the timings.
+
+Predict before running
+Could larger batches improve median latency and worsen the tail in the same trial?
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python sharing/service.py --mode shared --device cuda --workers 4 --batch 4 --out "$LAB_RUN/batched"
+
+Interpret the result
+Count errors and waits as well as successes; distinguish batching from parallel execution.
+
+If the check fails
+Check admission, ownership and cancellation state before adding workers.
+
+Finish
+Keep $LAB_RUN/batched with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Three paired CUDA trials used the same profiler settings and 64 requests per trial, alternating batch sizes one and four. Owner calls fell from 64 to 16 with a maximum of four pending requests. All retained vectors passed the independent oracle.
+Scope  Profiler warnings and missing device events remain; these small matched trials are not a production throughput benchmark.
+
+Recorded files
+python reader/records.py 132 --files

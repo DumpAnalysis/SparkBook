@@ -1,0 +1,122 @@
+[
+  {
+    "name": "GPU Starvation",
+    "symptom": "Long request latency with gaps between short GPU bursts.",
+    "alternatives": "Input supply, CPU preprocessing, synchronization or storage.",
+    "evidence": "Compare input-ready times and device work; remove only the input delay.",
+    "lab": "Chapter 60 Exercises 103\u2013104.",
+    "repair": "Prefetch or batch the measured bottleneck with bounded buffers.",
+    "regression": "Same records and outputs; repeated steady-state timings improve.",
+    "boundary": "Low utilization alone does not identify a cause."
+  },
+  {
+    "name": "Recompilation Storm",
+    "symptom": "Repeated capture or compile costs as metadata changes.",
+    "alternatives": "Guard failures, graph breaks or normal warmup.",
+    "evidence": "Match shapes and failed guards; compare capture counts.",
+    "lab": "Chapter 59 Exercises 101\u2013102.",
+    "repair": "Use supported dynamic dimensions or justified shape buckets.",
+    "regression": "Outputs agree and representative shapes avoid excess captures.",
+    "boundary": "A graph count is not a kernel count or a performance result."
+  },
+  {
+    "name": "Retained Tensor",
+    "symptom": "Live allocation grows during fixed-size repeated work.",
+    "alternatives": "References, intentional cache or changing input shapes.",
+    "evidence": "Clear the suspected owner and compare live bytes.",
+    "lab": "Chapter 62 Exercises 107\u2013108.",
+    "repair": "Release unnecessary owners and bound intentional caches.",
+    "regression": "Repeated fixed workload returns live bytes to baseline.",
+    "boundary": "Reserved memory alone does not establish retention."
+  },
+  {
+    "name": "Silent Numerical Divergence",
+    "symptom": "Successful execution violates an intermediate tolerance.",
+    "alternatives": "Masking, preprocessing, dtype, reduction or implementation defect.",
+    "evidence": "Find the earliest mismatch with identical inputs and weights.",
+    "lab": "Chapter 58 Exercises 99\u2013100.",
+    "repair": "Repair the first violated contract and declare tolerances.",
+    "regression": "Padding, near-zero and nonfinite cases are covered.",
+    "boundary": "Top-ranked agreement can conceal damaged representations."
+  },
+  {
+    "name": "Retrieval Drift",
+    "symptom": "Retrieval quality changes while execution succeeds.",
+    "alternatives": "Corpus, embedding, index, normalization or metric changes.",
+    "evidence": "Use fixed judged queries and substitute trusted context.",
+    "lab": "Chapters 50 and 65 Exercises 113\u2013114.",
+    "repair": "Version components together and rebuild mismatched indexes.",
+    "regression": "Held-out retrieval and answer metrics meet the acceptance contract.",
+    "boundary": "The deterministic fixture does not measure real-world drift."
+  },
+  {
+    "name": "Missing Trace",
+    "symptom": "Completed request lacks expected observable phases.",
+    "alternatives": "Sampling, export loss, lost context or absent instrumentation.",
+    "evidence": "Compare phase expectations, span identities and correlated logs.",
+    "lab": "Chapter 67 Exercises 117\u2013118.",
+    "repair": "Repair export or context propagation and retain missing-data status.",
+    "regression": "Healthy control passes; forced removal is detected.",
+    "boundary": "Unknown events cannot be recovered from silence."
+  },
+  {
+    "name": "Allocation Pressure",
+    "symptom": "Failure grows with context or concurrent requests.",
+    "alternatives": "Weights, KV cache, activations, other processes or allocator state.",
+    "evidence": "Reduce one dimension and retain framework, guest and device scope.",
+    "lab": "Chapters 9, 17, 24\u201325 and 33.",
+    "repair": "Bound context and concurrency or use supported explicit offload.",
+    "regression": "Previously failing bounded workload succeeds with measured headroom.",
+    "boundary": "64GB system and 30GB GPU reports are not additive pools."
+  },
+  {
+    "name": "Kernel Contract Violation",
+    "symptom": "Wrong output, illegal access or sanitizer error.",
+    "alternatives": "Indexing, alignment, bounds, race or launch configuration.",
+    "evidence": "Small CPU oracle, odd dimensions and the relevant sanitizer.",
+    "lab": "Chapters 30, 34\u201339 and 46.",
+    "repair": "Repair the indexing or synchronization contract.",
+    "regression": "Edge cases and sanitizer checks pass before timing.",
+    "boundary": "One clean case does not prove correctness for all inputs."
+  },
+  {
+    "name": "Host Progress Stall",
+    "symptom": "Last completed stage stays fixed while a response is absent.",
+    "alternatives": "Event wait, I/O, deadlock, worker exit or device wait.",
+    "evidence": "Bounded deadline plus host stacks and progress records.",
+    "lab": "Chapter 63 Exercises 109\u2013110.",
+    "repair": "Repair signaling or ownership and provide a bounded recovery path.",
+    "regression": "Completion and cancellation paths behave as specified.",
+    "boundary": "A host stack does not expose device program counters."
+  },
+  {
+    "name": "Bandwidth Ceiling",
+    "symptom": "Performance tracks data movement more than useful arithmetic.",
+    "alternatives": "Memory traffic, cache effects, launch cost or limited parallelism.",
+    "evidence": "Use measured traffic at a named level and the matching roofline.",
+    "lab": "Chapters 32, 38 and 61 Exercises 105\u2013106.",
+    "repair": "Reduce confirmed traffic or improve reuse.",
+    "regression": "Outputs remain correct and unprofiled timing improves.",
+    "boundary": "Analytic bytes are not measured DRAM bytes."
+  },
+  {
+    "name": "Measurement Corruption",
+    "symptom": "Graphs contradict raw records or request counts.",
+    "alternatives": "Duplicates, stale samples, units, timestamps or aggregation.",
+    "evidence": "Validate identity, scope, metadata and independent counts.",
+    "lab": "Chapters 57 and 67 Exercises 117\u2013118.",
+    "repair": "Repair acquisition or transformation and preserve originals.",
+    "regression": "Malformed fixtures fail while valid records pass.",
+    "boundary": "Flat values alone do not prove staleness."
+  },
+  {
+    "name": "Quality Boundary Failure",
+    "symptom": "Valid execution produces an unacceptable answer.",
+    "alternatives": "Retrieval, assembly, truncation, generation or validation.",
+    "evidence": "Restore one boundary with known-good data.",
+    "lab": "Chapter 65 Exercises 113\u2013114.",
+    "repair": "Repair the responsible boundary and retain adverse examples.",
+    "regression": "Independent correctness and acceptance checks pass.",
+    "boundary": "Multiple simultaneous defects may defeat single substitutions."
+  }
+]

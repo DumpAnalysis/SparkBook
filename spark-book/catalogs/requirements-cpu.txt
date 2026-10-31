@@ -1,0 +1,6 @@
+# Install torch==2.10.0 from the CPU index in a dedicated environment first.
+huggingface-hub==0.36.0
+transformers==4.57.1
+tokenizers==0.22.1
+safetensors==0.6.2
+numpy==2.3.5

@@ -1,0 +1,35 @@
+Exercise 162  Separate engine execution from build and transfers
+
+Question
+What part of inference does an enqueue timing actually measure?
+
+Before you start
+Exercise 161 (build an engine with bounded dynamic shapes)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+27.2 s for Optional Nsight TensorRT (record 162.01).
+
+Check for success
+Separate build time, warm-up and measured enqueue intervals. Compare only measurements with matching transfer scope.
+
+Run in your lab
+Read the build, transfer and execution intervals in the TensorRT output from Exercise 161. Repeat with unchanged shapes and compare unprofiled and instrumented runs separately.
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Save compatible engine/profile or adapter/base identities; close owned services.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual TensorRT execution retained build time, five warm-ups and twenty CUDA-event enqueue measurements per batch; a separate trtexec run included transfers and disabled CUDA graphs/spin wait. These timing definitions are not interchangeable. Optional Nsight export has 19,265 runtime records and 1,780 NVTX events but zero kernel events, so no device timeline is claimed.
+Scope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.
+
+Recorded files
+python reader/records.py 162 --files

@@ -1,0 +1,39 @@
+Exercise 179  Trace vision encoding and token generation
+
+Question
+Can the trace distinguish vision encoding from token generation?
+
+Before you start
+Exercise 176 (ask a bounded question about a known image) · Exercise 39 (capture four annotated iterations)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+39.1 s for Profile range corrected (record 179.01).
+
+Check for success
+Match the workload and host ranges to device events with valid intervals. A successful image answer establishes a different result.
+
+Run in your lab
+Proceed only after a tiny GPU timing probe supplies usable activity timestamps. Otherwise record BLOCKED; numerical inference can still be qualified independently.
+
+: "${LAB_RUN:?Start a new lab run first}"
+: "${IMAGE:?Set IMAGE to the shapes.png from Exercise 173}"
+python media/targets.py vlm --model models/media/qwen-vl --input "$IMAGE" --text "Describe the three shapes." --tokens 64 --profile --snapshot --out "$LAB_RUN/vlm-profile"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/vlm-profile with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — The Windows-elevated WSL2 retry still lacks usable kernel timestamps. Earlier vision inference, host ranges and allocator records remain; no vision workload was rerun. See Exercise 151 for the complete shared follow-up captures.
+Scope  A completed multimodal response cannot supply missing device timestamps.
+
+Recorded files
+python reader/records.py 179 --files

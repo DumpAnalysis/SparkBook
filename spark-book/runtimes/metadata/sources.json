@@ -1,0 +1,38 @@
+[
+  {
+    "file": "nemotron-gguf.json",
+    "url": "https://huggingface.co/api/models/ggml-org/NVIDIA-Nemotron-3-Nano-30B-A3B-GGUF?blobs=true",
+    "retrieved_date": "2026-10-28",
+    "sha256": "059e3e5d15071eba3b875a18350e490e1aba0e7d0656ade40c934026d50cea37"
+  },
+  {
+    "file": "nemotron-base.json",
+    "url": "https://huggingface.co/api/models/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16?blobs=true",
+    "retrieved_date": "2026-10-28",
+    "sha256": "3fe3e15c1f9188aac01763a8c6a48b6540c16a000aafa1e6eb73f91705ac7e17"
+  },
+  {
+    "file": "qwen-base.json",
+    "url": "https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct?blobs=true",
+    "retrieved_date": "2026-10-28",
+    "sha256": "b86ef0ce47e10ec54bf3529ea7376b1b0aff0d35df53a9f8dfaa98272409b857"
+  },
+  {
+    "file": "ollama-release.json",
+    "url": "https://api.github.com/repos/ollama/ollama/releases/tags/v0.40.11",
+    "retrieved_date": "2026-10-28",
+    "sha256": "e6ef5e9a5d32e021fa0138d5283a4500f8cf3ae3ec1d6875c18553b9ef32fd04"
+  },
+  {
+    "file": "unsloth-pypi.json",
+    "url": "https://pypi.org/pypi/unsloth/json",
+    "retrieved_date": "2026-10-28",
+    "sha256": "a2026ce1b76538eb683fc2a8c9a2a34d7a08ca87c7a26dc3db6cdd9ff11e37b3"
+  },
+  {
+    "file": "qwen-gguf.json",
+    "url": "https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct-GGUF?blobs=true",
+    "retrieved_date": "2026-10-28",
+    "sha256": "611d4fa90f13fc99f59c798d784eb8b7c62adb4bc177621fef128452ba380a46"
+  }
+]

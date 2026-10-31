@@ -1,0 +1,14 @@
+Scope: CPU algorithm and timing-arithmetic checks; no CUDA execution.
+test_grid_coverage (__main__.KernelReferenceTests.test_grid_coverage) ... ok
+test_histogram_partition (__main__.KernelReferenceTests.test_histogram_partition) ... ok
+test_rectangular_matrix_product (__main__.KernelReferenceTests.test_rectangular_matrix_product) ... ok
+test_rms_zero_and_scale (__main__.KernelReferenceTests.test_rms_zero_and_scale) ... ok
+test_softmax_shift_and_normalization (__main__.KernelReferenceTests.test_softmax_shift_and_normalization) ... ok
+test_timing_units_and_rejection (__main__.KernelReferenceTests.test_timing_units_and_rejection) ... ok
+test_transpose_tail_producers (__main__.KernelReferenceTests.test_transpose_tail_producers) ... ok
+test_two_pass_reduction (__main__.KernelReferenceTests.test_two_pass_reduction) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.010s
+
+OK

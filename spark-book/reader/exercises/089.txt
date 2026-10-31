@@ -1,0 +1,41 @@
+Exercise 89  Diagnose vectors and build a bound index
+
+Question
+Could the wrong encoder silently query an otherwise valid index?
+
+Before you start
+Exercise 78 (measure search before changing the model) · Exercise 87 (fine tune the pretrained sentence encoder)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+3.7 s for Known regression query (record 089.02).
+
+Check for success
+Check vector norms, dimensions, row mapping and model/index identity. Inspect one retrieval error in the original text.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${EMBEDDINGS:?Set EMBEDDINGS to the vector-output directory from Exercise 78}"
+: "${ENCODER:?Set ENCODER to your pinned base encoder or selected fine-tuned encoder}"
+python embeddings/diagnose.py --input "$EMBEDDINGS" --out "$LAB_RUN/vector-audit"
+python embeddings/search.py build --model "$ENCODER" --index "$LAB_RUN/index"
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep $LAB_RUN/vector-audit with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU exact retrieval and vector diagnostics.
+Scope  Exact retrieval is measured against the specified corpus and frozen queries.
+
+Recorded files
+python reader/records.py 89 --files

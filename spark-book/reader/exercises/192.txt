@@ -1,0 +1,39 @@
+Exercise 192  Synthesize a short diagnostic statement
+
+Question
+Did synthesis produce a finite waveform for the exact diagnostic sentence?
+
+Before you start
+Exercise 174 (download and verify one model at a time) · Exercise 175 (validate the media contracts)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+17.8 s for Speech (record 192.01).
+
+Check for success
+Match text, checkpoint and sampling rate to the saved waveform. Check duration before evaluating intelligibility.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/targets.py tts --model models/media/mms --out "$LAB_RUN/speech"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/speech with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CUDA MMS English synthesis generated 62,464 frames at 16 kHz, or 3.904 seconds. Raw float waveform and PCM WAV are retained. The program performed no playback or microphone capture.
+Scope  The saved waveform and the recorded listening observations answer different questions.
+
+Recorded files
+python reader/records.py 192 --files

@@ -1,0 +1,44 @@
+Exercise 11  Compare two quantizations
+
+Question
+Does changing weight precision change the answer as well as memory use?
+
+Before you start
+Exercise 4 (download and fingerprint) · Exercise 8 (measure repeated local requests)
+Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).
+
+Recorded step time
+4 min 26 s for Setup Q8 (record 011.01).
+
+Check for success
+Verify both weight identities, match the request bodies, and inspect finish reasons and complete answers against the same rubric.
+
+Run in your lab
+Begin with the 4096-token Q4 GPU owner restored in Exercise 10. Send the same prompt to the Q4 and Q8 models. Restore Q4 before the next control.
+
+: "${LAB_RUN:?Start a new lab run first}"
+python spark_lab.py query prompt.txt --tokens 128 --out "$LAB_RUN/q4-answer.json"
+python setup_wsl.py --quant q8_0
+bash serve.sh stop
+env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q8_0
+python spark_lab.py query prompt.txt --out "$LAB_RUN/q8-answer.json"
+bash serve.sh stop
+env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q4_k_m
+
+Interpret the result
+Smaller weights can change memory demand and quality. File size alone does not establish a speed improvement.
+
+If the check fails
+Check the first failed boundary: file, loader, service health, request, then answer.
+
+Finish
+Keep the exact model choice with each result; stop the server before switching configurations.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  FAILED — The Q8 reply reached the 128-token limit and ended mid-answer. Q4 reached a normal stop.
+Scope  A token limit can truncate an otherwise successful HTTP response.
+
+Recorded files
+python reader/records.py 11 --files

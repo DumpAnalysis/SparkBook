@@ -1,0 +1,35 @@
+Exercise 106  Compare prediction with a kernel profile
+
+Question
+Do kernel measurements support the roofline prediction?
+
+Before you start
+Exercise 105 (construct an analytic roofline)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+1.8 s for Validate the CUDA addition kernel (record 106.01).
+
+Check for success
+Require the intended kernel's measured counters and metric units. If collection fails, keep the prediction labelled analytic.
+
+Run in your lab
+Use Exercise 41 to collect a supported kernel report. Compare arithmetic intensity and the measured bottleneck against Exercise 105; record unavailable counters explicitly.
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep qualified kernel profile or capability limit.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — Actual native CUDA addition over 1,048,576 elements and 128×128 matrix multiplication passed numerical checks. Nsight Compute counter collection remained blocked outside the original agent sandbox. No achieved roofline, measured bandwidth ceiling or hardware-counter result is available from this exercise.
+Scope  A numerical CUDA result does not provide a hardware-counter profile.
+
+Recorded files
+python reader/records.py 106 --files

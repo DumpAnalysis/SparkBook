@@ -1,0 +1,39 @@
+Exercise 161  Build an engine with bounded dynamic shapes
+
+Question
+Which input shapes does the serialized engine promise to accept?
+
+Before you start
+Exercise 160 (qualify a TensorRT 11 environment)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+18.6 s for Profile API corrected (record 161.02).
+
+Check for success
+Inspect minimum, preferred and maximum shapes. Compare valid outputs and test a batch beyond the maximum.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python ecosystem/tensorrt_target.py --model ecosystem/controls/onnx/linear.onnx --src ecosystem/controls/fixture --out "$LAB_RUN/trt"
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Keep $LAB_RUN/trt with the command and exit that produced it.
+
+Handoff
+Keep the verified engine, shape profile and test inputs for direct timing in Exercise 162 and Triton serving in Exercise 163.
+
+Recorded result  PASSED — The initial builder asserted the return value of profile.set_shape; this API returned None. The corrected helper inspected get_shape explicitly and built the bounded dynamic engine. The initial error is printed with the corrected execution; the accepted min/opt/max shapes remain part of the engine contract.
+Scope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.
+
+Recorded files
+python reader/records.py 161 --files

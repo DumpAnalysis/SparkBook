@@ -1,0 +1,39 @@
+Exercise 247  Record the upstream and conversion identities
+
+Question
+Can we trace the converted Nemotron file back to a particular upstream revision?
+
+Before you start
+Exercise 208 (inspect pinned model and dataset identities)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+18 min 56 s for Acquire admitted Q8 (record 247.03).
+
+Check for success
+Record upstream and conversion identities, selected file size and hash before interpreting its loading behavior.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python runtimes/acquire.py Q4_K_M --out "$LAB_RUN/nemotron-plan"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/nemotron-plan with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The recorded run retained immutable NVIDIA upstream and ggml-org conversion identities, selected Q4/Q8/BF16 sizes and LFS hashes. The Q8 GGUF receipt is 33,585,500,064 bytes, about 31.28 GiB, larger than the 31,232 MiB (30.5 GiB) NVML total. This is a concrete larger-than-reported-device-budget candidate; its actual tensor placement and working buffers must still be measured.
+Scope  A weight-file estimate is a planning input. The guarded run records the actual placement.
+
+Recorded files
+python reader/records.py 247 --files

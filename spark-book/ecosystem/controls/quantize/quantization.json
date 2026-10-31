@@ -1,0 +1,32 @@
+{
+  "metrics": {
+    "test": {
+      "mae": 0.0010230622719973326,
+      "max_error": 0.007567644119262695,
+      "clipped": 0,
+      "ort_vs_numpy": 0.0
+    },
+    "shifted": {
+      "mae": 0.02409013919532299,
+      "max_error": 2.8410933017730713,
+      "clipped": 1,
+      "ort_vs_numpy": 0.0
+    }
+  },
+  "activation_scale": 0.007872815243899822,
+  "weight_scales": [
+    0.0036594488192349672,
+    0.0036418701056391,
+    0.00393393449485302,
+    7.87935932748951e-05
+  ],
+  "calibration_rows": 96,
+  "test_rows": 32,
+  "calibration_sha256": "945960ea6c4a29926c7f3b107447434b4b4fd685ec6a214a5bf53a2e5471e856",
+  "per_tensor_small_mae": 0.0011619850993156433,
+  "per_channel_small_mae": 1.3170836609788239e-05,
+  "float_weight_bytes": 128,
+  "int8_payload_bytes": 32,
+  "scale_bytes": 16,
+  "qdq_file_bytes": 523
+}

@@ -1,0 +1,40 @@
+Exercise 124  Compare process training with a full batch reference
+
+Question
+Does averaging worker gradients reproduce a single global-batch update?
+
+Before you start
+Exercise 123 (qualify the environment and the resource budget)
+CPU processes for emulation; one qualified GPU for CUDA comparisons. Worker count does not add physical GPUs.
+
+Recorded step time
+5.6 s for Train with four CPU workers (record 124.02).
+
+Check for success
+Compare sample coverage, parameters and losses with the serial reference for both worker counts.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python distributed/pipe_lab.py train --workers 2 --out "$LAB_RUN/train-two"
+python distributed/pipe_lab.py train --workers 4 --out "$LAB_RUN/train-four"
+
+Interpret the result
+Distinguish process emulation, single-GPU DDP and actual multi-GPU behavior.
+
+If the check fails
+Check rank identity, rendezvous, operation order and missing participants.
+
+Finish
+Keep $LAB_RUN/train-two, $LAB_RUN/train-four with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual two- and four-process CPU training uses parent-coordinated pipes, not PyTorch DDP. The 22,880-parameter TinyBert fixture uses synthetic integer tokens, eight global examples, 16 masked positions and four updates in float64. Replica disagreement is zero; maximum reference error is about 7.43×10⁻¹³. This verifies the teaching update arithmetic, not language quality.
+Scope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.
+
+Recorded files
+python reader/records.py 124 --files

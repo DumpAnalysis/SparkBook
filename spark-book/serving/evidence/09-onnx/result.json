@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "onnx": "1.20.1",
+  "max_abs_error": 7.450580596923828e-08,
+  "scope": "CPU ONNX reference evaluator; no ONNX Runtime or Triton"
+}

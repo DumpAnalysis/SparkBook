@@ -1,0 +1,40 @@
+Exercise 238  Compare residency and bounded worker service
+
+Question
+How do residency and prompt caching affect the apparent benefit of concurrency?
+
+Before you start
+Exercise 236 (import a model and diagnose stream completion) · Exercise 132 (batch compatible work and bound admission)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+0.47 s for Ollama warm (record 238.01).
+
+Check for success
+Inspect resident owners, load duration and cached prompt count before comparing cold and warm worker timings.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${OLLAMA_DIGEST:?Set OLLAMA_DIGEST to that model’s complete recorded digest}"
+: "${OLLAMA_MODEL:?Set OLLAMA_MODEL to the imported chat model name shown by the running Ollama service}"
+python runtimes/probe.py --backend ollama --base http://127.0.0.1:11434 --model "$OLLAMA_MODEL" --digest "$OLLAMA_DIGEST" --keep-alive 5m --out "$LAB_RUN/ollama-resident"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/ollama-resident with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Cold and warm requests, three bounded client workers, residency and unload outcomes are retained for one Ollama model owner. OLLAMA_NUM_PARALLEL=1 means the client worker count does not demonstrate concurrent kernel execution.
+Scope  Residency and a processor-placement percentage are not GPU utilization or proof of overlap.
+
+Recorded files
+python reader/records.py 238 --files

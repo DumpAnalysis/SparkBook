@@ -1,0 +1,39 @@
+Exercise 212  Acquire and identify the monitoring tools
+
+Question
+Which monitoring binaries will this ARM64 WSL session actually launch?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Native monitoring tools or qualified containers; CPU/host memory and retained time-series data.
+
+Recorded step time
+1 min 23 s for Acquire tools (record 212.01).
+
+Check for success
+Open the acquisition receipt. Match architecture, version and checksum for Prometheus and Grafana before starting either service.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python observability/setup_tools.py --out "$LAB_RUN/monitoring-tools"
+
+Interpret the result
+Provisioning alone is insufficient; distinguish simulated from live GPU series.
+
+If the check fails
+Trace exporter to scrape to query to panel, preserving missing-data semantics.
+
+Finish
+Keep $LAB_RUN/monitoring-tools with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Pinned native ARM64 Prometheus and Grafana downloads passed the retained checksum/version checks. These are tool identities. Exporter semantics, a working query backend, displayed series and workload correlation are qualified separately in the following exercises.
+Scope  Identifying the monitoring binaries precedes scraping a live target.
+
+Recorded files
+python reader/records.py 212 --files

@@ -1,0 +1,37 @@
+Exercise 65  Capture and replay a fixed operation graph
+
+Question
+Does replaying a captured graph reproduce the work and its outputs?
+
+Before you start
+Exercise 64 (reproduce a missing dependency and repair it)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+0.57 s for Graphs (record 065.01).
+
+Check for success
+Compare replayed values with ordinary execution. Keep submission time and device-event time in separate columns.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+./advanced/bin/async-lab graphs
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep verified output and separate submission/event intervals.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.
+Scope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.
+
+Recorded files
+python reader/records.py 65 --files

@@ -1,0 +1,110 @@
+{
+  "status": "ok",
+  "device": "cpu",
+  "seed": 1606,
+  "phases": [
+    {
+      "name": "verify",
+      "wall_s": 0.10199163999641314
+    },
+    {
+      "name": "load",
+      "wall_s": 0.2182827190044918
+    },
+    {
+      "name": "preprocess",
+      "wall_s": 0.014550154999596998
+    },
+    {
+      "name": "infer",
+      "wall_s": 0.54830805399979
+    },
+    {
+      "name": "decode",
+      "wall_s": 0.0005715840015909635
+    }
+  ],
+  "input_sha256": "3f6553931ab33ab7172a8164964a8141a140f6a868fb201b0c4448c822b056f7",
+  "model": {
+    "repo": "openai/whisper-tiny",
+    "revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+    "license": "apache-2.0",
+    "allow_patterns": [
+      "*.json",
+      "*.txt",
+      "*.model",
+      "*.safetensors",
+      "*.jinja",
+      "README.md",
+      "LICENSE*"
+    ]
+  },
+  "environment": {
+    "python": "3.12.14",
+    "machine": "x86_64",
+    "torch": "2.10.0+cpu",
+    "torch_cuda": null,
+    "packages": {
+      "transformers": "4.57.1",
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "Pillow": "12.3.0",
+      "safetensors": "0.6.2"
+    }
+  },
+  "arguments": {
+    "kind": "asr",
+    "model": "../models/whisper",
+    "out": "media/controls/asr",
+    "device": "cpu",
+    "input": "media/controls/tts/output.wav",
+    "text": "The graphics processor has thirty gigabytes available.",
+    "reference": "media/data/reference.txt",
+    "seed": 1606,
+    "tokens": 128,
+    "max_pixels": 401408,
+    "width": 512,
+    "height": 512,
+    "steps": 20,
+    "guidance": 3.0,
+    "strength": 0.5,
+    "placement": "resident",
+    "tiling": false,
+    "trace_steps": false,
+    "profile": false,
+    "snapshot": false
+  },
+  "audio": {
+    "frames": 62464,
+    "channels": 1,
+    "sample_rate": 16000,
+    "duration_s": 3.904,
+    "peak": 0.826202392578125,
+    "rms": 0.11319505305274075,
+    "clipped_fraction": 0.0
+  },
+  "source": {
+    "source_rate": 16000,
+    "source_frames": 62464,
+    "source_channels": 1,
+    "source_sha256": "3f6553931ab33ab7172a8164964a8141a140f6a868fb201b0c4448c822b056f7"
+  },
+  "feature_shape": [
+    1,
+    80,
+    3000
+  ],
+  "text": " The graphics, processor has 30GB of available.",
+  "score": {
+    "reference_words": 7,
+    "hypothesis_words": 7,
+    "errors": 2,
+    "wer": 0.2857142857142857,
+    "normalization": "Unicode word tokens and casefold; punctuation ignored"
+  },
+  "inference_rtf": 0.14044775973355278,
+  "output_sha256": {
+    "output.txt": "970d695b1392362afec5b0ea27522bd7b574735f1bbd6b65316a007ca3584c4a"
+  },
+  "total_s": 2.752191904997744
+}

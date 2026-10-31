@@ -1,0 +1,40 @@
+Exercise 92  Generate and read the activity plots
+
+Question
+Can the charts preserve a deliberate gap and a real zero in the fixture?
+
+Before you start
+Exercise 91 (establish the monitoring contract)
+CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.
+
+Recorded step time
+0.06 s for Illustrative fixture (record 092.01).
+
+Check for success
+Trace one CSV row to each plotted series. Confirm that the collection gap stays empty and the phase bands retain their host scope.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python metrics/fixture.py --out "$LAB_RUN/metric-fixture"
+python metrics/plot.py --run "$LAB_RUN/metric-fixture" --out "$LAB_RUN/metric-plots"
+
+Interpret the result
+Explain coverage and sampling limits before interpreting utilization or peaks.
+
+If the check fails
+Inspect the raw sample before blaming a plot; check stale or unsupported fields.
+
+Finish
+Keep $LAB_RUN/metric-fixture, $LAB_RUN/metric-plots with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Intentional simulation rendered on CPU.
+Scope  The rendered activity comes from an explicitly simulated trace.
+
+Recorded files
+python reader/records.py 92 --files

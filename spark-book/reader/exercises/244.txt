@@ -1,0 +1,39 @@
+Exercise 244  Import a verified model and exercise the local API
+
+Question
+Which model and placement did the local API actually use?
+
+Before you start
+Exercise 243 (qualify llmster and distinguish inventory from residency) · Exercise 4 (download and fingerprint)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+7.9 s for Final cold (record 244.01).
+
+Check for success
+Match the import receipt and loaded identifier to the API request, full response and placement observations.
+
+Run in your lab
+Start llmster and load the selected model before probing its API. Match the model ID to the actual local file/backend.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${LMS_MODEL:?Set LMS_MODEL to the loaded chat model ID reported by the llmster API}"
+python runtimes/probe.py --backend openai --base http://127.0.0.1:1234 --model "$LMS_MODEL" --out "$LAB_RUN/lmstudio-chat"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/lmstudio-chat with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The local LM Studio API completed actual model requests after correcting the inventory modelKey and using fresh output directories. Separate CPU/full-GPU controls retained native layer arguments, CUDA-library mappings and device memory observations: 2,690 MiB before loading, 2,923 MiB CPU-loaded and 3,924 MiB GPU-loaded. The 1,001 MiB increase from the CPU-loaded to the GPU-loaded sample supports changed residency; it is not a kernel trace or an isolated allocation measurement.
+Scope  Ordinary requests used partial offload; a requested layer fraction is not a memory quota.
+
+Recorded files
+python reader/records.py 244 --files

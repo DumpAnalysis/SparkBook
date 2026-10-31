@@ -1,0 +1,40 @@
+Exercise 144  Deploy the CPU service to a local cluster
+
+Question
+Can the local cluster deploy and reach the same CPU service?
+
+Before you start
+Exercise 140 (build and inspect the CPU service image) · Exercise 141 (run a bounded container and inspect its lifecycle)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+6.4 s for Rollout (record 144.01).
+
+Check for success
+Inspect Deployment readiness, the selected endpoints and a numerical request through the Service.
+
+Run in your lab
+Inspect the generated namespace, service and pod specification before applying it to the intended local cluster. A portable hostPath needs a node-visible path.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${FIXTURE_IMAGE:?Set FIXTURE_IMAGE to the accessible CPU service image recorded in Exercise 140; follow deploy.py image-identity rules}"
+python serving/deploy.py fixture --image "$FIXTURE_IMAGE" --out "$LAB_RUN/fixture.yaml"
+kubectl apply -f "$LAB_RUN/fixture.yaml"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/fixture.yaml with the command and exit that produced it.
+
+Handoff
+Use this checked vector when Exercise 150 changes the serving protocol to Triton’s TOKENS and EMBEDDINGS tensors.
+
+Recorded result  PASSED — Actual K3s v1.37.0+k3s1 deployment created the namespace, validated/applied the CPU service, reached readiness and passed an independent vector oracle. Docker and K3s containerd image stores were separate. An initial image-import permission failure and the owner’s later successful maintenance import remain visible.
+Scope  Rollout and scheduler readiness precede validation of the served model.
+
+Recorded files
+python reader/records.py 144 --files

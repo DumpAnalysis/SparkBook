@@ -1,0 +1,39 @@
+Exercise 78  Measure search before changing the model
+
+Question
+How well does the original encoder retrieve a relevant document before tuning?
+
+Before you start
+Exercise 75 (prepare the environment and freeze the encoder) · Exercise 76 (prove that pooling excludes padding) · Exercise 77 (export and audit the partitions)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+4.2 s for Baseline encode (record 078.01).
+
+Check for success
+Keep row IDs aligned with vectors. Compute held-out ranks against the frozen relevance labels.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python embeddings/encode.py --model embeddings/models/minilm --device cpu --out "$LAB_RUN/base-vectors"
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep $LAB_RUN/base-vectors with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU real sentence-encoder inference.
+Scope  The measured representation comes from the named CPU encoder and input corpus.
+
+Recorded files
+python reader/records.py 78 --files

@@ -1,0 +1,18 @@
+[
+  {
+    "files": 10,
+    "gated": false,
+    "license": "UNSPECIFIED",
+    "repo_id": "hf-internal-testing/tiny-random-bert",
+    "revision": "f171d7baecaf37b5da5a3616d8833b9969753535",
+    "type": "model"
+  },
+  {
+    "files": 4,
+    "gated": false,
+    "license": "UNSPECIFIED",
+    "repo_id": "lhoestq/demo1",
+    "revision": "87ecf163bedca9d80598b528940a9c4f99e14c11",
+    "type": "dataset"
+  }
+]

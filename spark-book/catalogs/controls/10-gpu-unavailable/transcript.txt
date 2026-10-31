@@ -1,0 +1,3 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/gpu_probe.py
+{"architecture": "x86_64", "cuda_available": false, "framework_cuda": null, "status": "UNAVAILABLE", "torch": "2.10.0+cpu"}
+[exit 2]

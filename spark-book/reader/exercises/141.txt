@@ -1,0 +1,40 @@
+Exercise 141  Run a bounded container and inspect its lifecycle
+
+Question
+Does the containerized owner start, serve a valid vector and stop cleanly?
+
+Before you start
+Exercise 140 (build and inspect the CPU service image)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+0.37 s for Inspect the stopped Compose service (record 141.02).
+
+Check for success
+Test readiness and a numerical request, inspect configured limits, then verify the owned container's termination.
+
+Run in your lab
+This starts the named Compose lab in the background. Inspect readiness before the client request; finish with docker compose -f serving/docker/compose.yaml down.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+docker compose -f serving/docker/compose.yaml up -d
+python serving/client.py embed --out "$LAB_RUN/container-request"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/container-request with the command and exit that produced it.
+
+Handoff
+Keep the image identity and reference vector for the K3s deployment in Exercise 144.
+
+Recorded result  PASSED — Actual Compose execution bound the CPU service to 127.0.0.1:8088 with nonroot identity, read-only filesystem and explicit resource limits. Request, log, state and cleanup records passed.
+Scope  Container host-memory limits are not CUDA-memory quotas.
+
+Recorded files
+python reader/records.py 141 --files

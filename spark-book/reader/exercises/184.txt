@@ -1,0 +1,39 @@
+Exercise 184  Generate one bounded image
+
+Question
+Can the complete image-generation request be reproduced from its settings?
+
+Before you start
+Exercise 174 (download and verify one model at a time) · Exercise 175 (validate the media contracts) · Exercise 183 (map the teaching loop to an image pipeline)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+38.6 s for Resident (record 184.01).
+
+Check for success
+Bind prompt, seed, resolution, steps and checkpoint to the saved PNG. Inspect phase completion and the actual image.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 512 --height 512 --steps 20 --guidance 5 --seed 1606 --placement resident --out "$LAB_RUN/image"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/image with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CUDA SDXL produced the bounded 512×512 image with 20 steps, guidance 5 and seed 1606. The supplied review found the requested blue notebook and red cup.
+Scope  A valid image file and a successful prompt on one seed do not establish population quality.
+
+Recorded files
+python reader/records.py 184 --files

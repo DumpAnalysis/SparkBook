@@ -1,0 +1,490 @@
+HISTORICAL PROCEDURE NOTES
+Book Version 55 and reader/exercises/ are the current reader instructions.
+These retained source-era notes explain concepts and repeat procedures; their
+old environment and execution-status statements are historical. Superseded
+preparation transcript blocks remain omitted. Use the evidence map for current
+recorded outcomes and fresh output paths for new work.
+
+76  RAPIDS data pipelines and GPU memory
+
+RAPIDS brings GPU execution to tabular preparation and numerical analysis. We use cuDF for filtering and aggregation, cuML for principal components, and RMM for allocation statistics. The purpose is to follow data and memory through a small pipeline before moving a large embedding corpus or a service log onto the GPU. The earlier pandas, PCA, t-SNE and UMAP exercises remain useful CPU references.
+
+Chapters 76–80 add twenty exercises and the ecosystem/ companion directory. The eight preparation transcripts are complete and were EXECUTED on x86-64 Linux with Python 3.12.14, NumPy 2.3.5, ONNX 1.20.1, ONNX Runtime 1.23.2 and PyTorch 2.10.0+cpu. These package pins reproduce the executed controls; they are not claims about the latest releases. Re-qualify upgrades in a separate environment. RAPIDS, TensorRT, NeMo and all new GPU/container procedures are TARGET work for the laptop; no target success or performance result is fabricated.
+
+We retain the ARM64 WSL2 environment, the Windows NVIDIA driver already mapped into it, the owner-reported CUDA 13.4 installation and the 64 GB unified-memory laptop with roughly 30 GB reported for the GPU. These observations do not certify every package. Record CPU architecture, GPU compute capability, driver, toolkit, framework runtime and image digest separately. Do not install a Linux display driver inside WSL2.
+
+Exercise 152 Establish data and environment provenance
+
+
+The preparation environment cannot establish this laptop’s GPU support. RAPIDS documents WSL2 installation and ARM container availability, and its selector distinguishes CUDA/Python combinations. Our candidate is the published 26.10 CUDA 13 Python 3.13 base image. Resolve its ARM64 digest with Chapter 73’s helper, then perform the actual calculation. General ARM availability does not prove that this WSL2 device and mapped driver work with that image. [124, 125]
+
+python ecosystem/reproduce.py --out runs/ecosystem-cpu
+
+python ecosystem/validate.py --evidence runs/ecosystem-cpu
+
+bash serving/docker/qualify_image.sh \
+
+  nvcr.io/nvidia/rapidsai/base:26.10-cuda13-py3.13 \
+
+  runs/rapids-image
+
+export RAPIDS_IMAGE="$(head -n 1 \
+
+  runs/rapids-image/digests.txt)"
+
+Run the portable controls in a separate Python 3.12 environment using ecosystem/requirements-cpu.txt. Use the CPU PyTorch wheel source for the CPU control if that environment has no GPU. Do not install these CPU requirements over a working GPU environment or into a RAPIDS container. A failed wheel resolution, missing ARM image or failed device import is a retained qualification result, not a reason to force an x86 wheel into ARM Python.
+
+
+The fixture contains twenty-eight synthetic request rows, sixty-four synthetic vectors, and disjoint calibration and held-out arrays for a small linear network. It contains no laptop measurements or semantic embedding quality claims. Preserve fixture.npz, requests.csv and identity.json together. When substituting real service logs, first remove sensitive request content and retain stable request identities for joins.
+
+Exercise 153 Compare a cuDF aggregation with the CPU control
+
+
+The accepted-only mean is 15.75 ms for both routes in this constructed dataset. Four rejected rows remain in the input but are excluded from successful latency. Compare counts as well as averages: accidentally including rejected requests can improve a latency statistic while the service is failing. For real logs, retain offered rate, accepted rate, errors and successful latency together.
+
+The RAPIDS image normally uses its rapids user. We override it with the WSL user’s UID/GID so the bind-mounted output stays writable and host-owned. The image’s /opt/conda is group-restricted to conda, so --group-add conda preserves access without assuming a matching host GID. HOME and CuPy’s kernel cache use /tmp. Distinguish an /opt/conda access failure from an /out mount permission failure and from CUDA or cuDF errors. The recording Docker double checks arguments, not image permissions; qualify the resolved image itself. [165]
+
+mkdir -p runs/rapids-output
+
+python ecosystem/capture.py --out runs/rapids-command -- \
+
+  docker run --rm --gpus all --platform linux/arm64 \
+
+  --user "$(id -u):$(id -g)" --group-add conda -e HOME=/tmp \
+
+  -e CUPY_CACHE_DIR=/tmp/cupy \
+
+  --memory 20g --cpus 4 --shm-size 1g \
+
+  -v "$PWD:/book:ro" \
+
+  -v "$PWD/runs/rapids-output:/out" -w /book \
+
+  "$RAPIDS_IMAGE" python ecosystem/rapids_target.py \
+
+  --src ecosystem/controls/fixture \
+
+  --control ecosystem/controls/analytics --out /out/result
+
+The target script checks both group counts and means against the retained CPU result, then writes rapids.json. Its table interval includes CSV loading, GPU work, synchronization and the small result transfer back to pandas. It is a cold diagnostic interval. Do not report a speedup from twenty-eight rows; fixed setup and transfer costs dominate this example. Increase a separately generated workload only after the small values match.
+
+Exercise 154 Compare cuML principal components by subspace
+
+The same target command runs cuML PCA with two components. Signs and rotations within a subspace can differ. We compare the projector P = CᵀC, where C stores components as rows with shape n_components by n_features. Here C is 2 by 16 and P is 16 by 16; this is separate from the eight-input ONNX fixture. The Frobenius-error threshold is 0.001 for this deliberately well-separated fixture. [126]
+
+python - <<'PCA'
+
+import numpy as np
+
+z = np.load('ecosystem/controls/analytics/pca.npz')
+
+projector = z['projection']
+
+print('rank from trace:', np.trace(projector))
+
+print('idempotence error:',
+
+      np.linalg.norm(projector @ projector - projector))
+
+PCA
+
+The target stores scores.npy for plotting. For trained sentence embeddings, retain sentence IDs, encoder revision, pooling, normalization and vector dimensions before projection. Use the same rows and preprocessing for CPU/GPU comparisons. Compare retrieval recall in the original vector space; two visually separated clusters in a projection do not prove semantic usefulness. For cuML t-SNE and UMAP extensions, preserve their actual parameters and seeds, compare neighborhood preservation across repeated fits, and do not require coordinate equality with another implementation. The earlier visualization chapters supply the plotting and interpretation exercises.
+
+Exercise 155 Account for RMM allocations and device headroom
+
+rapids_target.py enables RMM statistics before creating its data arrays and routes CuPy allocations through the RMM allocator. It records current, peak and cumulative allocation bytes/counts plus CUDA’s free/total device-memory view. RMM tracks allocations passing through its active resource; it is not a universal GPU process accountant. Library workspaces or another allocator can explain differences. Cumulative allocated bytes are not resident bytes. [127]
+
+python - <<'RMM'
+
+import json
+
+r = json.load(open('runs/rapids-output/result/rapids.json'))
+
+print('RMM peak:', r['rmm_after']['peak_bytes'])
+
+print('RMM current:', r['rmm_after']['current_bytes'])
+
+print('CUDA free delta:',
+
+      r['driver_free_before'] - r['driver_free_after'])
+
+RMM
+
+Repeat the target process with a new output directory and compare cold initialization separately from steady operations. Configure allocation policy before arrays exist; never reinitialize the resource beneath live buffers. A container’s 20 GB host-memory limit is not a GPU reservation. Do not add 64 GB and 30 GB into a 94 GB budget. Keep one GPU owner while qualifying this pipeline, and use the earlier memory and WSL telemetry chapters for the host-wide view.
+
+For a dataset too large for the available device budget, begin with partitioned ingestion and bounded batches. Dask workers on this one device still share its capacity; they do not create multiple GPUs. Any spill or managed-memory route must be supported by the chosen library/device/WSL combination and measured for transfer or paging stalls. A successful tiny cuDF result does not qualify an out-of-core pipeline.
+
+77  ONNX export providers and fallback diagnostics
+
+ONNX describes a computational graph and its tensors. ONNX Runtime executes that graph through execution providers. A valid graph, a loadable session, correct values and GPU execution are separate findings. Chapter 75 introduced an ONNX repository; here we inspect provider placement and controlled failures before exporting a real encoder.
+
+Exercise 156 Build and inspect a small dynamic graph
+
+
+The graph computes ReLU(XW + B). X is float32 with shape N by 8, W is 8 by 4 and Y is N by 4. Only the batch dimension is symbolic. The companion pins opset 18 and IR version 9 for this control; these independently selected graph-format versions are compatible, but need not share a release number. The checker tests structural constraints and shape inference adds inferred metadata. Neither evaluates quality or proves backend support. [128]
+
+python - <<'GRAPH'
+
+import onnx
+
+m = onnx.load('ecosystem/controls/onnx/linear.onnx')
+
+for n in m.graph.node:
+
+    print(n.name, n.op_type, list(n.input), list(n.output))
+
+for t in m.graph.input:
+
+    print(t.name, t.type.tensor_type)
+
+GRAPH
+
+Inspect semantic errors independently of syntax. Reverse the intended weight orientation, remove normalization from an encoder or change a tokenizer and the graph may still be valid. Use fixed inputs and an independently expressed reference. For large exports, keep external tensor-data files with the ONNX file and hash the complete bundle; a graph file by itself may not contain its weights.
+
+Exercise 157 Verify ONNX Runtime values and input rejection
+
+
+The executed session used the CPU provider. It checks batches one, three and eight against NumPy and deliberately supplies the wrong feature width and dtype. The complete native error messages are retained in width-error.txt and dtype-error.txt. The printed zero difference applies to this tiny fixture and environment; it is not a general promise of exact equality after export.
+
+The session also writes an optimized graph and an ONNX Runtime JSON profile. Open the profile in a compatible trace viewer and inspect node provider fields and execution events. It is a runtime trace, not automatically a CUDA kernel trace. A GPU-kernel view requires a suitably built runtime and profiling support; correlate with Nsight only after that path is qualified. [129]
+
+python - <<'PROFILE'
+
+import json
+
+from pathlib import Path
+
+d = Path('ecosystem/controls/ort')
+
+r = json.loads((d / 'ort.json').read_text())
+
+events = json.loads((d / r['profile']).read_text())
+
+for e in events:
+
+    if e.get('args', {}).get('provider'):
+
+        print(e['name'], e['args']['provider'], e.get('dur'))
+
+PROFILE
+
+Exercise 158 Require and observe a GPU execution provider
+
+Use a separate ONNX Runtime GPU environment. PyPI aarch64 GPU wheels are available from 1.29.0; that release provides CPython 3.11–3.14 wheels requiring glibc 2.34 or newer, CUDA 13.0 or newer and cuDNN 9. The executed 1.23.2 CPU pin is not the ARM64 GPU candidate: its GPU wheels are x86 only and use CUDA 12.8. Check the selected release’s execution-provider matrix and installed libraries; CUDA 13.4 on the host does not install every wheel dependency. Keep TensorRT provider qualification separate. [130, 131, 143]
+
+For example, create a fresh Python 3.12 virtual environment and install onnxruntime-gpu==1.29.0 with numpy==2.3.5 and onnx==1.20.1. Do not also install the CPU onnxruntime distribution there. Record pip freeze, glibc, CUDA/cuDNN identities and available providers, then run the command below. Package installation alone is not proof that this laptop can execute the GPU kernels.
+
+python ecosystem/capture.py --out runs/ort-cuda-command -- \
+
+  python ecosystem/lab.py ort \
+
+  --src ecosystem/controls/fixture \
+
+  --models ecosystem/controls/onnx \
+
+  --provider CUDAExecutionProvider --out runs/ort-cuda
+
+The target requests CUDA explicitly, checks that it is available and registered, disables Python session fallback, requests that unsupported nodes not fall back to CPU, and then inspects the profile’s observed providers. Failure is intentional if the requirement cannot be met. An available-provider list alone is not execution evidence. Some real models legitimately need CPU shape operations; investigate an initially strict failure, then document any deliberately relaxed partition and its transfer cost.
+
+For the TensorRT execution provider, first select an ONNX Runtime build whose matrix matches the installed TensorRT runtime. A mixed session can prioritize TensorRT, then CUDA, then CPU, but retain node assignments and compare values. Count engine builds separately from steady runs. Cache keys must include graph identity, runtime, device and shape/profile choices. Do not assume that placing TensorRT first forces the whole graph onto it. Keep this integration separate from the direct TensorRT 11 exercise in Chapter 78.
+
+Exercise 159 Export an encoder without losing its pooling contract
+
+ecosystem/export_encoder_target.py loads a local Hugging Face encoder and defines attention-masked mean pooling followed by L2 normalization. It exports dynamic batch and sequence axes and compares ONNX Runtime CPU results with PyTorch for three text batches. Use a saved BERT encoder from the earlier chapters only when this pooling is the intended model contract. A Sentence Transformers model with a different pooling or projection module needs that entire module exported; silently substituting mean pooling changes the model.
+
+export ENCODER_DIR="$PWD/models/my-bert-encoder"
+
+python ecosystem/capture.py --out runs/encoder-export-log -- \
+
+  python ecosystem/export_encoder_target.py \
+
+  --model "$ENCODER_DIR" --out runs/encoder-export
+
+This is a target-model exercise; the local path must contain an actual saved encoder and tokenizer. The exporter caps tokenization at 128 tokens and keeps tokenization outside ONNX. Record truncation, padding, special tokens and language coverage. Its numerical gate is maximum absolute error below 0.0001 and minimum vector cosine above 0.9999 on the three control batches. Add the held-out retrieval tests from the embedding chapters before using the exported encoder in Triton. Numerical export fidelity does not establish retrieval quality.
+
+Failure classification: an invalid graph belongs to export/schema; an unsupported operator belongs to the chosen backend; a missing CUDA library belongs to runtime packaging; incorrect values belong to semantics or numerics; a successful CPU fallback belongs to placement. Keep the first failing stage and its complete error before changing several layers at once.
+
+78  TensorRT engines profiles and execution traces
+
+NVIDIA TensorRT builds and runs optimized inference engines. NVIDIA Triton Inference Server can serve those engines; the Triton kernel language is a different project. TensorRT-LLM adds language-model-specific execution and serving capabilities, and TensorRT for RTX is a separately qualified product. A claim about one is not automatically a claim about the others. This chapter uses the direct TensorRT engine API on the same small ONNX graph.
+
+Exercise 160 Qualify a TensorRT 11 environment
+
+TensorRT 11.3.0 is a useful candidate alongside the book’s CUDA 13.4 and Triton 26.09 baseline; its release notes identify CUDA 13.4 packages. The current 11.4 matrix separately lists Linux SBSA and CUDA 13.4 update 1. Select the exact package/runtime from its own matrix and retain its version. Linux ARM support alone does not certify this WSL2 laptop, and Windows ARM/DLA support is not the Linux GPU path used here. [132, 133]
+
+python ecosystem/capture.py --out runs/trt-import -- \
+
+  python -c 'import tensorrt as t; print(t.__version__)'
+
+python ecosystem/capture.py --out runs/trt-device -- \
+
+  python -c 'import torch; print(torch.__version__); print(torch.version.cuda); print(torch.cuda.get_device_properties(0))'
+
+Use an isolated TensorRT environment or a qualified image containing the matching runtime, Python binding and CUDA-enabled PyTorch. For a tar installation, select the actual Linux ARM SBSA package, install its Python binding into that environment and expose its lib directory using the vendor instructions. Record the package filename and checksum. The script needs both TensorRT and GPU PyTorch; a successful TensorRT import alone is not enough. No driver installation is part of this exercise.
+
+TensorRT 11 uses strong typing and removes the old fp16/int8 precision-enabling builder and trtexec flags. Express types and quantization in the input graph. The book’s FP32 graph is deliberately unchanged for the first engine. Later, compare a typed FP16 model or an explicitly quantized graph with its numerical reference. Do not paste older --fp16 or --int8 command lines into this baseline. [134]
+
+Exercise 161 Build an engine with bounded dynamic shapes
+
+python ecosystem/capture.py --out runs/trt-build-log -- \
+
+  python ecosystem/tensorrt_target.py \
+
+  --model ecosystem/controls/onnx/linear.onnx \
+
+  --src ecosystem/controls/fixture --out runs/trt-fp32
+
+The target builds one profile with minimum batch one, preferred batch four and maximum batch eight. The feature width stays eight. It caps the builder workspace pool at 256 MiB, saves linear.plan and detailed layer information, then deserializes the engine and runs named input/output tensors. The workspace limit is not a cap on total process or GPU memory. Build-time timing searches, runtime buffers, weights, contexts and other libraries also consume memory. [135]
+
+The script checks batches one, four and eight against NumPy with a maximum absolute-error threshold of 0.001, stores every output and rejects batch nine as outside the profile. A maximum shape is a contract, not an invitation to accept arbitrary sequence lengths. For a real encoder, add profiles and tests for both batch and sequence dimensions, including padding-heavy and long-input cases. Avoid one unnecessarily huge profile until its memory and latency effects are measured.
+
+Retain source-graph hash, engine hash, TensorRT/PyTorch/CUDA versions, GPU name and capability, profile bounds and layer information. An engine is a compiled deployment artifact, not a portable replacement for the model source. Preserve the ONNX model and rebuild when the destination is outside the documented hardware, platform or version compatibility conditions. A controlled deserialization and value test are part of deployment readiness. [133]
+
+Exercise 162 Separate engine execution from build and transfers
+
+tensorrt.json reports build wall time and CUDA-event timing after five warmups, averaged across twenty enqueues per tested batch. The event interval excludes input/output transfers and graph construction; Python launch gaps can still affect such a tiny workload. The free-memory delta is a driver observation, not the PyTorch allocator’s complete account of TensorRT allocations. Do not compare it directly with a service’s end-to-end HTTP latency.
+
+python ecosystem/capture.py --out runs/trtexec-help -- \
+
+  trtexec --help
+
+python ecosystem/capture.py --out runs/trtexec-profile -- \
+
+  trtexec --loadEngine=runs/trt-fp32/linear.plan \
+
+  --shapes=X:4x8 --includeDataTransfers --noCudaGraph \
+
+  --noSpinWait --exportProfile=runs/trt-profile.json \
+
+  --exportLayerInfo=runs/trt-layers.json
+
+Check the retained help for the exact selected build. TensorRT 11 changes several trtexec defaults: data transfers are excluded by default, while CUDA graph and spin-wait behavior are enabled by default. The command explicitly includes transfers and disables those two behaviors for a clear first measurement. Per-layer profiling is a separate pass. trtexec’s default synthetic inputs and performance report are not a correctness test; the Python runner supplies that test. [134, 136]
+
+nsys profile --trace=cuda,nvtx,osrt \
+
+  --output=runs/trt-timeline \
+
+  python ecosystem/tensorrt_target.py \
+
+  --model ecosystem/controls/onnx/linear.onnx \
+
+  --src ecosystem/controls/fixture --out runs/trt-traced
+
+This optional trace requires the Nsight/WSL capability checks already covered in the CUDA chapters. Separate initialization and build from the repeated execution region. Inspect API calls, launches, synchronization, copies and gaps. If tracing is unavailable, retain that limitation and the direct-run evidence. For numerical debugging, save application-owned inputs/outputs and use supported debug-tensor facilities only for selected tensors; neither a trace nor an allocator snapshot is a dump of arbitrary GPU memory.
+
+Exercise 163 Serve the qualified engine through Triton
+
+python ecosystem/make_triton_plan.py \
+
+  --engine-dir runs/trt-fp32 --out runs/trt-repository
+
+export TRITON_GPU=1
+
+bash serving/docker/run_backend.sh triton \
+
+  "$TRITON_IMAGE" "$PWD/runs/trt-repository"
+
+curl --fail http://127.0.0.1:8000/v2/models/lab_linear/ready
+
+Use the qualified Triton image from Chapter 75, stop another GPU owner first, and confirm that its TensorRT runtime can deserialize this engine. The packager requires the earlier numerical report and matching plan hash. It creates one model instance, maximum batch eight and version one. It does not start Triton or prove backend compatibility. Keep the repository mount and model version read-only during serving.
+
+curl --fail-with-body \
+
+  http://127.0.0.1:8000/v2/models/lab_linear/infer \
+
+  -H 'Content-Type: application/json' \
+
+  -d '{"inputs":[{"name":"X","shape":[1,8],"datatype":"FP32","data":[0,0,0,0,0,0,0,0]}],"outputs":[{"name":"Y"}]}'
+
+docker logs spark-triton > runs/trt-serving.log 2>&1
+
+The zero-input FP32 reference is [0.1, 0, 0.3, 0.01], subject to the agreed numerical tolerance. Retain the actual response, backend log and image/engine identities. Then repeat the service load and queue observations from Chapters 72–75. For Kubernetes, use the existing single-GPU-owner pattern after Docker qualification; adding replicas does not add GPU capacity.
+
+79  Quantization calibration and quality diagnosis
+
+Quantization changes the numerical representation of model values. It can reduce weight traffic and storage, but savings depend on metadata, unquantized layers and executable kernels. We connect the earlier GGUF and QLoRA material to explicit ONNX quantization and TensorRT. Quantization is not a substitute for a complete memory budget or a held-out quality evaluation.
+
+Exercise 164 Compute scales and inspect channel error
+
+For affine integer quantization, round(x / scale) + zero_point is clipped to the representable integer range; dequantization computes scale times (q − zero_point). The scale is positive. A zero point allows an asymmetric range; the control uses signed INT8 with zero point zero and a magnitude-derived scale. ONNX’s rounding and saturation rules are part of the numerical contract. Per-channel scales must use the correct tensor axis. [137, 138]
+
+python - <<'SCALE'
+
+import numpy as np
+
+w = np.load('ecosystem/controls/fixture/fixture.npz')['w']
+
+scale = np.max(np.abs(w), axis=0) / 127
+
+q = np.clip(np.rint(w / scale), -128, 127).astype('int8')
+
+print('scales:', scale)
+
+print('weight bytes:', w.nbytes, 'integer bytes:', q.nbytes)
+
+print('scale bytes:', scale.nbytes)
+
+SCALE
+
+Our W has shape 8 by 4, so axis one identifies output channels. The last channel is intentionally much smaller. One tensor-wide scale wastes resolution on it; four channel scales preserve it more closely. The payload changes from 128 float32 bytes to 32 INT8 bytes plus 16 scale bytes in this example, before bias, zero points, alignment and graph metadata. That is not a fourfold reduction in the complete artifact.
+
+Exercise 165 Expose calibration shift with an outlier
+
+
+The activation scale is fitted only on ninety-six calibration rows. Thirty-two separate test rows evaluate the decision. A second test injects one activation of magnitude twelve while keeping the calibrated scale fixed. The largest output error grows from about 0.0076 to 2.84. This is an intentional distribution-shift control, not a benchmark of a published model. The transcript demonstrates why average error alone can conceal a damaging tail case.
+
+Repeat with a deliberately wider calibration range and compare the tradeoff: fewer clipped outliers can mean coarser resolution for ordinary values. Do not tune a clipping percentile on the final test set. Split train, calibration, validation and final test by source or task where leakage is possible; exact duplicate detection is only one check. Record activation ranges, clipping counts and errors by token position, sequence length, language and rare input category for real models.
+
+Exercise 166 Inspect explicit QDQ and qualify its kernels
+
+The script writes linear-qdq.onnx with QuantizeLinear and DequantizeLinear nodes for activations and per-channel weights. Its CPU ONNX Runtime result is compared with independently expressed NumPy arithmetic. Graph optimizations are disabled for this numerical control. The teaching graph retains the original float32 W before QDQ, so its file is not a compressed weight file and the run does not prove an integer acceleration path. [137, 138]
+
+python ecosystem/capture.py --out runs/trt-qdq-log -- \
+
+  python ecosystem/tensorrt_target.py --qdq \
+
+  --model ecosystem/controls/quantize/linear-qdq.onnx \
+
+  --src ecosystem/controls/fixture --out runs/trt-qdq
+
+The target compares against the QDQ oracle and retains engine layer information. If the parser or builder rejects the graph, preserve the complete error and inspect operator, axis, dtype and supported-kernel requirements. Do not remove the quantization nodes merely to make a success message appear. If it builds, inspect the selected layers and profile; graph annotations alone do not prove INT8 execution or a speedup. TensorRT 11 requires explicit quantization rather than the old implicit-calibration flags. [134]
+
+Post-training quantization selects a representation after training. Quantization-aware training introduces simulated quantization behavior during training so parameters can adapt. QLoRA trains adapters around a quantized frozen base; its storage format is not automatically a deployable ONNX INT4 graph or GGUF model. INT4, NF4, FP8 and FP4 are different representations. Their hardware paths, scale formats, supported layers and conversion tools must be qualified independently.
+
+Exercise 167 Compare quality memory and serving latency together
+
+Start with the previously qualified Q4_K_M and Q8_0 models. Keep the publisher revision, prompts, context, GPU-offloaded layers, concurrency, output cap and warmup policy fixed. Run only one owner at a time and retain the full outputs. Use the earlier evaluation harness for task scoring; the following streaming requests are a deployment control, not an adequate evaluation corpus.
+
+bash serve.sh start 4096 1 99 gpu q4_k_m
+
+python serving/client.py stream --model local-model \
+
+  --base http://127.0.0.1:8080 --out runs/quant-q4
+
+bash serve.sh stop
+
+bash serve.sh start 4096 1 99 gpu q8_0
+
+python serving/client.py stream --model local-model \
+
+  --base http://127.0.0.1:8080 --out runs/quant-q8
+
+bash serve.sh stop
+
+For a hypothetical seven-billion-parameter dense model, raw weights alone are about 13.0 GiB at sixteen bits, 6.52 GiB at eight bits and 3.26 GiB at four bits, using 2^30 bytes per GiB. Add quantization metadata, nonquantized weights, KV cache, activations, workspaces, staging and runtime allocations. These estimates do not guarantee fit within the reported 30 GB GPU budget. Unified system memory is also used by Windows, WSL and other processes; offloading can trade capacity for transfer stalls.
+
+For embedding models, compare FP32/FP16/quantized vectors on fixed sentence IDs, record cosine error and evaluate retrieval recall or ranking quality on held-out queries. Test near ties and hard negatives. Rebuild and version the vector index when the encoder representation changes; mixing vectors from incompatible encoders can silently damage search. Plot the same rows with PCA/t-SNE/UMAP as an explanatory view, while retaining original-space retrieval metrics as the acceptance test.
+
+Accept a quantized deployment only with a measured quality tolerance, end-to-end latency distribution, throughput at a stated error rate, resident/peak memory and a reproducible conversion record. A smaller file, a lower precision label or a higher GPU utilization percentage alone answers none of these questions.
+
+80  NeMo fine tuning recovery and deployment handoff
+
+NeMo is an ecosystem of training and adaptation tools rather than one model format. This chapter selects NeMo AutoModel for a small language-model LoRA run, then connects its checkpoints to the inference-serving chapters. Large Megatron or reinforcement-learning cluster recipes are separate workloads. One physical GPU remains one GPU even when a launcher creates several processes.
+
+Exercise 168 Audit data splits and supervised token masks
+
+
+The CPU control uses synthetic diagnostic strings and a byte tokenizer so every label is inspectable without downloading a model. Prompt positions carry ignore label −100; answer tokens and EOS are supervised after the causal one-position shift. It deliberately introduces one duplicated train item into validation and detects it. The control is not Qwen tokenization and is not the HellaSwag dataset used by the target recipe.
+
+Apply the same reasoning to the actual rendered prompt, tokenizer and recipe batch. Check that padding and prompt loss masks match the intended task, that truncation has not removed every answer token, and that labels are shifted exactly once. Compare content hashes across splits, then inspect paraphrases and shared documents that exact hashes will miss. An all-masked batch or leaked validation set can make a training dashboard misleading.
+
+Exercise 169 Prepare one small NeMo AutoModel run
+
+The selected candidate is NeMo AutoModel container 26.10.00, corresponding to the 0.7 documentation series. Its installation guide discusses WSL2, but this ARM64 laptop still needs image and device qualification. We keep the native Docker-in-WSL route established in Chapter 73 and retain the existing Windows driver mapping. Container CUDA userspace does not replace that driver. [139]
+
+bash serving/docker/qualify_image.sh \
+
+  nvcr.io/nvidia/nemo-automodel:26.10.00 runs/nemo-image
+
+export NEMO_IMAGE="$(head -n 1 \
+
+  runs/nemo-image/digests.txt)"
+
+mkdir -p runs/nemo-work
+
+python ecosystem/capture.py --out runs/nemo-prepare-log -- \
+
+  docker run --rm --gpus all --platform linux/arm64 \
+
+  --memory 24g --cpus 4 --shm-size 2g \
+
+  -v "$PWD:/book:ro" \
+
+  -v "$PWD/runs/nemo-work:/work" -w /book \
+
+  "$NEMO_IMAGE" python ecosystem/nemo_prepare_target.py \
+
+  --out /work/lab
+
+The preparation script resolves public Qwen3-0.6B and HellaSwag repository revisions before downloading, records those revisions, writes thirty-two training and eight validation rows as local Parquet, and adapts the recipe shipped in the selected image. The original YAML and its hash are retained. Required mappings and the RNG schema are checked before downloads; the existing StatefulRNG seed is set to 1403. Subsequent training uses local model and dataset paths. Downloads are not included in the companion and need disk space and network access. [144]
+
+The adapted recipe requests one process, data/tensor/context parallel sizes of one, local batch one, global batch four, rank-eight LoRA and four optimizer steps. This derives four accumulated micro-batches per optimizer update. Checkpointing and validation occur every two steps. We disable the recipe’s optional Triton LoRA kernel for the first qualification and use no external experiment tracker. These small settings test the execution path, not task quality. [140, 144]
+
+python ecosystem/capture.py --out runs/nemo-train-log -- \
+
+  docker run --rm --gpus all --platform linux/arm64 \
+
+  --memory 24g --cpus 4 --shm-size 2g \
+
+  -v "$PWD/runs/nemo-work:/work" \
+
+  "$NEMO_IMAGE" automodel /work/lab/recipe.yaml \
+
+  --nproc-per-node 1
+
+Require finite loss, the intended trainable adapter parameters, four completed updates and at least one complete checkpoint. Retain full stdout/stderr, the final effective configuration and training metrics. If import, kernel, NCCL initialization or memory allocation fails, preserve that first failure. Reduce data-loader pressure, batch or sequence size only after identifying the limiting stage. A 24 GB container limit is host-memory accounting, not a 24 GB GPU quota. The preflight text-length check is not the recipe’s final chat-template length; inspect actual batches before a longer run.
+
+Exercise 170 Verify frozen weights and checkpoint recovery
+
+
+The tiny CPU adapter test demonstrates a frozen base, twenty updates and an independent restored-output comparison. It does not run NeMo. On the target, inspect the actual trainable parameter names and gradient norms, verify that the intended base parameters remain frozen, and distinguish adapter weights from the optimizer, scheduler, data-loader and random state required for training recovery.
+
+Select the completed checkpoint named by the initial run’s LATEST pointer. Resume into a new checkpoint directory and increase the total step target to six. The checkpoint documentation distinguishes complete published saves from interrupted saves and describes the state needed for resumption. An adapter export that loads for inference is not by itself proof that the optimizer and data position were restored. [141, 145]
+
+python ecosystem/capture.py --out runs/nemo-resume-log -- \
+
+  docker run --rm --gpus all --platform linux/arm64 \
+
+  --memory 24g --cpus 4 --shm-size 2g \
+
+  -v "$PWD/runs/nemo-work:/work" \
+
+  "$NEMO_IMAGE" automodel /work/lab/recipe.yaml \
+
+  --nproc-per-node 1 --step_scheduler.max_steps 6 \
+
+  --checkpoint.restore_from /work/lab/checkpoints/LATEST \
+
+  --checkpoint.checkpoint_dir /work/lab/resumed
+
+Read the restore log and verify the starting step, next batches and optimizer/scheduler state before accepting the result. Compare with an uninterrupted six-step run in a fresh directory using the same initial model/data/configuration. Allow for documented nondeterministic kernels, but investigate unexplained parameter, loss or data-order differences. For a failure-injection extension, interrupt only after a known complete checkpoint and verify that restart selects a complete save. Keep the baseline checkpoint intact.
+
+Exercise 171 Validate the adapter handoff and extend to retrieval
+
+CPU adapter export requires Hugging Face peft in addition to torch and transformers; NeMo’s own LoRA implementation does not guarantee that dependency. The helper checks for peft before creating output. If absent, qualify a compatible PEFT installation in a derived environment and record its versions before retrying. The Chapter 22 environment is an alternative CPU export environment when the base and adapter paths are made accessible. The model loader uses dtype=torch.float32.
+
+python ecosystem/capture.py --out runs/nemo-export-log -- \
+
+  docker run --rm --platform linux/arm64 \
+
+  --memory 24g --cpus 4 \
+
+  -v "$PWD:/book:ro" \
+
+  -v "$PWD/runs/nemo-work:/work" -w /book \
+
+  "$NEMO_IMAGE" python ecosystem/nemo_export_target.py \
+
+  --base /work/lab/model \
+
+  --checkpoint /work/lab/resumed/LATEST \
+
+  --out /work/lab/export
+
+The CPU export helper requires one completed, consolidated Hugging Face-compatible adapter configuration and safetensors bundle. It rejects an ambiguous or sharded checkpoint. It loads the pinned base plus adapter, records a short deterministic generation, merges the adapter, checks pre/post-merge logits and saves the model, tokenizer and hashes. This one-prompt comparison tests conversion fidelity; it does not establish held-out quality.
+
+Run the earlier generation evaluation before pointing vLLM at /work/lab/export/merged or exporting another format. Preserve tokenizer/chat template, base revision, adapter configuration, merged-weight identity and evaluation results in the serving record. A small training loss or successful merge does not establish useful answers. Keep full-precision and adapter checkpoints so an unsuitable quantized export can be rebuilt without retraining.
+
+For the embedding track, NeMo AutoModel also documents bi-encoder and cross-encoder retrieval fine-tuning. Treat that as a separate recipe: use query/positive/negative records, document pooling and loss, and evaluate held-out retrieval. The published single-GPU example still needs its model access, dataset volume and dependency qualification; limiting training rows does not necessarily limit the initial corpus download. [142]
+
+Connect retrieval to Chapters 49–56 and 76–79: inspect vectors, export the complete encoder, measure quantization error and serve a versioned endpoint. Trace sentence identity through preprocessing, GPU execution, memory, latency and retrieval outcome using actual laptop evidence.

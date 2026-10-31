@@ -1,0 +1,22 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/validate.py
+test_01_native_manifest (__main__.CatalogControls.test_01_native_manifest) ... ok
+test_02_missing_architecture (__main__.CatalogControls.test_02_missing_architecture) ... ok
+test_03_ambiguous_architecture (__main__.CatalogControls.test_03_ambiguous_architecture) ... ok
+test_04_changed_manifest_bytes (__main__.CatalogControls.test_04_changed_manifest_bytes) ... ok
+test_05_unsafe_filenames (__main__.CatalogControls.test_05_unsafe_filenames) ... ok
+test_06_inventory_exact (__main__.CatalogControls.test_06_inventory_exact) ... ok
+test_07_inventory_tamper (__main__.CatalogControls.test_07_inventory_tamper) ... ok
+test_08_inventory_missing (__main__.CatalogControls.test_08_inventory_missing) ... ok
+test_09_inventory_duplicate (__main__.CatalogControls.test_09_inventory_duplicate) ... ok
+test_10_symlink_escape (__main__.CatalogControls.test_10_symlink_escape) ... ok
+test_11_cross_host_token_stripped (__main__.CatalogControls.test_11_cross_host_token_stripped) ... ok
+test_12_container_rejects_mutable_tag (__main__.CatalogControls.test_12_container_rejects_mutable_tag) ... ok
+test_13_executed_offline_control (__main__.CatalogControls.test_13_executed_offline_control) ... ok
+test_14_executed_dataset_fault (__main__.CatalogControls.test_14_executed_dataset_fault) ... ok
+test_15_no_gpu_success_claim (__main__.CatalogControls.test_15_no_gpu_success_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.112s
+
+OK
+[exit 0]

@@ -1,0 +1,5 @@
+Stack started; readiness is checked separately.
+Prometheus http://127.0.0.1:9090 | Grafana http://127.0.0.1:3000
+Grafana user admin; password file /workspace/scratch/2777d2814c7d/runtime-v22e/grafana-password.txt
+Evidence mode SIMULATED GPU + SYNTHETIC CPU
+Stack stopped; data and logs retained.

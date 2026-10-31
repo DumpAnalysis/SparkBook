@@ -1,0 +1,537 @@
+{
+  "traceEvents": [
+    {
+      "name": "forward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 150.855,
+      "dur": 1615.403,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "backward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 1773.278,
+      "dur": 1387.964,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "gradient_average",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 3167.592,
+      "dur": 8944.468,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "optimizer",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 12126.111,
+      "dur": 1935.462,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "loss_reduce",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 14067.131,
+      "dur": 1337.268,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "forward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 15677.477,
+      "dur": 1689.615,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "backward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 17405.399,
+      "dur": 1632.389,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "gradient_average",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 19042.986,
+      "dur": 758262.031,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "optimizer",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 777317.225,
+      "dur": 1644.226,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "loss_reduce",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 778971.476,
+      "dur": 2678.542,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "forward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 781954.093,
+      "dur": 1559.009,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "backward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 783519.001,
+      "dur": 1592.529,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "gradient_average",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 785117.019,
+      "dur": 7070.183,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "optimizer",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 792198.028,
+      "dur": 1257.429,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "loss_reduce",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 793460.234,
+      "dur": 716.481,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "forward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 794544.524,
+      "dur": 1077.23,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "backward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 795626.641,
+      "dur": 1149.768,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "gradient_average",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 796781.577,
+      "dur": 5669.551,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "optimizer",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 802459.4,
+      "dur": 1448.665,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "loss_reduce",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 803913.072,
+      "dur": 1262.817,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "forward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 0.0,
+      "dur": 1657.626,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "backward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 1664.837,
+      "dur": 1734.051,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "gradient_average",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 3405.137,
+      "dur": 8340.261,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "optimizer",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 11754.231,
+      "dur": 1681.562,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "loss_reduce",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 13444.827,
+      "dur": 2003.964,
+      "args": {
+        "step": 0,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "injected_delay",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 15490.233,
+      "dur": 750124.893,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "forward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 766176.194,
+      "dur": 3572.728,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "backward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 769759.228,
+      "dur": 1817.255,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "gradient_average",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 771583.964,
+      "dur": 7211.375,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "optimizer",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 778803.992,
+      "dur": 2109.501,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "loss_reduce",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 780919.082,
+      "dur": 717.221,
+      "args": {
+        "step": 1,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "forward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 781908.861,
+      "dur": 1497.827,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "backward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 783411.926,
+      "dur": 1712.91,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "gradient_average",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 785130.013,
+      "dur": 6632.094,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "optimizer",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 791772.162,
+      "dur": 1092.683,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "loss_reduce",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 792869.101,
+      "dur": 1322.336,
+      "args": {
+        "step": 2,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "forward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 794485.226,
+      "dur": 1120.113,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "backward",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 795609.856,
+      "dur": 1153.704,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "gradient_average",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 796768.227,
+      "dur": 6370.278,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "optimizer",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 803149.191,
+      "dur": 1302.366,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    },
+    {
+      "name": "loss_reduce",
+      "cat": "host phase",
+      "ph": "X",
+      "pid": 1,
+      "tid": 1,
+      "ts": 804456.304,
+      "dur": 722.249,
+      "args": {
+        "step": 3,
+        "scope": "CPU phase including waits; not GPU activity"
+      }
+    }
+  ]
+}

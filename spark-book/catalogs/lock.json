@@ -1,0 +1,22 @@
+{
+  "ngc_cli": {
+    "resource": "nvidia/ngc-apps/ngc_cli",
+    "version": "4.34.10",
+    "arm64": {
+      "file": "ngccli_arm64.zip",
+      "sha256": "5c18c5d14ad9e4b8c8ac0b5c596cd4ed33c1e4a3f2bd93f851eb974a6f3f6847",
+      "bytes": 58219524
+    }
+  },
+  "ngc_pytorch": "nvcr.io/nvidia/pytorch:26.09-py3",
+  "hf_model": {
+    "repo_id": "hf-internal-testing/tiny-random-bert",
+    "revision": "f171d7baecaf37b5da5a3616d8833b9969753535",
+    "files": ["config.json", "model.safetensors", "special_tokens_map.json", "tokenizer.json", "tokenizer_config.json", "vocab.txt"]
+  },
+  "hf_dataset": {
+    "repo_id": "lhoestq/demo1",
+    "revision": "87ecf163bedca9d80598b528940a9c4f99e14c11",
+    "files": ["README.md", "data/train.csv", "data/test.csv"]
+  }
+}

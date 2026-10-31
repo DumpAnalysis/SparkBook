@@ -1,0 +1,20 @@
+[
+  {
+    "bytes": 707,
+    "sha256": "6e8ccc607fc2a51e3741667b86316a0889418ba8b78ed0ba96e8d282b648a7a6",
+    "status": 200,
+    "url": "https://nvcr.io/v2/nvidia/pytorch/manifests/26.09-py3"
+  },
+  {
+    "bytes": 13267,
+    "sha256": "307c449df7dabed6b36e017a2b2f2e45bdec9dc203b81507111315f1e971de6e",
+    "status": 200,
+    "url": "https://nvcr.io/v2/nvidia/pytorch/manifests/sha256:307c449df7dabed6b36e017a2b2f2e45bdec9dc203b81507111315f1e971de6e"
+  },
+  {
+    "bytes": 73401,
+    "sha256": "a2d1be1817a6ecf66c56d60e4ab76c1ff745b407c31b4a7a76c1021f8a013d53",
+    "status": 200,
+    "url": "https://nvcr.io/v2/nvidia/pytorch/blobs/sha256:a2d1be1817a6ecf66c56d60e4ab76c1ff745b407c31b4a7a76c1021f8a013d53"
+  }
+]

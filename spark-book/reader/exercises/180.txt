@@ -1,0 +1,37 @@
+Exercise 180  Verify forward corruption and an oracle reconstruction
+
+Question
+Does the forward-noise equation reconstruct the known clean input with the oracle noise?
+
+Before you start
+Exercise 173 (create inspectable image and audio fixtures)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+9.5 s for Tiny diffusion (record 181.01).
+
+Check for success
+Compare the reconstruction error with tolerance and then substitute the wrong noise. Preserve both outcomes.
+
+Run in your lab
+Run the two existing numerical tests for exact-noise reconstruction and the wrong-noise control. Exercise 181 runs the combined training experiment.
+
+python media/validate.py Contracts.test_17_oracle_recovers_clean_point Contracts.test_18_wrong_noise_detected
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep clean reconstruction error and the wrong-noise control.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — A fresh CPU diffusion control passed the exact-noise oracle with maximum reconstruction error 9.54e-7; wrong noise produced MSE 32.57. The complete combined run appears in Exercise 181. These are numerical algebra checks, not image-generation quality measures.
+Scope  The small point-distribution experiment illustrates selected diffusion operations.
+
+Recorded files
+python reader/records.py 180 --files

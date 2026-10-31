@@ -1,0 +1,48 @@
+Exercise 28  Learn partial offload with the small model
+
+Question
+Where do weights and buffers move when fewer layers use CUDA?
+
+Before you start
+Exercise 5 (start the baseline server) · Exercise 8 (measure repeated local requests)
+Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.
+
+Recorded step time
+26.0 s for Layers 8 query (record 028.01).
+
+Check for success
+Compare layer counts and host/device buffers across placements. Use the same bounded request to verify each load.
+
+Predict before running
+As fewer layers use CUDA, which weight buffer should grow on the host?
+
+Run in your lab
+Start with the owned baseline server running. In each trial read the effective layer count from the new verbose log before comparing its answer and buffers. Stop on a failed step and retain that attempt.
+
+: "${LAB_RUN:?Start a new lab run first}"
+(
+set -e
+for layers in 8 16 99; do
+  bash serve.sh stop
+  env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 2048 1 "$layers" gpu q4_k_m
+  python spark_lab.py query prompt.txt --out "$LAB_RUN/layers-$layers.json"
+done
+)
+
+Interpret the result
+Partial offload changes host memory and transfer demand. It does not turn guest RAM and CUDA totals into additive capacity.
+
+If the check fails
+Check dataset/tokenizer identity and memory at the failing phase before changing precision.
+
+Finish
+Stop the small-model experiment and retain its placement evidence before planning a larger model.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU and CPU mixed model execution.
+Scope  The requested layer setting and the runtime’s observed split answer different questions.
+
+Recorded files
+python reader/records.py 28 --files

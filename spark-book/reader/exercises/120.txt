@@ -1,0 +1,35 @@
+Exercise 120  Write an evidence based diagnosis
+
+Question
+Can another investigator reproduce the inference from the same evidence?
+
+Before you start
+Exercise 119 (navigate the unified catalog)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+0.03 s for Worked diagnosis (record 120.01).
+
+Check for success
+Separate observation, hypothesis, discriminating test and repair. Point each factual statement to the ownership fixture.
+
+Run in your lab
+Write the diagnosis with symptom, hypothesis, evidence, counterexample, intervention and result. Keep untested alternatives explicit.
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep evidence-grounded worked report.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — A fresh worked diagnosis was generated from the retained CPU ownership fixture. It separates observation, hypothesis, discriminating action and repair.
+Scope  The diagnosis concerns that controlled reproducer; it does not transform the catalog’s historical examples into newly executed evidence.
+
+Recorded files
+python reader/records.py 120 --files

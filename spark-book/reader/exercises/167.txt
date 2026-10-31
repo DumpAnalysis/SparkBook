@@ -1,0 +1,35 @@
+Exercise 167  Compare quality memory and serving latency together
+
+Question
+Would the smaller representation pass both the answer contract and the serving budget?
+
+Before you start
+Exercise 11 (compare two quantizations) · Exercise 149 (diagnose vLLM concurrency and deploy the qualified owner) · Exercise 166 (inspect explicit QDQ and qualify its kernels)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+9.0 s for Evaluate four held-out cases with Q4_K_M (record 167.03).
+
+Check for success
+Compare complete held-out answers, placement, memory and latency under matched settings. Keep semantic failures visible.
+
+Run in your lab
+Use one fixed held-out set for each quantization. Retain quality, actual placement, memory and successful/error request counts before choosing a deployment.
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Save compatible engine/profile or adapter/base identities; close owned services.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual native Q4_K_M and Q8_0 runs used context 4096, one slot, 99 requested GPU layers and matched warm-up/load limits. Both failed the held-out untrusted-log action criterion: generated answers recommended executing embedded instructions, but no such action was executed. Each scored 15/20 on the supplied nonblind four-case rubric. Concurrent prerequisite downloads also limit causal performance comparisons.
+Scope  Compare the saved held-out answers before drawing a quality conclusion from quantization or timing.
+
+Recorded files
+python reader/records.py 167 --files

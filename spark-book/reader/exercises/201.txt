@@ -1,0 +1,39 @@
+Exercise 201  Run a bounded image adapter experiment
+
+Question
+Does the trained image adapter make the requested change on a matched validation prompt?
+
+Before you start
+Exercise 184 (generate one bounded image) · Exercise 168 (audit data splits and supervised token masks)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+25 min 18 s for Training (record 201.01).
+
+Check for success
+Compare adapter-enabled and disabled images with the same base, prompt and seed. Score the requested visual change independently of pixel differences.
+
+Run in your lab
+The entry compares an existing adapter. For the preceding two-update training command, open record 201.01 with reader/records.py 201 --files and inspect command_argv in metadata.json. Use the pinned trainer and your own fresh output directory.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${IMAGE_ADAPTER:?Set IMAGE_ADAPTER to the LoRA directory trained using Chapter 88}"
+python media/image_adapter.py --model models/media/sdxl --adapter "$IMAGE_ADAPTER" --out "$LAB_RUN/image-adapter-check"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/image-adapter-check with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual SDXL LoRA training completed two CUDA updates with finite step losses of about 0.00338 and 0.00459. The first full-precision loader exhausted guest headroom; later failures exposed Python 3.14 dataset compatibility, offline adapter discovery and offload/inference-mode interaction. The retained corrections load frozen weights in FP16, select the local adapter filename explicitly and use no_grad for the matched comparison. Both square outputs show nested frames rather than the intended filled square.
+Scope  Changed pixels establish an adapter effect, not improved image quality; two teaching images cannot establish generalization.
+
+Recorded files
+python reader/records.py 201 --files

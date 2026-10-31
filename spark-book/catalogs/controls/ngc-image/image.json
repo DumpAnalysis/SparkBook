@@ -1,0 +1,12 @@
+{
+  "architecture": "arm64",
+  "arm64_digest": "sha256:307c449df7dabed6b36e017a2b2f2e45bdec9dc203b81507111315f1e971de6e",
+  "candidate": "nvcr.io/nvidia/pytorch:26.09-py3",
+  "compressed_layer_bytes": 12273449215,
+  "cuda_qualified": false,
+  "index_digest": "sha256:6e8ccc607fc2a51e3741667b86316a0889418ba8b78ed0ba96e8d282b648a7a6",
+  "layers": 68,
+  "layers_downloaded": false,
+  "os": "linux",
+  "pinned_image": "nvcr.io/nvidia/pytorch@sha256:307c449df7dabed6b36e017a2b2f2e45bdec9dc203b81507111315f1e971de6e"
+}

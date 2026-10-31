@@ -1,0 +1,39 @@
+Exercise 136  Establish an inference API contract
+
+Question
+What must a client check before trusting an embedding service response?
+
+Before you start
+Exercise 3 (verify the client without a model)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+0.42 s for Contract (record 136.01).
+
+Check for success
+Verify HTTP status, response schema, vector count and numerical agreement with the independent oracle.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python serving/lab.py contract --out "$LAB_RUN/http-contract"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/http-contract with the command and exit that produced it.
+
+Handoff
+Keep the input and independently checked embedding. Repeat the request through Docker Compose in Exercise 141.
+
+Recorded result  PASSED — Actual live CPU HTTP embedding fixture passed request/response and independent vector checks. This is a small NumPy model with a bounded API contract. It exercises serving boundaries without implying a learned embedding model or GPU backend.
+Scope  An admitted request, a rejected request and a completed model response belong to different populations.
+
+Recorded files
+python reader/records.py 136 --files

@@ -1,0 +1,39 @@
+Exercise 248  Admit a model that exceeds the reported GPU budget
+
+Question
+Is there enough headroom for a bounded partial-placement trial?
+
+Before you start
+Exercise 247 (record the upstream and conversion identities) · Exercise 2 (calculate before allocating) · Exercise 28 (learn partial offload with the small model)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+19 min 00 s for the complete Q8 admission driver (248.04). The nested download (247.03) took 18 min 56 s.
+
+Check for success
+Compare weight bytes with the correctly scoped reports and current host/guest headroom. Document the proposed layer count and stop conditions.
+
+Run in your lab
+The entry is a CPU admission-arithmetic control with teaching inputs. Replace them with measured guest/host/device observations before any large-model launch.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python runtimes/lab.py 248 --out "$LAB_RUN/admission-control"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/admission-control with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Windows CIM reports a 64 GiB physical memory module while the OS-visible value is about 32.23 GiB; WSL exposes about 15.70 GiB and CUDA reports about 45.97 GiB. These are overlapping views, not independent pools to add. The recorded run preserves an initially overconservative admission rejection and its scoped correction. Fresh Q8 headroom reduced the initial 45-layer plan to 43 layers. Admission authorizes a guarded trial; it does not prove fit or a maximum allocation ceiling. No WSL or pagefile settings changed.
+Scope  A weight-file estimate is a planning input. The guarded run records the actual placement.
+
+Recorded files
+python reader/records.py 248 --files

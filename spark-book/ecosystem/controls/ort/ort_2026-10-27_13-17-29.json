@@ -1,0 +1,13 @@
+[
+{"cat" : "Session","pid" :32,"tid" :32,"dur" :245,"ts" :4,"ph" : "X","name" :"model_loading_uri","args" : {}},
+{"cat" : "Session","pid" :32,"tid" :32,"dur" :2358,"ts" :272,"ph" : "X","name" :"session_initialization","args" : {}},
+{"cat" : "Node","pid" :32,"tid" :32,"dur" :21,"ts" :3731,"ph" : "X","name" :"fused projection/MatMulAddFusion_kernel_time","args" : {"thread_scheduling_stats" : "","output_type_shape" : [{"float":[1,4]}],"output_size" : "16","parameter_size" : "16","activation_size" : "32","node_index" : "4","input_type_shape" : [{"float":[1,8]},{"float":[4]}],"provider" : "CPUExecutionProvider","op_name" : "FusedGemm"}},
+{"cat" : "Session","pid" :32,"tid" :32,"dur" :30,"ts" :3729,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :32,"tid" :32,"dur" :45,"ts" :3718,"ph" : "X","name" :"model_run","args" : {}},
+{"cat" : "Node","pid" :32,"tid" :32,"dur" :9,"ts" :4668,"ph" : "X","name" :"fused projection/MatMulAddFusion_kernel_time","args" : {"thread_scheduling_stats" : "","output_type_shape" : [{"float":[3,4]}],"output_size" : "48","parameter_size" : "16","activation_size" : "96","node_index" : "4","input_type_shape" : [{"float":[3,8]},{"float":[4]}],"provider" : "CPUExecutionProvider","op_name" : "FusedGemm"}},
+{"cat" : "Session","pid" :32,"tid" :32,"dur" :14,"ts" :4668,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :32,"tid" :32,"dur" :20,"ts" :4663,"ph" : "X","name" :"model_run","args" : {}},
+{"cat" : "Node","pid" :32,"tid" :32,"dur" :8,"ts" :5111,"ph" : "X","name" :"fused projection/MatMulAddFusion_kernel_time","args" : {"thread_scheduling_stats" : "","output_type_shape" : [{"float":[8,4]}],"output_size" : "128","parameter_size" : "16","activation_size" : "256","node_index" : "4","input_type_shape" : [{"float":[8,8]},{"float":[4]}],"provider" : "CPUExecutionProvider","op_name" : "FusedGemm"}},
+{"cat" : "Session","pid" :32,"tid" :32,"dur" :14,"ts" :5110,"ph" : "X","name" :"SequentialExecutor::Execute","args" : {}},
+{"cat" : "Session","pid" :32,"tid" :32,"dur" :19,"ts" :5106,"ph" : "X","name" :"model_run","args" : {}}
+]

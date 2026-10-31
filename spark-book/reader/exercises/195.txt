@@ -1,0 +1,39 @@
+Exercise 195  Bound long speech and diagnose service latency
+
+Question
+What limits the response to a long speech request?
+
+Before you start
+Exercise 192 (synthesize a short diagnostic statement) · Exercise 91 (establish the monitoring contract)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+11.5 s for Profiled (record 195.03).
+
+Check for success
+Check over-limit rejection, chunk coverage and joined pauses. Measure time to first audio separately from full synthesis time.
+
+Run in your lab
+Bound the text, duration and request count using the bounds below. A successful synthesis and an unavailable GPU activity timeline are separate outcomes.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/targets.py tts --model models/media/mms --profile --out "$LAB_RUN/speech-profile"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/speech-profile with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — The Windows-elevated WSL2 retry still fails the shared device-timestamp prerequisite. Earlier TTS output and host/waveform observations remain historical; no new synthesis or first-audio measurement was made.
+Scope  Synthesis completion alone cannot attribute a delay to an individual kernel.
+
+Recorded files
+python reader/records.py 195 --files

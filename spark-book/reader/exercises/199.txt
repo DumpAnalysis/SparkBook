@@ -1,0 +1,39 @@
+Exercise 199  Chunk longer recordings without losing offsets
+
+Question
+Does chunking cover every sample once and preserve the word offsets?
+
+Before you start
+Exercise 196 (transcribe the retained speech control)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+6.8 s for Transcribe the first chunk (record 199.02).
+
+Check for success
+Check interval boundaries and original sample rate, then inspect the joined transcript around each boundary.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${AUDIO:?Set AUDIO to the WAV file produced by the preceding music or speech exercise}"
+python media/chunk_audio.py "$AUDIO" --seconds 20 --out "$LAB_RUN/chunks"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/chunks with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The complete 48 kHz joined recording was resampled to 395,488 frames at 16 kHz and covered by contiguous 320,000- and 75,488-frame chunks. Combined normalized WER is 8/56, or 0.142857. Fresh model loads are included in per-chunk command time; this is not a streaming latency test. Boundary clips await human listening.
+Scope  Keep the reference wording, acoustic input and normalization policy with each recognition score.
+
+Recorded files
+python reader/records.py 199 --files

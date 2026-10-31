@@ -1,0 +1,40 @@
+Exercise 27  Save a merged deployment checkpoint
+
+Question
+Can the adapted model be loaded without applying a separate adapter?
+
+Before you start
+Exercise 26 (compare complete held-out answers)
+Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.
+
+Recorded step time
+19.1 s for Merge adapter (record 027.01).
+
+Check for success
+Bind the merged checkpoint to its base and tokenizer. Reload it and compare a fixed response with the adapter path.
+
+Run in your lab
+The first command saves the checkpoint. The second loads the adapter and merged models sequentially on CUDA, compares last-token logits and saves the four greedy answers. A nonzero comparison exit keeps both sets of responses.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${ADAPTER:?Set ADAPTER to the selected adapter directory from Exercise 25}"
+python finetune.py merge --adapter "$ADAPTER" --output "$LAB_RUN/merged"
+python compare_merge.py --adapter "$ADAPTER" --merged "$LAB_RUN/merged/merged" --out "$LAB_RUN/merge-check"
+
+Interpret the result
+A written checkpoint is not yet a qualified deployment; loading and output checks come next.
+
+If the check fails
+Check dataset/tokenizer identity and memory at the failing phase before changing precision.
+
+Finish
+Keep the merged model receipt and its unmerged provenance.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  Save and reload PASSED. Strict equivalence FAILED. The merged BF16 checkpoint was written and compared with its adapter reference. The maximum absolute logit difference was 0.375, and all four greedy continuations differed.
+Scope  The merge comparison applies to the named adapter, base and tested inputs.
+
+Recorded files
+python reader/records.py 27 --files

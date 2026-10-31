@@ -1,0 +1,10 @@
+{
+  "arm64_bytes": 58219524,
+  "arm64_file": "ngccli_arm64.zip",
+  "arm64_sha256": "5c18c5d14ad9e4b8c8ac0b5c596cd4ed33c1e4a3f2bd93f851eb974a6f3f6847",
+  "guest_download": true,
+  "publisher": "NVIDIA",
+  "resource": "nvidia/ngc-apps/ngc_cli",
+  "version": "4.34.10",
+  "version_files": 6
+}

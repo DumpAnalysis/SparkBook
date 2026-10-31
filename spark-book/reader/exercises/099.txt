@@ -1,0 +1,39 @@
+Exercise 99  Compare controlled precision paths
+
+Question
+Where do reduced-precision values first depart from the full-precision path?
+
+Before you start
+Exercise 14 (run a small synchronized computation)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+6.9 s for CUDA precision (record 099.01).
+
+Check for success
+Compare the named stages under their own tolerances. Keep the expected rounding case as the control for Exercise 100.
+
+Run in your lab
+The default numerical demonstration is CPU. Select --device cuda only when that is the intended qualified comparison and retain the observed device.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py numerics --out "$LAB_RUN/numerics"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/numerics with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU and GPU actual FP64 reference and FP32/BF16 candidates.
+Scope  The retained intermediate tensors can expose a numerical error even when the selected class stays the same.
+
+Recorded files
+python reader/records.py 99 --files

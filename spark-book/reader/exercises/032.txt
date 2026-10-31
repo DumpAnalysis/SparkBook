@@ -1,0 +1,37 @@
+Exercise 32  Build debug and performance variants
+
+Question
+How does the build intended for debugging differ from the build used for timing?
+
+Before you start
+Exercise 31 (inventory development tools independently)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+7.1 s for Build variants (record 032.01).
+
+Check for success
+Keep separate build logs and binary identities. Run the arithmetic check on each before interpreting a performance difference.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+bash cuda/build.sh
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep compiler logs, capability status, and checksums.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU numerical execution; CPU compilation.
+Scope  The numerical control covers the compiled executable and tested vectors.
+
+Recorded files
+python reader/records.py 32 --files

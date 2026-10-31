@@ -1,0 +1,39 @@
+Exercise 188  Generate a short music clip from a description
+
+Question
+Does the generation record identify a playable audio signal for the requested prompt?
+
+Before you start
+Exercise 174 (download and verify one model at a time) · Exercise 175 (validate the media contracts)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+28.6 s for Music short (record 188.02).
+
+Check for success
+Check token limit, sample rate, finite waveform, duration and saved WAV identity. Keep listening judgments separate.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/targets.py music --model models/media/musicgen --text "A quiet solo piano phrase with a slow steady rhythm" --tokens 256 --guidance 3 --seed 1606 --out "$LAB_RUN/music"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/music with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The first MusicGen load failed because the shared class selected MusicgenDecoderConfig. A local subclass bound MusicgenConfig without changing the installed package or publisher files. The corrected actual CUDA request generated 256 audio-code tokens and a 5.06-second mono WAV. The initial failure and corrected complete capture are both printed.
+Scope  File duration and waveform measurements do not grade musical quality.
+
+Recorded files
+python reader/records.py 188 --files

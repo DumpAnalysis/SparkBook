@@ -1,0 +1,8 @@
+{
+  "bytes": 1356,
+  "end_ns": 1793183756731967136,
+  "sha256": "844a679e7eb2772c648bc7a2c5388f3488c8ab66c1cbf23a46842e6dff8019ad",
+  "start_ns": 1793183752914137771,
+  "status": 200,
+  "url": "https://huggingface.co/api/datasets/lhoestq/demo1/revision/87ecf163bedca9d80598b528940a9c4f99e14c11"
+}

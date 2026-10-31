@@ -1,0 +1,10 @@
+{
+  "id_overlap": 0,
+  "injected_overlap_detected": 1,
+  "normalized_text_overlap": 0,
+  "revision": "87ecf163bedca9d80598b528940a9c4f99e14c11",
+  "test_rows": 5,
+  "train_rows": 5,
+  "training_readiness": "NOT ESTABLISHED: card provenance and license incomplete",
+  "verified_files": 3
+}

@@ -1,0 +1,39 @@
+Exercise 235  Qualify a native Ollama installation
+
+Question
+Which Ollama build and server process will own this local model?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+6.4 s for Native ready (record 235.02).
+
+Check for success
+Check binary architecture and version, then establish daemon readiness before querying model state.
+
+Run in your lab
+The entry inspects the archive plan only. Add --download in a NEW destination after inspecting size/digest; then follow Chapter 97’s native extraction and foreground-server steps.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python runtimes/ollama_archive.py --out "$LAB_RUN/ollama-dist"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/ollama-dist with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The native ARM64 Ollama client/daemon and selected runtime were identified, with local-only service settings and inventories retained. An empty model list is different from a failed daemon. GPU model loading and request outcomes follow separately.
+Scope  Loaded model identity, request completion and output quality require separate observations.
+
+Recorded files
+python reader/records.py 235 --files

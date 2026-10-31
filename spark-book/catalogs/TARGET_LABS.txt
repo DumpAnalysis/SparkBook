@@ -1,0 +1,283 @@
+HISTORICAL PROCEDURE NOTES
+Book Version 55 and reader/exercises/ are the current reader instructions.
+These retained source-era notes explain concepts and repeat procedures; their
+old environment and execution-status statements are historical. Superseded
+preparation transcript blocks remain omitted. Use the evidence map for current
+recorded outcomes and fresh output paths for new work.
+
+# 89  The NGC catalog as a source of reproducible GPU assets
+
+NGC supplies software and model artifacts that can shorten setup, but each artifact still needs a local execution record. This chapter follows one small resource from its catalog identity to verified bytes, then inspects a PyTorch container before attempting a large pull. The result is a receipt that explains exactly what was selected and what remains unqualified on the laptop.
+
+The worked system remains ARM64 Linux under WSL2, with 64 GB of unified physical memory, approximately 30 GB reported for the GPU, and an owner-reported CUDA 13.4 baseline. Windows supplies the mapped NVIDIA driver. A catalog container adds user-space software; it does not replace that host driver or increase the GPU allocation budget. Use Chapters 2, 26 and 73 for inventory and container prerequisites.
+
+## Catalog objects and their roles
+
+NGC organizes containers, models, resources and deployment material by organization, sometimes team, and asset name. Collections group related items for discovery. Read the asset description, version page, license and release notes before choosing a download. A prominent catalog entry does not by itself establish support for this WSL2 machine. [170]
+
+Asset | What to retain | Local question
+Container | Registry name, tag, index and platform digest | Does the image contain a native ARM64 runtime?
+Model | Publisher, model version and file hashes | Which architecture, precision and loader are required?
+Resource | Version, selected files and checksums | Is this code, data, documentation or an executable?
+Helm chart | Chart version, values and referenced images | Which images and privileges will the deployment request?
+Collection | Collection URL and selected member identities | Which individual asset is actually used?
+
+SDKs and application-specific packages may combine several of these roles. Triton, RAPIDS and NeMo also have their own compatibility and release documentation. Use the catalog to locate an asset, then return to Chapters 75, 76 and 80 to qualify the corresponding execution path. A chart needs inspection of its rendered workloads; a collection needs selection of a concrete member. Neither is evidence that a model has run.
+
+Public access, authentication and entitlement answer different questions. Public metadata can be visible while a particular download requires a signed-in account, accepted terms or an entitlement. A successful pull establishes access to bytes. Keep permission to use and redistribute those bytes as a separate recorded decision. The exercises use public endpoints and do not need a personal key. [171]
+
+## Workspace and evidence conventions
+
+Run the supplied helpers from the spark-book directory in the WSL Linux filesystem. The NGC metadata helpers use the Python standard library. Use new directories for every attempt so failures remain inspectable. The commands below assume the companion is at ~/spark-book; substitute its actual location if necessary.
+
+```
+cd ~/spark-book
+mkdir -p runs/catalogs downloads/catalogs
+python3 --version
+uname -m
+df -h .
+```
+
+All printed EXECUTED transcripts in Chapters 89 and 90 are complete preparation captures from x86-64 Linux on 28 October 2026. The absolute Python path in each capture identifies that preparation environment; use python3 or the selected environment's python on the laptop. Public network acquisition and CPU execution were real. ARM64 binary execution, Docker, WSL2 and CUDA execution were not available in preparation. TARGET commands have no invented success output. The capture wrapper retains merged stdout and stderr, the command, timestamps and the actual exit status.
+
+## Exercise 204 Inspect an NGC resource before downloading it
+
+The goal is to identify an exact resource and distinguish its platform files before transfer. The selected resource is nvidia/ngc-apps/ngc_cli version 4.34.10. The setup page consulted during preparation displayed a newer release heading while its installation commands and checksums still used 4.34.10. This laboratory deliberately pins the latter version and verifies its own version metadata; it does not call that pin the latest release. [172]
+
+```
+python3 catalogs/capture.py --out runs/catalogs/204-log -- \
+  python3 catalogs/ngc_lab.py info --out runs/catalogs/204
+```
+
+The helper reads the publisher's version-file metadata, checks the version, decodes the published SHA-256 value and compares the ARM64 file's size and checksum with catalogs/lock.json. It saves selected metadata fields and a hash of the complete HTTP response. Long publisher descriptions are omitted from the retained projection. This makes the receipt useful for identity checks without treating prose copied from a catalog as execution evidence.
+
+
+Inspect runs/catalogs/204/resource.json and http.json. Account for the six files and select ngccli_arm64.zip for the ARM64 guest. A matching checksum establishes agreement with the selected publisher metadata over HTTPS; a checksum is not an independent certificate of software safety. Completion requires the publisher, namespace, version, architecture, byte count, expected checksum and acquisition URL in the record. Stop if the current response disagrees with the frozen pin, and investigate the change before selecting a new version.
+
+## Exercise 205 Acquire and inspect the native ARM64 CLI
+
+This exercise acquires a small executable resource before a multi-gigabyte container. The helper downloads only the selected archive, enforces its byte budget, verifies SHA-256 and reads the executable's ELF header inside the ZIP. It checks the 64-bit little-endian AArch64 machine identifier 183. The archive is retained outside the supplied companion evidence.
+
+```
+python3 catalogs/capture.py --out runs/catalogs/205-log -- \
+  python3 catalogs/ngc_lab.py cli \
+  --dest downloads/catalogs/ngc-cli \
+  --record runs/catalogs/205
+```
+
+
+The result establishes the selected archive's identity and executable architecture. It does not show that the native loader can resolve every library on WSL2. After confirming uname -m reports aarch64, use the following TARGET continuation. The extraction directory must not already exist; the shell stops on an unsuccessful command.
+
+```
+set -euo pipefail
+test "$(uname -m)" = aarch64
+mkdir downloads/catalogs/ngc-cli-extracted
+unzip -q downloads/catalogs/ngc-cli/ngccli_arm64.zip \
+  -d downloads/catalogs/ngc-cli-extracted
+chmod u+x downloads/catalogs/ngc-cli-extracted/ngc-cli/ngc
+python3 catalogs/capture.py --out runs/catalogs/205-version -- \
+  downloads/catalogs/ngc-cli-extracted/ngc-cli/ngc --version
+python3 catalogs/capture.py --out runs/catalogs/205-info -- \
+  downloads/catalogs/ngc-cli-extracted/ngc-cli/ngc \
+  registry resource info nvidia/ngc-apps/ngc_cli:4.34.10 --files
+```
+
+The NGC CLI exposes resource inspection and download-version commands. Quote file patterns when selecting files so the local shell does not expand them first. Compare the CLI's selected version and file inventory with Exercise 204. Retain a loader or access error exactly as printed if native execution fails. Reference [173] links directly to resource info and its --files flag. [173]
+
+For an asset that needs authentication, follow its current access instructions and use the narrowest appropriate token scope. Perform credential entry outside capture logs and shell tracing. Docker's NGC username is the literal $oauthtoken; single quotes preserve the dollar sign. The following optional command prompts for the password interactively and is not part of the executed public controls. [171]
+
+```
+docker login nvcr.io --username '$oauthtoken'
+```
+
+Use the secret token at the password prompt, never as printed manuscript text or a command-line argument. Do not put login output, credential configuration files or tokens in the experiment archive. Record only the access class and whether authentication was required. Successful authentication does not establish an asset entitlement or a runtime match.
+
+## Exercise 206 Resolve a container to a native immutable identity
+
+The selected candidate is nvcr.io/nvidia/pytorch:26.09-py3. NVIDIA's release notes identify CUDA 13.4.1 in this image. That is a container-runtime fact, separate from the laptop's owner-reported CUDA 13.4 baseline and the mapped Windows driver's compatibility. Read the release notes and compatibility requirements before execution. The presence of an ARM64 manifest is a necessary selection check, not a WSL2 support certification. [174]
+
+```
+python3 catalogs/capture.py --out runs/catalogs/206-log -- \
+  python3 catalogs/ngc_lab.py image --out runs/catalogs/206
+```
+
+The helper resolves the tag to an OCI index, selects exactly one linux/arm64 descriptor, retrieves that child manifest and verifies its configuration. It validates the referenced digests against received bytes. An anonymous registry bearer challenge is handled in memory; the token is not printed or saved. Registry metadata stays in the record, while image layers are not fetched.
+
+
+A tag is a discovery name that may move. The index digest binds a platform list; the child digest binds the selected ARM64 manifest. Record both. The helper writes the child-qualified pull name to image.json as pinned_image. Docker's buildx imagetools inspect is an alternative way to examine a registry image, but the retained raw metadata and independent digest checks make this exercise replayable without Docker. [175]
+
+The 12,273,449,215 bytes above are the sum of compressed layer sizes, about 11.43 GiB. This is neither an unpacked disk requirement nor GPU memory consumption. Check free disk before a pull and leave room for expanded layers, caches and experiment artifacts. The 64 GB unified memory and approximately 30 GB GPU report remain separate observations of the same machine; they are not additive physical pools.
+
+TARGET continuation requires the Docker GPU path already qualified in Chapter 73. Use the freshly acquired record, rather than copying a moving tag into a launch command.
+
+```
+python3 catalogs/capture.py --out runs/catalogs/206-gpu -- \
+  bash catalogs/run_ngc_probe.sh runs/catalogs/206/image.json
+```
+
+The launcher rejects an unpinned name, checks the native host architecture, pulls the selected linux/arm64 image and checks its installed architecture. The probe then runs without network access, with the source mounted read-only and with an explicit non-root UID/GID when the WSL user is non-root. It records the framework version, framework CUDA build, device identity, capability and available memory, then compares a small CUDA arithmetic result with a CPU oracle. Read the complete script in catalogs/run_ngc_probe.sh before running it.
+
+The launcher's --memory 12g limit bounds container host memory; Docker does not interpret it as a GPU memory quota. Its temporary filesystem is bounded separately. The small probe is intentionally modest. A successful probe qualifies only that image and operation. Models, precision modes, CUDA tools and longer workloads need their own tests. Do not install a Linux display driver or a Kubernetes GPU driver operator to repair this WSL2 exercise.
+
+Completion requires a digest-qualified image, actual native container startup, CUDA availability and a passing arithmetic comparison. Record an unavailable result if any prerequisite fails. A download-only result remains useful and should retain its narrower status.
+
+## Exercise 207 Diagnose catalog failures before GPU work
+
+Use the retained registry metadata to inject three bounded faults: remove the ARM64 descriptor, duplicate it and alter the index bytes without changing its expected digest. The original evidence is read-only; the changes exist in memory.
+
+```
+python3 catalogs/capture.py --out runs/catalogs/207-log -- \
+  python3 catalogs/ngc_lab.py faults \
+  --source runs/catalogs/206 --out runs/catalogs/207
+```
+
+
+Each failure occurs before any image layers or GPU workload are needed. The three rejections demonstrate the selection and identity checks. They do not test the registry's availability or every possible image format. The actual preparation GPU probe also stopped explicitly when CUDA was unavailable:
+
+
+Observation | First investigation | Evidence to retain
+401 or 403 | Authentication, token scope and entitlement | Status, asset identity and redacted error
+Missing ARM64 descriptor | Chosen version and platform list | Raw index and selected platform policy
+Exec format or loader error | CPU architecture and dynamic libraries | Executable identity and complete loader output
+CUDA unavailable | Mapped driver and container GPU access | Host inventory and probe result
+Out of memory | Current free bytes and allocation scope | Workload, limits, allocator and host evidence
+
+Do not change precision or batch size to repair an authentication error. Do not describe a native-loader failure as GPU memory exhaustion. Complete the exercise by identifying the first failed boundary and naming the next observation that could change the diagnosis. Use Chapters 57 and 73 for live GPU monitoring and container logs only after execution reaches those boundaries.
+
+# 90  The Hugging Face Hub as a source of models and datasets
+
+The Hub provides versioned repositories and documentation for models and datasets, as well as Spaces that host applications. This chapter uses the same evidence sequence as NGC: inspect identity, select files, acquire and hash bytes, then establish a bounded execution result. A local snapshot can become an input to embedding, fine-tuning, media or serving laboratories elsewhere in the book.
+
+The Hub website and storage service are distinct from the huggingface_hub client, Transformers model loaders and the Datasets library. A repository download does not run a model. A Space or hosted inference service can execute remotely and therefore cannot demonstrate local WSL2 GPU behavior. These exercises use public downloads followed by local computation; they do not deploy a Space or send inference requests to a hosted provider. [176]
+
+## Reading a repository before using it
+
+Record the repository type and namespace/name, because model and dataset identifiers belong to different repository types. A branch such as main and a tag are convenient selectors, but both can change. Use a full commit revision for reproduction and retain file checksums for the local snapshot. A model card supplies intended uses, limitations and reported evaluation; a dataset card describes content, provenance and splits. Cards can be incomplete, so missing fields remain unknown. [177, 178]
+
+Repository material | Why the runtime needs it | Diagnostic consequence
+Configuration and weights | Construct the selected architecture | Mismatched keys or tensor dimensions
+Tokenizer or processor | Convert inputs to model tensors | Changed token IDs, images or audio features
+Adapter | Apply a change to a compatible base model | Base revision and adapter must be identified
+Dataset files and card | Define examples, schema and provenance | Split leakage or unsuitable training data
+Application code in a Space | Define a hosted application | Remote success says little about local CUDA
+
+For a real project, examine the publisher's identity, license, architecture, weight format, tokenizer or processor, custom-code requirements, language coverage and evaluation conditions. Repository popularity and file size do not replace these checks. Review custom code before deliberately enabling it. The worked loader keeps trust_remote_code=False and requests safetensors. Those choices narrow the loading path; they do not constitute a comprehensive review of a model or its dependencies.
+
+## A separate CPU environment for the small controls
+
+The public metadata helper needs only Python. Downloads and the offline model exercise use the following isolated CPU environment. These are TARGET setup commands for reproducing the portable controls under WSL2; their installation output depends on the available ARM64 wheels and is not invented here. Keep this environment separate from a CUDA-qualified environment.
+
+```
+cd ~/spark-book
+python3 -m venv .venv-catalog-cpu
+source .venv-catalog-cpu/bin/activate
+python -m pip install torch==2.10.0 \
+  --index-url https://download.pytorch.org/whl/cpu
+python -m pip install -r catalogs/requirements-cpu.txt
+python -m pip check
+export HF_HUB_DISABLE_PROGRESS_BARS=1
+export HF_HUB_DISABLE_TELEMETRY=1
+export HF_HUB_DISABLE_XET=1
+mkdir -p runs/catalogs downloads/catalogs
+```
+
+Preparation used Python 3.12, PyTorch 2.10.0+cpu, Transformers 4.57.1 and huggingface_hub 0.36.0. These are reproduction pins, not a claim that they are the newest releases. The small HTTP transfer path disables Xet for this control; throughput observations from it would not compare the Hub's full transfer stack. Do not install the CPU wheel over a working CUDA environment.
+
+The two selected repositories are diagnostic fixtures: a randomly initialized tiny BERT checkpoint and a ten-row demo dataset. The pinned model lacks a model card and neither pinned API response supplies license metadata. Their use here establishes acquisition and loading behavior only. The companion redistributes receipts and derived diagnostic results, not publisher weights or downloaded CSV files. A production dataset or model needs its own permissions, provenance and quality assessment.
+
+## Exercise 208 Inspect pinned model and dataset identities
+
+```
+python catalogs/capture.py --out runs/catalogs/208-log -- \
+  python catalogs/hf_lab.py info --out runs/catalogs/208
+```
+
+The helper reads two public metadata endpoints at the full revisions in catalogs/lock.json. It checks that each returned revision equals the requested one and retains the complete metadata response with its HTTP receipt. It does not read a stored account token.
+
+
+Open the exact repository revisions recorded above. Count the files and inspect their roles. The model has ten repository files but the loader will request only six; alternative frameworks' weight files need not be downloaded for this specific Transformers path. The dataset has four repository files; the exercise selects its card and two CSV splits. No license value is inferred from an accessible download. The metadata and file listing are evidence of what was published at those revisions. [179, 180]
+
+For a private or gated repository, use an account that already has the required access and a suitably scoped token. Gated approval and token possession are separate conditions. A 404 can conceal an inaccessible private repository, so first check spelling, repository type, revision and account access. A 401 or 403 is not evidence that the model exceeds the GPU budget. Public commands here pass token=False rather than implicitly reusing a login. [181, 182]
+
+Completion requires two identity records with repository type, publisher namespace, full revision, access class and missing documentation explicitly stated. Select one existing production-oriented model from an earlier chapter and write the additional card and runtime checks you would need before replacing its pin. Do not change that chapter's frozen snapshot merely to follow a moving main branch.
+
+## Exercise 209 Acquire a selective model snapshot
+
+```
+python catalogs/capture.py --out runs/catalogs/209-log -- \
+  python catalogs/hf_lab.py snapshot --kind model \
+  --dest downloads/catalogs/hf-model \
+  --record runs/catalogs/209
+```
+
+snapshot_download receives the explicit repository type, full commit and an allow-list of filenames. The six files are config.json, model.safetensors, special_tokens_map.json, tokenizer.json, tokenizer_config.json and vocab.txt. The helper hashes their actual bytes and writes a book-receipt.json beside them. It uses two download workers and refuses an existing destination. The download API supports filtering and revision selection; a model's required file set must still be derived from its own loader and configuration. [183]
+
+
+The selected 538,802 bytes describe this tiny fixture only. Download bytes, tensor parameter bytes and peak runtime allocation are different measurements. Sharded models also need their index and every referenced shard; multimodal loaders may require processors, tokenizers, encoders and scheduler files. An adapter snapshot may require a separately pinned base model. Use the receipts to explain the dependency chain before scheduling a large download.
+
+The Hub cache can share previously fetched objects across revisions. A local_dir download may also contain a .cache/huggingface metadata directory. The receipt inventories the explicitly selected runtime files, not that metadata. Leave shared cache objects unchanged. Make a separate working copy before intentionally corrupting a file, and never treat the presence of a cache directory as proof that every required file exists. [184]
+
+Completion requires the selected file count, total bytes, full revision and a per-file hash inventory. Explain why copying only model.safetensors would fail to reproduce the tokenizer and architecture. If the download is interrupted, keep its failure log and use a fresh destination for a new bounded attempt. Do not edit the expected checksum to make a corrupt file pass.
+
+## Exercise 210 Load the snapshot offline and check its outputs
+
+```
+python catalogs/capture.py --out runs/catalogs/210-log -- \
+  python catalogs/hf_lab.py offline \
+  --snapshot downloads/catalogs/hf-model \
+  --out runs/catalogs/210 --device cpu
+```
+
+The helper sets HF_HUB_OFFLINE before importing the model stack, verifies all six files and loads through local_files_only=True with an empty cache directory. It requests safetensors and disables repository-supplied custom code. During model loading and inference it replaces Python socket.connect with a rejecting function and records attempted calls. This Python-level control is evidence about that path, not an operating-system firewall or a guarantee about arbitrary native extensions. For deployment isolation, also use the network controls in Chapter 73. [185]
+
+
+The two inputs produce a [2, 35, 32] hidden-state tensor. Attention-mask-weighted mean pooling produces two 32-dimensional vectors, and repeated evaluation gives exactly equal outputs in this CPU run. The model contains 87,929 parameters. It is a random test checkpoint, so its vectors are not useful sentence embeddings and the equality result is not a quality score. For trained sentence representations, use the evaluation and fine-tuning procedures in Chapters 49–56.
+
+Inspect result.json as well as the console. Missing or mismatched model parameters cause failure. This checkpoint also contains task-head tensors that BertModel does not use; their names are retained in unexpected_keys. The unused heads are explainable for this selected base encoder, but the same message in a classification task could reveal a wrong model class. pooled.json retains the actual vectors for inspection.
+
+For a GPU continuation, activate the separate CUDA environment already qualified in Chapter 81, verify that it has compatible Transformers and Hub dependencies, and run the same local snapshot with --device cuda into a new directory. Do not repeat the CPU installation block in that environment.
+
+```
+python catalogs/capture.py --out runs/catalogs/210-cuda-log -- \
+  python catalogs/hf_lab.py offline \
+  --snapshot downloads/catalogs/hf-model \
+  --out runs/catalogs/210-cuda --device cuda
+```
+
+This TARGET command has no successful GPU preparation transcript. It fails explicitly if CUDA is unavailable. On success, it additionally records peak tensor allocation for the tested path. Compare dtype, inputs, model identity and numerical tolerance before interpreting a CPU/GPU difference. Exact equality observed on one CPU run is not a cross-device guarantee.
+
+Use the same receipt discipline when handing a trained model to vLLM, Triton, ONNX Runtime or a Docker image. Each backend must support the model architecture and artifact format. This tiny BERT fixture is not a causal chat model for a vLLM generation exercise. Export creates a new artifact identity; TensorRT engines add build and target-device dependencies. Carry those new receipts alongside the original Hub revision. Completion requires successful offline reload, finite outputs, a repeat comparison and an explicit CPU or CUDA execution label.
+
+## Exercise 211 Audit a pinned dataset before fine tuning
+
+Acquire the demo dataset independently from the model. The file list selects README.md, data/train.csv and data/test.csv at a full commit. The model repository's revision does not identify this dataset.
+
+```
+python catalogs/capture.py --out runs/catalogs/211-download-log -- \
+  python catalogs/hf_lab.py snapshot --kind dataset \
+  --dest downloads/catalogs/hf-dataset \
+  --record runs/catalogs/211-download
+python catalogs/capture.py --out runs/catalogs/211-audit-log -- \
+  python catalogs/hf_lab.py dataset \
+  --snapshot downloads/catalogs/hf-dataset \
+  --out runs/catalogs/211-audit
+```
+
+
+The audit verifies bytes, checks the id, review and star columns, checks ID uniqueness within each split, and compares IDs and normalized exact text across splits. It then appends one training row to the test set in memory and confirms that the overlap detector catches it. The source CSV files remain unchanged. Review text is not printed into the transcript.
+
+Five training rows and five test rows are sufficient to demonstrate split mechanics, not to estimate useful model quality. Zero exact overlap does not exclude semantic duplicates, shared source documents, people appearing in both splits or time leakage. The incomplete card also leaves training provenance and license questions unresolved. The audit therefore reports training readiness as not established rather than converting a successful CSV read into permission to fine-tune.
+
+For custom BERT or embedding adaptation, retain the dataset revision, preprocessing code, tokenizer identity and split policy together. Apply family, source or time grouping before training when the task requires it. Fit preprocessing choices on training data, select checkpoints with a development set and evaluate the held-out test only after selection. Reuse Chapters 53–55 for actual training and retrieval-quality controls; keep this ten-row acquisition fixture out of those quality claims.
+
+## Checking the retained evidence
+
+The companion provides fifteen offline regression checks for platform selection, manifest integrity, unsafe paths, file tampering, missing files, duplicate receipt entries, symlink escape, credential removal on a cross-host redirect, mutable-image rejection and the retained CPU results. Run them from spark-book. The suite reads the supplied controls, so it can run without downloading publisher weights or accessing an account.
+
+```
+python catalogs/capture.py --out runs/catalogs/validation-log -- \
+  python catalogs/validate.py
+```
+
+
+The NGC resource receipt identifies a versioned executable archive; the container receipt identifies a platform-specific image digest; the Hub receipt identifies a repository type, full commit and selected files. Each supports reproducibility at a different boundary. Finish by tracing one chosen asset from its catalog record to a local execution result, retaining the first failure if the environment cannot complete the path. A catalog's successful download should remain distinguishable from an actual WSL2 GPU measurement.

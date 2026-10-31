@@ -1,0 +1,87 @@
+Start with one working experiment
+
+We first establish where commands run, obtain one response and retain enough
+evidence to explain it. Complete the first-inference route before choosing a
+specialist route. An exercise number is a stable reference, not an instruction
+to run every exercise in numerical order.
+
+If you already have a qualified ~/work/spark-book project, preserve its
+environment, model files and runs. Continue from that project and add the
+reader/ material deliberately. Do not unpack a new companion over your only
+copy of a working experiment. A new archive cannot remove obsolete files from
+an older extraction.
+
+For a first installation, extract the learner companion into a staging directory
+inside WSL2. From the extracted spark-book directory, run:
+
+python3 reader/new_lab.py ~/work/spark-book
+
+The destination must not exist. The helper copies teaching sources and required
+fixtures, but no archived evidence, downloaded models, environments or run
+outputs. If ~/work/spark-book already exists, choose a new sibling directory.
+Restore the separate evidence pack when inspecting complete recorded runs.
+Read reader/EVIDENCE.txt. The working lab is where we create new results.
+
+cd ~/work/spark-book
+python3 reader/preflight.py --require-wsl
+python3 -m venv .venv-exercises
+source reader/activate.sh
+source reader/new_run.sh
+python reader/guide.py 1
+
+The new-run helper prints LAB_RUN, a unique directory under runs/. Keep that
+shell open. In another terminal, repeat activation and set LAB_RUN to the exact
+printed directory if the exercise needs the same run. Do not paste a made-up
+path or an archived run directory. Each command's output subdirectory must be new.
+
+First inference route
+1. Exercise 1: inventory the WSL guest and mapped driver.
+2. Exercise 2: calculate a small model's weight/cache estimate.
+3. Exercise 3: check the local client against the labelled CPU fixture.
+4. Exercise 4: download and verify the pinned native runtime and Q4 model.
+5. Exercise 5: start one server and inspect effective placement.
+6. Exercise 6: submit the exact prompt and assess the full answer.
+7. Exercise 7: understand the timing arithmetic before benchmarking.
+8. Exercises 8 and 9: measure repeated requests and streaming separately.
+9. Exercise 23: write an evidence-based conclusion, then stop the server.
+
+This native-runtime route does not need PyTorch. Python creates the client
+environment; llama.cpp performs the model computation. Exercise 14 qualifies
+PyTorch later, before the training and framework routes. Exercise 251 is an
+optional advanced memory investigation, not a condition for first inference.
+
+Run commands and recorded commands
+The book's “Run in your lab” blocks are procedures for a new run. The recorded-run capture
+blocks are evidence with the original account, paths,
+versions and times. Never paste an archived launcher into a new project.
+For the R17 response use prompt.txt. For the short streaming test in Exercise 9 use reader/ready.txt. Keep the inventory and answer files from this same run for Exercise 20.
+Use python reader/guide.py NUMBER for a copyable entry procedure, required
+inputs, inspection targets and cleanup. It displays text and executes nothing.
+The chapter supplies the complete experiment, variations and acceptance criteria.
+
+To retain a new foreground command, use a NEW capture directory:
+python reader/capture.py --out "$LAB_RUN/budget-capture" -- \
+  python spark_lab.py budget
+
+Inspect stdout.txt, stderr.txt and metadata.json together. An intentional
+negative test may return nonzero. A zero exit does not establish useful model
+quality, GPU placement or a valid timing trace. Long-running service ownership
+and its explicit stop command remain part of the exercise.
+
+Four separate outcomes
+Command outcome: did the process complete, fail, time out or stop early?
+Exercise outcome: did its stated acceptance criteria pass?
+Model outcome: was the answer, retrieval result or generated media acceptable?
+Observation outcome: did the required counter, trace or debugger evidence exist?
+
+A failed answer is useful evidence. Missing GPU activity timestamps remain a
+measurement failure even if CUDA arithmetic passes. Record each outcome and
+the execution origin without turning one successful check into a general pass.
+
+Compare a result by exercise number:
+  python reader/records.py 25
+Use --files after restoring the evidence pack. See reader/EVIDENCE.txt.
+Follow the exercise prerequisites and learning routes; record labels are
+references, not additional learning stages.
+
+Use the Version 55 book and learner guides with the Version 48 evidence pack. A named command duration is an observed stage on the example laptop. Add your own setup, download and interpretation time.

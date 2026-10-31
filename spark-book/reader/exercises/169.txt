@@ -1,0 +1,39 @@
+Exercise 169  Prepare one small NeMo AutoModel run
+
+Question
+Can a bounded NeMo recipe update only the intended adapters?
+
+Before you start
+Exercise 168 (audit data splits and supervised token masks) · Exercise 14 (run a small synchronized computation)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+1 min 02 s for NeMo four updates (record 169.01).
+
+Check for success
+Inspect effective recipe, finite losses, completed steps and trainable tensor identities. Verify the checkpoint at its stated step.
+
+Run in your lab
+This prepares data/configuration only. Inspect the qualified recipe and launch the training command shown in Chapter 80 inside that environment.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${NEMO_RECIPE:?Set NEMO_RECIPE to the inspected recipe path inside your qualified NeMo environment}"
+python ecosystem/nemo_prepare_target.py --recipe "$NEMO_RECIPE" --out "$LAB_RUN/nemo"
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Keep $LAB_RUN/nemo with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The pinned NeMo AutoModel container completed four optimizer updates on Qwen3-0.6B LoRA with 32 training and eight validation HellaSwag rows. Initial acquisition downloaded the publisher splits before selecting those rows; 40 used rows does not mean only 40 rows were downloaded. WSL driver aliases and a supplementary container group corrected lookup/permission boundaries. Full effective recipes and checkpoints are owner-recorded.
+Scope  The split, base identity, trainable state and held-out behavior are separate parts of the adaptation record.
+
+Recorded files
+python reader/records.py 169 --files

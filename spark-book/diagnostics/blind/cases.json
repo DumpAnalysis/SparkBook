@@ -1,0 +1,50 @@
+[
+  {
+    "id": "C01",
+    "evidence": [
+      "EXECUTED control. FP32 and BF16 calls complete.",
+      "IDs and hidden states pass. Pooled values first fail, followed by logits.",
+      "The selected class is unchanged."
+    ]
+  },
+  {
+    "id": "C02",
+    "evidence": [
+      "EXECUTED control. Input sizes are 8,12,8,16,12.",
+      "Fixed-shape capture gives three graphs; dynamic capture gives one.",
+      "Both output comparisons pass."
+    ]
+  },
+  {
+    "id": "C03",
+    "evidence": [
+      "EXECUTED CPU control. Fixed-size allocations repeat.",
+      "Live lab bytes at steps 1,4,8 are 262144,1048576,2097152.",
+      "Clearing one collection leaves zero lab-owned bytes."
+    ]
+  },
+  {
+    "id": "C04",
+    "evidence": [
+      "EXECUTED fixture with controlled corruption. Root expects seven spans.",
+      "Only six remain; one log has a different trace identity.",
+      "The application reported completion."
+    ]
+  },
+  {
+    "id": "C05",
+    "evidence": [
+      "ILLUSTRATIVE GPU reasoning, not a laptop measurement.",
+      "Preprocessing increases latency; a trace shows gaps between short bursts.",
+      "Precomputed input removes gaps at unchanged batch size."
+    ]
+  },
+  {
+    "id": "C06",
+    "evidence": [
+      "DETERMINISTIC fixture. Trusted document contains answer=42.",
+      "Retrieved document ID is correct; final context is answ.",
+      "Replacing one token-budget boundary restores answer 42."
+    ]
+  }
+]

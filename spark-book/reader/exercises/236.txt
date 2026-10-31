@@ -1,0 +1,40 @@
+Exercise 236  Import a model and diagnose stream completion
+
+Question
+Did the Ollama stream complete using the intended imported model?
+
+Before you start
+Exercise 235 (qualify a native Ollama installation)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+47.5 s for Ollama cold (record 236.01).
+
+Check for success
+Match tag and model digest, reconstruct the NDJSON response, and inspect its final completion record.
+
+Run in your lab
+Use the foreground daemon established in Exercise 235 and verify its endpoint before importing the pinned GGUF. Read the model identifier from that daemon.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${OLLAMA_DIGEST:?Set OLLAMA_DIGEST to that model’s complete recorded digest}"
+: "${OLLAMA_MODEL:?Set OLLAMA_MODEL to the imported chat model name shown by the running Ollama service}"
+python runtimes/probe.py --backend ollama --base http://127.0.0.1:11434 --model "$OLLAMA_MODEL" --digest "$OLLAMA_DIGEST" --out "$LAB_RUN/ollama-chat"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/ollama-chat with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Ollama imported the pinned Qwen 1.5B GGUF and retained its model digest, template, capabilities, raw streamed response and terminal status. The actual GPU model request is the main illustration. A length-limited terminal event is distinct from a normally completed answer even when transport succeeds.
+Scope  Loaded model identity, request completion and output quality require separate observations.
+
+Recorded files
+python reader/records.py 236 --files

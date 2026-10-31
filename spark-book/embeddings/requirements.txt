@@ -1,0 +1,14 @@
+# Install qualified torch separately; this file does not install a display driver.
+transformers==4.57.1
+tokenizers==0.22.1
+huggingface-hub==0.36.0
+safetensors==0.6.2
+sentence-transformers==5.1.2
+numpy==2.3.5
+scipy==1.17.0
+scikit-learn==1.8.0
+matplotlib==3.10.8
+umap-learn==0.5.11
+numba==0.63.1
+llvmlite==0.46.0
+pynndescent==0.5.13

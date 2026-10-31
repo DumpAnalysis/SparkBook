@@ -1,0 +1,39 @@
+Exercise 83  Train WordPiece and a small BERT from scratch
+
+Question
+Can a tokenizer and small masked-language model be trained and reloaded locally?
+
+Before you start
+Exercise 77 (export and audit the partitions)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+10.4 s for Scratch MLM (record 083.01).
+
+Check for success
+Inspect training-only vocabulary, fixed validation masks, selected checkpoint and reload agreement. Judge held-out predictions separately.
+
+Run in your lab
+This entry follows the actual CPU training scope. GPU training is a separate choice requiring qualification; it is not implied by the laptop’s GPU.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python embeddings/train_bert.py --out "$LAB_RUN/tiny-bert" --steps 60 --device cpu
+
+Interpret the result
+Training loss may fall while development loss worsens. In the recorded run step 20 was selected, and held-out masked accuracy was 3/36; this is a training demonstration.
+
+If the check fails
+Check corpus/split identity, tokenization, masking and the first divergent training or development loss.
+
+Finish
+Keep the selected checkpoint, tokenizer, split audit and training/development/test metrics together for Exercises 84–86.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU actual encoder training and held-out evaluation.
+Scope  The saved tokenizer, corpus split and selected checkpoint define the training comparison.
+
+Recorded files
+python reader/records.py 83 --files

@@ -1,0 +1,26 @@
+test_agent_denies_tools (__main__.AdvancedTests.test_agent_denies_tools) ... ok
+test_agent_duplicate_and_remote (__main__.AdvancedTests.test_agent_duplicate_and_remote) ... ok
+test_agent_injection_is_data (__main__.AdvancedTests.test_agent_injection_is_data) ... ok
+test_agent_missing_evidence (__main__.AdvancedTests.test_agent_missing_evidence) ... ok
+test_agent_rejects_unread_or_false_quote (__main__.AdvancedTests.test_agent_rejects_unread_or_false_quote) ... ok
+test_agent_replay (__main__.AdvancedTests.test_agent_replay) ... ok
+test_attention_normalization (__main__.AdvancedTests.test_attention_normalization) ... ok
+test_cached_prefixes (__main__.AdvancedTests.test_cached_prefixes) ... ok
+test_casebook_controls (__main__.AdvancedTests.test_casebook_controls) ... ok
+test_causal_future_change (__main__.AdvancedTests.test_causal_future_change) ... ok
+test_int4_all_codes (__main__.AdvancedTests.test_int4_all_codes) ... ok
+test_int4_prefix_tails (__main__.AdvancedTests.test_int4_prefix_tails) ... ok
+test_int4_rejections (__main__.AdvancedTests.test_int4_rejections) ... ok
+test_int4_ties_and_saturation (__main__.AdvancedTests.test_int4_ties_and_saturation) ... ok
+test_measurement_template (__main__.AdvancedTests.test_measurement_template) ... ok
+test_muladd_independent_gradient (__main__.AdvancedTests.test_muladd_independent_gradient) ... ok
+test_output_preservation (__main__.AdvancedTests.test_output_preservation) ... ok
+test_rope_norm (__main__.AdvancedTests.test_rope_norm) ... ok
+test_snapshot_boundaries (__main__.AdvancedTests.test_snapshot_boundaries) ... ok
+test_transformer_incremental (__main__.AdvancedTests.test_transformer_incremental) ... ok
+test_wrong_position_exposed (__main__.AdvancedTests.test_wrong_position_exposed) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.008s
+
+OK

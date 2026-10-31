@@ -1,0 +1,9 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/hf_lab.py snapshot --kind dataset --dest ../catalog-downloads/hf-dataset --record catalogs/controls/hf-dataset
+repo_type: dataset
+repo_id: lhoestq/demo1
+revision: 87ecf163bedca9d80598b528940a9c4f99e14c11
+selected_files: 3
+selected_bytes: 5005
+receipt_sha256: 52236bcf5eac24ac3e30bcac8506e47d67b36f98be1fae21654357ab85600d7b
+Selected files acquired and hashed; alternate weight formats were not requested
+[exit 0]

@@ -1,0 +1,149 @@
+[
+  {
+    "rank": 1,
+    "name": "forward",
+    "step": 0,
+    "start_ns": 19516189715535,
+    "end_ns": 19516191373161
+  },
+  {
+    "rank": 1,
+    "name": "backward",
+    "step": 0,
+    "start_ns": 19516191380372,
+    "end_ns": 19516193114423
+  },
+  {
+    "rank": 1,
+    "name": "gradient_average",
+    "step": 0,
+    "start_ns": 19516193120672,
+    "end_ns": 19516201460933
+  },
+  {
+    "rank": 1,
+    "name": "optimizer",
+    "step": 0,
+    "start_ns": 19516201469766,
+    "end_ns": 19516203151328
+  },
+  {
+    "rank": 1,
+    "name": "loss_reduce",
+    "step": 0,
+    "start_ns": 19516203160362,
+    "end_ns": 19516205164326
+  },
+  {
+    "rank": 1,
+    "name": "injected_delay",
+    "step": 1,
+    "start_ns": 19516205205768,
+    "end_ns": 19516955330661
+  },
+  {
+    "rank": 1,
+    "name": "forward",
+    "step": 1,
+    "start_ns": 19516955891729,
+    "end_ns": 19516959464457
+  },
+  {
+    "rank": 1,
+    "name": "backward",
+    "step": 1,
+    "start_ns": 19516959474763,
+    "end_ns": 19516961292018
+  },
+  {
+    "rank": 1,
+    "name": "gradient_average",
+    "step": 1,
+    "start_ns": 19516961299499,
+    "end_ns": 19516968510874
+  },
+  {
+    "rank": 1,
+    "name": "optimizer",
+    "step": 1,
+    "start_ns": 19516968519527,
+    "end_ns": 19516970629028
+  },
+  {
+    "rank": 1,
+    "name": "loss_reduce",
+    "step": 1,
+    "start_ns": 19516970634617,
+    "end_ns": 19516971351838
+  },
+  {
+    "rank": 1,
+    "name": "forward",
+    "step": 2,
+    "start_ns": 19516971624396,
+    "end_ns": 19516973122223
+  },
+  {
+    "rank": 1,
+    "name": "backward",
+    "step": 2,
+    "start_ns": 19516973127461,
+    "end_ns": 19516974840371
+  },
+  {
+    "rank": 1,
+    "name": "gradient_average",
+    "step": 2,
+    "start_ns": 19516974845548,
+    "end_ns": 19516981477642
+  },
+  {
+    "rank": 1,
+    "name": "optimizer",
+    "step": 2,
+    "start_ns": 19516981487697,
+    "end_ns": 19516982580380
+  },
+  {
+    "rank": 1,
+    "name": "loss_reduce",
+    "step": 2,
+    "start_ns": 19516982584636,
+    "end_ns": 19516983906972
+  },
+  {
+    "rank": 1,
+    "name": "forward",
+    "step": 3,
+    "start_ns": 19516984200761,
+    "end_ns": 19516985320874
+  },
+  {
+    "rank": 1,
+    "name": "backward",
+    "step": 3,
+    "start_ns": 19516985325391,
+    "end_ns": 19516986479095
+  },
+  {
+    "rank": 1,
+    "name": "gradient_average",
+    "step": 3,
+    "start_ns": 19516986483762,
+    "end_ns": 19516992854040
+  },
+  {
+    "rank": 1,
+    "name": "optimizer",
+    "step": 3,
+    "start_ns": 19516992864726,
+    "end_ns": 19516994167092
+  },
+  {
+    "rank": 1,
+    "name": "loss_reduce",
+    "step": 3,
+    "start_ns": 19516994171839,
+    "end_ns": 19516994894088
+  }
+]

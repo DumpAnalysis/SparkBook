@@ -1,0 +1,38 @@
+Exercise 143  Classify container failures before changing limits
+
+Question
+At which boundary did the container request fail?
+
+Before you start
+Exercise 141 (run a bounded container and inspect its lifecycle)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+0.27 s for Device injection probe (record 143.01).
+
+Check for success
+Compare failure text with the image, entry point, device and memory controls. Require evidence for the selected classification.
+
+Run in your lab
+Resolve the actual container name using docker compose ps if Compose uses a different project name. Do not delete or restart unrelated containers.
+
+docker compose -f serving/docker/compose.yaml logs --no-color
+docker inspect spark-serving-lab-encoder-1
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep target deployment; retained qualification evidence.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual Docker startup failed with exit 125 at CDI GPU-vendor discovery, before the workload process started (PID 0); OOMKilled was false. The old acceptance check expected a different error phrase and was corrected against these unchanged raw records. This is a runtime/device-discovery boundary failure, not a model CUDA out-of-memory result.
+Scope  Image construction, device injection and a numerically correct response are separate deployment checks.
+
+Recorded files
+python reader/records.py 143 --files

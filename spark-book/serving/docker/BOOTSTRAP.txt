@@ -1,0 +1,73 @@
+WSL2 TARGET PREPARATION — NOT EXECUTED IN THE BOOK PREPARATION ENVIRONMENT
+
+Use Ubuntu 24.04 ARM64 in WSL2. Preserve the Windows NVIDIA driver mapping.
+Do not install Linux NVIDIA display drivers, cuda-drivers or the GPU Operator
+with a driver installer. The existing CUDA toolkit need not match a container's
+runtime version; actual Windows-driver compatibility must be qualified.
+
+These labs choose native Docker Engine inside this WSL distribution. If Docker
+Desktop already owns your daemon, inspect docker context show/info first and
+use that path deliberately. Do not install a second daemon as an accidental fix.
+Do not translate these commands into native Windows commands.
+
+If Docker Engine is absent, follow the official Ubuntu repository procedure:
+https://docs.docker.com/engine/install/ubuntu/
+The commands below register the official repository and select a concrete package
+version. Review package conflicts described by that guide before installation.
+
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+  -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+. /etc/os-release
+printf '%s\n' "Types: deb" \
+  "URIs: https://download.docker.com/linux/ubuntu" \
+  "Suites: ${UBUNTU_CODENAME:-$VERSION_CODENAME}" \
+  "Components: stable" "Architectures: $(dpkg --print-architecture)" \
+  "Signed-By: /etc/apt/keyrings/docker.asc" | \
+  sudo tee /etc/apt/sources.list.d/docker.sources
+sudo apt-get update
+apt-cache madison docker-ce
+
+Set DOCKER_VERSION to a version actually listed for this distribution/architecture:
+export DOCKER_VERSION='REPLACE_WITH_LISTED_PACKAGE_VERSION'
+sudo apt-get install "docker-ce=$DOCKER_VERSION" \
+  "docker-ce-cli=$DOCKER_VERSION" containerd.io \
+  docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+sudo docker version
+sudo docker info
+
+The runbooks use docker without sudo. If your configured account cannot access
+the daemon, run Docker commands through sudo consistently, including scripts that
+invoke Docker. Membership in the docker group grants broad control of the host;
+there is no automatic group change in the companion. Rootless GPU deployment is
+not qualified by these labs. K3s requires systemd running in this WSL distribution.
+
+For GPU containers only, install the NVIDIA Container Toolkit from its official
+repository (not a Linux display driver):
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | \
+  sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+curl -fsSL https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+  sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+  sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+sudo apt-get update
+export NVIDIA_CONTAINER_TOOLKIT_VERSION=1.20.1-1
+sudo apt-get install \
+  "nvidia-container-toolkit=$NVIDIA_CONTAINER_TOOLKIT_VERSION" \
+  "nvidia-container-toolkit-base=$NVIDIA_CONTAINER_TOOLKIT_VERSION" \
+  "libnvidia-container-tools=$NVIDIA_CONTAINER_TOOLKIT_VERSION" \
+  "libnvidia-container1=$NVIDIA_CONTAINER_TOOLKIT_VERSION"
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+nvidia-ctk --version
+nvidia-container-runtime --version
+
+Restarting Docker interrupts existing containers. Schedule this preparation before
+running inference. If the pinned packages are unavailable, retain the apt error,
+choose a documented compatible release, and record the changed versions.
+Docker runtime configuration does not configure the separate K3s containerd.

@@ -1,0 +1,39 @@
+Exercise 246  Serve embeddings and connect local agents
+
+Question
+Does the same local server satisfy the embedding and agent contracts independently?
+
+Before you start
+Exercise 244 (import a verified model and exercise the local API) · Exercise 75 (prepare the environment and freeze the encoder) · Exercise 222 (qualify the HTTP boundary and local model)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+19.3 s for Repeat the LangChain contract test (record 246.02).
+
+Check for success
+Verify index-ordered vectors first, then inspect the agent's tool messages and task outcome as a separate test.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${LMS_EMBED_MODEL:?Set LMS_EMBED_MODEL to the loaded embedding model ID reported by the llmster API}"
+python runtimes/probe.py --backend openai --base http://127.0.0.1:1234 --model "$LMS_EMBED_MODEL" --embedding --out "$LAB_RUN/lmstudio-embedding"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/lmstudio-embedding with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — LM Studio rejected the Ollama EmbeddingGemma blob because its loader expected 316 tensors but found 314. That failed attempt remains. The existing Nomic embedding GGUF was independently matched to publisher hash/license metadata and then returned valid vectors. Direct LangChain tool and PydanticAI typed-agent calls also completed.
+Scope  API compatibility and vector shape do not establish embedding quality or diagnostic validity.
+
+Recorded files
+python reader/records.py 246 --files

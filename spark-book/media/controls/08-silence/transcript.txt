@@ -1,0 +1,5 @@
+$ python media/targets.py asr --model ../models/whisper --device cpu --input media/controls/fixtures/silence.wav --out media/controls/silence
+{"device": "cpu", "kind": "asr", "result": "media/controls/silence/result.json", "status": "ok"}
+ you
+{"channels": 1, "clipped_fraction": 0.0, "duration_s": 2.0, "frames": 32000, "peak": 0.0, "rms": 0.0, "sample_rate": 16000}
+[exit 0]

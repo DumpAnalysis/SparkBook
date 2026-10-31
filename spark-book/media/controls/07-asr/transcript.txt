@@ -1,0 +1,6 @@
+$ python media/targets.py asr --model ../models/whisper --device cpu --input media/controls/tts/output.wav --reference media/data/reference.txt --out media/controls/asr
+{"device": "cpu", "kind": "asr", "result": "media/controls/asr/result.json", "status": "ok"}
+ The graphics, processor has 30GB of available.
+{"channels": 1, "clipped_fraction": 0.0, "duration_s": 3.904, "frames": 62464, "peak": 0.826202392578125, "rms": 0.11319505305274075, "sample_rate": 16000}
+{"errors": 2, "hypothesis_words": 7, "normalization": "Unicode word tokens and casefold; punctuation ignored", "reference_words": 7, "wer": 0.2857142857142857}
+[exit 0]

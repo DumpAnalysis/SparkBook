@@ -1,0 +1,39 @@
+Exercise 133  Prepare data in workers and keep one optimizer
+
+Question
+Can CPU workers prepare batches while a single owner preserves optimizer order?
+
+Before you start
+Exercise 25 (establish the framework and run ten updates) · Exercise 130 (share one encoder across request workers)
+One GPU owner by default; replicas duplicate weights. Bound clients and batches before increasing concurrency.
+
+Recorded step time
+8.2 s for Training (record 133.01).
+
+Check for success
+Check the four ordered updates against the serial reference and inspect the next-step checkpoint field.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python sharing/train.py --device cuda --out "$LAB_RUN/training-owner"
+
+Interpret the result
+Count errors and waits as well as successes; distinguish batching from parallel execution.
+
+If the check fails
+Check admission, ownership and cancellation state before adding workers.
+
+Finish
+Keep $LAB_RUN/training-owner with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CUDA training kept one model/optimizer owner with two CPU preparers. Four ordered AdamW updates agreed with the serial reference to maximum absolute error 5.960×10⁻⁸; checkpoint next_step=4. This is a training-owner experiment, not DDP or a demonstrated checkpoint resume.
+Scope  Process count, client count and model-owner count are distinct quantities.
+
+Recorded files
+python reader/records.py 133 --files

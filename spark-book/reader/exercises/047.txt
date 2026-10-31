@@ -1,0 +1,38 @@
+Exercise 47  Write and check a rectangular transpose
+
+Question
+How can we catch swapping dimensions on a rectangular transpose?
+
+Before you start
+Exercise 46 (decouple the grid from the data length)
+NVCC and host C++ compiler; small bounded tensors, no model download.
+
+Recorded step time
+0.82 s for Write and check a rectangular transpose — reference check (record 047.01).
+
+Check for success
+Trace one input element to its output address. Compare all elements of a nonsquare case with the CPU transpose.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+bash kernels/build.sh starter
+./kernels/bin/kernel-student transpose naive 37 65
+
+Interpret the result
+Validate values and bounds before comparing performance.
+
+If the check fails
+Reduce the failing shape and inspect indexing, synchronization and launch arguments.
+
+Finish
+Keep input and output index mapping.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU source implementation and CPU-oracle validation.
+Scope  Numerical agreement applies to the tested shapes and inputs.
+
+Recorded files
+python reader/records.py 47 --files

@@ -1,0 +1,13 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/hf_lab.py offline --snapshot ../catalog-downloads/hf-model --out catalogs/controls/hf-offline --device cpu
+device: cpu
+verified_files: 6
+model_class: BertModel
+parameters: 87929
+input_shape: [2, 35]
+hidden_shape: [2, 35, 32]
+pooled_shape: [2, 32]
+finite: True
+repeat_max_abs_error: 0.0
+python_socket_connect_attempts: 0
+Random test checkpoint only; successful loading is not semantic model quality
+[exit 0]

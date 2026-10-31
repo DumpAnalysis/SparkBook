@@ -1,0 +1,8 @@
+{
+  "bytes": 16962,
+  "end_ns": 1793183753397453232,
+  "sha256": "f2b4cfc2ef8d9a9502330a6dbc6c6a4999f02243ce44cec7b997ed88bbb35a48",
+  "start_ns": 1793183748789300776,
+  "status": 200,
+  "url": "https://api.ngc.nvidia.com/v2/resources/nvidia/ngc-apps/ngc_cli/versions/4.34.10/files"
+}

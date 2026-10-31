@@ -1,0 +1,39 @@
+Exercise 130  Share one encoder across request workers
+
+Question
+Can several request workers share one encoder without duplicating its weights?
+
+Before you start
+Exercise 14 (run a small synchronized computation)
+One GPU owner by default; replicas duplicate weights. Bound clients and batches before increasing concurrency.
+
+Recorded step time
+5.7 s for CUDA (record 130.01).
+
+Check for success
+Check the owner count, accepted request IDs and independent vector comparisons for each worker configuration.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python sharing/service.py --mode shared --device cuda --workers 4 --batch 1 --out "$LAB_RUN/shared"
+
+Interpret the result
+Count errors and waits as well as successes; distinguish batching from parallel execution.
+
+If the check fails
+Check admission, ownership and cancellation state before adding workers.
+
+Finish
+Keep $LAB_RUN/shared with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual one-owner CUDA service used two CPU clients, accepted 16 requests and formed eight batches. Independent vector checks passed. The model’s 82,176 weight bytes exclude allocator/context overhead. A single owner can reduce duplicate weights, but admission and total memory still require measurement.
+Scope  Process count, client count and model-owner count are distinct quantities.
+
+Recorded files
+python reader/records.py 130 --files

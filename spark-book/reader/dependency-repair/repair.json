@@ -1,0 +1,46 @@
+{
+  "status": "PASSED",
+  "scope": "Local packaging metadata correction only; native library bytes unchanged",
+  "upstream_download": {
+    "url": "https://pypi.nvidia.com/nvidia-cusparselt-cu13/nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_aarch64.whl",
+    "archive_info": {
+      "hash": "sha256=4dca476c50bf4780d46cd0bfbd82e2bc10a08e4fef7950917ce8d7578d22a23f",
+      "hashes": {
+        "sha256": "4dca476c50bf4780d46cd0bfbd82e2bc10a08e4fef7950917ce8d7578d22a23f"
+      }
+    }
+  },
+  "local_version": "0.8.1+sparkbook.1",
+  "local_wheel": "/home/coredump/work/spark-book/runs/local-wheels/nvidia_cusparselt_cu13-0.8.1+sparkbook.1-py3-none-manylinux2014_aarch64.whl",
+  "local_wheel_sha256": "09e2d900c1cba6407203c76441ba6530b4eb397d713735537fff48d20638c237",
+  "elf_libraries": [
+    {
+      "path": "nvidia/cusparselt/lib/libcusparseLt.so.0",
+      "elf_machine": 183,
+      "sha256": "fbb03bbf8d2238670f24256c5452281c2a660162899b838bb4d0cc06dad027df"
+    }
+  ],
+  "payload_before_install": [
+    {
+      "path": "nvidia/cusparselt/LICENSE.txt",
+      "sha256": "e8d158885a681b95ec7a6fc06dd8d4a52989f374cb1380c8a4c8fb27fd3d5d5e",
+      "bytes": 17948
+    },
+    {
+      "path": "nvidia/cusparselt/include/cusparseLt.h",
+      "sha256": "0df84b580688771d78be62bceebc408867a161c641fe0bca8a5075ba043b63b3",
+      "bytes": 18157
+    },
+    {
+      "path": "nvidia/cusparselt/lib/libcusparseLt.so.0",
+      "sha256": "fbb03bbf8d2238670f24256c5452281c2a660162899b838bb4d0cc06dad027df",
+      "bytes": 274143825
+    }
+  ],
+  "changes": [
+    "WHEEL platform tag sbsa -> aarch64 to match publisher filename and ELF identity",
+    "Root-Is-Purelib true -> false for native binary distribution",
+    "Local version label +sparkbook.1 and regenerated RECORD"
+  ],
+  "does_not_qualify": "Sparse CUDA kernels and other untested library functionality"
+}

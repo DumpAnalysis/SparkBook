@@ -1,0 +1,46 @@
+{
+  "release": "b11898",
+  "model": "Qwen/Qwen2.5-7B-Instruct-GGUF",
+  "revision": "bb5d59e06d9551d752d08b292a50eb208b07ab1f",
+  "archives": [
+    {
+      "name": "llama-b11898-bin-ubuntu-cuda-13.4-arm64.tar.gz",
+      "sha256": "cfb1740c351f0d08979e4c92fbce3769407f609b21853ec95e48dab5cf943db4"
+    },
+    {
+      "name": "cudart-llama-b11898-bin-ubuntu-cuda-13.4-arm64.tar.gz",
+      "sha256": "35d9501caf12b047de2151d81d3bd6f4b9cc563fd04385574ad4a91c303fa787"
+    }
+  ],
+  "shards": {
+    "q4_k_m": [
+      {
+        "name": "qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "bytes": 3993201344,
+        "sha256": "dfce12e3862a5283ccfb88221b48480e58745165de856439950d0f22590580db"
+      },
+      {
+        "name": "qwen2.5-7b-instruct-q4_k_m-00002-of-00002.gguf",
+        "bytes": 689872288,
+        "sha256": "539cf93f78e887edea1c04e2d7d8cdaca9d01dae9c9025bcb8accbe29df3d72a"
+      }
+    ],
+    "q8_0": [
+      {
+        "name": "qwen2.5-7b-instruct-q8_0-00001-of-00003.gguf",
+        "bytes": 3980069248,
+        "sha256": "26e30cb4559f0d9e9e11f34d351292af6f42199ce3fa742b5e7c5af4bc35b0f0"
+      },
+      {
+        "name": "qwen2.5-7b-instruct-q8_0-00002-of-00003.gguf",
+        "bytes": 3942935680,
+        "sha256": "e93856ce0cb05d5abd698eb439c0fea3acd412d9040f5ab7d2d4d088add5287d"
+      },
+      {
+        "name": "qwen2.5-7b-instruct-q8_0-00003-of-00003.gguf",
+        "bytes": 175520480,
+        "sha256": "8f29c0e4173d4d92d35c52a7c5807c34a3edfe6bb078ea785d145b7d88c16e44"
+      }
+    ]
+  }
+}

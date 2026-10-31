@@ -1,0 +1,38 @@
+Exercise 174  Download and verify one model at a time
+
+Question
+Can each media checkpoint be reopened from a verified local snapshot?
+
+Before you start
+Exercise 172 (qualify a separate media environment)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+11.9 s for Acquire the pinned MMS files (record 174.01).
+
+Check for success
+Bind revision, selected files and fingerprints before loading. Keep acquisition and inference receipts separate.
+
+Run in your lab
+The example downloads and verifies MMS only. Select qwen-vl, sdxl, musicgen or whisper when the next exercise needs that model; do not download every model at once.
+
+python media/assets.py mms
+python media/assets.py mms --verify
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep pinned revision and local file fingerprints.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The pinned media models were newly acquired and checked against retained publisher metadata and local hashes. Model weights and download caches are excluded from the handoff; the editor can compare the receipts but cannot independently rehash absent weights. Inference then used local files. Preserve license and revision records with each model.
+Scope  A valid media file or successful environment probe precedes scoring the model output.
+
+Recorded files
+python reader/records.py 174 --files

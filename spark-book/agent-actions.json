@@ -1,0 +1,5 @@
+[
+  {"action":"read","key":"request"},
+  {"action":"read","key":"limits"},
+  {"action":"final","diagnosis":"The supplied input exceeds the configured context. Reduce or segment the input and retest.","evidence":["request","limits"]}
+]

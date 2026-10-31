@@ -1,0 +1,39 @@
+Exercise 245  Diagnose incomplete streams and loading delays
+
+Question
+Did the client stop receiving data because loading was slow or because the stream ended?
+
+Before you start
+Exercise 244 (import a verified model and exercise the local API)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+7.9 s for Final reloaded (record 245.02).
+
+Check for success
+Inspect load timing, raw SSE events and finish reason. Keep a client timeout separate from server-side completion.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${LMS_MODEL:?Set LMS_MODEL to the loaded chat model ID reported by the llmster API}"
+python runtimes/probe.py --backend openai --base http://127.0.0.1:1234 --model "$LMS_MODEL" --out "$LAB_RUN/lmstudio-repeat"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/lmstudio-repeat with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Warm and post-reload requests used fresh directories and retained terminal response status. The load/reload command duration and the later response latency measure different intervals.
+Scope  A quicker warm request does not by itself identify which cache, model page or initialization stage was reused.
+
+Recorded files
+python reader/records.py 245 --files

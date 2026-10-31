@@ -1,0 +1,39 @@
+Exercise 232  Verify Choice, Score and Noul contracts
+
+Question
+Can the Jev client distinguish Choice, Score and Noul response contracts?
+
+Before you start
+Exercise 220 (isolate and identify the orchestration environment)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+0.11 s for Control (record 232.01).
+
+Check for success
+Run the fabricated-response controls and match each injected fault to its rejection.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/jev_lab.py control --out "$LAB_RUN/jev.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/jev.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The fresh local Jev controls exercised Choice, Score and Noul response contracts with explicit simulated payloads. The code and adapter ran; no hosted Jev model was called. Versioned fields, abstention and normalization remain part of the contract.
+Scope  The local contract and calibration records have different evidentiary scope from a hosted model response.
+
+Recorded files
+python reader/records.py 232 --files

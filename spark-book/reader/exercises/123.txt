@@ -1,0 +1,39 @@
+Exercise 123  Qualify the environment and the resource budget
+
+Question
+Which distributed backends and physical devices can this workspace actually use?
+
+Before you start
+Exercise 14 (run a small synchronized computation)
+CPU processes for emulation; one qualified GPU for CUDA comparisons. Worker count does not add physical GPUs.
+
+Recorded step time
+1.4 s for Distributed probe (record 123.01).
+
+Check for success
+Record device count and backend availability, then inspect the real process-group launch result separately.
+
+Run in your lab
+Begin with process emulation; it teaches communication and recovery without claiming multiple physical GPUs.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python distributed/lab.py probe --out "$LAB_RUN/distributed-probe"
+
+Interpret the result
+Distinguish process emulation, single-GPU DDP and actual multi-GPU behavior.
+
+If the check fails
+Check rank identity, rendezvous, operation order and missing participants.
+
+Finish
+Keep $LAB_RUN/distributed-probe with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual WSL inventory reports Gloo and NCCL availability and one CUDA device. Import flags and device enumeration are prerequisites, not proof of collective execution. Exercise 129 separately records the native DDP failure, logical-node success and one-device NCCL result.
+Scope  Enumerating a backend or one GPU does not establish multi-device training.
+
+Recorded files
+python reader/records.py 123 --files

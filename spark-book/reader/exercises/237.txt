@@ -1,0 +1,40 @@
+Exercise 237  Obtain sentence embeddings through Ollama
+
+Question
+Does the Ollama embedding endpoint preserve input order and vector shape?
+
+Before you start
+Exercise 235 (qualify a native Ollama installation) · Exercise 75 (prepare the environment and freeze the encoder)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+40.4 s for Ollama embedding (record 237.01).
+
+Check for success
+Check returned vector count, dimension, finite values and request identity for the sentence inputs.
+
+Run in your lab
+Prepare the supported embedding model first and compare dimensions/normalization with the intended encoder contract.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${OLLAMA_EMBED_DIGEST:?Set OLLAMA_EMBED_DIGEST to that embedding model’s complete recorded digest}"
+: "${OLLAMA_EMBED_MODEL:?Set OLLAMA_EMBED_MODEL to the imported sentence-embedding model name}"
+python runtimes/probe.py --backend ollama --base http://127.0.0.1:11434 --model "$OLLAMA_EMBED_MODEL" --digest "$OLLAMA_EMBED_DIGEST" --embedding --out "$LAB_RUN/ollama-embedding"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/ollama-embedding with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The actual EmbeddingGemma request returned three finite, nonzero sentence vectors of a consistent dimension. Publisher identity, model license and raw response are retained.
+Scope  Shape and finite-value checks qualify the API result; they do not measure retrieval ranking, semantic separation or transfer quality.
+
+Recorded files
+python reader/records.py 237 --files

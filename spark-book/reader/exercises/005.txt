@@ -1,0 +1,40 @@
+Exercise 5  Start the baseline server
+
+Question
+How can we tell that the intended GPU server is ready to accept a request?
+
+Before you start
+Exercise 4 (download and fingerprint)
+The verified Q4 shards, native runtime and libraries from Exercise 4. Use one local server on port 8080.
+
+Recorded step time
+6.3 s for Restart with placement logging (record 005.02).
+
+Check for success
+Read the readiness reply, model alias and native placement log together. Compare the logged KV buffer with your Exercise 2 prediction.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q4_k_m
+
+Inspect
+Read the server startup log for readiness, loaded layers, device/host buffers and effective context.
+
+Interpret the result
+Require readiness and explicit layer/buffer placement. A healthy server still needs an answer-quality check.
+
+If the check fails
+Check the first failed boundary: file, loader, service health, request, then answer.
+
+Finish
+Keep this one server running for Exercise 6; stop it with bash serve.sh stop when leaving the route.
+
+Handoff
+Keep the server running. Its PID and log directory are in runs/linux-server-state.json. Use the same server for Exercises 6, 8 and 9.
+
+Recorded result  The server answered its readiness checks. The verbose restart also exposed effective placement and buffer sizes.
+Scope  Readiness and buffer placement qualify startup. The following exercise grades the generated text.
+
+Recorded files
+python reader/records.py 5 --files

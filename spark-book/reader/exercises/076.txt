@@ -1,0 +1,37 @@
+Exercise 76  Prove that pooling excludes padding
+
+Question
+Does padding change the sentence vector when the text stays fixed?
+
+Before you start
+Exercise 75 (prepare the environment and freeze the encoder)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+0.11 s for Pooling (record 076.01).
+
+Check for success
+Compare a sentence under two padded lengths using the attention mask. Confirm that the deliberately unmasked control exposes the error.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python embeddings/pooling_demo.py
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep correct and deliberately wrong pooling values.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU numerical controls.
+Scope  The small pooling vectors isolate masking and normalization effects.
+
+Recorded files
+python reader/records.py 76 --files

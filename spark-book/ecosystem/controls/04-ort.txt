@@ -1,0 +1,8 @@
+$ python ecosystem/lab.py ort --src ecosystem/controls/fixture --models ecosystem/controls/onnx --out ecosystem/controls/ort
+batch=1 shape=(1, 4) max_abs_error=0.000e+00
+batch=3 shape=(3, 4) max_abs_error=0.000e+00
+batch=8 shape=(8, 4) max_abs_error=0.000e+00
+invalid width: rejected (InvalidArgument)
+invalid dtype: rejected (InvalidArgument)
+Observed node providers: CPUExecutionProvider
+[exit 0]

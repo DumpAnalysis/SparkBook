@@ -1,0 +1,10 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/ngc_lab.py info --out catalogs/controls/ngc-info
+resource: nvidia/ngc-apps/ngc_cli
+version: 4.34.10
+publisher: NVIDIA
+guest_download: True
+version_files: 6
+arm64_file: ngccli_arm64.zip
+arm64_bytes: 58219524
+arm64_sha256: 5c18c5d14ad9e4b8c8ac0b5c596cd4ed33c1e4a3f2bd93f851eb974a6f3f6847
+[exit 0]

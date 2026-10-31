@@ -1,0 +1,39 @@
+Exercise 203  Share GPU ownership and deploy bounded media requests
+
+Question
+Does a bounded media service keep one GPU owner while enforcing admission limits?
+
+Before you start
+Exercise 202 (connect speech recognition to a local language model and speech synthesis) · Exercise 132 (batch compatible work and bound admission) · Exercise 141 (run a bounded container and inspect its lifecycle)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+2.6 s for Graceful stop (record 203.02).
+
+Check for success
+Match request IDs to acceptance, rejection and completion, then verify owner identity and orderly shutdown.
+
+Run in your lab
+The entry tests local admission. The recorded Docker service and its client/shutdown driver are separate stages. Use reader/records.py 203 --files and the exercise source index to locate the exact deployment resources.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/controls.py queue --out "$LAB_RUN/media-queue"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/media-queue with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The non-root Docker MMS service kept one warmed CUDA model owner, with a 256-character/4096-byte limit and no queued uploads. The retained requests returned 200 for accepted synthesis, 422 for overlength input, 408 for an expired deadline and 429 for two concurrent requests while busy. Both successful WAVs are finite and nonzero. The first shutdown required SIGKILL (exit 137); signal handling plus --init reduced the corrected stop to about 2.58 seconds with exit 0.
+Scope  These checks do not establish mid-kernel cancellation or a Kubernetes media rollout.
+
+Recorded files
+python reader/records.py 203 --files

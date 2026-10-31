@@ -1,0 +1,39 @@
+Exercise 109  Capture a bounded stall
+
+Question
+Which operation is the stalled child waiting for?
+
+Before you start
+Exercise 14 (run a small synchronized computation)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+1.6 s for Capture the blocked child’s waiting stack (record 109.01).
+
+Check for success
+Open stacks.txt and find the wait site. Pair it with the last progress event and the supervisor's bounded timeout.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py hang --mode blocked --out "$LAB_RUN/hang"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/hang with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU bounded-stall control captured its waiting stack and ended the owned child with SIGTERM (−15). The supervisor returned zero because it successfully collected the intended failure. Wrapper success is distinct from child progress; the full stack and event record remain in the companion.
+Scope  The controlled child and its supervisor define which waiting and recovery events were observed.
+
+Recorded files
+python reader/records.py 109 --files

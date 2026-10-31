@@ -1,0 +1,39 @@
+Exercise 250  Compare deployment and decide whether to fine tune
+
+Question
+Would a deployment change or fine-tuning address the observed error?
+
+Before you start
+Exercise 249 (qualify hybrid kernels and partial offload) · Exercise 167 (compare quality memory and serving latency together)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+36.4 s for Model cache advice and headroom corrected (record 250.03).
+
+Check for success
+Compare both runtimes on identical inputs. Score completion, format, arithmetic and evidence identity separately before proposing training.
+
+Run in your lab
+Use the full held-out task set and rubric from Chapter 100. A completed stream is not a model-quality promotion.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${NEMOTRON_MODEL:?Set NEMOTRON_MODEL to the model ID of the qualified local Nemotron server}"
+python runtimes/probe.py --backend openai --base http://127.0.0.1:8087 --model "$NEMOTRON_MODEL" --out "$LAB_RUN/nemotron-evaluation"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/nemotron-evaluation with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — With the same Q4 model, explicit reasoning-off prompt rendering, context 2048 and a 512-token output cap, all eight native/Ollama requests complete with HTTP 200. All four number-only arithmetic responses are exactly “4”. Completion/format qualification PASSED after an initial headroom refusal, but diagnostic factual quality remains insufficient for promotion.
+Scope  Compare the complete outputs on matched inputs before deciding whether training is justified.
+
+Recorded files
+python reader/records.py 250 --files

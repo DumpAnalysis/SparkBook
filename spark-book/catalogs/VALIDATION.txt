@@ -1,0 +1,32 @@
+VERSION 19 VALIDATION AND SCOPE
+28 October 2026
+
+Eight exercises were added: 204-207 for NGC and 208-211 for Hugging Face.
+The book contains 90 chapters, 211 exercises and 185 references.
+The verified render is 314 pages at 7 by 10 inches. Pagination can differ
+with fonts or renderers; chapter and exercise numbers are stable locators.
+
+Actual execution: eleven complete command captures, including the explicit
+GPU-unavailable result (exit 2) and fifteen passing offline regressions.
+All other captured commands exited 0. Six new Python files passed syntax
+parsing and run_ngc_probe.sh passed bash -n. Full outputs and environment
+records are in controls/. No earlier runtime suite was rerun.
+
+Preservation: 846 prior companion files, excluding the revised root README
+and replaced current manifest, remain byte-identical. All 2,736 existing
+Code paragraphs remain in order. The eleven embedded figures and two native
+Word equations are unchanged. All eleven new transcript texts appear
+exactly in the manuscript, allowing visual line wrapping.
+
+Document checks: all 100 contents entries match rendered chapter/section
+openings. The first 88 chapters retain the previous edition page bodies
+exactly, confirmed by rendered body hashes. The final render has 276 page
+bodies identical to the prior edition; all changed/new pages were visually
+reviewed. Text is within the 7 by 10 inch paper bounds. New glossary and
+index entries follow the existing typography.
+
+Execution limits: no WSL2, CUDA, Docker or native ARM64 CLI success was
+executed during preparation. The ARM64 executable was downloaded, hashed
+and inspected. Registry image layers were not downloaded. The Hub model
+is a random CPU loading fixture, and the ten-row dataset establishes no
+training readiness. Publisher archives, weights and CSV files are excluded.

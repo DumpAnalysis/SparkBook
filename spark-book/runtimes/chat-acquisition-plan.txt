@@ -1,0 +1,4 @@
+repository Qwen/Qwen2.5-1.5B-Instruct-GGUF
+revision 91cad51170dc346986eccefdc2dd33a9da36ead9
+selected files 1 bytes 1117320736
+PLAN ONLY; no network transfer

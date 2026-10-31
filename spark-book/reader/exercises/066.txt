@@ -1,0 +1,39 @@
+Exercise 66  Verify packing and rounding on the CPU
+
+Question
+How is a signed four-bit value rounded, saturated and placed in its byte?
+
+Before you start
+Exercise 3 (verify the client without a model)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+0.03 s for CPU INT4 (record 066.01).
+
+Check for success
+Work one pair through the code and packing order. Check exact bytes and the odd final element against the CPU control.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python advanced/reference.py int4 --out "$LAB_RUN/int4.json"
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep $LAB_RUN/int4.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU numerical reference.
+Scope  The INT4 arithmetic here is a CPU reference calculation.
+
+Recorded files
+python reader/records.py 66 --files

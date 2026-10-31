@@ -1,0 +1,5 @@
+$ python ecosystem/lab.py lora --out ecosystem/controls/lora
+CPU LoRA control: steps=20 trainable=24 base=32 frozen=True
+loss 0.258363 -> 0.246384; restored max_error=4.768e-07
+No NeMo, language-model quality or GPU training result is claimed
+[exit 0]

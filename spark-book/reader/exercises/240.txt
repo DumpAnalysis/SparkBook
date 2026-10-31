@@ -1,0 +1,39 @@
+Exercise 240  Run a bounded QLoRA smoke training session
+
+Question
+Can this quantized-base training configuration reach a usable intermediate checkpoint?
+
+Before you start
+Exercise 239 (freeze the base and audit a tiny training split) · Exercise 14 (run a small synchronized computation)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+1 min 22 s for Unsloth native training (record 240.01).
+
+Check for success
+Check device placement, trainable adapters, finite updates and checkpoint-5. Record memory at the measured training boundary.
+
+Run in your lab
+Use a separately qualified Unsloth environment and preserve its exact dependency record. The five-update pause is deliberate; Exercise 241 resumes it.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${TRAINING_BASE:?Set TRAINING_BASE to the pinned local base snapshot for Unsloth}"
+python runtimes/train_unsloth.py --base "$TRAINING_BASE" --out "$LAB_RUN/qlora"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/qlora with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual Unsloth QLoRA completed five CUDA optimizer updates with 9,232,384 trainable parameters, sequence length 256, microbatch 1 and accumulation 4. The recorded evaluation loss fell from 5.8703 to 3.5985; peak PyTorch allocation was about 1.35 GiB and reservation 1.68 GiB. Those allocator counters exclude other process/driver use. The four heldout synthetic examples are too few for a generalization claim.
+Scope  A successful training update or valid output syntax does not by itself establish task improvement.
+
+Recorded files
+python reader/records.py 240 --files

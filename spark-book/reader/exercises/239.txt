@@ -1,0 +1,39 @@
+Exercise 239  Freeze the base and audit a tiny training split
+
+Question
+Could the adapter training input or base revision change between two runs?
+
+Before you start
+Exercise 24 (create and inspect the teaching corpus)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+0.37 s for Overlay pip check (record 239.02).
+
+Check for success
+Verify base hashes, family split and supervised labels before starting the bounded QLoRA experiment.
+
+Run in your lab
+This is a CPU data/identity control. Acquire the pinned training-base separately before running Unsloth.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python runtimes/lab.py 239 --out "$LAB_RUN/training-split"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/training-split with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The existing pinned Qwen 1.5B base was reused, with its complete file-hash receipt and the 12-training/4-heldout synthetic split retained. Unsloth dependencies use an isolated overlay that reuses the qualified native Torch/NumPy/CUDA libraries; the original environment stayed unchanged. Failed dependency resolution remains evidence rather than a reason to overwrite the working CUDA stack.
+Scope  A successful training update or valid output syntax does not by itself establish task improvement.
+
+Recorded files
+python reader/records.py 239 --files

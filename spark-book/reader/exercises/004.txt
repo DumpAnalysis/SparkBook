@@ -1,0 +1,40 @@
+Exercise 4  Download and fingerprint
+
+Question
+Could someone identify the exact runtime and weights used in this lab?
+
+Before you start
+Exercise 1 (inventory the existing environment) · Exercise 2 (calculate before allocating) · Exercise 3 (verify the client without a model)
+Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).
+
+Recorded step time
+8.9 s to rehash cached assets, extract the runtime and write the receipt (004.01). A first download has a different duration.
+
+Check for success
+Match both runtime archives and both Q4 shards to the saved SHA-256 values. The Q4 shard sizes and the pinned revision must also agree.
+
+Run in your lab
+The normal setup verifies files as it acquires or reuses them. To recheck an existing cache without a download or extraction, run python setup_wsl.py --verify-only instead.
+
+python setup_wsl.py
+
+Inspect
+Check runs/linux-manifest-q4_k_m.json against reader/native-asset-pins.json. Model hashes identify the files used on the example laptop.
+
+Interpret the result
+Successful acquisition establishes which files are present; Exercise 5 tests whether this runtime can load them.
+
+If the check fails
+A size or SHA-256 mismatch names the file. Retain that error and move the affected cached file aside before retrying acquisition.
+
+Finish
+Keep the model shards and receipts at their configured paths for Exercise 5.
+
+Handoff
+Keep the two verified archives, both model shards and runs/linux-manifest-q4_k_m.json. Exercise 5 loads the first shard and discovers its partner.
+
+Recorded result  The cache validation rehashed two runtime archives and two Q4 shards and rebuilt the receipt.
+Scope  The recorded validation reused the four cached Q4 files. Acquisition time depends on the initial cache.
+
+Recorded files
+python reader/records.py 4 --files

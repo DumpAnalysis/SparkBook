@@ -1,0 +1,39 @@
+Exercise 117  Detect missing and inconsistent evidence
+
+Question
+Would the diagnosis survive a missing span, duplicate ID or wrong time unit?
+
+Before you start
+Exercise 91 (establish the monitoring contract)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+0.07 s for Audit damaged trace copies (record 117.01).
+
+Check for success
+Check that the validator rejects each injected observation fault and still accepts the clean control.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${REQUEST_TRACE:?Set REQUEST_TRACE to the trace JSON produced by Exercise 111}"
+python diagnostics/lab.py audit --trace "$REQUEST_TRACE" --out "$LAB_RUN/audit"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/audit with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU controls damaged copies of trace records to test missing events, duplicate correlation, stale values, backward times and unit mismatches. Detection passed for the stated predicates. Synthetic corruptions test the validator, not the reliability of a live GPU trace provider.
+Scope  The deliberately altered inputs test whether the monitoring path detects those faults.
+
+Recorded files
+python reader/records.py 117 --files

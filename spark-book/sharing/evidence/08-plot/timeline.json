@@ -1,0 +1,249 @@
+{
+  "traceEvents": [
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 0,
+      "tid": 0,
+      "ts": 0.0,
+      "dur": 1693.9299999999998,
+      "args": {
+        "id": 0
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 0,
+      "tid": 0,
+      "ts": 1698.067,
+      "dur": 717.5310000000001,
+      "args": {
+        "id": 4
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 0,
+      "tid": 0,
+      "ts": 2417.441,
+      "dur": 843.971,
+      "args": {
+        "id": 8
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 0,
+      "tid": 0,
+      "ts": 3262.804,
+      "dur": 434.26300000000003,
+      "args": {
+        "id": 12
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 45.659,
+      "dur": 1686.038,
+      "args": {
+        "id": 1
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 1737.265,
+      "dur": 724.423,
+      "args": {
+        "id": 5
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 2464.402,
+      "dur": 820.515,
+      "args": {
+        "id": 9
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 1,
+      "tid": 0,
+      "ts": 3286.57,
+      "dur": 416.862,
+      "args": {
+        "id": 13
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 2,
+      "tid": 0,
+      "ts": 45.313,
+      "dur": 1692.768,
+      "args": {
+        "id": 2
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 2,
+      "tid": 0,
+      "ts": 1742.468,
+      "dur": 726.185,
+      "args": {
+        "id": 6
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 2,
+      "tid": 0,
+      "ts": 2470.826,
+      "dur": 778.237,
+      "args": {
+        "id": 10
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 2,
+      "tid": 0,
+      "ts": 3250.966,
+      "dur": 470.613,
+      "args": {
+        "id": 14
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 3,
+      "tid": 0,
+      "ts": 137.941,
+      "dur": 1602.955,
+      "args": {
+        "id": 3
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 3,
+      "tid": 0,
+      "ts": 1744.881,
+      "dur": 799.034,
+      "args": {
+        "id": 7
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 3,
+      "tid": 0,
+      "ts": 2546.068,
+      "dur": 707.2270000000001,
+      "args": {
+        "id": 11
+      }
+    },
+    {
+      "name": "client_response_wait",
+      "ph": "X",
+      "pid": 3,
+      "tid": 0,
+      "ts": 3254.647,
+      "dur": 473.10600000000005,
+      "args": {
+        "id": 15
+      }
+    },
+    {
+      "name": "owner_host_service",
+      "ph": "X",
+      "pid": 4,
+      "tid": 0,
+      "ts": 412.341,
+      "dur": 1120.924,
+      "args": {
+        "request_ids": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "name": "owner_host_service",
+      "ph": "X",
+      "pid": 4,
+      "tid": 0,
+      "ts": 1900.093,
+      "dur": 399.347,
+      "args": {
+        "request_ids": [
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "name": "owner_host_service",
+      "ph": "X",
+      "pid": 4,
+      "tid": 0,
+      "ts": 2753.6589999999997,
+      "dur": 250.934,
+      "args": {
+        "request_ids": [
+          8,
+          9,
+          10,
+          11
+        ]
+      }
+    },
+    {
+      "name": "owner_host_service",
+      "ph": "X",
+      "pid": 4,
+      "tid": 0,
+      "ts": 3383.389,
+      "dur": 188.742,
+      "args": {
+        "request_ids": [
+          12,
+          13,
+          14,
+          15
+        ]
+      }
+    }
+  ],
+  "displayTimeUnit": "ms",
+  "metadata": {
+    "clock": "one host perf_counter_ns",
+    "device": "cpu"
+  }
+}

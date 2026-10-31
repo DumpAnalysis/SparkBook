@@ -1,0 +1,38 @@
+Exercise 46  Decouple the grid from the data length
+
+Question
+Can a smaller grid still give every element exactly one owner?
+
+Before you start
+Exercise 45 (write vector addition with a tail guard)
+NVCC and host C++ compiler; small bounded tensors, no model download.
+
+Recorded step time
+0.72 s for Decouple the grid from the data length — reference check (record 046.01).
+
+Check for success
+Follow a thread's index and grid stride. Run the supplied size/grid cases and check the complete output against the reference.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+bash kernels/build.sh starter
+./kernels/bin/kernel-student stride 1003 256 2
+
+Interpret the result
+Validate values and bounds before comparing performance.
+
+If the check fails
+Reduce the failing shape and inspect indexing, synchronization and launch arguments.
+
+Finish
+Keep ownership reasoning and 54 target cases.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU source implementation and CPU-oracle validation.
+Scope  Numerical agreement applies to the tested shapes and inputs.
+
+Recorded files
+python reader/records.py 46 --files

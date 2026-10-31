@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "data": {
+    "alerts": [
+      {
+        "labels": {
+          "alertname": "GpuMemoryPressure",
+          "gpu": "fixture-gpu",
+          "instance": "127.0.0.1:9400",
+          "job": "gpu",
+          "severity": "warning",
+          "source": "fixture"
+        },
+        "annotations": {},
+        "state": "firing",
+        "activeAt": "2026-10-28T12:23:52.785799866Z",
+        "value": "9.5e-01"
+      }
+    ]
+  }
+}

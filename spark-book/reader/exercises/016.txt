@@ -1,0 +1,39 @@
+Exercise 16  Inspect the grounded answer
+
+Question
+Can each diagnostic claim in the answer be traced to the supplied records?
+
+Before you start
+Exercise 5 (start the baseline server) · Exercise 15 (build an evidence prompt)
+Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).
+
+Recorded step time
+4.3 s for Q4 baseline start (record 016.01).
+
+Check for success
+Match every causal claim to a quoted observation. Mark any unsupported claim even when the request and citations look valid.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${GROUNDED_PROMPT:?Set GROUNDED_PROMPT to the grounded.txt produced by Exercise 15}"
+python spark_lab.py query "$GROUNDED_PROMPT" --out "$LAB_RUN/grounded-answer.json"
+
+Interpret the result
+Fluent wording and valid output format do not establish a grounded diagnosis.
+
+If the check fails
+Check the first failed boundary: file, loader, service health, request, then answer.
+
+Finish
+Retain both the prompt and answer with the claim-by-claim assessment.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  FAILED — The answer used the absence of B-side logs to support a claim about service B that the supplied evidence could not establish.
+Scope  The missing B-side logs leave several causal accounts open.
+
+Recorded files
+python reader/records.py 16 --files

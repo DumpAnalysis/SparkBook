@@ -1,0 +1,37 @@
+Exercise 175  Validate the media contracts
+
+Question
+Would a format or silence error be caught before an expensive model call?
+
+Before you start
+Exercise 173 (create inspectable image and audio fixtures)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+3.9 s for Media contract tests (record 175.01).
+
+Check for success
+Run the media contracts and inspect the rejected cases, including the guard before a request on digital silence.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python media/validate.py
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep complete portable regression results.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — All 25 fresh media contract tests passed in the current WSL environment. They cover formats, resampling, leakage, bounded requests, scoring and silence gating.
+Scope  Passing a wrapper contract does not prove that a pretrained recognizer will return an empty answer for silence; Exercise 198 tests that separately.
+
+Recorded files
+python reader/records.py 175 --files

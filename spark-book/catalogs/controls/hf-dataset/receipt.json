@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "bytes": 2665,
+      "path": "README.md",
+      "sha256": "014e5e55b26c0fd094294059016f2b73cbbc47145d3042850afddacb4f540cbc"
+    },
+    {
+      "bytes": 894,
+      "path": "data/test.csv",
+      "sha256": "d9e0cbb5b8850ef7efc1955f7400b0462fa2cef6dfe517b64ed6fcf7ea712c58"
+    },
+    {
+      "bytes": 1446,
+      "path": "data/train.csv",
+      "sha256": "676adb60715897e51ac08a54393575942e2df0e5a0b9687d5ca0b6c8113a995a"
+    }
+  ],
+  "publisher_license": "UNSPECIFIED in pinned metadata",
+  "repo_id": "lhoestq/demo1",
+  "repo_type": "dataset",
+  "revision": "87ecf163bedca9d80598b528940a9c4f99e14c11",
+  "weights_in_companion": false
+}

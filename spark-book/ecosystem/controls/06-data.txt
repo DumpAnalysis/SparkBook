@@ -1,0 +1,6 @@
+$ python ecosystem/lab.py data --out ecosystem/controls/data
+split rows: train=8 validation=2 test=2; exact content overlap=0
+Injected train/validation duplicate detected=1
+prompt tokens=17; shifted answer labels including EOS=16
+Production audit must use the real tokenizer and rendered chat template
+[exit 0]

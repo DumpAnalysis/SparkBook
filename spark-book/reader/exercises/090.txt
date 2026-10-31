@@ -1,0 +1,39 @@
+Exercise 90  Move the measured pipeline to WSL2 CUDA
+
+Question
+Which stages of the embedding pipeline actually execute on CUDA?
+
+Before you start
+Exercise 14 (run a small synchronized computation) · Exercise 78 (measure search before changing the model)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+44.4 s for CUDA pipeline (record 090.01).
+
+Check for success
+Read the device probe and each stage's device and memory record. Qualify device tracing separately from successful encoding.
+
+Run in your lab
+Stop the inference server before measuring the embedding pipeline if it is not part of the experiment. Profiling is a separate run after timing qualification.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${ENCODER:?Set ENCODER to your pinned base encoder or selected fine-tuned encoder}"
+python embeddings/encode.py --model "$ENCODER" --device cuda --out "$LAB_RUN/gpu-vectors"
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep $LAB_RUN/gpu-vectors with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU actual embedding/training pipeline and CPU projection; tracing unavailable.
+Scope  The learned workload ran on CUDA. Kernel timing still requires a usable trace.
+
+Recorded files
+python reader/records.py 90 --files

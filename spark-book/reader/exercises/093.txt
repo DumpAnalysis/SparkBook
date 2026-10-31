@@ -1,0 +1,40 @@
+Exercise 93  Verify the wrapper without inventing GPU observations
+
+Question
+Can the wrapper record a host task while GPU sampling is disabled?
+
+Before you start
+Exercise 91 (establish the monitoring contract)
+CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.
+
+Recorded step time
+2.2 s for CPU collector (record 093.01).
+
+Check for success
+Match the executed host markers to their timestamps and leave the disabled GPU fields explicitly unavailable.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python metrics/make_plan.py cpu --out "$LAB_RUN/cpu-plan.json"
+python metrics/monitor.py --plan "$LAB_RUN/cpu-plan.json" --out "$LAB_RUN/cpu-session" --no-gpu
+
+Interpret the result
+Explain coverage and sampling limits before interpreting utilization or peaks.
+
+If the check fails
+Inspect the raw sample before blaming a plot; check stale or unsupported fields.
+
+Finish
+Keep $LAB_RUN/cpu-plan.json, $LAB_RUN/cpu-session with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU real host wrapper and guest sampling; GPU disabled.
+Scope  GPU collection was disabled for this host-sampling control.
+
+Recorded files
+python reader/records.py 93 --files

@@ -1,0 +1,23 @@
+{
+  "status": "EXPECTED_FAILURE",
+  "failure": {
+    "kind": "collective_mismatch",
+    "sequence": 1,
+    "observed": [
+      {
+        "rank": 0,
+        "operation": "mean",
+        "sequence": 1
+      },
+      {
+        "rank": 1,
+        "operation": "broadcast",
+        "sequence": 1
+      }
+    ]
+  },
+  "exitcodes": [
+    1,
+    1
+  ]
+}

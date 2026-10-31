@@ -1,0 +1,42 @@
+Exercise 142  Add the GPU runtime and a generation image
+
+Question
+Did the container execute CUDA work through the mapped driver?
+
+Before you start
+Exercise 141 (run a bounded container and inspect its lifecycle) · Exercise 5 (start the baseline server)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+3.3 s for Container CUDA numerical probe (record 142.01).
+
+Check for success
+Check the in-container arithmetic result before testing the generation image. Read its placement log with the response.
+
+Run in your lab
+The first command inventories the host. The binary built in this workspace then runs inside the GPU-enabled container. Read its numerical verification before proceeding to the generation image.
+
+: "${LAB_RUN:?Start a new lab run first}"
+python serving/lab.py qualify --out "$LAB_RUN/container-inventory"
+bash kernels/build.sh reference
+docker run --rm --gpus all \
+  --mount "type=bind,src=$PWD/kernels/bin/kernel-lab,dst=/probe,readonly" \
+  python@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159 /probe add 1048576 256
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/container-inventory with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual Docker CUDA addition checked 1,048,576 elements, followed by Q4 generation. The first successful stream lacked placement detail, so a same-image verbose repeat confirmed 29/29 layers on GPU.
+Scope  Container llama.cpp build 12004 (3c809f443) differs from the native b11898 runtime; do not attribute a timing difference solely to packaging.
+
+Recorded files
+python reader/records.py 142 --files

@@ -1,0 +1,39 @@
+Exercise 87  Fine tune the pretrained sentence encoder
+
+Question
+Does the tuned sentence encoder improve retrieval on independent families?
+
+Before you start
+Exercise 75 (prepare the environment and freeze the encoder) · Exercise 78 (measure search before changing the model)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+9.7 s for Contrastive tuned (record 087.01).
+
+Check for success
+Select the checkpoint on development data and evaluate once on the held-out test families. Compare against the frozen baseline.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python embeddings/finetune.py --model embeddings/models/minilm --out "$LAB_RUN/tuned-encoder" --device cpu
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep $LAB_RUN/tuned-encoder with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU actual encoder training and held-out evaluation.
+Scope  Pair training and downstream retrieval have separate evaluation criteria.
+
+Recorded files
+python reader/records.py 87 --files

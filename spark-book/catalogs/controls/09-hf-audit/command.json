@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "catalogs/hf_lab.py",
+    "dataset",
+    "--snapshot",
+    "../catalog-downloads/hf-dataset",
+    "--out",
+    "catalogs/controls/hf-audit"
+  ],
+  "start_ns": 1793183905925849490,
+  "end_ns": 1793183906125635030,
+  "exit": 0
+}

@@ -1,0 +1,35 @@
+Exercise 98  Move from a trend to an execution explanation
+
+Question
+What next observation would distinguish two explanations for the same GPU trend?
+
+Before you start
+Exercise 95 (correlate inference requests with GPU activity) · Exercise 39 (capture four annotated iterations)
+CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.
+
+Recorded step time
+0.33 s for Sample device memory after stopping the server (record 098.01).
+
+Check for success
+Name the competing causes, then select a trace or controlled experiment that could separate them. Record a capability limit if collection fails.
+
+Run in your lab
+Choose one workload interval from Exercise 95 and explain what sampling can establish. Use Exercise 39 or 43 only if the relevant tracing prerequisite passes.
+
+Interpret the result
+Explain coverage and sampling limits before interpreting utilization or peaks.
+
+If the check fails
+Inspect the raw sample before blaming a plot; check stale or unsupported fields.
+
+Finish
+Keep telemetry, trace or capability limit, and diagnostic account.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU diagnostic analysis of actual GPU-inference telemetry; detailed trace capability blocked.
+Scope  Attribution to an individual GPU process or kernel requires additional evidence.
+
+Recorded files
+python reader/records.py 98 --files

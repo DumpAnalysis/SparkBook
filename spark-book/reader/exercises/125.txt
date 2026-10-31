@@ -1,0 +1,43 @@
+Exercise 125  Visualize a delayed worker
+
+Question
+Where does one delayed worker cause its peer to wait?
+
+Before you start
+Exercise 124 (compare process training with a full batch reference)
+CPU processes for emulation; one qualified GPU for CUDA comparisons. Worker count does not add physical GPUs.
+
+Recorded step time
+5.8 s for Delay one CPU rank (record 125.01).
+
+Check for success
+Align per-rank host spans. Identify the injected delay and the corresponding wait in gradient averaging.
+
+Predict before running
+Which rank waits when only its peer is delayed?
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python distributed/pipe_lab.py slow --out "$LAB_RUN/slow-worker"
+python distributed/lab.py plot --source "$LAB_RUN/slow-worker" --out "$LAB_RUN/worker-plot"
+
+Interpret the result
+Distinguish process emulation, single-GPU DDP and actual multi-GPU behavior.
+
+If the check fails
+Check rank identity, rendezvous, operation order and missing participants.
+
+Finish
+Keep $LAB_RUN/slow-worker, $LAB_RUN/worker-plot with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU rank timeline contains 41 host spans. Injecting a 0.75-second delay into rank 1 caused rank 0 to wait more than 0.6 seconds in gradient averaging. This localizes the controlled straggler. The figure is one host’s phase chronology, without GPU kernels or network-fabric measurements.
+Scope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.
+
+Recorded files
+python reader/records.py 125 --files

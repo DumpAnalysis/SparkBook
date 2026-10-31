@@ -1,0 +1,53 @@
+USER-SUPPLIED TERMINAL TEXT — 30 October 2026
+These two historical terminal pastes are REPORTED observations, separate from
+the complete executed allocation investigation in Exercise 251. The first
+paste has a local display time without timezone; the second has no execution
+timestamp. stderr separation and exits were not supplied. The measurement text follows each marker. The shell login prompt is omitted.
+
+--- Paste 1 ---
+$ nvidia-smi
+Fri Oct 30 12:36:08 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 615.78.05              KMD Version: 617.42        CUDA UMD Version: 13.4     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA RTX Spark N1X (61...    On  |   0000000F:01:00.0  On |                  N/A |
+| N/A   53C    P8              1W /  N/A  |    4525MiB /  31232MiB |      2%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+[Shell prompt omitted in this learner copy.]
+
+--- Paste 2 ---
+~$ free -h
+
+~/work/spark-book/.venv-exercises/bin/python - <<'PY'
+import torch
+
+free, total = torch.cuda.mem_get_info()
+gib = 1024**3
+
+print("GPU:", torch.cuda.get_device_name(0))
+print(f"CUDA total: {total / gib:.2f} GiB")
+print(f"CUDA free:  {free / gib:.2f} GiB")
+print(f"PyTorch allocated: {torch.cuda.memory_allocated() / gib:.3f} GiB")
+print(f"PyTorch reserved:  {torch.cuda.memory_reserved() / gib:.3f} GiB")
+PY
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       9.2Gi       3.2Gi       439Mi       4.0Gi       6.5Gi
+Swap:          5.0Gi       615Mi       4.4Gi
+GPU: NVIDIA RTX Spark N1X (6144-core Blackwell RTX GPU)
+CUDA total: 45.97 GiB
+CUDA free:  45.75 GiB
+PyTorch allocated: 0.000 GiB
+PyTorch reserved:  0.000 GiB

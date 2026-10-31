@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "python",
+    "media/targets.py",
+    "asr",
+    "--model",
+    "../models/whisper",
+    "--device",
+    "cpu",
+    "--input",
+    "media/controls/tts/output.wav",
+    "--reference",
+    "media/data/reference.txt",
+    "--out",
+    "media/controls/asr"
+  ],
+  "start_ns": 1793127666361516497,
+  "end_ns": 1793127671695923196,
+  "exit": 0
+}

@@ -1,0 +1,34 @@
+CURRENT TRANSCRIPT AND EVIDENCE POLICY — VERSION 55
+
+Navigate by exercise number and recorded-run label. Use the newest verified
+observation for the operation it actually covers; recency alone does not
+qualify a broader workload. EXERCISE_EVIDENCE_MAP.json maps all 251 exercises.
+
+Exercise 251 records a PASSED 1 GiB pilot and an 18 GiB retained/write/verify
+allocation. This does not establish maximum capacity, dedicated residency,
+absence of paging or model fit. Timestamped activity scopes for Exercises
+151, 179, 186, 191 and 195 remain BLOCKED after the Windows-elevated comparison.
+All 251 exercises were attempted; this is not universal success.
+
+Separate command completion, exercise acceptance, model quality and required
+observations. Preserve failures, repairs, negative tests and missing fields.
+Protocol or format success does not establish a correct model answer.
+Identify supplied laptop GPU execution, supplied laptop CPU execution,
+simulation, historical preparation, reported observation, editorial check,
+and unexecuted procedure. CPU controls retain their proper labels.
+
+The book preserves all 483 selected complete command captures. Times, paths,
+commands, stdout, stderr and exits remain unchanged. Exercise labels are
+editorial navigation; raw records remain byte-identical. Each capture keeps
+its own environment and date. A set of records is not one continuous session.
+Original source names inside raw text establish provenance, not prerequisites.
+
+reader/guide.py displays a portable entry procedure. reader/records.py displays
+record references. Neither helper executes an experiment. The evidence pack
+restores original source files plus an exercise view after hash checks.
+Missing weights, binaries and checkpoint payloads remain missing.
+
+The learner distribution contains current working material. The evidence pack
+contains raw records and their source crosswalk; the optional publisher archive
+contains publication history. Version 55 verifies editorial changes against the retained sources.
+The recorded executions keep their original dates and qualification scope. Follow reader/FIRST_RUN_CHECKLIST.txt on the laptop.

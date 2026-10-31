@@ -1,0 +1,37 @@
+Exercise 37  Compare a valid kernel with a deliberate overrun
+
+Question
+Can the memory checker discriminate a valid write from a write past the end?
+
+Before you start
+Exercise 32 (build debug and performance variants)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+1.2 s for Memcheck overrun (record 037.01).
+
+Check for success
+Compare the clean and deliberately faulty runs. Require the intended invalid-access report on the faulty path.
+
+Run in your lab
+This is an intentional invalid write. Expected sanitizer failure is the test result; do not rerun it inside a valuable model process.
+
+compute-sanitizer --tool memcheck --error-exitcode 86 ./cuda/bin/cuda-lab bad-write
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep valid and faulty memcheck records.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU native control/repair execution; sanitizer initialization failed.
+Scope  The native controls completed, but sanitizer initialization prevented a sanitizer finding.
+
+Recorded files
+python reader/records.py 37 --files

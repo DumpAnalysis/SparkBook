@@ -1,0 +1,22 @@
+{
+  "status": "success",
+  "data": {
+    "alerts": [
+      {
+        "labels": {
+          "alertname": "GpuBusyCounterUnavailable",
+          "field": "utilization.gpu",
+          "gpu": "fixture-gpu",
+          "instance": "127.0.0.1:9400",
+          "job": "gpu",
+          "severity": "info",
+          "source": "fixture"
+        },
+        "annotations": {},
+        "state": "firing",
+        "activeAt": "2026-10-28T12:23:12.785799866Z",
+        "value": "0e+00"
+      }
+    ]
+  }
+}

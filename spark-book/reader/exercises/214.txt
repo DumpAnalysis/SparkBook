@@ -1,0 +1,40 @@
+Exercise 214  Start and inspect the native WSL2 stack
+
+Question
+Can a native scrape reach the intended exporter and obtain its expected fields?
+
+Before you start
+Exercise 213 (prove that unavailable does not mean idle)
+Native monitoring tools or qualified containers; CPU/host memory and retained time-series data.
+
+Recorded step time
+1 min 43 s for Strict native integration (record 214.01).
+
+Check for success
+Check target identity, up and raw metric availability after startup. Inspect the endpoint before diagnosing a dashboard.
+
+Run in your lab
+Use a fresh run directory and free the monitoring ports first. The strict integration driver starts its own stack, polls the targets, checks the simulated field transitions and Grafana query backend, and stops the stack.
+
+: "${LAB_RUN:?Start a new lab run first}"
+: "${TOOLS_JSON:?Set TOOLS_JSON to the qualified tools.json from Exercise 212}"
+python observability/integration.py --tools "$TOOLS_JSON" \
+  --run-dir "$LAB_RUN/obs-strict" --evidence "$LAB_RUN/obs-strict-evidence"
+
+Interpret the result
+Provisioning alone is insufficient; distinguish simulated from live GPU series.
+
+If the check fails
+Trace exporter to scrape to query to panel, preserving missing-data semantics.
+
+Finish
+Keep targets.json, baseline-query.json, missing-query.json and grafana-backend.txt in obs-strict-evidence.
+
+Handoff
+Exercise 215 starts a fresh stack for the three browser captures.
+
+Recorded result  PASSED — Prometheus scraped the fixture, and the native WSL2 stack returned series through Grafana’s data-source backend. Record 214.01 ends with “No WSL2/GPU/Docker execution claimed”. The current integration.py prints “GPU measurements in this integration use the simulated fixture.” Both messages refer to the fixture values.
+Scope  A missing field, a present zero and an unreachable target require three different interpretations.
+
+Recorded files
+python reader/records.py 214 --files

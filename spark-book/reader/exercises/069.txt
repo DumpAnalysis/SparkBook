@@ -1,0 +1,39 @@
+Exercise 69  Resume the next update with its complete state
+
+Question
+What state is needed to reproduce the next update after restart?
+
+Before you start
+Exercise 68 (audit gradients and retained tensors)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+3.2 s for Training resume (record 069.01).
+
+Check for success
+Compare the next loss and parameters with uninterrupted training. Check optimizer, RNG and cursor in addition to weight bytes.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python advanced/training_diagnostics.py resume --device cuda --out "$LAB_RUN/resume"
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep $LAB_RUN/resume with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU training diagnostics.
+Scope  The evidence is the bounded training state and the updates actually compared.
+
+Recorded files
+python reader/records.py 69 --files

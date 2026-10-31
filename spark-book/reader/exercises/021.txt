@@ -1,0 +1,51 @@
+Exercise 21  Compare one and two client workers
+
+Question
+Does adding a second client shorten each request or increase total throughput?
+
+Before you start
+Exercise 8 (measure repeated local requests)
+Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).
+
+Recorded step time
+2.9 s for Restored query (record 021.03).
+
+Check for success
+Compare six serial requests using one server slot with six requests from two clients using two slots. Report latency and aggregate completion rate separately.
+
+Predict before running
+Would two clients halve per-request latency? Write down which timing would support that claim.
+
+Run in your lab
+Begin with the owned baseline running. Allow 4096 context tokens per slot in both trials. The second trial changes both client count and server slots. Restore the one-slot server before continuing.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+(
+set -e
+bash serve.sh stop
+env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q4_k_m
+python spark_lab.py bench prompt.txt --runs 6 --workers 1 --out "$LAB_RUN/one-worker.json"
+bash serve.sh stop
+env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 8192 2 99 gpu q4_k_m
+python spark_lab.py bench prompt.txt --runs 6 --workers 2 --out "$LAB_RUN/two-workers.json"
+bash serve.sh stop
+env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q4_k_m
+)
+
+Interpret the result
+More clients do not create more GPUs. Throughput, latency and failure rate must be read together.
+
+If the check fails
+Check the first failed boundary: file, loader, service health, request, then answer.
+
+Finish
+Wait for owned clients to exit and retain both runs before stopping the server.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU inference and CPU concurrency/statistics.
+Scope  Elapsed client time includes waiting and transport as well as server work.
+
+Recorded files
+python reader/records.py 21 --files

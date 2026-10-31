@@ -1,0 +1,42 @@
+Exercise 198  Recognize the absence of acoustic evidence
+
+Question
+Will the recognizer return words when the signal contains no speech?
+
+Before you start
+Exercise 173 (create inspectable image and audio fixtures) · Exercise 196 (transcribe the retained speech control)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+6.8 s for Word (record 198.03).
+
+Check for success
+Confirm the zero peak and RMS of the digital-silence input, then retain the complete hypothesis and score it against silence.
+
+Predict before running
+What would a speech recognizer have to output for digital silence to match an empty reference?
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${SILENCE_WAV:?Set SILENCE_WAV to the silence.wav from Exercise 173}"
+python media/targets.py asr --model models/media/whisper --input "$SILENCE_WAV" --out "$LAB_RUN/silence-asr"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/silence-asr with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CUDA Whisper returned “you” for digital silence and for quiet noise. Those word outputs fail the absence-of-evidence criterion even though the test commands completed. The spoken-word control remains. Recognized text from this experiment was never treated as authorization to run tools.
+Scope  Keep the reference wording, acoustic input and normalization policy with each recognition score.
+
+Recorded files
+python reader/records.py 198 --files

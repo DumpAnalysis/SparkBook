@@ -1,0 +1,37 @@
+Exercise 68  Audit gradients and retained tensors
+
+Question
+Which trainable tensor first has a missing, nonfinite or unexpected gradient?
+
+Before you start
+Exercise 14 (run a small synchronized computation)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+6.6 s for Training audit (record 068.01).
+
+Check for success
+Match intended parameter names to optimizer membership and gradients. Inspect overflow and retained-owner controls separately.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python advanced/training_diagnostics.py audit --device cuda
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep gradient, overflow, checkpoint, and retention checks.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU training diagnostics.
+Scope  The evidence is the bounded training state and the updates actually compared.
+
+Recorded files
+python reader/records.py 68 --files

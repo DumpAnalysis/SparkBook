@@ -1,0 +1,41 @@
+Exercise 200  Adapt a small speech recognizer and inspect frozen weights
+
+Question
+Can a small adapter update selected recognizer weights while the base remains frozen?
+
+Before you start
+Exercise 196 (transcribe the retained speech control) · Exercise 168 (audit data splits and supervised token masks)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+18.4 s for Four step ASR adaptation (record 200.03).
+
+Check for success
+Compare the trainable set and base identities, train/dev split and before/after hypotheses on held-out audio.
+
+Run in your lab
+Use distinct train and development recordings. Inspect the generated asr.jsonl and correct its reference text to match your recordings before running adaptation. The trainer reads that JSONL file.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${DEV_AUDIO:?Set DEV_AUDIO to a separate held-out WAV}"
+: "${TRAIN_AUDIO:?Set TRAIN_AUDIO to one consented training WAV}"
+python media/prepare_adaptation.py --train-audio "$TRAIN_AUDIO" --dev-audio "$DEV_AUDIO" --out "$LAB_RUN/adaptation-data"
+python media/adapt_asr.py --model models/media/whisper --data "$LAB_RUN/adaptation-data/asr.jsonl" --steps 4 --out "$LAB_RUN/asr-adapter"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/adaptation-data, $LAB_RUN/asr-adapter with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The duplicate train/dev audio attempt was rejected. With distinct synthetic sentences, four CUDA updates trained only the final Whisper decoder block; the retained check reports unchanged frozen weights. Training loss decreased, but development WER stayed 0.4 with the same hypothesis. This qualifies training plumbing, not generalization or complete resume behavior.
+Scope  The bounded adaptation is assessed on its specified split and outputs.
+
+Recorded files
+python reader/records.py 200 --files

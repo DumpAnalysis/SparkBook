@@ -1,0 +1,39 @@
+Exercise 74  Create the measurement record and collect the baseline
+
+Question
+Which fields in a baseline came from an observation on this machine?
+
+Before you start
+Exercise 1 (inventory the existing environment) · Exercise 14 (run a small synchronized computation)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+2.6 s for Collected baseline (record 074.01).
+
+Check for success
+Inspect the five command records and their exits. Keep unmeasured benchmark fields distinguishable from real zeroes.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python advanced/measure.py --torch --out "$LAB_RUN/measurements.json"
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep $LAB_RUN/measurements.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU baseline inventory and CUDA memory/capability query.
+Scope  The inventory and capability query precede the embedding workload.
+
+Recorded files
+python reader/records.py 74 --files

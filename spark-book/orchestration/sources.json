@@ -1,0 +1,156 @@
+[
+  {
+    "reference": 205,
+    "publisher": "LangChain",
+    "title": "Agents",
+    "url": "https://docs.langchain.com/oss/python/langchain/agents",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 206,
+    "publisher": "LangChain",
+    "title": "ChatOpenAI integration and compatible API scope",
+    "url": "https://docs.langchain.com/oss/python/integrations/chat/openai",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 207,
+    "publisher": "LangChain",
+    "title": "LangGraph persistence",
+    "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 208,
+    "publisher": "LangChain",
+    "title": "LangGraph interrupts and replay",
+    "url": "https://docs.langchain.com/oss/python/langgraph/interrupts",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 209,
+    "publisher": "LangChain",
+    "title": "SqliteSaver.from_conn_string",
+    "url": "https://reference.langchain.com/python/langgraph.checkpoint.sqlite/SqliteSaver/from_conn_string",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 210,
+    "publisher": "LangChain",
+    "title": "LangSmith custom instrumentation",
+    "url": "https://docs.langchain.com/langsmith/annotate-code",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 211,
+    "publisher": "LangChain",
+    "title": "LangSmith tracing_context API",
+    "url": "https://reference.langchain.com/python/langsmith/run_helpers/tracing_context",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 212,
+    "publisher": "LangChain",
+    "title": "LangSmith evaluate API, upload_results option",
+    "url": "https://reference.langchain.com/python/langsmith/evaluation/_runner/evaluate",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 213,
+    "publisher": "LangChain",
+    "title": "Self-hosted LangSmith requirements",
+    "url": "https://docs.langchain.com/langsmith/self-hosted",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 214,
+    "publisher": "Pydantic",
+    "title": "PydanticAI unit testing and FunctionModel",
+    "url": "https://pydantic.dev/docs/ai/guides/testing/",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 215,
+    "publisher": "Pydantic",
+    "title": "PydanticAI output validation",
+    "url": "https://pydantic.dev/docs/ai/core-concepts/output/",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 216,
+    "publisher": "Pydantic",
+    "title": "PydanticAI retry layers",
+    "url": "https://pydantic.dev/docs/ai/core-concepts/retries/",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 217,
+    "publisher": "Pydantic",
+    "title": "Other compatible APIs and OpenAICompatibleProvider",
+    "url": "https://pydantic.dev/docs/ai/models/compatible-apis/",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 218,
+    "publisher": "TypeSafe",
+    "title": "Jev models and version aliases",
+    "url": "https://docs.typesafe.ai/models",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 219,
+    "publisher": "TypeSafe",
+    "title": "Official OpenAPI request, response and header schema",
+    "url": "https://api.typesafe.ai/openapi.json",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 220,
+    "publisher": "TypeSafe",
+    "title": "Choice primitive",
+    "url": "https://docs.typesafe.ai/primitives/choice",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 221,
+    "publisher": "TypeSafe",
+    "title": "Score primitive",
+    "url": "https://docs.typesafe.ai/primitives/score",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 222,
+    "publisher": "TypeSafe",
+    "title": "Noul primitive",
+    "url": "https://docs.typesafe.ai/primitives/noul",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 223,
+    "publisher": "TypeSafe",
+    "title": "Confidence definitions",
+    "url": "https://docs.typesafe.ai/confidence",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 224,
+    "publisher": "Pydantic",
+    "title": "TypeSafeModel and Jev integration",
+    "url": "https://pydantic.dev/docs/ai/models/typesafe/",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 225,
+    "publisher": "Pydantic",
+    "title": "UsageLimits and request accounting",
+    "url": "https://pydantic.dev/docs/ai/api/pydantic-ai/usage/",
+    "consulted": "2026-10-28"
+  },
+  {
+    "reference": 226,
+    "publisher": "vLLM",
+    "title": "Tool calling and parser qualification",
+    "url": "https://docs.vllm.ai/en/latest/features/tool_calling/",
+    "consulted": "2026-10-28"
+  }
+]

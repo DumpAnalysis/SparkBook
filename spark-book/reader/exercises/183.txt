@@ -1,0 +1,38 @@
+Exercise 183  Map the teaching loop to an image pipeline
+
+Question
+Which operations in the small diffusion loop correspond to stages in an image pipeline?
+
+Before you start
+Exercise 180 (verify forward corruption and an oracle reconstruction) · Exercise 182 (inspect reverse sampling and distribution coverage)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+1.2 s for Original oracle (record 183.01).
+
+Check for success
+Map conditioning, scheduler, denoiser, latent update and decoding. Identify which stages have no equivalent in the point model.
+
+Run in your lab
+Use the first command to find the numerical oracle procedure and the second to inspect its combined training record. Write the five-stage mapping yourself.
+
+python reader/guide.py 180
+python reader/records.py 181
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep a boundary map for noise schedule conditioning and decoding.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The original oracle passed and the deliberate wrong-noise variant failed with its full assertion retained. Keep the five-stage image-pipeline record distinct from this numerical control; no image encoder or VAE is present in the tiny point model.
+Scope  The small point-distribution experiment illustrates selected diffusion operations.
+
+Recorded files
+python reader/records.py 183 --files

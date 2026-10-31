@@ -1,0 +1,42 @@
+Exercise 251  Compare WSL2 and CUDA memory boundaries
+
+Question
+Can this WSL2 process write and verify more CUDA storage than the guest's measured RAM?
+
+Before you start
+Exercise 1 (inventory the existing environment) · Exercise 14 (run a small synchronized computation) · Exercise 91 (establish the monitoring contract)
+Qualified CUDA framework; query first, then 1 GiB pilot. The optional 18 GiB stage needs all documented guest/host/device guards.
+
+Recorded step time
+11.6 s for Memory pilot vmstat (record 251.04).
+
+Check for success
+Check simultaneous retained bytes against MemTotal, every-byte verification, guard samples, exit and release. Keep the pilot and target distinct.
+
+Predict before running
+Can the guest memory report alone predict whether the 18 GiB verification will pass?
+
+Run in your lab
+The entry is query-only. Read memory_budget/README.txt, record actual host headroom, run the 1 GiB pilot, and consider 18 GiB only if all stated guards pass. The advanced section retains the full procedure.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python memory_budget/run.py --out "$LAB_RUN/memory-views"
+
+Interpret the result
+A bounded allocation pass does not establish maximum capacity, residency or model fit.
+
+If the check fails
+Stop at a guard or allocation failure; retain observations without increasing the target.
+
+Finish
+Verify child/wrapper completion and release; preserve raw host/guest observations.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — eighteen ordinary 1 GiB uint8 CUDA tensors were simultaneously retained, written and checked across every byte. The 19,327,352,832 verified bytes exceed measured guest MemTotal of 16,854,429,696 bytes by 2,472,923,136 bytes. The preceding 1 GiB pilot, final process and wrapper exits, and release observations also passed.
+Scope  A verified 18 GiB allocation does not identify a maximum, residency tier or page-migration history.
+
+Recorded files
+python reader/records.py 251 --files

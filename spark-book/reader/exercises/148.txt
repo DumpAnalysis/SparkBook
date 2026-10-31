@@ -1,0 +1,39 @@
+Exercise 148  Qualify a vLLM image and a small generation model
+
+Question
+Can the selected ARM64 vLLM image load this pinned model under the local budget?
+
+Before you start
+Exercise 142 (add the GPU runtime and a generation image)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+6.2 s for Check driver access before starting vLLM (record 148.01).
+
+Check for success
+Check the corrected startup settings, readiness, streaming reply and completed request counts with the image digest.
+
+Run in your lab
+The wrapper now applies the successful settings from record 148.02, including the WSL driver bootstrap, executable temporary storage, pinned-memory setting, 0.12 GPU-memory-utilization value and explicit 1 GiB KV-cache budget. Keep initialization logs until the model is ready.
+
+: "${MODEL_DIR:?Set MODEL_DIR to the absolute model directory available to the container or cluster node}"
+: "${VLLM_IMAGE:?Set VLLM_IMAGE to the qualified ARM64 vLLM image pinned by digest}"
+bash serving/docker/run_backend.sh vllm "$VLLM_IMAGE" "$MODEL_DIR"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep target deployment; retained qualification evidence.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual vLLM 0.26.0 ARM64 Docker serving used the pinned image and existing Qwen 1.5B weights, context 2048, two maximum sequences, one GPU, eager mode and a 1 GiB KV-cache allocation. The successful stream’s first content was 136.94 ms and total client time 677.37 ms. Protocol and GPU execution passed; answer quality was not scored.
+Scope  Container Python 3.12.13 / PyTorch 2.11.0+cu130 are separate from the host exercise environment.
+
+Recorded files
+python reader/records.py 148 --files

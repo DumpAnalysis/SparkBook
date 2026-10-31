@@ -1,0 +1,41 @@
+Exercise 9  Observe the first content event
+
+Question
+At what point does the client first receive useful text?
+
+Before you start
+Exercise 5 (start the baseline server) · Exercise 6 (submit the complete prompt)
+The active baseline server, the supplied one-line reader/ready.txt and a new stream.json path.
+
+Recorded step time
+0.17 s for Stream (record 009.02).
+
+Check for success
+Locate the first nonempty content event and the final [DONE] event. Compare the assembled text with READY and record completion and answer quality separately.
+
+Run in your lab
+Use the supplied READY prompt to reproduce the input of run 009.02. The R17 prompt in Exercises 6 and 8 asks for a longer answer.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+python stream.py reader/ready.txt --out "$LAB_RUN/stream.json"
+
+Inspect
+Read the saved stream events, first nonempty content time, final completion marker and assembled answer.
+
+Interpret the result
+Connection establishment, first content and complete answer are separate milestones. A closed stream may be incomplete.
+
+If the check fails
+Check the first failed boundary: file, loader, service health, request, then answer.
+
+Finish
+Keep the raw event record and assembled text; stop the server when leaving the route.
+
+Handoff
+Keep $LAB_RUN/stream.json. Compare first_content_s with elapsed_s within this request. The earlier benchmark used the longer R17 prompt.
+
+Recorded result  The client assembled READY. First content arrived at about 49 ms and the call completed in about 75 ms.
+Scope  First content is a client-observed streaming event. Kernel execution has a different clock and boundary.
+
+Recorded files
+python reader/records.py 9 --files

@@ -1,0 +1,35 @@
+Exercise 114  Transfer the method to retrieval and fine tuning
+
+Question
+Would changing retrieval, context assembly or decoding address this observed failure?
+
+Before you start
+Exercise 113 (localize the failing quality boundary)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+54.4 s for Retrieval boundaries (record 114.01).
+
+Check for success
+Compare per-query retrieval and rendered input before comparing model answers. Keep unscored semantics explicit.
+
+Run in your lab
+Apply the quality-boundary procedure to your retrieval or adapter outputs: freeze the input, locate the first changed stage, repair that stage and repeat the same held-out cases.
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep per-query retrieval/context/generation account.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Fresh real-retrieval comparison uses 12 frozen queries, existing base/tuned embeddings, two context builders and decoding variants. The builders produced equivalent context content, and decoding comparisons received identical input tokens. Semantic answer quality remains UNSCORED; this recorded comparison neither retrained those embeddings nor demonstrated a quality improvement.
+Scope  A retrieved identifier and a correct generated answer have separate checks.
+
+Recorded files
+python reader/records.py 114 --files

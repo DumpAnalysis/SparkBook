@@ -1,0 +1,40 @@
+Exercise 221  Observe the tool loop and inject faults
+
+Question
+Does the agent's tool loop enforce its schema and step budget?
+
+Before you start
+Exercise 220 (isolate and identify the orchestration environment) · Exercise 17 (replay a complete tool loop)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+1.4 s for Control (record 221.01).
+
+Check for success
+Follow the valid receipt, invalid key and endless-loop controls. Each must finish at its intended boundary.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/langchain_lab.py control --out "$LAB_RUN/langchain.json"
+python orchestration/langchain_lab.py faults --out "$LAB_RUN/langchain-faults.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/langchain.json, $LAB_RUN/langchain-faults.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Fresh LangChain SDK controls exercised a scripted tool loop and injected faults. The framework and loopback operations ran on the laptop, while model responses and evidence fixtures were intentionally simulated.
+Scope  This result does not establish learned planning quality.
+
+Recorded files
+python reader/records.py 221 --files

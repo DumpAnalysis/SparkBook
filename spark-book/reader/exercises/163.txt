@@ -1,0 +1,39 @@
+Exercise 163  Serve the qualified engine through Triton
+
+Question
+Can the inference server load this engine and enforce its model contract?
+
+Before you start
+Exercise 162 (separate engine execution from build and transfers) · Exercise 150 (build and serve a versioned Triton embedding model)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+0.52 s for Kubernetes values load and rejections (record 163.02).
+
+Check for success
+Check repository version, backend readiness and a numerical response. Preserve the rejected shape or dtype response.
+
+Run in your lab
+Repository generation does not serve the engine. Start the qualified Triton owner and compare responses before declaring deployment success.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${ENGINE_DIR:?Set ENGINE_DIR to the qualified engine directory from Exercise 161}"
+python ecosystem/make_triton_plan.py --engine-dir "$ENGINE_DIR" --out "$LAB_RUN/triton-engine"
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Keep $LAB_RUN/triton-engine with the command and exit that produced it.
+
+Handoff
+Keep the served result beside the direct engine result. Exercise 166 changes the graph’s representation for the quantized comparison.
+
+Recorded result  PASSED — The actual TensorRT engine served through Triton in Docker and Kubernetes. Both passed numerical checks, invalid-input rejection and bounded load tests; metrics and lifecycle logs remain. A passing tiny linear service qualifies this deployment path, not production capacity or language-model serving quality.
+Scope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.
+
+Recorded files
+python reader/records.py 163 --files

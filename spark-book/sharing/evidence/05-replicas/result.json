@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "device": "cpu",
+  "workers": 4,
+  "owners": 4,
+  "requests": 16,
+  "batches": 16,
+  "max_pending": 3,
+  "model_bytes": 328704,
+  "max_abs_error": 7.450580596923828e-08,
+  "latency_p50_ms": 0.701576,
+  "latency_p95_ms": 2.8900164999999998,
+  "queue_p95_ms": 0.22833075,
+  "elapsed_ms": 6.274456,
+  "requests_per_second": 2550.0218664375047,
+  "owners_inventory": [
+    {
+      "kind": "ready",
+      "pid": 40,
+      "device": "cpu",
+      "model_bytes": 82176,
+      "memory": {
+        "allocated": null,
+        "reserved": null,
+        "peak_allocated": null,
+        "peak_reserved": null
+      }
+    },
+    {
+      "kind": "ready",
+      "pid": 41,
+      "device": "cpu",
+      "model_bytes": 82176,
+      "memory": {
+        "allocated": null,
+        "reserved": null,
+        "peak_allocated": null,
+        "peak_reserved": null
+      }
+    },
+    {
+      "kind": "ready",
+      "pid": 42,
+      "device": "cpu",
+      "model_bytes": 82176,
+      "memory": {
+        "allocated": null,
+        "reserved": null,
+        "peak_allocated": null,
+        "peak_reserved": null
+      }
+    },
+    {
+      "kind": "ready",
+      "pid": 43,
+      "device": "cpu",
+      "model_bytes": 82176,
+      "memory": {
+        "allocated": null,
+        "reserved": null,
+        "peak_allocated": null,
+        "peak_reserved": null
+      }
+    }
+  ],
+  "child_exitcodes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

@@ -1,0 +1,39 @@
+Exercise 210  Load the snapshot offline and check its outputs
+
+Question
+Does an offline reload reproduce the expected finite outputs?
+
+Before you start
+Exercise 209 (acquire a selective model snapshot)
+Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.
+
+Recorded step time
+6.3 s for Offline CUDA (record 210.02).
+
+Check for success
+Use the local-only path, inspect tensor shapes and compare repeated outputs under the stated tolerance.
+
+Run in your lab
+This follows the retained CPU offline-control scope. Choose --device cuda separately and require observed CUDA execution when qualifying the GPU path.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${HF_SNAPSHOT:?Set HF_SNAPSHOT to the model snapshot directory from Exercise 209}"
+python catalogs/hf_lab.py offline --snapshot "$HF_SNAPSHOT" --device cpu --out "$LAB_RUN/hf-offline"
+
+Interpret the result
+A catalog listing or correct checksum is not GPU qualification.
+
+If the check fails
+Check access, identity, architecture and completeness before runtime changes.
+
+Finish
+Keep $LAB_RUN/hf-offline with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The pinned random BERT ran offline on CPU and CUDA with pooled shape 2×32. Both within-device repeats were exact, the instrumented Python socket-connect count stayed zero, and independent array comparison gives maximum CPU/CUDA error 1.1920928955078125e-7 against the declared 1e-4 tolerance. The random model is a loading and numerical control; it has no demonstrated sentence-embedding quality.
+Scope  The snapshot and dataset checks apply to the recorded immutable revisions.
+
+Recorded files
+python reader/records.py 210 --files

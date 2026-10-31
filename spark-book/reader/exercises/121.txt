@@ -1,0 +1,36 @@
+Exercise 121  Investigate the evidence cards
+
+Question
+Can an investigator diagnose an unseen card before opening its worked answer?
+
+Before you start
+Exercise 119 (navigate the unified catalog)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+0.06 s for Card C01 (record 121.01).
+
+Check for success
+Save the evidence-only account first. Record prior exposure and use the blind rubric only for an unseen case.
+
+Run in your lab
+Save a dated independent account for all six cards before opening Exercise 122.
+Read diagnostics/blind/cases.json without opening answers.json. Write your diagnosis and next discriminating observation before comparing with Exercise 122.
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep six evidence-only case investigations.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — An account was submitted for all six familiar cards. It can be used for guided comparison. Card C05 remains explicitly illustrative.
+Scope  The cards were familiar to the recorded investigator. Only a new, unseen card set can yield a blind score.
+
+Recorded files
+python reader/records.py 121 --files

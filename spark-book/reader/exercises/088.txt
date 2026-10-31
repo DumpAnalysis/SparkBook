@@ -1,0 +1,42 @@
+Exercise 88  Run a deliberately wrong-pair control
+
+Question
+Would the evaluation notice if the positive training documents were deliberately wrong?
+
+Before you start
+Exercise 87 (fine tune the pretrained sentence encoder)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+10.2 s for Contrastive wrong pairs (record 088.01).
+
+Check for success
+Compare correct-pair and rotated-pair losses and held-out ranks. Record any corruption the small retrieval set fails to distinguish.
+
+Predict before running
+Will six held-out queries expose a deliberately wrong positive pairing?
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python embeddings/finetune.py --model embeddings/models/minilm --out "$LAB_RUN/wrong-pairs" --device cpu --wrong-pairs
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep $LAB_RUN/wrong-pairs with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU actual encoder training and held-out evaluation.
+Scope  Pair training and downstream retrieval have separate evaluation criteria.
+
+Recorded files
+python reader/records.py 88 --files

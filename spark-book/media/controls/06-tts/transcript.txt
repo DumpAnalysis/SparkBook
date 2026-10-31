@@ -1,0 +1,4 @@
+$ python media/targets.py tts --model ../models/mms --device cpu --out media/controls/tts
+{"device": "cpu", "kind": "tts", "result": "media/controls/tts/result.json", "status": "ok"}
+{"channels": 1, "clipped_fraction": 0.0, "duration_s": 3.904, "frames": 62464, "peak": 0.8262342214584351, "rms": 0.11319849288404302, "sample_rate": 16000}
+[exit 0]

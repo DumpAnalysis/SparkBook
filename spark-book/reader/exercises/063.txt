@@ -1,0 +1,37 @@
+Exercise 63  Implement a double buffer with explicit ownership
+
+Question
+When is a host buffer slot safe to reuse in a two-stream pipeline?
+
+Before you start
+Exercise 32 (build debug and performance variants)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+0.67 s for Compare buffer ownership and reuse (record 063.01).
+
+Check for success
+Follow each slot through its copy, kernel and completion event. Verify the values before claiming any overlap.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+./advanced/bin/async-lab buffers
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep ownership proof, values, and execution timeline.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.
+Scope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.
+
+Recorded files
+python reader/records.py 63 --files

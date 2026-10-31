@@ -1,0 +1,35 @@
+Exercise 119  Navigate the unified catalog
+
+Question
+Which catalog entry suggests a test that separates two explanations for a symptom?
+
+Before you start
+Exercise 23 (write a diagnostic conclusion)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+0.06 s for Pattern catalog (record 119.01).
+
+Check for success
+Choose one pattern, state its applicability boundary, and name an observation that would rule it out.
+
+Run in your lab
+Read diagnostics/patterns.json and locate the pattern whose evidence and counterexample match your observation. A matching symptom alone is insufficient.
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep twelve patterns and applicability boundaries.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The 12-pattern catalog was read successfully in this WSL session. Catalog navigation is an executed CPU exercise; the patterns remain teaching abstractions rather than 12 newly observed GPU incidents.
+Scope  The catalog and worked diagnosis use a teaching case with known evidence.
+
+Recorded files
+python reader/records.py 119 --files

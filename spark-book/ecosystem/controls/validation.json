@@ -1,0 +1,28 @@
+{
+  "checks": 20,
+  "passed": true,
+  "names": [
+    "fixture identity",
+    "requests retained",
+    "rejections excluded from mean",
+    "both route means",
+    "PCA projector symmetry",
+    "PCA projector idempotence",
+    "PCA rank two",
+    "ONNX valid",
+    "ORT observed CPU",
+    "ORT all value comparisons",
+    "ORT invalid width and dtype",
+    "QDQ valid",
+    "QDQ CPU numerical oracle",
+    "held-out unclipped control",
+    "outlier detected",
+    "per-channel preserves small weights",
+    "data split and leakage injection",
+    "shifted mask includes answer and EOS",
+    "frozen base and adapter restore",
+    "every control completed"
+  ],
+  "target_gpu_frameworks_executed": false,
+  "scope": "CPU numerical and evidence controls; no RAPIDS, TensorRT or NeMo execution"
+}

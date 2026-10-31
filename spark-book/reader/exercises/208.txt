@@ -1,0 +1,39 @@
+Exercise 208  Inspect pinned model and dataset identities
+
+Question
+Which repository identity and access conditions define each Hub input?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.
+
+Recorded step time
+0.57 s for Catalog (record 208.01).
+
+Check for success
+Check repository type, immutable revision and the card's stated conditions. Record missing information explicitly.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python catalogs/hf_lab.py info --out "$LAB_RUN/hf-info"
+
+Interpret the result
+A catalog listing or correct checksum is not GPU qualification.
+
+If the check fails
+Check access, identity, architecture and completeness before runtime changes.
+
+Finish
+Keep $LAB_RUN/hf-info with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The recorded run rechecked pinned Hugging Face model and dataset identities through public metadata and retained the receipts.
+Scope  A repository revision, card and file inventory identify candidate inputs; they do not establish trained quality or permission for every downstream use.
+
+Recorded files
+python reader/records.py 208 --files

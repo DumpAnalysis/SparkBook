@@ -1,0 +1,39 @@
+Exercise 224  Reject wrong-thread and duplicate continuation
+
+Question
+Can an approval intended for one thread be reused elsewhere or twice?
+
+Before you start
+Exercise 223 (resume after the Python process exits)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+1.6 s for Faults (record 224.01).
+
+Check for success
+Preserve the wrong-thread and duplicate-resume rejections, then verify the intended continuation exactly once.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/graph_control.py faults --out "$LAB_RUN/graph-faults"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/graph-faults with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The fresh continuation controls rejected the wrong thread and handled duplicate continuation according to the retained state contract. Inspect the committed checkpoint and event identity, rather than treating a second successful API call as a second legitimate action.
+Scope  The persisted thread identity and approval determine which action can resume.
+
+Recorded files
+python reader/records.py 224 --files

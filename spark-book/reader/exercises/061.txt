@@ -1,0 +1,38 @@
+Exercise 61  Write and verify a warp reduction
+
+Question
+Which lanes contribute to a warp reduction when the input has a tail?
+
+Before you start
+Exercise 32 (build debug and performance variants)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+1.4 s for Check warp reduction at eight lengths (record 061.01).
+
+Check for success
+Inspect the active-lane mask and the identity value for missing inputs. Check all configured tail sizes against the CPU sum.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+bash advanced/build.sh
+./advanced/bin/collectives warp
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep participation argument and eight target cases.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU warp reduction numerical check; sanitizer unavailable.
+Scope  The numerical warp-reduction result and sanitizer coverage are separate.
+
+Recorded files
+python reader/records.py 61 --files

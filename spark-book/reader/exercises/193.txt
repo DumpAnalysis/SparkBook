@@ -1,0 +1,39 @@
+Exercise 193  Visualize speech before diagnosing the model
+
+Question
+Can we locate silence or clipping in synthesized speech before judging pronunciation?
+
+Before you start
+Exercise 192 (synthesize a short diagnostic statement)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+1.7 s for Speech waveform STFT (record 193.01).
+
+Check for success
+Use the waveform and spectrogram to identify intervals, verify their time scale and retain the source hash.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${AUDIO:?Set AUDIO to the WAV file produced by the preceding music or speech exercise}"
+python media/analyze.py --audio "$AUDIO" --out "$LAB_RUN/speech-analysis"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/speech-analysis with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The fresh waveform/STFT figure now uses the actual CUDA synthesis output. Independent decoding confirms a maximum float-to-PCM difference of approximately 3.70e-5.
+Scope  Encoding quantization is a separate boundary from model output and from perceived speech quality.
+
+Recorded files
+python reader/records.py 193 --files

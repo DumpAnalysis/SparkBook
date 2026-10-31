@@ -1,0 +1,8 @@
+Observed evidence:
+At 10:00 service A accepted request R17.
+At 10:01 service A logged "waiting for service B".
+At 10:02 the client timed out.
+There are no logs from service B in this evidence set.
+
+Give two observations, two possible explanations, and one next
+measurement. Do not claim that service B crashed.

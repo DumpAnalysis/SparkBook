@@ -1,0 +1,40 @@
+Exercise 150  Build and serve a versioned Triton embedding model
+
+Question
+Can Triton select a model version and return the expected embedding?
+
+Before you start
+Exercise 136 (establish an inference API contract) · Exercise 142 (add the GPU runtime and a generation image)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+0.42 s for Live Triton (record 150.01).
+
+Check for success
+Start the qualified Triton server with the repository mounted. Query readiness and version, then compare the returned vector with the oracle.
+
+Run in your lab
+The entry tests the repository locally. To serve it, supply the verified Triton image digest to bash serving/docker/run_backend.sh triton "$TRITON_IMAGE" "$LAB_RUN/triton-repository" and wait for readiness before using serving/client.py triton.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python serving/build_repository.py --out "$LAB_RUN/triton-repository"
+python serving/backend_control.py --repository "$LAB_RUN/triton-repository" --out "$LAB_RUN/backend-control"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/triton-repository, $LAB_RUN/backend-control with the command and exit that produced it.
+
+Handoff
+Compare the Triton tensor with the fixed encoder reference used for local HTTP, Compose and K3s.
+
+Recorded result  PASSED — Actual Triton Inference Server execution used the CPU Python embedding backend: one request plus a 32-request Docker load, then an independent Kubernetes request and vector check. Docker counters show 33 successful requests, 66 samples and 15 backend executions, illustrating dynamic batching. The separately executed API double is synthetic. This CPU backend must not be confused with the actual Triton-language GPU kernel probe in Exercise 148.
+Scope  A deployed repository still needs a model-version and numerical response check.
+
+Recorded files
+python reader/records.py 150 --files

@@ -1,0 +1,11 @@
+{
+  "torch": "2.10.0+cpu",
+  "steps": 20,
+  "initial_loss": 0.258363276720047,
+  "final_loss": 0.24638426303863525,
+  "frozen_base": true,
+  "restore_max_error": 4.76837158203125e-07,
+  "trainable_parameters": 24,
+  "base_parameters": 32,
+  "execution": "tiny CPU algebra control; not NeMo training"
+}

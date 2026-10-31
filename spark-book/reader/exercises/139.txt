@@ -1,0 +1,39 @@
+Exercise 139  Measure generation streaming correctly
+
+Question
+When does the first usable generated text reach the streaming client?
+
+Before you start
+Exercise 5 (start the baseline server) · Exercise 9 (observe the first content event)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+0.93 s for Live generation stream (record 139.01).
+
+Check for success
+Require a ready generation endpoint. Reconstruct text from SSE content events and record the first-content and completion times.
+
+Run in your lab
+The entry exercises SSE parsing. For the recorded generation path, start the Exercise 5 owner, verify its /health response, then use serving/client.py stream --base http://127.0.0.1:8080 --model local-model --out "$LAB_RUN/live-stream" with the active Python interpreter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python serving/lab.py sse --out "$LAB_RUN/sse"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/sse with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual native CUDA llama.cpp Q4 generation completed a stream: first content 242.3 ms and total client time 818.26 ms. The full SSE objects, content and terminal marker are retained.
+Scope  The answer’s simplified description of GPU memory is not an endorsed explanation of this unified-memory laptop; semantic quality remains unscored.
+
+Recorded files
+python reader/records.py 139 --files

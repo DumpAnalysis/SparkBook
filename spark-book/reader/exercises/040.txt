@@ -1,0 +1,38 @@
+Exercise 40  Query an exported trace without assuming its schema
+
+Question
+Which event tables did this particular trace export actually contain?
+
+Before you start
+Exercise 39 (capture four annotated iterations)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+0.12 s for SQLite fixture (record 040.01).
+
+Check for success
+Enumerate the SQLite schema before querying. Verify the event type, timestamp units and row count against the export.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${TRACE_SQLITE:?Set TRACE_SQLITE to the SQLite export of your Exercise 39 trace}"
+python cuda/trace_sqlite.py "$TRACE_SQLITE"
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep sQLite export and verified query.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — CPU intentional fixture and read-only actual trace analysis.
+Scope  The fixture teaches the trace shape. The captured device rows determine what can be measured on this laptop.
+
+Recorded files
+python reader/records.py 40 --files

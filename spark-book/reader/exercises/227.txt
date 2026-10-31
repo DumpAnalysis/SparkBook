@@ -1,0 +1,39 @@
+Exercise 227  Run an offline evaluation and preserve its failures
+
+Question
+Can an evaluator distinguish an operationally valid answer from a semantically wrong one?
+
+Before you start
+Exercise 226 (preserve nested traces, errors and redaction)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+0.47 s for Evaluate (record 227.01).
+
+Check for success
+Recompute rubric counts with the stated denominator and keep failed examples alongside passed examples.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/langsmith_lab.py evaluate --out "$LAB_RUN/evaluation.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/evaluation.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The offline evaluation ran again and preserved its failing cases. The teaching dataset and scripted outputs remain synthetic.
+Scope  Keep each case’s expected result, observed result and evaluator identity; an aggregate score does not explain a diagnostic failure.
+
+Recorded files
+python reader/records.py 227 --files

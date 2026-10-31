@@ -1,0 +1,39 @@
+Exercise 160  Qualify a TensorRT 11 environment
+
+Question
+Can the intended TensorRT environment parse and build the target network?
+
+Before you start
+Exercise 14 (run a small synchronized computation) · Exercise 156 (build and inspect a small dynamic graph)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+4.4 s for TensorRT and GPU qualification (record 160.01).
+
+Check for success
+Record runtime and image identities and the parser/build outcome. Preserve the first failing API boundary if adaptation is needed.
+
+Run in your lab
+Inventory is the first step. Use the qualified TensorRT environment and exact pinned engine API before Exercise 161.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python ecosystem/lab.py inventory --out "$LAB_RUN/trt-inventory"
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Keep $LAB_RUN/trt-inventory with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — TensorRT 11.3.0.99 imported in the current ARM64 environment and a 4,096-element CUDA arithmetic check passed. Installation failures, cancellation, the resumed hash-verified wheel and package reports are retained. This qualifies the selected runtime, not every TensorRT feature or precision.
+Scope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.
+
+Recorded files
+python reader/records.py 160 --files

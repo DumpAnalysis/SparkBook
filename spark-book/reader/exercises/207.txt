@@ -1,0 +1,39 @@
+Exercise 207  Diagnose catalog failures before GPU work
+
+Question
+Can a manifest problem be identified before any GPU work starts?
+
+Before you start
+Exercise 204 (inspect an NGC resource before downloading it) · Exercise 206 (resolve a container to a native immutable identity)
+Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.
+
+Recorded step time
+0.12 s for Manifest faults (record 207.01).
+
+Check for success
+Inject each supplied manifest fault and verify its specific rejection. Locate the first failing metadata boundary.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${NGC_IMAGE_RECORD:?Set NGC_IMAGE_RECORD to the image.json retained in Exercise 206}"
+python catalogs/ngc_lab.py faults --source "$NGC_IMAGE_RECORD" --out "$LAB_RUN/ngc-faults"
+
+Interpret the result
+A catalog listing or correct checksum is not GPU qualification.
+
+If the check fails
+Check access, identity, architecture and completeness before runtime changes.
+
+Finish
+Keep $LAB_RUN/ngc-faults with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Fresh CPU manifest controls rejected a missing ARM64 entry, a duplicate ARM64 selection and a changed digest before launching GPU work.
+Scope  These intentional mutations exercise the acquisition boundary; they are not observed publisher incidents or GPU failures.
+
+Recorded files
+python reader/records.py 207 --files

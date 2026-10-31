@@ -1,0 +1,39 @@
+Exercise 72  Stop when evidence is missing and qualify live planning
+
+Question
+When should a live planner stop rather than complete a diagnosis?
+
+Before you start
+Exercise 71 (replay a complete GPU investigation)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+3.2 s for Live diagnostic agent (record 072.03).
+
+Check for success
+Inspect the final schema and evidence citations after the missing-data and denied-action controls. Grade planning and grounding separately.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python advanced/diagnostic_agent.py --replay missing --out "$LAB_RUN/agent-missing.json"
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep $LAB_RUN/agent-missing.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  FAILED — CPU replay controls and actual GPU live planning.
+Scope  Grade the live plan against its allowed tools and evidence claims.
+
+Recorded files
+python reader/records.py 72 --files

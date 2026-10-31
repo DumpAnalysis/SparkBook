@@ -1,0 +1,91 @@
+{
+  "evidence": "SIMULATED timing data for arithmetic only",
+  "wall_s": 6.0,
+  "runs": [
+    {
+      "status": 200,
+      "elapsed_s": 1.2,
+      "body": {
+        "choices": [
+          {
+            "message": {
+              "content": "fixture"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "completion_tokens": 100
+        }
+      }
+    },
+    {
+      "status": 200,
+      "elapsed_s": 1.1,
+      "body": {
+        "choices": [
+          {
+            "message": {
+              "content": "fixture"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "completion_tokens": 100
+        }
+      }
+    },
+    {
+      "status": 200,
+      "elapsed_s": 1.3,
+      "body": {
+        "choices": [
+          {
+            "message": {
+              "content": "fixture"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "completion_tokens": 100
+        }
+      }
+    },
+    {
+      "status": 200,
+      "elapsed_s": 1.15,
+      "body": {
+        "choices": [
+          {
+            "message": {
+              "content": "fixture"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "completion_tokens": 100
+        }
+      }
+    },
+    {
+      "status": 200,
+      "elapsed_s": 1.25,
+      "body": {
+        "choices": [
+          {
+            "message": {
+              "content": "fixture"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "completion_tokens": 100
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+Exercise 110  Repair progress and define recovery
+
+Question
+How do we know the stalled operation made progress after repair?
+
+Before you start
+Exercise 109 (capture a bounded stall)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+1.2 s for Event deadlines (record 110.02).
+
+Check for success
+Require the previously missing completion event and a clean child exit. Record what the supervisor should do on a future timeout.
+
+Run in your lab
+Apply the bounded recovery described in Chapter 63 to the stall reproducer. Check that the participant completes and that no expected update was silently skipped.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py hang --mode repaired --out "$LAB_RUN/repaired"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/repaired with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU repair completed normally; separate delayed and timeout controls checked recovery behavior. Preserve the original stuck-child evidence and the recovery receipt.
+Scope  A bounded timeout prevents an indefinite lab hang but does not identify the cause of an arbitrary production stall.
+
+Recorded files
+python reader/records.py 110 --files

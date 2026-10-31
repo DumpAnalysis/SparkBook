@@ -1,0 +1,39 @@
+Exercise 103  Introduce a known supply delay
+
+Question
+Is the device waiting for inputs or spending longer computing them?
+
+Before you start
+Exercise 14 (run a small synchronized computation)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+2.6 s for Measure the delayed producer on CUDA (record 103.02).
+
+Check for success
+Compare input-ready and consumer-completion times for identical records with and without the controlled supply delay.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py pipeline --mode delay --device cuda --out "$LAB_RUN/pipeline-delay"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/pipeline-delay with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CUDA ready/delayed supply controls completed after an initial agent-sandbox denial. The 10 ms host-consumer delay is intentional, and completion is synchronized.
+Scope  Host step times do not establish a device-idle interval; a qualified device trace would be needed for that claim.
+
+Recorded files
+python reader/records.py 103 --files

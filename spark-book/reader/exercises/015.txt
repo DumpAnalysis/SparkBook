@@ -1,0 +1,39 @@
+Exercise 15  Build an evidence prompt
+
+Question
+Which source records does the model actually receive?
+
+Before you start
+Exercise 3 (verify the client without a model)
+Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).
+
+Recorded step time
+0.12 s for Ground (record 015.01).
+
+Check for success
+Read the selected IDs and the rendered prompt together. Check that the evidence for the incident is present before judging generation.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python spark_lab.py ground corpus.json "Why did R17 time out waiting for service B?" --out "$LAB_RUN/grounded.txt"
+
+Interpret the result
+Prompt construction is inspectable before any learned response; context selection can already lose relevant evidence.
+
+If the check fails
+Check the first failed boundary: file, loader, service health, request, then answer.
+
+Finish
+Keep the prompt and source identity for Exercise 16.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  The retrieval exercise retained the selected evidence for comparison with the R17 question.
+Scope  The retrieval check identifies the supplied passages. Their presence does not validate an answer.
+
+Recorded files
+python reader/records.py 15 --files

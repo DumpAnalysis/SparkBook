@@ -1,0 +1,37 @@
+Exercise 70  Work through six cases
+
+Question
+Which observation separates the competing explanations in each diagnostic case?
+
+Before you start
+Exercise 37 (compare a valid kernel with a deliberate overrun) · Exercise 38 (classify three additional observations)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+0.03 s for Six casebook controls (record 070.01).
+
+Check for success
+For each case, name the boundary, the discriminating observation and the check after repair.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python advanced/casebook.py
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep six bounded controls and evidence-based repair accounts.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Intentional CPU teaching fixtures.
+Scope  The cases are deliberate inputs to a teaching controller.
+
+Recorded files
+python reader/records.py 70 --files

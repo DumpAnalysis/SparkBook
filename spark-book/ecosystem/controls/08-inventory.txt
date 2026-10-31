@@ -1,0 +1,6 @@
+$ python ecosystem/lab.py inventory --out ecosystem/controls/inventory
+Preparation machine=x86_64 Python=3.12.14
+Modules present: numpy, onnx, onnxruntime, torch
+Modules absent: cudf, cuml, rmm, tensorrt, nemo_automodel
+Target GPU frameworks: NOT EXECUTED
+[exit 0]

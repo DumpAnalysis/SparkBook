@@ -1,0 +1,44 @@
+Exercise 177  Change visual resolution while keeping the question fixed
+
+Question
+Does an increase in the input pixel budget change the tensor the model sees?
+
+Before you start
+Exercise 176 (ask a bounded question about a known image)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+33.3 s for Small input larger budget (record 177.01).
+
+Check for success
+Keep the prompt fixed and compare processed shapes before interpreting answer, memory or latency differences.
+
+Predict before running
+Will raising the input budget change the processed tensor shape for this particular image?
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Start a new lab run first}"
+: "${IMAGE:?Set IMAGE to the shapes.png from Exercise 173}"
+python media/targets.py vlm --model models/media/qwen-vl --input "$IMAGE" --text "Name each shape, its color, and its position." --tokens 96 --max-pixels 802816 --out "$LAB_RUN/small-larger-budget"
+python media/targets.py vlm --model models/media/qwen-vl --input media/data/larger-diagram.png --text "Name each shape, its color, and its position." --tokens 96 --max-pixels 401408 --out "$LAB_RUN/large-low-budget"
+python media/targets.py vlm --model models/media/qwen-vl --input media/data/larger-diagram.png --text "Name each shape, its color, and its position." --tokens 96 --max-pixels 802816 --out "$LAB_RUN/large-high-budget"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/vlm-small with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  Processing comparison PASSED. Raising the budget on the 512 × 512 image left the processed grid unchanged. On the 1024 × 1024 diagram the low and high budgets yielded different grids. Position check FAILED for the high-budget answer: the blue circle is to the right of the red square on the same top row, but the answer places it above the square.
+Scope  Score each statement against the specific image supplied to that request.
+
+Recorded files
+python reader/records.py 177 --files

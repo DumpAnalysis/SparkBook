@@ -1,0 +1,59 @@
+Allocation and residency
+An allocation grants storage through an API. Residency describes where its backing is currently located; a successful allocation does not establish physical placement.
+
+Architecture and ABI
+Architecture identifies the instruction set, such as aarch64. The application binary interface also constrains how compiled components interact; a matching architecture alone is insufficient.
+
+Recorded run
+A command capture with metadata, output and execution scope. Label 025.01 means the first printed capture for Exercise 25; use its guide for a new run.
+
+Checkpoint and recovery state
+An inference checkpoint contains selected model parameters. Faithful training recovery can also require optimizer, scheduler, scaler, RNG and data-position state.
+
+CUDA driver toolkit and runtime
+The mapped Windows driver supplies device access. The toolkit includes development tools such as NVCC. An application/framework can carry a different set of user-space CUDA libraries.
+
+Embedding and pooling
+An embedding represents an item as a vector. Pooling combines token-level values into one vector; masks determine which tokens participate.
+
+Epoch step and batch
+A batch is a group of examples processed together. A step advances the configured training operation; an epoch traverses a dataset according to its sampling rules.
+
+Execution origin
+The environment and mechanism that produced a record: laptop GPU, laptop CPU, simulation, historical preparation, illustration or an owner report.
+
+Held-out evaluation
+Evaluation on data excluded from the relevant training or selection stage. Repeatedly choosing settings on that same data can compromise its independence.
+
+KV cache
+Saved attention keys and values for retained tokens. Its allocation depends on model architecture, precision, context and concurrent sequences.
+
+Latency and throughput
+Latency measures elapsed time for a defined operation. Throughput measures completed work per time interval; errors and workload definitions must accompany both.
+
+Masked language modeling
+Predicting selected token identities from surrounding context. This objective does not by itself establish sentence-retrieval quality.
+
+Offload
+Placing part of the workload or model outside the GPU execution/storage path. Host memory and transfer costs remain part of the experiment.
+
+Provider and backend
+The component selected to execute an operation or model. Requesting one does not prove that every operation actually used it.
+
+Quantization
+Representing values with a restricted numerical format and associated scales or metadata. File size, execution support and quality must be checked separately.
+
+RNG state
+State of a random-number generator. A seed alone may not reconstruct its position after a partially completed run.
+
+Stream and synchronization
+A CUDA stream orders submitted work within that stream. Dependencies between streams require appropriate synchronization.
+
+Token and tokenizer
+A tokenizer converts text into model-specific units and IDs. The same text can produce different IDs under a different tokenizer or template.
+
+Trace and sample
+A trace records selected events or spans. A sample observes state at a point or interval; neither provides evidence for unobserved activity automatically.
+
+Unified physical memory
+Shared physical backing does not make Windows, WSL, NVML, CUDA and framework counters interchangeable. Compare their scopes before doing arithmetic.

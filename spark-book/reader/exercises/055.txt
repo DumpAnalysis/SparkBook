@@ -1,0 +1,38 @@
+Exercise 55  Write RMS normalization
+
+Question
+Does normalization handle a zero row and a partial row without invalid values?
+
+Before you start
+Exercise 54 (explain a timing result and correlate it with a trace)
+NVCC and host C++ compiler; small bounded tensors, no model download.
+
+Recorded step time
+0.93 s for Write RMS normalization — reference check (record 055.01).
+
+Check for success
+Inspect the row reference, epsilon and finite checks. Compare the full output on zero and ragged rows.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+bash kernels/build.sh starter
+./kernels/bin/kernel-student rms 3 769
+
+Interpret the result
+Validate values and bounds before comparing performance.
+
+If the check fails
+Reduce the failing shape and inspect indexing, synchronization and launch arguments.
+
+Finish
+Keep zero and ragged-row checks.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU source implementation and CPU-oracle validation.
+Scope  Matching reference values does not by itself supply sanitizer or hardware-counter evidence.
+
+Recorded files
+python reader/records.py 55 --files

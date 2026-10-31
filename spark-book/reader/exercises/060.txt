@@ -1,0 +1,35 @@
+Exercise 60  Find and repair an incorrect cache position
+
+Question
+Where does the wrong cache position first alter the result?
+
+Before you start
+Exercise 59 (compare full and incremental execution)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+0.07 s for Source repair regression (record 060.01).
+
+Check for success
+Identify the earliest mismatching query and prefix. Repeat every-prefix comparison after correcting the position.
+
+Run in your lab
+Compare full and incremental outputs from Exercise 59. In a copied source file, inject the documented cache-position error, retain the first mismatching position, then restore the correct indexing and repeat both comparisons.
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep first differing query and every-prefix regression.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU teaching transformer negative control and source repair.
+Scope  The defect and repair belong to the small teaching transformer.
+
+Recorded files
+python reader/records.py 60 --files

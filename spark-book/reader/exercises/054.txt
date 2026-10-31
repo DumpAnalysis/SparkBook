@@ -1,0 +1,41 @@
+Exercise 54  Explain a timing result and correlate it with a trace
+
+Question
+Can a timing difference be assigned to a kernel using an independent observation?
+
+Before you start
+Exercise 53 (fuse addition and activation)
+NVCC and host C++ compiler; small bounded tensors, no model download.
+
+Recorded step time
+0.07 s for Summarize reversed trial order for 128 threads (record 054.02).
+
+Check for success
+Check the timing unit and measured region. Require the original profile or trace before attributing the difference to a device event.
+
+Run in your lab
+Run the labelled arithmetic fixture first. Build the reference with bash kernels/build.sh reference before collecting the real timing CSV. Keep synthetic and measured outputs in different files.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python kernels/timing_summary.py "$LAB_RUN/arithmetic-fixture.csv" --fixture
+./kernels/bin/kernel-lab bench 1048576 256 100 "$LAB_RUN/timing.csv"
+python kernels/timing_summary.py "$LAB_RUN/timing.csv"
+
+Interpret the result
+Validate values and bounds before comparing performance.
+
+If the check fails
+Reduce the failing shape and inspect indexing, synchronization and launch arguments.
+
+Finish
+Keep units, scope, and original profiler report.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU uninstrumented CUDA-event timing; separate CPU synthetic arithmetic.
+Scope  The analytic bandwidth calculation and the recorded event timings have different sources.
+
+Recorded files
+python reader/records.py 54 --files

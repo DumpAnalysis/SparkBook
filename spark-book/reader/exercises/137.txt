@@ -1,0 +1,39 @@
+Exercise 137  Separate liveness readiness and draining
+
+Question
+Can a live process correctly refuse traffic while loading or draining?
+
+Before you start
+Exercise 136 (establish an inference API contract)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+1.2 s for Lifecycle (record 137.01).
+
+Check for success
+Observe liveness and readiness at each lifecycle transition. Check whether new requests are admitted during draining.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python serving/lab.py lifecycle --out "$LAB_RUN/lifecycle"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/lifecycle with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU HTTP lifecycle checks observed loading/unready, failure and draining states, plus the server’s real exit. A health endpoint and a successful process spawn answer different questions. Keep state changes, request outcomes and cleanup together.
+Scope  An admitted request, a rejected request and a completed model response belong to different populations.
+
+Recorded files
+python reader/records.py 137 --files

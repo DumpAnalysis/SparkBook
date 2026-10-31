@@ -1,0 +1,39 @@
+Exercise 228  Plan and qualify an optional LangSmith service
+
+Question
+Which parts of a LangSmith workflow can be validated before sending a request?
+
+Before you start
+Exercise 226 (preserve nested traces, errors and redaction)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+0.82 s for Request plan (record 228.01).
+
+Check for success
+Inspect the synthetic payload and destination. Mark the hosted path verified only after an authorized call and matching readback.
+
+Run in your lab
+Plan mode sends nothing. Hosted qualification is optional and requires explicit account configuration; preserve the supplied BLOCKED outcome until a real capture exists.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/langsmith_lab.py plan --out "$LAB_RUN/langsmith-plan.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/langsmith-plan.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — The fixed synthetic LangSmith request plan was executed again but not sent.
+Scope  LANGSMITH_API_KEY is absent; hosted ingestion, readback and UI qualification remain BLOCKED.
+
+Recorded files
+python reader/records.py 228 --files

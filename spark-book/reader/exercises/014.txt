@@ -1,0 +1,37 @@
+Exercise 14  Run a small synchronized computation
+
+Question
+Can PyTorch execute and synchronize a computation on this device?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+A separately qualified CUDA framework environment and a small tensor operation. Native NVCC and framework CUDA libraries have distinct identities.
+
+Recorded step time
+2.3 s for Book probe (record 014.04).
+
+Check for success
+Check the reported device, verify the result against the arithmetic reference, and inspect the synchronized exit.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python gpu_probe.py
+
+Interpret the result
+This qualifies the tested computation. It does not qualify every library, profiler or model.
+
+If the check fails
+Separate package import, dynamic linking, device discovery and kernel execution failures.
+
+Finish
+Retain the environment and computation record before installing training dependencies.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  The repaired environment passed its dependency check, and the recorded framework probe tested CUDA execution.
+Scope  The synchronized calculation qualifies this interpreter, framework and device.
+
+Recorded files
+python reader/records.py 14 --files

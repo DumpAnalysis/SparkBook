@@ -1,0 +1,37 @@
+Exercise 62  Compare a matrix tile with cuBLAS and qualify CUTLASS
+
+Question
+Can an independent GEMM implementation verify the teaching kernel's result?
+
+Before you start
+Exercise 61 (write and verify a warp reduction)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+1.2 s for WMMA and cuBLAS (record 062.01).
+
+Check for success
+Compare the tile result with both CPU and cuBLAS references under the stated precision. Record CUTLASS qualification separately.
+
+Run in your lab
+The command starts the small WMMA/cuBLAS comparison. CUTLASS requires its separate pinned profiler and compatible operation name as described below.
+
+./advanced/bin/collectives tensor
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep CPU and cuBLAS verification plus qualified CUTLASS record.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU actual WMMA, cuBLAS and locally built CUTLASS.
+Scope  The verifier did not establish every requested implementation comparison.
+
+Recorded files
+python reader/records.py 62 --files

@@ -1,0 +1,39 @@
+Exercise 196  Transcribe the retained speech control
+
+Question
+What does the recognizer hear in the saved speech control?
+
+Before you start
+Exercise 192 (synthesize a short diagnostic statement) · Exercise 174 (download and verify one model at a time)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+10.2 s for ASR (record 196.01).
+
+Check for success
+Bind the exact WAV to its hypothesis and reference. Preserve the complete transcription before computing a score.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${AUDIO:?Set AUDIO to the WAV file produced by the preceding music or speech exercise}"
+python media/targets.py asr --model models/media/whisper --input "$AUDIO" --reference media/data/reference.txt --out "$LAB_RUN/asr"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/asr with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CUDA Whisper tiny transcribed the retained MMS utterance. Preserve raw leading whitespace and the explicitly normalized word-error calculation. This is a synthetic TTS-to-ASR round trip, not an independent human-labelled speech benchmark.
+Scope  Keep the reference wording, acoustic input and normalization policy with each recognition score.
+
+Recorded files
+python reader/records.py 196 --files

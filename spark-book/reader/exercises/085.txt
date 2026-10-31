@@ -1,0 +1,39 @@
+Exercise 85  Continue the saved model with its tokenizer
+
+Question
+Can training continue from the saved encoder without changing its token IDs?
+
+Before you start
+Exercise 83 (train WordPiece and a small BERT from scratch) · Exercise 84 (inspect the tokenizer and masked predictions)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+5.2 s for Continued MLM (record 085.01).
+
+Check for success
+Reload the saved tokenizer and model before updating. Compare the validation-selected checkpoint with its reloaded outputs.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${BERT_MODEL:?Set BERT_MODEL to the selected model directory from Exercise 83}"
+python embeddings/train_bert.py --init "$BERT_MODEL" --out "$LAB_RUN/continued-bert" --steps 20 --lr 0.0001 --device cpu
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep $LAB_RUN/continued-bert with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU actual encoder training and held-out evaluation.
+Scope  The saved tokenizer, corpus split and selected checkpoint define the training comparison.
+
+Recorded files
+python reader/records.py 85 --files

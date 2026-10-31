@@ -1,0 +1,39 @@
+Exercise 105  Construct an analytic roofline
+
+Question
+Would reducing bytes moved or arithmetic work matter more under the assumed ceilings?
+
+Before you start
+Exercise 32 (build debug and performance variants) · Exercise 91 (establish the monitoring contract)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+1.3 s for Roofline (record 105.01).
+
+Check for success
+Compute arithmetic intensity from the chosen operation and byte counts. Place it on the explicitly hypothetical roofline.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py roofline --out "$LAB_RUN/roofline"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/roofline with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Executed CPU analytic fixture with hypothetical 100 GB/s bandwidth and 10 TFLOP/s compute ceilings. The arithmetic and an independent doubled-ceiling control passed. The regenerated plot is deliberately synthetic; its points are upper-bound predictions, not measured RTX Spark performance.
+Scope  The roofline uses hypothetical bandwidth and compute ceilings.
+
+Recorded files
+python reader/records.py 105 --files

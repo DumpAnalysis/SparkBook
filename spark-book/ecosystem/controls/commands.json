@@ -1,0 +1,34 @@
+[
+  {
+    "name": "01-fixture",
+    "exit": 0
+  },
+  {
+    "name": "02-analytics",
+    "exit": 0
+  },
+  {
+    "name": "03-onnx",
+    "exit": 0
+  },
+  {
+    "name": "04-ort",
+    "exit": 0
+  },
+  {
+    "name": "05-quantize",
+    "exit": 0
+  },
+  {
+    "name": "06-data",
+    "exit": 0
+  },
+  {
+    "name": "07-lora",
+    "exit": 0
+  },
+  {
+    "name": "08-inventory",
+    "exit": 0
+  }
+]

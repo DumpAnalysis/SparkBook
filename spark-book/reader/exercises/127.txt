@@ -1,0 +1,39 @@
+Exercise 127  Restore the next training update
+
+Question
+Can new processes continue training at the next update?
+
+Before you start
+Exercise 124 (compare process training with a full batch reference) · Exercise 69 (resume the next update with its complete state)
+CPU processes for emulation; one qualified GPU for CUDA comparisons. Worker count does not add physical GPUs.
+
+Recorded step time
+7.8 s for Resume the saved training state (record 127.01).
+
+Check for success
+Compare the resumed and uninterrupted losses and parameter checks. Verify the saved optimizer step and data position.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python distributed/pipe_lab.py checkpoint --out "$LAB_RUN/checkpoint"
+
+Interpret the result
+Distinguish process emulation, single-GPU DDP and actual multi-GPU behavior.
+
+If the check fails
+Check rank identity, rendezvous, operation order and missing participants.
+
+Finish
+Keep $LAB_RUN/checkpoint with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — A new process resumed a saved training state after two updates and continued to four, agreeing with the recorded reference losses. Checkpoint tensor payloads are excluded from this handoff; their receipts and derived results remain attributed to the laptop run.
+Scope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.
+
+Recorded files
+python reader/records.py 127 --files

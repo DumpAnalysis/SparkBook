@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "catalogs/validate.py"
+  ],
+  "start_ns": 1793184271707095426,
+  "end_ns": 1793184272203348566,
+  "exit": 0
+}

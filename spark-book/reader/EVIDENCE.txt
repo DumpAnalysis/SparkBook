@@ -1,0 +1,39 @@
+Working procedures and recorded runs — Version 55
+
+Follow reader/guide.py NUMBER and the matching book exercise. The same exercise
+number locates its recorded examples:
+  python reader/records.py 25
+A label such as 025.01 means the first printed capture for Exercise 25.
+The suffix orders records within that exercise; it is not a prerequisite.
+Each record retains its own date, environment and execution scope. Records
+are not combined into a fictitious continuous terminal session.
+
+To inspect complete raw files, extract the Evidence Version 48 ZIP into a
+staging directory. From its spark-book-evidence/ directory:
+  python3 restore.py --out ~/work/spark-book-evidence
+Choose a NEW destination outside the extracted pack. Allow about 2.2 GB for
+restored files. Restoration verifies hashes and executes no captured program.
+
+Back in ~/work/spark-book:
+  export SPARK_BOOK_EVIDENCE="$HOME/work/spark-book-evidence"
+  python reader/records.py 25 --files
+  python reader/records.py 251 --files
+
+The restored exercises/ directory provides the exercise view. Its raw streams
+and metadata are byte-identical to the original evidence. Original paths and
+source identifiers remain only in the archive and unchanged raw records;
+they are not learning stages. The archive's recorded-run-provenance.json
+provides the exact crosswalk for auditing.
+
+The book prints the selected commands, stdout, stderr and exits. In the published
+copy of record 151.01, [Windows account omitted] replaces one user field. The
+restored stdout contains the original value and retains its source hash. Additional source files, linked
+artifacts, failed attempts and original acceptance records remain in the
+archive. A receipt does not supply excluded models, binaries or checkpoints.
+Archived launchers may depend on the owner's absolute paths or excluded assets;
+use portable guides and fresh output directories for a new run.
+
+The optional publisher archive contains publication history and editorial
+verification. It is unnecessary for following the learning routes.
+
+Use the Version 55 book and learner guides with the Version 48 evidence pack. A named command duration is an observed stage on the example laptop. Add your own setup, download and interpretation time.

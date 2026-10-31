@@ -1,0 +1,37 @@
+Exercise 67  Implement GPU packing and dequantization
+
+Question
+Does device packing agree byte for byte with the portable reference?
+
+Before you start
+Exercise 66 (verify packing and rounding on the CPU)
+Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
+
+Recorded step time
+1.1 s for GPU INT4 (record 067.01).
+
+Check for success
+Compare every packed byte and decoded value across the prefix cases. Distinguish a packing error from rounding error.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+./advanced/bin/collectives int4
+
+Interpret the result
+Separate numerical correctness, recovery equivalence and measured activity.
+
+If the check fails
+Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+
+Finish
+Keep every-prefix bytes and numerical comparisons.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU packing/dequantization; sanitizer unavailable.
+Scope  The GPU packing control supplies values. The requested sanitizer coverage remains open.
+
+Recorded files
+python reader/records.py 67 --files

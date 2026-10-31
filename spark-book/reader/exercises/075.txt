@@ -1,0 +1,39 @@
+Exercise 75  Prepare the environment and freeze the encoder
+
+Question
+Can a later embedding run identify the exact encoder and Python environment?
+
+Before you start
+Exercise 1 (inventory the existing environment) · Exercise 14 (run a small synchronized computation)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+2.1 s for Post install GPU probe (record 075.03).
+
+Check for success
+Record the model revision and environment identities, run the probe and preserve any failed pin resolution.
+
+Run in your lab
+On a new workspace, copy the frozen publisher receipt before downloading. Do not overwrite a receipt in an existing encoder directory.
+
+mkdir -p embeddings/models/minilm
+cp embeddings/evidence/minilm-source.json embeddings/models/minilm/book-source.json
+python embeddings/fetch_model.py --out embeddings/models/minilm
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep embeddings/models/minilm with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU dependency acquisition and actual CUDA probe.
+Scope  Installation and a successful GPU probe precede encoder evaluation.
+
+Recorded files
+python reader/records.py 75 --files

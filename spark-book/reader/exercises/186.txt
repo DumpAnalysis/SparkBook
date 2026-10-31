@@ -1,0 +1,40 @@
+Exercise 186  Record denoising activity and isolate VAE pressure
+
+Question
+Can denoising and VAE decoding be separated in the available trace?
+
+Before you start
+Exercise 184 (generate one bounded image) · Exercise 39 (capture four annotated iterations)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+5 min 46 s for Profiled tiling (record 186.01).
+
+Check for success
+Compare the tiling control and per-step observations. Assign device times only when the trace supplies valid device intervals.
+
+Run in your lab
+These three 1024 × 1024 trials use model offload. Recheck current host and CUDA headroom first. Compare profiled versus plain with tiling enabled, then plain with versus without tiling.
+
+: "${LAB_RUN:?Start a new lab run first}"
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/profiled-tiling" --tiling --trace-steps --profile --snapshot
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/plain-tiling" --tiling
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/plain-no-tiling"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep profiled-tiling, plain-tiling, plain-no-tiling with their output images and result files. Record timings and placement for each separate process.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — The Windows-elevated tiny-kernel retry still fails the activity-timestamp gate. Earlier diffusion, tiling and paging results retain their original workload scope; no new diffusion workload or denoiser/VAE timing was measured.
+Scope  Usable kernel intervals are required to apportion device time between denoising and decoding.
+
+Recorded files
+python reader/records.py 186 --files

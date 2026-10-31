@@ -1,0 +1,40 @@
+Exercise 218  Observe a live workload and attach inference servers
+
+Question
+Can a device-wide signal be aligned with a live, numerically verified inference workload?
+
+Before you start
+Exercise 214 (qualify the native monitoring stack) · Exercise 163 (serve the qualified lab_linear engine through Triton).
+A ready lab_linear TensorRT service and its qualified GPU owner, the WSL2 monitoring binaries and a fresh output directory.
+
+Recorded step time
+0.52 s for Measure the first unmonitored trial (record 218.01).
+
+Check for success
+Compare matched monitored and unmonitored trials and their server counters. Mark the outer observation window explicitly.
+
+Run in your lab
+Keep the qualified lab_linear service running and stop earlier monitoring stacks. Use port 8013 for the recorded service, or set TRITON_BASE to your active loopback URL, such as http://127.0.0.1:8000 for the Exercise 163 launcher. The client runs three trials, starts live WSL GPU sampling, repeats three trials and stops the monitoring stack. Leave the model owner in place until the comparison ends.
+
+: "${LAB_RUN:?Start a new lab run first}"
+: "${TOOLS_JSON:?Set TOOLS_JSON to the qualified tools.json from Exercise 212}"
+python observability/linear_service_check.py --tools "$TOOLS_JSON" \
+  --base "${TRITON_BASE:-http://127.0.0.1:8013}" --out "$LAB_RUN/live-trials"
+
+Interpret the result
+Provisioning alone is insufficient; distinguish simulated from live GPU series.
+
+If the check fails
+Trace exporter to scrape to query to panel, preserving missing-data semantics.
+
+Finish
+Compare summary.json and responses.json in each trial directory with live-query.json and the exporter log. Stop the model owner when finished.
+
+Handoff
+Retain the per-request errors and rejections alongside the device-wide samples.
+
+Recorded result  PASSED — Three unmonitored and three monitored Triton TensorRT trials each returned 32/32 successful numerical responses and three expected HTTP 400 rejections. Recorded p95 values were 3.39–4.90 ms without monitoring and 4.86–5.67 ms with monitoring. Six short sequential trials do not establish a stable overhead percentage. Live WSL fields include memory, utilization, temperature and power draw; power limit and memory clock remain unavailable. The collector interval is five seconds, much longer than individual requests.
+Scope  The five-second device samples cover a window much longer than these individual requests.
+
+Recorded files
+python reader/records.py 218 --files

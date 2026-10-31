@@ -1,0 +1,440 @@
+HISTORICAL PROCEDURE NOTES
+Book Version 55 and reader/exercises/ are the current reader instructions.
+These retained source-era notes explain concepts and repeat procedures; their
+old environment and execution-status statements are historical. Superseded
+preparation transcript blocks remain omitted. Use the evidence map for current
+recorded outcomes and fresh output paths for new work.
+
+# 92  LangChain agents and local model adapters
+
+The earlier agent laboratory exposes the controller directly. This chapter repeats that separation with LangChain: the framework owns a model/tool loop; a model proposes calls; application code decides which operations exist. LangChain's create_agent supplies that loop using LangGraph. A framework does not supply model weights, GPU memory or permission to execute arbitrary tools. The files in orchestration/ add to the earlier agent examples rather than replacing their evidence. [205]
+
+The example still has 64 GB unified memory and about 30 GB reported for the GPU. Run the orchestration process on the CPU in WSL2 and reuse one qualified local inference server as the model owner. Four agents need not mean four copies of the weights. Concurrent requests can still increase KV-cache use, queue time and host memory. Apply the admission and batching studies in Chapter 71 before increasing concurrency.
+
+The five chapters that follow use LangChain for the agent loop, LangGraph for explicit state and recovery, LangSmith for application traces and evaluation, PydanticAI for typed outputs, and Jev for probability-bearing decisions. LangSmith traces and Jev API responses do not measure local CUDA kernels. Their optional hosted-service procedures run clients in WSL2; service-side execution is remote. The core controls require no service account.
+
+Evidence boundary. Preparation used Python 3.12.14 on Linux x86-64 without a GPU. The actual installed frameworks executed scripted model controls, persistent graph state, local traces, offline evaluation and loopback HTTP adapters. No new learned model ran. No ARM64, WSL2 GPU, LangSmith service or hosted Jev execution is claimed. Every synthetic input, response and score is labelled. Fifteen full CPU command captures and the preparation failures are retained in orchestration/evidence/.
+
+## Exercise 220  Isolate and identify the orchestration environment
+
+Goal: prevent a framework dependency upgrade from silently changing the CUDA or training environment. Create a separate environment in WSL2. Python 3.12 was the preparation interpreter, not a hard requirement: the independent reviewer ran all fifteen pinned controls on Python 3.13.17, Linux x86-64 CPU. Retain pip check, the environment record and your own freeze. The preparation freeze records the Linux amd64 resolution; native ARM64 wheels and other interpreter versions still require qualification. Keep failed installations as evidence. See Appendix E for the independent captures.
+
+TARGET PROCEDURE. From the extracted companion directory:
+
+```
+
+cd ~/spark-book
+
+python3 -m venv .venv-orchestration
+
+source .venv-orchestration/bin/activate
+
+python -m pip install -r orchestration/requirements.txt
+
+python -m pip check
+
+mkdir -p runs/orchestration
+
+python -m pip freeze > runs/orchestration/freeze.txt
+
+python orchestration/environment.py \
+
+  --out runs/orchestration/environment.json
+
+
+```
+
+The output records framework identities separately from the owner-reported CUDA 13.4 toolkit. No PyTorch or CUDA package is installed by this laboratory's direct requirements. The complete preparation dependency freeze and installation log are in orchestration/. On the laptop, retain the actual resolver output, pip check result and native package identities before running the controls.
+
+## Exercise 221  Observe the tool loop and inject faults
+
+Goal: distinguish valid tool orchestration from learned planning. ScriptedChat is a deterministic test double implementing the chat-model interface. The real create_agent loop receives a tool call, validates its arguments, executes inspect_evidence and returns the tool message to the scripted model. The only allowed keys are gpu_memory and request. The tool reads fixed, explicitly simulated records; it executes no shell command and accepts no file path.
+
+The contract is short enough to inspect before running it:
+
+```
+
+@tool
+
+def inspect_evidence(
+
+    key: Literal['gpu_memory', 'request']
+
+) -> str:
+
+    """Read one immutable SIMULATED teaching record."""
+
+    return read_evidence(key)
+
+
+```
+
+The invalid key becomes a ToolMessage with error status. The second control keeps asking for the tool and reaches GraphRecursionError. The six-step graph limit is not a six-token or six-second limit. It bounds graph execution steps; an individual HTTP operation has its own timeout. Neither result shows that a model can choose a useful diagnostic action. The preserved message sequence lets you identify a wrong proposal, rejected arguments, an application exception or a failure to stop without treating them as one model error.
+
+TARGET repeat. Use fresh output paths and retain the entire capture:
+
+```
+
+python catalogs/capture.py --out runs/lc-control -- \
+
+  python orchestration/langchain_lab.py control \
+
+  --out runs/lc-control/messages.json
+
+python catalogs/capture.py --out runs/lc-faults -- \
+
+  python orchestration/langchain_lab.py faults \
+
+  --out runs/lc-faults/messages.json
+
+```
+
+## Exercise 222  Qualify the HTTP boundary and local model
+
+Goal: separate an adapter that speaks the right protocol from a model/server combination that supports tools. client_contract.py starts a loopback HTTP fixture and exercises the actual ChatOpenAI and PydanticAI adapters. It supplies fabricated tool calls and token counts. An invalid inherited proxy cannot divert these explicitly configured clients. Three non-local or malformed endpoint forms are rejected before a request. This is a CPU protocol test, not a GPU benchmark.
+
+
+The retained transport warning describes LangChain's socket-option configuration. Both explicit clients disable proxy inheritance, and the poisoned-proxy control completed. The requests in result.json show exactly which schemas and messages reached the fixture. The placeholder token counts must never enter a performance comparison.
+
+TARGET local model. Start the previously qualified server from Chapter 6, or use the serving laboratory's qualified endpoint. The model alias for serve.sh is local-model. Tool support additionally depends on the model, chat template and server configuration; a successful plain-text chat is insufficient. For vLLM, retain the model-specific parser and automatic-tool-choice configuration from its tool-calling documentation. A generic compatible adapter preserves standard fields; provider extensions may need their own integration. [206, 226]
+
+```
+
+bash serve.sh start 4096 1 99 gpu q4_k_m
+
+python catalogs/capture.py --out runs/lc-local -- \
+
+  python orchestration/langchain_lab.py local \
+
+  --base-url http://127.0.0.1:8080/v1 \
+
+  --model local-model --out runs/lc-local/messages.json
+
+```
+
+The program requires a successful gpu_memory tool response, retains messages before reporting a missing-call error, uses a 30-second HTTP timeout, disables client retries and limits the graph to six steps. The model still sees simulated evidence. A valid tool result does not prove that the final explanation uses it faithfully. Compare the final claim with the record and retain the server's CUDA-offload evidence. If the server rejects tools, preserve that failure and qualify its template/parser before retrying; do not relabel a plain-text answer as tool success.
+
+Record the saved client start/end timestamps alongside the Chapter 91 scrape window and server request logs. Client wall time includes orchestration, HTTP, queueing and inference. A busy GPU can belong to another process, and low sampled utilization can miss short bursts. Use the CUDA trace exercises for kernel attribution. Stop the server with bash serve.sh stop when the model session is complete.
+
+# 93  LangGraph state, interrupts and recovery
+
+An agent's next action is only part of its state. A diagnostic workflow also has an incident identity, collected evidence, pending review and a terminal result. LangGraph makes those transitions explicit. Its checkpoint is application state, not a GPU-memory snapshot, optimizer checkpoint or saved model context. The database can survive a process exit while the inference server and its KV cache have a separate lifetime. [207]
+
+The supplied graph has a review node followed by a finish node. review calls interrupt with a proposed read-only investigation. The finish node either records a denial, records a simulated approval, or invokes the bounded LangChain loop. SqliteSaver stores checkpoints in the WSL Linux filesystem. Each invocation identifies a thread. Thread identity is a storage lookup key; it is not an authentication boundary. [208, 209]
+
+## Exercise 223  Resume after the Python process exits
+
+Goal: prove that continuation comes from durable storage. graph_control.py launches graph_lab.py twice using separate Python processes. The first exits after the interrupt. The second opens the same SQLite database and resumes the same thread with an explicit Boolean approval. This is an executed recovery control; it does not simulate a GPU or call a learned model.
+
+
+TARGET manual session. These commands run as separate processes even in one terminal:
+
+```
+
+python orchestration/graph_lab.py start \
+
+  --db runs/graph-01/checkpoints.sqlite \
+
+  --thread incident-01 --case SIMULATED-001 \
+
+  --out runs/graph-01/start.json
+
+python orchestration/graph_lab.py status \
+
+  --db runs/graph-01/checkpoints.sqlite \
+
+  --thread incident-01 --out runs/graph-01/status.json
+
+python orchestration/graph_lab.py resume \
+
+  --db runs/graph-01/checkpoints.sqlite \
+
+  --thread incident-01 --approve yes \
+
+  --out runs/graph-01/resume.json
+
+```
+
+The pause exposes next=[review]. After resumption, the finished state has no pending node. Keep the database and its complete source/version identities together. Copy databases only after the owning processes have stopped or through an appropriate consistent backup mechanism. The exercise demonstrates sequential process restart; it does not qualify concurrent writers, migrations, power-loss recovery or a distributed database.
+
+## Exercise 224  Reject wrong-thread and duplicate continuation
+
+Goal: prevent a resume request from being mistaken for a new incident or replayed after completion. The wrapper checks for an existing pending checkpoint. A new thread has no such checkpoint; a completed thread has no next node. The control rejects both. It also refuses start when that thread already has saved state.
+
+
+Run the faults mode only against the completed thread from Exercise 223, or use graph_control.py faults with a fresh output directory to construct the prerequisite itself. These checks are application guards, not a general exactly-once guarantee. Two concurrent workers could race between the check and resume. For shared service deployment, add authenticated incident ownership and a transactional coordination design, then fault-test it.
+
+The interrupted node starts again when resumed. Put no irreversible effect before interrupt. If a later node sends a request, writes externally or charges a service, a failure between that effect and checkpoint commitment can cause repetition. Use a durable operation identity and verify the receiver's deduplication behavior. A model response or database checkpoint alone does not grant exactly-once semantics. [208]
+
+## Exercise 225  Put a bounded model call behind review
+
+Goal: connect stateful orchestration to the earlier agent while retaining the execution boundary. The CPU control resumes the graph and invokes the real LangChain loop using ScriptedChat. The saved messages remain labelled SCRIPTED.
+
+
+TARGET local extension. Start a fresh incident and resume it with a qualified local model. This invokes model inference only after the explicit review value is yes:
+
+```
+
+python orchestration/graph_lab.py start \
+
+  --db runs/graph-local/checkpoints.sqlite \
+
+  --thread incident-local --out runs/graph-local/start.json
+
+python catalogs/capture.py --out runs/graph-local/resume -- \
+
+  python orchestration/graph_lab.py resume \
+
+  --db runs/graph-local/checkpoints.sqlite \
+
+  --thread incident-local --approve yes \
+
+  --local-model local-model \
+
+  --base-url http://127.0.0.1:8080/v1 \
+
+  --out runs/graph-local/resume/result.json
+
+```
+
+The nested agent response is retained beside the final graph result. If the HTTP operation fails, retain its exception, inspect status, and decide whether another attempt could duplicate work. A new output path avoids confusing a retry with a previous receipt. This graph's tool is read-only; extending it to deployments or file edits changes that risk.
+
+For diagnosis, compare three intervals: time paused awaiting review, time in a graph node, and time in the inference server. A human wait can dominate an end-to-end trace while using no GPU. Put incident IDs in logs and traces rather than unbounded Prometheus labels. Use source timestamps to join graph events with the server and Chapter 91 dashboard; do not infer causation from coincident peaks alone.
+
+# 94  LangSmith traces and evaluation
+
+LangSmith describes application execution as runs with parent/child relationships, inputs, outputs, errors and timing. That view answers which tool failed or which model attempt was retried. Prometheus answers how rates and resource observations change over time; CUDA tools answer what executed on the device. These views complement each other. A LangSmith model span measures a client-side operation, not CUDA kernel time. [210]
+
+The core exercises use the installed LangSmith SDK without a LangSmith account or remote trace submission. A local JSON trace is an artifact, not a self-hosted LangSmith server or a rendered LangSmith dashboard. Self-hosted LangSmith is a separately licensed Enterprise deployment with its own infrastructure requirements; installing the Python SDK or LangGraph does not install that service. [213]
+
+## Exercise 226  Preserve nested traces, errors and redaction
+
+Goal: retain enough trace structure to explain success and failure without logging the teaching prompt marker. The control uses traceable and tracing_context(enabled='local'). It runs two root calls, each with a child evidence-read span, and deliberately raises an error in the second call. The root's input processor retains a case identifier and a redaction indicator. It does not pretend that suppressing one input field redacts every possible output, exception or attachment. [210, 211]
+
+
+Inspect the JSON for matching parent IDs, start/end times and the failing root's error. The SDK excludes child_runs from its default serialization; the helper recursively writes them explicitly. Removing that traversal would produce a superficially valid file with missing child spans. Compare the tree with the earlier OpenTelemetry trace exercise and identify which evidence each representation preserves.
+
+A second boundary matters: tracing flags are not a network firewall. During preparation, the default SDK client attempted /info discovery even though uploads were disabled. The no-network control caught and blocked it. The final offline client supplies local service metadata, disables batching, and selects the LangSmith tracing mode explicitly. The executable guard then verifies that no socket connection is attempted. RunTree.post remains a deliberate network operation when used. Failed development captures 05, 06 and 08 remain in evidence/; they are not successful offline runs.
+
+```
+
+python catalogs/capture.py --out runs/smith-local -- \
+
+  python orchestration/langsmith_lab.py control \
+
+  --out runs/smith-local/traces.json
+
+```
+
+The guard covers connection attempts made by this Python process during the control. It is an execution assertion, not an operating-system sandbox for arbitrary subprocesses or native extensions. Review inputs, outputs and exception text before sharing a live trace. Keep API keys out of commands, receipts and attachments.
+
+## Exercise 227  Run an offline evaluation and preserve its failures
+
+Goal: verify an evaluator independently of model quality. Five teaching examples have fixed expected categories. A scripted predictor intentionally gets one wrong. The actual LangSmith evaluate function runs the examples with upload_results=False, no evaluator tracing and the explicit offline client. The socket guard must remain quiet. The retained beta warning is part of the pinned SDK's output. [212]
+
+
+The 0.8 result validates the scoring path against known answers. It is not an accuracy estimate for the local model. For a model experiment, replace scripted predictions with captured local-model outputs, preserve model/prompt/server versions, and freeze a held-out labelled set. Keep malformed output, timeout and abstention outcomes in the denominator policy rather than silently dropping them. State whether a retry is counted as another request or another case.
+
+Use paired cases when comparing two templates or quantizations. Report changes in wrong answers, unsupported conclusions, tool misuse, latency and resource cost separately. A faster loop can still make more wrong calls. An evaluator that shares the same mistaken rule as the implementation can approve the fault; retain independent labels and a deliberately wrong control.
+
+```
+
+python catalogs/capture.py --out runs/smith-eval -- \
+
+  python orchestration/langsmith_lab.py evaluate \
+
+  --out runs/smith-eval/result.json
+
+```
+
+## Exercise 228  Plan and qualify an optional LangSmith service
+
+Goal: distinguish local SDK success, service ingestion, query readback and UI inspection. The plan command records the fixed synthetic payload destination and makes no network call.
+
+
+OPTIONAL TARGET PROCEDURE. This is a WSL2 client to the hosted LangSmith service, not local-only observability. Use an existing account and project policy. The command submits only a fixed synthetic case; it never reads the laptop's logs or model prompts. It requires the explicit upload flag. Enter the API key without echoing it and do not record shell tracing while doing so:
+
+```
+
+read -r -s -p 'LangSmith API key: ' LANGSMITH_API_KEY
+
+export LANGSMITH_API_KEY
+
+python catalogs/capture.py --out runs/smith-service -- \
+
+  python orchestration/langsmith_lab.py service \
+
+  --upload-synthetic --out runs/smith-service/result.json
+
+unset LANGSMITH_API_KEY
+
+```
+
+The program posts a completed run and reads it back by ID. That checks ingestion/readback; inspect the run in the service UI separately and retain a labelled screenshot if needed. No hosted transcript is supplied as an executed success. Authentication, workspace policy, endpoint availability and the service's current SDK compatibility are target checks. For a licensed self-hosted instance, follow its documented deployment and change the client destination deliberately; the shipped service command targets the named cloud endpoint only. [210, 213]
+
+For GPU investigations, keep trace IDs and detailed prompts out of Prometheus labels. Retain a bounded run-ID mapping in a log and align the trace interval with the monitoring window. Compare queue time, model attempts, tool spans and GPU activity. A retry storm can increase GPU work while the number of user requests stays constant. A lost trace is an observability failure, not proof that inference never occurred.
+
+# 95  PydanticAI typed outputs and retry diagnosis
+
+PydanticAI connects an agent to a model while validating outputs against Python types. The teaching Finding schema permits only memory, input or unknown; requires a known evidence key; rejects extra fields; and bounds confidence to zero through one. That contract narrows the possible representation. It cannot prove that memory caused the incident or that a model's confidence is calibrated. [215]
+
+The CPU tests use FunctionModel, a documented procedural model replacement. They exercise actual agent validation and retries without an LLM request. ALLOW_MODEL_REQUESTS=False and the connection guard help detect accidental network use in those controls. They do not turn FunctionModel into a learned classifier. [214]
+
+## Exercise 229  Reject a plausible but invalid finding
+
+Goal: observe a validation failure reaching the model retry path. The function model first supplies confidence=1.2, then supplies 0.8. Its category and evidence key are otherwise unchanged. Read the saved all_messages_json history to locate the rejected response, validation feedback and accepted response. The following is the executable output contract:
+
+```
+
+class Finding(BaseModel):
+
+    model_config = ConfigDict(extra='forbid', strict=True)
+
+    category: Literal['memory', 'input', 'unknown']
+
+    evidence: Literal['gpu_memory', 'request']
+
+    confidence: float = Field(ge=0, le=1)
+
+
+```
+
+The second answer is structurally valid. Its 0.8 is a supplied teaching value, not measured probability. To diagnose a real model, retain the raw returned arguments and validation error, then compare the accepted finding with the evidence. A successful retry can conceal a recurring first-attempt failure if only the final object is logged.
+
+```
+
+python catalogs/capture.py --out runs/pydantic-control -- \
+
+  python orchestration/pydantic_lab.py control \
+
+  --out runs/pydantic-control/result.json
+
+```
+
+## Exercise 230  Bound persistent invalid output
+
+Goal: distinguish an output-validation retry policy from an agent-loop request budget. The fixture always returns the invalid value. The agent permits more retries than the run's two-request limit, so UsageLimitExceeded stops this control before a third model request. request_limit counts responses committed to the run history; it does not count every lower-level HTTP or fallback attempt. This control has neither provider retries nor fallbacks. Provider retries, agent validation retries and graph step limits are separate controls; stacking them without accounting can multiply latency and work. [216, 225]
+
+
+```
+
+python catalogs/capture.py --out runs/pydantic-budget -- \
+
+  python orchestration/pydantic_lab.py budget \
+
+  --out runs/pydantic-budget/result.json
+
+```
+
+Build a diagnosis table from the saved history: attempt number, validation outcome, request duration, and final status. A token limit depends on provider usage reporting; a request limit is not a GPU-memory limit. Use the serving admission controls to bound concurrent contexts. Preserve budget exhaustion as a terminal outcome instead of returning a fabricated successful Finding.
+
+## Exercise 231  Use the typed agent with a local endpoint
+
+Goal: test schema transport separately from a model's compliance. Exercise 222's complete HTTP transcript also covers this adapter: the CPU fixture returned a fabricated Finding through the real PydanticAI OpenAIChatModel. In the pinned release, local compatible services use OpenAICompatibleProvider with a stable provider name. This avoids silently assuming that an arbitrary endpoint supports all OpenAI features. [217]
+
+TARGET PROCEDURE, with the local model server already qualified:
+
+```
+
+python catalogs/capture.py --out runs/pydantic-local -- \
+
+  python orchestration/pydantic_lab.py local \
+
+  --base-url http://127.0.0.1:8080/v1 \
+
+  --model local-model --out runs/pydantic-local/result.json
+
+```
+
+The supplied adapter uses tool-based structured output, one validation retry, a three-request budget, a 256-token output setting, a 30-second HTTP timeout and no provider-client retries. It disables proxy inheritance and redirects. The source uses the pinned release's usage property; treating it as an older callable API was caught by the retained preparation failure 07. The final HTTP capture demonstrates the corrected interface, not target-model compatibility.
+
+Acceptance requires a valid Finding, a retained message history, the expected local endpoint, a model identity and independent server GPU evidence. Compare start_epoch_ns, end_epoch_ns and client_seconds with the server and GPU timelines. For an intentional fault, stop the server and capture the connection failure in a new directory; distinguish that transport failure from a valid HTTP response with invalid output. If the server rejects the output-tool schema, investigate its model profile and parser before changing validation rules.
+
+To use actual diagnostic evidence, create a bounded snapshot with the earlier evidence-capture exercises and adapt the allowed keys under review. Do not give a model arbitrary file or shell access merely to make a demo answer more realistic. Both the model's conclusion and its cited evidence need examination; passing a Python type check closes only the representation boundary.
+
+# 96  Jev decision models and calibrated routing
+
+Jev is TypeSafe's decision-model family. Its documented interface accepts state plus named, typed questions and returns structured answers. Choice selects among named alternatives; Score uses an ordered rubric; Noul returns a probability of yes. The laboratory uses the official TypeSafe endpoint and the versioned identifier jev-1.14.0 listed on 28 October 2026. The official API's response model field identifies the model used. Third-party gateways may use different identifiers and limits. [218, 219]
+
+This chapter does not present Jev as downloadable local weights. The documented API route runs inference remotely. All client commands and offline evaluation controls run in WSL2, but neither the 64 GB host memory nor the approximately 30 GB GPU report determines that service's model capacity. No local Jev checkpoint or CUDA execution recipe is supplied. Use the earlier local BERT and embedding classifiers when the requirement is to keep both data and inference on the laptop.
+
+A structured answer can be wrong. A restricted answer set prevents certain representation errors; it does not guarantee a correct diagnosis, sound policy or resistance to misleading evidence. Separate output validity, probability calibration and downstream action quality. The examples route to diagnostic categories and never execute a command selected by the model.
+
+## Exercise 232  Verify Choice, Score and Noul contracts
+
+Goal: inspect the wire format and reject mismatched evidence before routing. jev_lab.py builds three questions about one fixed synthetic incident. Choice has memory, input and unknown options. Score has three descriptive severity levels. Noul asks whether the input explicitly states an out-of-memory error. These are different questions; a high severity score does not identify the cause. [220, 221, 222]
+
+The response control is deliberately fabricated. It verifies question identities, answer types, the pinned model identity, finite bounded probabilities, option labels, an approximately unit probability sum, a highest-probability choice, a preserved rubric and an expected score consistent with its distribution. Six altered responses must be rejected. The 0.001 tolerance for sums and score arithmetic is a laboratory policy, not a provider rounding guarantee. The API identifies the model used in the response; this may differ from a requested alias. Compare the resolved version with the pin: jev-latest is not acceptable evidence for this request pinned to jev-1.14.0. [218, 219]
+
+
+In the fixture, Choice's top probability is 0.8 while its confidence is 0.7. With three options, the documented Choice confidence transforms the maximum probability relative to a uniform one-third baseline. It is not the same as the empirical fraction of correct decisions. Score summarizes an ordered distribution differently. Noul has its probability directly and no separate confidence field. Preserve the complete distributions when investigating threshold behavior. [223]
+
+```
+
+python catalogs/capture.py --out runs/jev-contract -- \
+
+  python orchestration/jev_lab.py control \
+
+  --out runs/jev-contract/result.json
+
+```
+
+Compare the retained request and fabricated response side by side. Keep unknown as an explicit decision category when neither cause is supported. Do not map a missing answer, malformed distribution or API exception to a confident default action. The fixture's zero token counts are labels for an unexecuted service call, not measurements of Jev's billing or tokenizer.
+
+## Exercise 233  Measure calibration and risk versus coverage
+
+Goal: prove the evaluator arithmetic before assessing a model. Six invented binary outcomes and predicted probabilities deliberately include confident mistakes. Binary Brier score is the mean of (p-y) squared. Coverage is the accepted fraction of cases; selective risk is the error fraction among those accepted. The control accepts a binary decision when max(p,1-p) reaches the threshold. It does not threshold Jev's transformed Choice confidence.
+
+
+The stricter threshold accepts fewer cases but has higher error in this tiny counterexample. Thus a confidence threshold cannot be justified by intuition alone. These six rows illustrate arithmetic and are far too small to estimate model calibration. For a real study, separate threshold tuning from held-out testing, keep case identities and labels fixed, record class balance, and report uncertainty with the sample counts. An accepted set with no cases has undefined risk; it must not be reported as zero error.
+
+```
+
+python catalogs/capture.py --out runs/jev-calibration -- \
+
+  python orchestration/jev_lab.py calibration \
+
+  --out runs/jev-calibration/result.json
+
+```
+
+Extend the retained table with a reliability diagram: group predicted probabilities into bins, plot each bin's mean prediction against its observed positive fraction, and show bin counts. For a multiclass Choice, document whether you use a multiclass Brier score or a top-label calibration measure. A changed class set, rubric wording, dataset distribution or model version can invalidate a previous threshold. Do not compare transformed confidence values across different question types as if they were the same probability.
+
+Integrate a validated decision into LangGraph as a routing node: invalid response or uncertain result leads to review; an accepted category selects a read-only evidence investigation. Keep the routing policy in application code. Record request duration, answer distribution, model identity and final route in a trace. Remote service latency is not evidence of local GPU occupancy or of Jev's server kernel time.
+
+## Exercise 234  Prepare a versioned Jev request and optional service run
+
+Goal: make the remote boundary concrete and review the exact payload before any submission. The plan command writes the fixed synthetic request. It sends nothing and needs no key.
+
+
+OPTIONAL TARGET PROCEDURE. Use the official TypeSafe account/API and confirm that the pinned model remains available. The shipped hosted command sends only the same synthetic incident, uses the fixed HTTPS endpoint, refuses redirects and proxy inheritance, limits response bytes, sets a 30-second timeout and makes one attempt. It never uploads real GPU logs. An explicit flag and API key are required:
+
+```
+
+read -r -s -p 'TypeSafe API key: ' TYPESAFE_API_KEY
+
+export TYPESAFE_API_KEY
+
+python catalogs/capture.py --out runs/jev-hosted -- \
+
+  python orchestration/jev_lab.py hosted --send-synthetic \
+
+  --out runs/jev-hosted/result.json
+
+unset TYPESAFE_API_KEY
+
+```
+
+Keep the actual response model, token usage, full answer distributions, client duration and exit status. Investigate failures or changed model identity; do not silently substitute a rolling alias after tuning a threshold. Output-token count is usage metadata; consult current terms separately for billing. The example leaves both experimental headers unset: TypeSafe-Danger-Zone-Images and TypeSafe-Danger-Zone-Long-Context. The official OpenAPI schema names both; the model documentation also explains the long-context opt-in. [218, 219]
+
+PydanticAI also documents a native TypeSafeModel integration through its typesafe extra. It maps supported output types to decision questions rather than treating Jev as an ordinary chat-completions model. This is an optional alternative, not a dependency of the executed wire-contract controls. Pin and record the extra's resolved dependencies before trying it; the direct HTTP laboratory avoids hiding the response behind an adapter. [224]
+
+```
+
+python -m pip install 'pydantic-ai-slim[typesafe]==2.63.0'
+
+python -m pip freeze > runs/orchestration/typesafe-freeze.txt
+
+```
+
+A local generative model's JSON confidence is not automatically comparable with Jev's probability distribution. Compare task outcomes on the same held-out cases, including abstentions and failures, and include the remote data boundary in the decision. The earlier BERT training exercises provide a local classifier baseline; LangSmith and Prometheus provide complementary observation paths. No hosted Jev, LangSmith UI, local learned-agent or WSL2 GPU success is inferred from the CPU controls printed here.

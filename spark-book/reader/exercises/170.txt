@@ -1,0 +1,35 @@
+Exercise 170  Verify frozen weights and checkpoint recovery
+
+Question
+Does a resumed NeMo run reproduce the next updates of uninterrupted training?
+
+Before you start
+Exercise 169 (prepare one small NeMo AutoModel run) · Exercise 69 (resume the next update with its complete state)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+48.6 s for Resume training with the corrected iterator (record 170.02).
+
+Check for success
+Compare adapters, optimizer, scheduler, iterator position and next RNG draws. Matching weights alone leaves the continuation unresolved.
+
+Run in your lab
+Use the saved-state comparison procedure in Chapter 80. Preserve model, adapter, optimizer, RNG and iterator state. The recovery comparison covers a map-style dataset with zero workers and shuffling disabled.
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Save compatible engine/profile or adapter/base identities; close owned services.
+
+Handoff
+Use the recorded corrected checkpoint for a new matched-state test. Identify it by path and hash. Exercise 171’s historical merge used the earlier resumed checkpoint.
+
+Recorded result  PASSED — The fresh corrected resumed path and fresh uninterrupted six-update path now agree on 392 adapter tensors, optimizer, scheduler, data-loader and saved RNG content; their next 32 CPU random values match. Frozen live-parameter digests are unchanged. This PASSED decision is scoped to the recorded zero-worker, map-style, nonshuffling resumed iterator and its temporary constructor correction.
+Scope  The split, base identity, trainable state and held-out behavior are separate parts of the adaptation record.
+
+Recorded files
+python reader/records.py 170 --files

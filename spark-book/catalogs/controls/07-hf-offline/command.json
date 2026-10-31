@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "catalogs/hf_lab.py",
+    "offline",
+    "--snapshot",
+    "../catalog-downloads/hf-model",
+    "--out",
+    "catalogs/controls/hf-offline",
+    "--device",
+    "cpu"
+  ],
+  "start_ns": 1793183905939682209,
+  "end_ns": 1793183914969001775,
+  "exit": 0
+}

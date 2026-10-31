@@ -1,0 +1,8 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/ngc_lab.py image --out catalogs/controls/ngc-image
+candidate: nvcr.io/nvidia/pytorch:26.09-py3
+index_digest: sha256:6e8ccc607fc2a51e3741667b86316a0889418ba8b78ed0ba96e8d282b648a7a6
+arm64_digest: sha256:307c449df7dabed6b36e017a2b2f2e45bdec9dc203b81507111315f1e971de6e
+layers: 68
+compressed_layer_bytes: 12273449215
+linux/arm64 metadata PASS; layers not downloaded; CUDA not qualified
+[exit 0]

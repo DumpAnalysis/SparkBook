@@ -1,0 +1,30 @@
+groups:
+- name: laboratory
+  interval: 5s
+  rules:
+  - record: lab:gpu_memory_used:ratio
+    expr: (lab_gpu_memory_used_bytes / lab_gpu_memory_total_bytes) and (lab_gpu_memory_total_bytes > 0)
+  - alert: GpuMemoryPressure
+    expr: lab:gpu_memory_used:ratio > 0.90
+    for: 20s
+    labels:
+      severity: warning
+  - alert: GpuBusyCounterUnavailable
+    expr: lab_gpu_field_available{field="utilization.gpu"} == 0
+    for: 20s
+    labels:
+      severity: info
+  - alert: GpuExporterDown
+    expr: up{job="gpu"} == 0
+    for: 15s
+    labels:
+      severity: warning
+  - alert: GpuJobMissing
+    expr: absent_over_time(up{job="gpu"}[30s])
+    labels:
+      severity: warning
+  - alert: GpuCollectorStale
+    expr: (time() - lab_exporter_last_poll_timestamp_seconds > 60) and on(job,instance) (up{job="gpu"} == 1)
+    for: 10s
+    labels:
+      severity: warning

@@ -1,0 +1,39 @@
+Exercise 97  Measure the effect of monitoring
+
+Question
+How much does the monitoring procedure perturb this particular workload?
+
+Before you start
+Exercise 95 (correlate inference requests with GPU activity)
+CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.
+
+Recorded step time
+0.06 s for Five pair comparison (record 097.01).
+
+Check for success
+Compare matched monitored and unmonitored trials, using the same work, settings and timing boundary.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${MONITORED:?Set MONITORED to the matched monitored benchmark record}"
+: "${UNMONITORED:?Set UNMONITORED to the unmonitored benchmark record}"
+python metrics/compare.py --baseline "$UNMONITORED" --observed "$MONITORED"
+
+Interpret the result
+Explain coverage and sampling limits before interpreting utilization or peaks.
+
+If the check fails
+Inspect the raw sample before blaming a plot; check stale or unsupported fields.
+
+Finish
+Keep matched plans, repeated trials and baseline comparison.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU actual inference; paired CPU monitoring-control conditions.
+Scope  The comparison uses the retained paired trials and their sampling conditions.
+
+Recorded files
+python reader/records.py 97 --files

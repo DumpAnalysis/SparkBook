@@ -1,0 +1,60 @@
+{
+  "paginationInfo": {
+    "index": 0,
+    "size": 100,
+    "totalPages": 1,
+    "totalResults": 6
+  },
+  "projection_note": "Human descriptions omitted; http.json hashes the complete response",
+  "recipe": {
+    "canGuestDownload": true,
+    "name": "ngc_cli",
+    "orgName": "nvidia",
+    "publisher": "NVIDIA",
+    "teamName": "ngc-apps"
+  },
+  "recipeFiles": [
+    {
+      "createdDate": "2026-09-04T05:57:50.540Z",
+      "path": "ngc_amd64.deb",
+      "sha256_base64": "PM4T/yPeUMLsBOEJ9HHtC0cJI/vndRe/rTos0tApB1Q=",
+      "sizeInBytes": 49175128
+    },
+    {
+      "createdDate": "2026-09-04T05:57:50.540Z",
+      "path": "ngccli_arm64.zip",
+      "sha256_base64": "XBjF0UrZ5LjIrAtcWWzU7TPB5KPyvZP4UeuXSm8/aEc=",
+      "sizeInBytes": 58219524
+    },
+    {
+      "createdDate": "2026-09-04T05:57:50.546Z",
+      "path": "ngccli_linux.zip",
+      "sha256_base64": "WLxNe2kBVRoJXOWkOgBlscItXq8aFk1AAp7j/aEczUc=",
+      "sizeInBytes": 59124579
+    },
+    {
+      "createdDate": "2026-09-04T05:57:50.546Z",
+      "path": "ngccli_mac_arm.pkg",
+      "sha256_base64": "PuUoPIwwEUSnIrgwTlEd2vfttSCz6TKuWjk6o8lDNQI=",
+      "sizeInBytes": 51195144
+    },
+    {
+      "createdDate": "2026-09-04T05:57:50.540Z",
+      "path": "ngccli_mac_intel.pkg",
+      "sha256_base64": "Zh04RoTsUR6J6uUvrAPZhHRU+vovt+8xOlVL8DhY2OE=",
+      "sizeInBytes": 52781329
+    },
+    {
+      "createdDate": "2026-09-04T05:57:50.549Z",
+      "path": "ngccli_win_amd64.exe",
+      "sha256_base64": "eoBZAhAAgq6+KfnBFIyAfegHr9i3yBcTSndySQcMwiU=",
+      "sizeInBytes": 48885880
+    }
+  ],
+  "recipeVersion": {
+    "status": "UPLOAD_COMPLETE",
+    "totalFileCount": 6,
+    "totalSizeInBytes": 319381584,
+    "versionId": "4.34.10"
+  }
+}

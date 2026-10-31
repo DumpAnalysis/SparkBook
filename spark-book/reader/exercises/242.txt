@@ -1,0 +1,40 @@
+Exercise 242  Evaluate and prepare an adapter for serving
+
+Question
+Can a serving format constraint improve validity without improving correctness?
+
+Before you start
+Exercise 241 (resume with the original optimizer and base identity) · Exercise 26 (compare complete held-out answers)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+38.2 s for Merge checked adapter (record 242.02).
+
+Check for success
+Score format validity and semantic accuracy separately on the same paired evaluation inputs.
+
+Run in your lab
+Evaluate the saved adapter against its base on the held-out prompts before running the merge step. Use the four paired responses and the later output-contract comparison separately.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${TRAINING_BASE:?Set TRAINING_BASE to the pinned local base snapshot for Unsloth}"
+: "${TRAINING_RUN:?Set TRAINING_RUN to the retained training/checkpoint run directory}"
+python runtimes/merge_unsloth.py --run "$TRAINING_RUN" --base "$TRAINING_BASE" --out "$LAB_RUN/merged-adapter"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/merged-adapter with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Forty fresh requests distinguish label format from accuracy. Grammar constrains all 32 affected responses to complete valid labels; F16 answers 7/16 correctly and Q4_K_M 5/16. Original prompts/token IDs and model identities are retained. The output-contract investigation PASSED; the experimental model remains NOT PROMOTED.
+Scope  A successful training update or valid output syntax does not by itself establish task improvement.
+
+Recorded files
+python reader/records.py 242 --files

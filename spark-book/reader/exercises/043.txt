@@ -1,0 +1,39 @@
+Exercise 43  Capture operator and GPU activity
+
+Question
+Does the profiler show device execution as well as CPU operator calls?
+
+Before you start
+Exercise 14 (run a small synchronized computation)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+3.0 s for Framework trace (record 043.01).
+
+Check for success
+Inspect the operator table and device-event lane separately. A GPU timing claim needs valid start and end timestamps.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python cuda/torch_evidence.py trace --out "$LAB_RUN/trace"
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep $LAB_RUN/trace with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU framework workload; actual trace inspected.
+Scope  Host ranges cannot supply missing device timestamps.
+
+Recorded files
+python reader/records.py 43 --files

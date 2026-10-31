@@ -1,0 +1,37 @@
+Exercise 24  Create and inspect the teaching corpus
+
+Question
+Could information from the same incident reach both training and evaluation?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.
+
+Recorded step time
+0.03 s for Generate training data (record 024.01).
+
+Check for success
+Inspect all three JSONL partitions for family overlap. Save split identities before measuring the adapter.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python training_data.py
+
+Interpret the result
+A clean split enables a meaningful small comparison; a tiny teaching corpus does not establish general model quality.
+
+If the check fails
+Check dataset/tokenizer identity and memory at the failing phase before changing precision.
+
+Finish
+Keep the exact corpus and split identities for training.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU synthetic-data generation and portable tests.
+Scope  The generated records test the preparation pipeline on synthetic examples.
+
+Recorded files
+python reader/records.py 24 --files

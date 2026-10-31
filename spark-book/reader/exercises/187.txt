@@ -1,0 +1,40 @@
+Exercise 187  Change an image while preserving the experiment identity
+
+Question
+Which requested edit is visible when only image-to-image strength changes?
+
+Before you start
+Exercise 184 (generate one bounded image)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+36.6 s for Strength 0.7 (record 187.02).
+
+Check for success
+Compare the source and both outputs at the same prompt and seed. Score the requested object separately from background changes.
+
+Run in your lab
+Both edits begin from the same generated image in Exercise 184 ($LAB_RUN/image/output.png if you used its guide in this run). Change only strength, from 0.4 to 0.7. Grade the foreground cup against the green-cup prompt.
+
+: "${LAB_RUN:?Start a new lab run first}"
+: "${IMAGE_184:?Set IMAGE_184 to the verified output.png from Exercise 184}"
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a green ceramic cup" --width 512 --height 512 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/edit-04" --strength 0.4 --input "$IMAGE_184"
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a green ceramic cup" --width 512 --height 512 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/edit-07" --strength 0.7 --input "$IMAGE_184"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep edit-04, edit-07 with their output images and result files. Record timings and placement for each separate process.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Both image-to-image requests completed using the original image and fixed prompt/seed, at strengths 0.4 and 0.7. Both failed the requested foreground-cup recoloring: the foreground cup stayed red; the stronger edit added a green background vessel.
+Scope  Procedure PASSED does not erase the failed attribute criterion.
+
+Recorded files
+python reader/records.py 187 --files

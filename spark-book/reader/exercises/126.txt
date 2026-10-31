@@ -1,0 +1,41 @@
+Exercise 126  Distinguish a failed worker a mismatch and a timeout
+
+Question
+Can the supervisor tell a crash, a collective mismatch and an absent rank apart?
+
+Before you start
+Exercise 123 (qualify the environment and the resource budget)
+CPU processes for emulation; one qualified GPU for CUDA comparisons. Worker count does not add physical GPUs.
+
+Recorded step time
+6.0 s for Wait for the missing rank (record 126.03).
+
+Check for success
+Match exit 17, the mismatch record and the timeout to their separate injections. Verify cleanup and the healthy recheck.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python distributed/pipe_lab.py crash --out "$LAB_RUN/crash"
+python distributed/pipe_lab.py mismatch --out "$LAB_RUN/mismatch"
+python distributed/pipe_lab.py timeout --out "$LAB_RUN/timeout"
+
+Interpret the result
+Distinguish process emulation, single-GPU DDP and actual multi-GPU behavior.
+
+If the check fails
+Check rank identity, rendezvous, operation order and missing participants.
+
+Finish
+Keep $LAB_RUN/crash, $LAB_RUN/mismatch, $LAB_RUN/timeout with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU controls preserve a worker exit 17, an intentional mean/broadcast collective mismatch and a missing-rank timeout, followed by a healthy recheck. Each fault has a distinct observation and bounded cleanup. A supervisor’s nonzero child status should not be rewritten as a successful training step.
+Scope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.
+
+Recorded files
+python reader/records.py 126 --files

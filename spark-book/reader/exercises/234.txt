@@ -1,0 +1,39 @@
+Exercise 234  Prepare a versioned Jev request and optional service run
+
+Question
+What must be known before an optional hosted Jev request is qualified?
+
+Before you start
+Exercise 232 (verify Choice, Score and Noul contracts) · Exercise 233 (measure calibration and risk versus coverage)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+0.12 s for Request plan (record 234.01).
+
+Check for success
+Inspect model identity, request version, payload and destination. Keep an unsent plan separate from a returned service response.
+
+Run in your lab
+Plan mode sends nothing. The optional hosted procedure is separate from local contract and calibration controls.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/jev_lab.py plan --out "$LAB_RUN/jev-plan.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/jev-plan.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — The fixed synthetic Jev request plan was executed again but not sent.
+Scope  TYPESAFE_API_KEY is absent; hosted model behavior and service UI qualification remain BLOCKED.
+
+Recorded files
+python reader/records.py 234 --files

@@ -1,0 +1,39 @@
+Exercise 111  Retain correlated spans and logs
+
+Question
+Can one request be followed across application logs and nested spans?
+
+Before you start
+Exercise 17 (replay a complete tool loop)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+0.62 s for Trace the successful synthetic request (record 111.01).
+
+Check for success
+Match trace and parent IDs from the request through its child operations. Check timestamps and retained error events.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py request --out "$LAB_RUN/request"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/request with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU OpenTelemetry instrumentation of a synthetic request produced six spans, zero error spans and three correlated log records.
+Scope  It is a trace of the teaching pipeline; the named embedding and generation stages do not establish model or GPU execution.
+
+Recorded files
+python reader/records.py 111 --files

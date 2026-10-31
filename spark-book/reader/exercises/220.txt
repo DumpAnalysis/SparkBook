@@ -1,0 +1,39 @@
+Exercise 220  Isolate and identify the orchestration environment
+
+Question
+Can agent dependencies be qualified without changing the CUDA training environment?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+0.11 s for Environment (record 220.01).
+
+Check for success
+Verify the active interpreter, isolated package identities and dependency checks before issuing a model request.
+
+Run in your lab
+Use the separate orchestration environment described in reader/FRESH_SETUP.txt. The helper reports its actual packages.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/environment.py --out "$LAB_RUN/orchestration-environment.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/orchestration-environment.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The orchestration packages were installed in a separate environment, with pip check and exact versions retained. All 86 distributions in the original CUDA exercise environment remained unchanged. Interpreter, framework and model-server identities must be read from the environment actually used by each command.
+Scope  Grade tool selection and final evidence claims independently of transport success.
+
+Recorded files
+python reader/records.py 220 --files

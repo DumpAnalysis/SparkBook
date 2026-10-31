@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "device": "cpu",
+  "preparers": [
+    {
+      "pid": 50,
+      "role": "CPU preparation"
+    },
+    {
+      "pid": 51,
+      "role": "CPU preparation"
+    }
+  ],
+  "trainer": 48,
+  "losses": [
+    0.023614108562469482,
+    0.023561809211969376,
+    0.022987181320786476,
+    0.02452974207699299
+  ],
+  "reference_losses": [
+    0.023614108562469482,
+    0.023561809211969376,
+    0.022987181320786476,
+    0.02452974207699299
+  ],
+  "max_abs_error": 0.0,
+  "loss_max_abs_error": 0.0,
+  "optimizer_steps": [
+    4
+  ],
+  "events": [
+    {
+      "step": 0,
+      "preparer": 50,
+      "trainer": 48,
+      "start_ns": 22836613373894,
+      "end_ns": 22836616335417
+    },
+    {
+      "step": 1,
+      "preparer": 51,
+      "trainer": 48,
+      "start_ns": 22836616508125,
+      "end_ns": 22836617685153
+    },
+    {
+      "step": 2,
+      "preparer": 50,
+      "trainer": 48,
+      "start_ns": 22836617758062,
+      "end_ns": 22836618591948
+    },
+    {
+      "step": 3,
+      "preparer": 51,
+      "trainer": 48,
+      "start_ns": 22836618647050,
+      "end_ns": 22836619306796
+    }
+  ],
+  "next_step": 4,
+  "training_model_owners": 1
+}

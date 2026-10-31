@@ -1,0 +1,41 @@
+Exercise 129  Qualify DDP and the transition to multiple GPUs
+
+Question
+Which parts of a multi-device training procedure can one physical GPU qualify?
+
+Before you start
+Exercise 124 (compare process training with a full batch reference) · Exercise 128 (shard a matrix and verify its gradients)
+CPU processes for emulation; one qualified GPU for CUDA comparisons. Worker count does not add physical GPUs.
+
+Recorded step time
+16.6 s for Qualify the one-GPU process (record 129.04).
+
+Check for success
+Record the outcome of each CPU, loopback and one-device launch. Require distinct visible devices for a two-GPU result.
+
+Run in your lab
+Run the two CPU/Gloo commands separately and keep launch.json, rank logs, exits and the reference comparison for each. If the INFO trial fails, repeat it in a fresh directory with --debug-level OFF. The final command checks a separate two-device NCCL prerequisite.
+
+: "${LAB_RUN:?Start a new lab run first}"
+python distributed/lab.py ddp --workers 2 --debug-level INFO --out "$LAB_RUN/ddp-info"
+python distributed/lab.py nodes --workers 2 --debug-level INFO --out "$LAB_RUN/nodes-info"
+# Separate hardware prerequisite check. Two devices are required.
+python distributed/lab.py gpu-ddp --workers 2 --out "$LAB_RUN/gpu-ddp"
+
+Interpret the result
+Distinguish process emulation, single-GPU DDP and actual multi-GPU behavior.
+
+If the check fails
+Check rank identity, rendezvous, operation order and missing participants.
+
+Finish
+Keep the CPU reference result and selected debug level. Report the one-GPU prerequisite rejection separately. A reviewer CPU pass cannot qualify the WSL2 laptop.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — Native CPU DDP failed with rank 0 SIGSEGV in both the initial run and diagnostic retry. Two logical CPU nodes on loopback passed, and NCCL with world_size=1 on the one physical GPU passed. Two-device DDP and sharding remained unavailable. An independent reviewer on x86-64 Linux reproduced a CPU/Gloo failure under DETAIL and obtained successful two-worker runs under INFO and OFF. A follow-up x86-64 CPU review reports that DDP and logical nodes both met the 1e-09 reference tolerance with INFO. The matched WSL2 retry is outstanding.
+Scope  The exercise stays BLOCKED for its complete target scope; one-GPU success does not emulate two independent devices.
+
+Recorded files
+python reader/records.py 129 --files

@@ -1,0 +1,39 @@
+Exercise 204  Inspect an NGC resource before downloading it
+
+Question
+What can the catalog prove before downloading a single resource file?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.
+
+Recorded step time
+0.92 s for Catalog (record 204.01).
+
+Check for success
+Check publisher, version, file size and architecture in the retained NGC metadata. Bind the request to the selected resource.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python catalogs/ngc_lab.py info --out "$LAB_RUN/ngc-info"
+
+Interpret the result
+A catalog listing or correct checksum is not GPU qualification.
+
+If the check fails
+Check access, identity, architecture and completeness before runtime changes.
+
+Finish
+Keep $LAB_RUN/ngc-info with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The fresh public NGC metadata receipt identifies the pinned CLI resource, its publisher, architecture, byte count and checksum. Acquisition identity and permission to redistribute remain separate questions. The recorded run used the existing catalogue pin; it did not relabel it as the latest release.
+Scope  Catalog and image metadata precede execution of the selected asset.
+
+Recorded files
+python reader/records.py 204 --files

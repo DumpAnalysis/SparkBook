@@ -1,0 +1,39 @@
+Exercise 113  Localize the failing quality boundary
+
+Question
+Which boundary first changes a correct quality decision into a wrong one?
+
+Before you start
+Exercise 15 (build an evidence prompt) · Exercise 78 (measure search before changing the model)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+1.2 s for False accept validator (record 113.02).
+
+Check for success
+Substitute one recorded stage at a time. Keep the smallest substitution that changes the answer under the fixed rubric.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py quality --out "$LAB_RUN/quality"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/quality with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Five deterministic boundary faults were localized and repaired. A deliberately weak validator also accepted a wrong answer; an independent oracle caught it. Passing a schema or validator is therefore separate from semantic correctness, even when the exercise’s repair procedure passes.
+Scope  A retrieved identifier and a correct generated answer have separate checks.
+
+Recorded files
+python reader/records.py 113 --files

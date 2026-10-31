@@ -1,0 +1,39 @@
+Exercise 79  Produce a PCA map with its numerical limits
+
+Question
+How much of the original geometry survives a two-dimensional PCA projection?
+
+Before you start
+Exercise 78 (measure search before changing the model)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+8.3 s for Three projections (record 079.01).
+
+Check for success
+Read explained variance and compare a plotted neighbor with its cosine and rank in the original vector space.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${EMBEDDINGS:?Set EMBEDDINGS to the vector-output directory from Exercise 78}"
+python embeddings/project.py --input "$EMBEDDINGS" --out "$LAB_RUN/maps"
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep $LAB_RUN/maps with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU actual-vector projections.
+Scope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.
+
+Recorded files
+python reader/records.py 79 --files

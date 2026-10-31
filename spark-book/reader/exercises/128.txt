@@ -1,0 +1,39 @@
+Exercise 128  Shard a matrix and verify its gradients
+
+Question
+Does column sharding preserve both the forward result and its gradients?
+
+Before you start
+Exercise 124 (compare process training with a full batch reference)
+CPU processes for emulation; one qualified GPU for CUDA comparisons. Worker count does not add physical GPUs.
+
+Recorded step time
+2.9 s for Check a column-sharded calculation (record 128.01).
+
+Check for success
+Reassemble the workers' output and gradients and compare each against the full matrix reference.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python distributed/pipe_lab.py shard --out "$LAB_RUN/shard"
+
+Interpret the result
+Distinguish process emulation, single-GPU DDP and actual multi-GPU behavior.
+
+If the check fails
+Check rank identity, rendezvous, operation order and missing participants.
+
+Finish
+Keep $LAB_RUN/shard with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual two-worker CPU column sharding reported zero forward and gradient error against its reference. This demonstrates the algebra and communication boundary of the small fixture.
+Scope  It does not establish multi-GPU sharding performance or memory isolation.
+
+Recorded files
+python reader/records.py 128 --files

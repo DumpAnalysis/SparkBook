@@ -1,0 +1,37 @@
+Exercise 30  Observe memory pressure during a request
+
+Question
+Which memory signals change while the oversized model answers?
+
+Before you start
+Exercise 29 (plan, acquire, and load the larger model)
+Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.
+
+Recorded step time
+30.1 s for Sample guest pressure during the second load (record 030.01).
+
+Check for success
+Align request timestamps with host and guest pressure samples. Mark the smallest observed headroom and any guard event.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+vmstat -w 1 10
+
+Interpret the result
+A sampled peak is a lower bound on what the sampler observed. A completed request does not prove absence of paging.
+
+If the check fails
+Check dataset/tokenizer identity and memory at the failing phase before changing precision.
+
+Finish
+Wait for owned request/monitor processes and verify model release.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — an actual larger-model request accompanied by guest pressure sampling and host/guest headroom observations. This exercise measures several scopes and time windows; it does not supply a GPU kernel trace or hardware-counter profile.
+Scope  Guest paging samples and Windows headroom use different counters and sampling intervals.
+
+Recorded files
+python reader/records.py 30 --files

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "C01",
+    "pattern": "Silent Numerical Divergence",
+    "next_test": "Compare pooling mask and denominator before changing precision.",
+    "explanation": "Padding positions were averaged. Restore masking; rerun both dtypes and check intermediate tolerances independently of argmax."
+  },
+  {
+    "id": "C02",
+    "pattern": "Recompilation Storm",
+    "next_test": "Inspect failed dimension guards and recorded graph source.",
+    "explanation": "Shape specialization explains the captures. The counting backend executes FX eagerly; fewer captures do not establish GPU acceleration."
+  },
+  {
+    "id": "C03",
+    "pattern": "Retained Tensor",
+    "next_test": "Identify the collection owner and compare release mode.",
+    "explanation": "A list holds every tensor. This historical card’s CPU weak-reference accounting proves lab ownership only; Exercise 108 now supplies separate actual CUDA allocated/reserved evidence. Do not silently change the card’s original evidence scope."
+  },
+  {
+    "id": "C04",
+    "pattern": "Missing Trace",
+    "next_test": "Compare expected phases and log/span identity pairs.",
+    "explanation": "A retrieval span and one correlation were deliberately damaged. Completion cannot recreate lost evidence. Repair export/context and repeat the healthy control."
+  },
+  {
+    "id": "C05",
+    "pattern": "GPU Starvation",
+    "next_test": "Measure input readiness and test bounded prefetch.",
+    "explanation": "Controlled input supply explains the gaps. Confirm repeated target traces and memory costs; counters alone would not establish the cause."
+  },
+  {
+    "id": "C06",
+    "pattern": "Quality Boundary Failure",
+    "next_test": "Compare context before and after truncation.",
+    "explanation": "Truncation discards the answer. Repair the budget policy and test boundaries; use token IDs, not character counts, in a real model."
+  }
+]

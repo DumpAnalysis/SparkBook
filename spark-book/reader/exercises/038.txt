@@ -1,0 +1,39 @@
+Exercise 38  Classify three additional observations
+
+Question
+Can the tools tell a race, an uninitialized read and a barrier error apart?
+
+Before you start
+Exercise 37 (compare a valid kernel with a deliberate overrun)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+1.2 s for Initcheck original (record 038.02).
+
+Check for success
+Open the three reports separately. Match each diagnosis to its injected hazard and recheck the control.
+
+Run in your lab
+Run each control separately. The sync mode contains a correct barrier: absence of a synccheck error is expected for that control.
+
+compute-sanitizer --tool racecheck --error-exitcode 86 ./cuda/bin/cuda-lab race
+compute-sanitizer --tool initcheck --error-exitcode 86 ./cuda/bin/cuda-lab uninit
+compute-sanitizer --tool synccheck --error-exitcode 86 ./cuda/bin/cuda-lab sync
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep race, initialization, and barrier reports.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — GPU native control/repair execution; sanitizer initialization failed.
+Scope  The native controls completed, but sanitizer initialization prevented a sanitizer finding.
+
+Recorded files
+python reader/records.py 38 --files

@@ -1,0 +1,37 @@
+Exercise 122  Compare with worked investigations
+
+Question
+Which observation distinguishes the worked diagnosis from your first account?
+
+Before you start
+Exercise 121 (investigate the evidence cards)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+0.03 s for Answer C01 (record 122.01).
+
+Check for success
+Compare accounts after saving yours. Identify a supporting observation you used or missed and explain how it changes the next test.
+
+Run in your lab
+Open the first worked answer after saving your own account. Repeat with C02 through C06 to review the remaining cards.
+
+python diagnostics/casebook.py case --id C01 --answer
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep separate answers and capstone regression.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Worked answers were opened after the account was saved, with prior knowledge of the answers recorded. A separate capstone retains real retrieval and a token-budget investigation in distinct evidence/answer files. These are useful comparison exercises; neither restores the invalidated blind score of Exercise 121.
+Scope  A worked comparison can refine an earlier account. It cannot retroactively make the original cards unseen.
+
+Recorded files
+python reader/records.py 122 --files

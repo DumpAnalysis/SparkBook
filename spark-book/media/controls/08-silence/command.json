@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "python",
+    "media/targets.py",
+    "asr",
+    "--model",
+    "../models/whisper",
+    "--device",
+    "cpu",
+    "--input",
+    "media/controls/fixtures/silence.wav",
+    "--out",
+    "media/controls/silence"
+  ],
+  "start_ns": 1793127671729543356,
+  "end_ns": 1793127677223315335,
+  "exit": 0
+}

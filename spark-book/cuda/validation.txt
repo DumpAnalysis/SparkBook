@@ -1,0 +1,13 @@
+Scope: CPU-created evidence fixtures; no GPU tools executed.
+test_expected_buffer (__main__.EvidenceTests.test_expected_buffer) ... ok
+test_missing_name (__main__.EvidenceTests.test_missing_name) ... ok
+test_missing_schema (__main__.EvidenceTests.test_missing_schema) ... ok
+test_negative_duration (__main__.EvidenceTests.test_negative_duration) ... ok
+test_path_escape (__main__.EvidenceTests.test_path_escape) ... ok
+test_trace_arithmetic (__main__.EvidenceTests.test_trace_arithmetic) ... ok
+test_truncated_buffer (__main__.EvidenceTests.test_truncated_buffer) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.025s
+
+OK

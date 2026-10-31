@@ -1,0 +1,92 @@
+{
+  "status": "success",
+  "data": {
+    "activeTargets": [
+      {
+        "discoveredLabels": {
+          "__address__": "127.0.0.1:9400",
+          "__always_scrape_classic_histograms__": "false",
+          "__convert_classic_histograms_to_nhcb__": "false",
+          "__metrics_path__": "/metrics",
+          "__scheme__": "http",
+          "__scrape_interval__": "5s",
+          "__scrape_native_histograms__": "false",
+          "__scrape_timeout__": "4s",
+          "job": "gpu"
+        },
+        "labels": {
+          "instance": "127.0.0.1:9400",
+          "job": "gpu"
+        },
+        "scrapePool": "gpu",
+        "scrapeUrl": "http://127.0.0.1:9400/metrics",
+        "globalUrl": "http://a6d246835d1f:9400/metrics",
+        "lastError": "",
+        "lastScrape": "2026-10-28T13:22:58.723658121+01:00",
+        "lastScrapeDuration": 0.00220604,
+        "health": "up",
+        "scrapeInterval": "5s",
+        "scrapeTimeout": "4s"
+      },
+      {
+        "discoveredLabels": {
+          "__address__": "127.0.0.1:9090",
+          "__always_scrape_classic_histograms__": "false",
+          "__convert_classic_histograms_to_nhcb__": "false",
+          "__metrics_path__": "/metrics",
+          "__scheme__": "http",
+          "__scrape_interval__": "5s",
+          "__scrape_native_histograms__": "false",
+          "__scrape_timeout__": "4s",
+          "job": "prometheus"
+        },
+        "labels": {
+          "instance": "127.0.0.1:9090",
+          "job": "prometheus"
+        },
+        "scrapePool": "prometheus",
+        "scrapeUrl": "http://127.0.0.1:9090/metrics",
+        "globalUrl": "http://a6d246835d1f:9090/metrics",
+        "lastError": "",
+        "lastScrape": "2026-10-28T13:23:00.509429286+01:00",
+        "lastScrapeDuration": 0.012611297,
+        "health": "up",
+        "scrapeInterval": "5s",
+        "scrapeTimeout": "4s"
+      },
+      {
+        "discoveredLabels": {
+          "__address__": "127.0.0.1:8089",
+          "__always_scrape_classic_histograms__": "false",
+          "__convert_classic_histograms_to_nhcb__": "false",
+          "__metrics_path__": "/metrics",
+          "__scheme__": "http",
+          "__scrape_interval__": "5s",
+          "__scrape_native_histograms__": "false",
+          "__scrape_timeout__": "4s",
+          "job": "synthetic-cpu"
+        },
+        "labels": {
+          "instance": "127.0.0.1:8089",
+          "job": "synthetic-cpu"
+        },
+        "scrapePool": "synthetic-cpu",
+        "scrapeUrl": "http://127.0.0.1:8089/metrics",
+        "globalUrl": "http://a6d246835d1f:8089/metrics",
+        "lastError": "",
+        "lastScrape": "2026-10-28T13:23:00.149241426+01:00",
+        "lastScrapeDuration": 0.006544387,
+        "health": "up",
+        "scrapeInterval": "5s",
+        "scrapeTimeout": "4s"
+      }
+    ],
+    "droppedTargets": [],
+    "droppedTargetCounts": {
+      "gpu": 0,
+      "inference": 0,
+      "prometheus": 0,
+      "synthetic-cpu": 0
+    }
+  }
+}

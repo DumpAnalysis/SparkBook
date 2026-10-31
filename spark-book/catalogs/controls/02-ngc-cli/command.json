@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "catalogs/ngc_lab.py",
+    "cli",
+    "--dest",
+    "../catalog-downloads/ngc-cli",
+    "--record",
+    "catalogs/controls/ngc-cli"
+  ],
+  "start_ns": 1793183748669018381,
+  "end_ns": 1793183758514352703,
+  "exit": 0
+}

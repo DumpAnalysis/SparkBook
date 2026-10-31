@@ -1,0 +1,16 @@
+{
+  "version": "1.23.2",
+  "requested": "CPUExecutionProvider",
+  "registered": [
+    "CPUExecutionProvider"
+  ],
+  "observed": [
+    "CPUExecutionProvider"
+  ],
+  "max_error": 0.0,
+  "rejections": [
+    "width",
+    "dtype"
+  ],
+  "profile": "ort_2026-10-27_13-17-29.json"
+}

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "transport": "multiprocessing pipes; parent gradient mean; not PyTorch DDP",
+  "workers": 2,
+  "steps": 4,
+  "resumed_at": 2,
+  "parameters": 22880,
+  "max_reference_error": 4.816257204833251e-13,
+  "max_replica_error": 0.0,
+  "tolerance": 1e-09,
+  "losses": [
+    4.451182224018056,
+    4.437905033197325
+  ],
+  "global_batch": 8,
+  "masked_tokens": 16
+}

@@ -1,0 +1,91 @@
+{
+  "status": "ok",
+  "device": "cpu",
+  "seed": 1606,
+  "phases": [
+    {
+      "name": "verify",
+      "wall_s": 0.10008196700073313
+    },
+    {
+      "name": "load",
+      "wall_s": 0.5321795319978264
+    },
+    {
+      "name": "preprocess",
+      "wall_s": 0.0008284569994430058
+    },
+    {
+      "name": "infer",
+      "wall_s": 1.7512993549971725
+    },
+    {
+      "name": "encode",
+      "wall_s": 0.00155268899834482
+    }
+  ],
+  "model": {
+    "repo": "facebook/mms-tts-eng",
+    "revision": "c71de0fe7204c83f1c10820a7d696d0b450048ba",
+    "license": "cc-by-nc-4.0",
+    "allow_patterns": [
+      "*.json",
+      "*.txt",
+      "*.model",
+      "*.safetensors",
+      "*.jinja",
+      "README.md",
+      "LICENSE*"
+    ]
+  },
+  "environment": {
+    "python": "3.12.14",
+    "machine": "x86_64",
+    "torch": "2.10.0+cpu",
+    "torch_cuda": null,
+    "packages": {
+      "transformers": "4.57.1",
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "Pillow": "12.3.0",
+      "safetensors": "0.6.2"
+    }
+  },
+  "arguments": {
+    "kind": "tts",
+    "model": "../models/mms",
+    "out": "media/controls/tts",
+    "device": "cpu",
+    "input": null,
+    "text": "The graphics processor has thirty gigabytes available.",
+    "reference": null,
+    "seed": 1606,
+    "tokens": 128,
+    "max_pixels": 401408,
+    "width": 512,
+    "height": 512,
+    "steps": 20,
+    "guidance": 3.0,
+    "strength": 0.5,
+    "placement": "resident",
+    "tiling": false,
+    "trace_steps": false,
+    "profile": false,
+    "snapshot": false
+  },
+  "audio": {
+    "frames": 62464,
+    "channels": 1,
+    "sample_rate": 16000,
+    "duration_s": 3.904,
+    "peak": 0.8262342214584351,
+    "rms": 0.11319849288404302,
+    "clipped_fraction": 0.0
+  },
+  "inference_rtf": 0.448591023308702,
+  "output_sha256": {
+    "waveform.npy": "26f9cb82db19963d83f9793fa971f2dd23e2f98ed78ef8ecc1f1b66a6fcc7c94",
+    "output.wav": "3f6553931ab33ab7172a8164964a8141a140f6a868fb201b0c4448c822b056f7"
+  },
+  "total_s": 4.419387039997673
+}

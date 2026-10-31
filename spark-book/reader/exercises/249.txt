@@ -1,0 +1,39 @@
+Exercise 249  Qualify hybrid kernels and partial offload
+
+Question
+Which Nemotron layers and buffers actually use CUDA during this request?
+
+Before you start
+Exercise 248 (admit a model that exceeds the reported GPU budget)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+2 min 05 s for Start the guarded Nemotron Q8 trial (record 249.01).
+
+Check for success
+Read native placement and buffer sizes alongside the response and pressure samples. Check the server's actual endpoint and context.
+
+Run in your lab
+Complete the guarded admission and launch in this exercise. Set NEMOTRON_MODEL to the served alias, verify readiness on 127.0.0.1:8087 and run the probe there. The recorded Q8 owner used that port. Resolve any bind failure before probing another process.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${NEMOTRON_MODEL:?Set NEMOTRON_MODEL to the model ID of the qualified local Nemotron server}"
+python runtimes/probe.py --backend openai --base http://127.0.0.1:8087 --model "$NEMOTRON_MODEL" --out "$LAB_RUN/nemotron"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/nemotron with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The guarded Nemotron Q8 trial actually loaded 43 of 53 offloadable units on CUDA (52 model layers plus the output layer in this runtime count) with 26,181.93 MiB of GPU model buffers and 5,840.22 MiB of host model buffers. KV buffers split into 10 MiB GPU and 2 MiB CPU; recurrent-state buffers split into 37.27 MiB GPU and 10.35 MiB CPU. Matched Q4 trials at context 2,048 and 4,096 doubled attention KV from 12 to 24 MiB while recurrent state stayed at 47.62 MiB. Requested layer count, actual tensor placement and hybrid state are separate observations. Raw response truncation and the initial port-bind failure remain visible.
+Scope  A weight-file estimate is a planning input. The guarded run records the actual placement.
+
+Recorded files
+python reader/records.py 249 --files

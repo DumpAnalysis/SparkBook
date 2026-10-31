@@ -1,0 +1,40 @@
+Exercise 94  Capture an idle WSL2 baseline
+
+Question
+What does an idle recording look like under this machine's actual polling cadence?
+
+Before you start
+Exercise 14 (run a small synchronized computation) · Exercise 91 (establish the monitoring contract)
+CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.
+
+Recorded step time
+13.6 s for Idle capture (record 094.01).
+
+Check for success
+Read raw management replies and successive timestamps. Separate unavailable fields from numerical idle readings.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python metrics/make_plan.py idle --out "$LAB_RUN/idle-plan.json"
+python metrics/monitor.py --plan "$LAB_RUN/idle-plan.json" --out "$LAB_RUN/idle-session"
+
+Interpret the result
+Explain coverage and sampling limits before interpreting utilization or peaks.
+
+If the check fails
+Inspect the raw sample before blaming a plot; check stale or unsupported fields.
+
+Finish
+Keep $LAB_RUN/idle-plan.json, $LAB_RUN/idle-session with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU sampling of actual device-wide provider; no intentional GPU workload.
+Scope  The samples describe the device as a whole during the observation window.
+
+Recorded files
+python reader/records.py 94 --files

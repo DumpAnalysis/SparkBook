@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "python",
+    "media/targets.py",
+    "tts",
+    "--model",
+    "../models/mms",
+    "--device",
+    "cpu",
+    "--out",
+    "media/controls/tts"
+  ],
+  "start_ns": 1793127659321604261,
+  "end_ns": 1793127666326127974,
+  "exit": 0
+}

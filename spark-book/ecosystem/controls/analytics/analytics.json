@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "route": "embedding",
+      "count": 12,
+      "mean_ms": 15.75
+    },
+    {
+      "route": "generation",
+      "count": 12,
+      "mean_ms": 15.75
+    }
+  ],
+  "rows": 28,
+  "accepted": 24,
+  "variance_ratio": 0.9999346733093262
+}

@@ -1,0 +1,39 @@
+Exercise 42  Capture allocator history and selected tensor values
+
+Question
+Which quantities describe allocator history and which describe tensor contents?
+
+Before you start
+Exercise 14 (run a small synchronized computation)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+7.5 s for Allocator and values (record 042.01).
+
+Check for success
+Pair the allocator snapshot with the explicitly saved values. Match device, tensor identity, shape and capture boundary.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python cuda/torch_evidence.py memory --out "$LAB_RUN/memory"
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep $LAB_RUN/memory with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU framework allocation and selected values; CPU own-snapshot inspection.
+Scope  The dump concerns the selected process allocation and recorded tensor values.
+
+Recorded files
+python reader/records.py 42 --files

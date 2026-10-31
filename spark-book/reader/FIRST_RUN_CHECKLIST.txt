@@ -1,0 +1,30 @@
+First-time reader acceptance checklist
+
+Use a new working lab, preserve the separate evidence reference, and record actual
+commands with reader/capture.py. Never relabel a preparation check as WSL2 GPU
+execution. The checklist is a procedure, not a completed transcript.
+
+1. Create the lab without an existing destination. Confirm no archived execution
+   run outputs or old model checkpoints were copied into the new runs/ tree.
+2. Run the read-only preflight. Require the intended WSL kernel, architecture,
+   Python and disk allowance; keep missing GPU-query fields visible.
+3. Create and activate the environment. Verify sys.executable and pip check.
+4. Run Exercises 1–3. Confirm the output paths and labelled fixture scope.
+5. Run Exercise 4 with an empty model cache. Capture actual download and
+   extraction records. A later cached run must have a different scope label.
+6. Start the native model with diagnostic logging. Inspect readiness, actual
+   layer offload and buffers, then submit the exact prompt once.
+7. Stop the owned server and confirm that its endpoint is no longer serving.
+8. Restart from a fresh terminal using only the published activation and path
+   instructions. Repeat one request using the retained assets.
+9. Before framework routes, qualify the actual candidate environment and
+   package metadata. Keep any repair/rebuild outside the working environment
+   until its byte checks pass. Then run the small CUDA computation.
+10. Follow one nonsequential route, such as embeddings. Record every missing
+    file, ambiguous handoff, unexplained flag or conflicting requirement.
+11. Try an intentional negative control and explain why its exit is expected.
+12. Summarize command, exercise, quality and observation outcomes separately.
+
+For each step retain UTC time, cwd, interpreter, package/image/model identity,
+stdout, stderr, exit, artifacts and your interpretation. Record elapsed time as
+an observation; do not turn the reader’s first run into a general benchmark.

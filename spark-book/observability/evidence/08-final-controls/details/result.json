@@ -1,0 +1,7 @@
+{
+  "evidence": "CPU preparation; GPU values SIMULATED",
+  "prometheus_pipeline": "passed",
+  "grafana_provisioning": "passed",
+  "grafana_query_backend": "unavailable",
+  "WSL2_GPU_Docker": "not executed"
+}

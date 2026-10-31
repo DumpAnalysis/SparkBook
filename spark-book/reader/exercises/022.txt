@@ -1,0 +1,35 @@
+Exercise 22  Separate acquisition from inference
+
+Question
+Can the installed model answer with acquisition and external access disabled?
+
+Before you start
+Exercise 4 (download and fingerprint) · Exercise 6 (submit the complete prompt)
+Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).
+
+Recorded step time
+0.03 s for Namespace capability (record 022.01).
+
+Check for success
+Record how external access was constrained and retain the local response. Local weights alone establish only the acquisition boundary.
+
+Run in your lab
+Verify cached asset hashes, then repeat one request with acquisition disabled. A failed unshare probe means that namespace-based isolation is unavailable; it is not an offline-inference failure. Keep firewall or host-network changes outside this first-run route.
+
+Interpret the result
+Network transfer is not inference latency; a warm cache changes the experiment.
+
+If the check fails
+Check the first failed boundary: file, loader, service health, request, then answer.
+
+Finish
+Retain cache state and model receipt alongside the timed phase definitions.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — No laptop-wide disconnected inference executed.
+Scope  An unshare capability probe does not exercise inference with the whole laptop disconnected.
+
+Recorded files
+python reader/records.py 22 --files

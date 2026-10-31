@@ -1,0 +1,39 @@
+Exercise 157  Verify ONNX Runtime values and input rejection
+
+Question
+Does the runtime reject invalid inputs as well as compute the valid outputs?
+
+Before you start
+Exercise 156 (build and inspect a small dynamic graph)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+8.4 s for Fresh CPU controls (record 152.01).
+
+Check for success
+Compare supported batches with the NumPy oracle. Preserve the actual wrong-width and wrong-dtype errors.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python ecosystem/lab.py ort --src ecosystem/controls/fixture --models ecosystem/controls/onnx --out "$LAB_RUN/ort-cpu"
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Keep $LAB_RUN/ort-cpu with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Fresh CPU ONNX Runtime checks passed batches 1, 3 and 8 against the independent linear oracle and rejected wrong width and dtype. The complete sequence is in Exercise 152. Runtime profiles identify CPUExecutionProvider; this CPU reference remains useful alongside the separately qualified CUDA path.
+Scope  Read the actual provider placement and numerical comparisons for the graph being tested.
+
+Recorded files
+python reader/records.py 157 --files

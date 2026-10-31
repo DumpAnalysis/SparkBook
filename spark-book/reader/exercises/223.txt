@@ -1,0 +1,39 @@
+Exercise 223  Resume after the Python process exits
+
+Question
+What evidence shows that the second process resumed the saved graph state?
+
+Before you start
+Exercise 220 (isolate and identify the orchestration environment)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+1.2 s for Restart (record 223.01).
+
+Check for success
+Compare thread identity, checkpoint and next node across the process boundary.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/graph_control.py restart --out "$LAB_RUN/graph-restart"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/graph-restart with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The fresh LangGraph control retained a SQLite checkpoint, exited its Python process and resumed in another process. The scripted evidence and model remain intentional controls.
+Scope  Successful local restart does not establish multi-host recovery or exactly-once side effects.
+
+Recorded files
+python reader/records.py 223 --files

@@ -1,0 +1,12 @@
+{
+  "status": "EXPECTED_FAILURE",
+  "failure": {
+    "kind": "worker_exit",
+    "rank": 1,
+    "sequence": 1
+  },
+  "exitcodes": [
+    1,
+    17
+  ]
+}

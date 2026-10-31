@@ -1,0 +1,40 @@
+Exercise 7  Understand the arithmetic first
+
+Question
+What does a rate describe when requests have different durations?
+
+Before you start
+Exercise 3 (verify the client without a model)
+Python standard library and the labelled timing fixture; no live GPU timing is implied.
+
+Recorded step time
+0.06 s for Summarize (record 007.01).
+
+Check for success
+Recompute the supplied timing summary from the labelled fixture values. Keep the denominator and units beside each rate.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+python spark_lab.py summarize example-benchmark.json
+
+Inspect
+Recompute the reported duration and rate from the supplied counts and intervals, checking the units.
+
+Interpret the result
+Token rate, request latency and time to first content describe different intervals.
+
+If the check fails
+For aggregate throughput, divide total generated tokens by elapsed wall time. For p95 use the nearest-rank rule stated in the chapter.
+
+Finish
+Retain the arithmetic check before comparing live measurements.
+
+Handoff
+Use the same definitions on your measured benchmark in Exercise 8.
+
+Recorded result  The timing fixture separates individual latency, nearest-rank p95 and aggregate output rate.
+Scope  The rates come from a labelled timing fixture.
+
+Recorded files
+python reader/records.py 7 --files

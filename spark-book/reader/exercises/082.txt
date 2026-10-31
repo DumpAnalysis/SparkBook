@@ -1,0 +1,39 @@
+Exercise 82  Change the parameters and inspect stability
+
+Question
+How sensitive are apparent neighbors to the projection settings?
+
+Before you start
+Exercise 79 (produce a PCA map with its numerical limits) · Exercise 81 (read the nonlinear maps without overclaiming)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+8.0 s for Change the projection settings (record 082.01).
+
+Check for success
+Compare the parameter reports and row IDs. State which settings changed before attributing a difference to one of them.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${EMBEDDINGS:?Set EMBEDDINGS to the vector-output directory from Exercise 78}"
+python embeddings/project.py --input "$EMBEDDINGS" --out "$LAB_RUN/maps-alt" --seed 23 --perplexity 5 --neighbors 5 --min-dist 0.5
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep $LAB_RUN/maps-alt with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU projection sensitivity.
+Scope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.
+
+Recorded files
+python reader/records.py 82 --files

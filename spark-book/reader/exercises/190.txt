@@ -1,0 +1,39 @@
+Exercise 190  Measure the cost of a longer audio sequence
+
+Question
+How does a longer token budget affect generated duration and wall time?
+
+Before you start
+Exercise 188 (generate a short music clip from a description)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+22.8 s for Music long (record 190.01).
+
+Check for success
+Compare actual token counts and decoded durations with the shorter run. Compute real-time factor from the same timing interval.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/targets.py music --model models/media/musicgen --text "A quiet solo piano phrase with a slow steady rhythm" --tokens 512 --guidance 3 --seed 1606 --out "$LAB_RUN/music-longer"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/music-longer with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The 512-token MusicGen request produced 325,760 frames at 32 kHz, or 10.18 seconds, versus 161,920 frames and 5.06 seconds for 256 tokens.
+Scope  The recorded inference real-time factor excludes load/export and does not measure first-audio latency; these complete-waveform calls are not streaming.
+
+Recorded files
+python reader/records.py 190 --files

@@ -1,0 +1,6 @@
+$ python ecosystem/lab.py analytics --src ecosystem/controls/fixture --out ecosystem/controls/analytics
+embedding: accepted=12 mean_ms=15.750000
+generation: accepted=12 mean_ms=15.750000
+CPU PCA: shape=(64, 2) explained_ratio=0.999935
+Compare PCA projectors, not signed component coordinates
+[exit 0]

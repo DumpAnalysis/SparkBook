@@ -1,0 +1,4 @@
+$ python ecosystem/lab.py fixture --out ecosystem/controls/fixture
+Created fixed fixture: 28 requests, 64 vectors, 96 calibration and 32 held-out rows
+Input X float32[N,8]; output Y float32[N,4]; N is dynamic
+[exit 0]

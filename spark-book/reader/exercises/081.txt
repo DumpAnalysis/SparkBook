@@ -1,0 +1,35 @@
+Exercise 81  Read the nonlinear maps without overclaiming
+
+Question
+Which apparent clusters survive inspection in the original embedding space?
+
+Before you start
+Exercise 79 (produce a PCA map with its numerical limits)
+Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
+
+Recorded step time
+8.3 s for Three projections (record 079.01).
+
+Check for success
+Use the same vector hash for PCA, t-SNE and UMAP. For a nearby plotted pair, check the original cosine rank.
+
+Run in your lab
+Open the PCA, t-SNE and UMAP plots from Exercise 79. Trace the same held-out identifiers through the maps and compare with nearest neighbors in the original vector space.
+
+Interpret the result
+Evaluate retrieval in the original space; a map or lower loss is not a quality pass.
+
+If the check fails
+Check pooling, normalization, split leakage and model/index mismatch.
+
+Finish
+Keep identical input hash and documented projection parameters.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — CPU original-space versus projection inspection.
+Scope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.
+
+Recorded files
+python reader/records.py 81 --files

@@ -1,0 +1,254 @@
+HISTORICAL PROCEDURE NOTES
+Book Version 55 and reader/exercises/ are the current reader instructions.
+These retained source-era notes explain concepts and repeat procedures; their
+old environment and execution-status statements are historical. Superseded
+preparation transcript blocks remain omitted. Use the evidence map for current
+recorded outcomes and fresh output paths for new work.
+
+97  Ollama as a local model owner
+Ollama adds a model manager and HTTP service to the laboratory. It is useful when several clients need one resident model, but a convenient model name can conceal changes in weights, templates or backend placement. We will preserve those identities, exercise the wire protocol, and connect server observations to the monitoring work in Chapter 91. Unsloth in Chapter 98 changes model weights; LM Studio in Chapter 99 supplies another local service; Nemotron in Chapter 100 is a model family. These are different components of a deployment.
+The example remains the owner's 64 GB RTX Spark laptop with about 30 GB reported for the GPU. All execution below belongs inside WSL2. The Windows NVIDIA driver is already exposed to Linux. Installing Ollama is not a reason to install a Linux display driver. CUDA 13.4 reported by the owner does not identify the CUDA libraries embedded in every inference binary. Retain the toolkit, driver, backend and executable identities separately.
+The companion runtimes/ directory contains sixteen standard-library CPU controls, their complete captures, bounded clients, selective downloaders and target training scripts. Run commands from spark-book/. EXECUTED controls use fabricated model responses or catalog metadata and do not run Ollama, Unsloth, LM Studio or Nemotron. TARGET PROCEDURE blocks require your WSL2 results. No successful GPU output has been invented. Use a fresh output path on each run.
+Exercise 235  Qualify a native Ollama installation
+Goal: select a Linux binary for the actual CPU architecture and distinguish installation from GPU qualification. The release receipt records Ollama v0.40.11 and SHA256 digests for the native amd64 and arm64 archives. It is a reproducible candidate, not a claim that this release has run on the example laptop. The downloader selects from platform.machine() and rejects unknown architectures; JetPack archives are not generic ARM64 WSL2 packages. [227, 228, 234]
+
+TARGET PROCEDURE. Record the mapped driver and inspect the release plan before downloading the roughly 1.5 GB archive. Keep the receipt and extracted binary. The commands use a versioned user directory and do not invoke the distribution's driver installer.
+uname -m
+/usr/lib/wsl/lib/nvidia-smi
+nvcc --version
+python3 runtimes/ollama_archive.py --out runs/ollama-dist
+python3 runtimes/ollama_archive.py --out runs/ollama-dist \
+  --download
+mkdir -p "$HOME/.local/opt/ollama-v0.40.11"
+tar --zstd -xf runs/ollama-dist/ollama-linux-*.tar.zst \
+  -C "$HOME/.local/opt/ollama-v0.40.11"
+export PATH="$HOME/.local/opt/ollama-v0.40.11/bin:$PATH"
+ollama --version
+If tar lacks zstd support, add that user-space decompression dependency and retain the installation log. Do not replace the driver to fix a missing decompressor. If the mapped nvidia-smi path is unavailable, retain that result and follow Chapter 2's capability checks. A version printed by the client alone does not prove which server answered.
+Start one foreground owner in terminal A and leave it running while terminal B issues requests. These limits make the first experiment small: one loaded model, one active request, a short context and a bounded waiting queue. Local-only mode disables Ollama's cloud features. Verify the resulting settings in the startup log. [229]
+mkdir -p runs/ollama-owner
+export OLLAMA_HOST=127.0.0.1:11434
+export OLLAMA_NO_CLOUD=1
+export OLLAMA_MAX_LOADED_MODELS=1
+export OLLAMA_NUM_PARALLEL=1
+export OLLAMA_MAX_QUEUE=4
+export OLLAMA_CONTEXT_LENGTH=2048
+ollama serve > runs/ollama-owner/server.log 2>&1
+In terminal B, save /api/version, /api/tags and /api/ps. If the port is already occupied, identify that owner before starting another. Compare the Linux process, executable and server version. A working HTTP endpoint is the first gate; successful model loading with GPU activity is a later gate. Keep an unsupported native backend as a qualification result.
+Exercise 236  Import a model and diagnose stream completion
+Goal: distinguish returned text from a complete, attributable generation. The selective downloader offers a pinned Qwen2.5-1.5B-Instruct Q4_K_M GGUF from Qwen’s own repository, about 1.12 decimal GB. Its retained revision, size and SHA256 make a small single-file starting point. Inspect its plan, download explicitly, and set GGUF to the resulting absolute path. For an alternative split GGUF, preserve all shard names and follow the documented wildcard import convention; the commands here assume one complete file. [230, 233, 254]
+python3 runtimes/acquire.py chat-gguf --out models/chat-q4
+python3 runtimes/acquire.py chat-gguf --out models/chat-q4 \
+  --download
+read -r -p 'Absolute single GGUF path: ' GGUF
+test -f "$GGUF"
+sha256sum "$GGUF"
+printf 'FROM %s\nPARAMETER num_ctx 2048\n' "$GGUF" \
+  > runs/ollama-owner/Modelfile
+ollama create lab-chat -f runs/ollama-owner/Modelfile
+curl --noproxy '*' -fsS http://127.0.0.1:11434/api/tags \
+  > runs/ollama-owner/tags.json
+Import failure is evidence: check architecture support, quantization and complete files before changing placement. Retain the imported model's exact name including its tag, digest, template, capabilities and source GGUF hash. An Ollama digest identifies its model manifest; it is not necessarily the GGUF file's SHA256.
+
+TARGET PROCEDURE. Copy the exact model name and digest from tags.json. The client verifies the digest before and after the request, retains /api/show and raw NDJSON, and requires a terminal event. The protocol supplies server evaluation durations in nanoseconds. A client elapsed duration also includes transport and load work; the small client does not measure time to first token. [230, 231]
+read -r -p 'Exact Ollama model name: ' OLLAMA_MODEL
+read -r -p 'Recorded model digest: ' OLLAMA_DIGEST
+python3 catalogs/capture.py --out runs/ollama-cold-log -- \
+  python3 runtimes/probe.py --backend ollama \
+  --base http://127.0.0.1:11434 --model "$OLLAMA_MODEL" \
+  --digest "$OLLAMA_DIGEST" --keep-alive 5m \
+  --out runs/ollama-cold
+A terminal event with a length limit is recorded as bounded_or_unknown_finish, not an unrestricted completed answer. Inspect thinking metadata before adding any thinking option: supported values vary by model. A partial explanation or a timeout must not enter the successful latency median. The control's 2 tokens per second is fabricated arithmetic, not an Ollama benchmark.
+Exercise 237  Obtain sentence embeddings through Ollama
+Goal: verify the embedding contract before visualizing model geometry. A generation model is not automatically an embedding model. Choose an embedding-capable artifact, record its license and digest, and confirm its capabilities with /api/show. The documented embeddinggemma tag is a discovery starting point, not an immutable pin. Pulling it is an explicit model download; retain the resolved tag and digest. [230, 232]
+
+TARGET PROCEDURE. Unload the generation owner first if simultaneous residency is not the question. The probe submits three diagnostic sentences, rejects missing, zero-norm or nonfinite vectors, and writes the vectors with their text and model identity. truncate=false makes oversized input fail visibly instead of silently changing the sentence.
+ollama stop "$OLLAMA_MODEL"
+ollama pull embeddinggemma
+curl --noproxy '*' -fsS http://127.0.0.1:11434/api/tags \
+  > runs/ollama-owner/embedding-tags.json
+read -r -p 'Exact embedding name: ' EMBED_MODEL
+read -r -p 'Recorded embedding digest: ' EMBED_DIGEST
+python3 catalogs/capture.py --out runs/ollama-embed-log -- \
+  python3 runtimes/probe.py --backend ollama \
+  --base http://127.0.0.1:11434 --model "$EMBED_MODEL" \
+  --digest "$EMBED_DIGEST" --embedding \
+  --out runs/ollama-embed
+Three sentences are a transport smoke test. For the PCA, t-SNE and UMAP studies in Chapters 51–56, encode the same larger labelled corpus through the new endpoint, preserve its row order, then reuse the visualization method with a new embedding-source identity. Compare neighborhoods and retrieval labels before interpreting apparent clusters. Do not combine vectors from different models or dimensionalities in one index. A changed embedding digest calls for rebuilding that index.
+Exercise 238  Compare residency and bounded worker service
+Goal: observe one model owner as the workload changes. Inference clients may share the HTTP service; each client does not need a separate weight copy. This does not make an arbitrary number of concurrent requests fit. Repeat Exercise 236 under fresh run names, first after an explicit unload, then while the same model is still resident. Set keep-alive to 5m for the warm comparison and unload after the final request.
+
+TARGET PROCEDURE. Record ollama ps and /api/ps alongside the Chapter 91 exporter and client captures. The processor display describes model placement. It is not a GPU utilization percentage, per-worker reservation, or proof of overlapping CUDA kernels. Separate the service's weight-residency report from device-wide memory and process allocator measurements. [229, 230]
+ollama ps
+curl --noproxy '*' -fsS http://127.0.0.1:11434/api/ps \
+  > runs/ollama-owner/residency.json
+python3 catalogs/capture.py --out runs/ollama-warm-log -- \
+  python3 runtimes/probe.py --backend ollama \
+  --base http://127.0.0.1:11434 --model "$OLLAMA_MODEL" \
+  --digest "$OLLAMA_DIGEST" --keep-alive 5m \
+  --out runs/ollama-warm
+ollama stop "$OLLAMA_MODEL"
+If Exercise 237 unloaded the generation model, first repeat Exercise 236 under a fresh run name. Extend Chapter 71's bounded workers to this endpoint and record accepted, queued, rejected and completed counts. Increase concurrency only while memory and latency remain stable. Connect agent adapters after the direct client passes; preserve the action validator and mark unsupported GPU metrics unavailable.
+98  Unsloth adaptation with measurable training boundaries
+Unsloth offers optimized loading and adaptation paths. In this chapter it is a candidate implementation of the adapter-training experiment, with the same obligations as any other stack: a native installation, a frozen base model, separated evaluation data, finite updates, recoverable checkpoints and measured memory. Package installation alone is insufficient evidence of any of these properties.
+Use a separate environment. Unsloth's WSL instructions and requirements identify dependencies including PyTorch, Triton and quantized-loading components; their native support must be checked for the actual ARM64 Linux and GPU combination. The publisher's DGX Spark recipes concern different hardware and cannot establish compatibility with this 64 GB WSL2 laptop. Neither a local CUDA 13.4 toolkit nor an x86-64 success proves that the required ARM64 wheels or kernels exist. [235, 236]
+Exercise 239  Freeze the base and audit a tiny training split
+Goal: prepare an inspectable learning problem before spending GPU memory. The shipped dataset contains twelve synthetic training examples and four held-out examples for memory, input and unknown incident labels. Normalized text overlap must fail. The tiny split teaches the training pipeline; it cannot establish operational diagnostic accuracy.
+
+TARGET PROCEDURE. The acquisition script uses the recorded Qwen/Qwen2.5-1.5B-Instruct commit, downloads selected configuration, tokenizer and Safetensors files, verifies catalog sizes and available LFS SHA256 or Git blob identities, and retains a receipt. It downloads nothing without --download. This small base keeps the initial training experiment separate from Nemotron's larger-model capacity problem. [239]
+python3 runtimes/acquire.py training-base --out models/ft-base
+python3 runtimes/acquire.py training-base --out models/ft-base \
+  --download
+python3 -m venv .venv-unsloth
+source .venv-unsloth/bin/activate
+python3 -m pip install --upgrade pip
+python3 -m pip install 'unsloth==2026.10.10'
+python3 -m pip check
+mkdir -p runs/unsloth-install
+python3 -m pip freeze > runs/unsloth-install/freeze.txt
+The package version was observed in PyPI metadata on 28 October 2026. It is a candidate pin, not a complete native dependency lock. Retain resolver output, actual wheel identities and the complete freeze. If installation changes the chosen PyTorch runtime or lacks an ARM64 dependency, investigate in this environment and preserve the failure. Do not repair another experiment's environment by upgrading it in place. [238]
+The training script uses plain instruction text, including the prompt tokens in the causal-language-model loss. It checks that no sample exceeds 256 tokens instead of silently truncating it. This differs from assistant-only supervised loss. Record the supervised-token count so later loss comparisons preserve their denominator. Keep a distinct padding token so padding does not erase genuine EOS supervision.
+Exercise 240  Run a bounded QLoRA smoke training session
+Goal: observe one actual quantized-base adapter run. The supplied train_unsloth.py loads the local base in four bits, creates rank-eight adapters, uses microbatch one with four accumulation steps, and plans ten optimizer updates. Unsloth is imported before Transformers. The target script rejects CPU fallback, records the native environment and runs without model-download fallback. [237, 240]
+
+TARGET PROCEDURE. Stop inference servers before the isolated measurement. The first run stops after update five while retaining the ten-step scheduler plan. It saves a full Trainer checkpoint and an adapter. The second half belongs to Exercise 241. Use the capture wrapper so installation or CUDA failures remain complete transcripts.
+python3 catalogs/capture.py --out runs/unsloth-first-log -- \
+  python3 runtimes/train_unsloth.py --base models/ft-base \
+  --out runs/unsloth-first
+Inspect environment.json, contract.json, training-log.json and result.json. The contract binds every local base file by hash. Compare trainable parameters with total stored weights. Read both peak allocated and peak reserved bytes; neither includes every external allocation or proves the laptop's total free memory. Four-bit loading reduces base-weight storage, while activations, adapter gradients, optimizer state and temporary buffers have their own representation and lifetimes.
+Record update loss, gradient-norm logs, update count, held-out loss and peak allocation. Ten updates are a smoke test, not sufficient training. A nonfinite loss or failed kernel launch is a failed target run even if installation and model loading succeeded. Reduce sequence length or inspect the failing phase before changing unrelated packages. Keep the exact change and rerun the same control.
+Exercise 241  Resume with the original optimizer and base identity
+Goal: distinguish saving adapter weights from preserving training state. An adapter directory alone cannot reconstruct optimizer moments, scheduler position, random state or the data-order progression. The first run retains these in checkpoint-5. The continuation requires the same base-tree hash and training contract, and rejects an incomplete checkpoint.
+
+TARGET PROCEDURE. Keep the original base directory in place and use a fresh result directory for the continuation. The trainer resumes at update five and continues the existing ten-step schedule. Inspect global_step and the recorded checkpoint path instead of assuming that a restarted Python process resumed training.
+python3 catalogs/capture.py --out runs/unsloth-resume-log -- \
+  python3 runtimes/train_unsloth.py --base models/ft-base \
+  --resume-from runs/unsloth-first --out runs/unsloth-resumed
+For a stronger recovery study, run an uninterrupted ten-update variant in a separate directory and compare the next update's loss and adapter tensors under declared tolerances. Preserve the modified script hash. Exact bit equality is not assumed across nondeterministic GPU kernels or dependency changes. A metadata binding control establishes that a changed base is rejected; it does not establish numerical recovery of an unexecuted GPU training session.
+Exercise 242  Evaluate and prepare an adapter for serving
+Goal: separate adaptation, merging and quantization. The target trainer evaluates the same held-out rows with adapters disabled and after adaptation. The printed control shows why equal aggregate accuracy can conceal changed individual errors. Keep paired cases, losses, output labels and uncertainty; never claim an improvement from the training loss alone.
+
+TARGET PROCEDURE. Merge the resumed adapter locally only after checking its evaluation and base identity. The merge script checks the original base hashes, loads the saved adapter, saves a merged 16-bit model and records its files. It does not upload a model or download a conversion engine. Merging and conversion may need more temporary memory and disk space than adapter training. [241]
+python3 catalogs/capture.py --out runs/unsloth-merge-log -- \
+  python3 runtimes/merge_unsloth.py --run runs/unsloth-resumed \
+  --base models/ft-base --out runs/unsloth-merged
+Use the pinned llama.cpp conversion and quantization tools from earlier chapters to produce F16 and Q4_K_M GGUF variants. Retain commands and hashes. Compare adapter, merged, converted and quantized outputs on identical held-out inputs. Match the plain training prompt, EOS and decoding policy; raw completion avoids an added chat template. Template and token-boundary mismatches can degrade generation. [241]
+Serve the qualified GGUF through Ollama or LM Studio before connecting an agent. Retain invalid labels, invalid tool calls and unsupported diagnoses separately. Require declared quality and resource criteria before promotion. Chat adaptation does not retrain an embedding index; use the earlier embedding fine-tuning exercises for that task.
+99  LM Studio inside WSL2 with a headless service
+This chapter uses LM Studio's Linux headless core, llmster, and its lms command-line tool. The graphical Windows application is not part of the execution path. The official requirements list Linux x64 and ARM64 distributions, but the local CPU architecture, selected inference runtime and WSL2 GPU path still require qualification. Keep the daemon, CLI, backend runtime and model versions as separate identities. [242, 243]
+The headless path is useful when an application expects an OpenAI-compatible endpoint and the model owner should remain inspectable from Linux. Compatibility describes an API surface; it does not establish identical tokenization, chat templates, scheduling, numerical output or metrics across backends. We will compare one small model before asking a framework or agent to hide the wire details.
+Exercise 243  Qualify llmster and distinguish inventory from residency
+Goal: record the native service without treating a downloaded model as an active allocation. Save and inspect the publisher's installer before execution. Retain its bytes and SHA256; a mutable installer URL is not itself a reproducible version pin. Then record the versions and runtime list that the actual installation resolves. [242, 244]
+
+TARGET PROCEDURE. Run the installer in WSL2 and inspect its architecture selection and install paths. Continue only if it supplies a native compatible package. No Windows executable or remote LM Link service substitutes for this Linux qualification.
+mkdir -p runs/lmstudio-install
+curl -fL https://lmstudio.ai/install.sh \
+  -o runs/lmstudio-install/install.sh
+sha256sum runs/lmstudio-install/install.sh
+less runs/lmstudio-install/install.sh
+bash runs/lmstudio-install/install.sh
+# Open the WSL2 shell or apply the PATH printed by the installer.
+lms --version
+lms daemon up
+lms daemon status
+lms runtime ls
+lms ls --json > runs/lmstudio-install/inventory.json
+lms ps > runs/lmstudio-install/loaded.txt
+If a suitable backend is missing, lms runtime get and lms runtime select provide explicit selection. Capture the chosen version and architecture. With just-in-time loading enabled, /v1/models may list models on disk that are not currently resident. Keep inventory and lms ps together; do not infer memory use from inventory count. [242, 244]
+Exercise 244  Import a verified model and exercise the local API
+Goal: preserve file provenance while qualifying one loaded model. Use a single verified small GGUF. The default import operation moves a file, so this experiment explicitly chooses a symbolic link; the source must stay available. A copy is another valid choice when its disk cost is acceptable. Preview the operation first. [245]
+
+TARGET PROCEDURE. Set GGUF to the complete file used in Exercise 236, or another qualified small single-file model. Set LMS_KEY from the actual inventory after import. The stable API identifier lab-chat does not replace the underlying file hash and runtime identity.
+read -r -p 'Absolute single GGUF path: ' GGUF
+sha256sum "$GGUF"
+lms import "$GGUF" --symbolic-link --dry-run
+lms import "$GGUF" --symbolic-link
+lms ls
+read -r -p 'Exact local model key: ' LMS_KEY
+lms load "$LMS_KEY" --context-length 2048 --gpu 0.25 \
+  --estimate-only
+lms load "$LMS_KEY" --context-length 2048 --gpu 0.25 \
+  --identifier lab-chat --ttl 300
+lms server start --bind 127.0.0.1 --port 1234
+python3 catalogs/capture.py --out runs/lms-chat-log -- \
+  python3 runtimes/probe.py --backend openai \
+  --base http://127.0.0.1:1234 --model lab-chat \
+  --out runs/lms-chat
+The fractional --gpu setting controls layer offload, not a hard percentage of GPU memory. The estimate is a planning observation; compare it with actual allocations and the service log. The server is bound to loopback. This client neither follows redirects nor inherits proxy settings. If authentication is enabled, configure a suitable authenticated client and retain its request shape without logging the secret; the shipped no-token probe will preserve the unauthorized response. [246, 247]
+Exercise 245  Diagnose incomplete streams and loading delays
+Goal: separate an HTTP stream, a finished answer and a cold model load. The CPU control requires both a finish reason and the SSE terminator. It deliberately rejects missing termination. The target probe stores the raw response before parsing, marks a length-limited result distinctly, and retains client total duration. It buffers the response, so it does not claim time-to-first-token measurement.
+
+TARGET PROCEDURE. Run Exercise 244's probe again with a fresh output directory while the same model remains loaded. Then unload explicitly and repeat the load and request sequence. Preserve the runtime log, context, input, output limit and finish reason for each run. With JIT enabled, a later request can reload an idle model after its TTL expires; an unexpected load delay therefore needs a residency timeline, not just a latency number. [242, 246, 248]
+lms ps
+lms log stream
+# In another WSL2 terminal, run the bounded probe.
+# Stop log streaming with Ctrl-C after the request.
+lms unload lab-chat
+For time to first content, extend the Chapter 72 streaming client and timestamp the first content-bearing event. Empty role events and reasoning content need an explicit policy. A client timestamp is not a CUDA event. Correlate the request with exporter samples and, where supported, the profiler trace. If kernels cannot be traced on this WSL2 configuration, keep host observations labelled with their narrower scope.
+Exercise 246  Serve embeddings and connect local agents
+Goal: keep endpoint compatibility separate from embedding semantics. The OpenAI-style response carries an index per vector; reorder by that index and reject duplicate or missing positions. A valid array shape still says nothing about pooling, normalization or semantic quality. [248]
+
+TARGET PROCEDURE. After unloading lab-chat, list embedding models with lms ls --embedding. Import or acquire a suitably licensed embedding GGUF using the catalog workflow, record its file hash, and load it with an explicit identifier. Use its actual inventory key in the first command.
+read -r -p 'Embedding model key: ' LMS_EMBED_KEY
+lms load "$LMS_EMBED_KEY" --identifier lab-embed
+python3 catalogs/capture.py --out runs/lms-embed-log -- \
+  python3 runtimes/probe.py --backend openai \
+  --base http://127.0.0.1:1234 --model lab-embed \
+  --embedding --out runs/lms-embed
+lms unload lab-embed
+lms server stop
+lms daemon down
+Use the saved vectors as another source for the retrieval and visualization experiments, with the same corpus and labelled relevance judgments. Compare original-dimensional neighbors before comparing two-dimensional plots. For LangChain, LangGraph and PydanticAI, use the configured local endpoint after its direct protocol tests pass. Run the earlier tool-call acceptance, schema and budget controls against the learned model; an ordinary chat response does not establish tool-calling capability. LangSmith trace export remains a separately chosen remote boundary. No service launch here silently enables it.
+100  Nemotron models beyond the GPU weight budget
+Nemotron is NVIDIA's model family, distinct from the NeMo training and deployment framework. This laboratory selects NVIDIA-Nemotron-3-Nano-30B-A3B as a concrete example. Its hybrid Mamba-2, attention and mixture-of-experts design has about 30 billion total parameters and 3.5 billion active parameters per token. The governing terms are the NVIDIA Nemotron Open Model License. The active count concerns selected computation; the stored model still contains the other experts. [249]
+We use a pinned ggml-org GGUF conversion and preserve its identity separately from NVIDIA's upstream model. The retained revision matched the repository's main revision on 28 October 2026; main can advance, so later agreement is not assumed. Format support and native execution require separate checks. The Q4, Q8 and BF16 files have different storage requirements. A model-family name, active-parameter count or maximum context is not a memory admission rule. [250]
+Exercise 247  Record the upstream and conversion identities
+Goal: identify what will be loaded before downloading tens of gigabytes. The companion contains actual public catalog responses for the NVIDIA repository and the selected converter repository. The printed transcript reads those retained metadata bytes; it does not load a model. Record the full revision, selected filename, byte size, SHA256 and license before acquisition. [249–251]
+
+TARGET PROCEDURE. Start with the Q4_K_M plan. Inspect its selected file and available disk, then explicitly request the download. The downloader checks the complete file's byte size and LFS SHA256 and preserves a partial file if verification fails. It will not overwrite an existing directory.
+python3 runtimes/acquire.py Q4_K_M --out models/nemotron-q4
+python3 runtimes/acquire.py Q4_K_M --out models/nemotron-q4 \
+  --download
+The observed converter commit is fe801509a580ff84a5728d4a9104e3f6f7e9b0dd. Its Q4_K_M file is 22,421,827,488 bytes; Q8_0 is 33,585,500,064 bytes; BF16 is 63,181,509,024 bytes. These exact sizes belong to this publisher and revision. Another converter's identically named quantization can differ because of tensor choices and conversion details. The companion's metadata retains each LFS digest; do not substitute a rolling main revision after planning. [250, 251]
+The upstream metadata is a provenance input, not proof that the converter reproduced every tensor correctly. Keep conversion documentation and compare quality with a trusted baseline when available. NVFP4 is another representation with its own hardware and kernel requirements; it is not interchangeable with a four-bit GGUF file. [253]
+Exercise 248  Admit a model that exceeds the reported GPU budget
+Goal: make the larger-model experiment conditional on measured headroom. Q8_0 occupies about 31.28 GiB in this conversion, so its weights exceed both 30 decimal GB and 30 GiB. Q4_K_M is about 20.88 GiB before runtime buffers. Installed 64 GB memory and GPU-reported capacity are not independent pools to add together. The host, guest, mapped file pages, CPU tensors, CUDA allocations and workspace all consume resources.
+
+The control uses an invented 40 GiB guest-available value and a 6 GiB reserve to teach admission arithmetic. Those numbers are not measurements or required WSL settings. The reserve is only a preliminary guard and cannot predict the peak. BF16's roughly 58.84 GiB file leaves too little room on a nominal 64 GB system for this initial exercise; do not select it merely because the raw file is smaller than installed capacity.
+TARGET PROCEDURE. Record actual current free CUDA bytes, guest MemAvailable, host headroom and swap activity using Appendix F. If the guest ceiling remains the earlier conservative 32 GB configuration, this Q8 experiment may be inadmissible. Revisit the WSL resource plan only with measured host headroom; increasing a guest limit does not increase the GPU budget. The acquisition plan itself does not allocate the model.
+free -b
+cat /proc/meminfo > runs/nemotron-meminfo.txt
+python3 runtimes/acquire.py Q8_0 --out models/nemotron-q8
+# Download only after the measured host/guest admission check.
+python3 runtimes/acquire.py Q8_0 --out models/nemotron-q8 \
+  --download
+A memory-mapped file can have a virtual size larger than its current resident pages; RSS alone does not establish the full working set. Observe page faults, swap-in/out, host pressure and device memory during load and generation. If the file loads but each token triggers sustained paging, record that as a capacity/performance boundary. Do not report it as a comfortable fit.
+Exercise 249  Qualify hybrid kernels and partial offload
+Goal: run the same model with a controlled placement change. Qualify Q4 first, then attempt Q8 with conservative GPU-layer allocation if admission passed. Record the commit, build flags, binary hash, architecture recognition, quantization support and actual placement. The pinned b11898 release (26 October 2026) postdates Nemotron 3 Nano (15 December 2025) and this conversion revision (19 October 2026). Architecture recognition is expected; the CUDA 13.4 ARM64 build still needs quantization and placement qualification. Pin and record any replacement build separately. [3, 11, 249–250]
+
+TARGET PROCEDURE. Set LLAMA_SERVER to the absolute binary path and NEMOTRON_FILE to the chosen complete verified GGUF. Check that this build advertises the flags before launch. Start one foreground server; use a new run directory for each placement. A small initial GPU-layer count avoids assuming that all weights fit, but does not by itself guarantee a successful allocation.
+read -r -p 'Qualified llama-server binary: ' LLAMA_SERVER
+read -r -p 'Verified Nemotron GGUF: ' NEMOTRON_FILE
+"$LLAMA_SERVER" --version
+"$LLAMA_SERVER" --help > runs/nemotron-server-help.txt
+sha256sum "$LLAMA_SERVER" "$NEMOTRON_FILE"
+mkdir -p runs/nemotron-owner
+"$LLAMA_SERVER" -m "$NEMOTRON_FILE" -c 2048 -ngl 8 \
+  --host 127.0.0.1 --port 8087 --parallel 1 \
+  > runs/nemotron-owner/server.log 2>&1
+In another WSL2 terminal, query /v1/models, use its exact model identifier, and issue the bounded probe. Stop the owner with Ctrl-C before changing files or placement. Try Q4 first; then Q8 at the same context. Increase -ngl only while measured headroom permits. An architecture-unsupported error is distinct from an out-of-memory error and should not be treated by changing the context blindly.
+curl --noproxy '*' -fsS http://127.0.0.1:8087/v1/models \
+  > runs/nemotron-owner/models.json
+read -r -p 'Exact served model identifier: ' NEMOTRON_ID
+python3 catalogs/capture.py --out runs/nemotron-request-log -- \
+  python3 runtimes/probe.py --backend openai \
+  --base http://127.0.0.1:8087 --model "$NEMOTRON_ID" \
+  --out runs/nemotron-request
+The hybrid state includes recurrent state as well as attention-related storage, so applying a dense-transformer KV formula to every layer is incomplete. Hold generation and context limits fixed, then measure the allocation change when context rises from 2,048 to 4,096. Keep output bounds small; a reasoning model can exhaust them before delivering a final answer. Record that outcome, and use only thinking controls documented by the selected runtime and template. A server's OpenAI-compatible endpoint does not establish the availability of every model-specific option.
+Exercise 250  Compare deployment and decide whether to fine tune
+Goal: compare complete outcomes without hiding failed configurations. Keep the same prompt set, model revision, quantization, template, context, output limit, warmup policy and load condition when comparing placements or runtimes. Record quality per case together with load time, client latency, tokens, peak memory and paging. A faster response that ends at a limit or fails a correctness check is a different result.
+
+TARGET PROCEDURE. After llama.cpp qualification, import the same verified single GGUF into Ollama or LM Studio using Chapters 97 and 99. Repeat the direct client test and record backend support rather than assuming those products embed the same llama.cpp commit. Compare one owner at a time before attempting workers. Retain cold and warm samples separately and include the number of failed or truncated requests beside every successful latency statistic.
+For an agent study, reuse the read-only evidence tools and action validator from the earlier chapters. Evaluate whether Nemotron requests the needed evidence and follows the output contract. Do not treat a plausible diagnosis as a verified cause. Correlate agent steps with client spans, service logs and Chapter 91's Prometheus/Grafana observations. Preserve unavailable GPU fields, and use a supported profiler only when its capture is actually qualified.
+Nemotron fine-tuning is an advanced branch, not a consequence of successful quantized inference. The Unsloth guide describes approximately 60 GB of VRAM for its 16-bit LoRA recipe for the 30B model, beyond this reported 30 GB GPU budget. Keep Chapter 98's 1.5B model as the first training exercise. A smaller Nemotron variant or a newer quantized-training recipe requires a new pinned model, native-kernel qualification and measured optimizer/activation budget; do not extrapolate from the 3.5B active count. [252]
+Finish with an evidence report: which representation was admitted, which runtime recognized it, what actually occupied GPU and host memory, which requests completed, and where quality or resource limits appeared. A reproducible unsupported path or capacity boundary is a valid conclusion. There are no measured Nemotron throughput, GPU training, WSL2 residency or laptop profiler results in the CPU captures printed here.

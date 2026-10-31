@@ -1,0 +1,40 @@
+Exercise 96  Monitor embedding and training episodes
+
+Question
+Can embedding and training peaks be assigned to the right process and phase?
+
+Before you start
+Exercise 25 (establish the framework and run ten updates) · Exercise 90 (move the measured pipeline to WSL2 CUDA) · Exercise 94 (capture an idle WSL2 baseline)
+CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.
+
+Recorded step time
+20.4 s for Training capture (record 096.02).
+
+Check for success
+Keep separate episode records and compare process allocator peaks with their corresponding device-wide samples.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python metrics/make_plan.py training --batch 4 --out "$LAB_RUN/training-plan.json"
+python metrics/monitor.py --plan "$LAB_RUN/training-plan.json" --out "$LAB_RUN/training-session"
+
+Interpret the result
+Explain coverage and sampling limits before interpreting utilization or peaks.
+
+If the check fails
+Inspect the raw sample before blaming a plot; check stale or unsupported fields.
+
+Finish
+Keep $LAB_RUN/training-plan.json, $LAB_RUN/training-session with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU actual MiniLM load/encode and training; CPU telemetry/rendering.
+Scope  Host polling and GPU work have different time resolutions.
+
+Recorded files
+python reader/records.py 96 --files

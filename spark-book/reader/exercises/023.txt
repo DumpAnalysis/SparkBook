@@ -1,0 +1,35 @@
+Exercise 23  Write a diagnostic conclusion
+
+Question
+What conclusion about R17 could another investigator check?
+
+Before you start
+Exercise 6 (submit the complete prompt) · Exercise 8 (measure repeated local requests)
+The retained inventory, model identity, request/measurement results and your written analysis. No new allocation is required.
+
+Recorded step time
+Independent exercise duration was not captured.
+
+Check for success
+Write one observed fact, one competing explanation and the next discriminating measurement. Cite the record for each factual claim.
+
+Run in your lab
+Write a short conclusion identifying the observation, competing explanations, discriminating check and remaining uncertainty. Cite your own request and startup records.
+
+Interpret the result
+State the narrow supported conclusion. Keep untested explanations distinct from observed causes.
+
+If the check fails
+If evidence cannot distinguish two causes, propose one bounded test instead of choosing the more familiar cause.
+
+Finish
+Save the conclusion and stop the owned server with bash serve.sh stop.
+
+Handoff
+Keep the conclusion with inventory.txt, answer.json and benchmark.json. Record which server you stopped.
+
+Recorded result  PASSED — Intentional teaching-case writing; no measured incident.
+Scope  R17 is a fictional case. The written diagnosis is assessed against the supplied facts.
+
+Recorded files
+python reader/records.py 23 --files

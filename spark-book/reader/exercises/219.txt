@@ -1,0 +1,40 @@
+Exercise 219  Move monitoring into containers and connect Kubernetes
+
+Question
+Can the containerized monitor reach the intended endpoint inside this local topology?
+
+Before you start
+Exercise 215 (provision and qualify the Grafana dashboard) · Exercise 144 (deploy the CPU service to a local cluster)
+Native monitoring tools or qualified containers; CPU/host memory and retained time-series data.
+
+Recorded step time
+0.52 s for Kubernetes oracle (record 219.03).
+
+Check for success
+Inspect network namespace, scrape target and backend responses. Verify cleanup of the owned port-forward and services.
+
+Run in your lab
+This generates configuration only. Inspect it and the image identities before starting containers; follow the chapter’s cluster connectivity procedure separately.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${GRAFANA_IMAGE:?Set GRAFANA_IMAGE to the qualified Grafana image pinned by digest}"
+: "${PROM_IMAGE:?Set PROM_IMAGE to the qualified Prometheus image pinned by digest}"
+python observability/docker_config.py --prom-image "$PROM_IMAGE" --grafana-image "$GRAFANA_IMAGE" --out "$LAB_RUN/monitoring-compose"
+
+Interpret the result
+Provisioning alone is insufficient; distinguish simulated from live GPU series.
+
+If the check fails
+Trace exporter to scrape to query to panel, preserving missing-data semantics.
+
+Finish
+Keep $LAB_RUN/monitoring-compose with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Digest-pinned native monitoring containers started, and Grafana’s backend returned data. A separate native monitor attached to loopback-forwarded K3s Triton metrics; 32 requests passed the numerical oracle. Prometheus up changed from 1 to 0 when forwarding ended. That down state diagnoses reachability through the forwarding path, not necessarily a crashed GPU workload. The namespace and owned processes were cleaned up; deployment remains a bounded laboratory result.
+Scope  The container and cluster observations depend on their own networking and device discovery.
+
+Recorded files
+python reader/records.py 219 --files

@@ -1,0 +1,15 @@
+{"event":"listening","host":"127.0.0.1","port":39807,"pid":99,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543"}
+{"event":"http","request_id":"lab","route":"/readyz","status":200,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":0.3012}
+{"event":"http","request_id":"load-5","route":"/v1/embeddings","status":429,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":0.259177}
+{"event":"http","request_id":"load-3","route":"/v1/embeddings","status":429,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":0.511193}
+{"event":"http","request_id":"load-1","route":"/v1/embeddings","status":429,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":0.068453}
+{"event":"http","request_id":"load-4","route":"/v1/embeddings","status":429,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":0.219317}
+{"event":"http","request_id":"load-0","route":"/v1/embeddings","status":429,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":0.110735}
+{"event":"http","request_id":"load-2","route":"/v1/embeddings","status":429,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":0.069894}
+{"event":"inference","request_id":"load-7","accepted_ns":25541889378603,"start_ns":25541889723313,"end_ns":25541990243833,"queue_ms":0.34471,"inference_ms":100.52052,"batch":1,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","engine":"numpy","device":"cpu"}
+{"event":"http","request_id":"load-7","route":"/v1/embeddings","status":200,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":101.425673}
+{"event":"inference","request_id":"load-6","accepted_ns":25541892400998,"start_ns":25541990298485,"end_ns":25542090654231,"queue_ms":97.897487,"inference_ms":100.355746,"batch":1,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","engine":"numpy","device":"cpu"}
+{"event":"http","request_id":"load-6","route":"/v1/embeddings","status":200,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":198.670872}
+{"event":"http","request_id":"lab","route":"/metrics","status":200,"model_revision":"e1505163c693441eec6767ac84702790dbac8f3a370a2e11fa152536e36df543","elapsed_ms":0.14741}
+{"event":"draining"}
+{"event":"stopped","inflight":0}

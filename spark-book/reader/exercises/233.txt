@@ -1,0 +1,39 @@
+Exercise 233  Measure calibration and risk versus coverage
+
+Question
+What is the tradeoff between rejecting uncertain decisions and maintaining coverage?
+
+Before you start
+Exercise 232 (verify Choice, Score and Noul contracts)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+0.12 s for Calibration (record 233.01).
+
+Check for success
+Recompute Brier score, accepted count and risk from the six labelled examples at each threshold.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/jev_lab.py calibration --out "$LAB_RUN/calibration.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/calibration.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The six-row calibration control is intentionally synthetic. Independent arithmetic reproduces Brier score 0.2916666666666667 and the recorded risk/coverage points.
+Scope  Confidence thresholding can reduce coverage without reducing risk on this tiny example; this is not measured calibration of Jev, Qwen or any deployed model.
+
+Recorded files
+python reader/records.py 233 --files

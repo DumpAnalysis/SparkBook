@@ -1,0 +1,43 @@
+First inference
+Exercises 1–9, then 23
+Inventory, small model, one response, timing and a written diagnosis.
+
+Training and model capacity
+Exercises 14, 24–30, 68–69; later 251
+Framework qualification, data, adapters, recovery and measured placement.
+
+CUDA programming
+Exercises 31–38, 45–56, 57–74
+Build, inspect, validate kernels and connect them to frameworks.
+
+Embeddings and BERT
+Exercises 14, 75–90
+Pooling, evaluation, projections, custom pretraining and fine-tuning.
+
+Diagnostics and observability
+Exercises 91–122; then 212–219
+Samples, numerical boundaries, traces, alerts and dashboards.
+
+Workers and deployment
+Exercises 123–151; 152–171 as needed
+Process emulation, GPU ownership, services and acceleration.
+
+Follow the embedding fixture through four serving setups
+136 local HTTP → 141 Docker Compose → 144 K3s → 150 Triton.
+Keep the same fixed encoder reference. At Triton send TOKENS and compare EMBEDDINGS.
+
+Follow the linear calculation from export to quantized execution
+152 fixture.npz → 156 linear.onnx → 157–158 ONNX Runtime CPU/CUDA → 161 TensorRT → 166 linear-qdq.onnx.
+Keep the same test inputs. Compare each result with the independent reference; inspect the quantized engine to establish actual INT8 execution.
+
+Multimodal work
+Exercises 172–203
+Image/audio inputs, generation, recognition, adaptation and serving.
+
+Catalogs and agents
+Exercises 204–211; 220–234
+Artifact identity, bounded tools, durable state and evaluation.
+
+Local runtimes
+Exercises 235–250
+Ollama, Unsloth, llmster and Nemotron with explicit model identities.

@@ -1,0 +1,40 @@
+Exercise 151  Qualify an ONNX GPU backend and version changes
+
+Question
+Which parts of GPU-backed ONNX serving can this laptop independently verify?
+
+Before you start
+Exercise 150 (versioned Triton serving). For the later GPU comparison, complete Exercise 158 (provider placement).
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+3.1 s for PyTorch installed framework (record 151.16).
+
+Check for success
+Check repository values, provider placement and the version switch separately. Require usable kernel intervals for the tracing criterion.
+
+Run in your lab
+Begin with the CPU repository control from Exercise 150. Exercise 158 supplies the later provider-placement check. Return here for the GPU serving and trace criteria after that check.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python serving/build_repository.py --onnx --out "$LAB_RUN/onnx-repository"
+python serving/onnx_control.py --repository "$LAB_RUN/onnx-repository" --out "$LAB_RUN/onnx-control"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/onnx-repository, $LAB_RUN/onnx-control with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — An elevated Windows parent launched four native GPU probes into the existing WSL2 instance as the regular user and root. Numerical/event-clock checks pass, but all eight kernel records have zero timestamps. Two non-elevated controls fail the same timing gate.
+Scope  The shared tracing prerequisite remains BLOCKED; the full ONNX service/version workload was not rerun.
+
+Recorded files
+python reader/records.py 151 --files

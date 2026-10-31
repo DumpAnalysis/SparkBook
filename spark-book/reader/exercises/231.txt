@@ -1,0 +1,39 @@
+Exercise 231  Use the typed agent with a local endpoint
+
+Question
+Can the local endpoint satisfy both the output schema and the task rubric?
+
+Before you start
+Exercise 229 (reject a plausible but invalid finding) · Exercise 222 (qualify the HTTP boundary and local model)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+1.9 s for Invoke the local model through the typed agent (record 231.01).
+
+Check for success
+Validate the typed output, then check its factual claim against the supplied evidence.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/pydantic_lab.py local --model local-model --out "$LAB_RUN/typed-local.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/typed-local.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The typed agent completed against the actual local CUDA model endpoint. A separate attempt after the server stopped failed with exit 1, and its full transport error remains in the companion.
+Scope  Typed-output acceptance does not prove factual or diagnostic correctness, and a stopped endpoint must not silently fall back to a fixture.
+
+Recorded files
+python reader/records.py 231 --files

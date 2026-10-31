@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "catalogs/ngc_lab.py",
+    "faults",
+    "--source",
+    "catalogs/controls/ngc-image",
+    "--out",
+    "catalogs/controls/ngc-faults"
+  ],
+  "start_ns": 1793183905937713834,
+  "end_ns": 1793183906032872721,
+  "exit": 0
+}

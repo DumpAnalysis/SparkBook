@@ -1,0 +1,35 @@
+Exercise 116  Isolate the introducing configuration
+
+Question
+Which configuration change first introduces the regression?
+
+Before you start
+Exercise 115 (produce a one minimal reproducer)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+0.07 s for Reproducer scan (record 116.01).
+
+Check for success
+Order the tested configurations and identify a passing/failing boundary. Recheck its two neighbors under the same predicate.
+
+Run in your lab
+Run the same minimal input against the two named configurations. Preserve their identities and narrow the introducing change without changing the test input.
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep configuration sequence and regression boundary.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU configuration scan returned false, false, true, false, true. The first failing configuration is 3, but failure is nonmonotonic. A binary search that assumes all later versions fail would be unjustified; the full scan is the discriminating control.
+Scope  Minimality and the first failing configuration apply to the tested deletion or scan order.
+
+Recorded files
+python reader/records.py 116 --files

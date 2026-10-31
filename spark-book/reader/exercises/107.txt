@@ -1,0 +1,39 @@
+Exercise 107  Locate a retained owner
+
+Question
+Which Python owner keeps a GPU tensor live between requests?
+
+Before you start
+Exercise 14 (run a small synchronized computation) · Exercise 42 (capture allocator history and selected tensor values)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+1.4 s for Release CPU tensor references (record 107.02).
+
+Check for success
+Inspect the owner collection before and after clearing it. Compare live tensor bytes with the corresponding allocator counters.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py memory --device cuda --mode retain --out "$LAB_RUN/memory-retain"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/memory-retain with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CPU ownership fixture: retained live tensor bytes grew from 262,144 to 1,048,576 to 2,097,152 and returned to zero when the owner was cleared. The release control stayed at zero. This distinguishes a retained reference from an unexplained process-RSS increase.
+Scope  Live tensor bytes and allocator reserve measure different lifetimes.
+
+Recorded files
+python reader/records.py 107 --files

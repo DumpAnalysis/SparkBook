@@ -1,0 +1,41 @@
+Exercise 1  Inventory the existing environment
+
+Question
+Which parts of the laptop can this WSL shell actually see?
+
+Before you start
+Start in the prepared WSL2 working directory.
+Python standard library and Bash. This inventory does not allocate model tensors.
+
+Recorded step time
+0.63 s for Companion inventory (record 001.01).
+
+Check for success
+Find the kernel, architecture, guest memory and GPU-query results in your inventory. Distinguish a failed command with an exit code from a query the helper skipped.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+bash inventory.sh --out "$LAB_RUN/inventory.txt"
+
+Inspect
+Open $LAB_RUN/inventory.txt. Read each command and its exit. If nvidia-smi was unavailable, the report identifies both skipped GPU queries.
+
+Interpret the result
+A management query and a visible device interface are inventory evidence. Exercise 14 separately tests CUDA computation.
+
+If the check fails
+If nvidia-smi is missing from PATH, inspect /usr/lib/wsl/lib. Retain a failed query; do not infer a missing Linux display driver.
+
+Finish
+Keep the dated inventory in this run directory. A named report refuses an existing destination.
+
+Handoff
+Use the architecture and free disk space for Exercise 4. Keep the inventory path for the snapshot in Exercise 20.
+
+Recorded result  The WSL2 inventory captured the guest configuration and the mapped NVIDIA query.
+Scope  The management query establishes device visibility. Exercise 14 tests computation.
+
+Recorded files
+python reader/records.py 1 --files

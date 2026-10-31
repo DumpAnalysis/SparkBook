@@ -1,0 +1,40 @@
+Exercise 241  Resume with the original optimizer and base identity
+
+Question
+Does resumed QLoRA training reuse the intended optimizer, adapter and base?
+
+Before you start
+Exercise 240 (run a bounded QLoRA smoke training session) · Exercise 69 (resume the next update with its complete state)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+56.7 s for Unsloth native resume (record 241.01).
+
+Check for success
+Bind the resume to its checkpoint step and base identities, then verify the next update and resulting checkpoint.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${TRAINING_BASE:?Set TRAINING_BASE to the pinned local base snapshot for Unsloth}"
+: "${TRAINING_RUN:?Set TRAINING_RUN to the retained training/checkpoint run directory}"
+python runtimes/train_unsloth.py --base "$TRAINING_BASE" --resume-from "$TRAINING_RUN" --out "$LAB_RUN/qlora-resumed"
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Keep $LAB_RUN/qlora-resumed with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Training resumed the saved step-5 checkpoint through global step 10 with the same bound base and training contract; recorded evaluation loss reached 2.6536. Optimizer, scheduler and RNG payload identities were retained locally, but their bytes are excluded from this export. This demonstrates the recorded continuation, not bitwise equivalence to an uninterrupted ten-step run.
+Scope  A successful training update or valid output syntax does not by itself establish task improvement.
+
+Recorded files
+python reader/records.py 241 --files

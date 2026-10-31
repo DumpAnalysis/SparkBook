@@ -1,0 +1,39 @@
+Exercise 149  Diagnose vLLM concurrency and deploy the qualified owner
+
+Question
+How do concurrent vLLM requests behave before and after moving the owner into the cluster?
+
+Before you start
+Exercise 148 (qualify a vLLM image and a small generation model)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+14 min 52 s for Rollout (record 149.03).
+
+Check for success
+Compare accepted/completed counts and server counters at each concurrency. Verify the cluster owner with its own response.
+
+Run in your lab
+The entry is a load probe of the running owner. Deployment is a separate step using serving/deploy.py after the local serving criteria pass.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python serving/client.py chat-load --base http://127.0.0.1:8000 --model local-model --requests 8 --concurrency 2 --out "$LAB_RUN/vllm-load"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/vllm-load with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Two actual vLLM trials each retained 32 complete responses at concurrency one and two. All 64 returned HTTP 200 with finish=stop, 37 prompt tokens and 33 completion tokens each. Server deltas independently match 64 completions, 2,112 generated tokens and 2,368 prompt tokens. The Kubernetes owner also reached readiness and streamed an answer. Its original 900-second rollout succeeded in 891.92 seconds; a prepared longer-deadline retry was never executed.
+Scope  Qualify the particular image, model and bounded request settings in the capture.
+
+Recorded files
+python reader/records.py 149 --files

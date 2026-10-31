@@ -1,0 +1,36 @@
+$ python3 observability/integration.py --tools ../../tools-v22/tools.json --run-dir ../../runtime-v22e --evidence observability/evidence/08-final-controls/details --allow-unavailable-grafana-backend
+PASS Prometheus ready
+Checking /workspace/scratch/2777d2814c7d/runtime-v22e/prometheus.yml
+  SUCCESS: 1 rule files found
+ SUCCESS: /workspace/scratch/2777d2814c7d/runtime-v22e/prometheus.yml is valid prometheus config file syntax
+
+Checking /workspace/scratch/2777d2814c7d/runtime-v22e/rules.yml
+  SUCCESS: 6 rules found
+
+PASS GPU target up
+PASS SIMULATED busy ratio = 0.70
+PASS SIMULATED memory ratio = 0.40
+PASS Grafana health, datasource and 13-panel dashboard
+UNAVAILABLE Grafana query backend; see grafana-backend.txt and logs/grafana.log
+PASS missing busy field = availability 0
+PASS missing busy gauge omitted
+PASS unavailable counter alert firing while up=1
+PASS valid zero busy gauge exists
+PASS unavailable counter alert resolved
+PASS memory pressure pending
+PASS memory pressure firing after hold
+PASS memory pressure resolved
+{
+  "evidence": "SYNTHETIC CPU",
+  "responses": {
+    "200": 18,
+    "503": 2
+  },
+  "delay_ms": 20
+}
+PASS synthetic request count 20
+PASS synthetic p95 finite and positive
+PASS Prometheus pipeline and Grafana provisioning controls
+Grafana query backend: UNAVAILABLE
+No WSL2/GPU/Docker execution claimed
+[exit 0]

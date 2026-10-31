@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "forward_and_gradient_errors": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "local_weights": 12,
+  "full_weights": 24
+}

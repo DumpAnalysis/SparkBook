@@ -1,0 +1,22 @@
+{
+  "machine": "x86_64",
+  "python": "3.12.14",
+  "modules": {
+    "numpy": true,
+    "onnx": true,
+    "onnxruntime": true,
+    "torch": true,
+    "cudf": false,
+    "cuml": false,
+    "rmm": false,
+    "tensorrt": false,
+    "nemo_automodel": false
+  },
+  "executables": {
+    "nvidia-smi": false,
+    "nvcc": false,
+    "docker": false,
+    "trtexec": false,
+    "automodel": false
+  }
+}

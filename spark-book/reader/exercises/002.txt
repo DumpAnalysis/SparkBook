@@ -1,0 +1,41 @@
+Exercise 2  Calculate before allocating
+
+Question
+How large should the key/value cache be before the server allocates it?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Python standard library. This is arithmetic; it allocates no model.
+
+Recorded step time
+0.12 s for Budget (record 002.01).
+
+Check for success
+Reproduce the byte estimate from context length, layer count, KV heads and element width. Save the 4096-token prediction for Exercise 5.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+python reader/capture.py --out "$LAB_RUN/budget" -- python spark_lab.py budget
+
+Inspect
+Read the context=4096 line in $LAB_RUN/budget/stdout.txt and check the exit in metadata.json.
+
+Interpret the result
+An estimate is a planning input. Runtime buffers, context, concurrent sequences and host pressure still require measurement.
+
+If the check fails
+If your estimate differs from the example, check whether you used KV heads or query heads and whether you counted both keys and values.
+
+Finish
+Keep the estimate and its assumptions beside the later measured placement.
+
+Handoff
+Carry the 4096-token prediction from budget/stdout.txt to the startup log in Exercise 5.
+
+Recorded result  For 4096 tokens the stated layer, head and element counts predict a 224 MiB KV cache.
+Scope  The 224 MiB estimate covers the stated FP16 cache geometry at 4096 tokens.
+
+Recorded files
+python reader/records.py 2 --files

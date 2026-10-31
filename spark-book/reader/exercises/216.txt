@@ -1,0 +1,45 @@
+Exercise 216  Read rates, histograms and latency correctly
+
+Question
+Which population and units does each latency statistic describe?
+
+Before you start
+Exercise 214 (start and inspect the native WSL2 stack) · Exercise 7 (understand the arithmetic first)
+Native monitoring tools or qualified containers; CPU/host memory and retained time-series data.
+
+Recorded step time
+0.57 s for the 20 ms workload (216.01) and 2.19 s for the 100 ms comparison (216.03).
+
+Check for success
+Recompute the weighted mean from sums and counts and identify the histogram bucket containing the requested quantile.
+
+Run in your lab
+The driver in Exercise 214 stopped its stack. Use two WSL terminals for this exercise. In terminal B, activate the same environment and wait for the workload target to be up before sending requests. Give Prometheus enough scrapes for the one-minute rate expression. Stop terminal A with Ctrl-C before Exercise 217.
+
+: "${LAB_RUN:?Start a new lab run first}"
+: "${TOOLS_JSON:?Set TOOLS_JSON to the qualified tools.json from Exercise 212}"
+# Terminal A: leave the fixture stack running.
+python observability/fixture.py --out "$LAB_RUN/latency-fixture.json" --case baseline
+python observability/stack.py --tools "$TOOLS_JSON" \
+  --run-dir "$LAB_RUN/latency-stack" --fixture "$LAB_RUN/latency-fixture.json"
+# Terminal B: run the client when Prometheus is ready.
+python observability/client.py work --count 20 --delay-ms 20 --errors 2
+python observability/client.py query "histogram_quantile(0.95, sum by(le)(rate(lab_demo_request_duration_seconds_bucket[1m])))"
+
+Interpret the result
+Provisioning alone is insufficient; distinguish simulated from live GPU series.
+
+If the check fails
+Trace exporter to scrape to query to panel, preserving missing-data semantics.
+
+Finish
+Keep synthetic request counts and percentile query evidence.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Each synthetic 20-request trial records 18 successes and two errors, at configured delays of 20 ms and 100 ms. Raw buckets are cumulative counts.
+Scope  The displayed Prometheus p95 is an interpolation over the query’s one-minute window, which can mix nearby trials; it is not the exact percentile of a particular 20-response sample.
+
+Recorded files
+python reader/records.py 216 --files

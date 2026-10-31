@@ -1,0 +1,37 @@
+Exercise 13  Fail a model load without exhausting memory
+
+Question
+How can we distinguish an invalid model file from memory exhaustion?
+
+Before you start
+Exercise 4 (download and fingerprint)
+The verified native runtime and its local shared libraries. The invalid input occupies only 38 bytes.
+
+Recorded step time
+0.78 s for Invalid load (record 013.02).
+
+Check for success
+Preserve the loader's format error and nonzero exit on the invalid fixture. Recheck the healthy server separately.
+
+Run in your lab
+Keep the healthy baseline on port 8080. The negative control uses a new file and tests port 8081.
+
+bash reader/invalid_model.sh "${LAB_RUN:?Start a fresh exercise run first}"
+
+Interpret the result
+A format rejection before model allocation isolates the loader boundary.
+
+If the check fails
+If the command unexpectedly succeeds, check which pathname and model the launcher actually selected.
+
+Finish
+Restore the valid model path and retain both attempted arguments and the error.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  The native loader rejected the 38-byte input with an invalid GGUF magic error.
+Scope  The deliberately invalid GGUF file tests rejection during parsing, before useful model execution.
+
+Recorded files
+python reader/records.py 13 --files

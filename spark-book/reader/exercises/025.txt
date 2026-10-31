@@ -1,0 +1,39 @@
+Exercise 25  Establish the framework and run ten updates
+
+Question
+Which parameters changed during a bounded LoRA update?
+
+Before you start
+Exercise 14 (run a small synchronized computation) · Exercise 24 (create and inspect the teaching corpus)
+Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.
+
+Recorded step time
+36.9 s for Ten LoRA updates after the header repair (record 025.01).
+
+Check for success
+Check trainable parameter count, device, update count, losses and adapter files. Keep the first failing attempt if a retry is needed.
+
+Run in your lab
+Use the qualified framework environment. The recorded experiment preserves an initial failure and its continuation; do not silently treat this entry command as reproducing the continuation.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python finetune.py train --steps 10 --output "$LAB_RUN/lora"
+
+Interpret the result
+Ten updates demonstrate a bounded training path. Falling training loss is not held-out quality.
+
+If the check fails
+Check dataset/tokenizer identity and memory at the failing phase before changing precision.
+
+Finish
+Keep the adapter/checkpoint and matching base identity for Exercise 26.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CUDA BF16 LoRA training.
+Scope  The bounded training run establishes that the adapter can be updated and saved. Exercise 26 evaluates its answers.
+
+Recorded files
+python reader/records.py 25 --files

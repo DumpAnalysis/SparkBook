@@ -1,0 +1,74 @@
+EXECUTED CPU or replay evidence
+$ python3 advanced/reference.py transformer --out runs/advanced/reference.json
+evidence=CPU reference; no GPU execution
+shape=5x8 cache_elements=80
+full_vs_incremental_max_error=0.000000000000
+wrong_position_max_error=0.019305
+first_bad_q_token=1
+causal_prefix_and_repair=PASS
+saved=runs/advanced/reference.json
+exit_code=0
+
+EXECUTED CPU or replay evidence
+$ python3 advanced/reference.py int4 --out runs/advanced/int4.json
+evidence=CPU reference; no GPU execution
+codes=-8,-8,-2,-1,0,1,2,7,7
+packed_hex=88 fe 10 72 07
+decoded=-2,-2,-0.5,-0.25,0,0.25,0.5,1.75,1.75
+tail_high_nibble=0 round_ties=away_from_zero
+saved=runs/advanced/int4.json
+exit_code=0
+
+EXECUTED CPU or replay evidence
+$ python3 advanced/casebook.py
+evidence=CPU teaching fixtures; no CUDA acquisition
+stride: fault_exposed=true check=PASS
+  row stride must be 5; square-only tests concealed the fault
+stale: fault_exposed=true check=PASS
+  output from the preceding request survived; poison then verify every element
+dependency: fault_exposed=true check=PASS
+  consumer needs an event recorded after this producer submission
+cache: fault_exposed=true check=PASS
+  reserved growth alone does not prove live tensor retention or fragmentation
+retention: fault_exposed=true check=PASS
+  a Python owner kept outputs alive; detach alone would still retain their storage
+delayed: fault_exposed=true check=PASS
+  the reporting API is not necessarily the first failing kernel
+exit_code=0
+
+EXECUTED CPU or replay evidence
+$ python3 advanced/diagnostic_agent.py --replay good --out runs/advanced/agent-good.json
+mode=replay; no model planning
+action={"action":"read","key":"sanitizer"}
+tool={"key":"sanitizer","text":"SYNTHETIC fixture: Invalid __global__ write of size 4 at badwrite; address is 0 bytes after allocation.","sha256":"fbca46eabcde066ca72c0b3809a539a098efc226deec1a65e332b2d1e6b83e24"}
+action={"action":"read","key":"timeline"}
+tool={"key":"timeline","text":"SYNTHETIC fixture: error reported by cudaDeviceSynchronize after badwrite launch.","sha256":"ecd745b7fd43b381144345023970d353c98e4a13d4ad85257c83f001f4c9665d"}
+action={"action":"final","observations":[{"key":"sanitizer","quote":"0 bytes after allocation","meaning":"The captured report identifies an out-of-bounds write."},{"key":"timeline","quote":"after badwrite launch","meaning":"The error was reported after an asynchronous launch."}],"hypotheses":["An inclusive upper bound may allow index n. Inspect source and launch size."],"missing":["Exact source and a post-repair sanitizer regression."],"status":"hypothesis"}
+status=hypothesis human_review_required=true
+saved=runs/advanced/agent-good.json
+exit_code=0
+
+EXECUTED CPU or replay evidence
+$ python3 advanced/diagnostic_agent.py --replay missing --out runs/advanced/agent-missing.json
+mode=replay; no model planning
+action={"action":"read","key":"memory"}
+tool={"key":"memory","text":"SYNTHETIC fixture: allocated_bytes=4096 reserved_bytes=8192. One observation only.","sha256":"0f5f027814c6d13e29ce0c6879ad01a18101914cbbaaaea9d05530805ac9ed77"}
+action={"action":"final","observations":[{"key":"memory","quote":"One observation only.","meaning":"No trend is available."}],"hypotheses":["Reservation may be caching; live retention is not established."],"missing":["Comparable allocated and reserved measurements over several iterations."],"status":"insufficient_evidence"}
+status=insufficient_evidence human_review_required=true
+saved=runs/advanced/agent-missing.json
+exit_code=0
+
+EXECUTED CPU or replay evidence
+$ python3 advanced/diagnostic_agent.py --replay denied --out runs/advanced/agent-denied.json
+mode=replay; no model planning
+DENIED: action outside read allowlist
+status=DENIED: action outside read allowlist human_review_required=true
+saved=runs/advanced/agent-denied.json
+exit_code=2
+
+EXECUTED CPU or replay evidence
+$ python3 advanced/measure.py --template --out runs/advanced/measurement-template.json
+status=UNMEASURED
+benchmark_results=0
+saved=runs/advanced/measurement-template.json
+exit_code=0

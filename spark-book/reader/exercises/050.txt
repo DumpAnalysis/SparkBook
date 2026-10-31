@@ -1,0 +1,38 @@
+Exercise 50  Write a histogram with atomic accumulation
+
+Question
+Can simultaneous increments lose counts even when the total looks plausible?
+
+Before you start
+Exercise 49 (write a two-stage sum)
+NVCC and host C++ compiler; small bounded tensors, no model download.
+
+Recorded step time
+0.82 s for Write a histogram with atomic accumulation — reference check (record 050.01).
+
+Check for success
+Compare each histogram bin against the CPU histogram, then check that the bin sum equals the input length.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+bash kernels/build.sh starter
+./kernels/bin/kernel-student hist 1003
+
+Interpret the result
+Validate values and bounds before comparing performance.
+
+If the check fails
+Reduce the failing shape and inspect indexing, synchronization and launch arguments.
+
+Finish
+Keep every bin and the total.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — GPU source implementation and CPU-oracle validation.
+Scope  The CPU reference checks values at the tested boundaries.
+
+Recorded files
+python reader/records.py 50 --files

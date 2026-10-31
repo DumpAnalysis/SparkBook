@@ -1,0 +1,23 @@
+Validation scope: portable helpers; no model or GPU execution.
+test_assistant_only_mask (__main__.Tests.test_assistant_only_mask) ... ok
+test_bad_response_is_not_answer (__main__.Tests.test_bad_response_is_not_answer) ... ok
+test_budget (__main__.Tests.test_budget) ... ok
+test_elf_identity (__main__.Tests.test_elf_identity) ... ok
+test_grounding (__main__.Tests.test_grounding) ... ok
+test_http_fixture (__main__.Tests.test_http_fixture) ... ok
+test_loopback_boundary (__main__.Tests.test_loopback_boundary) ... ok
+test_replay_and_denial (__main__.Tests.test_replay_and_denial) ... ok
+test_schema_extra_argument (__main__.Tests.test_schema_extra_argument) ... ok
+test_schema_forbidden_tool (__main__.Tests.test_schema_forbidden_tool) ... ok
+test_schema_good_final (__main__.Tests.test_schema_good_final) ... ok
+test_schema_good_read (__main__.Tests.test_schema_good_read) ... ok
+test_schema_unread_citation (__main__.Tests.test_schema_unread_citation) ... ok
+test_stream_parser (__main__.Tests.test_stream_parser) ... ok
+test_summary_fixture (__main__.Tests.test_summary_fixture) ... ok
+test_training_overlength_rejected (__main__.Tests.test_training_overlength_rejected) ... ok
+test_training_split_identity (__main__.Tests.test_training_split_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 1.243s
+
+OK

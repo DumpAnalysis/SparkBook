@@ -1,0 +1,38 @@
+Exercise 243  Qualify llmster and distinguish inventory from residency
+
+Question
+How can we distinguish a successful installation from a resident model?
+
+Before you start
+Exercise 1 (inventory the existing environment)
+Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
+
+Recorded step time
+3.8 s for Bootstrap reused archive (record 243.01).
+
+Check for success
+Verify recovery from the storage failure, inspect native backend identity, and compare model inventory with lms ps.
+
+Run in your lab
+Install/bootstrap llmster using the documented Linux ARM64 procedure first. Inventory alone does not show that a model is resident.
+
+lms --version
+lms ls
+
+Interpret the result
+Separate completion, format, quality and residency; do not promote a model on protocol success.
+
+If the check fails
+Inspect raw final markers and model identity; compare one controlled configuration at a time.
+
+Finish
+Unload or stop the owned runtime; retain model/adapter/evaluation identities.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED after recovery — The first headless LM Studio bootstrap ran out of temporary space. The recovery moved 3,527 files with matching hashes, verified the cached archive with SHA-512 and used temporary space on the project disk. The native llmster, runtime and model-inventory checks then passed.
+Scope  The selected runtime, observed model residency and individual response record are separate checks.
+
+Recorded files
+python reader/records.py 243 --files

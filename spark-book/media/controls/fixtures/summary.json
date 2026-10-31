@@ -1,0 +1,12 @@
+{
+  "image": [
+    512,
+    512,
+    3
+  ],
+  "tone_source_frames": 96000,
+  "resampled_frames": 32000,
+  "resampled_seconds": 2.0,
+  "relabelled_seconds": 6.0,
+  "antiphase_mono_rms": 0.0
+}

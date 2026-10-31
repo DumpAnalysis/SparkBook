@@ -1,0 +1,4 @@
+$ python ecosystem/lab.py onnx --src ecosystem/controls/fixture --out ecosystem/controls/onnx
+ONNX checker and shape inference passed; nodes=3 opset=18 IR=9
+No GPU execution is implied by a valid ONNX file
+[exit 0]

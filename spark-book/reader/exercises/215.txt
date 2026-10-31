@@ -1,0 +1,40 @@
+Exercise 215  Provision and qualify the Grafana dashboard
+
+Question
+Can the dashboard distinguish missing telemetry from an observed idle GPU?
+
+Before you start
+Exercise 214 (start and inspect the native WSL2 stack)
+The monitoring binaries from Exercise 212, a working Playwright Chromium installation in WSL2 and the four monitoring ports free.
+
+Recorded step time
+17.3 s for Render the baseline dashboard (record 215.01).
+
+Check for success
+Match each panel to its backend query. Inspect baseline, missing-field and real-zero states separately.
+
+Run in your lab
+Use a separate WSL Python environment for the browser. The recorded environment used Playwright 1.64.1. Install it with python -m pip install playwright==1.64.1, then run python -m playwright install chromium in that environment. Check the native browser libraries before retrying a failed launch. This helper starts a fresh fixture stack, waits for each state in Prometheus, opens Grafana and saves three pairs of screenshots. It stops its own stack on exit.
+
+: "${LAB_RUN:?Start a new lab run first}"
+: "${TOOLS_JSON:?Set TOOLS_JSON to the qualified tools.json from Exercise 212}"
+python observability/browser_capture.py --tools "$TOOLS_JSON" \
+  --out "$LAB_RUN/obs-visual"
+
+Interpret the result
+Provisioning alone is insufficient; distinguish simulated from live GPU series.
+
+If the check fails
+Trace exporter to scrape to query to panel, preserving missing-data semantics.
+
+Finish
+Compare baseline.png, missing.png and zero.png with their JSON query results. The lower-panel captures are saved alongside them.
+
+Handoff
+For Exercise 216 start the persistent fixture stack in terminal A as shown there.
+
+Recorded result  PASSED — The recorded experiment rendered baseline, missing-field and real-zero dashboard states after retaining browser-library and startup-race failures. Raw exposition omits the busy gauge when unavailable but retains a 0.0 sample with availability 1 for a real zero. Supplied screenshots and backend responses are retained together.
+Scope  Live WSL charts are a separate observation from these fixture charts; a displayed line alone cannot establish collection scope or freshness.
+
+Recorded files
+python reader/records.py 215 --files

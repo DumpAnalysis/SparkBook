@@ -1,0 +1,121 @@
+Fresh installation and an existing qualified environment
+
+Choose the branch that matches your starting point. The Windows NVIDIA driver
+is already mapped into WSL2. None of these steps installs a Linux display driver.
+
+Branch A  Continue a qualified project
+Record the active interpreter and pip freeze before changing anything. Use the
+project's existing activation helper and retained asset identities. Install only
+a prerequisite required by the next exercise; keep an incompatible ecosystem
+in a separate environment. Do not overwrite an existing model receipt or
+reconstruct an environment merely because the publication number changed.
+
+Branch B  First native model
+Create the fresh lab using START_HERE.txt. Python 3.12 or later is required by
+the setup helper. On a clean machine, creating .venv-exercises may require the
+distribution's matching venv package; use its package manager and retain that
+installation result. A missing venv module is a Python packaging issue.
+
+python3 -m venv .venv-exercises
+source reader/activate.sh
+source reader/new_run.sh
+python -m pip check
+bash inventory.sh --out "$LAB_RUN/inventory.txt"
+python reader/capture.py --out "$LAB_RUN/budget" -- python spark_lab.py budget
+python spark_lab.py fixture --out "$LAB_RUN/fixture.json"
+
+Read the inventory and fixture result. If the native architecture is not
+aarch64, stop this book's ARM64 download route and qualify the actual machine
+separately. Before Exercise 4, reserve at least 20 GB free disk as a planning
+allowance for archives, extracted libraries, two Q4 shards and logs. Read the
+current metadata rather than assuming that this allowance measures peak use.
+
+python setup_wsl.py
+env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q4_k_m
+python spark_lab.py query prompt.txt --tokens 128 --out "$LAB_RUN/answer.json"
+
+Run Exercises 7–9 and 23 if you are following the complete first-inference route.
+When finished, stop the server you started with bash serve.sh stop.
+
+Run each command separately, inspecting its result before the next. A fresh download needs network access. If all four Q4 files are present,
+python setup_wsl.py --verify-only rechecks their identities offline. Startup must establish readiness and actual
+placement; request completion and answer quality are separate criteria. The
+procedure above is a fresh-run recipe, not a claim that a new laptop ran it
+during this editorial revision. The book retains the owner’s executed runs.
+
+Branch C  Add the CUDA framework
+Use a separate candidate environment while preserving a working native route.
+From the project root, source reader/new_run.sh if LAB_RUN is not already set.
+Keep the candidate environment activated for the framework exercises; sourcing
+reader/activate.sh again would switch back to .venv-exercises. In a new terminal,
+activate the candidate explicitly and restore the intended LAB_RUN directory.
+The supplied laptop baseline is CPython 3.14.4, torch 2.14.1+cu130 and NumPy
+2.5.4. Its framework CUDA libraries are distinct from native NVCC 13.4.92 and
+the mapped Windows driver. The exact requirements-exercises.lock is an
+execution record, not a portable one-command installation file: it contains
+an owner-local repaired wheel URL and additional exercise packages.
+
+python3 -m venv .venv-framework-candidate
+source .venv-framework-candidate/bin/activate
+python -m pip install --index-url https://download.pytorch.org/whl/cu130 \
+  --report "$LAB_RUN/torch-install.json" 'torch==2.14.1+cu130'
+python -m pip install --report "$LAB_RUN/numpy-install.json" 'numpy==2.5.4'
+python -m pip check
+python gpu_probe.py
+
+These version-specific candidate commands require compatible publisher wheels
+for your actual interpreter and architecture. Retain package-resolution,
+installation, pip-check and computation results separately. Do not continue
+past a dependency failure or automatically substitute a CPU build. A different
+compatible version is a new qualification, with its own complete record.
+
+The recorded cuSPARSELt metadata repair
+The original NVIDIA 0.8.1 wheel filename declared aarch64, but internal WHEEL
+metadata declared sbsa. The qualification established an AArch64 ELF payload and
+labelled its metadata-only correction 0.8.1+sparkbook.1. Native bytes were
+unchanged. This did not qualify sparse CUDA kernels or manylinux ABI compliance.
+Read dependency-repair/DEPENDENCY-REPAIR.md and repair.json before considering
+the same correction. The input URL/hash and the native payload hashes are
+included; the 274 MB library and repaired wheel are not redistributed.
+
+reader/rebuild_cusparselt.py accepts only the exact recorded upstream wheel
+hash. It creates a new local wheel and report without installing anything:
+
+python reader/rebuild_cusparselt.py --input "$UPSTREAM_WHEEL" \
+  --out "$LAB_RUN/rebuilt-wheel"
+
+If that guarded reconstruction succeeds, inspect its report, install the
+resulting wheel into the candidate environment, repeat pip check and Exercise
+14, and retain the new wheel hash. ZIP metadata can make the rebuilt wheel
+hash differ from the old locally built wheel; payload identities must still
+match. Never edit the installed dist-info directory by hand or waive an
+unrelated dependency error. The new portable reconstruction helper is not a
+new CUDA qualification and must not be presented as an upstream package.
+
+python -m pip install --no-deps "$REBUILT_WHEEL"
+python -m pip check
+python gpu_probe.py
+python -m pip freeze > "$LAB_RUN/framework-freeze.txt"
+
+Set UPSTREAM_WHEEL and REBUILT_WHEEL to the actual inspected files. Their
+names in this text are variables, not literal filenames. If the publisher
+now supplies corrected packaging, inspect and qualify that artifact instead
+of applying an old repair to different bytes.
+
+Branch D  Specialist dependencies
+Use the package list associated with the selected module, record pip check
+and a freeze, then run its smallest qualification exercise. The old per-module
+requirements describe their source-era candidates; they do not override the
+recorded execution environment or guarantee that every pin co-installs.
+Orchestration has its own environment: create .venv-orchestration, activate it,
+install orchestration/requirements.txt, run pip check, then Exercise 220.
+Containerized RAPIDS, TensorRT, NeMo and serving paths each retain their own
+image digest, architecture and runtime record. Do not merge them indiscriminately
+into the qualified framework environment.
+
+First-time walkthrough status
+legacy/qualification-v46/reader-walkthrough.json in the publisher archive records the
+editorial clean-directory checks. The available editorial machine is not the
+owner’s WSL2 CUDA laptop. GPU qualification, fresh native downloads, the real
+wheel reconstruction and model serving remain explicitly unexecuted in that
+walkthrough. Use FIRST_RUN_CHECKLIST.txt for the corresponding laptop run.

@@ -1,0 +1,39 @@
+Exercise 102  Investigate a break and generated code
+
+Question
+Which operation breaks the compiled region, and what code was generated around it?
+
+Before you start
+Exercise 101 (compare shape specialization)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+2.1 s for Trigger the explicit graph break (record 102.01).
+
+Check for success
+Locate the break in the compiler record, inspect the affected graph and recheck output after the repair.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py compile --mode break --device cuda --out "$LAB_RUN/compile-break"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/compile-break with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — In PyTorch 2.14.1, the explicit graph_break prevented full-graph capture. Removing that break allowed the scalar-only variant to pass. The tensor-only variant also passed and matched its numerical control. CPU and CUDA Inductor execution are separate recorded checks.
+Scope  The graph counts and compilation behavior depend on the tested shapes and compiler settings.
+
+Recorded files
+python reader/records.py 102 --files

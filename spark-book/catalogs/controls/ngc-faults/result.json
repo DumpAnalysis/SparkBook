@@ -1,0 +1,8 @@
+{
+  "passed": [
+    "missing_arm64",
+    "duplicate_arm64",
+    "changed_manifest"
+  ],
+  "scope": "mutations of retained registry metadata; no Docker execution"
+}

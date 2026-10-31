@@ -1,0 +1,157 @@
+{
+  "execution_environment": "x86-64 Linux CPU preparation, not WSL2 laptop",
+  "final_regression_checks": 25,
+  "commands": [
+    {
+      "folder": "01-fixtures",
+      "argv": [
+        "python",
+        "media/controls.py",
+        "fixtures",
+        "--out",
+        "media/controls/fixtures"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "02-diffusion",
+      "argv": [
+        "python",
+        "media/diffusion_control.py",
+        "--out",
+        "media/controls/diffusion"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "03-scoring",
+      "argv": [
+        "python",
+        "media/controls.py",
+        "scoring",
+        "--out",
+        "media/controls/scoring"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "04-queue",
+      "argv": [
+        "python",
+        "media/controls.py",
+        "queue",
+        "--out",
+        "media/controls/queue"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "05-tests",
+      "argv": [
+        "python",
+        "media/validate.py"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "06-tts",
+      "argv": [
+        "python",
+        "media/targets.py",
+        "tts",
+        "--model",
+        "../models/mms",
+        "--device",
+        "cpu",
+        "--out",
+        "media/controls/tts"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "07-asr",
+      "argv": [
+        "python",
+        "media/targets.py",
+        "asr",
+        "--model",
+        "../models/whisper",
+        "--device",
+        "cpu",
+        "--input",
+        "media/controls/tts/output.wav",
+        "--reference",
+        "media/data/reference.txt",
+        "--out",
+        "media/controls/asr"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "08-silence",
+      "argv": [
+        "python",
+        "media/targets.py",
+        "asr",
+        "--model",
+        "../models/whisper",
+        "--device",
+        "cpu",
+        "--input",
+        "media/controls/fixtures/silence.wav",
+        "--out",
+        "media/controls/silence"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "09-audio",
+      "argv": [
+        "python",
+        "media/analyze.py",
+        "--audio",
+        "media/controls/tts/output.wav",
+        "--out",
+        "media/controls/audio-plot"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "10-tests-final",
+      "argv": [
+        "python",
+        "media/validate.py"
+      ],
+      "exit": 0
+    },
+    {
+      "folder": "11-inventory",
+      "argv": [
+        "python",
+        "media/inventory.py"
+      ],
+      "exit": 0
+    }
+  ],
+  "pretrained_cpu_models": [
+    "facebook/mms-tts-eng",
+    "openai/whisper-tiny"
+  ],
+  "target_execution": "NOT_EXECUTED",
+  "source_hashes": {
+    "adapt_asr.py": "40fcb181436cc098bb3e7fa156bb967005fde1654b2d960fe026270421fb7967",
+    "analyze.py": "710ab5911e9be9ae7f1ff35566423ac84c868b5e10e7a3c9bb3e5b04ac127c98",
+    "assets.py": "716133fa8ea71a25b699aefabb01a8383248e99fec4747420802790b8b3873c0",
+    "capture.py": "404f788925942667e20895dee7dc7cd7d0904962dd0902ee6da7e5fdd2f2d96d",
+    "chunk_audio.py": "2c16b18a81e9c71165f4a9dd418dc7adfab8dae1ffd2e0c99ed9840bb3529baf",
+    "contracts.py": "fc38a50c8a00a27e11dded37f11aea0a7a1be2b719d523fc4741edf6fc3633fe",
+    "controls.py": "92d1a9279501b1a72be8ecbc0d7ed39666e4dcd873dbc86979fdf500fbdedf9a",
+    "diffusion_control.py": "eb3a03cfbf21cf3a3e55a0243ebbedf210fde3a6bba987c1597a1cd9dd548b24",
+    "image_adapter.py": "58a02df581add9884b06aaf45402241cc9791f5cf5f22d9be68d77beef0b3de0",
+    "inventory.py": "f5cc20b084afbc58b0d49632235947b942657cfc0ba1d3b87927ffacd04c4c0b",
+    "prepare_adaptation.py": "907c497ee970a9fda37bfb8abdb162c6c2d229bbf9b691f02044c5e2392de69d",
+    "targets.py": "bea7a864422b47a0b87b018addac5c67c76793c74230f148bf439d7baf013e89",
+    "validate.py": "62977fa897a28ad7f7bfe93cb852304f137446a13a4cf54501c66ef679132fd7",
+    "voice.py": "9a8a1b5d307c98bf57f554102c8007b040947f7e8ae644a17154e3b605fe4f87"
+  }
+}

@@ -1,0 +1,37 @@
+Exercise 35  Launch under CUDA-GDB and inspect a device buffer
+
+Question
+Can the debugger stop where the device buffer is still live?
+
+Before you start
+Exercise 32 (build debug and performance variants) · Exercise 34 (export one synchronized device allocation)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+0.13 s for Windows debug interface (record 035.01).
+
+Check for success
+Look for a successful stop at host_checkpoint and decoded device values. An unavailable debug interface stops this qualification.
+
+Run in your lab
+A qualified debugger interface is required. If unavailable, preserve that result and continue with the independent memory-export exercise.
+
+cuda-gdb --nx --batch -x cuda/inspect.gdb cuda/bin/cuda-lab-debug
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep complete debugger session.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — CPU host-prerequisite inspection; no debugger launch.
+Scope  A live device-debugger stop is still required for the debugger criterion.
+
+Recorded files
+python reader/records.py 35 --files

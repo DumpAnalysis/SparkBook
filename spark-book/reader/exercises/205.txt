@@ -1,0 +1,39 @@
+Exercise 205  Acquire and inspect the native ARM64 CLI
+
+Question
+Is the acquired CLI the native binary identified by the publisher?
+
+Before you start
+Exercise 204 (inspect an NGC resource before downloading it)
+Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.
+
+Recorded step time
+2.6 s for NGC public info (record 205.02).
+
+Check for success
+Match archive checksum and ELF architecture, then retain the native invocation and exit separately.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python catalogs/ngc_lab.py cli --dest "$LAB_RUN/ngc-cli" --record "$LAB_RUN/ngc-cli-receipt.json"
+
+Interpret the result
+A catalog listing or correct checksum is not GPU qualification.
+
+If the check fails
+Check access, identity, architecture and completeness before runtime changes.
+
+Finish
+Keep archive checksum ELF identity and separate native CLI result.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The verified ARM64 CLI archive was extracted and executed under WSL2. Both the native version command and public resource query returned exit 0, closing the earlier loader-execution gap for this CLI. The archive checksum and native-loader outcome remain distinct evidence; authenticated assets were not tested.
+Scope  Catalog and image metadata precede execution of the selected asset.
+
+Recorded files
+python reader/records.py 205 --files

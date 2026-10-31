@@ -1,0 +1,13 @@
+test_embeddings (__main__.Checks.test_embeddings) ... ok
+test_identity_and_no_overwrite (__main__.Checks.test_identity_and_no_overwrite) ... ok
+test_no_redirect_and_http_error_body (__main__.Checks.test_no_redirect_and_http_error_body) ... ok
+test_pinned_metadata (__main__.Checks.test_pinned_metadata) ... ok
+test_split_and_denominator (__main__.Checks.test_split_and_denominator) ... ok
+test_stream_failures (__main__.Checks.test_stream_failures) ... ok
+test_target_syntax (__main__.Checks.test_target_syntax) ... ok
+test_url_boundary (__main__.Checks.test_url_boundary) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.538s
+
+OK

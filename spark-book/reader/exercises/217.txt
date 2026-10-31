@@ -1,0 +1,39 @@
+Exercise 217  Test alert transitions and missing evidence
+
+Question
+Does the alert distinguish sustained pressure, recovery and missing observations?
+
+Before you start
+Exercise 214 (start and inspect the native WSL2 stack)
+Native monitoring tools or qualified containers; CPU/host memory and retained time-series data.
+
+Recorded step time
+0.22 s for Promtool check (record 217.01).
+
+Check for success
+Follow pending, firing and resolved states under each rule fixture. Check the corresponding API state and timing.
+
+Run in your lab
+Stop the earlier lab stack first because this integration test owns the same ports. Preserve its earlier observations before starting the new run.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+: "${TOOLS_JSON:?Set TOOLS_JSON to the tools.json generated in Exercise 212}"
+python observability/integration.py --tools "$TOOLS_JSON" --run-dir "$LAB_RUN/alert-stack" --evidence "$LAB_RUN/alert-evidence"
+
+Interpret the result
+Provisioning alone is insufficient; distinguish simulated from live GPU series.
+
+If the check fails
+Trace exporter to scrape to query to panel, preserving missing-data semantics.
+
+Finish
+Keep $LAB_RUN/alert-stack with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Six promtool scenarios passed, and the native integration retained actual alert pending, firing and resolution transitions under intentional counter faults. Missing evidence remains an availability condition, not zero utilization.
+Scope  Rule evaluation and the physical GPU state are separate sources.
+
+Recorded files
+python reader/records.py 217 --files

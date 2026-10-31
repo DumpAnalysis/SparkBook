@@ -1,0 +1,25 @@
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506384128809, "sequence": 0, "operation": "barrier"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506430940781, "sequence": 0}
+{"rank": 1, "event": "data_partition", "monotonic_ns": 19506439845256, "examples": [2, 3], "supervised_tokens": 4}
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506439956843, "sequence": 1, "operation": "barrier"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506448572467, "sequence": 1}
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506455840469, "sequence": 2, "operation": "mean"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506493893652, "sequence": 2}
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506499136987, "sequence": 3, "operation": "mean"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506503028783, "sequence": 3}
+{"rank": 1, "event": "step_complete", "monotonic_ns": 19506503118116, "step": 0, "loss": 4.309059448050574}
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506507789877, "sequence": 4, "operation": "mean"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506523604719, "sequence": 4}
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506527812988, "sequence": 5, "operation": "mean"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506529109325, "sequence": 5}
+{"rank": 1, "event": "step_complete", "monotonic_ns": 19506529156085, "step": 1, "loss": 4.414585157019999}
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506533591382, "sequence": 6, "operation": "mean"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506542132105, "sequence": 6}
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506546389657, "sequence": 7, "operation": "mean"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506548484587, "sequence": 7}
+{"rank": 1, "event": "step_complete", "monotonic_ns": 19506548535684, "step": 2, "loss": 4.451182224018055}
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506552742910, "sequence": 8, "operation": "mean"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506560289437, "sequence": 8}
+{"rank": 1, "event": "collective_enter", "monotonic_ns": 19506564698265, "sequence": 9, "operation": "mean"}
+{"rank": 1, "event": "collective_exit", "monotonic_ns": 19506566063766, "sequence": 9}
+{"rank": 1, "event": "step_complete", "monotonic_ns": 19506566271226, "step": 3, "loss": 4.437905033197325}

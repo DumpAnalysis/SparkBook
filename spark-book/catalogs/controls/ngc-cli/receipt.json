@@ -1,0 +1,10 @@
+{
+  "architecture": "aarch64",
+  "archive": "../catalog-downloads/ngc-cli/ngccli_arm64.zip",
+  "bytes": 58219524,
+  "elf_machine": 183,
+  "executed": false,
+  "sha256": "5c18c5d14ad9e4b8c8ac0b5c596cd4ed33c1e4a3f2bd93f851eb974a6f3f6847",
+  "url": "https://api.ngc.nvidia.com/v2/resources/nvidia/ngc-apps/ngc_cli/versions/4.34.10/files/ngccli_arm64.zip",
+  "zip_entries": 3495
+}

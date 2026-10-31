@@ -1,0 +1,39 @@
+Exercise 153  Compare a cuDF aggregation with the CPU control
+
+Question
+Does a cuDF aggregation preserve the result of its CPU counterpart?
+
+Before you start
+Exercise 152 (establish data and environment provenance)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+25.1 s for RAPIDS aggregation and PCA — first process (record 153.01).
+
+Check for success
+Compare keys, counts and aggregated values after aligning row order. Separate transfer and compute timings.
+
+Run in your lab
+Run in the qualified RAPIDS environment/container from Chapter 76. An ordinary Python environment without cuDF/cuML/RMM cannot execute this entry.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python ecosystem/rapids_target.py --src ecosystem/controls/fixture --control ecosystem/controls/analytics --out "$LAB_RUN/rapids"
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Keep $LAB_RUN/rapids with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Two fresh GPU container processes passed cuDF aggregation against the CPU fixture: each route has 12 accepted requests and mean latency 15.75 ms. These constructed latency values are input data, not GPU serving measurements. The complete combined RAPIDS capture also covers Exercises 154 and 155.
+Scope  Keep the library allocator, process storage and device-wide counters separate.
+
+Recorded files
+python reader/records.py 153 --files

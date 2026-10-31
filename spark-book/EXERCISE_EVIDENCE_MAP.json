@@ -1,0 +1,2255 @@
+{
+  "version": 55,
+  "scope": "Exercise-based current outcomes and printed recorded-run lookup. Records keep separate execution dates and scopes.",
+  "exercises": [
+    {
+      "number": 1,
+      "title": "Inventory the existing environment",
+      "evidence_note": "Recorded result  The WSL2 inventory captured the guest configuration and the mapped NVIDIA query.\nScope  The management query establishes device visibility. Exercise 14 tests computation.",
+      "recorded_run_ids": [
+        "001.01"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Calculate before allocating",
+      "evidence_note": "Recorded result  For 4096 tokens the stated layer, head and element counts predict a 224 MiB KV cache.\nScope  The 224 MiB estimate covers the stated FP16 cache geometry at 4096 tokens.",
+      "recorded_run_ids": [
+        "002.01"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Verify the client without a model",
+      "evidence_note": "Recorded result  The fixture returned HTTP 200 for a valid request and HTTP 404 for each of two rejected requests.\nScope  A loopback fixture returned these responses without loading weights.",
+      "recorded_run_ids": [
+        "003.01"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Download and fingerprint",
+      "evidence_note": "Recorded result  The cache validation rehashed two runtime archives and two Q4 shards and rebuilt the receipt.\nScope  The recorded validation reused the four cached Q4 files. Acquisition time depends on the initial cache.",
+      "recorded_run_ids": [
+        "004.01",
+        "004.02"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Start the baseline server",
+      "evidence_note": "Recorded result  The server answered its readiness checks. The verbose restart also exposed effective placement and buffer sizes.\nScope  Readiness and buffer placement qualify startup. The following exercise grades the generated text.",
+      "recorded_run_ids": [
+        "005.01",
+        "005.02",
+        "005.03"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Submit the complete prompt",
+      "evidence_note": "Recorded result  FAILED — The R17 answer returned four observations when the prompt requested two. HTTP status was 200 and the finish reason was stop.\nScope  Count the observations in the answer against the two requested by the prompt.",
+      "recorded_run_ids": [
+        "006.01",
+        "006.02"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Understand the arithmetic first",
+      "evidence_note": "Recorded result  The timing fixture separates individual latency, nearest-rank p95 and aggregate output rate.\nScope  The rates come from a labelled timing fixture.",
+      "recorded_run_ids": [
+        "007.01"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Measure repeated local requests",
+      "evidence_note": "Recorded result  The five measured requests each returned 127 completion tokens. The warm-up had zero cached prompt tokens and the repeats had 113.\nScope  The five measured repetitions used the same prompt and a warm server.",
+      "recorded_run_ids": [
+        "008.01",
+        "008.02"
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Observe the first content event",
+      "evidence_note": "Recorded result  The client assembled READY. First content arrived at about 49 ms and the call completed in about 75 ms.\nScope  First content is a client-observed streaming event. Kernel execution has a different clock and boundary.",
+      "recorded_run_ids": [
+        "009.01",
+        "009.02"
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Change context without changing the model",
+      "evidence_note": "Recorded result  The first restart encountered EADDRINUSE. A later attempt reached the 8192-token server and restored the 4096-token baseline.\nScope  The failed first restart and successful later retry are separate attempts.",
+      "recorded_run_ids": [
+        "010.01",
+        "010.02",
+        "010.03",
+        "010.04",
+        "010.05"
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Compare two quantizations",
+      "evidence_note": "Recorded result  FAILED — The Q8 reply reached the 128-token limit and ended mid-answer. Q4 reached a normal stop.\nScope  A token limit can truncate an otherwise successful HTTP response.",
+      "recorded_run_ids": [
+        "011.01",
+        "011.02",
+        "011.03",
+        "011.04",
+        "011.05"
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Establish a CPU control",
+      "evidence_note": "Recorded result  The five matched Q4 requests had median latencies of 24.944 s on CPU and 2.650 s on GPU.\nScope  The latency comparison holds the prompt, model quantization and output token count fixed.",
+      "recorded_run_ids": [
+        "012.01",
+        "012.02",
+        "012.03",
+        "012.04",
+        "012.05",
+        "012.06"
+      ]
+    },
+    {
+      "number": 13,
+      "title": "Fail a model load without exhausting memory",
+      "evidence_note": "Recorded result  The native loader rejected the 38-byte input with an invalid GGUF magic error.\nScope  The deliberately invalid GGUF file tests rejection during parsing, before useful model execution.",
+      "recorded_run_ids": [
+        "013.01",
+        "013.02",
+        "013.03"
+      ]
+    },
+    {
+      "number": 14,
+      "title": "Run a small synchronized computation",
+      "evidence_note": "Recorded result  The repaired environment passed its dependency check, and the recorded framework probe tested CUDA execution.\nScope  The synchronized calculation qualifies this interpreter, framework and device.",
+      "recorded_run_ids": [
+        "014.01",
+        "014.02",
+        "014.03",
+        "014.04",
+        "014.05"
+      ]
+    },
+    {
+      "number": 15,
+      "title": "Build an evidence prompt",
+      "evidence_note": "Recorded result  The retrieval exercise retained the selected evidence for comparison with the R17 question.\nScope  The retrieval check identifies the supplied passages. Their presence does not validate an answer.",
+      "recorded_run_ids": [
+        "015.01"
+      ]
+    },
+    {
+      "number": 16,
+      "title": "Inspect the grounded answer",
+      "evidence_note": "Recorded result  FAILED — The answer used the absence of B-side logs to support a claim about service B that the supplied evidence could not establish.\nScope  The missing B-side logs leave several causal accounts open.",
+      "recorded_run_ids": [
+        "016.01",
+        "016.02"
+      ]
+    },
+    {
+      "number": 17,
+      "title": "Replay a complete tool loop",
+      "evidence_note": "Recorded result  The controller replayed the supplied planner actions and recorded tool receipts for the teaching incident.\nScope  The planner actions and context-limit incident are scripted inputs.",
+      "recorded_run_ids": [
+        "017.01"
+      ]
+    },
+    {
+      "number": 18,
+      "title": "Reject an action outside the tool contract",
+      "evidence_note": "Recorded result  The controller rejected the requested shell action before execution.\nScope  The rejected shell request is fixture text. The evidence is the controller’s denial before execution.",
+      "recorded_run_ids": [
+        "018.01"
+      ]
+    },
+    {
+      "number": 19,
+      "title": "Run a live planner on the teaching case",
+      "evidence_note": "Recorded result  The live planner read the request and then produced a final answer without reading the limits or runtime fields.\nScope  The local model selected tools against a fictional incident.",
+      "recorded_run_ids": [
+        "019.01"
+      ]
+    },
+    {
+      "number": 20,
+      "title": "Diagnose a snapshot of this laboratory",
+      "evidence_note": "Recorded result  FAILED — The planner treated a timeout described inside a saved prompt as a current service observation. The actual HTTP request had succeeded.\nScope  The saved HTTP exchange contains a fictional timeout inside its prompt. It supplies no observation of a current timeout.",
+      "recorded_run_ids": [
+        "020.01",
+        "020.02",
+        "020.03"
+      ]
+    },
+    {
+      "number": 21,
+      "title": "Compare one and two client workers",
+      "evidence_note": "Recorded result  PASSED — GPU inference and CPU concurrency/statistics.\nScope  Elapsed client time includes waiting and transport as well as server work.",
+      "recorded_run_ids": [
+        "021.01",
+        "021.02",
+        "021.03"
+      ]
+    },
+    {
+      "number": 22,
+      "title": "Separate acquisition from inference",
+      "evidence_note": "Recorded result  BLOCKED — No laptop-wide disconnected inference executed.\nScope  An unshare capability probe does not exercise inference with the whole laptop disconnected.",
+      "recorded_run_ids": [
+        "022.01"
+      ]
+    },
+    {
+      "number": 23,
+      "title": "Write a diagnostic conclusion",
+      "evidence_note": "Recorded result  PASSED — Intentional teaching-case writing; no measured incident.\nScope  R17 is a fictional case. The written diagnosis is assessed against the supplied facts.",
+      "recorded_run_ids": []
+    },
+    {
+      "number": 24,
+      "title": "Create and inspect the teaching corpus",
+      "evidence_note": "Recorded result  PASSED — CPU synthetic-data generation and portable tests.\nScope  The generated records test the preparation pipeline on synthetic examples.",
+      "recorded_run_ids": [
+        "024.01"
+      ]
+    },
+    {
+      "number": 25,
+      "title": "Establish the framework and run ten updates",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA BF16 LoRA training.\nScope  The bounded training run establishes that the adapter can be updated and saved. Exercise 26 evaluates its answers.",
+      "recorded_run_ids": [
+        "025.01"
+      ]
+    },
+    {
+      "number": 26,
+      "title": "Compare complete held-out answers",
+      "evidence_note": "Recorded result  PASSED — GPU generation; CPU/manual evaluation.\nScope  The quality judgement applies to the saved generated answers and rubric.",
+      "recorded_run_ids": [
+        "026.01",
+        "026.02"
+      ]
+    },
+    {
+      "number": 27,
+      "title": "Save a merged deployment checkpoint",
+      "evidence_note": "Recorded result  Save and reload PASSED. Strict equivalence FAILED. The merged BF16 checkpoint was written and compared with its adapter reference. The maximum absolute logit difference was 0.375, and all four greedy continuations differed.\nScope  The merge comparison applies to the named adapter, base and tested inputs.",
+      "recorded_run_ids": [
+        "027.01"
+      ]
+    },
+    {
+      "number": 28,
+      "title": "Learn partial offload with the small model",
+      "evidence_note": "Recorded result  PASSED — GPU and CPU mixed model execution.\nScope  The requested layer setting and the runtime’s observed split answer different questions.",
+      "recorded_run_ids": [
+        "028.01",
+        "028.02",
+        "028.03"
+      ]
+    },
+    {
+      "number": 29,
+      "title": "Plan, acquire, and load the larger model",
+      "evidence_note": "Recorded result  PASSED — actual CUDA/CPU partial offload, after one retained guard-stopped attempt.\nScope  The successful guarded attempt used the retained host and guest settings.",
+      "recorded_run_ids": [
+        "029.01",
+        "029.02",
+        "029.03",
+        "029.04",
+        "029.05",
+        "029.06"
+      ]
+    },
+    {
+      "number": 30,
+      "title": "Observe memory pressure during a request",
+      "evidence_note": "Recorded result  PASSED — an actual larger-model request accompanied by guest pressure sampling and host/guest headroom observations. This exercise measures several scopes and time windows; it does not supply a GPU kernel trace or hardware-counter profile.\nScope  Guest paging samples and Windows headroom use different counters and sampling intervals.",
+      "recorded_run_ids": [
+        "030.01",
+        "030.02",
+        "030.03"
+      ]
+    },
+    {
+      "number": 31,
+      "title": "Inventory development tools independently",
+      "evidence_note": "Recorded result  PASSED — CPU inventory only.\nScope  Tool discovery alone gives no evidence of a running CUDA kernel.",
+      "recorded_run_ids": [
+        "031.01"
+      ]
+    },
+    {
+      "number": 32,
+      "title": "Build debug and performance variants",
+      "evidence_note": "Recorded result  PASSED — GPU numerical execution; CPU compilation.\nScope  The numerical control covers the compiled executable and tested vectors.",
+      "recorded_run_ids": [
+        "032.01",
+        "032.02",
+        "032.03",
+        "032.04"
+      ]
+    },
+    {
+      "number": 33,
+      "title": "Inspect device code and its target",
+      "evidence_note": "Recorded result  PASSED — CPU code inspection/compilation and GPU O3 numerical control.\nScope  The listing describes static code. The optimized numerical control checks the executed result.",
+      "recorded_run_ids": [
+        "033.01",
+        "033.02",
+        "033.03"
+      ]
+    },
+    {
+      "number": 34,
+      "title": "Export one synchronized device allocation",
+      "evidence_note": "Recorded result  PASSED — GPU allocation export, separately labelled intentional CPU fixture.\nScope  The export covers the selected allocation. The CPU fixture has a separate origin.",
+      "recorded_run_ids": [
+        "034.01",
+        "034.02"
+      ]
+    },
+    {
+      "number": 35,
+      "title": "Launch under CUDA-GDB and inspect a device buffer",
+      "evidence_note": "Recorded result  BLOCKED — CPU host-prerequisite inspection; no debugger launch.\nScope  A live device-debugger stop is still required for the debugger criterion.",
+      "recorded_run_ids": [
+        "035.01"
+      ]
+    },
+    {
+      "number": 36,
+      "title": "Capture a small GPU exception core",
+      "evidence_note": "Recorded result  BLOCKED — CPU prerequisite inspection; no GPU fault executed.\nScope  The retained prerequisite check does not contain an executed GPU fault.",
+      "recorded_run_ids": [
+        "036.01"
+      ]
+    },
+    {
+      "number": 37,
+      "title": "Compare a valid kernel with a deliberate overrun",
+      "evidence_note": "Recorded result  BLOCKED — GPU native control/repair execution; sanitizer initialization failed.\nScope  The native controls completed, but sanitizer initialization prevented a sanitizer finding.",
+      "recorded_run_ids": [
+        "037.01",
+        "037.02"
+      ]
+    },
+    {
+      "number": 38,
+      "title": "Classify three additional observations",
+      "evidence_note": "Recorded result  BLOCKED — GPU native control/repair execution; sanitizer initialization failed.\nScope  The native controls completed, but sanitizer initialization prevented a sanitizer finding.",
+      "recorded_run_ids": [
+        "038.01",
+        "038.02",
+        "038.03"
+      ]
+    },
+    {
+      "number": 39,
+      "title": "Capture four annotated iterations",
+      "evidence_note": "Recorded result  BLOCKED — GPU workload with attempted CUDA/NVTX collection.\nScope  A valid device interval is needed to assign time to a kernel.",
+      "recorded_run_ids": [
+        "039.01",
+        "039.02"
+      ]
+    },
+    {
+      "number": 40,
+      "title": "Query an exported trace without assuming its schema",
+      "evidence_note": "Recorded result  BLOCKED — CPU intentional fixture and read-only actual trace analysis.\nScope  The fixture teaches the trace shape. The captured device rows determine what can be measured on this laptop.",
+      "recorded_run_ids": [
+        "040.01",
+        "040.02"
+      ]
+    },
+    {
+      "number": 41,
+      "title": "Collect a bounded kernel report",
+      "evidence_note": "Recorded result  BLOCKED — GPU workload and attempted hardware-counter collection.\nScope  Hardware-counter attribution requires a successful counter collection.",
+      "recorded_run_ids": [
+        "041.01"
+      ]
+    },
+    {
+      "number": 42,
+      "title": "Capture allocator history and selected tensor values",
+      "evidence_note": "Recorded result  PASSED — GPU framework allocation and selected values; CPU own-snapshot inspection.\nScope  The dump concerns the selected process allocation and recorded tensor values.",
+      "recorded_run_ids": [
+        "042.01"
+      ]
+    },
+    {
+      "number": 43,
+      "title": "Capture operator and GPU activity",
+      "evidence_note": "Recorded result  BLOCKED — GPU framework workload; actual trace inspected.\nScope  Host ranges cannot supply missing device timestamps.",
+      "recorded_run_ids": [
+        "043.01"
+      ]
+    },
+    {
+      "number": 44,
+      "title": "Trace the process that actually runs the model",
+      "evidence_note": "Recorded result  BLOCKED — No model profiling performed.\nScope  Profiling the actual model remains a separate execution.",
+      "recorded_run_ids": []
+    },
+    {
+      "number": 45,
+      "title": "Write vector addition with a tail guard",
+      "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  Numerical agreement applies to the tested shapes and inputs.",
+      "recorded_run_ids": [
+        "045.01",
+        "045.02"
+      ]
+    },
+    {
+      "number": 46,
+      "title": "Decouple the grid from the data length",
+      "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  Numerical agreement applies to the tested shapes and inputs.",
+      "recorded_run_ids": [
+        "046.01"
+      ]
+    },
+    {
+      "number": 47,
+      "title": "Write and check a rectangular transpose",
+      "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  Numerical agreement applies to the tested shapes and inputs.",
+      "recorded_run_ids": [
+        "047.01"
+      ]
+    },
+    {
+      "number": 48,
+      "title": "Reorder a tile through shared memory",
+      "evidence_note": "Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.\nScope  The numerical control and the additional observation required by this exercise have separate acceptance checks.",
+      "recorded_run_ids": [
+        "048.01"
+      ]
+    },
+    {
+      "number": 49,
+      "title": "Write a two-stage sum",
+      "evidence_note": "Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.\nScope  The numerical control and the additional observation required by this exercise have separate acceptance checks.",
+      "recorded_run_ids": [
+        "049.01"
+      ]
+    },
+    {
+      "number": 50,
+      "title": "Write a histogram with atomic accumulation",
+      "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  The CPU reference checks values at the tested boundaries.",
+      "recorded_run_ids": [
+        "050.01"
+      ]
+    },
+    {
+      "number": 51,
+      "title": "Write one output element per thread",
+      "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  The CPU reference checks values at the tested boundaries.",
+      "recorded_run_ids": [
+        "051.01"
+      ]
+    },
+    {
+      "number": 52,
+      "title": "Add cooperative tile loading",
+      "evidence_note": "Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.\nScope  The numerical control alone leaves the requested diagnostic observation open.",
+      "recorded_run_ids": [
+        "052.01"
+      ]
+    },
+    {
+      "number": 53,
+      "title": "Fuse addition and activation",
+      "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  Compare fused and split implementations under the same launch and timing conditions.",
+      "recorded_run_ids": [
+        "053.01",
+        "053.02"
+      ]
+    },
+    {
+      "number": 54,
+      "title": "Explain a timing result and correlate it with a trace",
+      "evidence_note": "Recorded result  BLOCKED — GPU uninstrumented CUDA-event timing; separate CPU synthetic arithmetic.\nScope  The analytic bandwidth calculation and the recorded event timings have different sources.",
+      "recorded_run_ids": [
+        "054.01",
+        "054.02"
+      ]
+    },
+    {
+      "number": 55,
+      "title": "Write RMS normalization",
+      "evidence_note": "Recorded result  PASSED — GPU source implementation and CPU-oracle validation.\nScope  Matching reference values does not by itself supply sanitizer or hardware-counter evidence.",
+      "recorded_run_ids": [
+        "055.01"
+      ]
+    },
+    {
+      "number": 56,
+      "title": "Write stable softmax and complete the regression set",
+      "evidence_note": "Recorded result  BLOCKED — GPU source implementation and CPU-oracle validation.\nScope  Matching reference values does not by itself supply sanitizer or hardware-counter evidence.",
+      "recorded_run_ids": [
+        "056.01"
+      ]
+    },
+    {
+      "number": 57,
+      "title": "Register and build the operator",
+      "evidence_note": "Recorded result  PASSED — GPU custom operator and CPU extension compilation.\nScope  The operator is qualified for the compiled extension and tested framework environment.",
+      "recorded_run_ids": [
+        "057.01"
+      ]
+    },
+    {
+      "number": 58,
+      "title": "Check gradients and stream behavior independently",
+      "evidence_note": "Recorded result  PASSED — GPU correct/incorrect derivative comparison.\nScope  The deliberate wrong derivative tests whether the comparison can detect the fault.",
+      "recorded_run_ids": [
+        "058.01",
+        "058.02"
+      ]
+    },
+    {
+      "number": 59,
+      "title": "Compare full and incremental execution",
+      "evidence_note": "Recorded result  PASSED — CPU independent reference and actual CUDA float64 tensor implementation.\nScope  The comparison uses the documented precision, tolerances and inputs.",
+      "recorded_run_ids": [
+        "059.01"
+      ]
+    },
+    {
+      "number": 60,
+      "title": "Find and repair an incorrect cache position",
+      "evidence_note": "Recorded result  PASSED — CPU teaching transformer negative control and source repair.\nScope  The defect and repair belong to the small teaching transformer.",
+      "recorded_run_ids": [
+        "060.01"
+      ]
+    },
+    {
+      "number": 61,
+      "title": "Write and verify a warp reduction",
+      "evidence_note": "Recorded result  BLOCKED — GPU warp reduction numerical check; sanitizer unavailable.\nScope  The numerical warp-reduction result and sanitizer coverage are separate.",
+      "recorded_run_ids": [
+        "061.01"
+      ]
+    },
+    {
+      "number": 62,
+      "title": "Compare a matrix tile with cuBLAS and qualify CUTLASS",
+      "evidence_note": "Recorded result  BLOCKED — GPU actual WMMA, cuBLAS and locally built CUTLASS.\nScope  The verifier did not establish every requested implementation comparison.",
+      "recorded_run_ids": [
+        "062.01",
+        "062.02"
+      ]
+    },
+    {
+      "number": 63,
+      "title": "Implement a double buffer with explicit ownership",
+      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
+      "recorded_run_ids": [
+        "063.01"
+      ]
+    },
+    {
+      "number": 64,
+      "title": "Reproduce a missing dependency and repair it",
+      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
+      "recorded_run_ids": [
+        "064.01",
+        "064.02"
+      ]
+    },
+    {
+      "number": 65,
+      "title": "Capture and replay a fixed operation graph",
+      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
+      "recorded_run_ids": [
+        "065.01"
+      ]
+    },
+    {
+      "number": 66,
+      "title": "Verify packing and rounding on the CPU",
+      "evidence_note": "Recorded result  PASSED — CPU numerical reference.\nScope  The INT4 arithmetic here is a CPU reference calculation.",
+      "recorded_run_ids": [
+        "066.01"
+      ]
+    },
+    {
+      "number": 67,
+      "title": "Implement GPU packing and dequantization",
+      "evidence_note": "Recorded result  BLOCKED — GPU packing/dequantization; sanitizer unavailable.\nScope  The GPU packing control supplies values. The requested sanitizer coverage remains open.",
+      "recorded_run_ids": [
+        "067.01"
+      ]
+    },
+    {
+      "number": 68,
+      "title": "Audit gradients and retained tensors",
+      "evidence_note": "Recorded result  PASSED — GPU training diagnostics.\nScope  The evidence is the bounded training state and the updates actually compared.",
+      "recorded_run_ids": [
+        "068.01"
+      ]
+    },
+    {
+      "number": 69,
+      "title": "Resume the next update with its complete state",
+      "evidence_note": "Recorded result  PASSED — GPU training diagnostics.\nScope  The evidence is the bounded training state and the updates actually compared.",
+      "recorded_run_ids": [
+        "069.01"
+      ]
+    },
+    {
+      "number": 70,
+      "title": "Work through six cases",
+      "evidence_note": "Recorded result  PASSED — Intentional CPU teaching fixtures.\nScope  The cases are deliberate inputs to a teaching controller.",
+      "recorded_run_ids": [
+        "070.01"
+      ]
+    },
+    {
+      "number": 71,
+      "title": "Replay a complete GPU investigation",
+      "evidence_note": "Recorded result  PASSED — Intentional CPU synthetic controller replay.\nScope  The cases are deliberate inputs to a teaching controller.",
+      "recorded_run_ids": [
+        "071.01"
+      ]
+    },
+    {
+      "number": 72,
+      "title": "Stop when evidence is missing and qualify live planning",
+      "evidence_note": "Recorded result  FAILED — CPU replay controls and actual GPU live planning.\nScope  Grade the live plan against its allowed tools and evidence claims.",
+      "recorded_run_ids": [
+        "072.01",
+        "072.02",
+        "072.03"
+      ]
+    },
+    {
+      "number": 73,
+      "title": "Correlate a kernel stop with its instructions",
+      "evidence_note": "Recorded result  BLOCKED — GPU debug/optimized numerical execution and CPU disassembly; live device debugger unavailable.\nScope  Static disassembly cannot identify a live debugger stop.",
+      "recorded_run_ids": [
+        "073.01",
+        "073.02",
+        "073.03"
+      ]
+    },
+    {
+      "number": 74,
+      "title": "Create the measurement record and collect the baseline",
+      "evidence_note": "Recorded result  PASSED — CPU baseline inventory and CUDA memory/capability query.\nScope  The inventory and capability query precede the embedding workload.",
+      "recorded_run_ids": [
+        "074.01"
+      ]
+    },
+    {
+      "number": 75,
+      "title": "Prepare the environment and freeze the encoder",
+      "evidence_note": "Recorded result  PASSED — CPU dependency acquisition and actual CUDA probe.\nScope  Installation and a successful GPU probe precede encoder evaluation.",
+      "recorded_run_ids": [
+        "075.01",
+        "075.02",
+        "075.03"
+      ]
+    },
+    {
+      "number": 76,
+      "title": "Prove that pooling excludes padding",
+      "evidence_note": "Recorded result  PASSED — CPU numerical controls.\nScope  The small pooling vectors isolate masking and normalization effects.",
+      "recorded_run_ids": [
+        "076.01"
+      ]
+    },
+    {
+      "number": 77,
+      "title": "Export and audit the partitions",
+      "evidence_note": "Recorded result  PASSED — CPU synthetic teaching corpus.\nScope  The teaching corpus uses a fixed artificial partition.",
+      "recorded_run_ids": [
+        "077.01"
+      ]
+    },
+    {
+      "number": 78,
+      "title": "Measure search before changing the model",
+      "evidence_note": "Recorded result  PASSED — CPU real sentence-encoder inference.\nScope  The measured representation comes from the named CPU encoder and input corpus.",
+      "recorded_run_ids": [
+        "078.01"
+      ]
+    },
+    {
+      "number": 79,
+      "title": "Produce a PCA map with its numerical limits",
+      "evidence_note": "Recorded result  PASSED — CPU actual-vector projections.\nScope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.",
+      "recorded_run_ids": [
+        "079.01"
+      ]
+    },
+    {
+      "number": 80,
+      "title": "Transform held-out vectors without refitting PCA",
+      "evidence_note": "Recorded result  PASSED — CPU fixed-basis held-out transform.\nScope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.",
+      "recorded_run_ids": [
+        "080.01"
+      ]
+    },
+    {
+      "number": 81,
+      "title": "Read the nonlinear maps without overclaiming",
+      "evidence_note": "Recorded result  PASSED — CPU original-space versus projection inspection.\nScope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.",
+      "recorded_run_ids": [],
+      "shared_capture_exercises": [
+        79
+      ]
+    },
+    {
+      "number": 82,
+      "title": "Change the parameters and inspect stability",
+      "evidence_note": "Recorded result  PASSED — CPU projection sensitivity.\nScope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.",
+      "recorded_run_ids": [
+        "082.01",
+        "082.02"
+      ]
+    },
+    {
+      "number": 83,
+      "title": "Train WordPiece and a small BERT from scratch",
+      "evidence_note": "Recorded result  PASSED — CPU actual encoder training and held-out evaluation.\nScope  The saved tokenizer, corpus split and selected checkpoint define the training comparison.",
+      "recorded_run_ids": [
+        "083.01"
+      ]
+    },
+    {
+      "number": 84,
+      "title": "Inspect the tokenizer and masked predictions",
+      "evidence_note": "Recorded result  PASSED — CPU local model inspection.\nScope  The saved tokenizer, corpus split and selected checkpoint define the training comparison.",
+      "recorded_run_ids": [
+        "084.01",
+        "084.02"
+      ]
+    },
+    {
+      "number": 85,
+      "title": "Continue the saved model with its tokenizer",
+      "evidence_note": "Recorded result  PASSED — CPU actual encoder training and held-out evaluation.\nScope  The saved tokenizer, corpus split and selected checkpoint define the training comparison.",
+      "recorded_run_ids": [
+        "085.01"
+      ]
+    },
+    {
+      "number": 86,
+      "title": "Turn the custom encoder into a sentence model",
+      "evidence_note": "Recorded result  PASSED — CPU learned sentence wrapper and pair training.\nScope  Pair training and downstream retrieval have separate evaluation criteria.",
+      "recorded_run_ids": [
+        "086.01",
+        "086.02",
+        "086.03"
+      ]
+    },
+    {
+      "number": 87,
+      "title": "Fine tune the pretrained sentence encoder",
+      "evidence_note": "Recorded result  PASSED — CPU actual encoder training and held-out evaluation.\nScope  Pair training and downstream retrieval have separate evaluation criteria.",
+      "recorded_run_ids": [
+        "087.01"
+      ]
+    },
+    {
+      "number": 88,
+      "title": "Run a deliberately wrong-pair control",
+      "evidence_note": "Recorded result  PASSED — CPU actual encoder training and held-out evaluation.\nScope  Pair training and downstream retrieval have separate evaluation criteria.",
+      "recorded_run_ids": [
+        "088.01"
+      ]
+    },
+    {
+      "number": 89,
+      "title": "Diagnose vectors and build a bound index",
+      "evidence_note": "Recorded result  PASSED — CPU exact retrieval and vector diagnostics.\nScope  Exact retrieval is measured against the specified corpus and frozen queries.",
+      "recorded_run_ids": [
+        "089.01",
+        "089.02"
+      ]
+    },
+    {
+      "number": 90,
+      "title": "Move the measured pipeline to WSL2 CUDA",
+      "evidence_note": "Recorded result  BLOCKED — GPU actual embedding/training pipeline and CPU projection; tracing unavailable.\nScope  The learned workload ran on CUDA. Kernel timing still requires a usable trace.",
+      "recorded_run_ids": [
+        "090.01"
+      ]
+    },
+    {
+      "number": 91,
+      "title": "Establish the monitoring contract",
+      "evidence_note": "Recorded result  PASSED — CPU collector qualification; no GPU workload.\nScope  The tests qualify collector behavior on controlled inputs.",
+      "recorded_run_ids": [
+        "091.01"
+      ]
+    },
+    {
+      "number": 92,
+      "title": "Generate and read the activity plots",
+      "evidence_note": "Recorded result  PASSED — Intentional simulation rendered on CPU.\nScope  The rendered activity comes from an explicitly simulated trace.",
+      "recorded_run_ids": [
+        "092.01"
+      ]
+    },
+    {
+      "number": 93,
+      "title": "Verify the wrapper without inventing GPU observations",
+      "evidence_note": "Recorded result  PASSED — CPU real host wrapper and guest sampling; GPU disabled.\nScope  GPU collection was disabled for this host-sampling control.",
+      "recorded_run_ids": [
+        "093.01"
+      ]
+    },
+    {
+      "number": 94,
+      "title": "Capture an idle WSL2 baseline",
+      "evidence_note": "Recorded result  PASSED — CPU sampling of actual device-wide provider; no intentional GPU workload.\nScope  The samples describe the device as a whole during the observation window.",
+      "recorded_run_ids": [
+        "094.01"
+      ]
+    },
+    {
+      "number": 95,
+      "title": "Correlate inference requests with GPU activity",
+      "evidence_note": "Recorded result  PASSED — GPU actual Q4 inference and separate device-wide polling.\nScope  Device-wide polls cannot attribute each reading to a particular request.",
+      "recorded_run_ids": [
+        "095.01",
+        "095.02"
+      ]
+    },
+    {
+      "number": 96,
+      "title": "Monitor embedding and training episodes",
+      "evidence_note": "Recorded result  PASSED — GPU actual MiniLM load/encode and training; CPU telemetry/rendering.\nScope  Host polling and GPU work have different time resolutions.",
+      "recorded_run_ids": [
+        "096.01",
+        "096.02"
+      ]
+    },
+    {
+      "number": 97,
+      "title": "Measure the effect of monitoring",
+      "evidence_note": "Recorded result  PASSED — GPU actual inference; paired CPU monitoring-control conditions.\nScope  The comparison uses the retained paired trials and their sampling conditions.",
+      "recorded_run_ids": [
+        "097.01"
+      ]
+    },
+    {
+      "number": 98,
+      "title": "Move from a trend to an execution explanation",
+      "evidence_note": "Recorded result  PASSED — CPU diagnostic analysis of actual GPU-inference telemetry; detailed trace capability blocked.\nScope  Attribution to an individual GPU process or kernel requires additional evidence.",
+      "recorded_run_ids": [
+        "098.01"
+      ]
+    },
+    {
+      "number": 99,
+      "title": "Compare controlled precision paths",
+      "evidence_note": "Recorded result  PASSED — CPU and GPU actual FP64 reference and FP32/BF16 candidates.\nScope  The retained intermediate tensors can expose a numerical error even when the selected class stays the same.",
+      "recorded_run_ids": [
+        "099.01"
+      ]
+    },
+    {
+      "number": 100,
+      "title": "Separate a defect from expected rounding",
+      "evidence_note": "Recorded result  PASSED — CPU and GPU real arithmetic with intentional defect/repair controls.\nScope  The retained intermediate tensors can expose a numerical error even when the selected class stays the same.",
+      "recorded_run_ids": [
+        "100.01",
+        "100.02",
+        "100.03"
+      ]
+    },
+    {
+      "number": 101,
+      "title": "Compare shape specialization",
+      "evidence_note": "Recorded result  PASSED — Actual CPU compiler control: five calls at sizes 8, 12, 8, 16 and 12 produced three static FX captures and one dynamic capture, with eager-reference agreement. A separate fixed-shape Python-argument guard test is retained. These are capture counts, not CUDA kernel counts or a speed comparison.\nScope  The graph counts and compilation behavior depend on the tested shapes and compiler settings.",
+      "recorded_run_ids": [
+        "101.01"
+      ]
+    },
+    {
+      "number": 102,
+      "title": "Investigate a break and generated code",
+      "evidence_note": "Recorded result  PASSED — In PyTorch 2.14.1, the explicit graph_break prevented full-graph capture. Removing that break allowed the scalar-only variant to pass. The tensor-only variant also passed and matched its numerical control. CPU and CUDA Inductor execution are separate recorded checks.\nScope  The graph counts and compilation behavior depend on the tested shapes and compiler settings.",
+      "recorded_run_ids": [
+        "102.01",
+        "102.02",
+        "102.03",
+        "102.04"
+      ]
+    },
+    {
+      "number": 103,
+      "title": "Introduce a known supply delay",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA ready/delayed supply controls completed after an initial agent-sandbox denial. The 10 ms host-consumer delay is intentional, and completion is synchronized.\nScope  Host step times do not establish a device-idle interval; a qualified device trace would be needed for that claim.",
+      "recorded_run_ids": [
+        "103.01",
+        "103.02"
+      ]
+    },
+    {
+      "number": 104,
+      "title": "Test bounded prefetch and extend to DataLoader",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA trials compare delayed supply with bounded prefetch in three pairs. Fresh DataLoader controls with zero and two workers also passed after an initial IPC restriction. Retain startup and steady-work boundaries and all failed attempts. Neither worker count nor a shorter host interval alone proves GPU overlap.\nScope  The measured consumer includes controlled host work. Use paired trials when comparing waiting.",
+      "recorded_run_ids": [
+        "104.01",
+        "104.02",
+        "104.03"
+      ]
+    },
+    {
+      "number": 105,
+      "title": "Construct an analytic roofline",
+      "evidence_note": "Recorded result  PASSED — Executed CPU analytic fixture with hypothetical 100 GB/s bandwidth and 10 TFLOP/s compute ceilings. The arithmetic and an independent doubled-ceiling control passed. The regenerated plot is deliberately synthetic; its points are upper-bound predictions, not measured RTX Spark performance.\nScope  The roofline uses hypothetical bandwidth and compute ceilings.",
+      "recorded_run_ids": [
+        "105.01"
+      ]
+    },
+    {
+      "number": 106,
+      "title": "Compare prediction with a kernel profile",
+      "evidence_note": "Recorded result  BLOCKED — Actual native CUDA addition over 1,048,576 elements and 128×128 matrix multiplication passed numerical checks. Nsight Compute counter collection remained blocked outside the original agent sandbox. No achieved roofline, measured bandwidth ceiling or hardware-counter result is available from this exercise.\nScope  A numerical CUDA result does not provide a hardware-counter profile.",
+      "recorded_run_ids": [
+        "106.01",
+        "106.02"
+      ]
+    },
+    {
+      "number": 107,
+      "title": "Locate a retained owner",
+      "evidence_note": "Recorded result  PASSED — Actual CPU ownership fixture: retained live tensor bytes grew from 262,144 to 1,048,576 to 2,097,152 and returned to zero when the owner was cleared. The release control stayed at zero. This distinguishes a retained reference from an unexplained process-RSS increase.\nScope  Live tensor bytes and allocator reserve measure different lifetimes.",
+      "recorded_run_ids": [
+        "107.01",
+        "107.02"
+      ]
+    },
+    {
+      "number": 108,
+      "title": "Separate live bytes from allocator reserve",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA retention, release and varying-size controls include allocator-history snapshots. Retained allocation grew to 2,097,152 bytes; clearing the owner left allocated=0 and reserved=2,097,152, then empty_cache left both zero. The captured snapshots concern this process’s allocator, not a device-wide GPU memory dump. The editor checked JSON counters without loading pickle snapshots.\nScope  Live tensor bytes and allocator reserve measure different lifetimes.",
+      "recorded_run_ids": [
+        "108.01",
+        "108.02",
+        "108.03"
+      ]
+    },
+    {
+      "number": 109,
+      "title": "Capture a bounded stall",
+      "evidence_note": "Recorded result  PASSED — Actual CPU bounded-stall control captured its waiting stack and ended the owned child with SIGTERM (−15). The supervisor returned zero because it successfully collected the intended failure. Wrapper success is distinct from child progress; the full stack and event record remain in the companion.\nScope  The controlled child and its supervisor define which waiting and recovery events were observed.",
+      "recorded_run_ids": [
+        "109.01"
+      ]
+    },
+    {
+      "number": 110,
+      "title": "Repair progress and define recovery",
+      "evidence_note": "Recorded result  PASSED — Actual CPU repair completed normally; separate delayed and timeout controls checked recovery behavior. Preserve the original stuck-child evidence and the recovery receipt.\nScope  A bounded timeout prevents an indefinite lab hang but does not identify the cause of an arbitrary production stall.",
+      "recorded_run_ids": [
+        "110.01",
+        "110.02"
+      ]
+    },
+    {
+      "number": 111,
+      "title": "Retain correlated spans and logs",
+      "evidence_note": "Recorded result  PASSED — Actual CPU OpenTelemetry instrumentation of a synthetic request produced six spans, zero error spans and three correlated log records.\nScope  It is a trace of the teaching pipeline; the named embedding and generation stages do not establish model or GPU execution.",
+      "recorded_run_ids": [
+        "111.01"
+      ]
+    },
+    {
+      "number": 112,
+      "title": "Distinguish slow retrieval from retries",
+      "evidence_note": "Recorded result  PASSED — Actual CPU synthetic controls distinguish a slow retrieval path (six spans, zero errors, three logs) from a retry path (seven spans, one error, four logs). Correlation and ordering were checked independently. The plot uses host time and intentionally injected delays.\nScope  The spans describe a deliberately instrumented request.",
+      "recorded_run_ids": [
+        "112.01",
+        "112.02"
+      ]
+    },
+    {
+      "number": 113,
+      "title": "Localize the failing quality boundary",
+      "evidence_note": "Recorded result  PASSED — Five deterministic boundary faults were localized and repaired. A deliberately weak validator also accepted a wrong answer; an independent oracle caught it. Passing a schema or validator is therefore separate from semantic correctness, even when the exercise’s repair procedure passes.\nScope  A retrieved identifier and a correct generated answer have separate checks.",
+      "recorded_run_ids": [
+        "113.01",
+        "113.02"
+      ]
+    },
+    {
+      "number": 114,
+      "title": "Transfer the method to retrieval and fine tuning",
+      "evidence_note": "Recorded result  PASSED — Fresh real-retrieval comparison uses 12 frozen queries, existing base/tuned embeddings, two context builders and decoding variants. The builders produced equivalent context content, and decoding comparisons received identical input tokens. Semantic answer quality remains UNSCORED; this recorded comparison neither retrained those embeddings nor demonstrated a quality improvement.\nScope  A retrieved identifier and a correct generated answer have separate checks.",
+      "recorded_run_ids": [
+        "114.01"
+      ]
+    },
+    {
+      "number": 115,
+      "title": "Produce a one minimal reproducer",
+      "evidence_note": "Recorded result  PASSED — The retained PAD/TRIGGER failure oracle was reduced to a one-minimal example: deleting any remaining single element removes the failure. This is a property of the recorded oracle and reduction strategy, not a proof of the globally smallest reproducer.\nScope  Minimality and the first failing configuration apply to the tested deletion or scan order.",
+      "recorded_run_ids": [
+        "115.01"
+      ]
+    },
+    {
+      "number": 116,
+      "title": "Isolate the introducing configuration",
+      "evidence_note": "Recorded result  PASSED — Actual CPU configuration scan returned false, false, true, false, true. The first failing configuration is 3, but failure is nonmonotonic. A binary search that assumes all later versions fail would be unjustified; the full scan is the discriminating control.\nScope  Minimality and the first failing configuration apply to the tested deletion or scan order.",
+      "recorded_run_ids": [
+        "116.01"
+      ]
+    },
+    {
+      "number": 117,
+      "title": "Detect missing and inconsistent evidence",
+      "evidence_note": "Recorded result  PASSED — Actual CPU controls damaged copies of trace records to test missing events, duplicate correlation, stale values, backward times and unit mismatches. Detection passed for the stated predicates. Synthetic corruptions test the validator, not the reliability of a live GPU trace provider.\nScope  The deliberately altered inputs test whether the monitoring path detects those faults.",
+      "recorded_run_ids": [
+        "117.01"
+      ]
+    },
+    {
+      "number": 118,
+      "title": "Repair aggregation and test the monitoring path",
+      "evidence_note": "Recorded result  PASSED — Twenty-four fresh portable diagnostic regression checks passed. Earlier cumulative checks are historical and are not added to this new run’s total.\nScope  Evidence repair and monitoring-path checks remain scoped to their inputs; CUDA counter and device-event support are separate qualifications.",
+      "recorded_run_ids": [
+        "118.01"
+      ]
+    },
+    {
+      "number": 119,
+      "title": "Navigate the unified catalog",
+      "evidence_note": "Recorded result  PASSED — The 12-pattern catalog was read successfully in this WSL session. Catalog navigation is an executed CPU exercise; the patterns remain teaching abstractions rather than 12 newly observed GPU incidents.\nScope  The catalog and worked diagnosis use a teaching case with known evidence.",
+      "recorded_run_ids": [
+        "119.01"
+      ]
+    },
+    {
+      "number": 120,
+      "title": "Write an evidence based diagnosis",
+      "evidence_note": "Recorded result  PASSED — A fresh worked diagnosis was generated from the retained CPU ownership fixture. It separates observation, hypothesis, discriminating action and repair.\nScope  The diagnosis concerns that controlled reproducer; it does not transform the catalog’s historical examples into newly executed evidence.",
+      "recorded_run_ids": [
+        "120.01"
+      ]
+    },
+    {
+      "number": 121,
+      "title": "Investigate the evidence cards",
+      "evidence_note": "Recorded result  BLOCKED — An account was submitted for all six familiar cards. It can be used for guided comparison. Card C05 remains explicitly illustrative.\nScope  The cards were familiar to the recorded investigator. Only a new, unseen card set can yield a blind score.",
+      "recorded_run_ids": [
+        "121.01"
+      ]
+    },
+    {
+      "number": 122,
+      "title": "Compare with worked investigations",
+      "evidence_note": "Recorded result  PASSED — Worked answers were opened after the account was saved, with prior knowledge of the answers recorded. A separate capstone retains real retrieval and a token-budget investigation in distinct evidence/answer files. These are useful comparison exercises; neither restores the invalidated blind score of Exercise 121.\nScope  A worked comparison can refine an earlier account. It cannot retroactively make the original cards unseen.",
+      "recorded_run_ids": [
+        "122.01"
+      ]
+    },
+    {
+      "number": 123,
+      "title": "Qualify the environment and the resource budget",
+      "evidence_note": "Recorded result  PASSED — Actual WSL inventory reports Gloo and NCCL availability and one CUDA device. Import flags and device enumeration are prerequisites, not proof of collective execution. Exercise 129 separately records the native DDP failure, logical-node success and one-device NCCL result.\nScope  Enumerating a backend or one GPU does not establish multi-device training.",
+      "recorded_run_ids": [
+        "123.01"
+      ]
+    },
+    {
+      "number": 124,
+      "title": "Compare process training with a full batch reference",
+      "evidence_note": "Recorded result  PASSED — Actual two- and four-process CPU training uses parent-coordinated pipes, not PyTorch DDP. The 22,880-parameter TinyBert fixture uses synthetic integer tokens, eight global examples, 16 masked positions and four updates in float64. Replica disagreement is zero; maximum reference error is about 7.43×10⁻¹³. This verifies the teaching update arithmetic, not language quality.\nScope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.",
+      "recorded_run_ids": [
+        "124.01",
+        "124.02"
+      ]
+    },
+    {
+      "number": 125,
+      "title": "Visualize a delayed worker",
+      "evidence_note": "Recorded result  PASSED — Actual CPU rank timeline contains 41 host spans. Injecting a 0.75-second delay into rank 1 caused rank 0 to wait more than 0.6 seconds in gradient averaging. This localizes the controlled straggler. The figure is one host’s phase chronology, without GPU kernels or network-fabric measurements.\nScope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.",
+      "recorded_run_ids": [
+        "125.01",
+        "125.02"
+      ]
+    },
+    {
+      "number": 126,
+      "title": "Distinguish a failed worker a mismatch and a timeout",
+      "evidence_note": "Recorded result  PASSED — Actual CPU controls preserve a worker exit 17, an intentional mean/broadcast collective mismatch and a missing-rank timeout, followed by a healthy recheck. Each fault has a distinct observation and bounded cleanup. A supervisor’s nonzero child status should not be rewritten as a successful training step.\nScope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.",
+      "recorded_run_ids": [
+        "126.01",
+        "126.02",
+        "126.03"
+      ]
+    },
+    {
+      "number": 127,
+      "title": "Restore the next training update",
+      "evidence_note": "Recorded result  PASSED — A new process resumed a saved training state after two updates and continued to four, agreeing with the recorded reference losses. Checkpoint tensor payloads are excluded from this handoff; their receipts and derived results remain attributed to the laptop run.\nScope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.",
+      "recorded_run_ids": [
+        "127.01"
+      ]
+    },
+    {
+      "number": 128,
+      "title": "Shard a matrix and verify its gradients",
+      "evidence_note": "Recorded result  PASSED — Actual two-worker CPU column sharding reported zero forward and gradient error against its reference. This demonstrates the algebra and communication boundary of the small fixture.\nScope  It does not establish multi-GPU sharding performance or memory isolation.",
+      "recorded_run_ids": [
+        "128.01"
+      ]
+    },
+    {
+      "number": 129,
+      "title": "Qualify DDP and the transition to multiple GPUs",
+      "evidence_note": "Recorded result  BLOCKED — Native CPU DDP failed with rank 0 SIGSEGV in both the initial run and diagnostic retry. Two logical CPU nodes on loopback passed, and NCCL with world_size=1 on the one physical GPU passed. Two-device DDP and sharding remained unavailable. An independent reviewer on x86-64 Linux reproduced a CPU/Gloo failure under DETAIL and obtained successful two-worker runs under INFO and OFF. A follow-up x86-64 CPU review reports that DDP and logical nodes both met the 1e-09 reference tolerance with INFO. The matched WSL2 retry is outstanding.\nScope  The exercise stays BLOCKED for its complete target scope; one-GPU success does not emulate two independent devices.",
+      "recorded_run_ids": [
+        "129.01",
+        "129.02",
+        "129.03",
+        "129.04",
+        "129.05"
+      ]
+    },
+    {
+      "number": 130,
+      "title": "Share one encoder across request workers",
+      "evidence_note": "Recorded result  PASSED — Actual one-owner CUDA service used two CPU clients, accepted 16 requests and formed eight batches. Independent vector checks passed. The model’s 82,176 weight bytes exclude allocator/context overhead. A single owner can reduce duplicate weights, but admission and total memory still require measurement.\nScope  Process count, client count and model-owner count are distinct quantities.",
+      "recorded_run_ids": [
+        "130.01"
+      ]
+    },
+    {
+      "number": 131,
+      "title": "Compare independent model owners",
+      "evidence_note": "Recorded result  PASSED — Actual CPU four-replica execution held 328,704 weight bytes; actual CUDA two-owner execution held 164,352. These are duplicate model payload counts.\nScope  Each process’s CUDA accounting is not an independently enforced physical-memory quota, and multiple owners do not create additional GPUs.",
+      "recorded_run_ids": [
+        "131.01",
+        "131.02"
+      ]
+    },
+    {
+      "number": 132,
+      "title": "Batch compatible work and bound admission",
+      "evidence_note": "Recorded result  PASSED — Three paired CUDA trials used the same profiler settings and 64 requests per trial, alternating batch sizes one and four. Owner calls fell from 64 to 16 with a maximum of four pending requests. All retained vectors passed the independent oracle.\nScope  Profiler warnings and missing device events remain; these small matched trials are not a production throughput benchmark.",
+      "recorded_run_ids": [
+        "132.01",
+        "132.02"
+      ]
+    },
+    {
+      "number": 133,
+      "title": "Prepare data in workers and keep one optimizer",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA training kept one model/optimizer owner with two CPU preparers. Four ordered AdamW updates agreed with the serial reference to maximum absolute error 5.960×10⁻⁸; checkpoint next_step=4. This is a training-owner experiment, not DDP or a demonstrated checkpoint resume.\nScope  Process count, client count and model-owner count are distinct quantities.",
+      "recorded_run_ids": [
+        "133.01"
+      ]
+    },
+    {
+      "number": 134,
+      "title": "Visualize waiting and qualify CUDA streams",
+      "evidence_note": "Recorded result  BLOCKED — Actual two-stream CUDA computations matched their CPU references, with maximum errors 3.814697×10⁻⁵ and 4.577636×10⁻⁵. The profiler retained host events but no kernel/copy device events. Overlap remains UNDETERMINED, so the trace qualification is BLOCKED. The adjacent owner-service figure contains 80 actual host spans, not GPU execution intervals.\nScope  CUDA stream creation and a correct value do not establish device-side overlap.",
+      "recorded_run_ids": [
+        "134.01",
+        "134.02"
+      ]
+    },
+    {
+      "number": 135,
+      "title": "Separate rejection cancellation and lost ownership",
+      "evidence_note": "Recorded result  PASSED — Actual CPU control-plane faults distinguish admission rejection, logical cancellation/expiry and lost ownership. Owner exit 17 leaves an interrupted request outcome UNKNOWN; recovery uses read-only evidence.\nScope  These controls do not qualify recovery from GPU out-of-memory or prove that cancelling a request interrupts a running kernel.",
+      "recorded_run_ids": [
+        "135.01"
+      ]
+    },
+    {
+      "number": 136,
+      "title": "Establish an inference API contract",
+      "evidence_note": "Recorded result  PASSED — Actual live CPU HTTP embedding fixture passed request/response and independent vector checks. This is a small NumPy model with a bounded API contract. It exercises serving boundaries without implying a learned embedding model or GPU backend.\nScope  An admitted request, a rejected request and a completed model response belong to different populations.",
+      "recorded_run_ids": [
+        "136.01"
+      ]
+    },
+    {
+      "number": 137,
+      "title": "Separate liveness readiness and draining",
+      "evidence_note": "Recorded result  PASSED — Actual CPU HTTP lifecycle checks observed loading/unready, failure and draining states, plus the server’s real exit. A health endpoint and a successful process spawn answer different questions. Keep state changes, request outcomes and cleanup together.\nScope  An admitted request, a rejected request and a completed model response belong to different populations.",
+      "recorded_run_ids": [
+        "137.01"
+      ]
+    },
+    {
+      "number": 138,
+      "title": "Observe overload and queue delay",
+      "evidence_note": "Recorded result  PASSED — The controlled eight-client overload run accepted two requests and rejected six with HTTP 429 under an injected 100 ms service delay. Separate closed-loop runs retained 64 requests at concurrency two and four.\nScope  Quantiles cover successful responses; the tiny CPU fixture and injected delay are not GPU-serving performance measurements.",
+      "recorded_run_ids": [
+        "138.01",
+        "138.02",
+        "138.03"
+      ]
+    },
+    {
+      "number": 139,
+      "title": "Measure generation streaming correctly",
+      "evidence_note": "Recorded result  PASSED — Actual native CUDA llama.cpp Q4 generation completed a stream: first content 242.3 ms and total client time 818.26 ms. The full SSE objects, content and terminal marker are retained.\nScope  The answer’s simplified description of GPU memory is not an endorsed explanation of this unified-memory laptop; semantic quality remains unscored.",
+      "recorded_run_ids": [
+        "139.01"
+      ]
+    },
+    {
+      "number": 140,
+      "title": "Build and inspect the CPU service image",
+      "evidence_note": "Recorded result  PASSED — Actual ARM64 Docker 29.9.2 access, pinned Python base identity, image build and nonroot configuration were captured. The compact build transcript is printed below; inspection and acquisition records remain in the companion. An image build qualifies the build, not readiness or a GPU workload.\nScope  Image construction, device injection and a numerically correct response are separate deployment checks.",
+      "recorded_run_ids": [
+        "140.01"
+      ]
+    },
+    {
+      "number": 141,
+      "title": "Run a bounded container and inspect its lifecycle",
+      "evidence_note": "Recorded result  PASSED — Actual Compose execution bound the CPU service to 127.0.0.1:8088 with nonroot identity, read-only filesystem and explicit resource limits. Request, log, state and cleanup records passed.\nScope  Container host-memory limits are not CUDA-memory quotas.",
+      "recorded_run_ids": [
+        "141.01",
+        "141.02"
+      ]
+    },
+    {
+      "number": 142,
+      "title": "Add the GPU runtime and a generation image",
+      "evidence_note": "Recorded result  PASSED — Actual Docker CUDA addition checked 1,048,576 elements, followed by Q4 generation. The first successful stream lacked placement detail, so a same-image verbose repeat confirmed 29/29 layers on GPU.\nScope  Container llama.cpp build 12004 (3c809f443) differs from the native b11898 runtime; do not attribute a timing difference solely to packaging.",
+      "recorded_run_ids": [
+        "142.01",
+        "142.02",
+        "142.03"
+      ]
+    },
+    {
+      "number": 143,
+      "title": "Classify container failures before changing limits",
+      "evidence_note": "Recorded result  PASSED — Actual Docker startup failed with exit 125 at CDI GPU-vendor discovery, before the workload process started (PID 0); OOMKilled was false. The old acceptance check expected a different error phrase and was corrected against these unchanged raw records. This is a runtime/device-discovery boundary failure, not a model CUDA out-of-memory result.\nScope  Image construction, device injection and a numerically correct response are separate deployment checks.",
+      "recorded_run_ids": [
+        "143.01",
+        "143.02"
+      ]
+    },
+    {
+      "number": 144,
+      "title": "Deploy the CPU service to a local cluster",
+      "evidence_note": "Recorded result  PASSED — Actual K3s v1.37.0+k3s1 deployment created the namespace, validated/applied the CPU service, reached readiness and passed an independent vector oracle. Docker and K3s containerd image stores were separate. An initial image-import permission failure and the owner’s later successful maintenance import remain visible.\nScope  Rollout and scheduler readiness precede validation of the served model.",
+      "recorded_run_ids": [
+        "144.01",
+        "144.02"
+      ]
+    },
+    {
+      "number": 145,
+      "title": "Explain probes scaling and a failed rollout",
+      "evidence_note": "Recorded result  PASSED — Actual CPU deployment scaled to two replicas, then deliberately selected a missing image, failed its rollout and recovered by rollback before returning to one replica. The retained rollout, events and recovery establish this fault path.\nScope  They do not by themselves demonstrate uninterrupted service through a port-forward.",
+      "recorded_run_ids": [
+        "145.01",
+        "145.02"
+      ]
+    },
+    {
+      "number": 146,
+      "title": "Qualify GPU discovery separately",
+      "evidence_note": "Recorded result  PASSED — Actual device-plugin qualification required more than a successful rollout command: default chart affinity selected zero WSL nodes. Project-local Helm 4.3.1 and chart 0.20.1 were rerun with that gate removed and placement restricted to the already qualified node hostname, keeping failOnInitError=true. The plugin registered; a later node read advertised one nvidia.com/gpu after propagation. No MIG, MPS or time-slicing capability was established.\nScope  Rollout and scheduler readiness precede validation of the served model.",
+      "recorded_run_ids": [
+        "146.01",
+        "146.02"
+      ]
+    },
+    {
+      "number": 147,
+      "title": "Deploy one GPU owner and retain scheduling evidence",
+      "evidence_note": "Recorded result  PASSED — Actual Kubernetes Q4 generation used one GPU owner. Scaling to two left the second pod Pending with Insufficient nvidia.com/gpu and the expected bounded rollout timeout. Scaling back restored the one-owner configuration, then released it.\nScope  This demonstrates scheduling one real resource; it does not manufacture GPU capacity or qualify sharing.",
+      "recorded_run_ids": [
+        "147.01",
+        "147.02"
+      ]
+    },
+    {
+      "number": 148,
+      "title": "Qualify a vLLM image and a small generation model",
+      "evidence_note": "Recorded result  PASSED — Actual vLLM 0.26.0 ARM64 Docker serving used the pinned image and existing Qwen 1.5B weights, context 2048, two maximum sequences, one GPU, eager mode and a 1 GiB KV-cache allocation. The successful stream’s first content was 136.94 ms and total client time 677.37 ms. Protocol and GPU execution passed; answer quality was not scored.\nScope  Container Python 3.12.13 / PyTorch 2.11.0+cu130 are separate from the host exercise environment.",
+      "recorded_run_ids": [
+        "148.01",
+        "148.02",
+        "148.03"
+      ]
+    },
+    {
+      "number": 149,
+      "title": "Diagnose vLLM concurrency and deploy the qualified owner",
+      "evidence_note": "Recorded result  PASSED — Two actual vLLM trials each retained 32 complete responses at concurrency one and two. All 64 returned HTTP 200 with finish=stop, 37 prompt tokens and 33 completion tokens each. Server deltas independently match 64 completions, 2,112 generated tokens and 2,368 prompt tokens. The Kubernetes owner also reached readiness and streamed an answer. Its original 900-second rollout succeeded in 891.92 seconds; a prepared longer-deadline retry was never executed.\nScope  Qualify the particular image, model and bounded request settings in the capture.",
+      "recorded_run_ids": [
+        "149.01",
+        "149.02",
+        "149.03",
+        "149.04"
+      ]
+    },
+    {
+      "number": 150,
+      "title": "Build and serve a versioned Triton embedding model",
+      "evidence_note": "Recorded result  PASSED — Actual Triton Inference Server execution used the CPU Python embedding backend: one request plus a 32-request Docker load, then an independent Kubernetes request and vector check. Docker counters show 33 successful requests, 66 samples and 15 backend executions, illustrating dynamic batching. The separately executed API double is synthetic. This CPU backend must not be confused with the actual Triton-language GPU kernel probe in Exercise 148.\nScope  A deployed repository still needs a model-version and numerical response check.",
+      "recorded_run_ids": [
+        "150.01",
+        "150.02",
+        "150.03",
+        "150.04",
+        "150.05",
+        "150.06"
+      ]
+    },
+    {
+      "number": 151,
+      "title": "Qualify an ONNX GPU backend and version changes",
+      "evidence_note": "Recorded result  BLOCKED — An elevated Windows parent launched four native GPU probes into the existing WSL2 instance as the regular user and root. Numerical/event-clock checks pass, but all eight kernel records have zero timestamps. Two non-elevated controls fail the same timing gate.\nScope  The shared tracing prerequisite remains BLOCKED; the full ONNX service/version workload was not rerun.",
+      "recorded_run_ids": [
+        "151.01",
+        "151.02",
+        "151.03",
+        "151.04",
+        "151.05",
+        "151.06",
+        "151.07",
+        "151.08",
+        "151.09",
+        "151.10",
+        "151.11",
+        "151.12",
+        "151.13",
+        "151.14",
+        "151.15",
+        "151.16",
+        "151.17",
+        "151.18",
+        "151.19",
+        "151.20",
+        "151.21",
+        "151.22"
+      ]
+    },
+    {
+      "number": 152,
+      "title": "Establish data and environment provenance",
+      "evidence_note": "Recorded result  PASSED — Fresh portable CPU controls and 20 regression checks ran in the existing exercise virtual environment. A pinned ARM64 RAPIDS image was acquired separately. Synthetic fixture identity, actual host package versions and container versions are distinct records.\nScope  Keep the library allocator, process storage and device-wide counters separate.",
+      "recorded_run_ids": [
+        "152.01",
+        "152.02"
+      ]
+    },
+    {
+      "number": 153,
+      "title": "Compare a cuDF aggregation with the CPU control",
+      "evidence_note": "Recorded result  PASSED — Two fresh GPU container processes passed cuDF aggregation against the CPU fixture: each route has 12 accepted requests and mean latency 15.75 ms. These constructed latency values are input data, not GPU serving measurements. The complete combined RAPIDS capture also covers Exercises 154 and 155.\nScope  Keep the library allocator, process storage and device-wide counters separate.",
+      "recorded_run_ids": [
+        "153.01"
+      ]
+    },
+    {
+      "number": 154,
+      "title": "Compare cuML principal components by subspace",
+      "evidence_note": "Recorded result  PASSED — The same two actual cuML runs passed the 0.001 projector-error threshold against the CPU PCA subspace. Scores and numerical outputs are retained.\nScope  Use the combined capture in Exercise 153; coordinate sign changes are not a failure, and visual separation does not establish retrieval quality.",
+      "recorded_run_ids": [],
+      "shared_capture_exercises": [
+        153
+      ]
+    },
+    {
+      "number": 155,
+      "title": "Account for RMM allocations and device headroom",
+      "evidence_note": "Recorded result  PASSED — Two separate RAPIDS processes recorded RMM current, peak and cumulative allocations alongside CUDA free/total memory. The second complete capture appears here.\nScope  RMM counts its own resource; the CUDA free-memory change includes other costs and is not a second allocation total to add to RMM.",
+      "recorded_run_ids": [
+        "155.01"
+      ]
+    },
+    {
+      "number": 156,
+      "title": "Build and inspect a small dynamic graph",
+      "evidence_note": "Recorded result  PASSED — Fresh CPU ONNX checker and shape inference passed for the three-node dynamic-batch linear graph. The complete ecosystem control sequence is printed in Exercise 152. The exported graph inventory preserves structure and initializer identities; graph weight bytes are excluded from this handoff.\nScope  Read the actual provider placement and numerical comparisons for the graph being tested.",
+      "recorded_run_ids": [],
+      "shared_capture_exercises": [
+        152
+      ]
+    },
+    {
+      "number": 157,
+      "title": "Verify ONNX Runtime values and input rejection",
+      "evidence_note": "Recorded result  PASSED — Fresh CPU ONNX Runtime checks passed batches 1, 3 and 8 against the independent linear oracle and rejected wrong width and dtype. The complete sequence is in Exercise 152. Runtime profiles identify CPUExecutionProvider; this CPU reference remains useful alongside the separately qualified CUDA path.\nScope  Read the actual provider placement and numerical comparisons for the graph being tested.",
+      "recorded_run_ids": [],
+      "shared_capture_exercises": [
+        152
+      ]
+    },
+    {
+      "number": 158,
+      "title": "Require and observe a GPU execution provider",
+      "evidence_note": "Recorded result  PASSED after the precision change — The initial CUDA-provider trial failed its 1e-5 numerical check. That version of the script exited before printing the failing batch size. With TF32 disabled and CPU fallback disabled, all tested batch sizes passed the same threshold.\nScope  Read the actual provider placement and numerical comparisons for the graph being tested.",
+      "recorded_run_ids": [
+        "158.01",
+        "158.02"
+      ]
+    },
+    {
+      "number": 159,
+      "title": "Export an encoder without losing its pooling contract",
+      "evidence_note": "Recorded result  PASSED — The real MiniLM encoder was exported with masked mean pooling and L2 normalization. CPU ONNX Runtime passed three batch comparisons and held-out retrieval used the same text IDs, labels and vectors. Export parity tests conversion fidelity; it does not create a new semantic-quality benchmark. Original weights were preserved.\nScope  Read the actual provider placement and numerical comparisons for the graph being tested.",
+      "recorded_run_ids": [
+        "159.01"
+      ]
+    },
+    {
+      "number": 160,
+      "title": "Qualify a TensorRT 11 environment",
+      "evidence_note": "Recorded result  PASSED — TensorRT 11.3.0.99 imported in the current ARM64 environment and a 4,096-element CUDA arithmetic check passed. Installation failures, cancellation, the resumed hash-verified wheel and package reports are retained. This qualifies the selected runtime, not every TensorRT feature or precision.\nScope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.",
+      "recorded_run_ids": [
+        "160.01"
+      ]
+    },
+    {
+      "number": 161,
+      "title": "Build an engine with bounded dynamic shapes",
+      "evidence_note": "Recorded result  PASSED — The initial builder asserted the return value of profile.set_shape; this API returned None. The corrected helper inspected get_shape explicitly and built the bounded dynamic engine. The initial error is printed with the corrected execution; the accepted min/opt/max shapes remain part of the engine contract.\nScope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.",
+      "recorded_run_ids": [
+        "161.01",
+        "161.02"
+      ]
+    },
+    {
+      "number": 162,
+      "title": "Separate engine execution from build and transfers",
+      "evidence_note": "Recorded result  PASSED — Actual TensorRT execution retained build time, five warm-ups and twenty CUDA-event enqueue measurements per batch; a separate trtexec run included transfers and disabled CUDA graphs/spin wait. These timing definitions are not interchangeable. Optional Nsight export has 19,265 runtime records and 1,780 NVTX events but zero kernel events, so no device timeline is claimed.\nScope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.",
+      "recorded_run_ids": [
+        "162.01"
+      ]
+    },
+    {
+      "number": 163,
+      "title": "Serve the qualified engine through Triton",
+      "evidence_note": "Recorded result  PASSED — The actual TensorRT engine served through Triton in Docker and Kubernetes. Both passed numerical checks, invalid-input rejection and bounded load tests; metrics and lifecycle logs remain. A passing tiny linear service qualifies this deployment path, not production capacity or language-model serving quality.\nScope  The engine’s runtime, numerical tolerance and admitted shape profile delimit the result.",
+      "recorded_run_ids": [
+        "163.01",
+        "163.02"
+      ]
+    },
+    {
+      "number": 164,
+      "title": "Compute scales and inspect channel error",
+      "evidence_note": "Recorded result  PASSED — Fresh CPU quantization controls compared per-tensor and per-channel weights. The small output channel benefits from its own scale. The teaching payload is 32 INT8 weight bytes plus 16 scale bytes versus 128 FP32 weight bytes; the inspectable QDQ graph still contains FP32 initializers.\nScope  Its file size is not the compressed payload size.",
+      "recorded_run_ids": [
+        "164.01"
+      ]
+    },
+    {
+      "number": 165,
+      "title": "Expose calibration shift with an outlier",
+      "evidence_note": "Recorded result  PASSED — Calibration uses 96 rows, with 32 separate held-out rows. Controlled outliers and a wider calibration range expose clipping and resolution tradeoffs. The combined capture in Exercise 164 includes this check; no calibration/held-out overlap was accepted.\nScope  The selected calibration samples and the actual execution precision delimit the comparison.",
+      "recorded_run_ids": [],
+      "shared_capture_exercises": [
+        164
+      ]
+    },
+    {
+      "number": 166,
+      "title": "Inspect explicit QDQ and qualify its kernels",
+      "evidence_note": "Recorded result  PASSED — The corrected TensorRT builder executed the explicit QDQ graph and retained layer/tactic inspection showing actual INT8 regions. The engine is mixed precision; not every operation is INT8. QDQ nodes were not removed to obtain success, and numerical error remains part of the result.\nScope  The selected calibration samples and the actual execution precision delimit the comparison.",
+      "recorded_run_ids": [
+        "166.01"
+      ]
+    },
+    {
+      "number": 167,
+      "title": "Compare quality memory and serving latency together",
+      "evidence_note": "Recorded result  PASSED — Actual native Q4_K_M and Q8_0 runs used context 4096, one slot, 99 requested GPU layers and matched warm-up/load limits. Both failed the held-out untrusted-log action criterion: generated answers recommended executing embedded instructions, but no such action was executed. Each scored 15/20 on the supplied nonblind four-case rubric. Concurrent prerequisite downloads also limit causal performance comparisons.\nScope  Compare the saved held-out answers before drawing a quality conclusion from quantization or timing.",
+      "recorded_run_ids": [
+        "167.01",
+        "167.02",
+        "167.03"
+      ]
+    },
+    {
+      "number": 168,
+      "title": "Audit data splits and supervised token masks",
+      "evidence_note": "Recorded result  PASSED — Fresh byte-token controls and real Qwen chat-template/NeMo dataset inspection found no all-masked examples or exact split overlap. The byte control is only a transparent teaching fixture. Actual rendered token masks and label identities were audited separately before training.\nScope  The split, base identity, trainable state and held-out behavior are separate parts of the adaptation record.",
+      "recorded_run_ids": []
+    },
+    {
+      "number": 169,
+      "title": "Prepare one small NeMo AutoModel run",
+      "evidence_note": "Recorded result  PASSED — The pinned NeMo AutoModel container completed four optimizer updates on Qwen3-0.6B LoRA with 32 training and eight validation HellaSwag rows. Initial acquisition downloaded the publisher splits before selecting those rows; 40 used rows does not mean only 40 rows were downloaded. WSL driver aliases and a supplementary container group corrected lookup/permission boundaries. Full effective recipes and checkpoints are owner-recorded.\nScope  The split, base identity, trainable state and held-out behavior are separate parts of the adaptation record.",
+      "recorded_run_ids": [
+        "169.01"
+      ]
+    },
+    {
+      "number": 170,
+      "title": "Verify frozen weights and checkpoint recovery",
+      "evidence_note": "Recorded result  PASSED — The fresh corrected resumed path and fresh uninterrupted six-update path now agree on 392 adapter tensors, optimizer, scheduler, data-loader and saved RNG content; their next 32 CPU random values match. Frozen live-parameter digests are unchanged. This PASSED decision is scoped to the recorded zero-worker, map-style, nonshuffling resumed iterator and its temporary constructor correction.\nScope  The split, base identity, trainable state and held-out behavior are separate parts of the adaptation record.",
+      "recorded_run_ids": [
+        "170.01",
+        "170.02",
+        "170.03"
+      ]
+    },
+    {
+      "number": 171,
+      "title": "Validate the adapter handoff and extend to retrieval",
+      "evidence_note": "Recorded result  PASSED — The CPU FP32 adapter merge passed numerical fidelity checks, then actual CUDA held-out generation scored 13/20 and failed untrusted-log action boundaries. A successful merge does not establish useful or safe answers. The optional retrieval fine-tuning extension remains unexecuted. The recorded export used the earlier resumed/LATEST checkpoint. It predates the iterator correction in Exercise 170.\nScope  The split, base identity, trainable state and held-out behavior are separate parts of the adaptation record.",
+      "recorded_run_ids": [
+        "171.01",
+        "171.02"
+      ]
+    },
+    {
+      "number": 172,
+      "title": "Qualify a separate media environment",
+      "evidence_note": "Recorded result  PASSED — The owner deliberately reused .venv-exercises rather than creating the older proposed media environment. CPython 3.14.4, PyTorch 2.14.1+cu130, CUDA matrix multiplication and torchvision native CUDA NMS passed. All 75 existing package versions were preserved; eleven dependencies were added, for 86 total. This qualified route supersedes the older printed CPU installation example.\nScope  A valid media file or successful environment probe precedes scoring the model output.",
+      "recorded_run_ids": [
+        "172.01",
+        "172.02"
+      ]
+    },
+    {
+      "number": 173,
+      "title": "Create inspectable image and audio fixtures",
+      "evidence_note": "Recorded result  PASSED — Fresh CPU image/audio fixtures preserve known shapes, a two-second 48 kHz tone, correct 16 kHz resampling, a false-rate header, antiphase cancellation and digital silence. These are deliberately constructed inputs for actual GPU model tests, not generated model successes.\nScope  A valid media file or successful environment probe precedes scoring the model output.",
+      "recorded_run_ids": [
+        "173.01"
+      ]
+    },
+    {
+      "number": 174,
+      "title": "Download and verify one model at a time",
+      "evidence_note": "Recorded result  PASSED — The pinned media models were newly acquired and checked against retained publisher metadata and local hashes. Model weights and download caches are excluded from the handoff; the editor can compare the receipts but cannot independently rehash absent weights. Inference then used local files. Preserve license and revision records with each model.\nScope  A valid media file or successful environment probe precedes scoring the model output.",
+      "recorded_run_ids": [
+        "174.01",
+        "174.02",
+        "174.03",
+        "174.04",
+        "174.05",
+        "174.06"
+      ]
+    },
+    {
+      "number": 175,
+      "title": "Validate the media contracts",
+      "evidence_note": "Recorded result  PASSED — All 25 fresh media contract tests passed in the current WSL environment. They cover formats, resampling, leakage, bounded requests, scoring and silence gating.\nScope  Passing a wrapper contract does not prove that a pretrained recognizer will return an empty answer for silence; Exercise 198 tests that separately.",
+      "recorded_run_ids": [
+        "175.01"
+      ]
+    },
+    {
+      "number": 176,
+      "title": "Ask a bounded question about a known image",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA Qwen2.5-VL-3B inference correctly named the clean fixture’s shapes, colors and positions in the supplied review. Retained preprocessing shows bfloat16 model weights, a 1×36×36 visual grid, 356 input tokens and 65 generated tokens. The full answer is preserved.\nScope  Score each statement against the specific image supplied to that request.",
+      "recorded_run_ids": [
+        "176.01"
+      ]
+    },
+    {
+      "number": 177,
+      "title": "Change visual resolution while keeping the question fixed",
+      "evidence_note": "Recorded result  Processing comparison PASSED. Raising the budget on the 512 × 512 image left the processed grid unchanged. On the 1024 × 1024 diagram the low and high budgets yielded different grids. Position check FAILED for the high-budget answer: the blue circle is to the right of the red square on the same top row, but the answer places it above the square.\nScope  Score each statement against the specific image supplied to that request.",
+      "recorded_run_ids": [
+        "177.01",
+        "177.02",
+        "177.03"
+      ]
+    },
+    {
+      "number": 178,
+      "title": "Separate visual content from instructions",
+      "evidence_note": "Recorded result  PASSED — The actual transformed-image tests exposed semantic errors: the rotated triangle position and low-resolution position were wrong in the supplied review. Distractor and evidence-removing crop responses remain complete.\nScope  Procedure completion is PASSED while transformed-image correctness is FAILED; these are separate outcomes.",
+      "recorded_run_ids": [
+        "178.01",
+        "178.02",
+        "178.03",
+        "178.04"
+      ]
+    },
+    {
+      "number": 179,
+      "title": "Trace vision encoding and token generation",
+      "evidence_note": "Recorded result  BLOCKED — The Windows-elevated WSL2 retry still lacks usable kernel timestamps. Earlier vision inference, host ranges and allocator records remain; no vision workload was rerun. See Exercise 151 for the complete shared follow-up captures.\nScope  A completed multimodal response cannot supply missing device timestamps.",
+      "recorded_run_ids": [
+        "179.01"
+      ]
+    },
+    {
+      "number": 180,
+      "title": "Verify forward corruption and an oracle reconstruction",
+      "evidence_note": "Recorded result  PASSED — A fresh CPU diffusion control passed the exact-noise oracle with maximum reconstruction error 9.54e-7; wrong noise produced MSE 32.57. The complete combined run appears in Exercise 181. These are numerical algebra checks, not image-generation quality measures.\nScope  The small point-distribution experiment illustrates selected diffusion operations.",
+      "recorded_run_ids": [],
+      "shared_capture_exercises": [
+        181
+      ]
+    },
+    {
+      "number": 181,
+      "title": "Train and retain a tiny diffusion model",
+      "evidence_note": "Recorded result  PASSED — The actual CPU teaching denoiser has 4,610 parameters and completed 3,000 updates. Held-out noise MSE decreased from 0.9321 to 0.3841, and 512 finite samples were retained. This small two-dimensional experiment remains CPU evidence; SDXL GPU evidence begins at Exercise 184.\nScope  The small point-distribution experiment illustrates selected diffusion operations.",
+      "recorded_run_ids": [
+        "181.01"
+      ]
+    },
+    {
+      "number": 182,
+      "title": "Inspect reverse sampling and distribution coverage",
+      "evidence_note": "Recorded result  PASSED — Fresh radius quantiles and occupancy checks accompany the newly retained point-cloud plot. The learned samples blur the eight modes despite lower noise error.\nScope  A finite output and a decreasing loss do not establish mode coverage or image quality.",
+      "recorded_run_ids": [
+        "182.01"
+      ]
+    },
+    {
+      "number": 183,
+      "title": "Map the teaching loop to an image pipeline",
+      "evidence_note": "Recorded result  PASSED — The original oracle passed and the deliberate wrong-noise variant failed with its full assertion retained. Keep the five-stage image-pipeline record distinct from this numerical control; no image encoder or VAE is present in the tiny point model.\nScope  The small point-distribution experiment illustrates selected diffusion operations.",
+      "recorded_run_ids": [
+        "183.01",
+        "183.02"
+      ]
+    },
+    {
+      "number": 184,
+      "title": "Generate one bounded image",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA SDXL produced the bounded 512×512 image with 20 steps, guidance 5 and seed 1606. The supplied review found the requested blue notebook and red cup.\nScope  A valid image file and a successful prompt on one seed do not establish population quality.",
+      "recorded_run_ids": [
+        "184.01"
+      ]
+    },
+    {
+      "number": 185,
+      "title": "Compare resident execution with CPU offload",
+      "evidence_note": "Recorded result  PASSED — The same bounded SDXL request completed in resident, model-offload and sequential-offload modes. The retained phase/allocator counters, guest pressure and Windows samples must be read together. Their overlapping memory views are not additive.\nScope  This compares placement strategies; SDXL here is not a demonstrated larger-than-30-GB checkpoint.",
+      "recorded_run_ids": [
+        "185.01",
+        "185.02"
+      ]
+    },
+    {
+      "number": 186,
+      "title": "Record denoising activity and isolate VAE pressure",
+      "evidence_note": "Recorded result  BLOCKED — The Windows-elevated tiny-kernel retry still fails the activity-timestamp gate. Earlier diffusion, tiling and paging results retain their original workload scope; no new diffusion workload or denoiser/VAE timing was measured.\nScope  Usable kernel intervals are required to apportion device time between denoising and decoding.",
+      "recorded_run_ids": [
+        "186.01",
+        "186.02",
+        "186.03"
+      ]
+    },
+    {
+      "number": 187,
+      "title": "Change an image while preserving the experiment identity",
+      "evidence_note": "Recorded result  PASSED — Both image-to-image requests completed using the original image and fixed prompt/seed, at strengths 0.4 and 0.7. Both failed the requested foreground-cup recoloring: the foreground cup stayed red; the stronger edit added a green background vessel.\nScope  Procedure PASSED does not erase the failed attribute criterion.",
+      "recorded_run_ids": [
+        "187.01",
+        "187.02"
+      ]
+    },
+    {
+      "number": 188,
+      "title": "Generate a short music clip from a description",
+      "evidence_note": "Recorded result  PASSED — The first MusicGen load failed because the shared class selected MusicgenDecoderConfig. A local subclass bound MusicgenConfig without changing the installed package or publisher files. The corrected actual CUDA request generated 256 audio-code tokens and a 5.06-second mono WAV. The initial failure and corrected complete capture are both printed.\nScope  File duration and waveform measurements do not grade musical quality.",
+      "recorded_run_ids": [
+        "188.01",
+        "188.02"
+      ]
+    },
+    {
+      "number": 189,
+      "title": "Inspect waveform and spectral activity",
+      "evidence_note": "Recorded result  PASSED — The actual generated MusicGen waveform and STFT were retained and checked for frame/rate consistency. Spectral magnitude is not calibrated loudness or a music-quality score. Listening remains a separate assessment.\nScope  File duration and waveform measurements do not grade musical quality.",
+      "recorded_run_ids": [
+        "189.01"
+      ]
+    },
+    {
+      "number": 190,
+      "title": "Measure the cost of a longer audio sequence",
+      "evidence_note": "Recorded result  PASSED — The 512-token MusicGen request produced 325,760 frames at 32 kHz, or 10.18 seconds, versus 161,920 frames and 5.06 seconds for 256 tokens.\nScope  The recorded inference real-time factor excludes load/export and does not measure first-audio latency; these complete-waveform calls are not streaming.",
+      "recorded_run_ids": [
+        "190.01"
+      ]
+    },
+    {
+      "number": 191,
+      "title": "Compare prompts seeds and music quality",
+      "evidence_note": "Recorded result  BLOCKED — The Windows-elevated tracing comparison leaves device timing blocked. No new music generation or listening review occurred during that comparison. The owner’s overall response “good” remains a REPORTED assessment of the earlier clips; detailed ratings remain unassessed.\nScope  The matched audio files and the missing device timeline have separate outcomes.",
+      "recorded_run_ids": [
+        "191.01",
+        "191.02"
+      ]
+    },
+    {
+      "number": 192,
+      "title": "Synthesize a short diagnostic statement",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA MMS English synthesis generated 62,464 frames at 16 kHz, or 3.904 seconds. Raw float waveform and PCM WAV are retained. The program performed no playback or microphone capture.\nScope  The saved waveform and the recorded listening observations answer different questions.",
+      "recorded_run_ids": [
+        "192.01"
+      ]
+    },
+    {
+      "number": 193,
+      "title": "Visualize speech before diagnosing the model",
+      "evidence_note": "Recorded result  PASSED — The fresh waveform/STFT figure now uses the actual CUDA synthesis output. Independent decoding confirms a maximum float-to-PCM difference of approximately 3.70e-5.\nScope  Encoding quantization is a separate boundary from model output and from perceived speech quality.",
+      "recorded_run_ids": [
+        "193.01"
+      ]
+    },
+    {
+      "number": 194,
+      "title": "Test text normalization pronunciation and reproducibility",
+      "evidence_note": "Recorded result  PASSED — Actual symbol/expanded-text and same/changed-seed TTS requests completed. Identical seed and text produced equal waveform arrays in this environment; a changed seed changed output length. The retained capture preserves the full tokenization.\nScope  Tokenizer inspection does not establish pronunciation, and no human listening rating was supplied.",
+      "recorded_run_ids": [
+        "194.01",
+        "194.02",
+        "194.03",
+        "194.04"
+      ]
+    },
+    {
+      "number": 195,
+      "title": "Bound long speech and diagnose service latency",
+      "evidence_note": "Recorded result  BLOCKED — The Windows-elevated WSL2 retry still fails the shared device-timestamp prerequisite. Earlier TTS output and host/waveform observations remain historical; no new synthesis or first-audio measurement was made.\nScope  Synthesis completion alone cannot attribute a delay to an individual kernel.",
+      "recorded_run_ids": [
+        "195.01",
+        "195.02",
+        "195.03",
+        "195.04"
+      ]
+    },
+    {
+      "number": 196,
+      "title": "Transcribe the retained speech control",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA Whisper tiny transcribed the retained MMS utterance. Preserve raw leading whitespace and the explicitly normalized word-error calculation. This is a synthetic TTS-to-ASR round trip, not an independent human-labelled speech benchmark.\nScope  Keep the reference wording, acoustic input and normalization policy with each recognition score.",
+      "recorded_run_ids": [
+        "196.01"
+      ]
+    },
+    {
+      "number": 197,
+      "title": "Score recognition without hiding normalization choices",
+      "evidence_note": "Recorded result  PASSED — Fresh scoring controls retained WER above one and an undefined empty-reference denominator. Actual same-decoder tests used lower amplitude, fixed noise, clipping and an incorrect rate header. Complete hypotheses remain. The intended TTS text is the reference; its pronunciation has not been independently human-verified.\nScope  Keep the reference wording, acoustic input and normalization policy with each recognition score.",
+      "recorded_run_ids": [
+        "197.01",
+        "197.02",
+        "197.03",
+        "197.04",
+        "197.05"
+      ]
+    },
+    {
+      "number": 198,
+      "title": "Recognize the absence of acoustic evidence",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA Whisper returned “you” for digital silence and for quiet noise. Those word outputs fail the absence-of-evidence criterion even though the test commands completed. The spoken-word control remains. Recognized text from this experiment was never treated as authorization to run tools.\nScope  Keep the reference wording, acoustic input and normalization policy with each recognition score.",
+      "recorded_run_ids": [
+        "198.01",
+        "198.02",
+        "198.03"
+      ]
+    },
+    {
+      "number": 199,
+      "title": "Chunk longer recordings without losing offsets",
+      "evidence_note": "Recorded result  PASSED — The complete 48 kHz joined recording was resampled to 395,488 frames at 16 kHz and covered by contiguous 320,000- and 75,488-frame chunks. Combined normalized WER is 8/56, or 0.142857. Fresh model loads are included in per-chunk command time; this is not a streaming latency test. Boundary clips await human listening.\nScope  Keep the reference wording, acoustic input and normalization policy with each recognition score.",
+      "recorded_run_ids": [
+        "199.01",
+        "199.02",
+        "199.03"
+      ]
+    },
+    {
+      "number": 200,
+      "title": "Adapt a small speech recognizer and inspect frozen weights",
+      "evidence_note": "Recorded result  PASSED — The duplicate train/dev audio attempt was rejected. With distinct synthetic sentences, four CUDA updates trained only the final Whisper decoder block; the retained check reports unchanged frozen weights. Training loss decreased, but development WER stayed 0.4 with the same hypothesis. This qualifies training plumbing, not generalization or complete resume behavior.\nScope  The bounded adaptation is assessed on its specified split and outputs.",
+      "recorded_run_ids": [
+        "200.01",
+        "200.02",
+        "200.03"
+      ]
+    },
+    {
+      "number": 201,
+      "title": "Run a bounded image adapter experiment",
+      "evidence_note": "Recorded result  PASSED — Actual SDXL LoRA training completed two CUDA updates with finite step losses of about 0.00338 and 0.00459. The first full-precision loader exhausted guest headroom; later failures exposed Python 3.14 dataset compatibility, offline adapter discovery and offload/inference-mode interaction. The retained corrections load frozen weights in FP16, select the local adapter filename explicitly and use no_grad for the matched comparison. Both square outputs show nested frames rather than the intended filled square.\nScope  Changed pixels establish an adapter effect, not improved image quality; two teaching images cannot establish generalization.",
+      "recorded_run_ids": [
+        "201.01",
+        "201.02",
+        "201.03"
+      ]
+    },
+    {
+      "number": 202,
+      "title": "Connect speech recognition to a local language model and speech synthesis",
+      "evidence_note": "Recorded result  PASSED — The serial pipeline ran actual CUDA ASR and TTS around a local text-model request, reusing the recorded workload speech input. Child commands, timings, separate stdout/stderr, recognized text, exact HTTP request/response and final waveform are retained. Silence, endpoint and length guards remain separate CPU controls. The wrapper never executes recognized or generated commands.\nScope  A completed pipeline does not establish listening quality or factual correctness of the spoken answer.",
+      "recorded_run_ids": [
+        "202.01",
+        "202.02"
+      ]
+    },
+    {
+      "number": 203,
+      "title": "Share GPU ownership and deploy bounded media requests",
+      "evidence_note": "Recorded result  PASSED — The non-root Docker MMS service kept one warmed CUDA model owner, with a 256-character/4096-byte limit and no queued uploads. The retained requests returned 200 for accepted synthesis, 422 for overlength input, 408 for an expired deadline and 429 for two concurrent requests while busy. Both successful WAVs are finite and nonzero. The first shutdown required SIGKILL (exit 137); signal handling plus --init reduced the corrected stop to about 2.58 seconds with exit 0.\nScope  These checks do not establish mid-kernel cancellation or a Kubernetes media rollout.",
+      "recorded_run_ids": [
+        "203.01",
+        "203.02"
+      ]
+    },
+    {
+      "number": 204,
+      "title": "Inspect an NGC resource before downloading it",
+      "evidence_note": "Recorded result  PASSED — The fresh public NGC metadata receipt identifies the pinned CLI resource, its publisher, architecture, byte count and checksum. Acquisition identity and permission to redistribute remain separate questions. The recorded run used the existing catalogue pin; it did not relabel it as the latest release.\nScope  Catalog and image metadata precede execution of the selected asset.",
+      "recorded_run_ids": [
+        "204.01"
+      ]
+    },
+    {
+      "number": 205,
+      "title": "Acquire and inspect the native ARM64 CLI",
+      "evidence_note": "Recorded result  PASSED — The verified ARM64 CLI archive was extracted and executed under WSL2. Both the native version command and public resource query returned exit 0, closing the earlier loader-execution gap for this CLI. The archive checksum and native-loader outcome remain distinct evidence; authenticated assets were not tested.\nScope  Catalog and image metadata precede execution of the selected asset.",
+      "recorded_run_ids": [
+        "205.01",
+        "205.02"
+      ]
+    },
+    {
+      "number": 206,
+      "title": "Resolve a container to a native immutable identity",
+      "evidence_note": "Recorded result  PASSED — The immutable ARM64 NGC PyTorch image was pulled and ran the numerical CUDA probe successfully. Its PyTorch 2.14.0a0+b2c75dd062.nv26.09 reports framework CUDA 13.4, device capability 12.1 and zero error for the small oracle. Those container identities differ from host PyTorch 2.14.1+cu130.\nScope  Successful execution of this image does not certify every NGC container or model.",
+      "recorded_run_ids": [
+        "206.01"
+      ]
+    },
+    {
+      "number": 207,
+      "title": "Diagnose catalog failures before GPU work",
+      "evidence_note": "Recorded result  PASSED — Fresh CPU manifest controls rejected a missing ARM64 entry, a duplicate ARM64 selection and a changed digest before launching GPU work.\nScope  These intentional mutations exercise the acquisition boundary; they are not observed publisher incidents or GPU failures.",
+      "recorded_run_ids": [
+        "207.01"
+      ]
+    },
+    {
+      "number": 208,
+      "title": "Inspect pinned model and dataset identities",
+      "evidence_note": "Recorded result  PASSED — The recorded run rechecked pinned Hugging Face model and dataset identities through public metadata and retained the receipts.\nScope  A repository revision, card and file inventory identify candidate inputs; they do not establish trained quality or permission for every downstream use.",
+      "recorded_run_ids": [
+        "208.01"
+      ]
+    },
+    {
+      "number": 209,
+      "title": "Acquire a selective model snapshot",
+      "evidence_note": "Recorded result  PASSED — Selective acquisition retained the pinned small model snapshot and verified its selected files. The complete receipt records the revision and hashes. This acquisition is separate from the offline CPU/CUDA execution that follows.\nScope  The snapshot and dataset checks apply to the recorded immutable revisions.",
+      "recorded_run_ids": [
+        "209.01"
+      ]
+    },
+    {
+      "number": 210,
+      "title": "Load the snapshot offline and check its outputs",
+      "evidence_note": "Recorded result  PASSED — The pinned random BERT ran offline on CPU and CUDA with pooled shape 2×32. Both within-device repeats were exact, the instrumented Python socket-connect count stayed zero, and independent array comparison gives maximum CPU/CUDA error 1.1920928955078125e-7 against the declared 1e-4 tolerance. The random model is a loading and numerical control; it has no demonstrated sentence-embedding quality.\nScope  The snapshot and dataset checks apply to the recorded immutable revisions.",
+      "recorded_run_ids": [
+        "210.01",
+        "210.02"
+      ]
+    },
+    {
+      "number": 211,
+      "title": "Audit a pinned dataset before fine tuning",
+      "evidence_note": "Recorded result  PASSED — The retained audit reports five training and five test rows, no exact identifier or normalized-text overlap, and rejection of an injected overlap. Training readiness remains NOT ESTABLISHED because card provenance and licensing are incomplete.\nScope  The snapshot and dataset checks apply to the recorded immutable revisions.",
+      "recorded_run_ids": [
+        "211.01"
+      ]
+    },
+    {
+      "number": 212,
+      "title": "Acquire and identify the monitoring tools",
+      "evidence_note": "Recorded result  PASSED — Pinned native ARM64 Prometheus and Grafana downloads passed the retained checksum/version checks. These are tool identities. Exporter semantics, a working query backend, displayed series and workload correlation are qualified separately in the following exercises.\nScope  Identifying the monitoring binaries precedes scraping a live target.",
+      "recorded_run_ids": [
+        "212.01"
+      ]
+    },
+    {
+      "number": 213,
+      "title": "Prove that unavailable does not mean idle",
+      "evidence_note": "Recorded result  PASSED — Fresh intentional field simulations distinguish a real zero from unavailable, stale and malformed measurements, and check unit conversion and histogram contracts. CPU execution of these controls is current laptop evidence; the injected GPU counters remain synthetic.\nScope  A missing field, a present zero and an unreachable target require three different interpretations.",
+      "recorded_run_ids": [
+        "213.01"
+      ]
+    },
+    {
+      "number": 214,
+      "title": "Start and inspect the native WSL2 stack",
+      "evidence_note": "Recorded result  PASSED — Prometheus scraped the fixture, and the native WSL2 stack returned series through Grafana’s data-source backend. Record 214.01 ends with “No WSL2/GPU/Docker execution claimed”. The current integration.py prints “GPU measurements in this integration use the simulated fixture.” Both messages refer to the fixture values.\nScope  A missing field, a present zero and an unreachable target require three different interpretations.",
+      "recorded_run_ids": [
+        "214.01"
+      ]
+    },
+    {
+      "number": 215,
+      "title": "Provision and qualify the Grafana dashboard",
+      "evidence_note": "Recorded result  PASSED — The recorded experiment rendered baseline, missing-field and real-zero dashboard states after retaining browser-library and startup-race failures. Raw exposition omits the busy gauge when unavailable but retains a 0.0 sample with availability 1 for a real zero. Supplied screenshots and backend responses are retained together.\nScope  Live WSL charts are a separate observation from these fixture charts; a displayed line alone cannot establish collection scope or freshness.",
+      "recorded_run_ids": [
+        "215.01",
+        "215.02",
+        "215.03"
+      ]
+    },
+    {
+      "number": 216,
+      "title": "Read rates, histograms and latency correctly",
+      "evidence_note": "Recorded result  PASSED — Each synthetic 20-request trial records 18 successes and two errors, at configured delays of 20 ms and 100 ms. Raw buckets are cumulative counts.\nScope  The displayed Prometheus p95 is an interpolation over the query’s one-minute window, which can mix nearby trials; it is not the exact percentile of a particular 20-response sample.",
+      "recorded_run_ids": [
+        "216.01",
+        "216.02",
+        "216.03",
+        "216.04",
+        "216.05"
+      ]
+    },
+    {
+      "number": 217,
+      "title": "Test alert transitions and missing evidence",
+      "evidence_note": "Recorded result  PASSED — Six promtool scenarios passed, and the native integration retained actual alert pending, firing and resolution transitions under intentional counter faults. Missing evidence remains an availability condition, not zero utilization.\nScope  Rule evaluation and the physical GPU state are separate sources.",
+      "recorded_run_ids": [
+        "217.01",
+        "217.02"
+      ]
+    },
+    {
+      "number": 218,
+      "title": "Observe a live workload and attach inference servers",
+      "evidence_note": "Recorded result  PASSED — Three unmonitored and three monitored Triton TensorRT trials each returned 32/32 successful numerical responses and three expected HTTP 400 rejections. Recorded p95 values were 3.39–4.90 ms without monitoring and 4.86–5.67 ms with monitoring. Six short sequential trials do not establish a stable overhead percentage. Live WSL fields include memory, utilization, temperature and power draw; power limit and memory clock remain unavailable. The collector interval is five seconds, much longer than individual requests.\nScope  The five-second device samples cover a window much longer than these individual requests.",
+      "recorded_run_ids": [
+        "218.01",
+        "218.02",
+        "218.03",
+        "218.04",
+        "218.05",
+        "218.06",
+        "218.07"
+      ]
+    },
+    {
+      "number": 219,
+      "title": "Move monitoring into containers and connect Kubernetes",
+      "evidence_note": "Recorded result  PASSED — Digest-pinned native monitoring containers started, and Grafana’s backend returned data. A separate native monitor attached to loopback-forwarded K3s Triton metrics; 32 requests passed the numerical oracle. Prometheus up changed from 1 to 0 when forwarding ended. That down state diagnoses reachability through the forwarding path, not necessarily a crashed GPU workload. The namespace and owned processes were cleaned up; deployment remains a bounded laboratory result.\nScope  The container and cluster observations depend on their own networking and device discovery.",
+      "recorded_run_ids": [
+        "219.01",
+        "219.02",
+        "219.03",
+        "219.04",
+        "219.05"
+      ]
+    },
+    {
+      "number": 220,
+      "title": "Isolate and identify the orchestration environment",
+      "evidence_note": "Recorded result  PASSED — The orchestration packages were installed in a separate environment, with pip check and exact versions retained. All 86 distributions in the original CUDA exercise environment remained unchanged. Interpreter, framework and model-server identities must be read from the environment actually used by each command.\nScope  Grade tool selection and final evidence claims independently of transport success.",
+      "recorded_run_ids": [
+        "220.01"
+      ]
+    },
+    {
+      "number": 221,
+      "title": "Observe the tool loop and inject faults",
+      "evidence_note": "Recorded result  PASSED — Fresh LangChain SDK controls exercised a scripted tool loop and injected faults. The framework and loopback operations ran on the laptop, while model responses and evidence fixtures were intentionally simulated.\nScope  This result does not establish learned planning quality.",
+      "recorded_run_ids": [
+        "221.01",
+        "221.02"
+      ]
+    },
+    {
+      "number": 222,
+      "title": "Qualify the HTTP boundary and local model",
+      "evidence_note": "Recorded result  PASSED — A real CUDA-served Qwen model used the framework’s read-only tools against simulated evidence. The retained conversation contains 12 tool calls, only two unique calls, and therefore ten duplicates; the intermediate answer hit a length limit before a later stop. The tool payload’s 28/30 GiB figure is fictional teaching data, not a new measurement of this laptop.\nScope  Protocol acceptance does not erase repetition or establish the final diagnostic recommendation.",
+      "recorded_run_ids": [
+        "222.01",
+        "222.02",
+        "222.03"
+      ]
+    },
+    {
+      "number": 223,
+      "title": "Resume after the Python process exits",
+      "evidence_note": "Recorded result  PASSED — The fresh LangGraph control retained a SQLite checkpoint, exited its Python process and resumed in another process. The scripted evidence and model remain intentional controls.\nScope  Successful local restart does not establish multi-host recovery or exactly-once side effects.",
+      "recorded_run_ids": [
+        "223.01"
+      ]
+    },
+    {
+      "number": 224,
+      "title": "Reject wrong-thread and duplicate continuation",
+      "evidence_note": "Recorded result  PASSED — The fresh continuation controls rejected the wrong thread and handled duplicate continuation according to the retained state contract. Inspect the committed checkpoint and event identity, rather than treating a second successful API call as a second legitimate action.\nScope  The persisted thread identity and approval determine which action can resume.",
+      "recorded_run_ids": [
+        "224.01"
+      ]
+    },
+    {
+      "number": 225,
+      "title": "Put a bounded model call behind review",
+      "evidence_note": "Recorded result  PASSED — The learned-model graph paused for review and resumed in a separate invocation, with the local CUDA endpoint and checkpoint retained. Its resumed agent made one tool call and stopped normally. The tool still supplies simulated 28/30 GiB memory evidence; the run qualifies graph/model integration, not an actual diagnosis of this machine.\nScope  The persisted thread identity and approval determine which action can resume.",
+      "recorded_run_ids": [
+        "225.01",
+        "225.02"
+      ]
+    },
+    {
+      "number": 226,
+      "title": "Preserve nested traces, errors and redaction",
+      "evidence_note": "Recorded result  PASSED — The new local LangSmith SDK control retained nested trace relationships, an error and explicit redaction behavior without sending a hosted request.\nScope  A locally serialized trace is observable evidence, but it does not establish hosted ingestion, indexing or dashboard visibility.",
+      "recorded_run_ids": [
+        "226.01"
+      ]
+    },
+    {
+      "number": 227,
+      "title": "Run an offline evaluation and preserve its failures",
+      "evidence_note": "Recorded result  PASSED — The offline evaluation ran again and preserved its failing cases. The teaching dataset and scripted outputs remain synthetic.\nScope  Keep each case’s expected result, observed result and evaluator identity; an aggregate score does not explain a diagnostic failure.",
+      "recorded_run_ids": [
+        "227.01"
+      ]
+    },
+    {
+      "number": 228,
+      "title": "Plan and qualify an optional LangSmith service",
+      "evidence_note": "Recorded result  BLOCKED — The fixed synthetic LangSmith request plan was executed again but not sent.\nScope  LANGSMITH_API_KEY is absent; hosted ingestion, readback and UI qualification remain BLOCKED.",
+      "recorded_run_ids": [
+        "228.01"
+      ]
+    },
+    {
+      "number": 229,
+      "title": "Reject a plausible but invalid finding",
+      "evidence_note": "Recorded result  PASSED — Fresh PydanticAI controls rejected plausible but invalid structured findings and exercised retry behavior through real SDK code.\nScope  Schema validity, evidence support and diagnostic correctness are separate checks; the scripted model is not a learned-model evaluation.",
+      "recorded_run_ids": [
+        "229.01"
+      ]
+    },
+    {
+      "number": 230,
+      "title": "Bound persistent invalid output",
+      "evidence_note": "Recorded result  PASSED — The fresh control bounded persistent invalid output and retained the exhausted retry/budget outcome.\nScope  A retry limit is an operational boundary; it does not make the final invalid answer acceptable.",
+      "recorded_run_ids": [
+        "230.01"
+      ]
+    },
+    {
+      "number": 231,
+      "title": "Use the typed agent with a local endpoint",
+      "evidence_note": "Recorded result  PASSED — The typed agent completed against the actual local CUDA model endpoint. A separate attempt after the server stopped failed with exit 1, and its full transport error remains in the companion.\nScope  Typed-output acceptance does not prove factual or diagnostic correctness, and a stopped endpoint must not silently fall back to a fixture.",
+      "recorded_run_ids": [
+        "231.01"
+      ]
+    },
+    {
+      "number": 232,
+      "title": "Verify Choice, Score and Noul contracts",
+      "evidence_note": "Recorded result  PASSED — The fresh local Jev controls exercised Choice, Score and Noul response contracts with explicit simulated payloads. The code and adapter ran; no hosted Jev model was called. Versioned fields, abstention and normalization remain part of the contract.\nScope  The local contract and calibration records have different evidentiary scope from a hosted model response.",
+      "recorded_run_ids": [
+        "232.01"
+      ]
+    },
+    {
+      "number": 233,
+      "title": "Measure calibration and risk versus coverage",
+      "evidence_note": "Recorded result  PASSED — The six-row calibration control is intentionally synthetic. Independent arithmetic reproduces Brier score 0.2916666666666667 and the recorded risk/coverage points.\nScope  Confidence thresholding can reduce coverage without reducing risk on this tiny example; this is not measured calibration of Jev, Qwen or any deployed model.",
+      "recorded_run_ids": [
+        "233.01"
+      ]
+    },
+    {
+      "number": 234,
+      "title": "Prepare a versioned Jev request and optional service run",
+      "evidence_note": "Recorded result  BLOCKED — The fixed synthetic Jev request plan was executed again but not sent.\nScope  TYPESAFE_API_KEY is absent; hosted model behavior and service UI qualification remain BLOCKED.",
+      "recorded_run_ids": [
+        "234.01"
+      ]
+    },
+    {
+      "number": 235,
+      "title": "Qualify a native Ollama installation",
+      "evidence_note": "Recorded result  PASSED — The native ARM64 Ollama client/daemon and selected runtime were identified, with local-only service settings and inventories retained. An empty model list is different from a failed daemon. GPU model loading and request outcomes follow separately.\nScope  Loaded model identity, request completion and output quality require separate observations.",
+      "recorded_run_ids": [
+        "235.01",
+        "235.02"
+      ]
+    },
+    {
+      "number": 236,
+      "title": "Import a model and diagnose stream completion",
+      "evidence_note": "Recorded result  PASSED — Ollama imported the pinned Qwen 1.5B GGUF and retained its model digest, template, capabilities, raw streamed response and terminal status. The actual GPU model request is the main illustration. A length-limited terminal event is distinct from a normally completed answer even when transport succeeds.\nScope  Loaded model identity, request completion and output quality require separate observations.",
+      "recorded_run_ids": [
+        "236.01"
+      ]
+    },
+    {
+      "number": 237,
+      "title": "Obtain sentence embeddings through Ollama",
+      "evidence_note": "Recorded result  PASSED — The actual EmbeddingGemma request returned three finite, nonzero sentence vectors of a consistent dimension. Publisher identity, model license and raw response are retained.\nScope  Shape and finite-value checks qualify the API result; they do not measure retrieval ranking, semantic separation or transfer quality.",
+      "recorded_run_ids": [
+        "237.01"
+      ]
+    },
+    {
+      "number": 238,
+      "title": "Compare residency and bounded worker service",
+      "evidence_note": "Recorded result  PASSED — Cold and warm requests, three bounded client workers, residency and unload outcomes are retained for one Ollama model owner. OLLAMA_NUM_PARALLEL=1 means the client worker count does not demonstrate concurrent kernel execution.\nScope  Residency and a processor-placement percentage are not GPU utilization or proof of overlap.",
+      "recorded_run_ids": [
+        "238.01",
+        "238.02",
+        "238.03"
+      ]
+    },
+    {
+      "number": 239,
+      "title": "Freeze the base and audit a tiny training split",
+      "evidence_note": "Recorded result  PASSED — The existing pinned Qwen 1.5B base was reused, with its complete file-hash receipt and the 12-training/4-heldout synthetic split retained. Unsloth dependencies use an isolated overlay that reuses the qualified native Torch/NumPy/CUDA libraries; the original environment stayed unchanged. Failed dependency resolution remains evidence rather than a reason to overwrite the working CUDA stack.\nScope  A successful training update or valid output syntax does not by itself establish task improvement.",
+      "recorded_run_ids": [
+        "239.01",
+        "239.02"
+      ]
+    },
+    {
+      "number": 240,
+      "title": "Run a bounded QLoRA smoke training session",
+      "evidence_note": "Recorded result  PASSED — Actual Unsloth QLoRA completed five CUDA optimizer updates with 9,232,384 trainable parameters, sequence length 256, microbatch 1 and accumulation 4. The recorded evaluation loss fell from 5.8703 to 3.5985; peak PyTorch allocation was about 1.35 GiB and reservation 1.68 GiB. Those allocator counters exclude other process/driver use. The four heldout synthetic examples are too few for a generalization claim.\nScope  A successful training update or valid output syntax does not by itself establish task improvement.",
+      "recorded_run_ids": [
+        "240.01"
+      ]
+    },
+    {
+      "number": 241,
+      "title": "Resume with the original optimizer and base identity",
+      "evidence_note": "Recorded result  PASSED — Training resumed the saved step-5 checkpoint through global step 10 with the same bound base and training contract; recorded evaluation loss reached 2.6536. Optimizer, scheduler and RNG payload identities were retained locally, but their bytes are excluded from this export. This demonstrates the recorded continuation, not bitwise equivalence to an uninterrupted ten-step run.\nScope  A successful training update or valid output syntax does not by itself establish task improvement.",
+      "recorded_run_ids": [
+        "241.01"
+      ]
+    },
+    {
+      "number": 242,
+      "title": "Evaluate and prepare an adapter for serving",
+      "evidence_note": "Recorded result  PASSED — Forty fresh requests distinguish label format from accuracy. Grammar constrains all 32 affected responses to complete valid labels; F16 answers 7/16 correctly and Q4_K_M 5/16. Original prompts/token IDs and model identities are retained. The output-contract investigation PASSED; the experimental model remains NOT PROMOTED.\nScope  A successful training update or valid output syntax does not by itself establish task improvement.",
+      "recorded_run_ids": [
+        "242.01",
+        "242.02"
+      ]
+    },
+    {
+      "number": 243,
+      "title": "Qualify llmster and distinguish inventory from residency",
+      "evidence_note": "Recorded result  PASSED after recovery — The first headless LM Studio bootstrap ran out of temporary space. The recovery moved 3,527 files with matching hashes, verified the cached archive with SHA-512 and used temporary space on the project disk. The native llmster, runtime and model-inventory checks then passed.\nScope  The selected runtime, observed model residency and individual response record are separate checks.",
+      "recorded_run_ids": [
+        "243.01",
+        "243.02",
+        "243.03"
+      ]
+    },
+    {
+      "number": 244,
+      "title": "Import a verified model and exercise the local API",
+      "evidence_note": "Recorded result  PASSED — The local LM Studio API completed actual model requests after correcting the inventory modelKey and using fresh output directories. Separate CPU/full-GPU controls retained native layer arguments, CUDA-library mappings and device memory observations: 2,690 MiB before loading, 2,923 MiB CPU-loaded and 3,924 MiB GPU-loaded. The 1,001 MiB increase from the CPU-loaded to the GPU-loaded sample supports changed residency; it is not a kernel trace or an isolated allocation measurement.\nScope  Ordinary requests used partial offload; a requested layer fraction is not a memory quota.",
+      "recorded_run_ids": [
+        "244.01",
+        "244.02",
+        "244.03",
+        "244.04",
+        "244.05"
+      ]
+    },
+    {
+      "number": 245,
+      "title": "Diagnose incomplete streams and loading delays",
+      "evidence_note": "Recorded result  PASSED — Warm and post-reload requests used fresh directories and retained terminal response status. The load/reload command duration and the later response latency measure different intervals.\nScope  A quicker warm request does not by itself identify which cache, model page or initialization stage was reused.",
+      "recorded_run_ids": [
+        "245.01",
+        "245.02"
+      ]
+    },
+    {
+      "number": 246,
+      "title": "Serve embeddings and connect local agents",
+      "evidence_note": "Recorded result  PASSED — LM Studio rejected the Ollama EmbeddingGemma blob because its loader expected 316 tensors but found 314. That failed attempt remains. The existing Nomic embedding GGUF was independently matched to publisher hash/license metadata and then returned valid vectors. Direct LangChain tool and PydanticAI typed-agent calls also completed.\nScope  API compatibility and vector shape do not establish embedding quality or diagnostic validity.",
+      "recorded_run_ids": [
+        "246.01",
+        "246.02",
+        "246.03"
+      ]
+    },
+    {
+      "number": 247,
+      "title": "Record the upstream and conversion identities",
+      "evidence_note": "Recorded result  PASSED — The recorded run retained immutable NVIDIA upstream and ggml-org conversion identities, selected Q4/Q8/BF16 sizes and LFS hashes. The Q8 GGUF receipt is 33,585,500,064 bytes, about 31.28 GiB, larger than the 31,232 MiB (30.5 GiB) NVML total. This is a concrete larger-than-reported-device-budget candidate; its actual tensor placement and working buffers must still be measured.\nScope  A weight-file estimate is a planning input. The guarded run records the actual placement.",
+      "recorded_run_ids": [
+        "247.01",
+        "247.02",
+        "247.03"
+      ]
+    },
+    {
+      "number": 248,
+      "title": "Admit a model that exceeds the reported GPU budget",
+      "evidence_note": "Recorded result  PASSED — Windows CIM reports a 64 GiB physical memory module while the OS-visible value is about 32.23 GiB; WSL exposes about 15.70 GiB and CUDA reports about 45.97 GiB. These are overlapping views, not independent pools to add. The recorded run preserves an initially overconservative admission rejection and its scoped correction. Fresh Q8 headroom reduced the initial 45-layer plan to 43 layers. Admission authorizes a guarded trial; it does not prove fit or a maximum allocation ceiling. No WSL or pagefile settings changed.\nScope  A weight-file estimate is a planning input. The guarded run records the actual placement.",
+      "recorded_run_ids": [
+        "248.01",
+        "248.02",
+        "248.03",
+        "248.04"
+      ]
+    },
+    {
+      "number": 249,
+      "title": "Qualify hybrid kernels and partial offload",
+      "evidence_note": "Recorded result  PASSED — The guarded Nemotron Q8 trial actually loaded 43 of 53 offloadable units on CUDA (52 model layers plus the output layer in this runtime count) with 26,181.93 MiB of GPU model buffers and 5,840.22 MiB of host model buffers. KV buffers split into 10 MiB GPU and 2 MiB CPU; recurrent-state buffers split into 37.27 MiB GPU and 10.35 MiB CPU. Matched Q4 trials at context 2,048 and 4,096 doubled attention KV from 12 to 24 MiB while recurrent state stayed at 47.62 MiB. Requested layer count, actual tensor placement and hybrid state are separate observations. Raw response truncation and the initial port-bind failure remain visible.\nScope  A weight-file estimate is a planning input. The guarded run records the actual placement.",
+      "recorded_run_ids": [
+        "249.01",
+        "249.02",
+        "249.03",
+        "249.04"
+      ]
+    },
+    {
+      "number": 250,
+      "title": "Compare deployment and decide whether to fine tune",
+      "evidence_note": "Recorded result  PASSED — With the same Q4 model, explicit reasoning-off prompt rendering, context 2048 and a 512-token output cap, all eight native/Ollama requests complete with HTTP 200. All four number-only arithmetic responses are exactly “4”. Completion/format qualification PASSED after an initial headroom refusal, but diagnostic factual quality remains insufficient for promotion.\nScope  Compare the complete outputs on matched inputs before deciding whether training is justified.",
+      "recorded_run_ids": [
+        "250.01",
+        "250.02",
+        "250.03",
+        "250.04",
+        "250.05",
+        "250.06",
+        "250.07"
+      ]
+    },
+    {
+      "number": 251,
+      "title": "Compare WSL2 and CUDA memory boundaries",
+      "evidence_note": "Recorded result  PASSED — eighteen ordinary 1 GiB uint8 CUDA tensors were simultaneously retained, written and checked across every byte. The 19,327,352,832 verified bytes exceed measured guest MemTotal of 16,854,429,696 bytes by 2,472,923,136 bytes. The preceding 1 GiB pilot, final process and wrapper exits, and release observations also passed.\nScope  A verified 18 GiB allocation does not identify a maximum, residency tier or page-migration history.",
+      "recorded_run_ids": [
+        "251.01",
+        "251.02",
+        "251.03",
+        "251.04",
+        "251.05",
+        "251.06",
+        "251.07"
+      ]
+    }
+  ]
+}

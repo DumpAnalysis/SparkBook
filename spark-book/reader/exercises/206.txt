@@ -1,0 +1,39 @@
+Exercise 206  Resolve a container to a native immutable identity
+
+Question
+Which immutable image will actually run on this architecture?
+
+Before you start
+Exercise 204 (inspect an NGC resource before downloading it)
+Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.
+
+Recorded step time
+3 min 18 s for Native container GPU (record 206.01).
+
+Check for success
+Follow the tag through index, platform manifest and configuration digest. Verify the selected container with its own CUDA check.
+
+Run in your lab
+This resolves a platform-specific image identity. A container pull/probe is a later action after inspecting the retained receipt.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python catalogs/ngc_lab.py image --out "$LAB_RUN/ngc-image"
+
+Interpret the result
+A catalog listing or correct checksum is not GPU qualification.
+
+If the check fails
+Check access, identity, architecture and completeness before runtime changes.
+
+Finish
+Keep $LAB_RUN/ngc-image with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The immutable ARM64 NGC PyTorch image was pulled and ran the numerical CUDA probe successfully. Its PyTorch 2.14.0a0+b2c75dd062.nv26.09 reports framework CUDA 13.4, device capability 12.1 and zero error for the small oracle. Those container identities differ from host PyTorch 2.14.1+cu130.
+Scope  Successful execution of this image does not certify every NGC container or model.
+
+Recorded files
+python reader/records.py 206 --files

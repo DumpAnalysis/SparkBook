@@ -1,0 +1,44 @@
+Exercise 20  Diagnose a snapshot of this laboratory
+
+Question
+Can a local planner distinguish a measured symptom from a proposed cause?
+
+Before you start
+Exercise 14 (run a small synchronized computation) · Exercise 19 (run a live planner on the teaching case)
+Inventory and request records from Exercises 1 and 6, a running server from the local planner route and a fresh output path.
+
+Recorded step time
+2.4 s for Live snapshot resume (record 020.03).
+
+Check for success
+Compare the snapshot's identity and time with each tool receipt. Score the final claims against what the snapshot supports.
+
+Run in your lab
+Select the inventory from Exercise 1 and the answer from Exercise 6. The commands assume they are in this LAB_RUN. If they are in an earlier run directory, substitute those two absolute input paths. Use a fresh output directory for the snapshot and planner result.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+python capture_evidence.py --inventory "$LAB_RUN/inventory.txt" \
+  --request "$LAB_RUN/answer.json" --out "$LAB_RUN/snapshot.json"
+python agent.py --evidence "$LAB_RUN/snapshot.json" \
+  --out "$LAB_RUN/agent-snapshot.json"
+
+Inspect
+Read the collected snapshot, its timestamp, available fields and the agent’s evidence references.
+
+Interpret the result
+A snapshot has a time and scope. Missing fields stay unavailable and cannot be filled by model speculation.
+
+If the check fails
+Check the first failed boundary: file, loader, service health, request, then answer.
+
+Finish
+Keep snapshot.json beside agent-snapshot.json and compare the cited keys with the source records.
+
+Handoff
+Retain the snapshot and its selected source paths when comparing this diagnosis with the scripted case.
+
+Recorded result  FAILED — The planner treated a timeout described inside a saved prompt as a current service observation. The actual HTTP request had succeeded.
+Scope  The saved HTTP exchange contains a fictional timeout inside its prompt. It supplies no observation of a current timeout.
+
+Recorded files
+python reader/records.py 20 --files

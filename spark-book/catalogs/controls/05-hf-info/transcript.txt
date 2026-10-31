@@ -1,0 +1,15 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/hf_lab.py info --out catalogs/controls/hf-info
+type: model
+repo_id: hf-internal-testing/tiny-random-bert
+revision: f171d7baecaf37b5da5a3616d8833b9969753535
+files: 10
+gated: False
+license: UNSPECIFIED
+type: dataset
+repo_id: lhoestq/demo1
+revision: 87ecf163bedca9d80598b528940a9c4f99e14c11
+files: 4
+gated: False
+license: UNSPECIFIED
+Public metadata received; license metadata alone does not establish permitted use
+[exit 0]

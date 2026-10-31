@@ -1,0 +1,39 @@
+Exercise 194  Test text normalization pronunciation and reproducibility
+
+Question
+Which changes arise from text normalization and which from repeated synthesis?
+
+Before you start
+Exercise 192 (synthesize a short diagnostic statement)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+17.6 s for Synthesize the symbolic wording (record 194.01).
+
+Check for success
+Compare the controlled text pair and repeated seed. Preserve raw text, normalized input and waveform identities.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/targets.py tts --model models/media/mms --text "GPU memory is available." --out "$LAB_RUN/pronunciation"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/pronunciation with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual symbol/expanded-text and same/changed-seed TTS requests completed. Identical seed and text produced equal waveform arrays in this environment; a changed seed changed output length. The retained capture preserves the full tokenization.
+Scope  Tokenizer inspection does not establish pronunciation, and no human listening rating was supplied.
+
+Recorded files
+python reader/records.py 194 --files

@@ -1,0 +1,35 @@
+Exercise 36  Capture a small GPU exception core
+
+Question
+Can a deliberate device fault produce a core that the matching debugger can read?
+
+Before you start
+Exercise 35 (launch under CUDA-GDB and inspect a device buffer)
+Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
+
+Recorded step time
+0.12 s for Windows HAGS setting (record 036.01).
+
+Check for success
+Bind the core to its executable and symbols. Identify the stopped kernel or fault site in the debugger output.
+
+Run in your lab
+Follow the qualified debugger/core-dump procedure in Chapter 29. Confirm the host prerequisites first; keep any unsupported result. Do not change Windows settings solely to imitate a successful transcript.
+
+Interpret the result
+A successful workload does not establish usable debugger, counter or trace data.
+
+If the check fails
+Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+
+Finish
+Keep core, executable, symbols, and analysis.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — CPU prerequisite inspection; no GPU fault executed.
+Scope  The retained prerequisite check does not contain an executed GPU fault.
+
+Recorded files
+python reader/records.py 36 --files

@@ -1,0 +1,39 @@
+Exercise 104  Test bounded prefetch and extend to DataLoader
+
+Question
+Can bounded prefetch hide input delay without changing the workload?
+
+Before you start
+Exercise 103 (introduce a known supply delay)
+Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
+
+Recorded step time
+3.9 s for Compare data-loader workers across epochs (record 104.03).
+
+Check for success
+Check queue capacity, record order and output equality. Compare steady-state completion times after startup.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python diagnostics/lab.py pipeline --mode prefetch --device cuda --out "$LAB_RUN/pipeline-prefetch"
+
+Interpret the result
+Tie the diagnosis to a discriminating observation and a counterexample.
+
+If the check fails
+Reduce the input or remove one variable; do not infer a cause from a single symptom.
+
+Finish
+Keep $LAB_RUN/pipeline-prefetch with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Actual CUDA trials compare delayed supply with bounded prefetch in three pairs. Fresh DataLoader controls with zero and two workers also passed after an initial IPC restriction. Retain startup and steady-work boundaries and all failed attempts. Neither worker count nor a shorter host interval alone proves GPU overlap.
+Scope  The measured consumer includes controlled host work. Use paired trials when comparing waiting.
+
+Recorded files
+python reader/records.py 104 --files

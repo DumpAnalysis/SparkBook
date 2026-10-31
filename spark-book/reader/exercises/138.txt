@@ -1,0 +1,42 @@
+Exercise 138  Observe overload and queue delay
+
+Question
+How does the service behave when callers exceed its admission limit?
+
+Before you start
+Exercise 136 (establish an inference API contract)
+CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
+
+Recorded step time
+0.59 s for Load (record 138.01).
+
+Check for success
+Count accepted responses and 429 replies, inspect retry information, and verify that admitted requests still complete.
+
+Predict before running
+With eight simultaneous clients and two admission slots, which outcomes depend on arrival timing?
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python serving/lab.py load --out "$LAB_RUN/load"
+
+Interpret the result
+A healthy endpoint, scheduled pod and correct model response are distinct checks.
+
+If the check fails
+Work through process, container, scheduling, backend and request boundaries.
+
+Finish
+Keep $LAB_RUN/load with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The controlled eight-client overload run accepted two requests and rejected six with HTTP 429 under an injected 100 ms service delay. Separate closed-loop runs retained 64 requests at concurrency two and four.
+Scope  Quantiles cover successful responses; the tiny CPU fixture and injected delay are not GPU-serving performance measurements.
+
+Recorded files
+python reader/records.py 138 --files

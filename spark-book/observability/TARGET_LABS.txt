@@ -1,0 +1,391 @@
+Current reader entry points
+Use reader/guide.py 214 for strict integration, 215 for rendered dashboard states, and 218 for the three unmonitored and three monitored trials. The manual procedures below expose each part separately.
+
+HISTORICAL PROCEDURE NOTES
+Book Version 55 and reader/exercises/ are the current reader instructions.
+These retained source-era notes explain concepts and repeat procedures; their
+old environment and execution-status statements are historical. Superseded
+preparation transcript blocks remain omitted. Use the evidence map for current
+recorded outcomes and fresh output paths for new work.
+
+# 91  Prometheus and Grafana for GPU observability
+
+This chapter turns the earlier GPU sampler and inference-server metric captures into a running monitoring laboratory. An exporter collects mapped-driver observations inside WSL2. Prometheus scrapes and retains time series, evaluates recording rules and alerts, and exposes a query API. Grafana queries Prometheus through a provisioned data source. The companion supplies every program, configuration generator, dashboard, rule test and command capture used here.
+
+The example remains a 64 GB unified-memory RTX Spark laptop with approximately 30 GB reported to the GPU. Read the actual device total; do not hard-code 30 GB as an allocation ceiling or add it to the host's 64 GB. Prometheus and Grafana use CPU and host memory. They neither increase the GPU allocation budget nor make missing driver counters available.
+
+Evidence boundary. Preparation ran native Linux amd64 binaries on a CPU-only system. Prometheus collection, queries and alert transitions were executed against explicitly SIMULATED GPU readings. Grafana's database, data-source registration and dashboard provisioning were checked. Its query backend was unavailable because the preparation sandbox denied the plugin's Unix socket. Dashboard rendering and live WSL2, ARM64, GPU, Docker and Kubernetes operation remain target qualification steps. A successful provisioning check alone is not a working dashboard. The independent review outcome is recorded in Exercise 214 and Appendix E.
+
+## Choose the collection path deliberately
+
+Keep the existing Windows NVIDIA driver mapped into WSL2. This chapter installs no Linux display driver. The live exporter invokes the guest-visible nvidia-smi, using /usr/lib/wsl/lib/nvidia-smi if necessary. NVIDIA documents limited NVML functionality in WSL, including unavailable utilization and active-process queries. Individual fields must therefore be tested; CUDA execution can work while a monitoring field does not. [186]
+
+DCGM Exporter is valuable for supported NVIDIA deployments, but the DCGM support statement describes bare-metal and full-passthrough environments. That is not evidence that this WSL2 laptop supports DCGM. Do not start a privileged DCGM container merely to obtain a green dashboard. If a future driver/platform combination documents support, retain the exact matrix, versions and a field-by-field comparison before substituting it for this collector. The default exercises use no DCGM dependency. [187, 188]
+
+The live exporter queries ten fields independently: GPU busy percentage, memory-controller busy percentage, device memory used/free/total, temperature, power draw/limit and SM/memory clocks. Memory-controller busy time is not the percentage of device memory occupied. The exporter converts MiB to bytes, MHz to hertz and percentages to fractions. Unsupported, malformed, timed-out and stale readings omit the corresponding measurement gauge and retain an explicit availability/status series. A real zero remains a measurement.
+
+The HTTP endpoint serves a cached snapshot. Scraping it does not initiate a fresh driver query. The collector polls every five seconds by default, bounds each query to one second, and keeps four rotating raw-log files of at most approximately 1 MiB each. One slow poll can exceed five seconds because fields are queried separately. Poll duration and age are therefore observable. After sixty seconds without a completed poll, measurement gauges disappear and field status becomes stale.
+
+## Exercise 212  Acquire and identify the monitoring tools
+
+Goal: bind the monitoring experiment to concrete native binaries without changing the CUDA driver. Work from ~/spark-book in the WSL Linux filesystem. Python 3.12 or later and dpkg-deb are prerequisites for the supplied archive/extraction path. Start with several gigabytes of free disk; download and extraction sizes differ. The selected releases are Prometheus 3.15.1 and Grafana OSS 13.3.0, checked on 28 October 2026. The helper chooses Linux arm64 or amd64 from the current machine, verifies embedded SHA-256 values, extracts into a new private directory and records version output. Downloads are not bundled with the companion. [189, 190]
+
+TARGET PROCEDURE. Use a new directory; keep tools.json and the capture together. An architecture or checksum error is a stop condition. Prometheus and Grafana versions are independent of the owner-reported CUDA 13.4 toolkit and of any framework's CUDA build.
+
+```
+
+cd ~/work/spark-book
+
+LAB_TOOLS="$HOME/spark-observability-tools"
+
+python3 catalogs/capture.py --out runs/obs-tools -- \
+
+  python3 observability/setup_tools.py --out "$LAB_TOOLS"
+
+python3 -m json.tool "$LAB_TOOLS/tools.json"
+
+
+```
+
+Acceptance: the local machine architecture matches the downloaded executable, both digests match and all three version commands exit zero. The helper extracts Grafana's Debian package without installing it. It sets the bundled-plugin directory explicitly when launching the extracted package; changing the writable data path must not accidentally hide the bundled Prometheus plugin.
+
+## Exercise 213  Prove that unavailable does not mean idle
+
+Goal: test the collector's numerical and missing-data contracts before trusting a graph. Read exporter.py and fixture.py. The live path requires a WSL kernel and a qualified GPU UUID. The fixture path requires an explicit SIMULATED marker and labels every GPU series with source="fixture". It cannot silently replace a failed live query.
+
+```
+
+python3 catalogs/capture.py --out runs/obs-unit-tests -- \
+
+  python3 observability/test_exporter.py
+
+python3 observability/fixture.py \
+
+  --out runs/obs-fixture.json --case baseline
+
+
+```
+
+The tests cover units, valid zero, unsupported values, non-finite values, negative or impossible values, multiple rows/columns, stale samples, fixture identity, bounded field statuses, dashboard gaps and cumulative histogram buckets. These are contract checks, not proof that any particular WSL counter exists.
+
+The baseline fixture deliberately reports 30 GiB total device memory, 12 GiB used and 70 percent busy. These teaching values are not measurements from the example laptop. The pressure case reports 95 percent used. The missing case replaces busy with N/A; the zero case reports a genuine zero. A malformed case supplies text where a number is required.
+
+## Exercise 214  Start and inspect the native WSL2 stack
+
+Goal: prove each boundary separately: collector, HTTP scrape, stored series and recording rule. The native path is the recommended first exercise because all components share the same WSL network namespace. The stack binds only loopback ports 9400, 8089, 9090 and 3000. Stop conflicting services first. Do not launch two instances on the same ports.
+
+TARGET PROCEDURE, terminal A. The foreground launcher generates configurations, creates a new Grafana password file with owner-only permissions, starts four processes and stops them on Ctrl-C. A child failure stops the group and retains its logs. A startup message does not assert readiness.
+
+```
+
+python3 observability/stack.py \
+
+  --tools "$HOME/spark-observability-tools/tools.json" \
+
+  --run-dir runs/obs-01 --fixture runs/obs-fixture.json
+
+```
+
+TARGET PROCEDURE, terminal B. Allow several five-second collection/evaluation cycles, then retain the full responses. The metrics file is Prometheus text exposition; query and targets responses are JSON. A successful scrape should give up{job="gpu"}=1. The baseline recording rule should give a memory-used ratio of 0.4.
+
+```
+
+cd ~/work/spark-book
+
+python3 observability/client.py metrics > runs/obs-metrics.txt
+
+python3 observability/client.py targets > runs/obs-targets.json
+
+python3 observability/client.py query 'lab_gpu_busy_ratio'
+
+python3 observability/client.py query 'lab:gpu_memory_used:ratio'
+
+```
+
+The generated Prometheus configuration uses a five-second scrape interval, a four-second timeout and a five-second evaluation interval. It scrapes the GPU exporter, the synthetic CPU request service and Prometheus itself. A separate file-discovery job starts empty for inference servers. The recording rule divides used bytes by total bytes only when the denominator is positive. [191]
+
+
+The full targets response, baseline query, alerts, latency query, Grafana result and child logs are beside that transcript under details/. The earlier development attempts remain in evidence/ with their exit status. In particular, 04 records a corrected Python file-opening error, 06 records the plugin failure and 07 records a fresh SQLite migration failure. None establishes a target-laptop limitation. Retain failures as evidence instead of deleting them or presenting a later run as the first attempt.
+
+INDEPENDENT REVIEW, 28 October 2026. The reviewer ran the same binaries and shipped strict integration driver successfully on x86-64 Linux where Unix sockets were permitted, including Grafana backend health and a proxied series. The raw logs supplied with the Version 23 review are in review-v24/reviewer-evidence/. This is independent reviewer execution, not a preparation run or WSL2 GPU qualification; see Appendix E.
+
+To reproduce the automated control on the laptop after stopping terminal A, use new output directories. This default command requires the Grafana query backend to work.
+
+```
+
+python3 catalogs/capture.py --out runs/obs-integration -- \
+
+  python3 observability/integration.py \
+
+  --tools "$HOME/spark-observability-tools/tools.json" \
+
+  --run-dir runs/obs-check-stack \
+
+  --evidence runs/obs-integration/details
+
+```
+
+## Exercise 215  Provision and qualify the Grafana dashboard
+
+Goal: establish that a panel is backed by a working data source, with correct units and honest gaps. Restart a fresh native stack if the automated control has stopped it. Open http://127.0.0.1:3000, sign in as admin using the local password file, and find WSL2 Laboratory. The dashboard title is “WSL2 GPU laboratory - measured and simulated sources.” Do not copy the password into a transcript or committed configuration.
+
+The generator provisions a Prometheus data source with UID lab-prometheus and a dashboard with UID wsl-gpu-lab. File provisioning makes this setup reproducible. Change dashboard source in configure.py and create a new run directory; arbitrary UI edits are not the authoritative source. The twelve time-series panels follow one explanatory panel. [192]
+
+Panels show GPU busy ratio, memory bytes and pressure, temperature, power, SM clock, per-field availability, scrape health and collector age. Three additional panels show explicitly synthetic CPU request rate, p95 handler latency and error fraction. The source selector distinguishes fixture from wsl; the GPU selector distinguishes the device. No panel joins across missing samples or replaces missing values with zero.
+
+```
+
+python3 observability/client.py grafana --run-dir runs/obs-01
+
+```
+
+Acceptance has three levels: database health; registered data source and dashboard; working query backend plus a returned Prometheus series. The command above requires all three. The --provision-only option deliberately checks only the first two. The API routes used by this exercise are supported in the pinned release; legacy APIs may change in future releases. [193]
+
+
+The complete query-backend command error is retained in evidence/08-final-controls/details/grafana-backend.txt. Grafana's own log identifies the denied Unix socket; the HTTP client sees an unavailable/unregistered plugin. This is a useful diagnostic split: a healthy database and stored JSON do not prove that a data-source plugin started. The preparation environment does not permit this socket operation. No plugin-signature checks were disabled and no working Grafana plot is claimed. The independent strict-run success reported in Exercise 214 does not establish dashboard rendering or laptop support.
+
+TARGET visual acceptance. Select fixture, then wsl during the live exercise. Check units and legends, inspect a panel's query, compare its value with the raw endpoint, and save a screenshot with its time range and source selector visible. Change the fixture from baseline to missing, wait for new scrapes, and verify that busy becomes a gap while availability becomes zero. Change to zero and verify a real zero appears. A saved screenshot must be labelled simulated or live according to its actual source.
+
+## Exercise 216  Read rates, histograms and latency correctly
+
+Goal: distinguish an instantaneous gauge, a cumulative counter and a distribution. With the fixture stack running, drive the synthetic HTTP workload. These requests execute a bounded CPU sleep; no language model, CUDA kernel or inference engine runs.
+
+```
+
+python3 observability/client.py work \
+
+  --count 20 --delay-ms 20 --errors 2
+
+python3 observability/client.py query \
+
+  'sum(rate(lab_demo_requests_total[1m]))'
+
+python3 observability/client.py query \
+
+  'sum(lab_demo_requests_total)'
+
+```
+
+The complete driver transcript above records 18 HTTP 200 responses and two intentionally generated 503 responses. The count is 20; request rate depends on the observation window. Wait for several scrapes before reading a rate. Repeat with a 100 ms delay and compare the latency panels over a time range that includes both phases. Do not label the injected error fraction as a model-quality measure.
+
+The following PromQL expression estimates p95 from cumulative classic histogram buckets. Take rate before aggregating, preserve the le bucket boundary and choose a window with enough observations. The histogram has finite buckets from 5 ms through one second plus +Inf. An interpolated percentile is not an exact percentile of raw requests. An empty or zero-request window can produce no result or NaN; do not conceal it with a fabricated zero. [194, 195]
+
+```
+
+histogram_quantile(
+
+  0.95,
+
+  sum by(le)(
+
+    rate(lab_demo_request_duration_seconds_bucket[1m])
+
+  )
+
+)
+
+```
+
+
+With all 20 observations in the (10 ms, 25 ms] bucket, linear interpolation gives 0.01 + 0.95 × 0.015 = 0.02425 s regardless of their exact positions within that bucket; an identical p95 in another run need not mean identical request latencies. To compute mean latency, divide the rate of the duration sum by the rate of the duration count. To inspect restarts, use resets(lab_demo_requests_total[5m]); counters restart at zero while gauges may legitimately rise or fall. Do not use rate on temperature or memory-used gauges. [194]
+
+The companion queries.txt supplies copyable expressions for GPU bytes, availability, scrape duration, collector age, active series, request rate, error fraction and model-serving metrics. Keep request IDs, prompts, filenames and arbitrary user text out of metric labels. Store those details in bounded logs or traces, then correlate by time and a separately retained run identifier. Labels create new time series; the teaching exporter uses one UUID, a bounded source set, ten field names and a small status set.
+
+## Exercise 217  Test alert transitions and missing evidence
+
+Goal: tell an unhealthy device observation from a broken monitoring path. rules.yml defines one recording rule and five alerts. GpuMemoryPressure requires a ratio above 0.90 for twenty seconds. GpuBusyCounterUnavailable holds for twenty seconds. GpuExporterDown requires up=0 for fifteen seconds. GpuJobMissing detects an absent GPU job over thirty seconds. GpuCollectorStale detects a poll timestamp older than sixty seconds while the scrape remains up, with a ten-second hold. These are teaching thresholds, not hardware safety limits. [196]
+
+Resolve the promtool path from the receipt and run the six deterministic rule scenarios. They check pending/firing/resolved pressure, unavailable versus zero, down versus absent, stale producer and an invalid memory denominator.
+
+```
+
+PROMTOOL=$(python3 -c 'import json,sys; \
+
+print(json.load(open(sys.argv[1]))["promtool"])' \
+
+  "$HOME/spark-observability-tools/tools.json")
+
+cd observability
+
+"$PROMTOOL" check rules rules.yml
+
+"$PROMTOOL" test rules rules-test.yml
+
+cd ..
+
+
+```
+
+Prometheus evaluates the for duration across rule evaluations. An expression becoming true normally enters pending before firing; one sample is not enough to satisfy a hold. Rule tests use a deterministic synthetic timeline, while the integration driver waits on actual API states. Neither sends a message or page. Prometheus alert evaluation is not notification delivery; Alertmanager routing and external receivers are intentionally outside this local exercise. [196, 197]
+
+With the interactive stack running, inject each case and inspect http://127.0.0.1:9090/alerts and the retained API response. Allow at least thirty seconds per phase for collection plus the hold interval.
+
+```
+
+python3 observability/fixture.py \
+
+  --out runs/obs-fixture.json --case pressure
+
+python3 observability/client.py alerts
+
+python3 observability/fixture.py \
+
+  --out runs/obs-fixture.json --case baseline
+
+```
+
+Repeat with missing, malformed and zero. For a missing busy field, up remains one, availability becomes zero and busy disappears. For a valid zero, availability remains one and busy equals zero. A stopped exporter is different: up becomes zero. A removed scrape job is different again: eventually no up series remains. The stale-producer rule protects against a responsive HTTP endpoint that serves an old cache. Unit tests cover the latter cases without suspending or killing unrelated laptop processes.
+
+Acceptance: retain a firing alert JSON and a subsequent resolved state, identify which input condition produced each, and explain why a green up series does not prove fresh or complete GPU data. The executed control retained both pressure and unavailable-counter alert responses under details/.
+
+## Exercise 218  Observe a live workload and attach inference servers
+
+Goal: connect GPU observations with application behavior without assuming that correlation proves causality. Stop the fixture stack. Start a new stack using the mapped WSL driver and a selected GPU. A failed live qualification is a failed live qualification; there is no fixture fallback.
+
+```
+
+python3 observability/stack.py \
+
+  --tools "$HOME/spark-observability-tools/tools.json" \
+
+  --run-dir runs/obs-live-01 --live --gpu 0
+
+```
+
+In another terminal, capture metrics and targets, then run one already-qualified model exercise from Chapters 6, 22, 57 or 72–75. Keep the workload's own transcript and start/stop times. In Grafana, select source=wsl. Compare available device memory, busy, power and clocks with request latency and queueing. If utilization is unavailable, report that limitation; memory usage and latency alone do not establish GPU saturation or Tensor Core efficiency.
+
+```
+
+python3 observability/client.py metrics \
+
+  > runs/obs-live-before.txt
+
+python3 observability/client.py targets \
+
+  > runs/obs-live-targets.json
+
+```
+
+Use the inference servers already qualified in Chapters 74–75. The attach helper probes a local /metrics endpoint, verifies an engine-specific metric prefix, saves the raw response and atomically updates file discovery. It does not install or launch vLLM or Triton, and a metric prefix alone is not proof of a GPU execution path.
+
+```
+
+python3 observability/attach.py --run-dir runs/obs-live-01 \
+
+  --kind vllm --port 8000
+
+python3 observability/client.py query 'up{job="inference"}'
+
+```
+
+For vLLM, inspect the actual endpoint for end-to-end and time-to-first-token histogram families and the waiting-request gauge before using the matching expressions in queries.txt. Preserve the model/engine labels needed for your comparison. Histogram names, optional families and meanings are version-dependent; the raw endpoint is the local schema evidence. [198]
+
+For a separately qualified Triton server, attach its default metrics port instead. These examples can be run in separate trials to keep one bounded GPU owner. Do not accidentally leave multiple large model servers competing for the approximately 30 GB reported budget.
+
+```
+
+python3 observability/attach.py --run-dir runs/obs-live-01 \
+
+  --kind vllm --port 8000 --remove
+
+python3 observability/attach.py --run-dir runs/obs-live-01 \
+
+  --kind triton --port 8002
+
+```
+
+Triton's default cumulative request and queue durations use microseconds. A rate-of-duration divided by a matching request-count rate, then divided by 1e6, gives a mean in seconds for that metric population. It does not yield p95. Confirm cache, failures, batching and model/version scope before comparing counts or time populations; optional histogram families require separate qualification. A Triton request count is not necessarily an inference-item count or a backend execution count. [199]
+
+TARGET acceptance. Save the original server metric text, final discovery file, up series, workload output, GPU raw log and one time-aligned chart. Record which counters were unavailable. Repeat one fixed workload with collection disabled and enabled, keeping warm-up, inputs and power mode comparable; report timing spread and monitoring overhead instead of attributing every difference to the model. Five-second samples can miss short kernels, overlapping streams and brief power spikes. Use the Nsight/CUPTI and CUDA tracing exercises for those questions.
+
+## Exercise 219  Move monitoring into containers and connect Kubernetes
+
+Goal: preserve the same measurement contracts while changing deployment. First complete the native path. This optional Compose path assumes native Docker Engine running inside the same WSL2 distribution as the exporter. Host networking refers to the Docker host's network namespace. A Docker Desktop context can place that namespace elsewhere; do not assume its loopback reaches a process in your guest. Inspect the context and demonstrate reachability or keep the native path. [200]
+
+Stop the native stack before starting containers. Qualify native ARM64 images with the existing helper, then pass their immutable repository digests to docker_config.py. The candidate tags are release selections, not substitutes for the resulting digest. The Grafana OSS image repository is grafana/grafana. [201]
+
+```
+
+bash serving/docker/qualify_image.sh \
+
+  prom/prometheus:v3.15.1 runs/obs-prom-image
+
+bash serving/docker/qualify_image.sh \
+
+  grafana/grafana:13.3.0 runs/obs-grafana-image
+
+PROM_IMAGE=$(head -n 1 runs/obs-prom-image/digests.txt)
+
+GRAFANA_IMAGE=$(head -n 1 runs/obs-grafana-image/digests.txt)
+
+python3 observability/docker_config.py \
+
+  --out runs/obs-docker-01 --prom-image "$PROM_IMAGE" \
+
+  --grafana-image "$GRAFANA_IMAGE"
+
+docker compose -f runs/obs-docker-01/compose.json config -q
+
+```
+
+The generator rejects mutable image references, creates a local password file, uses the current user's UID/GID for writable bind directories and mounts configuration read-only. Each service has a one-CPU and 1 GiB memory limit, rotating container logs and a writable temporary filesystem. Run as your regular WSL user. Review image startup logs and bundled-plugin loading; these generated Compose files were not executed during preparation.
+
+Start the exporter in a separate WSL terminal, then launch the two monitoring containers. No GPU device is passed to Prometheus or Grafana; the exporter reads the mapped driver outside those containers. Start workload.py separately only if you want the synthetic CPU panels; otherwise that optional target will be down.
+
+```
+
+python3 observability/exporter.py --live --gpu 0 \
+
+  --log runs/obs-docker-01/logs/gpu.jsonl
+
+
+docker compose -f runs/obs-docker-01/compose.json up -d
+
+docker compose -f runs/obs-docker-01/compose.json ps
+
+python3 observability/client.py targets
+
+python3 observability/client.py grafana \
+
+  --run-dir runs/obs-docker-01
+
+docker compose -f runs/obs-docker-01/compose.json logs \
+
+  --no-color > runs/obs-docker-01/container-transcript.txt
+
+```
+
+Acceptance is the same as the native path: a reachable GPU target, expected available/absent fields, a functioning query backend and a correctly labelled chart. A running container or a healthy Grafana database alone does not pass. Keep the full image receipts and container logs, then stop this project's containers with the command below and stop the separate exporter with Ctrl-C. Bind-mounted data remains for review.
+
+```
+
+docker compose -f runs/obs-docker-01/compose.json down
+
+```
+
+For the already-qualified k3s deployments in Chapters 74–75, keep Prometheus/Grafana native in WSL and forward only the desired metrics endpoint to guest loopback. The commands below select the established deployment names; use the one currently running. Each port-forward stays in its own terminal until Ctrl-C. [203]
+
+```
+
+sudo k3s kubectl -n spark-lab port-forward \
+
+  --address 127.0.0.1 deployment/spark-vllm 18000:8000
+
+
+sudo k3s kubectl -n spark-lab port-forward \
+
+  --address 127.0.0.1 deployment/spark-triton 18002:8002
+
+```
+
+Attach port 18000 as vllm or 18002 as triton using attach.py and the current native run directory. A forwarding process ending should cause the corresponding inference target to go down. This is a local observability exercise, not in-cluster Prometheus discovery. ServiceMonitor requires a Prometheus Operator installation and matching selectors; creating that custom resource alone does nothing in the plain k3s baseline. [204] Cluster-wide exporter DaemonSets also require a separately supported device/driver environment.
+
+## Retention, debugging and recommendations
+
+Start with native tools, five-second collection and one GPU UUID. Keep the driver/platform capability record beside the dashboard. Use the device-reported total for device occupancy, and the earlier host-memory exercises for unified-memory pressure. Do not infer per-process GPU memory, ECC health, Xid events, SM occupancy or Tensor Core activity from this ten-field exporter. Unsupported fields require other qualified evidence.
+
+The supplied Prometheus retention settings are 24 hours and 500 MiB of retained blocks. The size setting is not a strict cap on all directory contents: the head/WAL and other files need additional disk space. Check disk use, series counts, scrape duration and process resident memory during longer runs. Keep Prometheus local; authentication, TLS, long-term storage and external alert routing would be separate deployment work. [202]
+
+Debug in dependency order: driver field response; exporter raw snapshot; /metrics; Prometheus target health and last error; query labels/time range; Grafana data-source health; panel query and unit. If Prometheus has data but Grafana fails, inspect the plugin and data-source logs before changing the GPU workload. If only one field is absent, do not restart the whole stack as the first diagnosis. If every field disappears while up stays one, inspect collector age and raw query failures.
+
+The resulting evidence package should include exact binaries/images, capability results, configuration, raw observations, API responses, alert transitions, a source-labelled screenshot and the workload transcript. Keep secrets and model inputs out of that package unless deliberately required. This provides a repeatable monitoring laboratory while leaving kernel-level attribution to the book's tracing and CUDA debugging tools.

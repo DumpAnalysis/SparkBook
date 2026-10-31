@@ -1,0 +1,8 @@
+{
+  "bytes": 1334,
+  "end_ns": 1793183752913399516,
+  "sha256": "45214f5fa8d21d7b8bfaba47e997b82c6b8cf37bebec3fc4edccca34f429148e",
+  "start_ns": 1793183748864554455,
+  "status": 200,
+  "url": "https://huggingface.co/api/models/hf-internal-testing/tiny-random-bert/revision/f171d7baecaf37b5da5a3616d8833b9969753535"
+}

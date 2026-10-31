@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "device": "cpu",
+  "workers": 4,
+  "owners": 1,
+  "requests": 16,
+  "batches": 4,
+  "max_pending": 4,
+  "model_bytes": 82176,
+  "max_abs_error": 1.564621925354004e-07,
+  "latency_p50_ms": 0.752211,
+  "latency_p95_ms": 1.6930585,
+  "queue_p95_ms": 0.21552225,
+  "elapsed_ms": 3.907717,
+  "requests_per_second": 4094.4623164881186,
+  "owners_inventory": [
+    {
+      "kind": "ready",
+      "pid": 32,
+      "device": "cpu",
+      "model_bytes": 82176,
+      "memory": {
+        "allocated": null,
+        "reserved": null,
+        "peak_allocated": null,
+        "peak_reserved": null
+      }
+    }
+  ],
+  "child_exitcodes": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

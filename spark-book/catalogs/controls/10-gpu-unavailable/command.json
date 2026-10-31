@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "catalogs/gpu_probe.py"
+  ],
+  "start_ns": 1793183905925788945,
+  "end_ns": 1793183908135128763,
+  "exit": 2
+}

@@ -1,0 +1,42 @@
+Exercise 197  Score recognition without hiding normalization choices
+
+Question
+How much does the recognition score depend on the normalization rule?
+
+Before you start
+Exercise 196 (transcribe the retained speech control)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+7.6 s for Wrong rate header (record 197.05).
+
+Check for success
+Compute error counts before and after the declared normalization. Inspect individual substitutions on each degraded input.
+
+Predict before running
+Which changes in the hypothesis would the chosen normalization hide?
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/controls.py scoring --out "$LAB_RUN/scoring"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/scoring with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Fresh scoring controls retained WER above one and an undefined empty-reference denominator. Actual same-decoder tests used lower amplitude, fixed noise, clipping and an incorrect rate header. Complete hypotheses remain. The intended TTS text is the reference; its pronunciation has not been independently human-verified.
+Scope  Keep the reference wording, acoustic input and normalization policy with each recognition score.
+
+Recorded files
+python reader/records.py 197 --files

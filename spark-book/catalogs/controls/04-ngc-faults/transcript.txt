@@ -1,0 +1,6 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/ngc_lab.py faults --source catalogs/controls/ngc-image --out catalogs/controls/ngc-faults
+missing_arm64: REJECTED expected one linux/arm64 descriptor; found 0
+duplicate_arm64: REJECTED expected one linux/arm64 descriptor; found 2
+changed_manifest: REJECTED manifest digest mismatch
+3 fault controls passed; no Docker or GPU execution
+[exit 0]

@@ -1,0 +1,8 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/ngc_lab.py cli --dest ../catalog-downloads/ngc-cli --record catalogs/controls/ngc-cli
+archive: ngccli_arm64.zip
+bytes: 58219524
+sha256: 5c18c5d14ad9e4b8c8ac0b5c596cd4ed33c1e4a3f2bd93f851eb974a6f3f6847
+ELF: 64-bit little-endian AArch64 (183)
+zip_entries: 3495
+SHA-256 PASS; binary was inspected, not executed
+[exit 0]

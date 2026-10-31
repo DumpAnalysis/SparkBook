@@ -1,0 +1,35 @@
+Exercise 165  Expose calibration shift with an outlier
+
+Question
+Which values clip when held-out data differs from the calibration range?
+
+Before you start
+Exercise 164 (compute scales and inspect channel error)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+5.8 s for Quantization and token audit (record 164.01).
+
+Check for success
+Locate the injected outlier and compare clipping and resolution under the two calibration choices.
+
+Run in your lab
+Read the test and shifted/outlier metrics from Exercise 164. Explain clipping and reconstruction error without recalibrating on the held-out test rows.
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Save compatible engine/profile or adapter/base identities; close owned services.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Calibration uses 96 rows, with 32 separate held-out rows. Controlled outliers and a wider calibration range expose clipping and resolution tradeoffs. The combined capture in Exercise 164 includes this check; no calibration/held-out overlap was accepted.
+Scope  The selected calibration samples and the actual execution precision delimit the comparison.
+
+Recorded files
+python reader/records.py 165 --files

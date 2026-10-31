@@ -1,0 +1,9 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 catalogs/hf_lab.py snapshot --kind model --dest ../catalog-downloads/hf-model --record catalogs/controls/hf-model
+repo_type: model
+repo_id: hf-internal-testing/tiny-random-bert
+revision: f171d7baecaf37b5da5a3616d8833b9969753535
+selected_files: 6
+selected_bytes: 538802
+receipt_sha256: 79955519395be097ef3aa8eab8f8502ff8d616e7f2d81f96cefb8186268d1c9b
+Selected files acquired and hashed; alternate weight formats were not requested
+[exit 0]

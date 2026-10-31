@@ -1,0 +1,39 @@
+Exercise 209  Acquire a selective model snapshot
+
+Question
+Can we acquire only the files needed for this local model reload?
+
+Before you start
+Exercise 208 (inspect pinned model and dataset identities)
+Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.
+
+Recorded step time
+1.2 s for Catalog (record 209.01).
+
+Check for success
+Inspect the selected file list, sizes and per-file hashes against the pinned snapshot.
+
+Run in your lab
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python catalogs/hf_lab.py snapshot --kind model --dest "$LAB_RUN/hf-model" --record "$LAB_RUN/hf-model-receipt.json"
+
+Interpret the result
+A catalog listing or correct checksum is not GPU qualification.
+
+If the check fails
+Check access, identity, architecture and completeness before runtime changes.
+
+Finish
+Keep six selected files and per-file checksum receipt.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — Selective acquisition retained the pinned small model snapshot and verified its selected files. The complete receipt records the revision and hashes. This acquisition is separate from the offline CPU/CUDA execution that follows.
+Scope  The snapshot and dataset checks apply to the recorded immutable revisions.
+
+Recorded files
+python reader/records.py 209 --files

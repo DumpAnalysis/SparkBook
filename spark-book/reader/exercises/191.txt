@@ -1,0 +1,39 @@
+Exercise 191  Compare prompts seeds and music quality
+
+Question
+What differences can be attributed to seed, prompt or profiling in these clips?
+
+Before you start
+Exercise 188 (generate a short music clip from a description) · Exercise 189 (inspect waveform and spectral activity)
+Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
+
+Recorded step time
+42.1 s for Second seed profiled (record 191.01).
+
+Check for success
+Match generation settings and clip identities. Record listening observations per clip and distinguish reported feedback from device timing.
+
+Run in your lab
+The entry supplies one controlled seed. Repeat the same prompt and limit, then vary one prompt/seed; record listening judgments separately from numerical checks.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python media/targets.py music --model models/media/musicgen --text "A quiet solo piano phrase with a slow steady rhythm" --tokens 256 --guidance 3 --seed 1607 --profile --out "$LAB_RUN/music-seed1607"
+
+Interpret the result
+Separate signal validity, task quality, listening/visual review and profiler availability.
+
+If the check fails
+Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+
+Finish
+Keep $LAB_RUN/music-seed1607 with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  BLOCKED — The Windows-elevated tracing comparison leaves device timing blocked. No new music generation or listening review occurred during that comparison. The owner’s overall response “good” remains a REPORTED assessment of the earlier clips; detailed ratings remain unassessed.
+Scope  The matched audio files and the missing device timeline have separate outcomes.
+
+Recorded files
+python reader/records.py 191 --files

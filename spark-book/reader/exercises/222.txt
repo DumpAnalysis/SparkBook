@@ -1,0 +1,39 @@
+Exercise 222  Qualify the HTTP boundary and local model
+
+Question
+Is a failure in HTTP transport, model generation or interpretation of the tool request?
+
+Before you start
+Exercise 221 (observe the tool loop and inject faults) · Exercise 5 (start the baseline server)
+Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
+
+Recorded step time
+8.4 s for Invoke the local model through the agent (record 222.02).
+
+Check for success
+Check the loopback contract first, then inspect real-model messages and validate tool arguments separately.
+
+Run in your lab
+The entry is a local HTTP contract control. Follow it with langchain_lab.py local against the actual served model; preserve each scope separately.
+
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+python orchestration/client_contract.py --out "$LAB_RUN/http-contract.json"
+
+Interpret the result
+Schema validity and transport success do not establish factual correctness.
+
+If the check fails
+Inspect the failed boundary and retained messages; bound retries and continuation.
+
+Finish
+Keep $LAB_RUN/http-contract.json with the command and exit that produced it.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — A real CUDA-served Qwen model used the framework’s read-only tools against simulated evidence. The retained conversation contains 12 tool calls, only two unique calls, and therefore ten duplicates; the intermediate answer hit a length limit before a later stop. The tool payload’s 28/30 GiB figure is fictional teaching data, not a new measurement of this laptop.
+Scope  Protocol acceptance does not erase repetition or establish the final diagnostic recommendation.
+
+Recorded files
+python reader/records.py 222 --files

@@ -1,0 +1,35 @@
+Exercise 154  Compare cuML principal components by subspace
+
+Question
+Do two PCA implementations learn the same subspace despite possible sign changes?
+
+Before you start
+Exercise 153 (compare a cuDF aggregation with the CPU control) · Exercise 79 (produce a PCA map with its numerical limits)
+Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
+
+Recorded step time
+25.1 s for RAPIDS aggregation and PCA — first process (record 153.01).
+
+Check for success
+Compare projectors against the CPU reference at the stated tolerance. A sign flip in a component alone is insufficient to fail it.
+
+Run in your lab
+Use the retained RAPIDS outputs from Exercise 153. Compare PCA subspaces/projectors against the CPU control; do not require equal signs or coordinate orientation.
+
+Interpret the result
+Compare against an independent reference and retain provider/build identities.
+
+If the check fails
+Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+
+Finish
+Save compatible engine/profile or adapter/base identities; close owned services.
+
+Handoff
+Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
+
+Recorded result  PASSED — The same two actual cuML runs passed the 0.001 projector-error threshold against the CPU PCA subspace. Scores and numerical outputs are retained.
+Scope  Use the combined capture in Exercise 153; coordinate sign changes are not a failure, and visual separation does not establish retrieval quality.
+
+Recorded files
+python reader/records.py 154 --files
