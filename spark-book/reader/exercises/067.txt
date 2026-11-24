@@ -3,6 +3,20 @@ Exercise 67  Implement GPU packing and dequantization
 Question
 Does device packing agree byte for byte with the portable reference?
 
+Technology background
+
+Packing INT4 values into bytes
+
+A byte has eight bits, so it can hold two four-bit codes. An INT4 representation must specify how a signed integer maps to a code, which half-byte comes first, and what happens to the last value when the count is odd. To represent real-valued weights, a scale maps codes back to approximate numbers.
+
+Write down a tiny input, its expected codes and the exact packed byte sequence. Check bytes, then unpack and compare the reconstructed numbers. One implementation can pack and unpack consistently while still using a layout incompatible with another runtime.
+
+Compute Sanitizer and CUDA correctness checks
+
+Compute Sanitizer observes a GPU program while it runs. Its tools check different properties. Memcheck examines memory accesses, racecheck detects supported shared-memory hazards, initcheck looks for uninitialized global-memory reads and synccheck examines synchronization use. Choose the tool that matches the question.
+
+Compare an intentionally defective teaching case with the otherwise equivalent valid control. Record whether instrumentation started, the reported location and the process exit. A numerical pass with the tool unavailable still leaves the requested instrumentation check open.
+
 Before you start
 Exercise 66 (verify packing and rounding on the CPU)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Compare every packed byte and decoded value across the prefix cases. Distinguish a packing error from rounding error.
+
+Reading the result
+Inspect the packed bytes, unpack the values and calculate reconstruction error against the source values. Record the unavailable sanitizer result separately.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

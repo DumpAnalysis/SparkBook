@@ -3,6 +3,20 @@ Exercise 31  Inventory development tools independently
 Question
 Which CUDA tools are present, and which capabilities still need a workload test?
 
+Technology background
+
+The CUDA driver, toolkit and runtime
+
+CUDA is NVIDIA’s platform for running computations on a GPU. The driver exposes the device. The toolkit supplies development tools such as the nvcc compiler. A runtime library lets an application allocate device memory and launch work. A framework or container may carry its own user-space libraries.
+
+Version labels at these layers can differ. Record the mapped driver query, nvcc version, PyTorch build and device compute capability in their own fields. A missing compiler affects building source. A working prebuilt application can still use the GPU.
+
+Windows, WSL2 and the mapped GPU
+
+WSL2 runs a Linux kernel in a lightweight virtual machine managed by Windows. Windows is the host. Ubuntu is the Linux system in which we open a terminal and run the exercises. ARM64, also called AArch64, describes the processor instruction set that a Linux executable must support on this laptop.
+
+The NVIDIA driver lives on the Windows side. WSL2 makes its GPU interface available to Linux applications. The inventory asks Linux for its kernel and architecture, then runs nvidia-smi, NVIDIA’s management query for the GPU. These observations establish what the guest can see. A later synchronized calculation establishes that a CUDA program can execute there.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

@@ -3,6 +3,20 @@ Exercise 237  Obtain sentence embeddings through Ollama
 Question
 Does the Ollama embedding endpoint preserve input order and vector shape?
 
+Technology background
+
+Ollama, local model names and residency
+
+Ollama runs a local service that manages models and exposes generation and embedding endpoints. A local model name identifies what to request. Importing a GGUF file creates a usable model entry, while loading it creates a running model that consumes resources. A residency setting influences how long it can stay loaded between calls.
+
+Read the installed model list, then inspect the running models around a bounded request. For streamed generation, read the sequence of JSON objects through the final completion record. For embeddings, inspect vector count, dimension and response model identity.
+
+Sentence embeddings and semantic similarity
+
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+
+For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
+
 Before you start
 Exercise 235 (qualify a native Ollama installation) · Exercise 75 (prepare the environment and freeze the encoder)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

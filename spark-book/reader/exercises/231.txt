@@ -3,6 +3,20 @@ Exercise 231  Use the typed agent with a local endpoint
 Question
 Can the local endpoint satisfy both the output schema and the task rubric?
 
+Technology background
+
+PydanticAI and typed model outputs
+
+Pydantic models describe fields, types and validation rules for data. PydanticAI uses such contracts in agents, including for a model’s final output. A structured finding might require a named observation and a reference to evidence. A plausible paragraph or a well-formed JSON object can still fail that contract.
+
+Feed the validator one accepted example and one that violates a specific rule. Then trace what happens when the model repeatedly returns invalid output. Keep the retry budget and actual request count visible. Passing field validation does not establish that the evidence supports the reported conclusion.
+
+Clients, servers and a local HTTP request
+
+A server waits for requests. A client sends one to an address and a port. The address 127.0.0.1 means this machine’s loopback interface. An HTTP request names an operation and may carry a body. Here, JSON expresses that body as named fields, such as a model name and a prompt.
+
+Exercise 3 uses a fixture, a small server with a known reply, to test the client before loading any weights. First read the HTTP status, then the body. A successful exchange tells us the two programs communicated. Grading a generated answer requires a separate check of its contents.
+
 Before you start
 Exercise 229 (reject a plausible but invalid finding) · Exercise 222 (qualify the HTTP boundary and local model)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
@@ -32,7 +46,7 @@ Keep $LAB_RUN/typed-local.json with the command and exit that produced it.
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
 
-Recorded result  PASSED — The typed agent completed against the actual local CUDA model endpoint. A separate attempt after the server stopped failed with exit 1, and its full transport error remains in the companion.
+Recorded result  PASSED — The typed agent completed against the actual local CUDA model endpoint. A separate attempt after the server stopped failed with exit 1, as recorded in this exercise.
 Scope  Typed-output acceptance does not prove factual or diagnostic correctness, and a stopped endpoint must not silently fall back to a fixture.
 
 Recorded files

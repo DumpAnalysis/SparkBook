@@ -3,6 +3,20 @@ Exercise 233  Measure calibration and risk versus coverage
 Question
 What is the tradeoff between rejecting uncertain decisions and maintaining coverage?
 
+Technology background
+
+Decision calibration, risk and coverage
+
+A probability forecast can be checked against labeled outcomes. For a binary event with outcome one and predicted probability 0.8, the squared error is 0.04. Averaging squared probability errors gives the binary Brier score. A single confident prediction cannot establish that a model is calibrated.
+
+A routing system can abstain below a confidence threshold. Coverage is the fraction of cases it accepts. Selective risk describes the error among accepted cases. Count both accepted cases and mistakes at each threshold. If none were accepted, the error fraction among them has no denominator.
+
+Jev decision models and typed questions
+
+Jev takes supplied state and typed questions about it. Choice selects from named options. Score represents a result on an ordered rubric. Noul answers a yes-or-no question with a probability of yes. The response fields differ, so the caller must use the contract for the particular question type.
+
+Imagine routing an incident to storage or networking. Compare the returned label with its distribution, then inspect the separate confidence field where the contract supplies one. The local fixtures exercise how the client checks these responses. The optional hosted-service procedure has its own execution status.
+
 Before you start
 Exercise 232 (verify Choice, Score and Noul contracts)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.

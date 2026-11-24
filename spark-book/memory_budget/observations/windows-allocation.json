@@ -1,0 +1,104 @@
+{
+  "memory-pilot": [
+    {
+      "utc": "2026-10-31T10:31:07.2031365Z",
+      "available_bytes": 6222794752,
+      "committed_bytes": 44494446592,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.5768506
+    },
+    {
+      "utc": "2026-10-31T10:31:08.6229876Z",
+      "available_bytes": 6231617536,
+      "committed_bytes": 44486422528,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.33169129999999997
+    },
+    {
+      "utc": "2026-10-31T10:31:09.9873254Z",
+      "available_bytes": 6217871360,
+      "committed_bytes": 44502659072,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.3498264
+    },
+    {
+      "utc": "2026-10-31T10:31:11.2873800Z",
+      "available_bytes": 6161469440,
+      "committed_bytes": 44543823872,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.2967119
+    },
+    {
+      "utc": "2026-10-31T10:31:12.6276528Z",
+      "available_bytes": 6043086848,
+      "committed_bytes": 45881487360,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.3202853
+    },
+    {
+      "utc": "2026-10-31T10:31:13.9482042Z",
+      "available_bytes": 5961347072,
+      "committed_bytes": 46041522176,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.3060659
+    },
+    {
+      "utc": "2026-10-31T10:31:15.2644228Z",
+      "available_bytes": 5871857664,
+      "committed_bytes": 46062108672,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.3059069
+    },
+    {
+      "utc": "2026-10-31T10:31:16.5790318Z",
+      "available_bytes": 5953261568,
+      "committed_bytes": 44883320832,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.3038441
+    }
+  ],
+  "memory-above-guest": [
+    {
+      "utc": "2026-10-31T10:32:06.1849434Z",
+      "available_bytes": 5967187968,
+      "committed_bytes": 44691677184,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.6123175
+    },
+    {
+      "utc": "2026-10-31T10:32:07.5579719Z",
+      "available_bytes": 5898080256,
+      "committed_bytes": 44783607808,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.3054937
+    },
+    {
+      "utc": "2026-10-31T10:32:08.8577864Z",
+      "available_bytes": 5840965632,
+      "committed_bytes": 44841357312,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.29192629999999997
+    },
+    {
+      "utc": "2026-10-31T10:32:10.1563177Z",
+      "available_bytes": 5863776256,
+      "committed_bytes": 44735799296,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.2950679
+    },
+    {
+      "utc": "2026-10-31T10:32:11.4597258Z",
+      "available_bytes": 5740670976,
+      "committed_bytes": 63349612544,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.3053395
+    },
+    {
+      "utc": "2026-10-31T10:32:12.7596302Z",
+      "available_bytes": 5707444224,
+      "committed_bytes": 45288292352,
+      "commit_limit_bytes": 103327207424,
+      "query_seconds": 0.2953671
+    }
+  ]
+}

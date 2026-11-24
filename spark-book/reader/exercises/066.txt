@@ -3,6 +3,20 @@ Exercise 66  Verify packing and rounding on the CPU
 Question
 How is a signed four-bit value rounded, saturated and placed in its byte?
 
+Technology background
+
+Packing INT4 values into bytes
+
+A byte has eight bits, so it can hold two four-bit codes. An INT4 representation must specify how a signed integer maps to a code, which half-byte comes first, and what happens to the last value when the count is odd. To represent real-valued weights, a scale maps codes back to approximate numbers.
+
+Write down a tiny input, its expected codes and the exact packed byte sequence. Check bytes, then unpack and compare the reconstructed numbers. One implementation can pack and unpack consistently while still using a layout incompatible with another runtime.
+
+Quantization and weight formats
+
+Quantization represents numbers using fewer possible values. A weight group can share a scale so a small integer represents an approximate weight. Four bits can encode sixteen patterns. A real Q4 file also stores scales, metadata and sometimes tensors at other precisions, so its byte count need not be exactly half that of Q8.
+
+The smaller file is easier to place in memory. Approximation can change the generated tokens. Compare the same prompt with the same context, output cap and runtime settings. Keep the finish reason alongside reply quality and measured latency.
+
 Before you start
 Exercise 3 (verify the client without a model)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.

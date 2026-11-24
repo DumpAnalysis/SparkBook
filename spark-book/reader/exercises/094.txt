@@ -3,6 +3,20 @@ Exercise 94  Capture an idle WSL2 baseline
 Question
 What does an idle recording look like under this machine's actual polling cadence?
 
+Technology background
+
+GPU metrics, samples and missing observations
+
+A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+
+Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
+
+Windows, WSL2 and the mapped GPU
+
+WSL2 runs a Linux kernel in a lightweight virtual machine managed by Windows. Windows is the host. Ubuntu is the Linux system in which we open a terminal and run the exercises. ARM64, also called AArch64, describes the processor instruction set that a Linux executable must support on this laptop.
+
+The NVIDIA driver lives on the Windows side. WSL2 makes its GPU interface available to Linux applications. The inventory asks Linux for its kernel and architecture, then runs nvidia-smi, NVIDIA’s management query for the GPU. These observations establish what the guest can see. A later synchronized calculation establishes that a CUDA program can execute there.
+
 Before you start
 Exercise 14 (run a small synchronized computation) · Exercise 91 (establish the monitoring contract)
 CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.

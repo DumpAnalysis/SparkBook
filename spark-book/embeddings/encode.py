@@ -12,12 +12,15 @@ def load_encoder(path,device,bert=False):
         return SentenceTransformer(modules=[backbone,models.Pooling(backbone.get_word_embedding_dimension(),pooling_mode='mean'),models.Normalize()],device=device)
     return SentenceTransformer(path,device=device,local_files_only=True,trust_remote_code=False,model_kwargs={'add_pooling_layer':False})
 
-def evaluate(model,split='dev'):
+def evaluate(model,split='dev',report_ranks=False):
     rs=rows();docs=[r for r in rs if r['kind']=='document'];queries=[r for r in rs if r['kind']!='document' and r['split']==split]
     d=model.encode([r['text'] for r in docs],batch_size=8,normalize_embeddings=True,show_progress_bar=False)
     q=model.encode([r['text'] for r in queries],batch_size=8,normalize_embeddings=True,show_progress_bar=False)
     rel=[{i for i,r in enumerate(docs) if r['family']==qr['family']} for qr in queries]
-    return metrics(q,d,rel)
+    result=metrics(q,d,rel,include_ranks=report_ranks)
+    if report_ranks:
+        result['per_query']=[{'id':row['id'],'rank':rank} for row,rank in zip(queries,result.pop('first_relevant_ranks'))]
+    return result
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--model',required=True);p.add_argument('--bert',action='store_true');p.add_argument('--device',default='cpu');p.add_argument('--out',default='embeddings/runs/encoded');p.add_argument('--batch',type=int,default=8);a=p.parse_args()

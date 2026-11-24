@@ -3,6 +3,26 @@ Exercise 179  Trace vision encoding and token generation
 Question
 Can the trace distinguish vision encoding from token generation?
 
+Technology background
+
+Vision-language models and visual grounding
+
+A vision-language model combines a visual representation with text so that a language component can generate an answer about an image. The processor resizes or tiles the pixels and prepares the visual input expected by the model. Increasing the visual input size can affect token count, memory use and latency.
+
+Ask for a property you can verify in the source image, such as the position of a colored shape. Compare the answer with the image itself. Words printed inside a picture are also input data. They can test whether the model follows the caller’s task when the picture contains conflicting text.
+
+PyTorch Profiler and operators
+
+A framework operator is a named operation such as matrix multiplication. PyTorch Profiler can collect CPU-side operator events and, where supported, GPU activity. A trace viewer draws each event on the track of the thread or device that produced it. One Python operation can issue several kernels.
+
+Choose a short, named operation and check both tracks. A CPU operator range can include launches and waiting. To report GPU execution time, find valid device intervals for the workload. If the native model runs in a separate process, identify that process before interpreting a client trace.
+
+Nsight Systems, NVTX and CUPTI timelines
+
+Nsight Systems records a timeline across CPU threads, CUDA API calls and supported GPU activity. NVTX lets the application name a region such as “iteration 2”. CUPTI is an NVIDIA interface that tools can use to collect activity records. A host range describes what the CPU was doing while it was open.
+
+Start with one named iteration. Look for the CPU launch call, then the corresponding GPU work with usable start and end times. A launch returning to the CPU does not mark the end of device execution. Zero device timestamps leave the duration unresolved.
+
 Before you start
 Exercise 176 (ask a bounded question about a known image) · Exercise 39 (capture four annotated iterations)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Match the workload and host ranges to device events with valid intervals. A successful image answer establishes a different result.
+
+Reading the result
+The earlier visual model generated output and supplied host ranges and allocator observations. The later shared probe found unusable kernel timestamps. Read Exercise 151 for that probe.
 
 Run in your lab
 Proceed only after a tiny GPU timing probe supplies usable activity timestamps. Otherwise record BLOCKED; numerical inference can still be qualified independently.

@@ -3,6 +3,14 @@ Exercise 65  Capture and replay a fixed operation graph
 Question
 Does replaying a captured graph reproduce the work and its outputs?
 
+Technology background
+
+CUDA streams, events and graphs
+
+A stream is an ordered queue of GPU work. Two streams may run work concurrently if dependencies and resources allow it. An event recorded after a producer lets a consumer stream wait for that producer. Double buffering lets one buffer accept new data while another is being processed.
+
+A CUDA Graph records a set of operations and their dependencies for replay with lower submission overhead. Keep the test’s input shapes and storage addresses consistent with its capture. Verify the resulting values. Actual overlap between streams requires device intervals that overlap in time.
+
 Before you start
 Exercise 64 (reproduce a missing dependency and repair it)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
@@ -12,6 +20,9 @@ Recorded step time
 
 Check for success
 Compare replayed values with ordinary execution. Keep submission time and device-event time in separate columns.
+
+Reading the result
+Keep the captured addresses and input shapes fixed during graph replay. Check the output on each replay. Device timing requires its own usable trace.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

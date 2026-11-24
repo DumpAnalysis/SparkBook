@@ -3,6 +3,20 @@ Exercise 164  Compute scales and inspect channel error
 Question
 How does per-channel scaling change quantization error?
 
+Technology background
+
+Calibration and explicit quantize and dequantize operations
+
+A quantizer maps a range of real values to a limited set of codes using a scale and sometimes a zero point. Calibration estimates suitable ranges from example inputs. A rare large value can stretch a scale, leaving fewer useful codes for the many small values. Per-channel scales allow different ranges for different channels.
+
+An ONNX QDQ graph marks where values are quantized and dequantized. Measure reconstruction error on separate evaluation rows. Then inspect the engine and its selected implementations before attributing a speed change to integer kernels.
+
+Quantization and weight formats
+
+Quantization represents numbers using fewer possible values. A weight group can share a scale so a small integer represents an approximate weight. Four bits can encode sixteen patterns. A real Q4 file also stores scales, metadata and sometimes tensors at other precisions, so its byte count need not be exactly half that of Q8.
+
+The smaller file is easier to place in memory. Approximation can change the generated tokens. Compare the same prompt with the same context, output cap and runtime settings. Keep the finish reason alongside reply quality and measured latency.
+
 Before you start
 Exercise 152 (establish data and environment provenance)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

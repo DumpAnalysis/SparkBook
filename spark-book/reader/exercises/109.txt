@@ -3,6 +3,14 @@ Exercise 109  Capture a bounded stall
 Question
 Which operation is the stalled child waiting for?
 
+Technology background
+
+Stalled workers and stack traces
+
+A process can be alive while it makes no progress. A stack trace lists the active chain of function calls in a thread. A heartbeat records progress or liveness at intervals, depending on what it measures. A supervisor can impose a deadline and collect a stack from a deliberately stalled teaching worker.
+
+Read the last completed step, stack and child exit together. If several samples show the worker waiting at the same point, inspect what would release that wait. The supervisor can complete successfully after recording a child failure, so retain both exits.
+
 Before you start
 Exercise 14 (run a small synchronized computation)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
@@ -32,7 +40,7 @@ Keep $LAB_RUN/hang with the command and exit that produced it.
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
 
-Recorded result  PASSED — Actual CPU bounded-stall control captured its waiting stack and ended the owned child with SIGTERM (−15). The supervisor returned zero because it successfully collected the intended failure. Wrapper success is distinct from child progress; the full stack and event record remain in the companion.
+Recorded result  PASSED — Actual CPU bounded-stall control captured its waiting stack and ended the owned child with SIGTERM (−15). The supervisor returned zero because it successfully collected the intended failure. Read the waiting stack and child exit together. The wrapper recorded the stall successfully.
 Scope  The controlled child and its supervisor define which waiting and recovery events were observed.
 
 Recorded files

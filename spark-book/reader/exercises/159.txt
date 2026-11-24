@@ -3,6 +3,20 @@ Exercise 159  Export an encoder without losing its pooling contract
 Question
 Does the exported sentence encoder preserve its pooling and normalization contract?
 
+Technology background
+
+ONNX graphs and ONNX Runtime execution providers
+
+ONNX describes a model as a graph of operations, named inputs and outputs, and stored parameters. An opset specifies the operator definitions the graph expects. ONNX Runtime executes a graph by assigning supported groups of operations to execution providers, for example a CPU provider or the CUDA provider.
+
+Check the graph structure and run a known input against an independent numerical result. Then examine provider assignment for the relevant nodes. A listed CUDA provider establishes availability. An assignment log establishes placement, while timed device activity requires a usable trace.
+
+Token vectors, attention masks and pooling
+
+A token encoder produces one vector for each input position. To process sentences of different lengths in the same batch, the tokenizer can add padding. An attention mask identifies positions containing real input. In masked mean pooling we sum the real token vectors and divide by the number of real positions.
+
+Imagine a two-token sentence padded to four positions. The denominator for its mean is two. If encoding the same sentence beside a longer one changes its representation substantially, inspect the mask and denominator first. L2 normalization then scales a nonzero sentence vector to length one.
+
 Before you start
 Exercise 75 (prepare the environment and freeze the encoder) · Exercise 78 (measure search before changing the model) · Exercise 158 (require and observe a GPU execution provider)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

@@ -3,6 +3,20 @@ Exercise 41  Collect a bounded kernel report
 Question
 Can this installation collect the counters required for one chosen kernel?
 
+Technology background
+
+Nsight Compute and hardware counters
+
+Nsight Compute examines selected GPU kernels in detail. Hardware counters record events such as memory traffic or executed operations. A profiler can combine counters into measures of achieved throughput and may need multiple passes to collect them. This differs from measuring the duration of an entire request.
+
+Pick one named kernel and a bounded input. First check its numerical result. Then look for a kernel report containing the requested metric and unit. A permissions error or an unavailable metric is a finding about measurement access and supplies no value for that counter.
+
+Nsight Systems, NVTX and CUPTI timelines
+
+Nsight Systems records a timeline across CPU threads, CUDA API calls and supported GPU activity. NVTX lets the application name a region such as “iteration 2”. CUPTI is an NVIDIA interface that tools can use to collect activity records. A host range describes what the CPU was doing while it was open.
+
+Start with one named iteration. Look for the CPU launch call, then the corresponding GPU work with usable start and end times. A launch returning to the CPU does not mark the end of device execution. Zero device timestamps leave the duration unresolved.
+
 Before you start
 Exercise 32 (build debug and performance variants)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

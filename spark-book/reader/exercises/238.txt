@@ -3,6 +3,20 @@ Exercise 238  Compare residency and bounded worker service
 Question
 How do residency and prompt caching affect the apparent benefit of concurrency?
 
+Technology background
+
+Ollama, local model names and residency
+
+Ollama runs a local service that manages models and exposes generation and embedding endpoints. A local model name identifies what to request. Importing a GGUF file creates a usable model entry, while loading it creates a running model that consumes resources. A residency setting influences how long it can stay loaded between calls.
+
+Read the installed model list, then inspect the running models around a bounded request. For streamed generation, read the sequence of JSON objects through the final completion record. For embeddings, inspect vector count, dimension and response model identity.
+
+Sharing a GPU and owning a model
+
+Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers.
+
+NVIDIA Multi-Process Service, or MPS, is a separate GPU scheduling facility with platform requirements. It does not automatically merge separate model copies. The single-owner queue in this lab lets us study waiting, cancellations and sharing on the available laptop without assuming MPS support.
+
 Before you start
 Exercise 236 (import a model and diagnose stream completion) · Exercise 132 (batch compatible work and bound admission)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

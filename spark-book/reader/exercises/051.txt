@@ -3,6 +3,14 @@ Exercise 51  Write one output element per thread
 Question
 How do row, column and inner dimension determine one matrix output?
 
+Technology background
+
+Matrix multiplication on the GPU
+
+Each entry of a matrix product is a dot product. Multiply elements from one row of the left matrix by the corresponding elements of one column of the right matrix and add them. An input with shape (2, 3) can multiply one with shape (3, 4) to produce a (2, 4) result.
+
+A simple kernel assigns one output entry to each thread. A tiled kernel reuses input values across a block to reduce repeated global-memory reads. Start with an asymmetric rectangular example and a separate CPU calculation before timing the optimized variant.
+
 Before you start
 Exercise 50 (write a histogram with atomic accumulation)
 NVCC and host C++ compiler; small bounded tensors, no model download.

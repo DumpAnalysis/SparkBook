@@ -1,10 +1,10 @@
 # Local AI on RTX Spark Laptops
 
-Version 56 of the learner companion supplies the code, fixtures and guides for all 251 exercises in *Local AI on RTX Spark Laptops*. The worked system is a 64 GB unified-memory RTX Spark laptop with the Windows NVIDIA driver mapped into WSL2.
+Version 58 of the learner companion supplies the code, fixtures and guides for all 251 exercises in *Local AI on RTX Spark Laptops*. The worked system is a 64 GB unified-memory RTX Spark laptop with the Windows NVIDIA driver mapped into WSL2.
 
 ## Start in WSL2
 
-Clone the repository into a staging directory. Run the integrity check before creating a working lab.
+Extract the matching Version 58 release in WSL2, or clone the repository when its README identifies Version 58. From the release’s spark-book directory, run the integrity check before creating a working lab. Supply --book /path/to/Local_AI_on_RTX_Spark_Laptops_Version58.docx to check the exact manuscript as well.
 
 ```bash
 mkdir -p ~/work
@@ -24,6 +24,16 @@ python3 reader/preflight.py --require-wsl
 
 Follow [Start here](spark-book/reader/START_HERE.txt) and [Fresh setup](spark-book/reader/FRESH_SETUP.txt) to prepare the environment. Exercises 1–9 lead to the first native model run. Exercise 23 records its acceptance result. Each later exercise identifies the packages, model or image downloads, hardware, and service credentials it needs.
 
+## New to a technology
+
+Every numbered exercise guide includes its background before the procedure. For example, Exercise 1 introduces Bash and the WSL2 guest. Exercise 151 explains how to distinguish a served model from the backend that executed it. You can also browse [Technology overviews](spark-book/reader/TECHNOLOGY_OVERVIEWS.md) or look up a topic in your working lab.
+
+```bash
+python3 reader/technologies.py 1
+python3 reader/technologies.py --find "Triton"
+python3 reader/technologies.py --list
+```
+
 ## Find a procedure and read its transcript
 
 From the working lab, use the same exercise number as the book. The lookup shows the printed page, execution scope, outcome and files you can open locally.
@@ -34,10 +44,10 @@ python3 reader/guide.py 129
 python3 reader/records.py 129 --files
 ```
 
-Readers with the Word edition can also export the 483 published transcripts to `runs/book-transcripts/`. Supply the path to your DOCX. The exporter checks each transcript before writing it. Readers using the printed book or PDF can use the page numbers directly. [Transcript guide](spark-book/reader/EVIDENCE.txt)
+The companion includes the 483 full published transcripts. Export them as individual UTF-8 files from the working lab. To compare directly with your Word edition, supply its filename to the exporter and choose a different output directory. The exporter verifies the same 483 checksums for either source. [Transcript guide](spark-book/reader/EVIDENCE.txt)
 
 ```bash
-python3 reader/import_transcripts.py /path/to/Local_AI_on_RTX_Spark_Laptops_Version56.docx
+python3 reader/import_transcripts.py
 python3 reader/records.py 129 --files
 ```
 

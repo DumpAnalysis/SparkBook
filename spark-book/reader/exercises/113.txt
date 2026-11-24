@@ -3,6 +3,20 @@ Exercise 113  Localize the failing quality boundary
 Question
 Which boundary first changes a correct quality decision into a wrong one?
 
+Technology background
+
+Grounding a model in retrieved evidence
+
+A language model can answer from the text supplied in its prompt. Grounding means requiring its factual claims to agree with identifiable evidence. A retrieval step can select passages before generation. Together these operations are often called retrieval-augmented generation, or RAG. A small lab can select evidence directly from local files.
+
+Take one claim in the answer and find the exact log line that supports it. If there is no such line, describe the claim as a hypothesis. This works even before a vector search engine is introduced.
+
+Diagnostic observations, controls and written conclusions
+
+A diagnostic observation is something a reader can check in an artifact, such as a response status or a timestamp. A hypothesis proposes an explanation. A control changes or removes a suspected factor so that competing explanations predict different observations. An oracle supplies an expected result against which a computation can be checked.
+
+For the fictional R17 incident, start with one observed event. Name two explanations consistent with it, then say what you would measure to tell them apart. The remaining uncertainty is part of the conclusion. This same method applies later to kernels, generated images and stalled workers.
+
 Before you start
 Exercise 15 (build an evidence prompt) · Exercise 78 (measure search before changing the model)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

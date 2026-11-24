@@ -1,5 +1,5 @@
 Local AI on RTX Spark Laptops
-Learner companion Version 56 — 31 October 2026
+Learner companion Version 58 — 31 October 2026
 
 START HERE
 Read reader/START_HERE.txt. Clone https://github.com/DumpAnalysis/SparkBook or unzip the companion
@@ -21,6 +21,10 @@ The first-inference route is Exercises 1–9, then 23. It uses the native
 runtime and does not require PyTorch. Exercise 14 qualifies the framework
 before its routes; Exercise 251 remains an advanced memory investigation.
 
+TECHNOLOGY BACKGROUND
+Each numbered guide includes the full background for its exercise.
+Use python3 reader/technologies.py --find "UMAP" or open reader/TECHNOLOGY_OVERVIEWS.md.
+
 MATERIALS
 The working programs, 251 exercise guides, test data, training checkpoints and
 module-specific dependency lists are in the spark-book/ directory. The public
@@ -29,7 +33,7 @@ instructions to acquire its model weights, runtime or container image.
 
 Run python3 reader/records.py NUMBER --files to find the guide and printed run
 pages. To read the printed commands and results in local text files, run
-python3 reader/import_transcripts.py /path/to/book.docx from your working lab.
+python3 reader/import_transcripts.py from your working lab.
 See reader/EVIDENCE.txt for the output location and scope.
 
 VALIDATION

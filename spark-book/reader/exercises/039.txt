@@ -3,6 +3,14 @@ Exercise 39  Capture four annotated iterations
 Question
 Can we see the four host annotations alongside actual device activity?
 
+Technology background
+
+Nsight Systems, NVTX and CUPTI timelines
+
+Nsight Systems records a timeline across CPU threads, CUDA API calls and supported GPU activity. NVTX lets the application name a region such as “iteration 2”. CUPTI is an NVIDIA interface that tools can use to collect activity records. A host range describes what the CPU was doing while it was open.
+
+Start with one named iteration. Look for the CPU launch call, then the corresponding GPU work with usable start and end times. A launch returning to the CPU does not mark the end of device execution. Zero device timestamps leave the duration unresolved.
+
 Before you start
 Exercise 32 (build debug and performance variants)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

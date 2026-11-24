@@ -3,6 +3,20 @@ Exercise 85  Continue the saved model with its tokenizer
 Question
 Can training continue from the saved encoder without changing its token IDs?
 
+Technology background
+
+BERT, WordPiece and masked language modeling
+
+BERT is a transformer encoder that builds a representation of a token using surrounding input on both sides. A WordPiece tokenizer splits text into vocabulary entries, sometimes parts of words, and maps them to integer IDs. A masked-language-model objective hides selected positions and trains the encoder to predict their original tokens.
+
+In this exercise we train a small vocabulary and a small BERT on teaching text. Try a known phrase with one masked word and inspect its token IDs and candidate predictions. Save the tokenizer with the model. Reassigning an ID would cause the same number to name a different token.
+
+Checkpoints, adapters and merged weights
+
+A checkpoint is saved state that a later process can open. An adapter may contain only changes to named layers and still require the exact base model. A merged checkpoint incorporates those changes into the weights intended for deployment. A file format such as safetensors stores arrays and their types.
+
+A successful save and load proves that a representation could be read. To test numerical fidelity, use identical inputs before and after saving and compare the resulting scores, called logits, or the generated tokens. To resume training, also account for optimizer and other training state in Exercise 69.
+
 Before you start
 Exercise 83 (train WordPiece and a small BERT from scratch) · Exercise 84 (inspect the tokenizer and masked predictions)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.

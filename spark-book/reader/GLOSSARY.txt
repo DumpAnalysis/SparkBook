@@ -1,3 +1,6 @@
+For beginner explanations and worked examples, open reader/TECHNOLOGY_OVERVIEWS.md
+or run python3 reader/technologies.py NUMBER from the working lab.
+
 Allocation and residency
 An allocation grants storage through an API. Residency describes where its backing is currently located; a successful allocation does not establish physical placement.
 

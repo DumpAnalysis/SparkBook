@@ -3,6 +3,26 @@ Exercise 202  Connect speech recognition to a local language model and speech sy
 Question
 Can a voice-pipeline error be localized to recognition, generation or synthesis?
 
+Technology background
+
+Connecting speech recognition, generation and synthesis
+
+A speech assistant can contain three independent model calls. The recognizer produces text, the language model answers it, and the synthesizer produces speech from that answer. A plausible final recording can hide a transcription error or a changed instruction in an intermediate step.
+
+Carry one request ID through all three stages. Retain the input audio identity, transcript, generated reply and output audio identity. Listen to the input before blaming the recognizer, and compare the reply with the text passed to synthesis. This lets you locate the first change that explains the final symptom.
+
+Speech recognition with Whisper
+
+Automatic speech recognition turns sound into text. Whisper processes acoustic features from audio, then decodes text tokens. The expected sampling rate, language and decoding settings affect the input or output. A fluent sentence is possible even when the audio contains little evidence for it.
+
+Start with a known utterance and its reference wording. Save the original audio, hypothesis and settings together. Try a silent or non-speech control and inspect what was produced. For longer recordings, retain chunk start times so text can be traced back to the corresponding audio.
+
+Text-to-speech with MMS and VITS
+
+A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.
+
+Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard.
+
 Before you start
 Exercise 5 (start the baseline server) · Exercise 192 (synthesize a short diagnostic statement) · Exercise 196 (transcribe the retained speech control)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

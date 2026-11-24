@@ -3,6 +3,20 @@ Exercise 155  Account for RMM allocations and device headroom
 Question
 What does the RMM allocator report under alternative pool policies?
 
+Technology background
+
+RAPIDS Memory Manager and allocation statistics
+
+GPU dataframe and machine-learning operations allocate temporary as well as long-lived buffers. RAPIDS Memory Manager, or RMM, provides memory resources through which participating libraries obtain device storage. A pool can hold memory between operations and fulfill several small allocations from its reserve.
+
+Record RMM’s statistics before, during and after the same operation. Compare peak and current bytes with the device-level free-memory reading. The statistics describe allocations that passed through the monitored resource. Other libraries and processes may allocate outside it.
+
+PyTorch allocator snapshots and tensor ownership
+
+When a program creates a CUDA tensor, PyTorch obtains storage for it. Its allocator can retain unused blocks so that the next tensor can reuse them. Allocated bytes describe storage currently used by tensors. Reserved bytes include blocks held by the allocator. A management tool has a broader view again.
+
+An allocator snapshot records blocks and their state, and can include allocation history if recording was enabled. To inspect numerical content, explicitly copy a small selected tensor. When diagnosing growth, first release the object that owns it, then compare live and reserved bytes in the same process.
+
 Before you start
 Exercise 153 (compare a cuDF aggregation with the CPU control)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

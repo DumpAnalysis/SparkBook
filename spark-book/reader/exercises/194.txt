@@ -3,6 +3,20 @@ Exercise 194  Test text normalization pronunciation and reproducibility
 Question
 Which changes arise from text normalization and which from repeated synthesis?
 
+Technology background
+
+Text-to-speech with MMS and VITS
+
+A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.
+
+Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard.
+
+Prompts, generated answers and acceptance checks
+
+A chat prompt can contain messages with different roles. The system message sets overall instructions, while the user message supplies the task and its evidence. The model generates a sequence of tokens. A finish reason records why generation ended, such as a normal stop or an output length limit.
+
+An answer can be fluent and still miss the task. If a prompt asks for two observations, count them and check both against the supplied lines. Recording the prompt, the complete reply and its finish reason lets a second reader grade that same answer.
+
 Before you start
 Exercise 192 (synthesize a short diagnostic statement)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

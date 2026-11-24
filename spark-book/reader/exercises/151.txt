@@ -3,6 +3,26 @@ Exercise 151  Qualify an ONNX GPU backend and version changes
 Question
 Which parts of GPU-backed ONNX serving can this laptop independently verify?
 
+Technology background
+
+ONNX graphs and ONNX Runtime execution providers
+
+ONNX describes a model as a graph of operations, named inputs and outputs, and stored parameters. An opset specifies the operator definitions the graph expects. ONNX Runtime executes a graph by assigning supported groups of operations to execution providers, for example a CPU provider or the CUDA provider.
+
+Check the graph structure and run a known input against an independent numerical result. Then examine provider assignment for the relevant nodes. A listed CUDA provider establishes availability. An assignment log establishes placement, while timed device activity requires a usable trace.
+
+NVIDIA Triton Inference Server and model repositories
+
+NVIDIA Triton Inference Server serves models through named backends. Its model repository contains model names, numbered version directories and configuration describing input and output tensors. A Python backend can implement an encoder. Other backends can execute an ONNX graph or a TensorRT engine.
+
+Follow a small request from its input name and shape to the returned embedding. Check the model version that actually answered. Dynamic batching can combine several requests into one backend execution, so request count and execution count need not match. The Triton kernel programming language introduced in Exercise 101 is a different project.
+
+Nsight Systems, NVTX and CUPTI timelines
+
+Nsight Systems records a timeline across CPU threads, CUDA API calls and supported GPU activity. NVTX lets the application name a region such as “iteration 2”. CUPTI is an NVIDIA interface that tools can use to collect activity records. A host range describes what the CPU was doing while it was open.
+
+Start with one named iteration. Look for the CPU launch call, then the corresponding GPU work with usable start and end times. A launch returning to the CPU does not mark the end of device execution. Zero device timestamps leave the duration unresolved.
+
 Before you start
 Exercise 150 (versioned Triton serving). For the later GPU comparison, complete Exercise 158 (provider placement).
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Check repository values, provider placement and the version switch separately. Require usable kernel intervals for the tracing criterion.
+
+Reading the result
+Read three results independently. The deployed service passed v1, v2 and rollback vector checks. Backend logs placed nine optimized nodes on CUDAExecutionProvider. The four elevated diagnostic probes returned eight kernel records with zero timestamps, leaving device timing blocked.
 
 Run in your lab
 Begin with the CPU repository control from Exercise 150. Exercise 158 supplies the later provider-placement check. Return here for the GPU serving and trace criteria after that check.

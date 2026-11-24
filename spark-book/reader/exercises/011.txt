@@ -3,6 +3,20 @@ Exercise 11  Compare two quantizations
 Question
 Does changing weight precision change the answer as well as memory use?
 
+Technology background
+
+Quantization and weight formats
+
+Quantization represents numbers using fewer possible values. A weight group can share a scale so a small integer represents an approximate weight. Four bits can encode sixteen patterns. A real Q4 file also stores scales, metadata and sometimes tensors at other precisions, so its byte count need not be exactly half that of Q8.
+
+The smaller file is easier to place in memory. Approximation can change the generated tokens. Compare the same prompt with the same context, output cap and runtime settings. Keep the finish reason alongside reply quality and measured latency.
+
+Prompts, generated answers and acceptance checks
+
+A chat prompt can contain messages with different roles. The system message sets overall instructions, while the user message supplies the task and its evidence. The model generates a sequence of tokens. A finish reason records why generation ended, such as a normal stop or an output length limit.
+
+An answer can be fluent and still miss the task. If a prompt asks for two observations, count them and check both against the supplied lines. Recording the prompt, the complete reply and its finish reason lets a second reader grade that same answer.
+
 Before you start
 Exercise 4 (download and fingerprint) · Exercise 8 (measure repeated local requests)
 Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Verify both weight identities, match the request bodies, and inspect finish reasons and complete answers against the same rubric.
+
+Reading the result
+Read the finish reason before judging reply quality. Q4 stopped normally. Q8 reached the 128-token cap and its last sentence was incomplete.
 
 Run in your lab
 Begin with the 4096-token Q4 GPU owner restored in Exercise 10. Send the same prompt to the Q4 and Q8 models. Restore Q4 before the next control.

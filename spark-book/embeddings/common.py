@@ -15,16 +15,21 @@ def pool(hidden,mask):
     if np.any(m.sum(1)==0): raise ValueError('empty sequence')
     return (h*m[:,:,None]).sum(1)/m.sum(1)[:,None]
 
-def metrics(q,d,relevant):
+def metrics(q,d,relevant,include_ranks=False):
     q=normalize(q);d=normalize(d)
     if len(q)!=len(relevant) or any(not r or min(r)<0 or max(r)>=len(d) for r in relevant): raise ValueError('relevance')
     order=np.argsort(-(q@d.T),axis=1,kind='stable')
-    recall1=[];recall3=[];rr=[]
+    recall1=[];recall3=[];rr=[];first_ranks=[]
     for rank,rel in zip(order,relevant):
         recall1.append(len(set(rank[:1])&set(rel))/len(rel))
         recall3.append(len(set(rank[:3])&set(rel))/len(rel))
-        rr.append(1/next(i+1 for i,j in enumerate(rank) if j in rel))
-    return dict(recall_at_1=float(np.mean(recall1)),recall_at_3=float(np.mean(recall3)),mrr=float(np.mean(rr)))
+        first_rank = next(i+1 for i,j in enumerate(rank) if j in rel)
+        first_ranks.append(first_rank)
+        rr.append(1/first_rank)
+    result = dict(recall_at_1=float(np.mean(recall1)),recall_at_3=float(np.mean(recall3)),mrr=float(np.mean(rr)))
+    if include_ranks:
+        result['first_relevant_ranks'] = first_ranks
+    return result
 
 def sha_file(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def save_json(path,obj):

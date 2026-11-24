@@ -23,8 +23,10 @@ def main():
     print(f"Exercise {args.exercise}  {entry['title']} (book p. {entry['book_page']})")
     print(entry['evidence_note'])
     selected = [row for row in runs if row['exercise'] == args.exercise]
-    if not selected:
-        print('This exercise has no separate printed capture. Read its assessment on the page above.')
+    if entry.get('record_locator'):
+        print(entry['record_locator'])
+    shared_ids = set(entry.get('shared_record_ids', []))
+    selected.extend(row for row in runs if row['id'] in shared_ids)
     for number in entry.get('shared_capture_exercises', []):
         print(f'Shared captures: python3 reader/records.py {number}')
     for row in selected:
@@ -41,7 +43,7 @@ def main():
         for path in entry.get('companion_files', []):
             print('Exercise file: '+str(ROOT/path))
         if selected and not args.transcripts.is_dir():
-            print('For a text copy from the DOCX, run python3 reader/import_transcripts.py /path/to/book.docx.')
+            print('For verified plain text, run python3 reader/import_transcripts.py in your working lab.')
     print('This lookup does not execute the experiment.')
 
 

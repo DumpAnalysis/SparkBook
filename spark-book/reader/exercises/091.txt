@@ -3,6 +3,14 @@ Exercise 91  Establish the monitoring contract
 Question
 How does the monitor represent an unavailable GPU field?
 
+Technology background
+
+GPU metrics, samples and missing observations
+
+A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+
+Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.

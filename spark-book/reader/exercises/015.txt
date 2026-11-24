@@ -3,6 +3,20 @@ Exercise 15  Build an evidence prompt
 Question
 Which source records does the model actually receive?
 
+Technology background
+
+Grounding a model in retrieved evidence
+
+A language model can answer from the text supplied in its prompt. Grounding means requiring its factual claims to agree with identifiable evidence. A retrieval step can select passages before generation. Together these operations are often called retrieval-augmented generation, or RAG. A small lab can select evidence directly from local files.
+
+Take one claim in the answer and find the exact log line that supports it. If there is no such line, describe the claim as a hypothesis. This works even before a vector search engine is introduced.
+
+Prompts, generated answers and acceptance checks
+
+A chat prompt can contain messages with different roles. The system message sets overall instructions, while the user message supplies the task and its evidence. The model generates a sequence of tokens. A finish reason records why generation ended, such as a normal stop or an output length limit.
+
+An answer can be fluent and still miss the task. If a prompt asks for two observations, count them and check both against the supplied lines. Recording the prompt, the complete reply and its finish reason lets a second reader grade that same answer.
+
 Before you start
 Exercise 3 (verify the client without a model)
 Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).

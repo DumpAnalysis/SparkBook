@@ -3,6 +3,20 @@ Exercise 234  Prepare a versioned Jev request and optional service run
 Question
 What must be known before an optional hosted Jev request is qualified?
 
+Technology background
+
+Jev decision models and typed questions
+
+Jev takes supplied state and typed questions about it. Choice selects from named options. Score represents a result on an ordered rubric. Noul answers a yes-or-no question with a probability of yes. The response fields differ, so the caller must use the contract for the particular question type.
+
+Imagine routing an incident to storage or networking. Compare the returned label with its distribution, then inspect the separate confidence field where the contract supplies one. The local fixtures exercise how the client checks these responses. The optional hosted-service procedure has its own execution status.
+
+Clients, servers and a local HTTP request
+
+A server waits for requests. A client sends one to an address and a port. The address 127.0.0.1 means this machine’s loopback interface. An HTTP request names an operation and may carry a body. Here, JSON expresses that body as named fields, such as a model name and a prompt.
+
+Exercise 3 uses a fixture, a small server with a known reply, to test the client before loading any weights. First read the HTTP status, then the body. A successful exchange tells us the two programs communicated. Grading a generated answer requires a separate check of its contents.
+
 Before you start
 Exercise 232 (verify Choice, Score and Noul contracts) · Exercise 233 (measure calibration and risk versus coverage)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Inspect model identity, request version, payload and destination. Keep an unsent plan separate from a returned service response.
+
+Reading the result
+Inspect the versioned Jev request plan before sending it. The recorded exercise prepared the request and stopped at the missing credential. Service execution remains unmeasured.
 
 Run in your lab
 Plan mode sends nothing. The optional hosted procedure is separate from local contract and calibration controls.

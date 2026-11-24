@@ -3,6 +3,20 @@ Exercise 243  Qualify llmster and distinguish inventory from residency
 Question
 How can we distinguish a successful installation from a resident model?
 
+Technology background
+
+LM Studio, llmster and the lms command line
+
+LM Studio can run a headless service called llmster. In this book that service and its lms command-line client run in WSL2. Importing a model makes its files available to the runtime. Loading creates an active model instance. The server then exposes an endpoint that a separate client can call.
+
+Compare the catalog of downloaded models with the list of loaded instances before and after a request. A first request can include just-in-time loading. Record that separately from a later warm request and check that the reply identifies the model you intended.
+
+Loading a model with llama.cpp
+
+llama.cpp is a native inference runtime. Its llama-server executable opens the model file, prepares memory for inference and listens for requests. The file on disk, the running process and the address clients call are three different things. A downloaded model alone cannot answer a prompt.
+
+Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

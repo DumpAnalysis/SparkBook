@@ -3,6 +3,20 @@ Exercise 35  Launch under CUDA-GDB and inspect a device buffer
 Question
 Can the debugger stop where the device buffer is still live?
 
+Technology background
+
+CUDA-GDB, breakpoints and exception cores
+
+A debugger can stop an executing program at a breakpoint so you can inspect its current state. For CUDA, selecting a kernel, block and thread identifies whose registers and variables you are examining. Symbols connect source names and line information with a particular build.
+
+An exception core permits later inspection of state that the platform captured at a fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
+
+A device buffer, a tensor snapshot and a GPU core dump
+
+Each of these artifacts answers a different question. A buffer dump copies bytes from a selected allocation after the program finishes writing it. To decode the bytes you need their element type, shape and byte order. A framework allocator snapshot describes allocations and their histories. A GPU exception core records supported debugging state when execution faults.
+
+Begin with a buffer initialized to a known pattern. Synchronize, export just that allocation, decode a few elements and compare them with the pattern. A matching payload checks this buffer at that point in the program.
+
 Before you start
 Exercise 32 (build debug and performance variants) · Exercise 34 (export one synchronized device allocation)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

@@ -3,6 +3,20 @@ Exercise 215  Provision and qualify the Grafana dashboard
 Question
 Can the dashboard distinguish missing telemetry from an observed idle GPU?
 
+Technology background
+
+Grafana dashboards and data sources
+
+Grafana displays results queried from a data source, here Prometheus. A dashboard contains panels. Each panel applies a query, a time range and display settings such as units. Provisioning describes these connections and panels in files that another installation can reproduce.
+
+Choose one GPU memory panel. Read its data source, expression and unit, run that expression directly in Prometheus and compare the same time window. An empty panel can result from a label mismatch or an unsuitable time range even when the exporter has working data.
+
+Prometheus, exporters and time series
+
+Prometheus asks configured targets for metrics at intervals called scrapes. An exporter translates another system’s measurements into named values that Prometheus can read. Labels distinguish series, for example by device. A gauge can rise or fall, while a counter usually accumulates events until its process restarts.
+
+Trace one value from the original provider through the exporter’s metrics response to a raw Prometheus query. The lab’s WSL2 exporter can indicate when a management field is unavailable. NVIDIA’s DCGM exporter is another possible data source where DCGM is supported. A successful scrape says the endpoint answered.
+
 Before you start
 Exercise 214 (start and inspect the native WSL2 stack)
 The monitoring binaries from Exercise 212, a working Playwright Chromium installation in WSL2 and the four monitoring ports free.

@@ -3,6 +3,14 @@ Exercise 105  Construct an analytic roofline
 Question
 Would reducing bytes moved or arithmetic work matter more under the assumed ceilings?
 
+Technology background
+
+Roofline models of kernel performance
+
+A roofline relates work performed to data moved. Arithmetic intensity is operations divided by bytes transferred at a stated memory boundary. Multiplying that intensity by bandwidth gives a memory-based ceiling. The smaller of that number and the compute ceiling gives the model’s upper bound for that intensity.
+
+For example, two operations per byte and an assumed 100 GB/s give a 200 billion operations/s memory ceiling. Those are teaching inputs. An achieved point for this laptop requires measured work, time and an appropriate account of memory traffic. Keep estimated and measured values labeled.
+
 Before you start
 Exercise 32 (build debug and performance variants) · Exercise 91 (establish the monitoring contract)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

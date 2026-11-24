@@ -3,6 +3,20 @@ Exercise 28  Learn partial offload with the small model
 Question
 Where do weights and buffers move when fewer layers use CUDA?
 
+Technology background
+
+CPU execution and partial GPU offload
+
+A model is an ordered computation built from layers. A runtime can execute some layers on the GPU and others on the CPU. The boundary may require moving intermediate results. Decoder state, work buffers and the operating system also need memory while a request runs.
+
+A CPU control runs the workload with GPU layers disabled. Compare it with a run that requests GPU layers. In both cases inspect the loader’s actual layer and buffer report, then submit the same prompt. The requested layer count alone cannot tell us what placement the runtime achieved.
+
+Loading a model with llama.cpp
+
+llama.cpp is a native inference runtime. Its llama-server executable opens the model file, prepares memory for inference and listens for requests. The file on disk, the running process and the address clients call are three different things. A downloaded model alone cannot answer a prompt.
+
+Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server.
+
 Before you start
 Exercise 5 (start the baseline server) · Exercise 8 (measure repeated local requests)
 Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.

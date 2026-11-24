@@ -3,6 +3,20 @@ Exercise 190  Measure the cost of a longer audio sequence
 Question
 How does a longer token budget affect generated duration and wall time?
 
+Technology background
+
+MusicGen and discrete audio tokens
+
+MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file.
+
+Generate one short clip and record the prompt, seed, number of generated steps, waveform shape and sample rate. Derive playback duration from the waveform. Listening answers questions about music or artifacts that a successful WAV write and the model’s timing numbers cannot settle.
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
 Before you start
 Exercise 188 (generate a short music clip from a description)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

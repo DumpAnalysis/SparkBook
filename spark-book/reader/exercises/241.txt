@@ -3,6 +3,20 @@ Exercise 241  Resume with the original optimizer and base identity
 Question
 Does resumed QLoRA training reuse the intended optimizer, adapter and base?
 
+Technology background
+
+Unsloth, QLoRA and a training smoke test
+
+Unsloth provides training integrations for supported models and environments. QLoRA stores a frozen base model in low precision and trains small LoRA adapter parameters with higher-precision computation where required. This reduces the storage needed for base weights, while activations and optimizer state still require memory.
+
+A smoke test runs a few bounded updates to establish that this stack works together. Inspect the frozen base identity, the trainable set, supervised tokens and a change in the adapter. For recovery, compare the next optimizer update after resuming. Task quality requires a separate held-out evaluation.
+
+Gradients, optimizers and resuming an update
+
+A gradient tells an optimizer how the loss changes as a trainable value changes. AdamW also carries running estimates derived from earlier gradients. A training process may keep random-number state, a batch position and a scaler for limited-precision arithmetic. Live tensors retained by Python can change the memory picture.
+
+To test recovery, save at a known step, resume in a new process and compare the next batch, loss and updated parameters with an uninterrupted run. Restoring only the visible model weights can produce the same immediate prediction yet a different next update.
+
 Before you start
 Exercise 240 (run a bounded QLoRA smoke training session) · Exercise 69 (resume the next update with its complete state)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

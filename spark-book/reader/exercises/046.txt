@@ -3,6 +3,14 @@ Exercise 46  Decouple the grid from the data length
 Question
 Can a smaller grid still give every element exactly one owner?
 
+Technology background
+
+Writing a CUDA kernel with threads and blocks
+
+A kernel is a function that many GPU threads execute on different data. Threads are grouped into blocks, and the blocks form a grid. In one dimension, a thread can compute its element index from its block number, block size and position inside the block.
+
+Imagine adding two vectors of length five with blocks of four threads. Two blocks supply eight thread positions. Only indices zero through four correspond to elements. A bounds check protects the tail. A grid-stride loop lets each valid thread handle further elements when the vector is much longer than the grid.
+
 Before you start
 Exercise 45 (write vector addition with a tail guard)
 NVCC and host C++ compiler; small bounded tensors, no model download.

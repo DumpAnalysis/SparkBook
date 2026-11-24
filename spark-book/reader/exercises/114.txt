@@ -3,6 +3,20 @@ Exercise 114  Transfer the method to retrieval and fine tuning
 Question
 Would changing retrieval, context assembly or decoding address this observed failure?
 
+Technology background
+
+Retrieval, relevance labels and rank metrics
+
+A retrieval system compares a query with a collection of documents and returns an ordered list. Relevance labels tell the evaluator which documents answer a particular query. The top match can be semantically similar yet irrelevant to the question, so retain query and document identifiers alongside their scores.
+
+Recall at k measures the fraction of relevant documents found in the first k places. Reciprocal rank uses the position of the first relevant result. A first relevant result at rank four contributes 0.25. Mean reciprocal rank, or MRR, averages those contributions across queries. Inspect individual ranks when the test set is small.
+
+Datasets, labels and independent evaluation
+
+A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
+
+If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together.
+
 Before you start
 Exercise 113 (localize the failing quality boundary)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

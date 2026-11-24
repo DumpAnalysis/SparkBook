@@ -3,6 +3,20 @@ Exercise 43  Capture operator and GPU activity
 Question
 Does the profiler show device execution as well as CPU operator calls?
 
+Technology background
+
+PyTorch Profiler and operators
+
+A framework operator is a named operation such as matrix multiplication. PyTorch Profiler can collect CPU-side operator events and, where supported, GPU activity. A trace viewer draws each event on the track of the thread or device that produced it. One Python operation can issue several kernels.
+
+Choose a short, named operation and check both tracks. A CPU operator range can include launches and waiting. To report GPU execution time, find valid device intervals for the workload. If the native model runs in a separate process, identify that process before interpreting a client trace.
+
+Nsight Systems, NVTX and CUPTI timelines
+
+Nsight Systems records a timeline across CPU threads, CUDA API calls and supported GPU activity. NVTX lets the application name a region such as “iteration 2”. CUPTI is an NVIDIA interface that tools can use to collect activity records. A host range describes what the CPU was doing while it was open.
+
+Start with one named iteration. Look for the CPU launch call, then the corresponding GPU work with usable start and end times. A launch returning to the CPU does not mark the end of device execution. Zero device timestamps leave the duration unresolved.
+
 Before you start
 Exercise 14 (run a small synchronized computation)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

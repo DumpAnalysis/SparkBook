@@ -3,6 +3,20 @@ Exercise 40  Query an exported trace without assuming its schema
 Question
 Which event tables did this particular trace export actually contain?
 
+Technology background
+
+Reading an exported trace with SQLite
+
+SQLite stores a relational database in a file. Each table contains rows with named columns. A trace exporter can put API calls, kernels and text labels into different tables. SQL queries select rows or join tables through a recorded key, such as a correlation identifier.
+
+Inspect the available table names and column definitions before applying a query from another installation. Check the time units and find one known iteration. An empty result can mean the requested activity was never captured, the table has a different layout, or the filter selected no matching rows.
+
+Nsight Systems, NVTX and CUPTI timelines
+
+Nsight Systems records a timeline across CPU threads, CUDA API calls and supported GPU activity. NVTX lets the application name a region such as “iteration 2”. CUPTI is an NVIDIA interface that tools can use to collect activity records. A host range describes what the CPU was doing while it was open.
+
+Start with one named iteration. Look for the CPU launch call, then the corresponding GPU work with usable start and end times. A launch returning to the CPU does not mark the end of device execution. Zero device timestamps leave the duration unresolved.
+
 Before you start
 Exercise 39 (capture four annotated iterations)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

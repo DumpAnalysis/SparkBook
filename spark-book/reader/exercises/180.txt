@@ -3,6 +3,14 @@ Exercise 180  Verify forward corruption and an oracle reconstruction
 Question
 Does the forward-noise equation reconstruct the known clean input with the oracle noise?
 
+Technology background
+
+Diffusion, noise prediction and a sampling schedule
+
+A diffusion exercise starts with clean data and adds noise at a chosen level according to a schedule. A denoising model learns to estimate a quantity needed to step back toward a sample. Generation begins with noise and repeatedly updates it using the model and scheduler.
+
+The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved.
+
 Before you start
 Exercise 173 (create inspectable image and audio fixtures)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
@@ -34,4 +42,5 @@ Recorded result  PASSED — A fresh CPU diffusion control passed the exact-noise
 Scope  The small point-distribution experiment illustrates selected diffusion operations.
 
 Recorded files
+Run 181.01 includes the known-noise reconstruction oracle. Use the forward noise and reconstruction result to check the algebra.
 python reader/records.py 180 --files

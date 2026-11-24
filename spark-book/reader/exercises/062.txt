@@ -3,6 +3,20 @@ Exercise 62  Compare a matrix tile with cuBLAS and qualify CUTLASS
 Question
 Can an independent GEMM implementation verify the teaching kernel's result?
 
+Technology background
+
+Warps, Tensor Cores, cuBLAS and CUTLASS
+
+A warp is a group of 32 CUDA threads. Warp instructions can exchange values among participating lanes, which is useful in a reduction. Tensor Cores carry out supported small matrix multiply-and-accumulate operations. CUDA’s WMMA interface exposes such operations to a cooperating warp.
+
+cuBLAS is NVIDIA’s library of numerical linear algebra routines. CUTLASS provides C++ components for constructing optimized kernels and has a profiler for testing implementations. Match input types, matrix layout, dimensions and the numerical oracle before comparing implementations. A profiler disposition of “Not verified” leaves the correctness comparison open.
+
+Matrix multiplication on the GPU
+
+Each entry of a matrix product is a dot product. Multiply elements from one row of the left matrix by the corresponding elements of one column of the right matrix and add them. An input with shape (2, 3) can multiply one with shape (3, 4) to produce a (2, 4) result.
+
+A simple kernel assigns one output entry to each thread. A tiled kernel reuses input values across a block to reduce repeated global-memory reads. Start with an asymmetric rectangular example and a separate CPU calculation before timing the optimized variant.
+
 Before you start
 Exercise 61 (write and verify a warp reduction)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Compare the tile result with both CPU and cuBLAS references under the stated precision. Record CUTLASS qualification separately.
+
+Reading the result
+The 16×16×16 WMMA and cuBLAS runs agreed with their CPU references. The 512×512×512 CUTLASS run completed, but its verifier reported “Not verified.” Record the three outcomes individually.
 
 Run in your lab
 The command starts the small WMMA/cuBLAS comparison. CUTLASS requires its separate pinned profiler and compatible operation name as described below.

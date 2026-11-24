@@ -3,6 +3,20 @@ Exercise 37  Compare a valid kernel with a deliberate overrun
 Question
 Can the memory checker discriminate a valid write from a write past the end?
 
+Technology background
+
+Compute Sanitizer and CUDA correctness checks
+
+Compute Sanitizer observes a GPU program while it runs. Its tools check different properties. Memcheck examines memory accesses, racecheck detects supported shared-memory hazards, initcheck looks for uninitialized global-memory reads and synccheck examines synchronization use. Choose the tool that matches the question.
+
+Compare an intentionally defective teaching case with the otherwise equivalent valid control. Record whether instrumentation started, the reported location and the process exit. A numerical pass with the tool unavailable still leaves the requested instrumentation check open.
+
+Writing a CUDA kernel with threads and blocks
+
+A kernel is a function that many GPU threads execute on different data. Threads are grouped into blocks, and the blocks form a grid. In one dimension, a thread can compute its element index from its block number, block size and position inside the block.
+
+Imagine adding two vectors of length five with blocks of four threads. Two blocks supply eight thread positions. Only indices zero through four correspond to elements. A bounds check protects the tail. A grid-stride loop lets each valid thread handle further elements when the vector is much longer than the grid.
+
 Before you start
 Exercise 32 (build debug and performance variants)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

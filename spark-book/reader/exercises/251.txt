@@ -3,6 +3,26 @@ Exercise 251  Compare WSL2 and CUDA memory boundaries
 Question
 Can this WSL2 process write and verify more CUDA storage than the guest's measured RAM?
 
+Technology background
+
+Verifying a CUDA allocation above guest RAM
+
+A memory query returns the number reported by one interface at one moment. An allocation test makes a different observation. To show that several blocks were usable together, the program must retain them simultaneously, write distinguishable patterns, read them back and check the results before releasing them.
+
+On the worked laptop, guest MemTotal, the management-interface GPU total and CUDA’s reported budget are separate views of a unified-memory machine. Read the query, guarded 1 GiB pilot and optional 18 GiB target as successive stages. A successful target establishes the verified byte count for that run. Maximum capacity, physical residency and a model’s fit require different experiments.
+
+Bytes, memory budgets and unified memory
+
+One GiB is 1,073,741,824 bytes. On this 64 GB unified-memory laptop, Windows, the WSL2 guest and a CUDA process describe memory from different positions. The free command reports guest RAM. nvidia-smi reports the management interface’s GPU memory view. PyTorch can query the CUDA runtime for free and total bytes visible to its process.
+
+Keep the name, unit, time and calling process beside each value. The recorded 31,232 MiB management total and 45.97 GiB CUDA total overlap. Adding them would count some of the same capacity twice. Exercise 251 tests what an allocation can actually write and verify.
+
+Guest paging, Windows commit and vmstat
+
+When memory is under pressure the operating system may move pages between RAM and backing storage. In WSL2, vmstat reports guest activity. Its si and so columns show swap-in and swap-out rates. The first rate row normally summarizes time since boot. Later rows cover sampling intervals.
+
+Windows available physical memory and Windows commit headroom answer other questions. Commit headroom is the difference between the commit limit and committed bytes. Match timestamps from both systems to the actual request interval. Used swap by itself cannot establish that a slow request was paging.
+
 Before you start
 Exercise 1 (inventory the existing environment) · Exercise 14 (run a small synchronized computation) · Exercise 91 (establish the monitoring contract)
 Qualified CUDA framework; query first, then 1 GiB pilot. The optional 18 GiB stage needs all documented guest/host/device guards.
@@ -17,11 +37,16 @@ Predict before running
 Can the guest memory report alone predict whether the 18 GiB verification will pass?
 
 Run in your lab
-The entry is query-only. Read memory_budget/README.txt, record actual host headroom, run the 1 GiB pilot, and consider 18 GiB only if all stated guards pass. The advanced section retains the full procedure.
+Begin with the query only. Keep the CUDA-qualified Python interpreter from Exercise 14 active. The advanced procedure below starts a monitored 1 GiB pilot. The optional 18 GiB stage requires its completed receipt from this WSL boot and interpreter.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 python memory_budget/run.py --out "$LAB_RUN/memory-views"
+
+After the query, inspect the pilot before running the optional target.
+
+python memory_budget/guarded.py pilot --out "$LAB_RUN/memory-pilot"
+python memory_budget/guarded.py target --pilot "$LAB_RUN/memory-pilot" --out "$LAB_RUN/memory-above-guest"
 
 Interpret the result
 A bounded allocation pass does not establish maximum capacity, residency or model fit.

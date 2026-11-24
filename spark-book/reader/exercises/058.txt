@@ -3,6 +3,20 @@ Exercise 58  Check gradients and stream behavior independently
 Question
 Do the derivative and stream contracts hold independently of the forward values?
 
+Technology background
+
+Custom PyTorch operators and gradients
+
+A custom operator exposes compiled code as a named PyTorch operation. Its registration describes inputs and outputs. The dispatcher selects the appropriate implementation for a device. If the operation is to take part in training, PyTorch also needs a rule for propagating gradients backwards.
+
+First call the operator from Python on a small tensor and compare its output against a familiar operation. Check registration and gradient behavior separately. Then run on the caller’s selected stream. An operation can return the right value on the default stream while mishandling ordering elsewhere.
+
+CUDA streams, events and graphs
+
+A stream is an ordered queue of GPU work. Two streams may run work concurrently if dependencies and resources allow it. An event recorded after a producer lets a consumer stream wait for that producer. Double buffering lets one buffer accept new data while another is being processed.
+
+A CUDA Graph records a set of operations and their dependencies for replay with lower submission overhead. Keep the test’s input shapes and storage addresses consistent with its capture. Verify the resulting values. Actual overlap between streams requires device intervals that overlap in time.
+
 Before you start
 Exercise 57 (register and build the operator)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.

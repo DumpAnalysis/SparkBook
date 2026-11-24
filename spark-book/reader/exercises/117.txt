@@ -3,8 +3,22 @@ Exercise 117  Detect missing and inconsistent evidence
 Question
 Would the diagnosis survive a missing span, duplicate ID or wrong time unit?
 
+Technology background
+
+Checking the telemetry itself
+
+A monitoring pipeline can lose or distort evidence. A duplicate event can double a count, a wrong clock unit can stretch a duration a thousandfold, and a missing span can make a request look shorter. First check identities, timestamps, units and the relationship between related records.
+
+The exercise damages copies of a known trace and compares them with the unaltered directory. For aggregated latency, preserve both sum and count. A one-request group and a hundred-request group should contribute in proportion to their request counts when computing a combined mean.
+
+OpenTelemetry traces, spans and correlated logs
+
+A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it.
+
+Follow one synthetic request from its root span through retrieval and generation. Match a log to its span ID and look for a second attempt after a failure. Adding all span durations can double-count time when a parent includes a child or two operations overlap.
+
 Before you start
-Exercise 91 (establish the monitoring contract)
+Exercise 91 (establish the monitoring contract) · Exercise 111 (retain correlated spans and logs)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
 
 Recorded step time
@@ -14,11 +28,11 @@ Check for success
 Check that the validator rejects each injected observation fault and still accepts the clean control.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Use the directory produced by Exercise 111. It contains spans.jsonl and logs.jsonl. If you started a new shell or run, set REQUEST_TRACE_DIR to the absolute path of the earlier request directory.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
-: "${REQUEST_TRACE:?Set REQUEST_TRACE to the trace JSON produced by Exercise 111}"
-python diagnostics/lab.py audit --trace "$REQUEST_TRACE" --out "$LAB_RUN/audit"
+export REQUEST_TRACE_DIR="${REQUEST_TRACE_DIR:-$LAB_RUN/request}"
+python diagnostics/lab.py audit --trace "$REQUEST_TRACE_DIR" --out "$LAB_RUN/audit"
 
 Interpret the result
 Tie the diagnosis to a discriminating observation and a counterexample.

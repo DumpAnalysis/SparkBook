@@ -3,6 +3,14 @@ Exercise 140  Build and inspect the CPU service image
 Question
 What evidence binds this CPU service image to the code and architecture tested?
 
+Technology background
+
+Docker images, containers and volumes
+
+An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.
+
+Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content.
+
 Before you start
 Exercise 136 (establish an inference API contract)
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
@@ -31,7 +39,7 @@ Keep target deployment; retained qualification evidence.
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
 
-Recorded result  PASSED — Actual ARM64 Docker 29.9.2 access, pinned Python base identity, image build and nonroot configuration were captured. The compact build transcript is printed below; inspection and acquisition records remain in the companion. An image build qualifies the build, not readiness or a GPU workload.
+Recorded result  PASSED — Actual ARM64 Docker 29.9.2 access, pinned Python base identity, image build and nonroot configuration were captured. The numbered build transcript follows. Keep the native inspection and acquisition outputs from your own build. An image build qualifies the build, not readiness or a GPU workload.
 Scope  Image construction, device injection and a numerically correct response are separate deployment checks.
 
 Recorded files

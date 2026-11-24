@@ -3,6 +3,20 @@ Exercise 172  Qualify a separate media environment
 Question
 Which installed media dependencies and device path does this interpreter actually use?
 
+Technology background
+
+Images, waveforms and model processors
+
+An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
+
+Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript.
+
+Python environments, pip and binary wheels
+
+Python packages can contain interpreted code and compiled libraries. A wheel is an installable package archive. Its platform and interpreter tags matter on an ARM64 laptop. A source build may also need a compiler and matching Python development headers. A virtual environment keeps project packages together and selects an interpreter for the current shell.
+
+Use python -m pip with the same interpreter you use for the exercise. A successful dependency check, a successful import and a synchronized CUDA calculation each establish something different. When one fails, record its actual message before changing packages.
+
 Before you start
 Exercise 14 (run a small synchronized computation)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

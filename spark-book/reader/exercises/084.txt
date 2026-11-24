@@ -3,6 +3,14 @@ Exercise 84  Inspect the tokenizer and masked predictions
 Question
 What does the tokenizer actually expose at a masked position?
 
+Technology background
+
+BERT, WordPiece and masked language modeling
+
+BERT is a transformer encoder that builds a representation of a token using surrounding input on both sides. A WordPiece tokenizer splits text into vocabulary entries, sometimes parts of words, and maps them to integer IDs. A masked-language-model objective hides selected positions and trains the encoder to predict their original tokens.
+
+In this exercise we train a small vocabulary and a small BERT on teaching text. Try a known phrase with one masked word and inspect its token IDs and candidate predictions. Save the tokenizer with the model. Reassigning an ID would cause the same number to name a different token.
+
 Before you start
 Exercise 83 (train WordPiece and a small BERT from scratch)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.

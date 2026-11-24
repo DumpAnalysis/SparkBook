@@ -3,6 +3,20 @@ Exercise 76  Prove that pooling excludes padding
 Question
 Does padding change the sentence vector when the text stays fixed?
 
+Technology background
+
+Token vectors, attention masks and pooling
+
+A token encoder produces one vector for each input position. To process sentences of different lengths in the same batch, the tokenizer can add padding. An attention mask identifies positions containing real input. In masked mean pooling we sum the real token vectors and divide by the number of real positions.
+
+Imagine a two-token sentence padded to four positions. The denominator for its mean is two. If encoding the same sentence beside a longer one changes its representation substantially, inspect the mask and denominator first. L2 normalization then scales a nonzero sentence vector to length one.
+
+Sentence embeddings and semantic similarity
+
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+
+For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
+
 Before you start
 Exercise 75 (prepare the environment and freeze the encoder)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.

@@ -1,5 +1,5 @@
 {
-  "version": 56,
+  "version": 58,
   "scope": "Reader procedures and guidance; recorded evidence remains in the full companion",
   "exercises": [
     {
@@ -22,7 +22,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Find the kernel, architecture, guest memory and GPU-query results in your inventory. Distinguish a failed command with an exit code from a query the helper skipped.",
       "predict": "",
-      "timing": "0.63 s for Companion inventory (record 001.01)."
+      "timing": "0.63 s for Companion inventory (record 001.01).",
+      "background_topics": [
+        "wsl",
+        "shell"
+      ]
     },
     {
       "number": 2,
@@ -46,7 +50,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Reproduce the byte estimate from context length, layer count, KV heads and element width. Save the 4096-token prediction for Exercise 5.",
       "predict": "",
-      "timing": "0.12 s for Budget (record 002.01)."
+      "timing": "0.12 s for Budget (record 002.01).",
+      "background_topics": [
+        "model",
+        "budgets"
+      ]
     },
     {
       "number": 3,
@@ -70,7 +78,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Open fixture.json. Verify status 200 and the fixture text under valid, then status 404 under both wrong_route and wrong_model.",
       "predict": "",
-      "timing": "0.62 s for Fixture (record 003.01)."
+      "timing": "0.62 s for Fixture (record 003.01).",
+      "background_topics": [
+        "http",
+        "shell"
+      ]
     },
     {
       "number": 4,
@@ -96,7 +108,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match both runtime archives and both Q4 shards to the saved SHA-256 values. The Q4 shard sizes and the pinned revision must also agree.",
       "predict": "",
-      "timing": "8.9 s to rehash cached assets, extract the runtime and write the receipt (004.01). A first download has a different duration."
+      "timing": "8.9 s to rehash cached assets, extract the runtime and write the receipt (004.01). A first download has a different duration.",
+      "background_topics": [
+        "files",
+        "identifiers"
+      ]
     },
     {
       "number": 5,
@@ -120,7 +136,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Read the readiness reply, model alias and native placement log together. Compare the logged KV buffer with your Exercise 2 prediction.",
       "predict": "",
-      "timing": "6.3 s for Restart with placement logging (record 005.02)."
+      "timing": "6.3 s for Restart with placement logging (record 005.02).",
+      "background_topics": [
+        "server",
+        "model"
+      ]
     },
     {
       "number": 6,
@@ -144,7 +164,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Score the returned observations against the requested count and the incident evidence. Record HTTP completion and answer quality separately.",
       "predict": "Which two observations would satisfy the prompt, and which causal claim would need another record?",
-      "timing": "2.9 s for Count observations in the model’s answer (record 006.02)."
+      "timing": "2.9 s for Count observations in the model’s answer (record 006.02).",
+      "reading_note": "Count the numbered observations yourself. The prompt asks for two. The recorded answer gave four, although the server returned HTTP 200 and a normal stop.",
+      "background_topics": [
+        "prompt",
+        "http"
+      ]
     },
     {
       "number": 7,
@@ -168,7 +193,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Recompute the supplied timing summary from the labelled fixture values. Keep the denominator and units beside each rate.",
       "predict": "",
-      "timing": "0.06 s for Summarize (record 007.01)."
+      "timing": "0.06 s for Summarize (record 007.01).",
+      "background_topics": [
+        "timing"
+      ]
     },
     {
       "number": 8,
@@ -194,7 +222,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Separate the warm-up from the five measured requests. Compare token counts, complete answers and cached input before comparing elapsed times.",
       "predict": "",
-      "timing": "16.4 s for Bench (record 008.01)."
+      "timing": "16.4 s for Bench (record 008.01).",
+      "background_topics": [
+        "timing",
+        "server"
+      ]
     },
     {
       "number": 9,
@@ -219,7 +251,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Locate the first nonempty content event and the final [DONE] event. Compare the assembled text with READY and record completion and answer quality separately.",
       "predict": "",
-      "timing": "0.17 s for Stream (record 009.02)."
+      "timing": "0.17 s for Stream (record 009.02).",
+      "background_topics": [
+        "streaming",
+        "timing"
+      ]
     },
     {
       "number": 10,
@@ -244,7 +280,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare /props and the startup logs for 4096, 8192 and restored 4096. Hold model and placement fixed and check that the smaller KV budget returns.",
       "predict": "Predict the KV buffer at 8192 from the 4096-token log.",
-      "timing": "8.3 s for Restore the 4096-token server (record 010.04)."
+      "timing": "8.3 s for Restore the 4096-token server (record 010.04).",
+      "reading_note": "This is an optional context-size variation. On a first pass, take the result from Exercise 9 to the four-part conclusion in Exercise 23. Return here to compare 4,096 and 8,192 tokens.",
+      "background_topics": [
+        "model",
+        "server",
+        "timing"
+      ]
     },
     {
       "number": 11,
@@ -269,7 +311,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify both weight identities, match the request bodies, and inspect finish reasons and complete answers against the same rubric.",
       "predict": "",
-      "timing": "4 min 26 s for Setup Q8 (record 011.01)."
+      "timing": "4 min 26 s for Setup Q8 (record 011.01).",
+      "reading_note": "Read the finish reason before judging reply quality. Q4 stopped normally. Q8 reached the 128-token cap and its last sentence was incomplete.",
+      "background_topics": [
+        "quant",
+        "prompt"
+      ]
     },
     {
       "number": 12,
@@ -294,7 +341,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify CPU versus GPU placement in the two logs. Compare medians only after checking that the prompt, token counts and response task match.",
       "predict": "Estimate the CPU/GPU latency ratio before reading the measured medians.",
-      "timing": "2 min 33 s for Q4 on CPU — benchmark (record 012.02)."
+      "timing": "2 min 33 s for Q4 on CPU — benchmark (record 012.02).",
+      "background_topics": [
+        "placement",
+        "budgets"
+      ]
     },
     {
       "number": 13,
@@ -318,7 +369,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Preserve the loader's format error and nonzero exit on the invalid fixture. Recheck the healthy server separately.",
       "predict": "",
-      "timing": "0.78 s for Invalid load (record 013.02)."
+      "timing": "0.78 s for Invalid load (record 013.02).",
+      "background_topics": [
+        "server",
+        "files",
+        "reasoning"
+      ]
     },
     {
       "number": 14,
@@ -342,7 +398,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check the reported device, verify the result against the arithmetic reference, and inspect the synchronized exit.",
       "predict": "",
-      "timing": "2.3 s for Book probe (record 014.04)."
+      "timing": "2.3 s for Book probe (record 014.04).",
+      "reading_note": "In the activated environment, run python -c \"import sys; print(sys.executable)\". Use that interpreter for the import, pip check and synchronized CUDA operation. Record each outcome separately.",
+      "background_topics": [
+        "torch",
+        "pythonpackages"
+      ]
     },
     {
       "number": 15,
@@ -366,7 +427,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Read the selected IDs and the rendered prompt together. Check that the evidence for the incident is present before judging generation.",
       "predict": "",
-      "timing": "0.12 s for Ground (record 015.01)."
+      "timing": "0.12 s for Ground (record 015.01).",
+      "background_topics": [
+        "grounding",
+        "prompt"
+      ]
     },
     {
       "number": 16,
@@ -393,7 +458,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match every causal claim to a quoted observation. Mark any unsupported claim even when the request and citations look valid.",
       "predict": "",
-      "timing": "4.3 s for Q4 baseline start (record 016.01)."
+      "timing": "4.3 s for Q4 baseline start (record 016.01).",
+      "reading_note": "Ask what the supplied log actually says about service B. Missing entries leave its actions unknown. The recorded answer inferred a cause that the log could not distinguish.",
+      "background_topics": [
+        "prompt",
+        "grounding"
+      ]
     },
     {
       "number": 17,
@@ -417,7 +487,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Follow the scripted action, validated tool result and final reply in order. Every accepted action must have a matching receipt.",
       "predict": "",
-      "timing": "0.12 s for Replay (record 017.01)."
+      "timing": "0.12 s for Replay (record 017.01).",
+      "background_topics": [
+        "agent"
+      ]
     },
     {
       "number": 18,
@@ -441,7 +514,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify that the validator denies the action before execution. Keep the request and denial together.",
       "predict": "",
-      "timing": "0.12 s for Denied (record 018.01)."
+      "timing": "0.12 s for Denied (record 018.01).",
+      "background_topics": [
+        "agent",
+        "http"
+      ]
     },
     {
       "number": 19,
@@ -467,7 +544,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Identify its first tool request, the evidence returned and its final response. Check the step limit and ground the response in that evidence.",
       "predict": "",
-      "timing": "1.6 s for Live teaching case (record 019.01)."
+      "timing": "1.6 s for Live teaching case (record 019.01).",
+      "background_topics": [
+        "agent",
+        "prompt"
+      ]
     },
     {
       "number": 20,
@@ -492,7 +573,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the snapshot's identity and time with each tool receipt. Score the final claims against what the snapshot supports.",
       "predict": "",
-      "timing": "2.4 s for Live snapshot resume (record 020.03)."
+      "timing": "2.4 s for Live snapshot resume (record 020.03).",
+      "reading_note": "Read the saved prompt and the HTTP response as separate pieces of evidence. The timeout appeared inside the prompt. The live HTTP exchange succeeded.",
+      "background_topics": [
+        "agent",
+        "grounding"
+      ]
     },
     {
       "number": 21,
@@ -516,7 +602,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare six serial requests using one server slot with six requests from two clients using two slots. Report latency and aggregate completion rate separately.",
       "predict": "Would two clients halve per-request latency? Write down which timing would support that claim.",
-      "timing": "2.9 s for Restored query (record 021.03)."
+      "timing": "2.9 s for Restored query (record 021.03).",
+      "background_topics": [
+        "concurrency",
+        "timing"
+      ]
     },
     {
       "number": 22,
@@ -541,7 +631,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Record how external access was constrained and retain the local response. Local weights alone establish only the acquisition boundary.",
       "predict": "",
-      "timing": "0.03 s for Namespace capability (record 022.01)."
+      "timing": "0.03 s for Namespace capability (record 022.01).",
+      "reading_note": "The isolation checks cover the processes and network settings used in those checks. A whole-laptop disconnected inference session still needs its own request and response.",
+      "background_topics": [
+        "offline",
+        "files"
+      ]
     },
     {
       "number": 23,
@@ -566,7 +661,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Write one observed fact, one competing explanation and the next discriminating measurement. Cite the record for each factual claim.",
       "predict": "",
-      "timing": "Independent exercise duration was not captured."
+      "timing": "Independent exercise duration was not captured.",
+      "record_locator": "The complete four-part worked answer appears in this exercise. It is a writing exercise and has no separate terminal capture.",
+      "background_topics": [
+        "reasoning",
+        "grounding"
+      ]
     },
     {
       "number": 24,
@@ -590,7 +690,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect all three JSONL partitions for family overlap. Save split identities before measuring the adapter.",
       "predict": "",
-      "timing": "0.03 s for Generate training data (record 024.01)."
+      "timing": "0.03 s for Generate training data (record 024.01).",
+      "background_topics": [
+        "splits"
+      ]
     },
     {
       "number": 25,
@@ -615,7 +718,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check trainable parameter count, device, update count, losses and adapter files. Keep the first failing attempt if a retry is needed.",
       "predict": "",
-      "timing": "36.9 s for Ten LoRA updates after the header repair (record 025.01)."
+      "timing": "36.9 s for Ten LoRA updates after the header repair (record 025.01).",
+      "background_topics": [
+        "lora",
+        "hfstack"
+      ]
     },
     {
       "number": 26,
@@ -641,7 +748,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Pair complete base and adapter responses by held-out prompt. Apply the same scoring rule to each pair.",
       "predict": "",
-      "timing": "30.7 s for Evaluate base (record 026.01)."
+      "timing": "30.7 s for Evaluate base (record 026.01).",
+      "background_topics": [
+        "splits",
+        "lora",
+        "prompt"
+      ]
     },
     {
       "number": 27,
@@ -667,7 +779,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Bind the merged checkpoint to its base and tokenizer. Reload it and compare a fixed response with the adapter path.",
       "predict": "",
-      "timing": "19.1 s for Merge adapter (record 027.01)."
+      "timing": "19.1 s for Merge adapter (record 027.01).",
+      "reading_note": "The merged checkpoint saved and reopened. Its maximum absolute logit difference was 0.375, and all four greedy continuations differed from the adapter reference. Score persistence and equivalence separately.",
+      "background_topics": [
+        "checkpoints",
+        "lora"
+      ]
     },
     {
       "number": 28,
@@ -692,7 +809,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare layer counts and host/device buffers across placements. Use the same bounded request to verify each load.",
       "predict": "As fewer layers use CUDA, which weight buffer should grow on the host?",
-      "timing": "26.0 s for Layers 8 query (record 028.01)."
+      "timing": "26.0 s for Layers 8 query (record 028.01).",
+      "background_topics": [
+        "placement",
+        "server"
+      ]
     },
     {
       "number": 29,
@@ -705,8 +826,8 @@
         28
       ],
       "resources": "Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.",
-      "run_note": "The entry command plans only. Download with --download after admission checks; then follow Chapter 24–25 for the measured partial-offload launch. Do not use the 18 GiB allocation result as model-fit proof.",
-      "commands": "python large_model.py",
+      "run_note": "Start with the offline plan. After checking disk space, acquire the nine pinned shards. With the Exercise 4 native runtime installed and the Exercise 14 framework environment active, launch the guarded session in a new directory. It serves seven requests and stops its own server. Keep the directory for Exercise 30.",
+      "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\npython large_model.py\npython large_model.py --download\npython memory_budget/guarded.py model --out \"$LAB_RUN/model32\"",
       "variables": {},
       "inspect": "Read the budget plan, complete model identity, all shard receipts, effective placement and any bounded load/request failure.",
       "interpret": "A model that exceeds the reported GPU budget may require host-backed placement; success still depends on the actual host and guest budget.",
@@ -717,7 +838,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify the nine shard identities, layer placement and completed requests. Keep the first guard stop distinct from the successful trial.",
       "predict": "",
-      "timing": "4 min 14 s for Complete the second guarded load (record 029.03)."
+      "timing": "4 min 14 s for Complete the second guarded load (record 029.03).",
+      "background_topics": [
+        "bigmodel",
+        "budgets",
+        "placement"
+      ]
     },
     {
       "number": 30,
@@ -729,8 +855,8 @@
         29
       ],
       "resources": "Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.",
-      "run_note": "Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.",
-      "commands": "vmstat -w 1 10",
+      "run_note": "Use the directory from Exercise 29 in the same LAB_RUN, or supply its absolute path. The session already ran a pressure request with concurrent Windows and guest sampling. The report reads that request interval and the captured measurements.",
+      "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\npython memory_budget/guarded.py report --run \"$LAB_RUN/model32\"",
       "variables": {},
       "inspect": "Align host/guest/device memory samples with loading and request phases, including missing samples and final release.",
       "interpret": "A sampled peak is a lower bound on what the sampler observed. A completed request does not prove absence of paging.",
@@ -741,7 +867,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Align request timestamps with host and guest pressure samples. Mark the smallest observed headroom and any guard event.",
       "predict": "",
-      "timing": "30.1 s for Sample guest pressure during the second load (record 030.01)."
+      "timing": "30.1 s for Sample guest pressure during the second load (record 030.01).",
+      "background_topics": [
+        "paging",
+        "bigmodel"
+      ]
     },
     {
       "number": 31,
@@ -765,7 +895,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Record each executable, version and query status separately. Leave untested capability fields open.",
       "predict": "",
-      "timing": "1.3 s for Tool inventory (record 031.01)."
+      "timing": "1.3 s for Tool inventory (record 031.01).",
+      "background_topics": [
+        "toolkit",
+        "wsl"
+      ]
     },
     {
       "number": 32,
@@ -789,7 +923,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Keep separate build logs and binary identities. Run the arithmetic check on each before interpreting a performance difference.",
       "predict": "",
-      "timing": "7.1 s for Build variants (record 032.01)."
+      "timing": "7.1 s for Build variants (record 032.01).",
+      "background_topics": [
+        "build",
+        "kernels",
+        "toolkit"
+      ]
     },
     {
       "number": 33,
@@ -813,7 +952,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match the binary hash to its PTX and SASS listings. Identify the target recorded by the tool.",
       "predict": "",
-      "timing": "0.82 s for Check the optimized build (record 033.03)."
+      "timing": "0.82 s for Check the optimized build (record 033.03).",
+      "reading_note": "Generate the PTX and SASS listings during your build. Keep the unabridged files with the build command, target, compiler identity and numerical test.",
+      "background_topics": [
+        "instructions",
+        "build"
+      ]
     },
     {
       "number": 34,
@@ -837,7 +981,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check the exported byte count, element type and checksum against the synchronized reference values.",
       "predict": "",
-      "timing": "0.82 s for GPU snapshot (record 034.01)."
+      "timing": "0.82 s for GPU snapshot (record 034.01).",
+      "background_topics": [
+        "dumps",
+        "torch"
+      ]
     },
     {
       "number": 35,
@@ -862,7 +1010,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Look for a successful stop at host_checkpoint and decoded device values. An unavailable debug interface stops this qualification.",
       "predict": "",
-      "timing": "0.13 s for Windows debug interface (record 035.01)."
+      "timing": "0.13 s for Windows debug interface (record 035.01).",
+      "background_topics": [
+        "debugger",
+        "dumps"
+      ]
     },
     {
       "number": 36,
@@ -886,7 +1038,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Bind the core to its executable and symbols. Identify the stopped kernel or fault site in the debugger output.",
       "predict": "",
-      "timing": "0.12 s for Windows HAGS setting (record 036.01)."
+      "timing": "0.12 s for Windows HAGS setting (record 036.01).",
+      "background_topics": [
+        "debugger",
+        "dumps"
+      ]
     },
     {
       "number": 37,
@@ -910,7 +1066,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the clean and deliberately faulty runs. Require the intended invalid-access report on the faulty path.",
       "predict": "",
-      "timing": "1.2 s for Memcheck overrun (record 037.01)."
+      "timing": "1.2 s for Memcheck overrun (record 037.01).",
+      "background_topics": [
+        "sanitizer",
+        "kernels"
+      ]
     },
     {
       "number": 38,
@@ -934,7 +1094,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Open the three reports separately. Match each diagnosis to its injected hazard and recheck the control.",
       "predict": "",
-      "timing": "1.2 s for Initcheck original (record 038.02)."
+      "timing": "1.2 s for Initcheck original (record 038.02).",
+      "background_topics": [
+        "sanitizer",
+        "debugger"
+      ]
     },
     {
       "number": 39,
@@ -958,7 +1122,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Open the original trace and count the annotated iterations. Check whether each required device event has a usable interval.",
       "predict": "",
-      "timing": "4.1 s for Four iteration trace (record 039.01)."
+      "timing": "4.1 s for Four iteration trace (record 039.01).",
+      "background_topics": [
+        "nsys"
+      ]
     },
     {
       "number": 40,
@@ -984,7 +1151,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Enumerate the SQLite schema before querying. Verify the event type, timestamp units and row count against the export.",
       "predict": "",
-      "timing": "0.12 s for SQLite fixture (record 040.01)."
+      "timing": "0.12 s for SQLite fixture (record 040.01).",
+      "background_topics": [
+        "sqlite",
+        "nsys"
+      ]
     },
     {
       "number": 41,
@@ -1008,7 +1179,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Identify the requested kernel and metrics in the report. A permissions or support error leaves the counter measurement blocked.",
       "predict": "",
-      "timing": "1.8 s for Bounded counter report (record 041.01)."
+      "timing": "1.8 s for Bounded counter report (record 041.01).",
+      "background_topics": [
+        "ncu",
+        "nsys"
+      ]
     },
     {
       "number": 42,
@@ -1032,7 +1207,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Pair the allocator snapshot with the explicitly saved values. Match device, tensor identity, shape and capture boundary.",
       "predict": "",
-      "timing": "7.5 s for Allocator and values (record 042.01)."
+      "timing": "7.5 s for Allocator and values (record 042.01).",
+      "background_topics": [
+        "allocator",
+        "dumps"
+      ]
     },
     {
       "number": 43,
@@ -1056,7 +1235,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the operator table and device-event lane separately. A GPU timing claim needs valid start and end timestamps.",
       "predict": "",
-      "timing": "3.0 s for Framework trace (record 043.01)."
+      "timing": "3.0 s for Framework trace (record 043.01).",
+      "background_topics": [
+        "profiler",
+        "nsys"
+      ]
     },
     {
       "number": 44,
@@ -1081,7 +1264,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Identify the live server PID and correlate its request with its device events. A client-only trace cannot satisfy the server trace criterion.",
       "predict": "",
-      "timing": "Independent exercise duration was not captured."
+      "timing": "Independent exercise duration was not captured.",
+      "record_locator": "The native-model profile remained blocked. The command and its prerequisite discussion are in this exercise. There is no completed llama-completion trace to inspect.",
+      "background_topics": [
+        "profiler",
+        "server",
+        "nsys"
+      ]
     },
     {
       "number": 45,
@@ -1105,7 +1294,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare every output element, including the tail, for a positive length not divisible by the block size. Confirm that the command rejects zero at the host interface before launch.",
       "predict": "",
-      "timing": "0.83 s for Untouched stub (record 045.01)."
+      "timing": "0.83 s for Untouched stub (record 045.01).",
+      "background_topics": [
+        "kernels",
+        "build"
+      ]
     },
     {
       "number": 46,
@@ -1129,7 +1322,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Follow a thread's index and grid stride. Run the supplied size/grid cases and check the complete output against the reference.",
       "predict": "",
-      "timing": "0.72 s for Decouple the grid from the data length — reference check (record 046.01)."
+      "timing": "0.72 s for Decouple the grid from the data length — reference check (record 046.01).",
+      "background_topics": [
+        "kernels"
+      ]
     },
     {
       "number": 47,
@@ -1153,7 +1349,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Trace one input element to its output address. Compare all elements of a nonsquare case with the CPU transpose.",
       "predict": "",
-      "timing": "0.82 s for Write and check a rectangular transpose — reference check (record 047.01)."
+      "timing": "0.82 s for Write and check a rectangular transpose — reference check (record 047.01).",
+      "background_topics": [
+        "tiles",
+        "kernels"
+      ]
     },
     {
       "number": 48,
@@ -1177,7 +1377,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Identify the write and read indices and the intervening barrier. Verify partial edge tiles against the reference.",
       "predict": "",
-      "timing": "0.77 s for Reorder a tile through shared memory — reference check (record 048.01)."
+      "timing": "0.77 s for Reorder a tile through shared memory — reference check (record 048.01).",
+      "reading_note": "Compare edge tiles with the CPU reference. All twelve recorded transpose cases passed. The requested sanitizer qualification remained blocked.",
+      "background_topics": [
+        "tiles",
+        "sanitizer"
+      ]
     },
     {
       "number": 49,
@@ -1201,7 +1406,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect block partials and their final sum for ragged input. Check that threads with no input still reach each required barrier.",
       "predict": "",
-      "timing": "0.87 s for Write a two-stage sum — reference check (record 049.01)."
+      "timing": "0.87 s for Write a two-stage sum — reference check (record 049.01).",
+      "reading_note": "Inspect the array of per-block partial sums before checking the single value from the second launch. Record the numerical result and the outstanding sanitizer check separately.",
+      "background_topics": [
+        "reductions",
+        "tiles"
+      ]
     },
     {
       "number": 50,
@@ -1225,7 +1435,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare each histogram bin against the CPU histogram, then check that the bin sum equals the input length.",
       "predict": "",
-      "timing": "0.82 s for Write a histogram with atomic accumulation — reference check (record 050.01)."
+      "timing": "0.82 s for Write a histogram with atomic accumulation — reference check (record 050.01).",
+      "background_topics": [
+        "reductions",
+        "sanitizer"
+      ]
     },
     {
       "number": 51,
@@ -1249,7 +1463,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check the dot product for one element by hand. Compare every output on rectangular inputs.",
       "predict": "",
-      "timing": "0.87 s for Write one output element per thread — reference check (record 051.01)."
+      "timing": "0.87 s for Write one output element per thread — reference check (record 051.01).",
+      "background_topics": [
+        "matmul"
+      ]
     },
     {
       "number": 52,
@@ -1273,7 +1490,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check that out-of-range loads contribute zero and all threads reach the barriers. Verify the rectangular tail against the CPU reference.",
       "predict": "",
-      "timing": "0.72 s for Add cooperative tile loading — reference check (record 052.01)."
+      "timing": "0.72 s for Add cooperative tile loading — reference check (record 052.01).",
+      "reading_note": "Choose a shape whose edge falls inside a tile. Check the guarded stores and the result against the CPU oracle, then record which GPU tooling checks actually ran.",
+      "background_topics": [
+        "matmul",
+        "tiles"
+      ]
     },
     {
       "number": 53,
@@ -1297,7 +1519,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify fused and split values first. Compare event time and recompute effective bandwidth using the bytes counted by each implementation.",
       "predict": "",
-      "timing": "1.0 s for Unprofiled benchmark (record 053.02)."
+      "timing": "1.0 s for Unprofiled benchmark (record 053.02).",
+      "background_topics": [
+        "fusion"
+      ]
     },
     {
       "number": 54,
@@ -1321,7 +1546,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check the timing unit and measured region. Require the original profile or trace before attributing the difference to a device event.",
       "predict": "",
-      "timing": "0.07 s for Summarize reversed trial order for 128 threads (record 054.02)."
+      "timing": "0.07 s for Summarize reversed trial order for 128 threads (record 054.02).",
+      "background_topics": [
+        "fusion",
+        "nsys"
+      ]
     },
     {
       "number": 55,
@@ -1345,7 +1574,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the row reference, epsilon and finite checks. Compare the full output on zero and ragged rows.",
       "predict": "",
-      "timing": "0.93 s for Write RMS normalization — reference check (record 055.01)."
+      "timing": "0.93 s for Write RMS normalization — reference check (record 055.01).",
+      "background_topics": [
+        "normalization",
+        "reductions"
+      ]
     },
     {
       "number": 56,
@@ -1369,7 +1602,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check subtraction of the row maximum, finite values and the row sum. Run the full regression case set after the repair.",
       "predict": "",
-      "timing": "0.88 s for Write stable softmax and complete the regression set — reference check (record 056.01)."
+      "timing": "0.88 s for Write stable softmax and complete the regression set — reference check (record 056.01).",
+      "reading_note": "Run the row with large logits through the stable-softmax reference. Check finiteness and row sums before recording the separate regression and tooling results.",
+      "background_topics": [
+        "normalization",
+        "reductions"
+      ]
     },
     {
       "number": 57,
@@ -1395,7 +1633,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check registration, dtype/device validation and output agreement. Keep the build identity with the forward test.",
       "predict": "",
-      "timing": "46.4 s for Operator build and checks (record 057.01)."
+      "timing": "46.4 s for Operator build and checks (record 057.01).",
+      "background_topics": [
+        "operators",
+        "torch"
+      ]
     },
     {
       "number": 58,
@@ -1419,7 +1661,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare both input gradients to the reference. Use a separate current-stream test to check ordering.",
       "predict": "",
-      "timing": "6.8 s for Wrong backward control (record 058.01)."
+      "timing": "6.8 s for Wrong backward control (record 058.01).",
+      "background_topics": [
+        "operators",
+        "streams"
+      ]
     },
     {
       "number": 59,
@@ -1443,7 +1689,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare per-prefix outputs and intermediate tensors using the same weights and inputs. Locate the first mismatch.",
       "predict": "",
-      "timing": "9.7 s for Transformer CUDA (record 059.01)."
+      "timing": "9.7 s for Transformer CUDA (record 059.01).",
+      "background_topics": [
+        "attention",
+        "model"
+      ]
     },
     {
       "number": 60,
@@ -1467,7 +1717,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Identify the earliest mismatching query and prefix. Repeat every-prefix comparison after correcting the position.",
       "predict": "",
-      "timing": "0.07 s for Source repair regression (record 060.01)."
+      "timing": "0.07 s for Source repair regression (record 060.01).",
+      "background_topics": [
+        "attention"
+      ]
     },
     {
       "number": 61,
@@ -1491,7 +1744,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the active-lane mask and the identity value for missing inputs. Check all configured tail sizes against the CPU sum.",
       "predict": "",
-      "timing": "1.4 s for Check warp reduction at eight lengths (record 061.01)."
+      "timing": "1.4 s for Check warp reduction at eight lengths (record 061.01).",
+      "reading_note": "Record the warp-reduction result for each tested boundary. The recorded numerical control succeeded. Sanitizer coverage remained unavailable.",
+      "background_topics": [
+        "warps",
+        "reductions"
+      ]
     },
     {
       "number": 62,
@@ -1515,7 +1773,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the tile result with both CPU and cuBLAS references under the stated precision. Record CUTLASS qualification separately.",
       "predict": "",
-      "timing": "1.2 s for WMMA and cuBLAS (record 062.01)."
+      "timing": "1.2 s for WMMA and cuBLAS (record 062.01).",
+      "reading_note": "The 16×16×16 WMMA and cuBLAS runs agreed with their CPU references. The 512×512×512 CUTLASS run completed, but its verifier reported “Not verified.” Record the three outcomes individually.",
+      "background_topics": [
+        "warps",
+        "matmul"
+      ]
     },
     {
       "number": 63,
@@ -1539,7 +1802,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Follow each slot through its copy, kernel and completion event. Verify the values before claiming any overlap.",
       "predict": "",
-      "timing": "0.67 s for Compare buffer ownership and reuse (record 063.01)."
+      "timing": "0.67 s for Compare buffer ownership and reuse (record 063.01).",
+      "reading_note": "First check both buffers against their references. To claim overlap, find device intervals that overlap on two streams. The recorded timings did not supply those intervals.",
+      "background_topics": [
+        "streams",
+        "fusion"
+      ]
     },
     {
       "number": 64,
@@ -1563,7 +1831,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Preserve the controlled stale read. Record the producer event and show that the consumer wait restores the expected value.",
       "predict": "",
-      "timing": "0.57 s for Run with a missing stream dependency (record 064.01)."
+      "timing": "0.57 s for Run with a missing stream dependency (record 064.01).",
+      "reading_note": "Show that the repaired dependency produces the expected value, then look for the producer and consumer on the device timeline. The recorded timing evidence left their device intervals unresolved.",
+      "background_topics": [
+        "streams",
+        "nsys"
+      ]
     },
     {
       "number": 65,
@@ -1587,7 +1860,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare replayed values with ordinary execution. Keep submission time and device-event time in separate columns.",
       "predict": "",
-      "timing": "0.57 s for Graphs (record 065.01)."
+      "timing": "0.57 s for Graphs (record 065.01).",
+      "reading_note": "Keep the captured addresses and input shapes fixed during graph replay. Check the output on each replay. Device timing requires its own usable trace.",
+      "background_topics": [
+        "streams"
+      ]
     },
     {
       "number": 66,
@@ -1611,7 +1888,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Work one pair through the code and packing order. Check exact bytes and the odd final element against the CPU control.",
       "predict": "",
-      "timing": "0.03 s for CPU INT4 (record 066.01)."
+      "timing": "0.03 s for CPU INT4 (record 066.01).",
+      "background_topics": [
+        "packing",
+        "quant"
+      ]
     },
     {
       "number": 67,
@@ -1635,7 +1916,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare every packed byte and decoded value across the prefix cases. Distinguish a packing error from rounding error.",
       "predict": "",
-      "timing": "1.1 s for GPU INT4 (record 067.01)."
+      "timing": "1.1 s for GPU INT4 (record 067.01).",
+      "reading_note": "Inspect the packed bytes, unpack the values and calculate reconstruction error against the source values. Record the unavailable sanitizer result separately.",
+      "background_topics": [
+        "packing",
+        "sanitizer"
+      ]
     },
     {
       "number": 68,
@@ -1659,7 +1945,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match intended parameter names to optimizer membership and gradients. Inspect overflow and retained-owner controls separately.",
       "predict": "",
-      "timing": "6.6 s for Training audit (record 068.01)."
+      "timing": "6.6 s for Training audit (record 068.01).",
+      "background_topics": [
+        "trainingstate",
+        "allocator"
+      ]
     },
     {
       "number": 69,
@@ -1683,7 +1973,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the next loss and parameters with uninterrupted training. Check optimizer, RNG and cursor in addition to weight bytes.",
       "predict": "",
-      "timing": "3.2 s for Training resume (record 069.01)."
+      "timing": "3.2 s for Training resume (record 069.01).",
+      "background_topics": [
+        "trainingstate",
+        "checkpoints"
+      ]
     },
     {
       "number": 70,
@@ -1708,7 +2002,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "For each case, name the boundary, the discriminating observation and the check after repair.",
       "predict": "",
-      "timing": "0.03 s for Six casebook controls (record 070.01)."
+      "timing": "0.03 s for Six casebook controls (record 070.01).",
+      "background_topics": [
+        "casebook",
+        "reasoning"
+      ]
     },
     {
       "number": 71,
@@ -1733,7 +2031,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check action receipts, quoted values and explicit missing observations. Denied or absent evidence must stay visible.",
       "predict": "",
-      "timing": "0.06 s for Diagnostic replay (record 071.01)."
+      "timing": "0.06 s for Diagnostic replay (record 071.01).",
+      "background_topics": [
+        "agent",
+        "casebook"
+      ]
     },
     {
       "number": 72,
@@ -1757,7 +2059,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the final schema and evidence citations after the missing-data and denied-action controls. Grade planning and grounding separately.",
       "predict": "",
-      "timing": "3.2 s for Live diagnostic agent (record 072.03)."
+      "timing": "3.2 s for Live diagnostic agent (record 072.03).",
+      "reading_note": "Score the missing-evidence replay and live planner separately. The replay exercised the intended boundary. The live answer failed its tool and evidence rubric.",
+      "background_topics": [
+        "agent",
+        "grounding"
+      ]
     },
     {
       "number": 73,
@@ -1781,7 +2088,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Bind the binary, PTX, SASS and debugger focus to the same build. A listing alone cannot identify a live stop.",
       "predict": "",
-      "timing": "0.67 s for Run the instruction example with debug information (record 073.01)."
+      "timing": "0.67 s for Run the instruction example with debug information (record 073.01).",
+      "reading_note": "Compare the debug and optimized binaries against the numerical oracle. The disassembly is available from a local build. A live device breakpoint remained unavailable on the recorded system.",
+      "background_topics": [
+        "instructions",
+        "debugger"
+      ]
     },
     {
       "number": 74,
@@ -1806,7 +2118,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the five command records and their exits. Keep unmeasured benchmark fields distinguishable from real zeroes.",
       "predict": "",
-      "timing": "2.6 s for Collected baseline (record 074.01)."
+      "timing": "2.6 s for Collected baseline (record 074.01).",
+      "background_topics": [
+        "timing",
+        "toolkit",
+        "budgets"
+      ]
     },
     {
       "number": 75,
@@ -1831,7 +2148,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Record the model revision and environment identities, run the probe and preserve any failed pin resolution.",
       "predict": "",
-      "timing": "2.1 s for Post install GPU probe (record 075.03)."
+      "timing": "2.1 s for Post install GPU probe (record 075.03).",
+      "background_topics": [
+        "embeddings",
+        "hfstack"
+      ]
     },
     {
       "number": 76,
@@ -1855,7 +2176,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare a sentence under two padded lengths using the attention mask. Confirm that the deliberately unmasked control exposes the error.",
       "predict": "",
-      "timing": "0.11 s for Pooling (record 076.01)."
+      "timing": "0.11 s for Pooling (record 076.01).",
+      "background_topics": [
+        "pooling",
+        "embeddings"
+      ]
     },
     {
       "number": 77,
@@ -1879,7 +2204,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check family IDs across all partitions, document/query pairing and the exported data digest.",
       "predict": "",
-      "timing": "0.06 s for Export partitions (record 077.01)."
+      "timing": "0.06 s for Export partitions (record 077.01).",
+      "background_topics": [
+        "splits",
+        "embeddings"
+      ]
     },
     {
       "number": 78,
@@ -1905,7 +2234,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Keep row IDs aligned with vectors. Compute held-out ranks against the frozen relevance labels.",
       "predict": "",
-      "timing": "4.2 s for Baseline encode (record 078.01)."
+      "timing": "4.2 s for Baseline encode (record 078.01).",
+      "background_topics": [
+        "ranking",
+        "pooling"
+      ]
     },
     {
       "number": 79,
@@ -1931,7 +2264,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Read explained variance and compare a plotted neighbor with its cosine and rank in the original vector space.",
       "predict": "",
-      "timing": "8.3 s for Three projections (record 079.01)."
+      "timing": "8.3 s for Three projections (record 079.01).",
+      "background_topics": [
+        "pca",
+        "ranking"
+      ]
     },
     {
       "number": 80,
@@ -1957,7 +2294,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Apply the saved training mean and components to held-out vectors. Check the encoder identity and output row count.",
       "predict": "",
-      "timing": "0.11 s for Held-out transform (record 080.01)."
+      "timing": "0.11 s for Held-out transform (record 080.01).",
+      "background_topics": [
+        "pca",
+        "splits"
+      ]
     },
     {
       "number": 81,
@@ -1981,7 +2322,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Use the same vector hash for PCA, t-SNE and UMAP. For a nearby plotted pair, check the original cosine rank.",
       "predict": "",
-      "timing": "8.3 s for Three projections (record 079.01)."
+      "timing": "8.3 s for Three projections (record 079.01).",
+      "record_locator": "Follow identical row IDs from original-space neighbours into the plotted controls in runs 079.01, 082.01 and 082.02.",
+      "background_topics": [
+        "tsne",
+        "umap",
+        "pca"
+      ]
     },
     {
       "number": 82,
@@ -2008,7 +2355,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the parameter reports and row IDs. State which settings changed before attributing a difference to one of them.",
       "predict": "",
-      "timing": "8.0 s for Change the projection settings (record 082.01)."
+      "timing": "8.0 s for Change the projection settings (record 082.01).",
+      "background_topics": [
+        "tsne",
+        "umap",
+        "ranking"
+      ]
     },
     {
       "number": 83,
@@ -2032,7 +2384,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect training-only vocabulary, fixed validation masks, selected checkpoint and reload agreement. Judge held-out predictions separately.",
       "predict": "",
-      "timing": "10.4 s for Scratch MLM (record 083.01)."
+      "timing": "10.4 s for Scratch MLM (record 083.01).",
+      "background_topics": [
+        "bert",
+        "splits"
+      ]
     },
     {
       "number": 84,
@@ -2058,7 +2414,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect exact tokens and ranked predictions for a fixed input. Check padding and special tokens against the prediction mask.",
       "predict": "",
-      "timing": "3.3 s for Inspect tokenizer and mask (record 084.01)."
+      "timing": "3.3 s for Inspect tokenizer and mask (record 084.01).",
+      "background_topics": [
+        "bert"
+      ]
     },
     {
       "number": 85,
@@ -2085,7 +2444,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Reload the saved tokenizer and model before updating. Compare the validation-selected checkpoint with its reloaded outputs.",
       "predict": "",
-      "timing": "5.2 s for Continued MLM (record 085.01)."
+      "timing": "5.2 s for Continued MLM (record 085.01).",
+      "background_topics": [
+        "bert",
+        "checkpoints"
+      ]
     },
     {
       "number": 86,
@@ -2098,7 +2461,7 @@
         78
       ],
       "resources": "Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.",
-      "run_note": "The entry trains a sentence objective from your custom encoder. Repeat encode.py on the saved sentence model to compare before/after retrieval on unchanged partitions.",
+      "run_note": "Train the pooled custom encoder. The current program saves two reference embeddings from the selected in-memory model and compares them with a fresh load of the checkpoint. Keep selected-probe.npy and finetune-report.json.",
       "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\n: \"${BERT_MODEL:?Set BERT_MODEL to the selected model directory from Exercise 83}\"\npython embeddings/encode.py --model \"$BERT_MODEL\" --bert --device cpu --out \"$LAB_RUN/custom-before\"\npython embeddings/finetune.py --model \"$BERT_MODEL\" --bert --device cpu --lr 0.0001 --epochs 3 --out \"$LAB_RUN/custom-sentence\"",
       "variables": {
         "BERT_MODEL": "the selected model directory from Exercise 83"
@@ -2112,7 +2475,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check masked pooling and normalization, then compare held-out retrieval before and after training under the same relevance labels.",
       "predict": "",
-      "timing": "5.0 s for Custom contrastive training (record 086.02)."
+      "timing": "5.0 s for Custom contrastive training (record 086.02).",
+      "reading_note": "Compare the two normalized embeddings from the selected encoder before saving with their values after a single reload. The comparison requires finite, matching shapes and numpy.allclose with atol=1e-6 and rtol=1e-5. The earlier transcript compared two reloads. Its reported zero describes that earlier check.",
+      "background_topics": [
+        "contrast",
+        "bert",
+        "pooling"
+      ]
     },
     {
       "number": 87,
@@ -2125,7 +2494,7 @@
         78
       ],
       "resources": "Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.",
-      "run_note": "Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.",
+      "run_note": "Select on development MRR. The initial encoder is eligible as epoch zero. Save test evaluation for the selected checkpoint, then inspect the first relevant rank for each held-out query.",
       "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\n\npython embeddings/finetune.py --model embeddings/models/minilm --out \"$LAB_RUN/tuned-encoder\" --device cpu",
       "variables": {},
       "inspect": "Open $LAB_RUN/tuned-encoder. Inspect vector shape/norms, data splits, retrieval metrics and saved model/index identity.",
@@ -2137,7 +2506,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Select the checkpoint on development data and evaluate once on the held-out test families. Compare against the frozen baseline.",
       "predict": "",
-      "timing": "9.7 s for Contrastive tuned (record 087.01)."
+      "timing": "9.7 s for Contrastive tuned (record 087.01).",
+      "reading_note": "In the recorded MiniLM comparison, development MRR rose from 0.80556 to 0.91667. Held-out test MRR fell from 0.91667 to 0.83333. Use the per-query ranks in a new report to see which query changed.",
+      "background_topics": [
+        "contrast",
+        "ranking",
+        "checkpoints"
+      ]
     },
     {
       "number": 88,
@@ -2149,8 +2524,8 @@
         87
       ],
       "resources": "Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.",
-      "run_note": "Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.",
-      "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\n\npython embeddings/finetune.py --model embeddings/models/minilm --out \"$LAB_RUN/wrong-pairs\" --device cpu --wrong-pairs",
+      "run_note": "Keep the split, seed and evaluation queries unchanged while rotating the positive documents. Inspect the six test-query ranks individually. Run the reload control to check that a mismatched saved representation is detected.",
+      "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\npython embeddings/finetune.py --model embeddings/models/minilm --out \"$LAB_RUN/wrong-pairs\" --device cpu --wrong-pairs\npython embeddings/check_reload.py --self-test",
       "variables": {},
       "inspect": "Open $LAB_RUN/wrong-pairs. Inspect vector shape/norms, data splits, retrieval metrics and saved model/index identity.",
       "interpret": "Evaluate retrieval in the original space; a map or lower loss is not a quality pass.",
@@ -2161,7 +2536,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare correct-pair and rotated-pair losses and held-out ranks. Record any corruption the small retrieval set fails to distinguish.",
       "predict": "Will six held-out queries expose a deliberately wrong positive pairing?",
-      "timing": "10.2 s for Contrastive wrong pairs (record 088.01)."
+      "timing": "10.2 s for Contrastive wrong pairs (record 088.01).",
+      "reading_note": "The wrong-pair model scored 0.91667 test MRR on six queries, above the correctly paired model’s 0.83333. Inspect each rank and identify the training corruption independently of this small test score.",
+      "background_topics": [
+        "contrast",
+        "ranking"
+      ]
     },
     {
       "number": 89,
@@ -2189,7 +2569,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check vector norms, dimensions, row mapping and model/index identity. Inspect one retrieval error in the original text.",
       "predict": "",
-      "timing": "3.7 s for Known regression query (record 089.02)."
+      "timing": "3.7 s for Known regression query (record 089.02).",
+      "background_topics": [
+        "vectorindex",
+        "embeddings"
+      ]
     },
     {
       "number": 90,
@@ -2216,7 +2600,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Read the device probe and each stage's device and memory record. Qualify device tracing separately from successful encoding.",
       "predict": "",
-      "timing": "44.4 s for CUDA pipeline (record 090.01)."
+      "timing": "44.4 s for CUDA pipeline (record 090.01).",
+      "reading_note": "Keep the CUDA encoding and training results and the CPU projection under their recorded devices. The missing kernel timings apply to tracing.",
+      "background_topics": [
+        "embeddings",
+        "torch",
+        "profiler"
+      ]
     },
     {
       "number": 91,
@@ -2240,7 +2630,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect field value, units, availability and tool identity. Require a distinct representation for missing data and measured zero.",
       "predict": "",
-      "timing": "1.1 s for Portable checks (record 091.01)."
+      "timing": "1.1 s for Portable checks (record 091.01).",
+      "background_topics": [
+        "metrics"
+      ]
     },
     {
       "number": 92,
@@ -2264,7 +2657,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Trace one CSV row to each plotted series. Confirm that the collection gap stays empty and the phase bands retain their host scope.",
       "predict": "",
-      "timing": "0.06 s for Illustrative fixture (record 092.01)."
+      "timing": "0.06 s for Illustrative fixture (record 092.01).",
+      "background_topics": [
+        "plots",
+        "metrics"
+      ]
     },
     {
       "number": 93,
@@ -2288,7 +2685,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match the executed host markers to their timestamps and leave the disabled GPU fields explicitly unavailable.",
       "predict": "",
-      "timing": "2.2 s for CPU collector (record 093.01)."
+      "timing": "2.2 s for CPU collector (record 093.01).",
+      "background_topics": [
+        "metrics",
+        "http"
+      ]
     },
     {
       "number": 94,
@@ -2313,7 +2714,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Read raw management replies and successive timestamps. Separate unavailable fields from numerical idle readings.",
       "predict": "",
-      "timing": "13.6 s for Idle capture (record 094.01)."
+      "timing": "13.6 s for Idle capture (record 094.01).",
+      "background_topics": [
+        "metrics",
+        "wsl"
+      ]
     },
     {
       "number": 95,
@@ -2338,7 +2743,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match request start/end markers to sample timestamps and server state. Attribute the overlap only as precisely as polling permits.",
       "predict": "",
-      "timing": "0.12 s for Summarize inference with two client workers (record 095.02)."
+      "timing": "0.12 s for Summarize inference with two client workers (record 095.02).",
+      "background_topics": [
+        "plots",
+        "metrics",
+        "timing"
+      ]
     },
     {
       "number": 96,
@@ -2364,7 +2774,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Keep separate episode records and compare process allocator peaks with their corresponding device-wide samples.",
       "predict": "",
-      "timing": "20.4 s for Training capture (record 096.02)."
+      "timing": "20.4 s for Training capture (record 096.02).",
+      "background_topics": [
+        "plots",
+        "metrics",
+        "trainingstate"
+      ]
     },
     {
       "number": 97,
@@ -2377,10 +2792,10 @@
       ],
       "resources": "CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.",
       "run_note": "Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.",
-      "commands": ": \"${MONITORED:?Set MONITORED to the matched monitored benchmark record}\"\n: \"${UNMONITORED:?Set UNMONITORED to the unmonitored benchmark record}\"\npython metrics/compare.py --baseline \"$UNMONITORED\" --observed \"$MONITORED\"",
+      "commands": ": \"${MONITORED:?Set MONITORED to the matched monitored session directory}\"\n: \"${UNMONITORED:?Set UNMONITORED to the unmonitored session directory}\"\npython metrics/compare.py --baseline \"$UNMONITORED\" --observed \"$MONITORED\"",
       "variables": {
-        "MONITORED": "the matched monitored benchmark record",
-        "UNMONITORED": "the unmonitored benchmark record"
+        "MONITORED": "directory of the matched monitored benchmark session",
+        "UNMONITORED": "directory of the unmonitored benchmark session"
       },
       "inspect": "Compare matched monitored and unmonitored trials, using the same work, settings and timing boundary.",
       "interpret": "Explain coverage and sampling limits before interpreting utilization or peaks.",
@@ -2391,7 +2806,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare matched monitored and unmonitored trials, using the same work, settings and timing boundary.",
       "predict": "",
-      "timing": "0.06 s for Five pair comparison (record 097.01)."
+      "timing": "0.06 s for Five pair comparison (record 097.01).",
+      "reading_note": "Supply two different session directories to the comparator. Each directory must contain its own metadata, events and session records. Match workload, order and sampling settings before comparing durations.",
+      "background_topics": [
+        "metrics",
+        "timing",
+        "plots"
+      ]
     },
     {
       "number": 98,
@@ -2416,7 +2837,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Name the competing causes, then select a trace or controlled experiment that could separate them. Record a capability limit if collection fails.",
       "predict": "",
-      "timing": "0.33 s for Sample device memory after stopping the server (record 098.01)."
+      "timing": "0.33 s for Sample device memory after stopping the server (record 098.01).",
+      "background_topics": [
+        "plots",
+        "nsys"
+      ]
     },
     {
       "number": 99,
@@ -2440,7 +2865,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the named stages under their own tolerances. Keep the expected rounding case as the control for Exercise 100.",
       "predict": "",
-      "timing": "6.9 s for CUDA precision (record 099.01)."
+      "timing": "6.9 s for CUDA precision (record 099.01).",
+      "background_topics": [
+        "precision",
+        "torch"
+      ]
     },
     {
       "number": 100,
@@ -2464,7 +2893,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Identify the first failing pooled value under the injected mask fault. The repair must pass the same comparison.",
       "predict": "Which intermediate value should fail before the final class changes?",
-      "timing": "3.5 s for CUDA fault (record 100.01)."
+      "timing": "3.5 s for CUDA fault (record 100.01).",
+      "background_topics": [
+        "precision",
+        "pooling"
+      ]
     },
     {
       "number": 101,
@@ -2489,7 +2922,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match the sequence of input shapes to captured graph count and guard messages. Compare with the dynamic-shape control.",
       "predict": "",
-      "timing": "2.1 s for Compare graph captures for changing input sizes (record 101.01)."
+      "timing": "2.1 s for Compare graph captures for changing input sizes (record 101.01).",
+      "background_topics": [
+        "compile"
+      ]
     },
     {
       "number": 102,
@@ -2513,7 +2949,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Locate the break in the compiler record, inspect the affected graph and recheck output after the repair.",
       "predict": "",
-      "timing": "2.1 s for Trigger the explicit graph break (record 102.01)."
+      "timing": "2.1 s for Trigger the explicit graph break (record 102.01).",
+      "background_topics": [
+        "compile",
+        "instructions"
+      ]
     },
     {
       "number": 103,
@@ -2537,7 +2977,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare input-ready and consumer-completion times for identical records with and without the controlled supply delay.",
       "predict": "",
-      "timing": "2.6 s for Measure the delayed producer on CUDA (record 103.02)."
+      "timing": "2.6 s for Measure the delayed producer on CUDA (record 103.02).",
+      "background_topics": [
+        "supply",
+        "metrics"
+      ]
     },
     {
       "number": 104,
@@ -2561,7 +3005,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check queue capacity, record order and output equality. Compare steady-state completion times after startup.",
       "predict": "",
-      "timing": "3.9 s for Compare data-loader workers across epochs (record 104.03)."
+      "timing": "3.9 s for Compare data-loader workers across epochs (record 104.03).",
+      "background_topics": [
+        "supply",
+        "concurrency"
+      ]
     },
     {
       "number": 105,
@@ -2586,7 +3034,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compute arithmetic intensity from the chosen operation and byte counts. Place it on the explicitly hypothetical roofline.",
       "predict": "",
-      "timing": "1.3 s for Roofline (record 105.01)."
+      "timing": "1.3 s for Roofline (record 105.01).",
+      "background_topics": [
+        "roofline"
+      ]
     },
     {
       "number": 106,
@@ -2610,7 +3061,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Require the intended kernel's measured counters and metric units. If collection fails, keep the prediction labelled analytic.",
       "predict": "",
-      "timing": "1.8 s for Validate the CUDA addition kernel (record 106.01)."
+      "timing": "1.8 s for Validate the CUDA addition kernel (record 106.01).",
+      "reading_note": "The native addition and matrix multiplication matched their numerical references. Roofline placement and achieved bandwidth require counter measurements that the recorded Nsight Compute run did not produce.",
+      "background_topics": [
+        "roofline",
+        "ncu"
+      ]
     },
     {
       "number": 107,
@@ -2635,7 +3091,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the owner collection before and after clearing it. Compare live tensor bytes with the corresponding allocator counters.",
       "predict": "",
-      "timing": "1.4 s for Release CPU tensor references (record 107.02)."
+      "timing": "1.4 s for Release CPU tensor references (record 107.02).",
+      "background_topics": [
+        "allocator",
+        "trainingstate"
+      ]
     },
     {
       "number": 108,
@@ -2659,7 +3119,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare live, allocated and reserved bytes at the same checkpoints, including clear and empty_cache.",
       "predict": "",
-      "timing": "3.4 s for Retain live CUDA tensors (record 108.01)."
+      "timing": "3.4 s for Retain live CUDA tensors (record 108.01).",
+      "background_topics": [
+        "allocator",
+        "budgets"
+      ]
     },
     {
       "number": 109,
@@ -2679,11 +3143,14 @@
       "troubleshoot": "Reduce the input or remove one variable; do not infer a cause from a single symptom.",
       "finish": "Keep $LAB_RUN/hang with the command and exit that produced it.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Recorded result  PASSED — Actual CPU bounded-stall control captured its waiting stack and ended the owned child with SIGTERM (−15). The supervisor returned zero because it successfully collected the intended failure. Wrapper success is distinct from child progress; the full stack and event record remain in the companion.\nScope  The controlled child and its supervisor define which waiting and recovery events were observed.",
+      "evidence_note": "Recorded result  PASSED — Actual CPU bounded-stall control captured its waiting stack and ended the owned child with SIGTERM (−15). The supervisor returned zero because it successfully collected the intended failure. Read the waiting stack and child exit together. The wrapper recorded the stall successfully.\nScope  The controlled child and its supervisor define which waiting and recovery events were observed.",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Open stacks.txt and find the wait site. Pair it with the last progress event and the supervisor's bounded timeout.",
       "predict": "",
-      "timing": "1.6 s for Capture the blocked child’s waiting stack (record 109.01)."
+      "timing": "1.6 s for Capture the blocked child’s waiting stack (record 109.01).",
+      "background_topics": [
+        "stalls"
+      ]
     },
     {
       "number": 110,
@@ -2707,7 +3174,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Require the previously missing completion event and a clean child exit. Record what the supervisor should do on a future timeout.",
       "predict": "",
-      "timing": "1.2 s for Event deadlines (record 110.02)."
+      "timing": "1.2 s for Event deadlines (record 110.02).",
+      "background_topics": [
+        "stalls",
+        "concurrency"
+      ]
     },
     {
       "number": 111,
@@ -2731,7 +3202,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match trace and parent IDs from the request through its child operations. Check timestamps and retained error events.",
       "predict": "",
-      "timing": "0.62 s for Trace the successful synthetic request (record 111.01)."
+      "timing": "0.62 s for Trace the successful synthetic request (record 111.01).",
+      "reading_note": "Retain the whole request output directory. Exercise 117 reads both spans.jsonl and logs.jsonl from it. The six spans and three log records in the worked example describe a synthetic request.",
+      "background_topics": [
+        "otel"
+      ]
     },
     {
       "number": 112,
@@ -2755,7 +3230,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the retrieval span's duration with retry count and child spans. Explain the same end-to-end symptom using the recorded structure.",
       "predict": "",
-      "timing": "0.63 s for Trace the slow retrieval path (record 112.01)."
+      "timing": "0.63 s for Trace the slow retrieval path (record 112.01).",
+      "background_topics": [
+        "otel",
+        "timing"
+      ]
     },
     {
       "number": 113,
@@ -2780,7 +3259,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Substitute one recorded stage at a time. Keep the smallest substitution that changes the answer under the fixed rubric.",
       "predict": "",
-      "timing": "1.2 s for False accept validator (record 113.02)."
+      "timing": "1.2 s for False accept validator (record 113.02).",
+      "background_topics": [
+        "grounding",
+        "reasoning"
+      ]
     },
     {
       "number": 114,
@@ -2804,11 +3287,15 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare per-query retrieval and rendered input before comparing model answers. Keep unscored semantics explicit.",
       "predict": "",
-      "timing": "54.4 s for Retrieval boundaries (record 114.01)."
+      "timing": "54.4 s for Retrieval boundaries (record 114.01).",
+      "background_topics": [
+        "ranking",
+        "splits"
+      ]
     },
     {
       "number": 115,
-      "title": "Produce a one minimal reproducer",
+      "title": "Produce a 1-minimal reproducer",
       "chapter": "66  Reducing failures and isolating regressions",
       "purpose": "Which smallest retained input still triggers the failure predicate?",
       "before": "Exercise 99 (compare controlled precision paths)",
@@ -2828,7 +3315,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Re-run the oracle on the reduced input, then remove each remaining element in turn and record its decision.",
       "predict": "",
-      "timing": "0.07 s for Reduce the failing input (record 115.01)."
+      "timing": "0.07 s for Reduce the failing input (record 115.01).",
+      "reading_note": "A 1-minimal reproducer still triggers the oracle, and deleting any one remaining element removes that failure. Try each single deletion to establish that property for your result.",
+      "background_topics": [
+        "reductiontest",
+        "reasoning"
+      ]
     },
     {
       "number": 116,
@@ -2852,22 +3344,26 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Order the tested configurations and identify a passing/failing boundary. Recheck its two neighbors under the same predicate.",
       "predict": "",
-      "timing": "0.07 s for Reproducer scan (record 116.01)."
+      "timing": "0.07 s for Reproducer scan (record 116.01).",
+      "background_topics": [
+        "reductiontest"
+      ]
     },
     {
       "number": 117,
       "title": "Detect missing and inconsistent evidence",
       "chapter": "67  Debugging the observations themselves",
       "purpose": "Would the diagnosis survive a missing span, duplicate ID or wrong time unit?",
-      "before": "Exercise 91 (establish the monitoring contract)",
+      "before": "Exercise 91 (establish the monitoring contract) · Exercise 111 (retain correlated spans and logs)",
       "prerequisites": [
-        91
+        91,
+        111
       ],
       "resources": "Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.",
-      "run_note": "Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.",
-      "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\n: \"${REQUEST_TRACE:?Set REQUEST_TRACE to the trace JSON produced by Exercise 111}\"\npython diagnostics/lab.py audit --trace \"$REQUEST_TRACE\" --out \"$LAB_RUN/audit\"",
+      "run_note": "Use the directory produced by Exercise 111. It contains spans.jsonl and logs.jsonl. If you started a new shell or run, set REQUEST_TRACE_DIR to the absolute path of the earlier request directory.",
+      "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\nexport REQUEST_TRACE_DIR=\"${REQUEST_TRACE_DIR:-$LAB_RUN/request}\"\npython diagnostics/lab.py audit --trace \"$REQUEST_TRACE_DIR\" --out \"$LAB_RUN/audit\"",
       "variables": {
-        "REQUEST_TRACE": "the trace JSON produced by Exercise 111"
+        "REQUEST_TRACE_DIR": "directory containing spans.jsonl and logs.jsonl from Exercise 111"
       },
       "inspect": "Check that the validator rejects each injected observation fault and still accepts the clean control.",
       "interpret": "Tie the diagnosis to a discriminating observation and a counterexample.",
@@ -2878,7 +3374,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check that the validator rejects each injected observation fault and still accepts the clean control.",
       "predict": "",
-      "timing": "0.07 s for Audit damaged trace copies (record 117.01)."
+      "timing": "0.07 s for Audit damaged trace copies (record 117.01).",
+      "background_topics": [
+        "obschecks",
+        "otel"
+      ]
     },
     {
       "number": 118,
@@ -2902,7 +3402,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Recompute the numerator and denominator from the original groups. Run the monitoring controls against both the repair and the fault.",
       "predict": "",
-      "timing": "1.4 s for Portable regressions (record 118.01)."
+      "timing": "1.4 s for Portable regressions (record 118.01).",
+      "background_topics": [
+        "obschecks",
+        "metrics"
+      ]
     },
     {
       "number": 119,
@@ -2914,8 +3418,8 @@
         23
       ],
       "resources": "Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.",
-      "run_note": "Read diagnostics/patterns.json and locate the pattern whose evidence and counterexample match your observation. A matching symptom alone is insufficient.",
-      "commands": "",
+      "run_note": "Read the catalog, run the patterns command and choose one entry to apply to your worked case.",
+      "commands": "python diagnostics/casebook.py patterns",
       "variables": {},
       "inspect": "Choose one pattern, state its applicability boundary, and name an observation that would rule it out.",
       "interpret": "Tie the diagnosis to a discriminating observation and a counterexample.",
@@ -2926,7 +3430,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Choose one pattern, state its applicability boundary, and name an observation that would rule it out.",
       "predict": "",
-      "timing": "0.06 s for Pattern catalog (record 119.01)."
+      "timing": "0.06 s for Pattern catalog (record 119.01).",
+      "reading_note": "Read the catalog first. Run the patterns command in this exercise to select a pattern and trace it to its teaching case. The twelve entries are diagnostic patterns.",
+      "background_topics": [
+        "casebook",
+        "reasoning"
+      ]
     },
     {
       "number": 120,
@@ -2950,7 +3459,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Separate observation, hypothesis, discriminating test and repair. Point each factual statement to the ownership fixture.",
       "predict": "",
-      "timing": "0.03 s for Worked diagnosis (record 120.01)."
+      "timing": "0.03 s for Worked diagnosis (record 120.01).",
+      "background_topics": [
+        "casebook",
+        "reasoning"
+      ]
     },
     {
       "number": 121,
@@ -2974,7 +3487,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Save the evidence-only account first. Record prior exposure and use the blind rubric only for an unseen case.",
       "predict": "",
-      "timing": "0.06 s for Card C01 (record 121.01)."
+      "timing": "0.06 s for Card C01 (record 121.01).",
+      "reading_note": "Use the six familiar cards for guided comparison. Card C05 is illustrative. Score blind performance only on a new set that the investigator has never seen.",
+      "background_topics": [
+        "casebook"
+      ]
     },
     {
       "number": 122,
@@ -2998,7 +3515,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare accounts after saving yours. Identify a supporting observation you used or missed and explain how it changes the next test.",
       "predict": "",
-      "timing": "0.03 s for Answer C01 (record 122.01)."
+      "timing": "0.03 s for Answer C01 (record 122.01).",
+      "background_topics": [
+        "casebook",
+        "reasoning"
+      ]
     },
     {
       "number": 123,
@@ -3022,7 +3543,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Record device count and backend availability, then inspect the real process-group launch result separately.",
       "predict": "",
-      "timing": "1.4 s for Distributed probe (record 123.01)."
+      "timing": "1.4 s for Distributed probe (record 123.01).",
+      "background_topics": [
+        "dist",
+        "budgets"
+      ]
     },
     {
       "number": 124,
@@ -3046,7 +3571,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare sample coverage, parameters and losses with the serial reference for both worker counts.",
       "predict": "",
-      "timing": "5.6 s for Train with four CPU workers (record 124.02)."
+      "timing": "5.6 s for Train with four CPU workers (record 124.02).",
+      "background_topics": [
+        "parallel",
+        "dist"
+      ]
     },
     {
       "number": 125,
@@ -3070,7 +3599,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Align per-rank host spans. Identify the injected delay and the corresponding wait in gradient averaging.",
       "predict": "Which rank waits when only its peer is delayed?",
-      "timing": "5.8 s for Delay one CPU rank (record 125.01)."
+      "timing": "5.8 s for Delay one CPU rank (record 125.01).",
+      "background_topics": [
+        "parallel",
+        "dist",
+        "plots"
+      ]
     },
     {
       "number": 126,
@@ -3094,7 +3628,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match exit 17, the mismatch record and the timeout to their separate injections. Verify cleanup and the healthy recheck.",
       "predict": "",
-      "timing": "6.0 s for Wait for the missing rank (record 126.03)."
+      "timing": "6.0 s for Wait for the missing rank (record 126.03).",
+      "background_topics": [
+        "dist",
+        "stalls"
+      ]
     },
     {
       "number": 127,
@@ -3115,11 +3653,16 @@
       "troubleshoot": "Check rank identity, rendezvous, operation order and missing participants.",
       "finish": "Keep $LAB_RUN/checkpoint with the command and exit that produced it.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Recorded result  PASSED — A new process resumed a saved training state after two updates and continued to four, agreeing with the recorded reference losses. Checkpoint tensor payloads are excluded from this handoff; their receipts and derived results remain attributed to the laptop run.\nScope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.",
+      "evidence_note": "Recorded result  PASSED — A new process resumed a saved training state after two updates and continued to four, agreeing with the recorded reference losses. The companion provides the step-2 and step-4 teaching checkpoints. Compare their state using distributed/validate.py.\nScope  The logical workers run on one laptop. Compare their transport and placement before generalizing to a cluster.",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the resumed and uninterrupted losses and parameter checks. Verify the saved optimizer step and data position.",
       "predict": "",
-      "timing": "7.8 s for Resume the saved training state (record 127.01)."
+      "timing": "7.8 s for Resume the saved training state (record 127.01).",
+      "reading_note": "Open distributed/evidence/09-checkpoint/first/checkpoint-0.pt for state after update 2 and distributed/evidence/09-checkpoint/resume/checkpoint-0.pt for state after update 4. Use distributed/validate.py to inspect the published teaching checkpoints.",
+      "background_topics": [
+        "trainingstate",
+        "parallel"
+      ]
     },
     {
       "number": 128,
@@ -3143,7 +3686,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Reassemble the workers' output and gradients and compare each against the full matrix reference.",
       "predict": "",
-      "timing": "2.9 s for Check a column-sharded calculation (record 128.01)."
+      "timing": "2.9 s for Check a column-sharded calculation (record 128.01).",
+      "background_topics": [
+        "parallel",
+        "matmul"
+      ]
     },
     {
       "number": 129,
@@ -3168,7 +3715,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Record the outcome of each CPU, loopback and one-device launch. Require distinct visible devices for a two-GPU result.",
       "predict": "",
-      "timing": "16.6 s for Qualify the one-GPU process (record 129.04)."
+      "timing": "16.6 s for Qualify the one-GPU process (record 129.04).",
+      "reading_note": "Read the results in three steps. Native CPU DDP ended with rank 0 SIGSEGV on the laptop. The two logical loopback nodes worked. Single-rank NCCL worked on one physical GPU. Distinct-device DDP remained unavailable.",
+      "background_topics": [
+        "dist",
+        "parallel"
+      ]
     },
     {
       "number": 130,
@@ -3192,7 +3744,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check the owner count, accepted request IDs and independent vector comparisons for each worker configuration.",
       "predict": "",
-      "timing": "5.7 s for CUDA (record 130.01)."
+      "timing": "5.7 s for CUDA (record 130.01).",
+      "background_topics": [
+        "ownership",
+        "concurrency"
+      ]
     },
     {
       "number": 131,
@@ -3216,7 +3772,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Count owners and weight bytes, then inspect each process's allocator record. Keep device-wide headroom separate.",
       "predict": "",
-      "timing": "3.8 s for GPU replicas (record 131.01)."
+      "timing": "3.8 s for GPU replicas (record 131.01).",
+      "background_topics": [
+        "ownership",
+        "allocator"
+      ]
     },
     {
       "number": 132,
@@ -3240,7 +3800,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare owner calls, queue delay, p50 and p95 under matched request counts. Verify every vector before interpreting the timings.",
       "predict": "Could larger batches improve median latency and worsen the tail in the same trial?",
-      "timing": "5.0 s for Profile the first batch-size-four trial (record 132.02)."
+      "timing": "5.0 s for Profile the first batch-size-four trial (record 132.02).",
+      "background_topics": [
+        "batching",
+        "ownership"
+      ]
     },
     {
       "number": 133,
@@ -3265,7 +3829,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check the four ordered updates against the serial reference and inspect the next-step checkpoint field.",
       "predict": "",
-      "timing": "8.2 s for Training (record 133.01)."
+      "timing": "8.2 s for Training (record 133.01).",
+      "reading_note": "The workers prepare data. One GPU process owns the optimizer and writes the checkpoint after update 4. Inspect the teaching file sharing/evidence/06-training/training-checkpoint.pt with sharing/validate.py.",
+      "background_topics": [
+        "ownership",
+        "trainingstate",
+        "supply"
+      ]
     },
     {
       "number": 134,
@@ -3292,7 +3862,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify the numerical stream results, then inspect device event intervals. Report overlap as undetermined if only host spans exist.",
       "predict": "",
-      "timing": "3.3 s for Streams (record 134.02)."
+      "timing": "3.3 s for Streams (record 134.02).",
+      "reading_note": "Both streams returned numerically correct outputs. No device kernel or copy intervals were available to establish whether they ran simultaneously.",
+      "background_topics": [
+        "streams",
+        "ownership",
+        "nsys"
+      ]
     },
     {
       "number": 135,
@@ -3316,7 +3892,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Distinguish rejection, cancellation, expiry and a lost reply by request ID. Keep an interrupted outcome unknown until evidence resolves it.",
       "predict": "",
-      "timing": "0.23 s for Faults (record 135.01)."
+      "timing": "0.23 s for Faults (record 135.01).",
+      "background_topics": [
+        "batching",
+        "ownership",
+        "stalls"
+      ]
     },
     {
       "number": 136,
@@ -3340,7 +3921,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify HTTP status, response schema, vector count and numerical agreement with the independent oracle.",
       "predict": "",
-      "timing": "0.42 s for Contract (record 136.01)."
+      "timing": "0.42 s for Contract (record 136.01).",
+      "background_topics": [
+        "serving",
+        "http"
+      ]
     },
     {
       "number": 137,
@@ -3364,7 +3949,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Observe liveness and readiness at each lifecycle transition. Check whether new requests are admitted during draining.",
       "predict": "",
-      "timing": "1.2 s for Lifecycle (record 137.01)."
+      "timing": "1.2 s for Lifecycle (record 137.01).",
+      "background_topics": [
+        "serving"
+      ]
     },
     {
       "number": 138,
@@ -3388,7 +3976,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Count accepted responses and 429 replies, inspect retry information, and verify that admitted requests still complete.",
       "predict": "With eight simultaneous clients and two admission slots, which outcomes depend on arrival timing?",
-      "timing": "0.59 s for Load (record 138.01)."
+      "timing": "0.59 s for Load (record 138.01).",
+      "background_topics": [
+        "batching",
+        "serving",
+        "timing"
+      ]
     },
     {
       "number": 139,
@@ -3413,7 +4006,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Require a ready generation endpoint. Reconstruct text from SSE content events and record the first-content and completion times.",
       "predict": "",
-      "timing": "0.93 s for Live generation stream (record 139.01)."
+      "timing": "0.93 s for Live generation stream (record 139.01).",
+      "reading_note": "The SSE fixture checks parser behavior. For a live generation stream, locate the first content event and the terminal marker in the native model request.",
+      "background_topics": [
+        "streaming",
+        "serving"
+      ]
     },
     {
       "number": 140,
@@ -3435,11 +4033,14 @@
       "troubleshoot": "Work through process, container, scheduling, backend and request boundaries.",
       "finish": "Keep target deployment; retained qualification evidence.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Recorded result  PASSED — Actual ARM64 Docker 29.9.2 access, pinned Python base identity, image build and nonroot configuration were captured. The compact build transcript is printed below; inspection and acquisition records remain in the companion. An image build qualifies the build, not readiness or a GPU workload.\nScope  Image construction, device injection and a numerically correct response are separate deployment checks.",
+      "evidence_note": "Recorded result  PASSED — Actual ARM64 Docker 29.9.2 access, pinned Python base identity, image build and nonroot configuration were captured. The numbered build transcript follows. Keep the native inspection and acquisition outputs from your own build. An image build qualifies the build, not readiness or a GPU workload.\nScope  Image construction, device injection and a numerically correct response are separate deployment checks.",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect image identity, architecture and build receipt. Retain the failed build separately from the successful image.",
       "predict": "",
-      "timing": "10.5 s for Build service image (record 140.01)."
+      "timing": "10.5 s for Build service image (record 140.01).",
+      "background_topics": [
+        "docker"
+      ]
     },
     {
       "number": 141,
@@ -3463,7 +4064,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Test readiness and a numerical request, inspect configured limits, then verify the owned container's termination.",
       "predict": "",
-      "timing": "0.37 s for Inspect the stopped Compose service (record 141.02)."
+      "timing": "0.37 s for Inspect the stopped Compose service (record 141.02).",
+      "background_topics": [
+        "compose",
+        "docker"
+      ]
     },
     {
       "number": 142,
@@ -3488,7 +4093,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check the in-container arithmetic result before testing the generation image. Read its placement log with the response.",
       "predict": "",
-      "timing": "3.3 s for Container CUDA numerical probe (record 142.01)."
+      "timing": "3.3 s for Container CUDA numerical probe (record 142.01).",
+      "background_topics": [
+        "containersgpu",
+        "docker"
+      ]
     },
     {
       "number": 143,
@@ -3512,7 +4121,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare failure text with the image, entry point, device and memory controls. Require evidence for the selected classification.",
       "predict": "",
-      "timing": "0.27 s for Device injection probe (record 143.01)."
+      "timing": "0.27 s for Device injection probe (record 143.01).",
+      "background_topics": [
+        "docker",
+        "containersgpu",
+        "serving"
+      ]
     },
     {
       "number": 144,
@@ -3539,7 +4153,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect Deployment readiness, the selected endpoints and a numerical request through the Service.",
       "predict": "",
-      "timing": "6.4 s for Rollout (record 144.01)."
+      "timing": "6.4 s for Rollout (record 144.01).",
+      "background_topics": [
+        "kube",
+        "compose"
+      ]
     },
     {
       "number": 145,
@@ -3563,7 +4181,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Follow readiness probes, replica counts and events through the injected failure and rollback.",
       "predict": "",
-      "timing": "30.3 s for Failed rollout (record 145.01)."
+      "timing": "30.3 s for Failed rollout (record 145.01).",
+      "background_topics": [
+        "kube",
+        "serving"
+      ]
     },
     {
       "number": 146,
@@ -3588,7 +4210,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check plugin placement, discovery and node allocatable resources. Keep the separate container arithmetic result beside them.",
       "predict": "",
-      "timing": "2 min 18 s for Roll out the NVIDIA device-plugin DaemonSet (record 146.02)."
+      "timing": "2 min 18 s for Roll out the NVIDIA device-plugin DaemonSet (record 146.02).",
+      "background_topics": [
+        "scheduling",
+        "containersgpu"
+      ]
     },
     {
       "number": 147,
@@ -3616,7 +4242,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the pod's resource request, scheduling events and native placement log. Confirm an actual served response.",
       "predict": "",
-      "timing": "35.3 s for Expected two ready timeout (record 147.02)."
+      "timing": "35.3 s for Expected two ready timeout (record 147.02).",
+      "background_topics": [
+        "scheduling",
+        "kube",
+        "ownership"
+      ]
     },
     {
       "number": 148,
@@ -3643,7 +4274,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check the corrected startup settings, readiness, streaming reply and completed request counts with the image digest.",
       "predict": "",
-      "timing": "6.2 s for Check driver access before starting vLLM (record 148.01)."
+      "timing": "6.2 s for Check driver access before starting vLLM (record 148.01).",
+      "background_topics": [
+        "vllm",
+        "model"
+      ]
     },
     {
       "number": 149,
@@ -3667,7 +4302,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare accepted/completed counts and server counters at each concurrency. Verify the cluster owner with its own response.",
       "predict": "",
-      "timing": "14 min 52 s for Rollout (record 149.03)."
+      "timing": "14 min 52 s for Rollout (record 149.03).",
+      "background_topics": [
+        "vllm",
+        "batching",
+        "kube"
+      ]
     },
     {
       "number": 150,
@@ -3692,7 +4332,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Start the qualified Triton server with the repository mounted. Query readiness and version, then compare the returned vector with the oracle.",
       "predict": "",
-      "timing": "0.42 s for Live Triton (record 150.01)."
+      "timing": "0.42 s for Live Triton (record 150.01).",
+      "reading_note": "The API double checks request handling locally. The Docker and Kubernetes requests used a real Triton server and the CPU Python embedding backend. Identify which backend produced the vectors.",
+      "background_topics": [
+        "tritonserver",
+        "batching"
+      ]
     },
     {
       "number": 151,
@@ -3716,7 +4361,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check repository values, provider placement and the version switch separately. Require usable kernel intervals for the tracing criterion.",
       "predict": "",
-      "timing": "3.1 s for PyTorch installed framework (record 151.16)."
+      "timing": "3.1 s for PyTorch installed framework (record 151.16).",
+      "reading_note": "Read three results independently. The deployed service passed v1, v2 and rollback vector checks. Backend logs placed nine optimized nodes on CUDAExecutionProvider. The four elevated diagnostic probes returned eight kernel records with zero timestamps, leaving device timing blocked.",
+      "background_topics": [
+        "onnx",
+        "tritonserver",
+        "nsys"
+      ]
     },
     {
       "number": 152,
@@ -3740,7 +4391,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify data identities, package or container identities and the reference outputs before comparing accelerators.",
       "predict": "",
-      "timing": "8.4 s for Fresh CPU controls (record 152.01)."
+      "timing": "8.4 s for Fresh CPU controls (record 152.01).",
+      "background_topics": [
+        "arrays",
+        "onnx"
+      ]
     },
     {
       "number": 153,
@@ -3764,7 +4419,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare keys, counts and aggregated values after aligning row order. Separate transfer and compute timings.",
       "predict": "",
-      "timing": "25.1 s for RAPIDS aggregation and PCA — first process (record 153.01)."
+      "timing": "25.1 s for RAPIDS aggregation and PCA — first process (record 153.01).",
+      "background_topics": [
+        "rapids",
+        "arrays"
+      ]
     },
     {
       "number": 154,
@@ -3789,7 +4448,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare projectors against the CPU reference at the stated tolerance. A sign flip in a component alone is insufficient to fail it.",
       "predict": "",
-      "timing": "25.1 s for RAPIDS aggregation and PCA — first process (record 153.01)."
+      "timing": "25.1 s for RAPIDS aggregation and PCA — first process (record 153.01).",
+      "record_locator": "Read the PCA result in run 153.01. Compare the subspace projector to account for direction signs or a rotated basis.",
+      "background_topics": [
+        "rapids",
+        "pca"
+      ]
     },
     {
       "number": 155,
@@ -3813,7 +4477,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match each allocator record to its process and policy. Compare live allocation, pool behavior and independently sampled headroom.",
       "predict": "",
-      "timing": "17.4 s for RAPIDS allocator comparison — second process (record 155.01)."
+      "timing": "17.4 s for RAPIDS allocator comparison — second process (record 155.01).",
+      "background_topics": [
+        "rmm",
+        "allocator"
+      ]
     },
     {
       "number": 156,
@@ -3833,11 +4501,16 @@
       "troubleshoot": "Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.",
       "finish": "Keep $LAB_RUN/onnx with the command and exit that produced it.",
       "handoff": "Pass linear.onnx and the original fixture.npz to the ONNX Runtime comparisons in Exercises 157–158 and the TensorRT build in Exercise 161.",
-      "evidence_note": "Recorded result  PASSED — Fresh CPU ONNX checker and shape inference passed for the three-node dynamic-batch linear graph. The complete ecosystem control sequence is printed in Exercise 152. The exported graph inventory preserves structure and initializer identities; graph weight bytes are excluded from this handoff.\nScope  Read the actual provider placement and numerical comparisons for the graph being tested.",
+      "evidence_note": "Recorded result  PASSED — Fresh CPU ONNX checker and shape inference passed for the three-node dynamic-batch linear graph. The complete ecosystem control sequence is printed in Exercise 152. The teaching graph, including its initializers, is available at ecosystem/controls/onnx/linear.onnx.\nScope  Read the actual provider placement and numerical comparisons for the graph being tested.",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect ONNX input/output names, symbolic dimension and initializer shapes, then run the structural checker.",
       "predict": "",
-      "timing": "8.4 s for Fresh CPU controls (record 152.01)."
+      "timing": "8.4 s for Fresh CPU controls (record 152.01).",
+      "record_locator": "Run 152.01 includes the ONNX build and check. Open ecosystem/controls/onnx/linear.onnx or regenerate the teaching graph.",
+      "background_topics": [
+        "onnx",
+        "arrays"
+      ]
     },
     {
       "number": 157,
@@ -3861,7 +4534,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare supported batches with the NumPy oracle. Preserve the actual wrong-width and wrong-dtype errors.",
       "predict": "",
-      "timing": "8.4 s for Fresh CPU controls (record 152.01)."
+      "timing": "8.4 s for Fresh CPU controls (record 152.01).",
+      "record_locator": "Run 152.01 includes the independent numerical comparison and both input rejections for the CPU runtime.",
+      "background_topics": [
+        "onnx",
+        "precision"
+      ]
     },
     {
       "number": 158,
@@ -3886,7 +4564,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check named providers and the runtime profile for placement. Compare values with the reference under the declared precision policy.",
       "predict": "",
-      "timing": "4.2 s for Explicit CUDA provider (record 158.01)."
+      "timing": "4.2 s for Explicit CUDA provider (record 158.01).",
+      "background_topics": [
+        "onnx",
+        "profiler"
+      ]
     },
     {
       "number": 159,
@@ -3914,7 +4596,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Use matched tokens and masks, then compare vector error and cosine with the PyTorch output for each control batch.",
       "predict": "",
-      "timing": "10.8 s for Export MiniLM (record 159.01)."
+      "timing": "10.8 s for Export MiniLM (record 159.01).",
+      "background_topics": [
+        "onnx",
+        "pooling"
+      ]
     },
     {
       "number": 160,
@@ -3939,7 +4625,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Record runtime and image identities and the parser/build outcome. Preserve the first failing API boundary if adaptation is needed.",
       "predict": "",
-      "timing": "4.4 s for TensorRT and GPU qualification (record 160.01)."
+      "timing": "4.4 s for TensorRT and GPU qualification (record 160.01).",
+      "background_topics": [
+        "tensorrt",
+        "onnx"
+      ]
     },
     {
       "number": 161,
@@ -3963,7 +4653,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect minimum, preferred and maximum shapes. Compare valid outputs and test a batch beyond the maximum.",
       "predict": "",
-      "timing": "18.6 s for Profile API corrected (record 161.02)."
+      "timing": "18.6 s for Profile API corrected (record 161.02).",
+      "background_topics": [
+        "tensorrt",
+        "onnx"
+      ]
     },
     {
       "number": 162,
@@ -3987,7 +4681,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Separate build time, warm-up and measured enqueue intervals. Compare only measurements with matching transfer scope.",
       "predict": "",
-      "timing": "27.2 s for Optional Nsight TensorRT (record 162.01)."
+      "timing": "27.2 s for Optional Nsight TensorRT (record 162.01).",
+      "background_topics": [
+        "tensorrt",
+        "timing"
+      ]
     },
     {
       "number": 163,
@@ -4014,7 +4712,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check repository version, backend readiness and a numerical response. Preserve the rejected shape or dtype response.",
       "predict": "",
-      "timing": "0.52 s for Kubernetes values load and rejections (record 163.02)."
+      "timing": "0.52 s for Kubernetes values load and rejections (record 163.02).",
+      "background_topics": [
+        "tensorrt",
+        "tritonserver"
+      ]
     },
     {
       "number": 164,
@@ -4038,7 +4740,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect channel ranges, scales and reconstructed values against the original tensor. Keep calibration and evaluation rows distinct.",
       "predict": "",
-      "timing": "5.8 s for Quantization and token audit (record 164.01)."
+      "timing": "5.8 s for Quantization and token audit (record 164.01).",
+      "background_topics": [
+        "qdq",
+        "quant"
+      ]
     },
     {
       "number": 165,
@@ -4062,7 +4768,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Locate the injected outlier and compare clipping and resolution under the two calibration choices.",
       "predict": "",
-      "timing": "5.8 s for Quantization and token audit (record 164.01)."
+      "timing": "5.8 s for Quantization and token audit (record 164.01).",
+      "record_locator": "Run 164.01 contains the outlier comparison. Separate the calibration rows from the rows used to evaluate the resulting error.",
+      "background_topics": [
+        "qdq",
+        "splits"
+      ]
     },
     {
       "number": 166,
@@ -4087,7 +4798,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Locate QuantizeLinear and DequantizeLinear in the graph, then compare runtime output with the matching numerical reference.",
       "predict": "",
-      "timing": "14.4 s for QDQ after profile fix (record 166.01)."
+      "timing": "14.4 s for QDQ after profile fix (record 166.01).",
+      "background_topics": [
+        "qdq",
+        "onnx",
+        "tensorrt"
+      ]
     },
     {
       "number": 167,
@@ -4113,7 +4829,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare complete held-out answers, placement, memory and latency under matched settings. Keep semantic failures visible.",
       "predict": "",
-      "timing": "9.0 s for Evaluate four held-out cases with Q4_K_M (record 167.03)."
+      "timing": "9.0 s for Evaluate four held-out cases with Q4_K_M (record 167.03).",
+      "background_topics": [
+        "qdq",
+        "timing",
+        "serving"
+      ]
     },
     {
       "number": 168,
@@ -4137,7 +4858,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect family or content identity across splits and count labels other than the ignore index after rendering the actual template.",
       "predict": "",
-      "timing": "Independent exercise duration was not captured."
+      "timing": "Independent exercise duration was not captured.",
+      "record_locator": "Run 152.01 includes the small byte-token fixture. Read the real-tokenizer audit in the prose of this exercise and Exercise 169 for its different scope.",
+      "background_topics": [
+        "nemo",
+        "splits"
+      ]
     },
     {
       "number": 169,
@@ -4164,7 +4890,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect effective recipe, finite losses, completed steps and trainable tensor identities. Verify the checkpoint at its stated step.",
       "predict": "",
-      "timing": "1 min 02 s for NeMo four updates (record 169.01)."
+      "timing": "1 min 02 s for NeMo four updates (record 169.01).",
+      "background_topics": [
+        "nemo",
+        "hfstack"
+      ]
     },
     {
       "number": 170,
@@ -4189,7 +4919,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare adapters, optimizer, scheduler, iterator position and next RNG draws. Matching weights alone leaves the continuation unresolved.",
       "predict": "",
-      "timing": "48.6 s for Resume training with the corrected iterator (record 170.02)."
+      "timing": "48.6 s for Resume training with the corrected iterator (record 170.02).",
+      "background_topics": [
+        "nemo",
+        "trainingstate",
+        "checkpoints"
+      ]
     },
     {
       "number": 171,
@@ -4217,7 +4952,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Bind adapter and base identities, inspect the complete generated answer, and score its claims against the held-out evidence.",
       "predict": "",
-      "timing": "28.1 s for Held out generation (record 171.02)."
+      "timing": "28.1 s for Held out generation (record 171.02).",
+      "reading_note": "Record both the FP32 merge comparison and the held-out task score. The merge passed numerical fidelity. The CUDA generation scored 13/20 and failed the untrusted-log action boundary.",
+      "background_topics": [
+        "nemo",
+        "lora",
+        "checkpoints"
+      ]
     },
     {
       "number": 172,
@@ -4241,7 +4982,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Record interpreter and package identities and require a small CUDA operation from the selected media dependency.",
       "predict": "",
-      "timing": "12.5 s for Torchvision native CUDA (record 172.02)."
+      "timing": "12.5 s for Torchvision native CUDA (record 172.02).",
+      "background_topics": [
+        "media",
+        "pythonpackages"
+      ]
     },
     {
       "number": 173,
@@ -4265,7 +5010,10 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Decode the fixtures and verify dimensions, sample counts and hashes. Check that malformed inputs fail at the decoder.",
       "predict": "",
-      "timing": "1.3 s for Fresh media fixtures (record 173.01)."
+      "timing": "1.3 s for Fresh media fixtures (record 173.01).",
+      "background_topics": [
+        "media"
+      ]
     },
     {
       "number": 174,
@@ -4289,7 +5037,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Bind revision, selected files and fingerprints before loading. Keep acquisition and inference receipts separate.",
       "predict": "",
-      "timing": "11.9 s for Acquire the pinned MMS files (record 174.01)."
+      "timing": "11.9 s for Acquire the pinned MMS files (record 174.01).",
+      "background_topics": [
+        "media",
+        "files",
+        "hfstack"
+      ]
     },
     {
       "number": 175,
@@ -4313,7 +5066,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Run the media contracts and inspect the rejected cases, including the guard before a request on digital silence.",
       "predict": "",
-      "timing": "3.9 s for Media contract tests (record 175.01)."
+      "timing": "3.9 s for Media contract tests (record 175.01).",
+      "background_topics": [
+        "media",
+        "reasoning"
+      ]
     },
     {
       "number": 176,
@@ -4341,7 +5098,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the normalized input and processed dimensions with the complete answer. Score shape, color and position individually.",
       "predict": "",
-      "timing": "52.5 s for VLM known image (record 176.01)."
+      "timing": "52.5 s for VLM known image (record 176.01).",
+      "background_topics": [
+        "vlm",
+        "media"
+      ]
     },
     {
       "number": 177,
@@ -4367,7 +5128,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Keep the prompt fixed and compare processed shapes before interpreting answer, memory or latency differences.",
       "predict": "Will raising the input budget change the processed tensor shape for this particular image?",
-      "timing": "33.3 s for Small input larger budget (record 177.01)."
+      "timing": "33.3 s for Small input larger budget (record 177.01).",
+      "background_topics": [
+        "vlm",
+        "budgets"
+      ]
     },
     {
       "number": 178,
@@ -4393,7 +5158,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare clean and altered images under the same prompt. Score the answer against the actual visual content and instruction boundary.",
       "predict": "",
-      "timing": "31.3 s for Low resolution (record 178.03)."
+      "timing": "31.3 s for Low resolution (record 178.03).",
+      "background_topics": [
+        "vlm",
+        "grounding"
+      ]
     },
     {
       "number": 179,
@@ -4420,7 +5189,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match the workload and host ranges to device events with valid intervals. A successful image answer establishes a different result.",
       "predict": "",
-      "timing": "39.1 s for Profile range corrected (record 179.01)."
+      "timing": "39.1 s for Profile range corrected (record 179.01).",
+      "reading_note": "The earlier visual model generated output and supplied host ranges and allocator observations. The later shared probe found unusable kernel timestamps. Read Exercise 151 for that probe.",
+      "background_topics": [
+        "vlm",
+        "profiler",
+        "nsys"
+      ]
     },
     {
       "number": 180,
@@ -4444,7 +5219,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the reconstruction error with tolerance and then substitute the wrong noise. Preserve both outcomes.",
       "predict": "",
-      "timing": "9.5 s for Tiny diffusion (record 181.01)."
+      "timing": "9.5 s for Tiny diffusion (record 181.01).",
+      "record_locator": "Run 181.01 includes the known-noise reconstruction oracle. Use the forward noise and reconstruction result to check the algebra.",
+      "background_topics": [
+        "diffusion"
+      ]
     },
     {
       "number": 181,
@@ -4468,7 +5247,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare held-out noise error before and after training using the same fixed evaluation input. Identify the saved checkpoint.",
       "predict": "",
-      "timing": "9.5 s for Tiny diffusion (record 181.01)."
+      "timing": "9.5 s for Tiny diffusion (record 181.01).",
+      "background_topics": [
+        "diffusion",
+        "trainingstate"
+      ]
     },
     {
       "number": 182,
@@ -4492,7 +5275,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare reference and generated point clouds using the saved seed and sampling schedule. Inspect coverage of each mode.",
       "predict": "",
-      "timing": "1.4 s for Distribution coverage (record 182.01)."
+      "timing": "1.4 s for Distribution coverage (record 182.01).",
+      "background_topics": [
+        "diffusion",
+        "plots"
+      ]
     },
     {
       "number": 183,
@@ -4505,8 +5292,8 @@
         182
       ],
       "resources": "Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.",
-      "run_note": "Use the first command to find the numerical oracle procedure and the second to inspect its combined training record. Write the five-stage mapping yourself.",
-      "commands": "python reader/guide.py 180\npython reader/records.py 181",
+      "run_note": "Run the two numerical oracle controls. Read 181.01 for the combined teaching run and Exercise 184 for the real image pipeline. Map conditioning, scheduling, denoising, updating and decoding.",
+      "commands": "python media/validate.py Contracts.test_17_oracle_recovers_clean_point Contracts.test_18_wrong_noise_detected\npython reader/records.py 181\npython reader/guide.py 184",
       "variables": {},
       "inspect": "Map conditioning, scheduler, denoiser, latent update and decoding. Identify which stages have no equivalent in the point model.",
       "interpret": "Separate signal validity, task quality, listening/visual review and profiler availability.",
@@ -4517,7 +5304,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Map conditioning, scheduler, denoiser, latent update and decoding. Identify which stages have no equivalent in the point model.",
       "predict": "",
-      "timing": "1.2 s for Original oracle (record 183.01)."
+      "timing": "1.2 s for Original oracle (record 183.01).",
+      "reading_note": "Use the oracle comparison in Exercise 180 and the combined training capture in 181.01 to explain the teaching loop. Compare it with Exercise 184 for the actual image pipeline, including decoding.",
+      "background_topics": [
+        "diffusion",
+        "media"
+      ]
     },
     {
       "number": 184,
@@ -4543,7 +5335,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Bind prompt, seed, resolution, steps and checkpoint to the saved PNG. Inspect phase completion and the actual image.",
       "predict": "",
-      "timing": "38.6 s for Resident (record 184.01)."
+      "timing": "38.6 s for Resident (record 184.01).",
+      "background_topics": [
+        "sdxl",
+        "diffusion"
+      ]
     },
     {
       "number": 185,
@@ -4567,7 +5363,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare matched resident and offload trials across elapsed time, process peak RSS and GPU memory. Keep their sampling scopes explicit.",
       "predict": "",
-      "timing": "57.6 s for Sequential offload (record 185.02)."
+      "timing": "57.6 s for Sequential offload (record 185.02).",
+      "background_topics": [
+        "sdxl",
+        "placement"
+      ]
     },
     {
       "number": 186,
@@ -4592,7 +5392,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the tiling control and per-step observations. Assign device times only when the trace supplies valid device intervals.",
       "predict": "",
-      "timing": "5 min 46 s for Profiled tiling (record 186.01)."
+      "timing": "5 min 46 s for Profiled tiling (record 186.01).",
+      "reading_note": "Compare the earlier denoising observations and the matched VAE tiling runs. The later tiny-kernel probe supplied no usable device timestamps for dividing time between the denoiser and decoder.",
+      "background_topics": [
+        "sdxl",
+        "allocator",
+        "profiler"
+      ]
     },
     {
       "number": 187,
@@ -4618,7 +5424,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the source and both outputs at the same prompt and seed. Score the requested object separately from background changes.",
       "predict": "",
-      "timing": "36.6 s for Strength 0.7 (record 187.02)."
+      "timing": "36.6 s for Strength 0.7 (record 187.02).",
+      "background_topics": [
+        "sdxl",
+        "diffusion"
+      ]
     },
     {
       "number": 188,
@@ -4643,7 +5453,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check token limit, sample rate, finite waveform, duration and saved WAV identity. Keep listening judgments separate.",
       "predict": "",
-      "timing": "28.6 s for Music short (record 188.02)."
+      "timing": "28.6 s for Music short (record 188.02).",
+      "background_topics": [
+        "music",
+        "media"
+      ]
     },
     {
       "number": 189,
@@ -4669,7 +5483,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect peak, RMS, duration and the spectrogram using the recorded sample rate. Locate any suspect interval in the waveform.",
       "predict": "",
-      "timing": "1.1 s for Music waveform STFT (record 189.01)."
+      "timing": "1.1 s for Music waveform STFT (record 189.01).",
+      "background_topics": [
+        "spectrum",
+        "music"
+      ]
     },
     {
       "number": 190,
@@ -4693,7 +5511,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare actual token counts and decoded durations with the shorter run. Compute real-time factor from the same timing interval.",
       "predict": "",
-      "timing": "22.8 s for Music long (record 190.01)."
+      "timing": "22.8 s for Music long (record 190.01).",
+      "background_topics": [
+        "music",
+        "timing"
+      ]
     },
     {
       "number": 191,
@@ -4718,7 +5540,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match generation settings and clip identities. Record listening observations per clip and distinguish reported feedback from device timing.",
       "predict": "",
-      "timing": "42.1 s for Second seed profiled (record 191.01)."
+      "timing": "42.1 s for Second seed profiled (record 191.01).",
+      "reading_note": "Inspect the generated clips, then record the listening assessment separately. The owner reported “good” overall. Detailed ratings remained open, as did usable device timing.",
+      "background_topics": [
+        "music",
+        "spectrum",
+        "profiler"
+      ]
     },
     {
       "number": 192,
@@ -4743,7 +5571,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match text, checkpoint and sampling rate to the saved waveform. Check duration before evaluating intelligibility.",
       "predict": "",
-      "timing": "17.8 s for Speech (record 192.01)."
+      "timing": "17.8 s for Speech (record 192.01).",
+      "background_topics": [
+        "tts",
+        "media"
+      ]
     },
     {
       "number": 193,
@@ -4769,7 +5601,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Use the waveform and spectrogram to identify intervals, verify their time scale and retain the source hash.",
       "predict": "",
-      "timing": "1.7 s for Speech waveform STFT (record 193.01)."
+      "timing": "1.7 s for Speech waveform STFT (record 193.01).",
+      "background_topics": [
+        "spectrum",
+        "tts"
+      ]
     },
     {
       "number": 194,
@@ -4793,7 +5629,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the controlled text pair and repeated seed. Preserve raw text, normalized input and waveform identities.",
       "predict": "",
-      "timing": "17.6 s for Synthesize the symbolic wording (record 194.01)."
+      "timing": "17.6 s for Synthesize the symbolic wording (record 194.01).",
+      "background_topics": [
+        "tts",
+        "prompt"
+      ]
     },
     {
       "number": 195,
@@ -4818,7 +5658,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check over-limit rejection, chunk coverage and joined pauses. Measure time to first audio separately from full synthesis time.",
       "predict": "",
-      "timing": "11.5 s for Profiled (record 195.03)."
+      "timing": "11.5 s for Profiled (record 195.03).",
+      "reading_note": "Check waveform and synthesis completion first. Use the host measurements for latency. The later probe supplied no device intervals for identifying a slow kernel.",
+      "background_topics": [
+        "tts",
+        "timing",
+        "profiler"
+      ]
     },
     {
       "number": 196,
@@ -4845,7 +5691,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Bind the exact WAV to its hypothesis and reference. Preserve the complete transcription before computing a score.",
       "predict": "",
-      "timing": "10.2 s for ASR (record 196.01)."
+      "timing": "10.2 s for ASR (record 196.01).",
+      "background_topics": [
+        "asr",
+        "media"
+      ]
     },
     {
       "number": 197,
@@ -4869,7 +5719,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compute error counts before and after the declared normalization. Inspect individual substitutions on each degraded input.",
       "predict": "Which changes in the hypothesis would the chosen normalization hide?",
-      "timing": "7.6 s for Wrong rate header (record 197.05)."
+      "timing": "7.6 s for Wrong rate header (record 197.05).",
+      "background_topics": [
+        "wer",
+        "asr"
+      ]
     },
     {
       "number": 198,
@@ -4896,7 +5750,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Confirm the zero peak and RMS of the digital-silence input, then retain the complete hypothesis and score it against silence.",
       "predict": "What would a speech recognizer have to output for digital silence to match an empty reference?",
-      "timing": "6.8 s for Word (record 198.03)."
+      "timing": "6.8 s for Word (record 198.03).",
+      "background_topics": [
+        "asr",
+        "spectrum"
+      ]
     },
     {
       "number": 199,
@@ -4922,7 +5780,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check interval boundaries and original sample rate, then inspect the joined transcript around each boundary.",
       "predict": "",
-      "timing": "6.8 s for Transcribe the first chunk (record 199.02)."
+      "timing": "6.8 s for Transcribe the first chunk (record 199.02).",
+      "background_topics": [
+        "asr",
+        "wer"
+      ]
     },
     {
       "number": 200,
@@ -4950,7 +5812,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the trainable set and base identities, train/dev split and before/after hypotheses on held-out audio.",
       "predict": "",
-      "timing": "18.4 s for Four step ASR adaptation (record 200.03)."
+      "timing": "18.4 s for Four step ASR adaptation (record 200.03).",
+      "background_topics": [
+        "mediaadapter",
+        "asr",
+        "wer"
+      ]
     },
     {
       "number": 201,
@@ -4977,7 +5844,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare adapter-enabled and disabled images with the same base, prompt and seed. Score the requested visual change independently of pixel differences.",
       "predict": "",
-      "timing": "25 min 18 s for Training (record 201.01)."
+      "timing": "25 min 18 s for Training (record 201.01).",
+      "background_topics": [
+        "mediaadapter",
+        "sdxl",
+        "lora"
+      ]
     },
     {
       "number": 202,
@@ -5005,7 +5877,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Keep input and output artifacts for each stage. Verify the silence guard and trace a successful input through to the final WAV.",
       "predict": "",
-      "timing": "32.7 s for Voice (record 202.01)."
+      "timing": "32.7 s for Voice (record 202.01).",
+      "background_topics": [
+        "multimediapipe",
+        "asr",
+        "tts"
+      ]
     },
     {
       "number": 203,
@@ -5031,7 +5908,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match request IDs to acceptance, rejection and completion, then verify owner identity and orderly shutdown.",
       "predict": "",
-      "timing": "2.6 s for Graceful stop (record 203.02)."
+      "timing": "2.6 s for Graceful stop (record 203.02).",
+      "background_topics": [
+        "multimediapipe",
+        "ownership",
+        "kube"
+      ]
     },
     {
       "number": 204,
@@ -5055,7 +5937,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check publisher, version, file size and architecture in the retained NGC metadata. Bind the request to the selected resource.",
       "predict": "",
-      "timing": "0.92 s for Catalog (record 204.01)."
+      "timing": "0.92 s for Catalog (record 204.01).",
+      "background_topics": [
+        "ngc",
+        "files"
+      ]
     },
     {
       "number": 205,
@@ -5079,7 +5965,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match archive checksum and ELF architecture, then retain the native invocation and exit separately.",
       "predict": "",
-      "timing": "2.6 s for NGC public info (record 205.02)."
+      "timing": "2.6 s for NGC public info (record 205.02).",
+      "background_topics": [
+        "ngc",
+        "toolkit"
+      ]
     },
     {
       "number": 206,
@@ -5103,7 +5993,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Follow the tag through index, platform manifest and configuration digest. Verify the selected container with its own CUDA check.",
       "predict": "",
-      "timing": "3 min 18 s for Native container GPU (record 206.01)."
+      "timing": "3 min 18 s for Native container GPU (record 206.01).",
+      "reading_note": "Keep the entire ngc-image output directory. Exercise 207 needs index.json and image.json together to validate the native ARM64 selection.",
+      "background_topics": [
+        "oci",
+        "ngc",
+        "docker"
+      ]
     },
     {
       "number": 207,
@@ -5116,10 +6012,10 @@
         206
       ],
       "resources": "Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.",
-      "run_note": "Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.",
-      "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\n: \"${NGC_IMAGE_RECORD:?Set NGC_IMAGE_RECORD to the image.json retained in Exercise 206}\"\npython catalogs/ngc_lab.py faults --source \"$NGC_IMAGE_RECORD\" --out \"$LAB_RUN/ngc-faults\"",
+      "run_note": "Use the directory from Exercise 206 with both index.json and image.json. For an offline control, set NGC_IMAGE_DIR=catalogs/controls/ngc-image before running the procedure.",
+      "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\nexport NGC_IMAGE_DIR=\"${NGC_IMAGE_DIR:-$LAB_RUN/ngc-image}\"\npython catalogs/ngc_lab.py faults --source \"$NGC_IMAGE_DIR\" --out \"$LAB_RUN/ngc-faults\"",
       "variables": {
-        "NGC_IMAGE_RECORD": "the image.json retained in Exercise 206"
+        "NGC_IMAGE_DIR": "directory containing index.json and image.json from Exercise 206"
       },
       "inspect": "Inject each supplied manifest fault and verify its specific rejection. Locate the first failing metadata boundary.",
       "interpret": "A catalog listing or correct checksum is not GPU qualification.",
@@ -5130,7 +6026,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inject each supplied manifest fault and verify its specific rejection. Locate the first failing metadata boundary.",
       "predict": "",
-      "timing": "0.12 s for Manifest faults (record 207.01)."
+      "timing": "0.12 s for Manifest faults (record 207.01).",
+      "background_topics": [
+        "oci",
+        "ngc"
+      ]
     },
     {
       "number": 208,
@@ -5154,7 +6054,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check repository type, immutable revision and the card's stated conditions. Record missing information explicitly.",
       "predict": "",
-      "timing": "0.57 s for Catalog (record 208.01)."
+      "timing": "0.57 s for Catalog (record 208.01).",
+      "background_topics": [
+        "hfhub",
+        "files"
+      ]
     },
     {
       "number": 209,
@@ -5178,7 +6082,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the selected file list, sizes and per-file hashes against the pinned snapshot.",
       "predict": "",
-      "timing": "1.2 s for Catalog (record 209.01)."
+      "timing": "1.2 s for Catalog (record 209.01).",
+      "background_topics": [
+        "hfhub",
+        "offline"
+      ]
     },
     {
       "number": 210,
@@ -5204,7 +6112,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Use the local-only path, inspect tensor shapes and compare repeated outputs under the stated tolerance.",
       "predict": "",
-      "timing": "6.3 s for Offline CUDA (record 210.02)."
+      "timing": "6.3 s for Offline CUDA (record 210.02).",
+      "background_topics": [
+        "hfhub",
+        "hfstack",
+        "offline"
+      ]
     },
     {
       "number": 211,
@@ -5228,7 +6141,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify schema and original split membership, then confirm that the injected duplicate is rejected.",
       "predict": "",
-      "timing": "0.12 s for Audit dataset (record 211.01)."
+      "timing": "0.12 s for Audit dataset (record 211.01).",
+      "background_topics": [
+        "hfhub",
+        "splits",
+        "arrays"
+      ]
     },
     {
       "number": 212,
@@ -5252,7 +6170,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Open the acquisition receipt. Match architecture, version and checksum for Prometheus and Grafana before starting either service.",
       "predict": "",
-      "timing": "1 min 23 s for Acquire tools (record 212.01)."
+      "timing": "1 min 23 s for Acquire tools (record 212.01).",
+      "background_topics": [
+        "prometheus",
+        "metrics"
+      ]
     },
     {
       "number": 213,
@@ -5277,7 +6199,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare the zero, missing-field and availability cases in raw exposition, then verify the corresponding queries.",
       "predict": "What should an absent utilization field look like when the scrape itself succeeds?",
-      "timing": "0.12 s for Exporter controls (record 213.01)."
+      "timing": "0.12 s for Exporter controls (record 213.01).",
+      "background_topics": [
+        "prometheus",
+        "metrics"
+      ]
     },
     {
       "number": 214,
@@ -5303,7 +6229,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check target identity, up and raw metric availability after startup. Inspect the endpoint before diagnosing a dashboard.",
       "predict": "",
-      "timing": "1 min 43 s for Strict native integration (record 214.01)."
+      "timing": "1 min 43 s for Strict native integration (record 214.01).",
+      "background_topics": [
+        "prometheus",
+        "serving"
+      ]
     },
     {
       "number": 215,
@@ -5329,7 +6259,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match each panel to its backend query. Inspect baseline, missing-field and real-zero states separately.",
       "predict": "",
-      "timing": "17.3 s for Render the baseline dashboard (record 215.01)."
+      "timing": "17.3 s for Render the baseline dashboard (record 215.01).",
+      "background_topics": [
+        "grafana",
+        "prometheus"
+      ]
     },
     {
       "number": 216,
@@ -5354,7 +6288,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Recompute the weighted mean from sums and counts and identify the histogram bucket containing the requested quantile.",
       "predict": "",
-      "timing": "0.57 s for the 20 ms workload (216.01) and 2.19 s for the 100 ms comparison (216.03)."
+      "timing": "0.57 s for the 20 ms workload (216.01) and 2.19 s for the 100 ms comparison (216.03).",
+      "background_topics": [
+        "promql",
+        "prometheus"
+      ]
     },
     {
       "number": 217,
@@ -5380,7 +6318,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Follow pending, firing and resolved states under each rule fixture. Check the corresponding API state and timing.",
       "predict": "",
-      "timing": "0.22 s for Promtool check (record 217.01)."
+      "timing": "0.22 s for Promtool check (record 217.01).",
+      "background_topics": [
+        "promql",
+        "obschecks"
+      ]
     },
     {
       "number": 218,
@@ -5407,7 +6349,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare matched monitored and unmonitored trials and their server counters. Mark the outer observation window explicitly.",
       "predict": "",
-      "timing": "0.52 s for Measure the first unmonitored trial (record 218.01)."
+      "timing": "0.52 s for Measure the first unmonitored trial (record 218.01).",
+      "reading_note": "Read the order of the three unmonitored and three monitored trials before comparing p95. All six completed. The five-second device sampling interval spans many of these short requests.",
+      "background_topics": [
+        "prometheus",
+        "tritonserver",
+        "timing"
+      ]
     },
     {
       "number": 219,
@@ -5435,7 +6383,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect network namespace, scrape target and backend responses. Verify cleanup of the owned port-forward and services.",
       "predict": "",
-      "timing": "0.52 s for Kubernetes oracle (record 219.03)."
+      "timing": "0.52 s for Kubernetes oracle (record 219.03).",
+      "background_topics": [
+        "prometheus",
+        "grafana",
+        "kube"
+      ]
     },
     {
       "number": 220,
@@ -5459,7 +6412,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify the active interpreter, isolated package identities and dependency checks before issuing a model request.",
       "predict": "",
-      "timing": "0.11 s for Environment (record 220.01)."
+      "timing": "0.11 s for Environment (record 220.01).",
+      "background_topics": [
+        "langchain",
+        "agent"
+      ]
     },
     {
       "number": 221,
@@ -5484,7 +6441,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Follow the valid receipt, invalid key and endless-loop controls. Each must finish at its intended boundary.",
       "predict": "",
-      "timing": "1.4 s for Control (record 221.01)."
+      "timing": "1.4 s for Control (record 221.01).",
+      "background_topics": [
+        "langchain",
+        "agent"
+      ]
     },
     {
       "number": 222,
@@ -5509,7 +6470,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check the loopback contract first, then inspect real-model messages and validate tool arguments separately.",
       "predict": "",
-      "timing": "8.4 s for Invoke the local model through the agent (record 222.02)."
+      "timing": "8.4 s for Invoke the local model through the agent (record 222.02).",
+      "background_topics": [
+        "langchain",
+        "http",
+        "server"
+      ]
     },
     {
       "number": 223,
@@ -5533,7 +6499,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare thread identity, checkpoint and next node across the process boundary.",
       "predict": "",
-      "timing": "1.2 s for Restart (record 223.01)."
+      "timing": "1.2 s for Restart (record 223.01).",
+      "background_topics": [
+        "langgraph",
+        "sqlite"
+      ]
     },
     {
       "number": 224,
@@ -5557,7 +6527,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Preserve the wrong-thread and duplicate-resume rejections, then verify the intended continuation exactly once.",
       "predict": "",
-      "timing": "1.6 s for Faults (record 224.01)."
+      "timing": "1.6 s for Faults (record 224.01).",
+      "background_topics": [
+        "langgraph",
+        "agent"
+      ]
     },
     {
       "number": 225,
@@ -5582,7 +6556,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the interruption, saved state, approval and subsequent model messages in their recorded order.",
       "predict": "",
-      "timing": "3.5 s for Graph resume (record 225.02)."
+      "timing": "3.5 s for Graph resume (record 225.02).",
+      "background_topics": [
+        "langgraph",
+        "langchain"
+      ]
     },
     {
       "number": 226,
@@ -5606,7 +6584,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Follow parent/child trace IDs, retained error state and redacted values. Check the offline connection guard.",
       "predict": "",
-      "timing": "0.42 s for Control (record 226.01)."
+      "timing": "0.42 s for Control (record 226.01).",
+      "background_topics": [
+        "langsmith",
+        "otel"
+      ]
     },
     {
       "number": 227,
@@ -5630,7 +6612,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Recompute rubric counts with the stated denominator and keep failed examples alongside passed examples.",
       "predict": "",
-      "timing": "0.47 s for Evaluate (record 227.01)."
+      "timing": "0.47 s for Evaluate (record 227.01).",
+      "background_topics": [
+        "langsmith",
+        "splits"
+      ]
     },
     {
       "number": 228,
@@ -5654,7 +6640,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the synthetic payload and destination. Mark the hosted path verified only after an authorized call and matching readback.",
       "predict": "",
-      "timing": "0.82 s for Request plan (record 228.01)."
+      "timing": "0.82 s for Request plan (record 228.01).",
+      "reading_note": "Read the prepared LangSmith request and its fields. The optional hosted call was never sent in the recorded run, so there is no ingestion or UI result.",
+      "background_topics": [
+        "langsmith",
+        "offline"
+      ]
     },
     {
       "number": 229,
@@ -5678,7 +6669,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect the first validation error, feedback to the model and the accepted structured output.",
       "predict": "",
-      "timing": "0.57 s for Control (record 229.01)."
+      "timing": "0.57 s for Control (record 229.01).",
+      "background_topics": [
+        "pydantic",
+        "agent"
+      ]
     },
     {
       "number": 230,
@@ -5702,7 +6697,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Count requests and retries against the configured limit. Preserve the final failure and message sequence.",
       "predict": "",
-      "timing": "0.62 s for Budget (record 230.01)."
+      "timing": "0.62 s for Budget (record 230.01).",
+      "background_topics": [
+        "pydantic",
+        "agent"
+      ]
     },
     {
       "number": 231,
@@ -5723,11 +6722,15 @@
       "troubleshoot": "Inspect the failed boundary and retained messages; bound retries and continuation.",
       "finish": "Keep $LAB_RUN/typed-local.json with the command and exit that produced it.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Recorded result  PASSED — The typed agent completed against the actual local CUDA model endpoint. A separate attempt after the server stopped failed with exit 1, and its full transport error remains in the companion.\nScope  Typed-output acceptance does not prove factual or diagnostic correctness, and a stopped endpoint must not silently fall back to a fixture.",
+      "evidence_note": "Recorded result  PASSED — The typed agent completed against the actual local CUDA model endpoint. A separate attempt after the server stopped failed with exit 1, as recorded in this exercise.\nScope  Typed-output acceptance does not prove factual or diagnostic correctness, and a stopped endpoint must not silently fall back to a fixture.",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Validate the typed output, then check its factual claim against the supplied evidence.",
       "predict": "",
-      "timing": "1.9 s for Invoke the local model through the typed agent (record 231.01)."
+      "timing": "1.9 s for Invoke the local model through the typed agent (record 231.01).",
+      "background_topics": [
+        "pydantic",
+        "http"
+      ]
     },
     {
       "number": 232,
@@ -5751,7 +6754,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Run the fabricated-response controls and match each injected fault to its rejection.",
       "predict": "",
-      "timing": "0.11 s for Control (record 232.01)."
+      "timing": "0.11 s for Control (record 232.01).",
+      "background_topics": [
+        "jev",
+        "pydantic"
+      ]
     },
     {
       "number": 233,
@@ -5775,7 +6782,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Recompute Brier score, accepted count and risk from the six labelled examples at each threshold.",
       "predict": "",
-      "timing": "0.12 s for Calibration (record 233.01)."
+      "timing": "0.12 s for Calibration (record 233.01).",
+      "background_topics": [
+        "calibration",
+        "jev"
+      ]
     },
     {
       "number": 234,
@@ -5800,7 +6811,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect model identity, request version, payload and destination. Keep an unsent plan separate from a returned service response.",
       "predict": "",
-      "timing": "0.12 s for Request plan (record 234.01)."
+      "timing": "0.12 s for Request plan (record 234.01).",
+      "reading_note": "Inspect the versioned Jev request plan before sending it. The recorded exercise prepared the request and stopped at the missing credential. Service execution remains unmeasured.",
+      "background_topics": [
+        "jev",
+        "http"
+      ]
     },
     {
       "number": 235,
@@ -5824,7 +6840,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check binary architecture and version, then establish daemon readiness before querying model state.",
       "predict": "",
-      "timing": "6.4 s for Native ready (record 235.02)."
+      "timing": "6.4 s for Native ready (record 235.02).",
+      "background_topics": [
+        "ollama",
+        "server"
+      ]
     },
     {
       "number": 236,
@@ -5851,7 +6871,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match tag and model digest, reconstruct the NDJSON response, and inspect its final completion record.",
       "predict": "",
-      "timing": "47.5 s for Ollama cold (record 236.01)."
+      "timing": "47.5 s for Ollama cold (record 236.01).",
+      "background_topics": [
+        "ollama",
+        "streaming",
+        "files"
+      ]
     },
     {
       "number": 237,
@@ -5879,7 +6904,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check returned vector count, dimension, finite values and request identity for the sentence inputs.",
       "predict": "",
-      "timing": "40.4 s for Ollama embedding (record 237.01)."
+      "timing": "40.4 s for Ollama embedding (record 237.01).",
+      "background_topics": [
+        "ollama",
+        "embeddings"
+      ]
     },
     {
       "number": 238,
@@ -5907,7 +6936,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect resident owners, load duration and cached prompt count before comparing cold and warm worker timings.",
       "predict": "",
-      "timing": "0.47 s for Ollama warm (record 238.01)."
+      "timing": "0.47 s for Ollama warm (record 238.01).",
+      "background_topics": [
+        "ollama",
+        "ownership"
+      ]
     },
     {
       "number": 239,
@@ -5931,7 +6964,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify base hashes, family split and supervised labels before starting the bounded QLoRA experiment.",
       "predict": "",
-      "timing": "0.37 s for Overlay pip check (record 239.02)."
+      "timing": "0.37 s for Overlay pip check (record 239.02).",
+      "background_topics": [
+        "unsloth",
+        "splits"
+      ]
     },
     {
       "number": 240,
@@ -5958,7 +6995,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check device placement, trainable adapters, finite updates and checkpoint-5. Record memory at the measured training boundary.",
       "predict": "",
-      "timing": "1 min 22 s for Unsloth native training (record 240.01)."
+      "timing": "1 min 22 s for Unsloth native training (record 240.01).",
+      "background_topics": [
+        "unsloth",
+        "lora"
+      ]
     },
     {
       "number": 241,
@@ -5986,7 +7027,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Bind the resume to its checkpoint step and base identities, then verify the next update and resulting checkpoint.",
       "predict": "",
-      "timing": "56.7 s for Unsloth native resume (record 241.01)."
+      "timing": "56.7 s for Unsloth native resume (record 241.01).",
+      "background_topics": [
+        "unsloth",
+        "trainingstate"
+      ]
     },
     {
       "number": 242,
@@ -6014,7 +7059,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Score format validity and semantic accuracy separately on the same paired evaluation inputs.",
       "predict": "",
-      "timing": "38.2 s for Merge checked adapter (record 242.02)."
+      "timing": "38.2 s for Merge checked adapter (record 242.02).",
+      "background_topics": [
+        "unsloth",
+        "checkpoints"
+      ]
     },
     {
       "number": 243,
@@ -6038,7 +7087,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify recovery from the storage failure, inspect native backend identity, and compare model inventory with lms ps.",
       "predict": "",
-      "timing": "3.8 s for Bootstrap reused archive (record 243.01)."
+      "timing": "3.8 s for Bootstrap reused archive (record 243.01).",
+      "background_topics": [
+        "lmstudio",
+        "server"
+      ]
     },
     {
       "number": 244,
@@ -6065,7 +7118,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match the import receipt and loaded identifier to the API request, full response and placement observations.",
       "predict": "",
-      "timing": "7.9 s for Final cold (record 244.01)."
+      "timing": "7.9 s for Final cold (record 244.01).",
+      "background_topics": [
+        "lmstudio",
+        "serving",
+        "files"
+      ]
     },
     {
       "number": 245,
@@ -6091,7 +7149,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Inspect load timing, raw SSE events and finish reason. Keep a client timeout separate from server-side completion.",
       "predict": "",
-      "timing": "7.9 s for Final reloaded (record 245.02)."
+      "timing": "7.9 s for Final reloaded (record 245.02).",
+      "background_topics": [
+        "lmstudio",
+        "streaming",
+        "timing"
+      ]
     },
     {
       "number": 246,
@@ -6119,7 +7182,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Verify index-ordered vectors first, then inspect the agent's tool messages and task outcome as a separate test.",
       "predict": "",
-      "timing": "19.3 s for Repeat the LangChain contract test (record 246.02)."
+      "timing": "19.3 s for Repeat the LangChain contract test (record 246.02).",
+      "background_topics": [
+        "lmstudio",
+        "embeddings",
+        "agent"
+      ]
     },
     {
       "number": 247,
@@ -6143,7 +7211,11 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Record upstream and conversion identities, selected file size and hash before interpreting its loading behavior.",
       "predict": "",
-      "timing": "18 min 56 s for Acquire admitted Q8 (record 247.03)."
+      "timing": "18 min 56 s for Acquire admitted Q8 (record 247.03).",
+      "background_topics": [
+        "nemotron",
+        "files"
+      ]
     },
     {
       "number": 248,
@@ -6169,7 +7241,13 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare weight bytes with the correctly scoped reports and current host/guest headroom. Document the proposed layer count and stop conditions.",
       "predict": "",
-      "timing": "19 min 00 s for the complete Q8 admission driver (248.04). The nested download (247.03) took 18 min 56 s."
+      "timing": "19 min 00 s for the complete Q8 admission driver (248.04). The nested download (247.03) took 18 min 56 s.",
+      "reading_note": "Run the synthetic admission example to inspect its arithmetic. For actual available memory or model placement, use timestamped counters and the native loader log from the measured run.",
+      "background_topics": [
+        "nemotron",
+        "bigmodel",
+        "budgets"
+      ]
     },
     {
       "number": 249,
@@ -6195,7 +7273,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Read native placement and buffer sizes alongside the response and pressure samples. Check the server's actual endpoint and context.",
       "predict": "",
-      "timing": "2 min 05 s for Start the guarded Nemotron Q8 trial (record 249.01)."
+      "timing": "2 min 05 s for Start the guarded Nemotron Q8 trial (record 249.01).",
+      "background_topics": [
+        "nemotron",
+        "placement",
+        "paging"
+      ]
     },
     {
       "number": 250,
@@ -6222,7 +7305,12 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare both runtimes on identical inputs. Score completion, format, arithmetic and evidence identity separately before proposing training.",
       "predict": "",
-      "timing": "36.4 s for Model cache advice and headroom corrected (record 250.03)."
+      "timing": "36.4 s for Model cache advice and headroom corrected (record 250.03).",
+      "background_topics": [
+        "nemotron",
+        "prompt",
+        "lora"
+      ]
     },
     {
       "number": 251,
@@ -6236,7 +7324,7 @@
         91
       ],
       "resources": "Qualified CUDA framework; query first, then 1 GiB pilot. The optional 18 GiB stage needs all documented guest/host/device guards.",
-      "run_note": "The entry is query-only. Read memory_budget/README.txt, record actual host headroom, run the 1 GiB pilot, and consider 18 GiB only if all stated guards pass. The advanced section retains the full procedure.",
+      "run_note": "Begin with the query only. Keep the CUDA-qualified Python interpreter from Exercise 14 active. The advanced procedure below starts a monitored 1 GiB pilot. The optional 18 GiB stage requires its completed receipt from this WSL boot and interpreter.",
       "commands": ": \"${LAB_RUN:?Run source reader/new_run.sh first}\"\n\npython memory_budget/run.py --out \"$LAB_RUN/memory-views\"",
       "variables": {},
       "inspect": "Open $LAB_RUN/memory-views. Inspect query scopes, every-byte verification, monitoring intervals and release counters.",
@@ -6248,7 +7336,16 @@
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Check simultaneous retained bytes against MemTotal, every-byte verification, guard samples, exit and release. Keep the pilot and target distinct.",
       "predict": "Can the guest memory report alone predict whether the 18 GiB verification will pass?",
-      "timing": "11.6 s for Memory pilot vmstat (record 251.04)."
+      "timing": "11.6 s for Memory pilot vmstat (record 251.04).",
+      "staged_commands": [
+        "python memory_budget/guarded.py pilot --out \"$LAB_RUN/memory-pilot\"",
+        "python memory_budget/guarded.py target --pilot \"$LAB_RUN/memory-pilot\" --out \"$LAB_RUN/memory-above-guest\""
+      ],
+      "background_topics": [
+        "retained",
+        "budgets",
+        "paging"
+      ]
     }
   ]
 }

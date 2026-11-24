@@ -3,6 +3,20 @@ Exercise 104  Test bounded prefetch and extend to DataLoader
 Question
 Can bounded prefetch hide input delay without changing the workload?
 
+Technology background
+
+DataLoader, queues and prefetching
+
+Training often needs the CPU to read, decode and assemble examples before the GPU can use them. PyTorch’s DataLoader makes batches and can use worker processes. Prefetching lets the producer prepare future batches while the consumer processes the current one. Buffer space and memory place a limit on how much work can wait.
+
+Introduce a known delay before a batch is ready. Measure time waiting for input separately from computation. Then change the queue depth while keeping the work fixed. Low GPU utilization alone cannot tell input starvation from a small or intermittent workload.
+
+Client workers, queues and concurrency
+
+A worker handles a unit of work. Two clients can have requests in flight at the same time while one server processes them sequentially, interleaves them, or groups them. An open connection is therefore a different observation from GPU execution. More clients can increase memory use and time spent waiting.
+
+Compare the same number of requests first with one worker and then with two. Record when each request enters, receives its first content and finishes. Changes in total throughput and in the latency experienced by an individual reader can point in different directions.
+
 Before you start
 Exercise 103 (introduce a known supply delay)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

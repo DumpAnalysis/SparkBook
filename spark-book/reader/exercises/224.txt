@@ -3,6 +3,20 @@ Exercise 224  Reject wrong-thread and duplicate continuation
 Question
 Can an approval intended for one thread be reused elsewhere or twice?
 
+Technology background
+
+LangGraph state, checkpoints and human review
+
+LangGraph represents an agent workflow as a graph. A node performs a step, an edge selects the next step and shared state carries information between them. A checkpointer saves state for a particular thread identifier. An interrupt can pause execution until the application supplies a review decision.
+
+In the exercise a new Python process opens the saved state and resumes the intended thread. Check the thread ID, pending action and state after resumption. A resumed node can re-execute earlier code, so an external action needs its own record to prevent doing it twice.
+
+Agent loops, tools and action validation
+
+An agent combines a decision step with actions the application can perform. A model may propose reading a file or calling a tool. A controller checks the tool name and arguments, executes an allowed action and gives the resulting observation back to the decision step. The loop needs a stop condition.
+
+A replay supplies predetermined proposals, so we can test the controller with a known sequence. A live planner uses the model’s own proposals. Read proposal, validation, action and result in order. Only the action record establishes which tool actually ran.
+
 Before you start
 Exercise 223 (resume after the Python process exits)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.

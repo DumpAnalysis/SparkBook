@@ -3,6 +3,20 @@ Exercise 9  Observe the first content event
 Question
 At what point does the client first receive useful text?
 
+Technology background
+
+Streaming text and the first content event
+
+A streaming server sends pieces of a reply while it is still generating. In Server-Sent Events, a single HTTP connection carries a sequence of events. An event can announce a role or carry metadata before any text appears. Network chunks and model tokens also have different boundaries.
+
+For the first-content latency, start the clock when the client sends the request and stop it at the first event containing text. Keep reading through the protocol’s completion marker. This gives two useful observations, time to visible content and time to a complete reply.
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
 Before you start
 Exercise 5 (start the baseline server) · Exercise 6 (submit the complete prompt)
 The active baseline server, the supplied one-line reader/ready.txt and a new stream.json path.

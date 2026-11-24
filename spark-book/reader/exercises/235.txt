@@ -3,6 +3,20 @@ Exercise 235  Qualify a native Ollama installation
 Question
 Which Ollama build and server process will own this local model?
 
+Technology background
+
+Ollama, local model names and residency
+
+Ollama runs a local service that manages models and exposes generation and embedding endpoints. A local model name identifies what to request. Importing a GGUF file creates a usable model entry, while loading it creates a running model that consumes resources. A residency setting influences how long it can stay loaded between calls.
+
+Read the installed model list, then inspect the running models around a bounded request. For streamed generation, read the sequence of JSON objects through the final completion record. For embeddings, inspect vector count, dimension and response model identity.
+
+Loading a model with llama.cpp
+
+llama.cpp is a native inference runtime. Its llama-server executable opens the model file, prepares memory for inference and listens for requests. The file on disk, the running process and the address clients call are three different things. A downloaded model alone cannot answer a prompt.
+
+Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

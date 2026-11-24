@@ -3,6 +3,20 @@ Exercise 212  Acquire and identify the monitoring tools
 Question
 Which monitoring binaries will this ARM64 WSL session actually launch?
 
+Technology background
+
+Prometheus, exporters and time series
+
+Prometheus asks configured targets for metrics at intervals called scrapes. An exporter translates another system’s measurements into named values that Prometheus can read. Labels distinguish series, for example by device. A gauge can rise or fall, while a counter usually accumulates events until its process restarts.
+
+Trace one value from the original provider through the exporter’s metrics response to a raw Prometheus query. The lab’s WSL2 exporter can indicate when a management field is unavailable. NVIDIA’s DCGM exporter is another possible data source where DCGM is supported. A successful scrape says the endpoint answered.
+
+GPU metrics, samples and missing observations
+
+A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+
+Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 Native monitoring tools or qualified containers; CPU/host memory and retained time-series data.

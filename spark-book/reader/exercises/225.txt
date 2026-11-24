@@ -3,6 +3,20 @@ Exercise 225  Put a bounded model call behind review
 Question
 Can a graph wait for review before making its bounded model call?
 
+Technology background
+
+LangGraph state, checkpoints and human review
+
+LangGraph represents an agent workflow as a graph. A node performs a step, an edge selects the next step and shared state carries information between them. A checkpointer saves state for a particular thread identifier. An interrupt can pause execution until the application supplies a review decision.
+
+In the exercise a new Python process opens the saved state and resumes the intended thread. Check the thread ID, pending action and state after resumption. A resumed node can re-execute earlier code, so an external action needs its own record to prevent doing it twice.
+
+LangChain agents and local model adapters
+
+LangChain supplies interfaces for chat models and tools and can assemble them into an agent loop. A model adapter translates between the framework’s messages and a provider’s request and response format. The application still decides which tools are available and validates the arguments it receives.
+
+Begin with a known tool proposal and watch the controller record its result. Then replace the test responder with the local model endpoint. An endpoint can be compatible with ordinary chat while handling tool calls differently. Inspect the actual structured call before attributing a working tool loop to that model.
+
 Before you start
 Exercise 223 (resume after the Python process exits) · Exercise 222 (qualify the HTTP boundary and local model)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.

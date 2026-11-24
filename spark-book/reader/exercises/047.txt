@@ -3,6 +3,20 @@ Exercise 47  Write and check a rectangular transpose
 Question
 How can we catch swapping dimensions on a rectangular transpose?
 
+Technology background
+
+Matrix layout, tiles and shared memory
+
+A matrix has rows and columns but occupies a sequence of memory locations. In row-major storage, adjacent columns of one row sit beside each other. A transpose swaps rows with columns. For a rectangular input, reversing the shape as well as the indices helps expose a mistaken stride.
+
+A tile is a small rectangular portion that a block processes together. Threads can stage a tile in on-chip shared memory and synchronize before consuming one another’s values. Check the last partial tile: threads without a valid output may still need to participate in the block’s barrier.
+
+Writing a CUDA kernel with threads and blocks
+
+A kernel is a function that many GPU threads execute on different data. Threads are grouped into blocks, and the blocks form a grid. In one dimension, a thread can compute its element index from its block number, block size and position inside the block.
+
+Imagine adding two vectors of length five with blocks of four threads. Two blocks supply eight thread positions. Only indices zero through four correspond to elements. A bounds check protects the tail. A grid-stride loop lets each valid thread handle further elements when the vector is much longer than the grid.
+
 Before you start
 Exercise 46 (decouple the grid from the data length)
 NVCC and host C++ compiler; small bounded tensors, no model download.

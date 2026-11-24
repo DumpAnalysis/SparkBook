@@ -3,6 +3,26 @@ Exercise 74  Create the measurement record and collect the baseline
 Question
 Which fields in a baseline came from an observation on this machine?
 
+Technology background
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
+The CUDA driver, toolkit and runtime
+
+CUDA is NVIDIA’s platform for running computations on a GPU. The driver exposes the device. The toolkit supplies development tools such as the nvcc compiler. A runtime library lets an application allocate device memory and launch work. A framework or container may carry its own user-space libraries.
+
+Version labels at these layers can differ. Record the mapped driver query, nvcc version, PyTorch build and device compute capability in their own fields. A missing compiler affects building source. A working prebuilt application can still use the GPU.
+
+Bytes, memory budgets and unified memory
+
+One GiB is 1,073,741,824 bytes. On this 64 GB unified-memory laptop, Windows, the WSL2 guest and a CUDA process describe memory from different positions. The free command reports guest RAM. nvidia-smi reports the management interface’s GPU memory view. PyTorch can query the CUDA runtime for free and total bytes visible to its process.
+
+Keep the name, unit, time and calling process beside each value. The recorded 31,232 MiB management total and 45.97 GiB CUDA total overlap. Adding them would count some of the same capacity twice. Exercise 251 tests what an allocation can actually write and verify.
+
 Before you start
 Exercise 1 (inventory the existing environment) · Exercise 14 (run a small synchronized computation)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.

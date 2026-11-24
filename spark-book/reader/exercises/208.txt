@@ -3,6 +3,20 @@ Exercise 208  Inspect pinned model and dataset identities
 Question
 Which repository identity and access conditions define each Hub input?
 
+Technology background
+
+Hugging Face Hub, snapshots and dataset cards
+
+Hugging Face Hub hosts versioned repositories for models, datasets and other artifacts. A model card documents a model’s purpose and usage. A dataset card describes data and its intended scope. A snapshot collects files at one revision. A moving branch name can later select different bytes.
+
+Inspect a revision and its file list before downloading. A tiny encoder may need configuration, a tokenizer and weights. For a dataset, check the actual rows and split membership as well as the card. If access is gated, authorization is a separate prerequisite from the ability to load the files.
+
+Model downloads, Git revisions and GGUF
+
+A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
+
+The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.

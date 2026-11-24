@@ -3,6 +3,20 @@ Exercise 93  Verify the wrapper without inventing GPU observations
 Question
 Can the wrapper record a host task while GPU sampling is disabled?
 
+Technology background
+
+GPU metrics, samples and missing observations
+
+A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+
+Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
+
+Clients, servers and a local HTTP request
+
+A server waits for requests. A client sends one to an address and a port. The address 127.0.0.1 means this machine’s loopback interface. An HTTP request names an operation and may carry a body. Here, JSON expresses that body as named fields, such as a model name and a prompt.
+
+Exercise 3 uses a fixture, a small server with a known reply, to test the client before loading any weights. First read the HTTP status, then the body. A successful exchange tells us the two programs communicated. Grading a generated answer requires a separate check of its contents.
+
 Before you start
 Exercise 91 (establish the monitoring contract)
 CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.

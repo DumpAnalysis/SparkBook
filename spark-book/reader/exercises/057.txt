@@ -3,6 +3,20 @@ Exercise 57  Register and build the operator
 Question
 Can PyTorch dispatch the new operator with the declared tensor contract?
 
+Technology background
+
+Custom PyTorch operators and gradients
+
+A custom operator exposes compiled code as a named PyTorch operation. Its registration describes inputs and outputs. The dispatcher selects the appropriate implementation for a device. If the operation is to take part in training, PyTorch also needs a rule for propagating gradients backwards.
+
+First call the operator from Python on a small tensor and compare its output against a familiar operation. Check registration and gradient behavior separately. Then run on the caller’s selected stream. An operation can return the right value on the default stream while mishandling ordering elsewhere.
+
+PyTorch tensors and synchronized CUDA execution
+
+A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A Python package called a wheel supplies the installed framework build.
+
+A CUDA kernel is a function that runs on the GPU. PyTorch launches kernels for tensor operations. GPU work can continue after the Python call that launched it returns. The probe performs a small calculation, synchronizes and checks its result. Read the interpreter path, device name, tensor device and result together. They connect a particular Python environment with an operation that completed.
+
 Before you start
 Exercise 14 (run a small synchronized computation) · Exercise 31 (inventory development tools independently) · Exercise 56 (write stable softmax and complete the regression set)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.

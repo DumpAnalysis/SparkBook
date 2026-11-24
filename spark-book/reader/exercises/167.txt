@@ -3,6 +3,26 @@ Exercise 167  Compare quality memory and serving latency together
 Question
 Would the smaller representation pass both the answer contract and the serving budget?
 
+Technology background
+
+Calibration and explicit quantize and dequantize operations
+
+A quantizer maps a range of real values to a limited set of codes using a scale and sometimes a zero point. Calibration estimates suitable ranges from example inputs. A rare large value can stretch a scale, leaving fewer useful codes for the many small values. Per-channel scales allow different ranges for different channels.
+
+An ONNX QDQ graph marks where values are quantized and dequantized. Measure reconstruction error on separate evaluation rows. Then inspect the engine and its selected implementations before attributing a speed change to integer kernels.
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
+Inference APIs, readiness and service health
+
+An inference service turns a model call into a request that another program can make. Its contract specifies the input fields, supported shapes, response structure and error behavior. A vector endpoint, for example, should return one vector of the expected length for each accepted input.
+
+A liveness check asks whether the process is functioning. A readiness check asks whether it can serve the intended workload now. Draining stops accepting new work while allowing in-flight requests to finish. Try a known request and an invalid one, then check which process, status and response correspond to each.
+
 Before you start
 Exercise 11 (compare two quantizations) · Exercise 149 (diagnose vLLM concurrency and deploy the qualified owner) · Exercise 166 (inspect explicit QDQ and qualify its kernels)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

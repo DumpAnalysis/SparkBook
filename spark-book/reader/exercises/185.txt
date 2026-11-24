@@ -3,6 +3,20 @@ Exercise 185  Compare resident execution with CPU offload
 Question
 Where does memory pressure move when model components are offloaded?
 
+Technology background
+
+Stable Diffusion XL, Diffusers and the VAE
+
+Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.
+
+Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change.
+
+CPU execution and partial GPU offload
+
+A model is an ordered computation built from layers. A runtime can execute some layers on the GPU and others on the CPU. The boundary may require moving intermediate results. Decoder state, work buffers and the operating system also need memory while a request runs.
+
+A CPU control runs the workload with GPU layers disabled. Compare it with a run that requests GPU layers. In both cases inspect the loader’s actual layer and buffer report, then submit the same prompt. The requested layer count alone cannot tell us what placement the runtime achieved.
+
 Before you start
 Exercise 184 (generate one bounded image)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

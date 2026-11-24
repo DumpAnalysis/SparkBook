@@ -3,6 +3,20 @@ Exercise 4  Download and fingerprint
 Question
 Could someone identify the exact runtime and weights used in this lab?
 
+Technology background
+
+Model downloads, Git revisions and GGUF
+
+A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
+
+The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+
+Git repositories, snapshots and saved run directories
+
+Git records versions of a project. A commit identifies one saved version. GitHub hosts the companion repository. A clone gives you its files and Git history. A release ZIP gives you a snapshot you can use without learning Git commands. The companion supplies the small programs and teaching inputs. Large downloaded model weights have their own identities.
+
+Keep the staging copy apart from your working lab. A fresh run directory holds the command, results and logs from one attempt. When comparing two trials, keep both directories and note the software revision used for each.
+
 Before you start
 Exercise 1 (inventory the existing environment) · Exercise 2 (calculate before allocating) · Exercise 3 (verify the client without a model)
 Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).

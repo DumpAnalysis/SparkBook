@@ -3,6 +3,20 @@ Exercise 34  Export one synchronized device allocation
 Question
 Can we recover the contents of a known device allocation after the kernel finishes?
 
+Technology background
+
+A device buffer, a tensor snapshot and a GPU core dump
+
+Each of these artifacts answers a different question. A buffer dump copies bytes from a selected allocation after the program finishes writing it. To decode the bytes you need their element type, shape and byte order. A framework allocator snapshot describes allocations and their histories. A GPU exception core records supported debugging state when execution faults.
+
+Begin with a buffer initialized to a known pattern. Synchronize, export just that allocation, decode a few elements and compare them with the pattern. A matching payload checks this buffer at that point in the program.
+
+PyTorch tensors and synchronized CUDA execution
+
+A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A Python package called a wheel supplies the installed framework build.
+
+A CUDA kernel is a function that runs on the GPU. PyTorch launches kernels for tensor operations. GPU work can continue after the Python call that launched it returns. The probe performs a small calculation, synchronizes and checks its result. Read the interpreter path, device name, tensor device and result together. They connect a particular Python environment with an operation that completed.
+
 Before you start
 Exercise 32 (build debug and performance variants)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

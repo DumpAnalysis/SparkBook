@@ -3,6 +3,14 @@ Exercise 173  Create inspectable image and audio fixtures
 Question
 Can we identify the exact pixels and sound samples before invoking a model?
 
+Technology background
+
+Images, waveforms and model processors
+
+An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
+
+Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript.
+
 Before you start
 Exercise 172 (qualify a separate media environment)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

@@ -3,6 +3,20 @@ Exercise 204  Inspect an NGC resource before downloading it
 Question
 What can the catalog prove before downloading a single resource file?
 
+Technology background
+
+NVIDIA NGC Catalog, resources and container images
+
+NGC Catalog is NVIDIA’s catalog of GPU software and other assets. A resource entry can describe a downloadable file or tool. A container entry identifies an image in a registry. Reading a catalog page, acquiring an asset and executing it are three distinct operations.
+
+Start by recording the item type, owner, version, expected size and available files. For a native command-line tool, inspect the executable’s target architecture before running it in this ARM64 WSL2 guest. For a container, follow its platform-specific digest in Exercise 206.
+
+Model downloads, Git revisions and GGUF
+
+A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
+
+The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.

@@ -3,6 +3,26 @@ Exercise 133  Prepare data in workers and keep one optimizer
 Question
 Can CPU workers prepare batches while a single owner preserves optimizer order?
 
+Technology background
+
+Sharing a GPU and owning a model
+
+Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers.
+
+NVIDIA Multi-Process Service, or MPS, is a separate GPU scheduling facility with platform requirements. It does not automatically merge separate model copies. The single-owner queue in this lab lets us study waiting, cancellations and sharing on the available laptop without assuming MPS support.
+
+Gradients, optimizers and resuming an update
+
+A gradient tells an optimizer how the loss changes as a trainable value changes. AdamW also carries running estimates derived from earlier gradients. A training process may keep random-number state, a batch position and a scaler for limited-precision arithmetic. Live tensors retained by Python can change the memory picture.
+
+To test recovery, save at a known step, resume in a new process and compare the next batch, loss and updated parameters with an uninterrupted run. Restoring only the visible model weights can produce the same immediate prediction yet a different next update.
+
+DataLoader, queues and prefetching
+
+Training often needs the CPU to read, decode and assemble examples before the GPU can use them. PyTorch’s DataLoader makes batches and can use worker processes. Prefetching lets the producer prepare future batches while the consumer processes the current one. Buffer space and memory place a limit on how much work can wait.
+
+Introduce a known delay before a batch is ready. Measure time waiting for input separately from computation. Then change the queue depth while keeping the work fixed. Low GPU utilization alone cannot tell input starvation from a small or intermittent workload.
+
 Before you start
 Exercise 25 (establish the framework and run ten updates) · Exercise 130 (share one encoder across request workers)
 One GPU owner by default; replicas duplicate weights. Bound clients and batches before increasing concurrency.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Check the four ordered updates against the serial reference and inspect the next-step checkpoint field.
+
+Reading the result
+The workers prepare data. One GPU process owns the optimizer and writes the checkpoint after update 4. Inspect the teaching file sharing/evidence/06-training/training-checkpoint.pt with sharing/validate.py.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

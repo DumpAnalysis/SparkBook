@@ -3,6 +3,20 @@ Exercise 229  Reject a plausible but invalid finding
 Question
 Does a typed schema reject a plausible-looking but invalid finding?
 
+Technology background
+
+PydanticAI and typed model outputs
+
+Pydantic models describe fields, types and validation rules for data. PydanticAI uses such contracts in agents, including for a model’s final output. A structured finding might require a named observation and a reference to evidence. A plausible paragraph or a well-formed JSON object can still fail that contract.
+
+Feed the validator one accepted example and one that violates a specific rule. Then trace what happens when the model repeatedly returns invalid output. Keep the retry budget and actual request count visible. Passing field validation does not establish that the evidence supports the reported conclusion.
+
+Agent loops, tools and action validation
+
+An agent combines a decision step with actions the application can perform. A model may propose reading a file or calling a tool. A controller checks the tool name and arguments, executes an allowed action and gives the resulting observation back to the decision step. The loop needs a stop condition.
+
+A replay supplies predetermined proposals, so we can test the controller with a known sequence. A live planner uses the model’s own proposals. Read proposal, validation, action and result in order. Only the action record establishes which tool actually ran.
+
 Before you start
 Exercise 220 (isolate and identify the orchestration environment)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.

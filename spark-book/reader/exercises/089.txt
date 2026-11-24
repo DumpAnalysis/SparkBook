@@ -3,6 +3,20 @@ Exercise 89  Diagnose vectors and build a bound index
 Question
 Could the wrong encoder silently query an otherwise valid index?
 
+Technology background
+
+Vector indexes and model identity
+
+A vector index connects stored document vectors with stable document identifiers so a new query can retrieve the matching text. A small teaching index can score every row directly. Larger systems may trade exact search for speed. Either way, the query and document vectors must occupy compatible coordinate systems.
+
+Store the encoder identity, pooling method, dimension and document order with the index. A replacement encoder can produce vectors of the same length with different meanings. Search for a known passage after reopening the index, and verify the returned document ID as well as the score.
+
+Sentence embeddings and semantic similarity
+
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+
+For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
+
 Before you start
 Exercise 78 (measure search before changing the model) · Exercise 87 (fine tune the pretrained sentence encoder)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.

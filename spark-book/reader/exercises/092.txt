@@ -3,6 +3,20 @@ Exercise 92  Generate and read the activity plots
 Question
 Can the charts preserve a deliberate gap and a real zero in the fixture?
 
+Technology background
+
+Plotting GPU activity against a workload
+
+Matplotlib is the Python plotting library used here. A time-series plot gives timestamps horizontal positions and measured values vertical positions. The plotting program reads the sampler’s records and draws lines or points for related quantities. Request start and finish markers show which part of the picture belongs to the workload.
+
+Read the axis units before comparing curves. Bytes and percentages belong to different scales. Leave gaps where the source returned no sample and keep the original CSV or JSON alongside the figure. A rise in device activity during a request is a reason to inspect a trace for attribution.
+
+GPU metrics, samples and missing observations
+
+A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+
+Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
+
 Before you start
 Exercise 91 (establish the monitoring contract)
 CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.

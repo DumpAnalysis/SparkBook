@@ -3,6 +3,20 @@ Exercise 99  Compare controlled precision paths
 Question
 Where do reduced-precision values first depart from the full-precision path?
 
+Technology background
+
+Floating-point precision and numerical tolerances
+
+Floating-point types store finite approximations to numbers. FP16, BF16 and FP32 use different bit layouts and preserve different ranges and precision. Even in the same type, two orders of summation can give slightly different answers. A reference calculation lets us inspect those differences.
+
+An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error.
+
+PyTorch tensors and synchronized CUDA execution
+
+A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A Python package called a wheel supplies the installed framework build.
+
+A CUDA kernel is a function that runs on the GPU. PyTorch launches kernels for tensor operations. GPU work can continue after the Python call that launched it returns. The probe performs a small calculation, synchronizes and checks its result. Read the interpreter path, device name, tensor device and result together. They connect a particular Python environment with an operation that completed.
+
 Before you start
 Exercise 14 (run a small synchronized computation)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

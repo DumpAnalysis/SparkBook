@@ -3,6 +3,14 @@ Exercise 116  Isolate the introducing configuration
 Question
 Which configuration change first introduces the regression?
 
+Technology background
+
+Reducing a failing case and isolating a change
+
+A reproducer is an input and procedure that reliably expose a chosen failure. Its predicate answers whether a candidate still fails in the required way. Reduction removes parts of an input and runs the predicate again. A result is 1-minimal when removing any single remaining element stops that failure.
+
+When comparing configurations, test the same predicate on the same input. Bisection can narrow a transition if the ordered candidates separate passing from failing consistently. Keep the actual observation at each step. An unrelated crash during reduction would otherwise count as success for the wrong reason.
+
 Before you start
 Exercise 115 (produce a one minimal reproducer)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

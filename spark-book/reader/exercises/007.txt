@@ -3,6 +3,14 @@ Exercise 7  Understand the arithmetic first
 Question
 What does a rate describe when requests have different durations?
 
+Technology background
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
 Before you start
 Exercise 3 (verify the client without a model)
 Python standard library and the labelled timing fixture; no live GPU timing is implied.

@@ -8,7 +8,7 @@ root = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--book', type=Path, help='verify the original, unedited DOCX file')
 args = parser.parse_args()
-name = 'VERSION56_MANIFEST.json'
+name = 'VERSION58_MANIFEST.json'
 manifest = json.loads((root / name).read_text())
 
 

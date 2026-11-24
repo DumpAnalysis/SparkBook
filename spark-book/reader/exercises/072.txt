@@ -3,6 +3,20 @@ Exercise 72  Stop when evidence is missing and qualify live planning
 Question
 When should a live planner stop rather than complete a diagnosis?
 
+Technology background
+
+Agent loops, tools and action validation
+
+An agent combines a decision step with actions the application can perform. A model may propose reading a file or calling a tool. A controller checks the tool name and arguments, executes an allowed action and gives the resulting observation back to the decision step. The loop needs a stop condition.
+
+A replay supplies predetermined proposals, so we can test the controller with a known sequence. A live planner uses the model’s own proposals. Read proposal, validation, action and result in order. Only the action record establishes which tool actually ran.
+
+Grounding a model in retrieved evidence
+
+A language model can answer from the text supplied in its prompt. Grounding means requiring its factual claims to agree with identifiable evidence. A retrieval step can select passages before generation. Together these operations are often called retrieval-augmented generation, or RAG. A small lab can select evidence directly from local files.
+
+Take one claim in the answer and find the exact log line that supports it. If there is no such line, describe the claim as a hypothesis. This works even before a vector search engine is introduced.
+
 Before you start
 Exercise 71 (replay a complete GPU investigation)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Inspect the final schema and evidence citations after the missing-data and denied-action controls. Grade planning and grounding separately.
+
+Reading the result
+Score the missing-evidence replay and live planner separately. The replay exercised the intended boundary. The live answer failed its tool and evidence rubric.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

@@ -53,13 +53,20 @@ def published_captures(book):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('book', type=Path)
+    parser.add_argument('book', type=Path, nargs='?', help='optional Word manuscript to read instead of the bundled printed text')
     parser.add_argument('--out', type=Path, default=READER.parent/'runs/book-transcripts',
                         help='new directory to create in your working lab')
     args = parser.parse_args()
     expected = {row['id']:row['printed_sha256'] for row in
                 json.loads((READER/'recorded-runs.json').read_text())['runs']}
-    captures = published_captures(args.book)
+    if args.book is None:
+        with ZipFile(READER/'published-transcripts.zip') as archive:
+            names = [key+'.txt' for key in expected]
+            if sorted(archive.namelist()) != sorted(names):
+                parser.error('the bundled archive has different recorded-run IDs')
+            captures = {key:archive.read(key+'.txt') for key in expected}
+    else:
+        captures = published_captures(args.book)
     if captures.keys() != expected.keys():
         parser.error('the manuscript has different recorded-run IDs')
     for key, data in captures.items():

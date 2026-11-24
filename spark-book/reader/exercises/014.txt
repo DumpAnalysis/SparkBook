@@ -3,6 +3,20 @@ Exercise 14  Run a small synchronized computation
 Question
 Can PyTorch execute and synchronize a computation on this device?
 
+Technology background
+
+PyTorch tensors and synchronized CUDA execution
+
+A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A Python package called a wheel supplies the installed framework build.
+
+A CUDA kernel is a function that runs on the GPU. PyTorch launches kernels for tensor operations. GPU work can continue after the Python call that launched it returns. The probe performs a small calculation, synchronizes and checks its result. Read the interpreter path, device name, tensor device and result together. They connect a particular Python environment with an operation that completed.
+
+Python environments, pip and binary wheels
+
+Python packages can contain interpreted code and compiled libraries. A wheel is an installable package archive. Its platform and interpreter tags matter on an ARM64 laptop. A source build may also need a compiler and matching Python development headers. A virtual environment keeps project packages together and selects an interpreter for the current shell.
+
+Use python -m pip with the same interpreter you use for the exercise. A successful dependency check, a successful import and a synchronized CUDA calculation each establish something different. When one fails, record its actual message before changing packages.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 A separately qualified CUDA framework environment and a small tensor operation. Native NVCC and framework CUDA libraries have distinct identities.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Check the reported device, verify the result against the arithmetic reference, and inspect the synchronized exit.
+
+Reading the result
+In the activated environment, run python -c "import sys; print(sys.executable)". Use that interpreter for the import, pip check and synchronized CUDA operation. Record each outcome separately.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

@@ -3,6 +3,20 @@ Exercise 25  Establish the framework and run ten updates
 Question
 Which parameters changed during a bounded LoRA update?
 
+Technology background
+
+Fine-tuning, LoRA and trainable parameters
+
+In a training step the model makes a prediction. A loss measures its disagreement with the target. Backpropagation computes gradients, and an optimizer uses them to adjust trainable parameters. Fine-tuning starts from a pretrained model. The Transformers library loads the model and tokenizer, while PEFT provides parameter-efficient training methods.
+
+LoRA freezes selected base weights and learns a smaller update represented by two matrices. An adapter stores these learned changes. Inspect the trainable parameter count, the base revision and a held-out answer. A fall in training loss is evidence about the training examples.
+
+Transformers, tokenizers and the Hugging Face libraries
+
+Several libraries can participate in one model run. Transformers loads a model implementation and exposes training or generation methods. Its tokenizer turns text into IDs using the saved vocabulary. PEFT attaches parameter-efficient adapters. Accelerate provides device-placement and training utilities. bitsandbytes supplies supported low-precision operations for configurations that use them.
+
+Read the particular loader and training configuration in the companion. An ordinary BF16 LoRA run and a run using a quantized base have different memory requirements. Identify which precision and libraries were actually selected before comparing two results.
+
 Before you start
 Exercise 14 (run a small synchronized computation) · Exercise 24 (create and inspect the teaching corpus)
 Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.

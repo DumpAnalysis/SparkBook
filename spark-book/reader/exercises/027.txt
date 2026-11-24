@@ -3,6 +3,20 @@ Exercise 27  Save a merged deployment checkpoint
 Question
 Can the adapted model be loaded without applying a separate adapter?
 
+Technology background
+
+Checkpoints, adapters and merged weights
+
+A checkpoint is saved state that a later process can open. An adapter may contain only changes to named layers and still require the exact base model. A merged checkpoint incorporates those changes into the weights intended for deployment. A file format such as safetensors stores arrays and their types.
+
+A successful save and load proves that a representation could be read. To test numerical fidelity, use identical inputs before and after saving and compare the resulting scores, called logits, or the generated tokens. To resume training, also account for optimizer and other training state in Exercise 69.
+
+Fine-tuning, LoRA and trainable parameters
+
+In a training step the model makes a prediction. A loss measures its disagreement with the target. Backpropagation computes gradients, and an optimizer uses them to adjust trainable parameters. Fine-tuning starts from a pretrained model. The Transformers library loads the model and tokenizer, while PEFT provides parameter-efficient training methods.
+
+LoRA freezes selected base weights and learns a smaller update represented by two matrices. An adapter stores these learned changes. Inspect the trainable parameter count, the base revision and a held-out answer. A fall in training loss is evidence about the training examples.
+
 Before you start
 Exercise 26 (compare complete held-out answers)
 Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Bind the merged checkpoint to its base and tokenizer. Reload it and compare a fixed response with the adapter path.
+
+Reading the result
+The merged checkpoint saved and reopened. Its maximum absolute logit difference was 0.375, and all four greedy continuations differed from the adapter reference. Score persistence and equivalence separately.
 
 Run in your lab
 The first command saves the checkpoint. The second loads the adapter and merged models sequentially on CUDA, compares last-token logits and saves the four greedy answers. A nonzero comparison exit keeps both sets of responses.

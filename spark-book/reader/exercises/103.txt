@@ -3,6 +3,20 @@ Exercise 103  Introduce a known supply delay
 Question
 Is the device waiting for inputs or spending longer computing them?
 
+Technology background
+
+DataLoader, queues and prefetching
+
+Training often needs the CPU to read, decode and assemble examples before the GPU can use them. PyTorch’s DataLoader makes batches and can use worker processes. Prefetching lets the producer prepare future batches while the consumer processes the current one. Buffer space and memory place a limit on how much work can wait.
+
+Introduce a known delay before a batch is ready. Measure time waiting for input separately from computation. Then change the queue depth while keeping the work fixed. Low GPU utilization alone cannot tell input starvation from a small or intermittent workload.
+
+GPU metrics, samples and missing observations
+
+A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+
+Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
+
 Before you start
 Exercise 14 (run a small synchronized computation)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

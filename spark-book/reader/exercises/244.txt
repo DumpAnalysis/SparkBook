@@ -3,6 +3,26 @@ Exercise 244  Import a verified model and exercise the local API
 Question
 Which model and placement did the local API actually use?
 
+Technology background
+
+LM Studio, llmster and the lms command line
+
+LM Studio can run a headless service called llmster. In this book that service and its lms command-line client run in WSL2. Importing a model makes its files available to the runtime. Loading creates an active model instance. The server then exposes an endpoint that a separate client can call.
+
+Compare the catalog of downloaded models with the list of loaded instances before and after a request. A first request can include just-in-time loading. Record that separately from a later warm request and check that the reply identifies the model you intended.
+
+Inference APIs, readiness and service health
+
+An inference service turns a model call into a request that another program can make. Its contract specifies the input fields, supported shapes, response structure and error behavior. A vector endpoint, for example, should return one vector of the expected length for each accepted input.
+
+A liveness check asks whether the process is functioning. A readiness check asks whether it can serve the intended workload now. Draining stops accepting new work while allowing in-flight requests to finish. Try a known request and an invalid one, then check which process, status and response correspond to each.
+
+Model downloads, Git revisions and GGUF
+
+A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
+
+The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+
 Before you start
 Exercise 243 (qualify llmster and distinguish inventory from residency) · Exercise 4 (download and fingerprint)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

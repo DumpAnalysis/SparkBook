@@ -3,6 +3,20 @@ Exercise 217  Test alert transitions and missing evidence
 Question
 Does the alert distinguish sustained pressure, recovery and missing observations?
 
+Technology background
+
+PromQL rates, histograms and alert rules
+
+PromQL is Prometheus’s query language. A rate over a counter estimates change per second across a time window. Histogram buckets accumulate observations up to specified boundaries. From those counts we can estimate a percentile such as p95, with precision limited by the bucket boundaries and available events.
+
+An alert rule evaluates an expression repeatedly and can require it to remain true for a specified duration. Follow a teaching sequence from pending to firing and recovery. Test absent samples as a separate case. A missing series might otherwise suppress the very alert you hoped would reveal a lost measurement.
+
+Checking the telemetry itself
+
+A monitoring pipeline can lose or distort evidence. A duplicate event can double a count, a wrong clock unit can stretch a duration a thousandfold, and a missing span can make a request look shorter. First check identities, timestamps, units and the relationship between related records.
+
+The exercise damages copies of a known trace and compares them with the unaltered directory. For aggregated latency, preserve both sum and count. A one-request group and a hundred-request group should contribute in proportion to their request counts when computing a combined mean.
+
 Before you start
 Exercise 214 (start and inspect the native WSL2 stack)
 Native monitoring tools or qualified containers; CPU/host memory and retained time-series data.

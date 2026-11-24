@@ -3,6 +3,20 @@ Exercise 49  Write a two-stage sum
 Question
 How do independent blocks produce one correct sum?
 
+Technology background
+
+Reductions, histograms and atomic updates
+
+A reduction combines many values into fewer values, such as summing a vector into one number. A GPU implementation can first write a partial sum per block and then sum those partials. Addition order affects floating-point rounding, so preserve the input type and comparison tolerance.
+
+A histogram instead counts how many inputs fall into each bin. Several threads may choose the same bin. An atomic addition makes each increment indivisible with respect to the other increments at that location. Check the individual bins and whether their total equals the number of counted inputs.
+
+Matrix layout, tiles and shared memory
+
+A matrix has rows and columns but occupies a sequence of memory locations. In row-major storage, adjacent columns of one row sit beside each other. A transpose swaps rows with columns. For a rectangular input, reversing the shape as well as the indices helps expose a mistaken stride.
+
+A tile is a small rectangular portion that a block processes together. Threads can stage a tile in on-chip shared memory and synchronize before consuming one another’s values. Check the last partial tile: threads without a valid output may still need to participate in the block’s barrier.
+
 Before you start
 Exercise 48 (reorder a tile through shared memory)
 NVCC and host C++ compiler; small bounded tensors, no model download.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Inspect block partials and their final sum for ragged input. Check that threads with no input still reach each required barrier.
+
+Reading the result
+Inspect the array of per-block partial sums before checking the single value from the second launch. Record the numerical result and the outstanding sanitizer check separately.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

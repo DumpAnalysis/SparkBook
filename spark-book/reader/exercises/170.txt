@@ -3,6 +3,26 @@ Exercise 170  Verify frozen weights and checkpoint recovery
 Question
 Does a resumed NeMo run reproduce the next updates of uninterrupted training?
 
+Technology background
+
+NVIDIA NeMo AutoModel and supervised training recipes
+
+NeMo AutoModel runs training from a recipe that brings together a model, tokenizer, data reader, optimizer and checkpoint settings. Changing one of these can change what the training run means. This exercise follows the data from a teaching example to the token positions that receive a training loss.
+
+For prompt-and-answer training, the labels can exclude the prompt and padding so that only intended answer tokens contribute to the objective. Decode a few labeled positions and inspect one batch before training. Keep the recipe, model identity, trainable parameter list and checkpoint needed for the recovery test.
+
+Gradients, optimizers and resuming an update
+
+A gradient tells an optimizer how the loss changes as a trainable value changes. AdamW also carries running estimates derived from earlier gradients. A training process may keep random-number state, a batch position and a scaler for limited-precision arithmetic. Live tensors retained by Python can change the memory picture.
+
+To test recovery, save at a known step, resume in a new process and compare the next batch, loss and updated parameters with an uninterrupted run. Restoring only the visible model weights can produce the same immediate prediction yet a different next update.
+
+Checkpoints, adapters and merged weights
+
+A checkpoint is saved state that a later process can open. An adapter may contain only changes to named layers and still require the exact base model. A merged checkpoint incorporates those changes into the weights intended for deployment. A file format such as safetensors stores arrays and their types.
+
+A successful save and load proves that a representation could be read. To test numerical fidelity, use identical inputs before and after saving and compare the resulting scores, called logits, or the generated tokens. To resume training, also account for optimizer and other training state in Exercise 69.
+
 Before you start
 Exercise 169 (prepare one small NeMo AutoModel run) · Exercise 69 (resume the next update with its complete state)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

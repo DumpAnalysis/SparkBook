@@ -3,6 +3,20 @@ Exercise 59  Compare full and incremental execution
 Question
 Does a cached transformer step agree with the corresponding full prefix?
 
+Technology background
+
+Transformer attention and cached decoding
+
+Self-attention lets one token combine information from other allowed positions. It produces a query for the current position, compares it with keys, and uses the resulting weights to combine values. A causal language model can attend to earlier positions while generating the next token.
+
+During incremental decoding, saved keys and values avoid recomputing the whole prefix. Their positions must agree with the model’s position encoding. Feed the same short sequence once as a whole and once token by token. Compare the scores at each position to locate the first departure.
+
+Model weights, tokens and the context window
+
+A language model stores learned numbers called weights. A tokenizer splits text into pieces and assigns each piece an integer. A piece might be part of a word. During inference the model reads the prompt and predicts successive tokens using the existing weights. Training changes those weights.
+
+The context window bounds how many tokens the model can use in a request. During generation a transformer saves attention keys and values for earlier positions in a KV cache. Increasing the context or serving additional sequences can require more memory even when the weight file stays exactly the same size.
+
 Before you start
 Exercise 14 (run a small synchronized computation)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.

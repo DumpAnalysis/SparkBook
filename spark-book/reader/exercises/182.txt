@@ -3,6 +3,20 @@ Exercise 182  Inspect reverse sampling and distribution coverage
 Question
 Which parts of the teaching distribution does reverse sampling reproduce?
 
+Technology background
+
+Diffusion, noise prediction and a sampling schedule
+
+A diffusion exercise starts with clean data and adds noise at a chosen level according to a schedule. A denoising model learns to estimate a quantity needed to step back toward a sample. Generation begins with noise and repeatedly updates it using the model and scheduler.
+
+The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved.
+
+Plotting GPU activity against a workload
+
+Matplotlib is the Python plotting library used here. A time-series plot gives timestamps horizontal positions and measured values vertical positions. The plotting program reads the sampler’s records and draws lines or points for related quantities. Request start and finish markers show which part of the picture belongs to the workload.
+
+Read the axis units before comparing curves. Bytes and percentages belong to different scales. Leave gaps where the source returned no sample and keep the original CSV or JSON alongside the figure. A rise in device activity during a request is a reason to inspect a trace for attribution.
+
 Before you start
 Exercise 181 (train and retain a tiny diffusion model)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

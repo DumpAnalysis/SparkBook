@@ -8,6 +8,9 @@ from data import records,digest
 from common import save_json
 from encode import load_encoder,evaluate
 
+from check_reload import ATOL, RTOL, checked_save, probe_vectors, compare
+
+
 def batches(rs,batch_size,epoch,wrong=False):
     # Each family occurs once per pass; variants run in separate passes.
     for variant in range(2):
@@ -27,7 +30,12 @@ def main():
     initial=evaluate(model);print('initial_dev',json.dumps(initial,sort_keys=True))
     loss_fn=losses.MultipleNegativesRankingLoss(model,scale=20.0)
     opt=torch.optim.AdamW(model.parameters(),lr=a.lr,weight_decay=.01)
-    best=initial['mrr'];out=Path(a.out);out.mkdir(parents=True,exist_ok=True);model.save_pretrained(str(out));history=[]
+    best=initial['mrr']
+    out=Path(a.out)
+    out.mkdir(parents=True,exist_ok=False)
+    selected_epoch=0
+    checked_save(model,out)
+    history=[]
     for epoch in range(a.epochs):
         model.train();values=[]
         for q,d in batches(rs,a.batch,epoch,a.wrong_pairs):
@@ -37,14 +45,18 @@ def main():
             loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1.0);opt.step();values.append(float(loss.detach()))
         score=evaluate(model);history.append(dict(epoch=epoch+1,mean_loss=float(np.mean(values)),dev=score));print('epoch',epoch+1,'mean_loss=%.4f'%np.mean(values),'dev_mrr=%.4f'%score['mrr'])
         if score['mrr']>best:
-            best=score['mrr'];model.save_pretrained(str(out))
+            best=score['mrr']
+            selected_epoch=epoch+1
+            checked_save(model,out)
     selected=load_encoder(str(out),a.device)
-    probe=['GPU memory allocation failed.','Embedding vectors require validation.']
-    expected=selected.encode(probe,normalize_embeddings=True,show_progress_bar=False)
-    reloaded=load_encoder(str(out),a.device)
-    actual=reloaded.encode(probe,normalize_embeddings=True,show_progress_bar=False)
-    error=float(np.max(np.abs(expected-actual)))
-    report=dict(initial_dev=initial,selected_dev=evaluate(selected),test=evaluate(selected,'test'),reload_max_abs=error,dataset_sha256=digest(),model=a.model,wrong_pairs=a.wrong_pairs,device=a.device,batch=a.batch,history=history)
+    expected=np.load(out/'selected-probe.npy',allow_pickle=False)
+    error=compare(expected,probe_vectors(selected))
+    report=dict(initial_dev=initial,selected_epoch=selected_epoch,
+                selected_dev=evaluate(selected,report_ranks=True),
+                test=evaluate(selected,'test',report_ranks=True),reload_max_abs=error,
+                reload_atol=ATOL,reload_rtol=RTOL,dataset_sha256=digest(),model=a.model,
+                wrong_pairs=a.wrong_pairs,device=a.device,batch=a.batch,history=history)
+    print('selected_epoch',selected_epoch)
     save_json(out/'finetune-report.json',report)
     print('selected_dev',json.dumps(report['selected_dev'],sort_keys=True));print('test',json.dumps(report['test'],sort_keys=True));print('reload_max_abs=%.8f'%error);print('saved',a.out)
 if __name__=='__main__':main()

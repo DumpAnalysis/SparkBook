@@ -3,6 +3,20 @@ Exercise 153  Compare a cuDF aggregation with the CPU control
 Question
 Does a cuDF aggregation preserve the result of its CPU counterpart?
 
+Technology background
+
+RAPIDS, cuDF and cuML
+
+RAPIDS is a collection of libraries for data analysis on NVIDIA GPUs. cuDF provides dataframe operations, such as grouping rows by a category and summing a column. cuML supplies machine-learning algorithms, including PCA. A familiar operation name makes a CPU implementation a useful reference.
+
+Begin with a tiny table whose groups you can sum by hand. Run the corresponding CPU and GPU operations, align the group keys and compare the sums. For PCA, compare the fitted subspace or its projector. Two mathematically equivalent bases can have different signs or orientations.
+
+NumPy arrays, dataframes and data provenance
+
+NumPy stores numeric arrays with a shape and an element type. A dataframe is a table with named columns that may have different types. pandas provides dataframes on the CPU. A CSV file stores rows as text, while Parquet stores typed columns. Loading the same values with a different type can change a comparison.
+
+The ecosystem exercises reuse small arrays and tables as reference inputs. Record their shape, column names, row identifiers, types and file digests. When comparing a CPU and GPU operation, put rows in the same documented order before comparing values.
+
 Before you start
 Exercise 152 (establish data and environment provenance)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

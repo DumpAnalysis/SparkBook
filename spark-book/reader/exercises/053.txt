@@ -3,6 +3,14 @@ Exercise 53  Fuse addition and activation
 Question
 Does eliminating an intermediate buffer save time on this input?
 
+Technology background
+
+Kernel fusion and CUDA event timing
+
+Kernel fusion combines operations that would otherwise run as separate kernels. For example, an addition followed by an activation may reuse a value already in a register, avoiding a write to and a read from an intermediate array. It can also change resource use or arithmetic order.
+
+Compare the final arrays first. For timing, record events in the stream that owns the work and wait for the ending event before reading elapsed time. A CPU clock around an asynchronous launch can measure little more than submission. Keep warm-up and measured iterations identifiable.
+
 Before you start
 Exercise 52 (add cooperative tile loading)
 NVCC and host C++ compiler; small bounded tensors, no model download.

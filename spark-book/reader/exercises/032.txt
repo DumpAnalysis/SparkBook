@@ -3,6 +3,26 @@ Exercise 32  Build debug and performance variants
 Question
 How does the build intended for debugging differ from the build used for timing?
 
+Technology background
+
+Compiling CUDA C++ for this GPU
+
+A CUDA C++ source file can contain code for the host CPU and functions called kernels for the GPU. nvcc coordinates the compilation steps. A build target tells the compiler which device architecture it should generate code for. The linker brings the compiled pieces and their libraries together as a program.
+
+A debug build retains information that helps connect execution with source lines. Optimizations can change instructions and timing. Give the debug and optimized executables different names and run the same numerical input through both. Keep the compiler command with the result.
+
+Writing a CUDA kernel with threads and blocks
+
+A kernel is a function that many GPU threads execute on different data. Threads are grouped into blocks, and the blocks form a grid. In one dimension, a thread can compute its element index from its block number, block size and position inside the block.
+
+Imagine adding two vectors of length five with blocks of four threads. Two blocks supply eight thread positions. Only indices zero through four correspond to elements. A bounds check protects the tail. A grid-stride loop lets each valid thread handle further elements when the vector is much longer than the grid.
+
+The CUDA driver, toolkit and runtime
+
+CUDA is NVIDIA’s platform for running computations on a GPU. The driver exposes the device. The toolkit supplies development tools such as the nvcc compiler. A runtime library lets an application allocate device memory and launch work. A framework or container may carry its own user-space libraries.
+
+Version labels at these layers can differ. Record the mapped driver query, nvcc version, PyTorch build and device compute capability in their own fields. A missing compiler affects building source. A working prebuilt application can still use the GPU.
+
 Before you start
 Exercise 31 (inventory development tools independently)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

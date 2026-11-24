@@ -3,6 +3,20 @@ Exercise 112  Distinguish slow retrieval from retries
 Question
 Is the long request caused by one slow retrieval or several attempts?
 
+Technology background
+
+OpenTelemetry traces, spans and correlated logs
+
+A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it.
+
+Follow one synthetic request from its root span through retrieval and generation. Match a log to its span ID and look for a second attempt after a failure. Adding all span durations can double-count time when a parent includes a child or two operations overlap.
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
 Before you start
 Exercise 111 (retain correlated spans and logs)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

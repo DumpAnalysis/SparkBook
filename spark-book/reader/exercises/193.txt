@@ -3,6 +3,20 @@ Exercise 193  Visualize speech before diagnosing the model
 Question
 Can we locate silence or clipping in synthesized speech before judging pronunciation?
 
+Technology background
+
+Waveforms, spectrograms and audio levels
+
+A waveform shows amplitude over time. A spectrogram divides the signal into short, often overlapping windows and shows how energy is distributed across frequencies in each window. The short-time Fourier transform is one way to compute it. Window length influences how well nearby times and frequencies can be distinguished.
+
+Start with the known tone and a silent interval. Check the sample rate, time axis, frequency axis and level scale. Then inspect a generated clip and listen at the same locations. A bright band can identify energy at a frequency but cannot score pronunciation, musicality or intelligibility.
+
+Text-to-speech with MMS and VITS
+
+A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.
+
+Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard.
+
 Before you start
 Exercise 192 (synthesize a short diagnostic statement)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

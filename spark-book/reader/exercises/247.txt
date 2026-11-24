@@ -3,6 +3,20 @@ Exercise 247  Record the upstream and conversion identities
 Question
 Can we trace the converted Nemotron file back to a particular upstream revision?
 
+Technology background
+
+Nemotron, mixtures of experts and hybrid state
+
+Nemotron names a family of models. The Nemotron 3 Nano variant used here combines expert routing with different kinds of sequence-processing layers. A mixture of experts selects part of the model for each token. The active parameter count describes work selected per token. The full stored model can still be much larger.
+
+Trace the GGUF conversion back to a particular upstream revision. Inspect actual file bytes, the available memory views and which layers the native runtime placed on CUDA. Attention caches and recurrent state may have different layouts, so use the model’s own logs when interpreting its buffers.
+
+Model downloads, Git revisions and GGUF
+
+A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
+
+The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+
 Before you start
 Exercise 208 (inspect pinned model and dataset identities)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

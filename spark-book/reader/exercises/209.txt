@@ -3,6 +3,20 @@ Exercise 209  Acquire a selective model snapshot
 Question
 Can we acquire only the files needed for this local model reload?
 
+Technology background
+
+Hugging Face Hub, snapshots and dataset cards
+
+Hugging Face Hub hosts versioned repositories for models, datasets and other artifacts. A model card documents a model’s purpose and usage. A dataset card describes data and its intended scope. A snapshot collects files at one revision. A moving branch name can later select different bytes.
+
+Inspect a revision and its file list before downloading. A tiny encoder may need configuration, a tokenizer and weights. For a dataset, check the actual rows and split membership as well as the card. If access is gated, authorization is a separate prerequisite from the ability to load the files.
+
+Model caches, local files and offline execution
+
+Acquisition copies a model, tokenizer and configuration onto local storage. A cache keeps downloaded files for reuse. Inference reads those files and executes the model. Some libraries still check a remote registry while opening a cached model unless configured for local loading.
+
+Use the pinned revision, record which files are present and state exactly which process or network access you constrained. A successful local load establishes that the chosen files satisfied that loading path. Testing a fully disconnected laptop requires an actual request under that wider condition.
+
 Before you start
 Exercise 208 (inspect pinned model and dataset identities)
 Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.

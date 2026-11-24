@@ -3,6 +3,20 @@ Exercise 73  Correlate a kernel stop with its instructions
 Question
 Can the debugger's current kernel location be matched to the compiled instructions?
 
+Technology background
+
+PTX, SASS and device registers
+
+CUDA can represent a kernel as PTX, a virtual instruction language, and as native machine code for a target GPU. A disassembler displays that native code in a readable form often called SASS. Registers hold intermediate values used by a thread. Compiler optimization can combine operations or remove a source variable altogether.
+
+Use cuobjdump to identify which images an executable actually contains. If it contains a native image only, generate PTX separately for comparison. Static instructions show what was built. A debugger stop or a measured trace is needed to identify what happened during one execution.
+
+CUDA-GDB, breakpoints and exception cores
+
+A debugger can stop an executing program at a breakpoint so you can inspect its current state. For CUDA, selecting a kernel, block and thread identifies whose registers and variables you are examining. Symbols connect source names and line information with a particular build.
+
+An exception core permits later inspection of state that the platform captured at a fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
+
 Before you start
 Exercise 32 (build debug and performance variants)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Bind the binary, PTX, SASS and debugger focus to the same build. A listing alone cannot identify a live stop.
+
+Reading the result
+Compare the debug and optimized binaries against the numerical oracle. The disassembly is available from a local build. A live device breakpoint remained unavailable on the recorded system.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

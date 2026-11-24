@@ -3,6 +3,14 @@ Exercise 111  Retain correlated spans and logs
 Question
 Can one request be followed across application logs and nested spans?
 
+Technology background
+
+OpenTelemetry traces, spans and correlated logs
+
+A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it.
+
+Follow one synthetic request from its root span through retrieval and generation. Match a log to its span ID and look for a second attempt after a failure. Adding all span durations can double-count time when a parent includes a child or two operations overlap.
+
 Before you start
 Exercise 17 (replay a complete tool loop)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
@@ -12,6 +20,9 @@ Recorded step time
 
 Check for success
 Match trace and parent IDs from the request through its child operations. Check timestamps and retained error events.
+
+Reading the result
+Retain the whole request output directory. Exercise 117 reads both spans.jsonl and logs.jsonl from it. The six spans and three log records in the worked example describe a synthetic request.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

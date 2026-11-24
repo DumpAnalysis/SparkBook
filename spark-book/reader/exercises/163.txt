@@ -3,6 +3,20 @@ Exercise 163  Serve the qualified engine through Triton
 Question
 Can the inference server load this engine and enforce its model contract?
 
+Technology background
+
+TensorRT engines and optimization profiles
+
+TensorRT optimizes a model for inference and builds an engine for a target environment. An execution context runs that engine. With dynamic inputs, an optimization profile gives permitted minimum and maximum shapes and an optimum shape used in optimization. An engine’s portability depends on the build and target configuration.
+
+Build from the small known graph, keep its profile and test a shape inside the allowed range. Compare output with the independent reference. Measure build time, transfers and execution separately. A prebuilt engine repeated many times answers a different timing question from building one before every request.
+
+NVIDIA Triton Inference Server and model repositories
+
+NVIDIA Triton Inference Server serves models through named backends. Its model repository contains model names, numbered version directories and configuration describing input and output tensors. A Python backend can implement an encoder. Other backends can execute an ONNX graph or a TensorRT engine.
+
+Follow a small request from its input name and shape to the returned embedding. Check the model version that actually answered. Dynamic batching can combine several requests into one backend execution, so request count and execution count need not match. The Triton kernel programming language introduced in Exercise 101 is a different project.
+
 Before you start
 Exercise 162 (separate engine execution from build and transfers) · Exercise 150 (build and serve a versioned Triton embedding model)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

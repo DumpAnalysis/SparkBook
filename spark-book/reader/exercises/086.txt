@@ -3,6 +3,26 @@ Exercise 86  Turn the custom encoder into a sentence model
 Question
 What changes when a token encoder becomes a sentence retrieval model?
 
+Technology background
+
+Contrastive training for sentence encoders
+
+A pretrained token encoder can produce sentence vectors without having learned which incident descriptions should match a query. Contrastive training supplies that relationship. A positive pair consists of a query and its relevant passage. Other passages in the batch can act as negatives.
+
+Rotating passages among unrelated incident families creates a control with deliberately wrong labels. Compare the training losses, then inspect the ranks on identical held-out queries. A small test set can reward a corrupted training run by chance. The checkpoint reload check asks a different question about preserving the selected vectors.
+
+BERT, WordPiece and masked language modeling
+
+BERT is a transformer encoder that builds a representation of a token using surrounding input on both sides. A WordPiece tokenizer splits text into vocabulary entries, sometimes parts of words, and maps them to integer IDs. A masked-language-model objective hides selected positions and trains the encoder to predict their original tokens.
+
+In this exercise we train a small vocabulary and a small BERT on teaching text. Try a known phrase with one masked word and inspect its token IDs and candidate predictions. Save the tokenizer with the model. Reassigning an ID would cause the same number to name a different token.
+
+Token vectors, attention masks and pooling
+
+A token encoder produces one vector for each input position. To process sentences of different lengths in the same batch, the tokenizer can add padding. An attention mask identifies positions containing real input. In masked mean pooling we sum the real token vectors and divide by the number of real positions.
+
+Imagine a two-token sentence padded to four positions. The denominator for its mean is two. If encoding the same sentence beside a longer one changes its representation substantially, inspect the mask and denominator first. L2 normalization then scales a nonzero sentence vector to length one.
+
 Before you start
 Exercise 83 (train WordPiece and a small BERT from scratch) · Exercise 78 (measure search before changing the model)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
@@ -13,8 +33,11 @@ Recorded step time
 Check for success
 Check masked pooling and normalization, then compare held-out retrieval before and after training under the same relevance labels.
 
+Reading the result
+Compare the two normalized embeddings from the selected encoder before saving with their values after a single reload. The comparison requires finite, matching shapes and numpy.allclose with atol=1e-6 and rtol=1e-5. The earlier transcript compared two reloads. Its reported zero describes that earlier check.
+
 Run in your lab
-The entry trains a sentence objective from your custom encoder. Repeat encode.py on the saved sentence model to compare before/after retrieval on unchanged partitions.
+Train the pooled custom encoder. The current program saves two reference embeddings from the selected in-memory model and compares them with a fresh load of the checkpoint. Keep selected-probe.npy and finetune-report.json.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${BERT_MODEL:?Set BERT_MODEL to the selected model directory from Exercise 83}"

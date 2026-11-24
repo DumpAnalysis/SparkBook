@@ -3,6 +3,20 @@ Exercise 30  Observe memory pressure during a request
 Question
 Which memory signals change while the oversized model answers?
 
+Technology background
+
+Guest paging, Windows commit and vmstat
+
+When memory is under pressure the operating system may move pages between RAM and backing storage. In WSL2, vmstat reports guest activity. Its si and so columns show swap-in and swap-out rates. The first rate row normally summarizes time since boot. Later rows cover sampling intervals.
+
+Windows available physical memory and Windows commit headroom answer other questions. Commit headroom is the difference between the commit limit and committed bytes. Match timestamps from both systems to the actual request interval. Used swap by itself cannot establish that a slow request was paging.
+
+Loading a model larger than the GPU budget
+
+The “32B” in this model’s name describes roughly 32 billion parameters. Storage depends on how each number is represented. The nine Q8 shards in this exercise total 32.43 GiB. Loading also requires working buffers and room for the request. The loader can keep some layers on the CPU while placing others on the GPU.
+
+A guard samples available memory and can stop a load before it reaches readiness. Treat that stop as an outcome with a timestamp and a threshold. A useful successful run records the actual layer split, replies completed and memory observations over the same interval.
+
 Before you start
 Exercise 29 (plan, acquire, and load the larger model)
 Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.
@@ -14,9 +28,10 @@ Check for success
 Align request timestamps with host and guest pressure samples. Mark the smallest observed headroom and any guard event.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Use the directory from Exercise 29 in the same LAB_RUN, or supply its absolute path. The session already ran a pressure request with concurrent Windows and guest sampling. The report reads that request interval and the captured measurements.
 
-vmstat -w 1 10
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+python memory_budget/guarded.py report --run "$LAB_RUN/model32"
 
 Interpret the result
 A sampled peak is a lower bound on what the sampler observed. A completed request does not prove absence of paging.

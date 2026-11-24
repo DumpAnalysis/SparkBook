@@ -3,6 +3,26 @@ Exercise 81  Read the nonlinear maps without overclaiming
 Question
 Which apparent clusters survive inspection in the original embedding space?
 
+Technology background
+
+t-SNE and neighbourhoods in a plot
+
+t-SNE builds a low-dimensional arrangement that tries to keep similar points near each other. Its perplexity parameter controls the effective neighbourhood size, and an optimization procedure finds the plotted coordinates. Both the parameter and the random initialization can affect the picture.
+
+Choose one query and label its plotted neighbours by ID. Check those IDs against the neighbours in the original embedding space. Repeat with another suitable perplexity or seed. A broad empty region between two groups on a t-SNE map is insufficient evidence for a corresponding gap in the original space.
+
+UMAP and the neighbourhood graph
+
+UMAP builds a graph of nearby points and looks for a low-dimensional layout that preserves aspects of those relationships. The number of neighbours influences the scale at which it builds the graph. The minimum-distance setting influences how tightly points may be packed in the layout.
+
+Use the same saved vectors and row identities you used for PCA and t-SNE. Change one setting at a time and inspect how the neighbours of a named sentence change. A fitted UMAP model can place new vectors using its transform procedure. Record the fit used for that transformation.
+
+PCA and a two-dimensional map of embeddings
+
+The scikit-learn library provides a Python implementation of principal component analysis (PCA). PCA finds directions in which centered data vary most. Plotting the first two components assigns a point to each sentence and retains only part of the original variation. The explained-variance ratios report how much the displayed components capture in the fitted data.
+
+Fit the axes on the training vectors and use that same fit to transform held-out vectors. Follow a pair of points back through their row IDs and compare their original-space similarity. PCA axes can reverse sign across implementations, so a reflected plot can still represent the same subspace.
+
 Before you start
 Exercise 79 (produce a PCA map with its numerical limits)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
@@ -32,4 +52,5 @@ Recorded result  PASSED — CPU original-space versus projection inspection.
 Scope  The projection describes the selected inputs and settings. Retrieval is evaluated in the original embedding space.
 
 Recorded files
+Follow identical row IDs from original-space neighbours into the plotted controls in runs 079.01, 082.01 and 082.02.
 python reader/records.py 81 --files

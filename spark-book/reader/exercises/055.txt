@@ -3,6 +3,20 @@ Exercise 55  Write RMS normalization
 Question
 Does normalization handle a zero row and a partial row without invalid values?
 
+Technology background
+
+RMS normalization, softmax and numerical stability
+
+RMS normalization scales a vector using the square root of its mean squared value and a small stabilizing constant. Softmax turns a row of scores into positive weights that sum to one. These operations appear inside neural networks and involve reductions across a row.
+
+For softmax, subtract the largest score before exponentiating. This leaves the mathematical probabilities unchanged and reduces overflow risk. Inspect a row containing large scores, a row with repeated scores and a partial final row. Compare finite values and row sums with an independent reference.
+
+Reductions, histograms and atomic updates
+
+A reduction combines many values into fewer values, such as summing a vector into one number. A GPU implementation can first write a partial sum per block and then sum those partials. Addition order affects floating-point rounding, so preserve the input type and comparison tolerance.
+
+A histogram instead counts how many inputs fall into each bin. Several threads may choose the same bin. An atomic addition makes each increment indivisible with respect to the other increments at that location. Check the individual bins and whether their total equals the number of counted inputs.
+
 Before you start
 Exercise 54 (explain a timing result and correlate it with a trace)
 NVCC and host C++ compiler; small bounded tensors, no model download.

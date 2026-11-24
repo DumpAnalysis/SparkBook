@@ -3,6 +3,20 @@ Exercise 136  Establish an inference API contract
 Question
 What must a client check before trusting an embedding service response?
 
+Technology background
+
+Inference APIs, readiness and service health
+
+An inference service turns a model call into a request that another program can make. Its contract specifies the input fields, supported shapes, response structure and error behavior. A vector endpoint, for example, should return one vector of the expected length for each accepted input.
+
+A liveness check asks whether the process is functioning. A readiness check asks whether it can serve the intended workload now. Draining stops accepting new work while allowing in-flight requests to finish. Try a known request and an invalid one, then check which process, status and response correspond to each.
+
+Clients, servers and a local HTTP request
+
+A server waits for requests. A client sends one to an address and a port. The address 127.0.0.1 means this machine’s loopback interface. An HTTP request names an operation and may carry a body. Here, JSON expresses that body as named fields, such as a model name and a prompt.
+
+Exercise 3 uses a fixture, a small server with a known reply, to test the client before loading any weights. First read the HTTP status, then the body. A successful exchange tells us the two programs communicated. Grading a generated answer requires a separate check of its contents.
+
 Before you start
 Exercise 3 (verify the client without a model)
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.

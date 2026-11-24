@@ -1,135 +1,86 @@
-Historical commands retain their original working paths. Use reader/guide.py for a fresh run and reader/records.py for the corresponding book pages.
+Exercises 29, 30 and 251 • WSL2 memory experiments
 
-CURRENT READER EDITION — VERSION 56
-Start with reader/START_HERE.txt at the companion root. Use
-reader/guide.py NUMBER for the portable entry procedure and the book for
-current verified outcomes. Source-era environment/transcript statements below
-remain historical context; they are not the current qualification status.
-Use new run directories and preserve the qualified environment and assets.
+Start in your working spark-book directory. Activate the same Python environment
+that passed the synchronized CUDA check in Exercise 14. A fresh installation may
+call it .venv-framework-candidate. The recorded laptop used .venv-exercises.
+Check the interpreter before doing more work.
 
-EXERCISE 251 — WSL2 AND CUDA MEMORY BOUNDARIES
+  python -c "import sys,torch; print(sys.executable,torch.cuda.is_available())"
+  source reader/new_run.sh
 
-Purpose
-Explain why a 16 GB WSL2 limit, 30.50 GiB NVML total and 45.97 GiB CUDA
-reported total can coexist. Distinguish a query from successful allocation,
-GPU writes and complete retained-byte verification. Chapter 3 gives the
-explanations and interpretation; existing Exercises 1–250 retain their IDs.
+The commands below use a fresh LAB_RUN. Every stage directory must be new.
+Stop other workloads that you own and save your work before a large allocation.
+Windows PowerShell interoperability, wslpath, vmstat and a mapped CUDA device
+are required for supervised stages. The supervisor uses read-only Windows CIM
+counters. Preserve a BLOCKED result if the sample or a prerequisite is unavailable.
 
-Evidence status
-The recorded allocation investigation supplies a query (OBSERVED), a PASSED
-1 GiB pilot and a PASSED 18 GiB allocation with simultaneous retention, writes,
-every-byte verification, final exits and release observations. Verified
-19,327,352,832 bytes exceeded guest MemTotal 16,854,429,696 bytes.
-Use python reader/records.py 251 --files to locate the complete records.
-The original terminal pastes remain historical REPORTED queries in
-USER-OBSERVATIONS.txt. Missing timestamps, stderr and exits are not invented.
-Use the probe.py, run.py and test_controls.py files in this directory to repeat
-the published procedure with fresh outputs and current memory guards.
-The pilot includes two sampled guest swap-out intervals. The target includes
-none in eight intervals, without proving no paging or physical residency.
-Windows samples supply host observations and additional live guards.
-Archived automation uses sealed absolute destinations. Use the reusable
-procedures below with new output paths for your own investigation.
+Exercises 29–30 • A model larger than the dedicated segment
 
-Prerequisites
-Use ~/work/spark-book in WSL2 and its already qualified .venv-exercises.
-PyTorch with working CUDA is required. No package installation, model
-acquisition, driver change or network access is performed by these helpers.
-Read-only mode still initializes a CUDA context, which may consume memory.
-Save other work and stop your own model/training jobs before allocation.
-Check Windows Available RAM and background activity in Task Manager; retain
-that observation manually. Guest and CUDA checks cannot see all host pressure.
+  python large_model.py
 
-1. Collect the three views
-  cd ~/work/spark-book
-  source exercise-env.sh
-  python -B memory_budget/run.py --out runs/memory-views-001
+The offline plan lists the revision and total bytes before any acquisition.
+After checking disk space, obtain the nine verified shards (about 32.43 GiB).
 
-Read stdout.txt (JSON lines), stderr.txt and metadata.json in the new directory.
-The wrapper records the exact interpreter/command, UTC times, hashes, PID,
-raw streams, child exit and wrapper exit. Raw nvidia-smi/free command output
-and return codes are nested losslessly as strings in stdout.txt. The source
-hashes identify this helper. /proc/meminfo supplies bytes, avoiding free -h
-rounding. Calls are sequential, not simultaneous. Missing tools remain marked
-UNAVAILABLE; no substitute is silently used. CUDA absence exits 3, not a pass.
-Zero PyTorch allocator counters do not mean no device/driver/context memory.
+  python large_model.py --download
 
-2. Run a 1 GiB pilot
-Record the ACTUAL Windows observation in the variable before invoking this:
-  HOST_NOTE='Replace with actual Windows Available RAM, time and workload state'
-  python -B memory_budget/run.py --out runs/memory-pilot-001 \
-    --allocate-gib 1 --host-note "$HOST_NOTE"
+Use the native runtime acquired in Exercise 4. The following stage rehashes the
+shards and pinned native executable and libraries, checks current headroom, and
+serves seven local requests with the original 51-of-65-layer placement profile.
 
-The quoted placeholder is a procedure, not evidence. Fill it in. Examine
-host/guest pressure and the complete result before deciding on the next run.
-Do not automatically retry a failed, interrupted, timed-out or guarded run.
+  python memory_budget/guarded.py model --out "$LAB_RUN/model32"
+  python memory_budget/guarded.py report --run "$LAB_RUN/model32"
 
-3. Optional check above the observed guest MemTotal of 15.70 GiB
-Use only after the pilot passes and sufficient host headroom remains. Record
-a fresh actual HOST_NOTE. Keep Task Manager visible. In another WSL terminal,
-  vmstat 1
-The first vmstat row is a since-boot average; inspect later si/so activity,
-not swap usage alone. Stop the probe with Ctrl+C if host responsiveness or
-available memory deteriorates. Preserve the failure and monitor record.
-Then, in the exercise terminal:
-  python -B memory_budget/run.py --out runs/memory-above-guest-001 \
-    --allocate-gib 18 --host-note "$HOST_NOTE"
+Model admission requires the profile's CUDA and guest allowances. Host physical
+headroom must cover the planned excess over dedicated free memory plus 3 GiB.
+Initial Windows commit headroom must be at least 4 GiB. During the stage the
+Windows available-physical and commit-headroom floors are each 2 GiB. Admission
+may stop on a 16 GiB guest because current available RAM also matters. Never
+adjust the pagefile or retry automatically to reproduce a historical outcome.
 
-Fixed bounds
-The helper accepts integers 0..18 GiB; 0 queries only. Allocation uses 1 GiB
-uint8 blocks and retains all of them simultaneously. It writes a different
-constant byte pattern per block, synchronizes, then checks EVERY byte of ALL
-retained blocks in 8 MiB tiles. It does not create an 18 GiB CPU copy. Each
-tile comparison may allocate an additional small GPU buffer. It refuses the
-next block below 2 GiB guest MemAvailable or below next-block-plus-4 GiB
-reported CUDA free memory. These are teaching guardrails, not guarantees of
-host stability. It refuses allocation outside a WSL kernel and never falls
-back to CPU. No allocation search or automatic escalation occurs.
-The default process timeout is 180 seconds, configurable only from 10..300.
-Timeout/interrupt signals only the owned child process group. It gives that
-child 10 seconds to release memory, then kills it if necessary. A forcibly
-terminated child may have no final release record; process teardown is not
-a measured clean release. The wrapper preserves the status.
+For Exercise 30, read the pressure request's UTC interval in the report and
+pressure.json. Inspect host.jsonl and UTC vmstat.txt over the same interval.
+Ignore vmstat's first, since-boot rate row. Retain admission.json,
+native-stderr.txt, requests.json, native-exit.json and result.json. Host
+physical headroom, host commit, guest swap activity and CUDA free bytes have
+different scopes. Seven responses establish completion for this one load.
 
-Results and interpretation
-OBSERVED/exit 0: queries completed; capacity remains untested.
-PASSED/exit 0: all requested bytes were retained, written, and checked on
-CUDA; examine process_result and wrapper metadata as well as the result line.
-The report compares those bytes with the captured guest MemTotal. A successful
-18 GiB run exceeds an approximately 16 GiB guest only if this comparison is true.
-This proves that bounded allocation and access at that time, not residency,
-maximum capacity, model fit, bandwidth, absence of paging or training success.
-A single constant per block detects some corruption but is not exhaustive
-memory testing, address-line testing or a hardware reliability certification.
-FAILED/exit 1: preserve type/message and the last retained count; do not infer
-that 16 GiB is a universal ceiling. Small validation buffers can also fail.
-UNAVAILABLE/exit 3: CUDA/import prerequisite absent; no CPU replacement.
-Wrapper exit 124: timed out; 130: interrupted. Other child exits remain visible.
-A cleanup observation failure makes the process nonzero even if the earlier
-allocation check said PASSED. Read the full record.
-After release, empty_cache releases unused PyTorch cache; it does not destroy
-the CUDA context or other processes' allocations. Nonzero counters alone do
-not establish a leak. An empty process table does not establish an idle device.
+Exercise 251 • A bounded allocation beyond guest MemTotal
 
-Optional guest-limit comparison
-Only if CPU-side loading/offload needs more memory, compare the original limit
-with a separately recorded 32 GB ceiling. Create .wslconfig if absent, or save a copy first; changing
-it belongs to the Windows host, not a Linux driver installation. Save every
-WSL distribution's work before wsl --shutdown, which stops all distributions.
-Reopen WSL, use a new output directory and repeat the same bounded workload.
-Record Windows/WSL state and other jobs. Do not combine before/after snapshots
-as one execution. Increased guest headroom need not increase CUDA totals.
-Do not increase to 48 GB merely because CUDA reported about 46 GiB.
-Swap is disk-backed guest virtual memory, not extra physical GPU capacity.
+  python memory_budget/run.py --out "$LAB_RUN/memory-views"
 
-Source explanation
-NVIDIA's Windows on Arm RTX Spark guide describes a dedicated carveout and
-shared segment backed by the same physical RAM. NVML reports the dedicated
-segment; cudaMemGetInfo covers dedicated plus shared budgets. GPU allocations
-can spill into shared memory with different performance. This documented
-host model is consistent with the WSL observations; it does not establish an
-exact segment map for this WSL process. Do not subtract readings across APIs
-or add them into a new physical capacity. CUDA explicitly does not guarantee
-allocation of every byte reported as free. Physical UMA is distinct from
-CUDA managed allocation and WSL's supported managed-memory features.
-See SOURCES.json for primary documentation checked on 30 October 2026.
+This query initializes the CUDA context and records guest, management, CUDA
+and framework views. It writes no allocation-test tensors. A budget reported
+by an interface does not establish which bytes a program can write and verify.
+
+  python memory_budget/guarded.py pilot --out "$LAB_RUN/memory-pilot"
+
+Inspect result.json, the verified byte count in stdout.txt, the after_release
+event, host.jsonl, vmstat.txt and the worker exit. Continue only with a passed
+1 GiB pilot from the same WSL boot and Python environment. The next stage
+retains up to eighteen 1 GiB blocks at once and may exert significant pressure.
+
+  python memory_budget/guarded.py target --pilot "$LAB_RUN/memory-pilot" --out "$LAB_RUN/memory-above-guest"
+
+Each allocation stage requires fresh host counters before launch and while it
+runs. The host physical and commit floors are each 4 GiB. The guest floor is
+2 GiB available, and each new CUDA block must leave a 4 GiB reserve. The
+supervisor takes at least three valid baseline readings and stops on the first
+bad reading, a query over five seconds, missing data for eight seconds, or a
+180-second workload deadline. Stop with Ctrl+C if necessary. Directly calling
+the inner allocation probe skips the Windows supervisor.
+
+Each block is filled, retained and checked across every byte, in small tiles.
+Require the final result, verified byte count, after_release event and clean
+worker exit. BLOCKED and FAILED are valid observations. A completed run gives
+a lower bound for that allocation path. It cannot establish maximum RAM,
+residency, process-wide GPU usage or whether an arbitrary model will fit.
+
+Read the historical outcomes with python reader/records.py 29, 30 or 251.
+The former model supervisor tolerated two consecutive low host readings.
+The portable procedure stops on the first invalid or low reading. These
+procedures have CPU control checks. Their new outputs belong to your own
+run. observations/windows-allocation.json contains the original time-stamped
+pilot and target memory samples, with field names normalized for replay.
+
+  python memory_budget/test_guarded.py
+  python memory_budget/test_controls.py

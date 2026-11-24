@@ -3,6 +3,26 @@ Exercise 236  Import a model and diagnose stream completion
 Question
 Did the Ollama stream complete using the intended imported model?
 
+Technology background
+
+Ollama, local model names and residency
+
+Ollama runs a local service that manages models and exposes generation and embedding endpoints. A local model name identifies what to request. Importing a GGUF file creates a usable model entry, while loading it creates a running model that consumes resources. A residency setting influences how long it can stay loaded between calls.
+
+Read the installed model list, then inspect the running models around a bounded request. For streamed generation, read the sequence of JSON objects through the final completion record. For embeddings, inspect vector count, dimension and response model identity.
+
+Streaming text and the first content event
+
+A streaming server sends pieces of a reply while it is still generating. In Server-Sent Events, a single HTTP connection carries a sequence of events. An event can announce a role or carry metadata before any text appears. Network chunks and model tokens also have different boundaries.
+
+For the first-content latency, start the clock when the client sends the request and stop it at the first event containing text. Keep reading through the protocol’s completion marker. This gives two useful observations, time to visible content and time to a complete reply.
+
+Model downloads, Git revisions and GGUF
+
+A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
+
+The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+
 Before you start
 Exercise 235 (qualify a native Ollama installation)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

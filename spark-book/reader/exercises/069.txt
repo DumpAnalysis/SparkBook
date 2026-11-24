@@ -3,6 +3,20 @@ Exercise 69  Resume the next update with its complete state
 Question
 What state is needed to reproduce the next update after restart?
 
+Technology background
+
+Gradients, optimizers and resuming an update
+
+A gradient tells an optimizer how the loss changes as a trainable value changes. AdamW also carries running estimates derived from earlier gradients. A training process may keep random-number state, a batch position and a scaler for limited-precision arithmetic. Live tensors retained by Python can change the memory picture.
+
+To test recovery, save at a known step, resume in a new process and compare the next batch, loss and updated parameters with an uninterrupted run. Restoring only the visible model weights can produce the same immediate prediction yet a different next update.
+
+Checkpoints, adapters and merged weights
+
+A checkpoint is saved state that a later process can open. An adapter may contain only changes to named layers and still require the exact base model. A merged checkpoint incorporates those changes into the weights intended for deployment. A file format such as safetensors stores arrays and their types.
+
+A successful save and load proves that a representation could be read. To test numerical fidelity, use identical inputs before and after saving and compare the resulting scores, called logits, or the generated tokens. To resume training, also account for optimizer and other training state in Exercise 69.
+
 Before you start
 Exercise 68 (audit gradients and retained tensors)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.

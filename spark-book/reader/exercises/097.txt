@@ -3,6 +3,26 @@ Exercise 97  Measure the effect of monitoring
 Question
 How much does the monitoring procedure perturb this particular workload?
 
+Technology background
+
+GPU metrics, samples and missing observations
+
+A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+
+Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
+Plotting GPU activity against a workload
+
+Matplotlib is the Python plotting library used here. A time-series plot gives timestamps horizontal positions and measured values vertical positions. The plotting program reads the sampler’s records and draws lines or points for related quantities. Request start and finish markers show which part of the picture belongs to the workload.
+
+Read the axis units before comparing curves. Bytes and percentages belong to different scales. Leave gaps where the source returned no sample and keep the original CSV or JSON alongside the figure. A rise in device activity during a request is a reason to inspect a trace for attribution.
+
 Before you start
 Exercise 95 (correlate inference requests with GPU activity)
 CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.
@@ -13,11 +33,14 @@ Recorded step time
 Check for success
 Compare matched monitored and unmonitored trials, using the same work, settings and timing boundary.
 
+Reading the result
+Supply two different session directories to the comparator. Each directory must contain its own metadata, events and session records. Match workload, order and sampling settings before comparing durations.
+
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
 
-: "${MONITORED:?Set MONITORED to the matched monitored benchmark record}"
-: "${UNMONITORED:?Set UNMONITORED to the unmonitored benchmark record}"
+: "${MONITORED:?Set MONITORED to the matched monitored session directory}"
+: "${UNMONITORED:?Set UNMONITORED to the unmonitored session directory}"
 python metrics/compare.py --baseline "$UNMONITORED" --observed "$MONITORED"
 
 Interpret the result

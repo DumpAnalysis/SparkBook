@@ -3,6 +3,20 @@ Exercise 207  Diagnose catalog failures before GPU work
 Question
 Can a manifest problem be identified before any GPU work starts?
 
+Technology background
+
+Container registries, manifests and platform selection
+
+An image tag can point to an index of builds for several platforms. An entry in that index identifies an operating system, an architecture and a manifest digest. The selected manifest in turn identifies the image’s contents. The ARM64 laptop needs the appropriate Linux ARM64 entry.
+
+Keep the index and the selected manifest together. A digest identifies particular bytes even if a tag is moved later. Exercise 207 deliberately changes copies of these records. A missing platform, duplicate selection or mismatching digest can be diagnosed before pulling layers or launching a GPU.
+
+NVIDIA NGC Catalog, resources and container images
+
+NGC Catalog is NVIDIA’s catalog of GPU software and other assets. A resource entry can describe a downloadable file or tool. A container entry identifies an image in a registry. Reading a catalog page, acquiring an asset and executing it are three distinct operations.
+
+Start by recording the item type, owner, version, expected size and available files. For a native command-line tool, inspect the executable’s target architecture before running it in this ARM64 WSL2 guest. For a container, follow its platform-specific digest in Exercise 206.
+
 Before you start
 Exercise 204 (inspect an NGC resource before downloading it) · Exercise 206 (resolve a container to a native immutable identity)
 Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.
@@ -14,11 +28,11 @@ Check for success
 Inject each supplied manifest fault and verify its specific rejection. Locate the first failing metadata boundary.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Use the directory from Exercise 206 with both index.json and image.json. For an offline control, set NGC_IMAGE_DIR=catalogs/controls/ngc-image before running the procedure.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
-: "${NGC_IMAGE_RECORD:?Set NGC_IMAGE_RECORD to the image.json retained in Exercise 206}"
-python catalogs/ngc_lab.py faults --source "$NGC_IMAGE_RECORD" --out "$LAB_RUN/ngc-faults"
+export NGC_IMAGE_DIR="${NGC_IMAGE_DIR:-$LAB_RUN/ngc-image}"
+python catalogs/ngc_lab.py faults --source "$NGC_IMAGE_DIR" --out "$LAB_RUN/ngc-faults"
 
 Interpret the result
 A catalog listing or correct checksum is not GPU qualification.

@@ -3,6 +3,20 @@ Exercise 226  Preserve nested traces, errors and redaction
 Question
 Can nested operations and failures be inspected locally while protecting sensitive fields?
 
+Technology background
+
+LangSmith tracing and evaluation
+
+LangSmith provides tracing and evaluation for model applications. A trace can group a request, model call and tool use as related runs. An evaluator applies a defined test to an output, perhaps comparing it with a reference or checking that a required field is present. Preserve the inputs and criterion behind each score.
+
+The companion has offline controls for nested records, errors and redaction. A local trace or a prepared upload is evidence about the client. Observing a hosted run additionally requires an authorized send and readback. Each exercise identifies which of those steps actually took place.
+
+OpenTelemetry traces, spans and correlated logs
+
+A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it.
+
+Follow one synthetic request from its root span through retrieval and generation. Match a log to its span ID and look for a second attempt after a failure. Adding all span durations can double-count time when a parent includes a child or two operations overlap.
+
 Before you start
 Exercise 220 (isolate and identify the orchestration environment)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.

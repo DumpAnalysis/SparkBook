@@ -3,6 +3,20 @@ Exercise 198  Recognize the absence of acoustic evidence
 Question
 Will the recognizer return words when the signal contains no speech?
 
+Technology background
+
+Speech recognition with Whisper
+
+Automatic speech recognition turns sound into text. Whisper processes acoustic features from audio, then decodes text tokens. The expected sampling rate, language and decoding settings affect the input or output. A fluent sentence is possible even when the audio contains little evidence for it.
+
+Start with a known utterance and its reference wording. Save the original audio, hypothesis and settings together. Try a silent or non-speech control and inspect what was produced. For longer recordings, retain chunk start times so text can be traced back to the corresponding audio.
+
+Waveforms, spectrograms and audio levels
+
+A waveform shows amplitude over time. A spectrogram divides the signal into short, often overlapping windows and shows how energy is distributed across frequencies in each window. The short-time Fourier transform is one way to compute it. Window length influences how well nearby times and frequencies can be distinguished.
+
+Start with the known tone and a silent interval. Check the sample rate, time axis, frequency axis and level scale. Then inspect a generated clip and listen at the same locations. A bright band can identify energy at a frequency but cannot score pronunciation, musicality or intelligibility.
+
 Before you start
 Exercise 173 (create inspectable image and audio fixtures) · Exercise 196 (transcribe the retained speech control)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

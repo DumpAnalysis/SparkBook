@@ -3,6 +3,20 @@ Exercise 216  Read rates, histograms and latency correctly
 Question
 Which population and units does each latency statistic describe?
 
+Technology background
+
+PromQL rates, histograms and alert rules
+
+PromQL is Prometheus’s query language. A rate over a counter estimates change per second across a time window. Histogram buckets accumulate observations up to specified boundaries. From those counts we can estimate a percentile such as p95, with precision limited by the bucket boundaries and available events.
+
+An alert rule evaluates an expression repeatedly and can require it to remain true for a specified duration. Follow a teaching sequence from pending to firing and recovery. Test absent samples as a separate case. A missing series might otherwise suppress the very alert you hoped would reveal a lost measurement.
+
+Prometheus, exporters and time series
+
+Prometheus asks configured targets for metrics at intervals called scrapes. An exporter translates another system’s measurements into named values that Prometheus can read. Labels distinguish series, for example by device. A gauge can rise or fall, while a counter usually accumulates events until its process restarts.
+
+Trace one value from the original provider through the exporter’s metrics response to a raw Prometheus query. The lab’s WSL2 exporter can indicate when a management field is unavailable. NVIDIA’s DCGM exporter is another possible data source where DCGM is supported. A successful scrape says the endpoint answered.
+
 Before you start
 Exercise 214 (start and inspect the native WSL2 stack) · Exercise 7 (understand the arithmetic first)
 Native monitoring tools or qualified containers; CPU/host memory and retained time-series data.

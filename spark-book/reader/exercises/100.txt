@@ -3,6 +3,20 @@ Exercise 100  Separate a defect from expected rounding
 Question
 Can an unchanged top prediction hide a broken representation?
 
+Technology background
+
+Floating-point precision and numerical tolerances
+
+Floating-point types store finite approximations to numbers. FP16, BF16 and FP32 use different bit layouts and preserve different ranges and precision. Even in the same type, two orders of summation can give slightly different answers. A reference calculation lets us inspect those differences.
+
+An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error.
+
+Token vectors, attention masks and pooling
+
+A token encoder produces one vector for each input position. To process sentences of different lengths in the same batch, the tokenizer can add padding. An attention mask identifies positions containing real input. In masked mean pooling we sum the real token vectors and divide by the number of real positions.
+
+Imagine a two-token sentence padded to four positions. The denominator for its mean is two. If encoding the same sentence beside a longer one changes its representation substantially, inspect the mask and denominator first. L2 normalization then scales a nonzero sentence vector to length one.
+
 Before you start
 Exercise 99 (compare controlled precision paths)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

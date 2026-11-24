@@ -3,6 +3,20 @@ Exercise 118  Repair aggregation and test the monitoring path
 Question
 Does the repaired aggregate weight the underlying observations correctly?
 
+Technology background
+
+Checking the telemetry itself
+
+A monitoring pipeline can lose or distort evidence. A duplicate event can double a count, a wrong clock unit can stretch a duration a thousandfold, and a missing span can make a request look shorter. First check identities, timestamps, units and the relationship between related records.
+
+The exercise damages copies of a known trace and compares them with the unaltered directory. For aggregated latency, preserve both sum and count. A one-request group and a hundred-request group should contribute in proportion to their request counts when computing a combined mean.
+
+GPU metrics, samples and missing observations
+
+A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+
+Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
+
 Before you start
 Exercise 117 (detect missing and inconsistent evidence)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

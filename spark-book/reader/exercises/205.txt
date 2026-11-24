@@ -3,6 +3,20 @@ Exercise 205  Acquire and inspect the native ARM64 CLI
 Question
 Is the acquired CLI the native binary identified by the publisher?
 
+Technology background
+
+NVIDIA NGC Catalog, resources and container images
+
+NGC Catalog is NVIDIA’s catalog of GPU software and other assets. A resource entry can describe a downloadable file or tool. A container entry identifies an image in a registry. Reading a catalog page, acquiring an asset and executing it are three distinct operations.
+
+Start by recording the item type, owner, version, expected size and available files. For a native command-line tool, inspect the executable’s target architecture before running it in this ARM64 WSL2 guest. For a container, follow its platform-specific digest in Exercise 206.
+
+The CUDA driver, toolkit and runtime
+
+CUDA is NVIDIA’s platform for running computations on a GPU. The driver exposes the device. The toolkit supplies development tools such as the nvcc compiler. A runtime library lets an application allocate device memory and launch work. A framework or container may carry its own user-space libraries.
+
+Version labels at these layers can differ. Record the mapped driver query, nvcc version, PyTorch build and device compute capability in their own fields. A missing compiler affects building source. A working prebuilt application can still use the GPU.
+
 Before you start
 Exercise 204 (inspect an NGC resource before downloading it)
 Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.

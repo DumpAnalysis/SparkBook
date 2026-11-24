@@ -3,6 +3,20 @@ Exercise 178  Separate visual content from instructions
 Question
 Can text embedded in an image override the task or distract the model?
 
+Technology background
+
+Vision-language models and visual grounding
+
+A vision-language model combines a visual representation with text so that a language component can generate an answer about an image. The processor resizes or tiles the pixels and prepares the visual input expected by the model. Increasing the visual input size can affect token count, memory use and latency.
+
+Ask for a property you can verify in the source image, such as the position of a colored shape. Compare the answer with the image itself. Words printed inside a picture are also input data. They can test whether the model follows the caller’s task when the picture contains conflicting text.
+
+Grounding a model in retrieved evidence
+
+A language model can answer from the text supplied in its prompt. Grounding means requiring its factual claims to agree with identifiable evidence. A retrieval step can select passages before generation. Together these operations are often called retrieval-augmented generation, or RAG. A small lab can select evidence directly from local files.
+
+Take one claim in the answer and find the exact log line that supports it. If there is no such line, describe the claim as a hypothesis. This works even before a vector search engine is introduced.
+
 Before you start
 Exercise 176 (ask a bounded question about a known image)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

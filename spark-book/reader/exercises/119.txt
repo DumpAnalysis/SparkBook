@@ -3,6 +3,20 @@ Exercise 119  Navigate the unified catalog
 Question
 Which catalog entry suggests a test that separates two explanations for a symptom?
 
+Technology background
+
+Diagnostic patterns and evidence cards
+
+A diagnostic pattern names a recurring structure in evidence, such as a worker repeatedly waiting on an empty queue. The same visible symptom can have several causes. A pattern suggests a question and a discriminating check. It becomes useful when you can point to the artifact that supports its application.
+
+For an evidence card, identify the observed state first and write your competing explanation before revealing the worked answer. A deliberately injected delay can test how your method responds to a known fault. Keep that distinction when you later investigate a real stall with an unknown cause.
+
+Diagnostic observations, controls and written conclusions
+
+A diagnostic observation is something a reader can check in an artifact, such as a response status or a timestamp. A hypothesis proposes an explanation. A control changes or removes a suspected factor so that competing explanations predict different observations. An oracle supplies an expected result against which a computation can be checked.
+
+For the fictional R17 incident, start with one observed event. Name two explanations consistent with it, then say what you would measure to tell them apart. The remaining uncertainty is part of the conclusion. This same method applies later to kernels, generated images and stalled workers.
+
 Before you start
 Exercise 23 (write a diagnostic conclusion)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
@@ -13,8 +27,13 @@ Recorded step time
 Check for success
 Choose one pattern, state its applicability boundary, and name an observation that would rule it out.
 
+Reading the result
+Read the catalog first. Run the patterns command in this exercise to select a pattern and trace it to its teaching case. The twelve entries are diagnostic patterns.
+
 Run in your lab
-Read diagnostics/patterns.json and locate the pattern whose evidence and counterexample match your observation. A matching symptom alone is insufficient.
+Read the catalog, run the patterns command and choose one entry to apply to your worked case.
+
+python diagnostics/casebook.py patterns
 
 Interpret the result
 Tie the diagnosis to a discriminating observation and a counterexample.

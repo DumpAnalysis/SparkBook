@@ -3,6 +3,20 @@ Exercise 71  Replay a complete GPU investigation
 Question
 Can a tool-driven investigation support each claim with an exact retained observation?
 
+Technology background
+
+Agent loops, tools and action validation
+
+An agent combines a decision step with actions the application can perform. A model may propose reading a file or calling a tool. A controller checks the tool name and arguments, executes an allowed action and gives the resulting observation back to the decision step. The loop needs a stop condition.
+
+A replay supplies predetermined proposals, so we can test the controller with a known sequence. A live planner uses the model’s own proposals. Read proposal, validation, action and result in order. Only the action record establishes which tool actually ran.
+
+Diagnostic patterns and evidence cards
+
+A diagnostic pattern names a recurring structure in evidence, such as a worker repeatedly waiting on an empty queue. The same visible symptom can have several causes. A pattern suggests a question and a discriminating check. It becomes useful when you can point to the artifact that supports its application.
+
+For an evidence card, identify the observed state first and write your competing explanation before revealing the worked answer. A deliberately injected delay can test how your method responds to a known fault. Keep that distinction when you later investigate a real stall with an unknown cause.
+
 Before you start
 Exercise 17 (replay a complete tool loop) · Exercise 70 (work through six cases)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.

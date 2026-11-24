@@ -3,6 +3,20 @@ Exercise 192  Synthesize a short diagnostic statement
 Question
 Did synthesis produce a finite waveform for the exact diagnostic sentence?
 
+Technology background
+
+Text-to-speech with MMS and VITS
+
+A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.
+
+Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard.
+
+Images, waveforms and model processors
+
+An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
+
+Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript.
+
 Before you start
 Exercise 174 (download and verify one model at a time) · Exercise 175 (validate the media contracts)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

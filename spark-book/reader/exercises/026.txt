@@ -3,6 +3,26 @@ Exercise 26  Compare complete held-out answers
 Question
 Does the adapter improve the answer on inputs withheld from training?
 
+Technology background
+
+Datasets, labels and independent evaluation
+
+A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
+
+If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together.
+
+Fine-tuning, LoRA and trainable parameters
+
+In a training step the model makes a prediction. A loss measures its disagreement with the target. Backpropagation computes gradients, and an optimizer uses them to adjust trainable parameters. Fine-tuning starts from a pretrained model. The Transformers library loads the model and tokenizer, while PEFT provides parameter-efficient training methods.
+
+LoRA freezes selected base weights and learns a smaller update represented by two matrices. An adapter stores these learned changes. Inspect the trainable parameter count, the base revision and a held-out answer. A fall in training loss is evidence about the training examples.
+
+Prompts, generated answers and acceptance checks
+
+A chat prompt can contain messages with different roles. The system message sets overall instructions, while the user message supplies the task and its evidence. The model generates a sequence of tokens. A finish reason records why generation ended, such as a normal stop or an output length limit.
+
+An answer can be fluent and still miss the task. If a prompt asks for two observations, count them and check both against the supplied lines. Recording the prompt, the complete reply and its finish reason lets a second reader grade that same answer.
+
 Before you start
 Exercise 25 (establish the framework and run ten updates)
 Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.

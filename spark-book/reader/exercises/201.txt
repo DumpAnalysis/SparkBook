@@ -3,6 +3,26 @@ Exercise 201  Run a bounded image adapter experiment
 Question
 Does the trained image adapter make the requested change on a matched validation prompt?
 
+Technology background
+
+Adapting speech and image models
+
+A speech recognizer can learn from recordings paired with verified transcripts. An image adapter can learn from images paired with descriptions. In both cases the examples define what the training objective rewards. Two recordings of the same utterance or nearly identical image captions can make a held-out comparison misleading.
+
+For speech, inspect the audio and its actual reference words before training. For images, hold the base, prompt, seed and sampling settings fixed when enabling or disabling the adapter. Score the requested change and what should be preserved. A changed waveform or image fingerprint establishes a different output.
+
+Stable Diffusion XL, Diffusers and the VAE
+
+Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.
+
+Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change.
+
+Fine-tuning, LoRA and trainable parameters
+
+In a training step the model makes a prediction. A loss measures its disagreement with the target. Backpropagation computes gradients, and an optimizer uses them to adjust trainable parameters. Fine-tuning starts from a pretrained model. The Transformers library loads the model and tokenizer, while PEFT provides parameter-efficient training methods.
+
+LoRA freezes selected base weights and learns a smaller update represented by two matrices. An adapter stores these learned changes. Inspect the trainable parameter count, the base revision and a held-out answer. A fall in training loss is evidence about the training examples.
+
 Before you start
 Exercise 184 (generate one bounded image) · Exercise 168 (audit data splits and supervised token masks)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

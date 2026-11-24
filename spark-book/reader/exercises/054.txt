@@ -3,6 +3,20 @@ Exercise 54  Explain a timing result and correlate it with a trace
 Question
 Can a timing difference be assigned to a kernel using an independent observation?
 
+Technology background
+
+Kernel fusion and CUDA event timing
+
+Kernel fusion combines operations that would otherwise run as separate kernels. For example, an addition followed by an activation may reuse a value already in a register, avoiding a write to and a read from an intermediate array. It can also change resource use or arithmetic order.
+
+Compare the final arrays first. For timing, record events in the stream that owns the work and wait for the ending event before reading elapsed time. A CPU clock around an asynchronous launch can measure little more than submission. Keep warm-up and measured iterations identifiable.
+
+Nsight Systems, NVTX and CUPTI timelines
+
+Nsight Systems records a timeline across CPU threads, CUDA API calls and supported GPU activity. NVTX lets the application name a region such as “iteration 2”. CUPTI is an NVIDIA interface that tools can use to collect activity records. A host range describes what the CPU was doing while it was open.
+
+Start with one named iteration. Look for the CPU launch call, then the corresponding GPU work with usable start and end times. A launch returning to the CPU does not mark the end of device execution. Zero device timestamps leave the duration unresolved.
+
 Before you start
 Exercise 53 (fuse addition and activation)
 NVCC and host C++ compiler; small bounded tensors, no model download.

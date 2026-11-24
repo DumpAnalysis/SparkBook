@@ -3,6 +3,20 @@ Exercise 77  Export and audit the partitions
 Question
 Do held-out query families stay outside the training partition?
 
+Technology background
+
+Datasets, labels and independent evaluation
+
+A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
+
+If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together.
+
+Sentence embeddings and semantic similarity
+
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+
+For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
+
 Before you start
 Exercise 75 (prepare the environment and freeze the encoder)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.

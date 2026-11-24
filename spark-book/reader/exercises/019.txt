@@ -3,6 +3,20 @@ Exercise 19  Run a live planner on the teaching case
 Question
 Does a live model choose a permitted action and finish within the budget?
 
+Technology background
+
+Agent loops, tools and action validation
+
+An agent combines a decision step with actions the application can perform. A model may propose reading a file or calling a tool. A controller checks the tool name and arguments, executes an allowed action and gives the resulting observation back to the decision step. The loop needs a stop condition.
+
+A replay supplies predetermined proposals, so we can test the controller with a known sequence. A live planner uses the model’s own proposals. Read proposal, validation, action and result in order. Only the action record establishes which tool actually ran.
+
+Prompts, generated answers and acceptance checks
+
+A chat prompt can contain messages with different roles. The system message sets overall instructions, while the user message supplies the task and its evidence. The model generates a sequence of tokens. A finish reason records why generation ended, such as a normal stop or an output length limit.
+
+An answer can be fluent and still miss the task. If a prompt asks for two observations, count them and check both against the supplied lines. Recording the prompt, the complete reply and its finish reason lets a second reader grade that same answer.
+
 Before you start
 Exercise 5 (start the baseline server) · Exercise 17 (replay a complete tool loop) · Exercise 18 (reject an action outside the tool contract)
 Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).

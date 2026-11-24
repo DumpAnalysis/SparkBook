@@ -3,6 +3,20 @@ Exercise 20  Diagnose a snapshot of this laboratory
 Question
 Can a local planner distinguish a measured symptom from a proposed cause?
 
+Technology background
+
+Agent loops, tools and action validation
+
+An agent combines a decision step with actions the application can perform. A model may propose reading a file or calling a tool. A controller checks the tool name and arguments, executes an allowed action and gives the resulting observation back to the decision step. The loop needs a stop condition.
+
+A replay supplies predetermined proposals, so we can test the controller with a known sequence. A live planner uses the model’s own proposals. Read proposal, validation, action and result in order. Only the action record establishes which tool actually ran.
+
+Grounding a model in retrieved evidence
+
+A language model can answer from the text supplied in its prompt. Grounding means requiring its factual claims to agree with identifiable evidence. A retrieval step can select passages before generation. Together these operations are often called retrieval-augmented generation, or RAG. A small lab can select evidence directly from local files.
+
+Take one claim in the answer and find the exact log line that supports it. If there is no such line, describe the claim as a hypothesis. This works even before a vector search engine is introduced.
+
 Before you start
 Exercise 14 (run a small synchronized computation) · Exercise 19 (run a live planner on the teaching case)
 Inventory and request records from Exercises 1 and 6, a running server from the local planner route and a fresh output path.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Compare the snapshot's identity and time with each tool receipt. Score the final claims against what the snapshot supports.
+
+Reading the result
+Read the saved prompt and the HTTP response as separate pieces of evidence. The timeout appeared inside the prompt. The live HTTP exchange succeeded.
 
 Run in your lab
 Select the inventory from Exercise 1 and the answer from Exercise 6. The commands assume they are in this LAB_RUN. If they are in an earlier run directory, substitute those two absolute input paths. Use a fresh output directory for the snapshot and planner result.

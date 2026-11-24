@@ -3,6 +3,20 @@ Exercise 228  Plan and qualify an optional LangSmith service
 Question
 Which parts of a LangSmith workflow can be validated before sending a request?
 
+Technology background
+
+LangSmith tracing and evaluation
+
+LangSmith provides tracing and evaluation for model applications. A trace can group a request, model call and tool use as related runs. An evaluator applies a defined test to an output, perhaps comparing it with a reference or checking that a required field is present. Preserve the inputs and criterion behind each score.
+
+The companion has offline controls for nested records, errors and redaction. A local trace or a prepared upload is evidence about the client. Observing a hosted run additionally requires an authorized send and readback. Each exercise identifies which of those steps actually took place.
+
+Model caches, local files and offline execution
+
+Acquisition copies a model, tokenizer and configuration onto local storage. A cache keeps downloaded files for reuse. Inference reads those files and executes the model. Some libraries still check a remote registry while opening a cached model unless configured for local loading.
+
+Use the pinned revision, record which files are present and state exactly which process or network access you constrained. A successful local load establishes that the chosen files satisfied that loading path. Testing a fully disconnected laptop requires an actual request under that wider condition.
+
 Before you start
 Exercise 226 (preserve nested traces, errors and redaction)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Inspect the synthetic payload and destination. Mark the hosted path verified only after an authorized call and matching readback.
+
+Reading the result
+Read the prepared LangSmith request and its fields. The optional hosted call was never sent in the recorded run, so there is no ingestion or UI result.
 
 Run in your lab
 Plan mode sends nothing. Hosted qualification is optional and requires explicit account configuration; preserve the supplied BLOCKED outcome until a real capture exists.

@@ -3,6 +3,20 @@ Exercise 124  Compare process training with a full batch reference
 Question
 Does averaging worker gradients reproduce a single global-batch update?
 
+Technology background
+
+Data parallelism, sharding and gradient averaging
+
+In data parallelism, each worker owns a model replica and processes part of the batch. An all-reduce combines contributions across ranks. PyTorch DistributedDataParallel synchronizes gradients so replicas can take consistent updates. Unequal local batch sizes require care when relating those updates to a full-batch reference.
+
+Sharding divides storage or computation, such as assigning different columns of a matrix to different workers. Fully Sharded Data Parallel uses sharding for training state. Compare a small partitioned calculation and its gradients with an unpartitioned reference. That mathematical check can run on CPU before any multi-GPU communication test.
+
+Distributed training on one physical laptop
+
+Distributed training uses several processes that coordinate their work. Each process has a rank, its identifier within a group. World size is the number of participating processes. A rendezvous brings those ranks together. Gloo and NVIDIA’s NCCL are communication backends used in different configurations.
+
+On one laptop, two CPU processes can act as two ranks over loopback and expose coordination, delays or failures. They still share one physical machine. A one-rank NCCL check can exercise the available GPU. Two-device training requires two independently addressable CUDA devices.
+
 Before you start
 Exercise 123 (qualify the environment and the resource budget)
 CPU processes for emulation; one qualified GPU for CUDA comparisons. Worker count does not add physical GPUs.

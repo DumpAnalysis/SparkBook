@@ -3,6 +3,20 @@ Exercise 175  Validate the media contracts
 Question
 Would a format or silence error be caught before an expensive model call?
 
+Technology background
+
+Images, waveforms and model processors
+
+An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
+
+Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript.
+
+Diagnostic observations, controls and written conclusions
+
+A diagnostic observation is something a reader can check in an artifact, such as a response status or a timestamp. A hypothesis proposes an explanation. A control changes or removes a suspected factor so that competing explanations predict different observations. An oracle supplies an expected result against which a computation can be checked.
+
+For the fictional R17 incident, start with one observed event. Name two explanations consistent with it, then say what you would measure to tell them apart. The remaining uncertainty is part of the conclusion. This same method applies later to kernels, generated images and stalled workers.
+
 Before you start
 Exercise 173 (create inspectable image and audio fixtures)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

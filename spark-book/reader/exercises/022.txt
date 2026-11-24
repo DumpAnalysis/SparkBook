@@ -3,6 +3,20 @@ Exercise 22  Separate acquisition from inference
 Question
 Can the installed model answer with acquisition and external access disabled?
 
+Technology background
+
+Model caches, local files and offline execution
+
+Acquisition copies a model, tokenizer and configuration onto local storage. A cache keeps downloaded files for reuse. Inference reads those files and executes the model. Some libraries still check a remote registry while opening a cached model unless configured for local loading.
+
+Use the pinned revision, record which files are present and state exactly which process or network access you constrained. A successful local load establishes that the chosen files satisfied that loading path. Testing a fully disconnected laptop requires an actual request under that wider condition.
+
+Model downloads, Git revisions and GGUF
+
+A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
+
+The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+
 Before you start
 Exercise 4 (download and fingerprint) · Exercise 6 (submit the complete prompt)
 Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Record how external access was constrained and retain the local response. Local weights alone establish only the acquisition boundary.
+
+Reading the result
+The isolation checks cover the processes and network settings used in those checks. A whole-laptop disconnected inference session still needs its own request and response.
 
 Run in your lab
 Verify cached asset hashes, then repeat one request with acquisition disabled. A failed unshare probe means that namespace-based isolation is unavailable; it is not an offline-inference failure. Keep firewall or host-network changes outside this first-run route.

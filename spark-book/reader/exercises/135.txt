@@ -3,6 +3,26 @@ Exercise 135  Separate rejection cancellation and lost ownership
 Question
 What can a client conclude when the owner disappears after accepting its work?
 
+Technology background
+
+Dynamic batching and bounded admission
+
+A batch groups compatible inputs into one model operation. Dynamic batching collects requests that arrive separately and can briefly wait for more work before dispatch. This can improve throughput while increasing the wait for an individual request. A bounded queue limits how much pending work the server admits.
+
+Give every request its own ID. On overload, follow it from submission to rejection, cancellation or exactly one completed response. Compare queue time with model execution time. A request that timed out at the client may still occupy the server until cancellation reaches the owner.
+
+Sharing a GPU and owning a model
+
+Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers.
+
+NVIDIA Multi-Process Service, or MPS, is a separate GPU scheduling facility with platform requirements. It does not automatically merge separate model copies. The single-owner queue in this lab lets us study waiting, cancellations and sharing on the available laptop without assuming MPS support.
+
+Stalled workers and stack traces
+
+A process can be alive while it makes no progress. A stack trace lists the active chain of function calls in a thread. A heartbeat records progress or liveness at intervals, depending on what it measures. A supervisor can impose a deadline and collect a stack from a deliberately stalled teaching worker.
+
+Read the last completed step, stack and child exit together. If several samples show the worker waiting at the same point, inspect what would release that wait. The supervisor can complete successfully after recording a child failure, so retain both exits.
+
 Before you start
 Exercise 130 (share one encoder across request workers)
 One GPU owner by default; replicas duplicate weights. Bound clients and batches before increasing concurrency.

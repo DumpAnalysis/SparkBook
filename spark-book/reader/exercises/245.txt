@@ -3,6 +3,26 @@ Exercise 245  Diagnose incomplete streams and loading delays
 Question
 Did the client stop receiving data because loading was slow or because the stream ended?
 
+Technology background
+
+LM Studio, llmster and the lms command line
+
+LM Studio can run a headless service called llmster. In this book that service and its lms command-line client run in WSL2. Importing a model makes its files available to the runtime. Loading creates an active model instance. The server then exposes an endpoint that a separate client can call.
+
+Compare the catalog of downloaded models with the list of loaded instances before and after a request. A first request can include just-in-time loading. Record that separately from a later warm request and check that the reply identifies the model you intended.
+
+Streaming text and the first content event
+
+A streaming server sends pieces of a reply while it is still generating. In Server-Sent Events, a single HTTP connection carries a sequence of events. An event can announce a role or carry metadata before any text appears. Network chunks and model tokens also have different boundaries.
+
+For the first-content latency, start the clock when the client sends the request and stop it at the first event containing text. Keep reading through the protocol’s completion marker. This gives two useful observations, time to visible content and time to a complete reply.
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
 Before you start
 Exercise 244 (import a verified model and exercise the local API)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

@@ -3,6 +3,20 @@ Exercise 169  Prepare one small NeMo AutoModel run
 Question
 Can a bounded NeMo recipe update only the intended adapters?
 
+Technology background
+
+NVIDIA NeMo AutoModel and supervised training recipes
+
+NeMo AutoModel runs training from a recipe that brings together a model, tokenizer, data reader, optimizer and checkpoint settings. Changing one of these can change what the training run means. This exercise follows the data from a teaching example to the token positions that receive a training loss.
+
+For prompt-and-answer training, the labels can exclude the prompt and padding so that only intended answer tokens contribute to the objective. Decode a few labeled positions and inspect one batch before training. Keep the recipe, model identity, trainable parameter list and checkpoint needed for the recovery test.
+
+Transformers, tokenizers and the Hugging Face libraries
+
+Several libraries can participate in one model run. Transformers loads a model implementation and exposes training or generation methods. Its tokenizer turns text into IDs using the saved vocabulary. PEFT attaches parameter-efficient adapters. Accelerate provides device-placement and training utilities. bitsandbytes supplies supported low-precision operations for configurations that use them.
+
+Read the particular loader and training configuration in the companion. An ordinary BF16 LoRA run and a run using a quantized base have different memory requirements. Identify which precision and libraries were actually selected before comparing two results.
+
 Before you start
 Exercise 168 (audit data splits and supervised token masks) · Exercise 14 (run a small synchronized computation)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

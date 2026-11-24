@@ -3,6 +3,20 @@ Exercise 102  Investigate a break and generated code
 Question
 Which operation breaks the compiled region, and what code was generated around it?
 
+Technology background
+
+Compiling PyTorch with Dynamo, Inductor and Triton
+
+In eager mode Python issues framework operations as execution reaches them. With torch.compile, TorchDynamo can capture compatible operations into a graph, and a backend such as TorchInductor can optimize and generate executable code. On GPUs that code may include kernels written using the Triton programming language. NVIDIA Triton Inference Server, used in Exercise 150, serves models over a network interface.
+
+Compare two input shapes. Inspect the compiler’s guards, recompilation and graph-break messages. Keep the initial compilation time separate from the timings of later calls. A graph break can return part of the computation to eager execution.
+
+PTX, SASS and device registers
+
+CUDA can represent a kernel as PTX, a virtual instruction language, and as native machine code for a target GPU. A disassembler displays that native code in a readable form often called SASS. Registers hold intermediate values used by a thread. Compiler optimization can combine operations or remove a source variable altogether.
+
+Use cuobjdump to identify which images an executable actually contains. If it contains a native image only, generate PTX separately for comparison. Static instructions show what was built. A debugger stop or a measured trace is needed to identify what happened during one execution.
+
 Before you start
 Exercise 101 (compare shape specialization)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

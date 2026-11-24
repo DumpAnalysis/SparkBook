@@ -3,6 +3,26 @@ Exercise 191  Compare prompts seeds and music quality
 Question
 What differences can be attributed to seed, prompt or profiling in these clips?
 
+Technology background
+
+MusicGen and discrete audio tokens
+
+MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file.
+
+Generate one short clip and record the prompt, seed, number of generated steps, waveform shape and sample rate. Derive playback duration from the waveform. Listening answers questions about music or artifacts that a successful WAV write and the model’s timing numbers cannot settle.
+
+Waveforms, spectrograms and audio levels
+
+A waveform shows amplitude over time. A spectrogram divides the signal into short, often overlapping windows and shows how energy is distributed across frequencies in each window. The short-time Fourier transform is one way to compute it. Window length influences how well nearby times and frequencies can be distinguished.
+
+Start with the known tone and a silent interval. Check the sample rate, time axis, frequency axis and level scale. Then inspect a generated clip and listen at the same locations. A bright band can identify energy at a frequency but cannot score pronunciation, musicality or intelligibility.
+
+PyTorch Profiler and operators
+
+A framework operator is a named operation such as matrix multiplication. PyTorch Profiler can collect CPU-side operator events and, where supported, GPU activity. A trace viewer draws each event on the track of the thread or device that produced it. One Python operation can issue several kernels.
+
+Choose a short, named operation and check both tracks. A CPU operator range can include launches and waiting. To report GPU execution time, find valid device intervals for the workload. If the native model runs in a separate process, identify that process before interpreting a client trace.
+
 Before you start
 Exercise 188 (generate a short music clip from a description) · Exercise 189 (inspect waveform and spectral activity)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Match generation settings and clip identities. Record listening observations per clip and distinguish reported feedback from device timing.
+
+Reading the result
+Inspect the generated clips, then record the listening assessment separately. The owner reported “good” overall. Detailed ratings remained open, as did usable device timing.
 
 Run in your lab
 The entry supplies one controlled seed. Repeat the same prompt and limit, then vary one prompt/seed; record listening judgments separately from numerical checks.

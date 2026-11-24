@@ -3,6 +3,26 @@ Exercise 219  Move monitoring into containers and connect Kubernetes
 Question
 Can the containerized monitor reach the intended endpoint inside this local topology?
 
+Technology background
+
+Prometheus, exporters and time series
+
+Prometheus asks configured targets for metrics at intervals called scrapes. An exporter translates another system’s measurements into named values that Prometheus can read. Labels distinguish series, for example by device. A gauge can rise or fall, while a counter usually accumulates events until its process restarts.
+
+Trace one value from the original provider through the exporter’s metrics response to a raw Prometheus query. The lab’s WSL2 exporter can indicate when a management field is unavailable. NVIDIA’s DCGM exporter is another possible data source where DCGM is supported. A successful scrape says the endpoint answered.
+
+Grafana dashboards and data sources
+
+Grafana displays results queried from a data source, here Prometheus. A dashboard contains panels. Each panel applies a query, a time range and display settings such as units. Provisioning describes these connections and panels in files that another installation can reproduce.
+
+Choose one GPU memory panel. Read its data source, expression and unit, run that expression directly in Prometheus and compare the same time window. An empty panel can result from a label mismatch or an unsuitable time range even when the exporter has working data.
+
+Kubernetes, K3s, Pods and Services
+
+Kubernetes runs workloads from a declared desired state. K3s is the Kubernetes distribution used for the local cluster. A Pod runs one or more containers together. A Deployment manages replicas and replacements. A Service gives clients an address that can route requests to matching ready Pods. kubectl is the command-line client.
+
+Follow the chain from Deployment to Pod to ready endpoint and, finally, one inference reply. If a rollout stalls, inspect the Pod’s events, logs and readiness check. A created Deployment confirms that Kubernetes accepted the description; the request tests whether the model can serve.
+
 Before you start
 Exercise 215 (provision and qualify the Grafana dashboard) · Exercise 144 (deploy the CPU service to a local cluster)
 Native monitoring tools or qualified containers; CPU/host memory and retained time-series data.

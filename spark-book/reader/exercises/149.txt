@@ -3,6 +3,26 @@ Exercise 149  Diagnose vLLM concurrency and deploy the qualified owner
 Question
 How do concurrent vLLM requests behave before and after moving the owner into the cluster?
 
+Technology background
+
+vLLM and serving language models
+
+vLLM is an inference engine and server for language models. It schedules generation for active requests and manages memory used by their attention caches. Continuous batching lets the set of active sequences change as requests arrive or finish. A compatible HTTP API lets the lab use a familiar client.
+
+Qualify the chosen image, model and device together. Check the server’s ready model identity, make one bounded generation request, then raise concurrency. Separate time in the queue, time to first content and completion. More available weight memory alone does not determine the number of concurrent sequences it can serve.
+
+Dynamic batching and bounded admission
+
+A batch groups compatible inputs into one model operation. Dynamic batching collects requests that arrive separately and can briefly wait for more work before dispatch. This can improve throughput while increasing the wait for an individual request. A bounded queue limits how much pending work the server admits.
+
+Give every request its own ID. On overload, follow it from submission to rejection, cancellation or exactly one completed response. Compare queue time with model execution time. A request that timed out at the client may still occupy the server until cancellation reaches the owner.
+
+Kubernetes, K3s, Pods and Services
+
+Kubernetes runs workloads from a declared desired state. K3s is the Kubernetes distribution used for the local cluster. A Pod runs one or more containers together. A Deployment manages replicas and replacements. A Service gives clients an address that can route requests to matching ready Pods. kubectl is the command-line client.
+
+Follow the chain from Deployment to Pod to ready endpoint and, finally, one inference reply. If a rollout stalls, inspect the Pod’s events, logs and readiness check. A created Deployment confirms that Kubernetes accepted the description; the request tests whether the model can serve.
+
 Before you start
 Exercise 148 (qualify a vLLM image and a small generation model)
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.

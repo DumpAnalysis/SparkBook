@@ -3,6 +3,20 @@ Exercise 220  Isolate and identify the orchestration environment
 Question
 Can agent dependencies be qualified without changing the CUDA training environment?
 
+Technology background
+
+LangChain agents and local model adapters
+
+LangChain supplies interfaces for chat models and tools and can assemble them into an agent loop. A model adapter translates between the framework’s messages and a provider’s request and response format. The application still decides which tools are available and validates the arguments it receives.
+
+Begin with a known tool proposal and watch the controller record its result. Then replace the test responder with the local model endpoint. An endpoint can be compatible with ordinary chat while handling tool calls differently. Inspect the actual structured call before attributing a working tool loop to that model.
+
+Agent loops, tools and action validation
+
+An agent combines a decision step with actions the application can perform. A model may propose reading a file or calling a tool. A controller checks the tool name and arguments, executes an allowed action and gives the resulting observation back to the decision step. The loop needs a stop condition.
+
+A replay supplies predetermined proposals, so we can test the controller with a known sequence. A live planner uses the model’s own proposals. Read proposal, validation, action and result in order. Only the action record establishes which tool actually ran.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.

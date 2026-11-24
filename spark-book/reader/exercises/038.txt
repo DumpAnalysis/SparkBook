@@ -3,6 +3,20 @@ Exercise 38  Classify three additional observations
 Question
 Can the tools tell a race, an uninitialized read and a barrier error apart?
 
+Technology background
+
+Compute Sanitizer and CUDA correctness checks
+
+Compute Sanitizer observes a GPU program while it runs. Its tools check different properties. Memcheck examines memory accesses, racecheck detects supported shared-memory hazards, initcheck looks for uninitialized global-memory reads and synccheck examines synchronization use. Choose the tool that matches the question.
+
+Compare an intentionally defective teaching case with the otherwise equivalent valid control. Record whether instrumentation started, the reported location and the process exit. A numerical pass with the tool unavailable still leaves the requested instrumentation check open.
+
+CUDA-GDB, breakpoints and exception cores
+
+A debugger can stop an executing program at a breakpoint so you can inspect its current state. For CUDA, selecting a kernel, block and thread identifies whose registers and variables you are examining. Symbols connect source names and line information with a particular build.
+
+An exception core permits later inspection of state that the platform captured at a fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
+
 Before you start
 Exercise 37 (compare a valid kernel with a deliberate overrun)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.

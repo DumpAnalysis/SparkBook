@@ -3,6 +3,26 @@ Exercise 174  Download and verify one model at a time
 Question
 Can each media checkpoint be reopened from a verified local snapshot?
 
+Technology background
+
+Images, waveforms and model processors
+
+An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
+
+Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript.
+
+Model downloads, Git revisions and GGUF
+
+A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
+
+The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+
+Transformers, tokenizers and the Hugging Face libraries
+
+Several libraries can participate in one model run. Transformers loads a model implementation and exposes training or generation methods. Its tokenizer turns text into IDs using the saved vocabulary. PEFT attaches parameter-efficient adapters. Accelerate provides device-placement and training utilities. bitsandbytes supplies supported low-precision operations for configurations that use them.
+
+Read the particular loader and training configuration in the companion. An ordinary BF16 LoRA run and a run using a quantized base have different memory requirements. Identify which precision and libraries were actually selected before comparing two results.
+
 Before you start
 Exercise 172 (qualify a separate media environment)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

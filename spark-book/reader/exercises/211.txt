@@ -3,6 +3,26 @@ Exercise 211  Audit a pinned dataset before fine tuning
 Question
 Would the dataset audit detect a split leak introduced deliberately?
 
+Technology background
+
+Hugging Face Hub, snapshots and dataset cards
+
+Hugging Face Hub hosts versioned repositories for models, datasets and other artifacts. A model card documents a model’s purpose and usage. A dataset card describes data and its intended scope. A snapshot collects files at one revision. A moving branch name can later select different bytes.
+
+Inspect a revision and its file list before downloading. A tiny encoder may need configuration, a tokenizer and weights. For a dataset, check the actual rows and split membership as well as the card. If access is gated, authorization is a separate prerequisite from the ability to load the files.
+
+Datasets, labels and independent evaluation
+
+A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
+
+If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together.
+
+NumPy arrays, dataframes and data provenance
+
+NumPy stores numeric arrays with a shape and an element type. A dataframe is a table with named columns that may have different types. pandas provides dataframes on the CPU. A CSV file stores rows as text, while Parquet stores typed columns. Loading the same values with a different type can change a comparison.
+
+The ecosystem exercises reuse small arrays and tables as reference inputs. Record their shape, column names, row identifiers, types and file digests. When comparing a CPU and GPU operation, put rows in the same documented order before comparing values.
+
 Before you start
 Exercise 208 (inspect pinned model and dataset identities)
 Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.

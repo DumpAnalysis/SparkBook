@@ -3,6 +3,26 @@ Exercise 186  Record denoising activity and isolate VAE pressure
 Question
 Can denoising and VAE decoding be separated in the available trace?
 
+Technology background
+
+Stable Diffusion XL, Diffusers and the VAE
+
+Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.
+
+Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change.
+
+PyTorch allocator snapshots and tensor ownership
+
+When a program creates a CUDA tensor, PyTorch obtains storage for it. Its allocator can retain unused blocks so that the next tensor can reuse them. Allocated bytes describe storage currently used by tensors. Reserved bytes include blocks held by the allocator. A management tool has a broader view again.
+
+An allocator snapshot records blocks and their state, and can include allocation history if recording was enabled. To inspect numerical content, explicitly copy a small selected tensor. When diagnosing growth, first release the object that owns it, then compare live and reserved bytes in the same process.
+
+PyTorch Profiler and operators
+
+A framework operator is a named operation such as matrix multiplication. PyTorch Profiler can collect CPU-side operator events and, where supported, GPU activity. A trace viewer draws each event on the track of the thread or device that produced it. One Python operation can issue several kernels.
+
+Choose a short, named operation and check both tracks. A CPU operator range can include launches and waiting. To report GPU execution time, find valid device intervals for the workload. If the native model runs in a separate process, identify that process before interpreting a client trace.
+
 Before you start
 Exercise 184 (generate one bounded image) · Exercise 39 (capture four annotated iterations)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Compare the tiling control and per-step observations. Assign device times only when the trace supplies valid device intervals.
+
+Reading the result
+Compare the earlier denoising observations and the matched VAE tiling runs. The later tiny-kernel probe supplied no usable device timestamps for dividing time between the denoiser and decoder.
 
 Run in your lab
 These three 1024 × 1024 trials use model offload. Recheck current host and CUDA headroom first. Compare profiled versus plain with tiling enabled, then plain with versus without tiling.

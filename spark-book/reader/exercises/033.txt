@@ -3,6 +3,20 @@ Exercise 33  Inspect device code and its target
 Question
 Which instructions and targets are actually present in the built device image?
 
+Technology background
+
+PTX, SASS and device registers
+
+CUDA can represent a kernel as PTX, a virtual instruction language, and as native machine code for a target GPU. A disassembler displays that native code in a readable form often called SASS. Registers hold intermediate values used by a thread. Compiler optimization can combine operations or remove a source variable altogether.
+
+Use cuobjdump to identify which images an executable actually contains. If it contains a native image only, generate PTX separately for comparison. Static instructions show what was built. A debugger stop or a measured trace is needed to identify what happened during one execution.
+
+Compiling CUDA C++ for this GPU
+
+A CUDA C++ source file can contain code for the host CPU and functions called kernels for the GPU. nvcc coordinates the compilation steps. A build target tells the compiler which device architecture it should generate code for. The linker brings the compiled pieces and their libraries together as a program.
+
+A debug build retains information that helps connect execution with source lines. Optimizations can change instructions and timing. Give the debug and optimized executables different names and run the same numerical input through both. Keep the compiler command with the result.
+
 Before you start
 Exercise 32 (build debug and performance variants)
 Qualified native toolkit/compiler; debugger and profiler support are separate prerequisites. Use bounded inputs.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Match the binary hash to its PTX and SASS listings. Identify the target recorded by the tool.
+
+Reading the result
+Generate the PTX and SASS listings during your build. Keep the unabridged files with the build command, target, compiler identity and numerical test.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

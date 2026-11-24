@@ -3,6 +3,26 @@ Exercise 222  Qualify the HTTP boundary and local model
 Question
 Is a failure in HTTP transport, model generation or interpretation of the tool request?
 
+Technology background
+
+LangChain agents and local model adapters
+
+LangChain supplies interfaces for chat models and tools and can assemble them into an agent loop. A model adapter translates between the framework’s messages and a provider’s request and response format. The application still decides which tools are available and validates the arguments it receives.
+
+Begin with a known tool proposal and watch the controller record its result. Then replace the test responder with the local model endpoint. An endpoint can be compatible with ordinary chat while handling tool calls differently. Inspect the actual structured call before attributing a working tool loop to that model.
+
+Clients, servers and a local HTTP request
+
+A server waits for requests. A client sends one to an address and a port. The address 127.0.0.1 means this machine’s loopback interface. An HTTP request names an operation and may carry a body. Here, JSON expresses that body as named fields, such as a model name and a prompt.
+
+Exercise 3 uses a fixture, a small server with a known reply, to test the client before loading any weights. First read the HTTP status, then the body. A successful exchange tells us the two programs communicated. Grading a generated answer requires a separate check of its contents.
+
+Loading a model with llama.cpp
+
+llama.cpp is a native inference runtime. Its llama-server executable opens the model file, prepares memory for inference and listens for requests. The file on disk, the running process and the address clients call are three different things. A downloaded model alone cannot answer a prompt.
+
+Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server.
+
 Before you start
 Exercise 221 (observe the tool loop and inject faults) · Exercise 5 (start the baseline server)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.

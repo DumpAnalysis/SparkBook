@@ -3,6 +3,20 @@ Exercise 48  Reorder a tile through shared memory
 Question
 How do shared-memory layout and a barrier change a tiled transpose?
 
+Technology background
+
+Matrix layout, tiles and shared memory
+
+A matrix has rows and columns but occupies a sequence of memory locations. In row-major storage, adjacent columns of one row sit beside each other. A transpose swaps rows with columns. For a rectangular input, reversing the shape as well as the indices helps expose a mistaken stride.
+
+A tile is a small rectangular portion that a block processes together. Threads can stage a tile in on-chip shared memory and synchronize before consuming one another’s values. Check the last partial tile: threads without a valid output may still need to participate in the block’s barrier.
+
+Compute Sanitizer and CUDA correctness checks
+
+Compute Sanitizer observes a GPU program while it runs. Its tools check different properties. Memcheck examines memory accesses, racecheck detects supported shared-memory hazards, initcheck looks for uninitialized global-memory reads and synccheck examines synchronization use. Choose the tool that matches the question.
+
+Compare an intentionally defective teaching case with the otherwise equivalent valid control. Record whether instrumentation started, the reported location and the process exit. A numerical pass with the tool unavailable still leaves the requested instrumentation check open.
+
 Before you start
 Exercise 47 (write and check a rectangular transpose)
 NVCC and host C++ compiler; small bounded tensors, no model download.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Identify the write and read indices and the intervening barrier. Verify partial edge tiles against the reference.
+
+Reading the result
+Compare edge tiles with the CPU reference. All twelve recorded transpose cases passed. The requested sanitizer qualification remained blocked.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

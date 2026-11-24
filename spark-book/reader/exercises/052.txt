@@ -3,6 +3,20 @@ Exercise 52  Add cooperative tile loading
 Question
 What should the last matrix tile load beyond the input bounds?
 
+Technology background
+
+Matrix multiplication on the GPU
+
+Each entry of a matrix product is a dot product. Multiply elements from one row of the left matrix by the corresponding elements of one column of the right matrix and add them. An input with shape (2, 3) can multiply one with shape (3, 4) to produce a (2, 4) result.
+
+A simple kernel assigns one output entry to each thread. A tiled kernel reuses input values across a block to reduce repeated global-memory reads. Start with an asymmetric rectangular example and a separate CPU calculation before timing the optimized variant.
+
+Matrix layout, tiles and shared memory
+
+A matrix has rows and columns but occupies a sequence of memory locations. In row-major storage, adjacent columns of one row sit beside each other. A transpose swaps rows with columns. For a rectangular input, reversing the shape as well as the indices helps expose a mistaken stride.
+
+A tile is a small rectangular portion that a block processes together. Threads can stage a tile in on-chip shared memory and synchronize before consuming one another’s values. Check the last partial tile: threads without a valid output may still need to participate in the block’s barrier.
+
 Before you start
 Exercise 51 (write one output element per thread)
 NVCC and host C++ compiler; small bounded tensors, no model download.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Check that out-of-range loads contribute zero and all threads reach the barriers. Verify the rectangular tail against the CPU reference.
+
+Reading the result
+Choose a shape whose edge falls inside a tile. Check the guarded stores and the result against the CPU oracle, then record which GPU tooling checks actually ran.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

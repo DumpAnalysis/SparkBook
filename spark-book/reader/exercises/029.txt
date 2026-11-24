@@ -3,6 +3,26 @@ Exercise 29  Plan, acquire, and load the larger model
 Question
 Can a weight file larger than the reported dedicated budget serve a real request?
 
+Technology background
+
+Loading a model larger than the GPU budget
+
+The “32B” in this model’s name describes roughly 32 billion parameters. Storage depends on how each number is represented. The nine Q8 shards in this exercise total 32.43 GiB. Loading also requires working buffers and room for the request. The loader can keep some layers on the CPU while placing others on the GPU.
+
+A guard samples available memory and can stop a load before it reaches readiness. Treat that stop as an outcome with a timestamp and a threshold. A useful successful run records the actual layer split, replies completed and memory observations over the same interval.
+
+Bytes, memory budgets and unified memory
+
+One GiB is 1,073,741,824 bytes. On this 64 GB unified-memory laptop, Windows, the WSL2 guest and a CUDA process describe memory from different positions. The free command reports guest RAM. nvidia-smi reports the management interface’s GPU memory view. PyTorch can query the CUDA runtime for free and total bytes visible to its process.
+
+Keep the name, unit, time and calling process beside each value. The recorded 31,232 MiB management total and 45.97 GiB CUDA total overlap. Adding them would count some of the same capacity twice. Exercise 251 tests what an allocation can actually write and verify.
+
+CPU execution and partial GPU offload
+
+A model is an ordered computation built from layers. A runtime can execute some layers on the GPU and others on the CPU. The boundary may require moving intermediate results. Decoder state, work buffers and the operating system also need memory while a request runs.
+
+A CPU control runs the workload with GPU layers disabled. Compare it with a run that requests GPU layers. In both cases inspect the loader’s actual layer and buffer report, then submit the same prompt. The requested layer count alone cannot tell us what placement the runtime achieved.
+
 Before you start
 Exercise 2 (calculate before allocating) · Exercise 28 (learn partial offload with the small model)
 Qualified framework and pinned model. Check current host, guest and CUDA headroom; training and offload peaks must be measured.
@@ -14,9 +34,12 @@ Check for success
 Verify the nine shard identities, layer placement and completed requests. Keep the first guard stop distinct from the successful trial.
 
 Run in your lab
-The entry command plans only. Download with --download after admission checks; then follow Chapter 24–25 for the measured partial-offload launch. Do not use the 18 GiB allocation result as model-fit proof.
+Start with the offline plan. After checking disk space, acquire the nine pinned shards. With the Exercise 4 native runtime installed and the Exercise 14 framework environment active, launch the guarded session in a new directory. It serves seven requests and stops its own server. Keep the directory for Exercise 30.
 
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
 python large_model.py
+python large_model.py --download
+python memory_budget/guarded.py model --out "$LAB_RUN/model32"
 
 Interpret the result
 A model that exceeds the reported GPU budget may require host-backed placement; success still depends on the actual host and guest budget.

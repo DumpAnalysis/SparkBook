@@ -5,14 +5,33 @@ evidence to explain it. Complete the first-inference route before choosing a
 specialist route. An exercise number is a stable reference, not an instruction
 to run every exercise in numerical order.
 
+If this is your first time with the tools, read the Technology background in each
+numbered guide before its commands. From the directory containing reader/, try:
+
+python3 reader/technologies.py 1
+python3 reader/technologies.py --find "CUDA"
+python3 reader/technologies.py --list
+
+These commands display background and read local files. You do not need model
+weights, a CUDA environment or an online service to read them.
+You can browse reader/TECHNOLOGY_OVERVIEWS.md directly, too.
+
 If you already have a qualified ~/work/spark-book project, preserve its
-environment, model files and runs. Continue from that project and add the
-reader/ material deliberately. Do not unpack a new companion over your only
+environment, model files and runs. Stage the new sources and compare them with
+your project, including the revised programs in memory_budget/ and embeddings/. Do not unpack a new companion over your only
 copy of a working experiment. A new archive cannot remove obsolete files from
 an older extraction.
 
-For a first installation, clone https://github.com/DumpAnalysis/SparkBook into a
-staging directory in WSL2 or download its ZIP. From spark-book/, run:
+For a first installation, extract the matching Version 58 ZIP into a WSL2 staging
+directory. You can also use https://github.com/DumpAnalysis/SparkBook when its
+README identifies Version 58. From the release’s spark-book directory, run:
+
+python3 reader/verify_package.py
+
+With the unedited Word book, an optional paired check is:
+python3 reader/verify_package.py --book /path/to/Local_AI_on_RTX_Spark_Laptops_Version58.docx
+
+Then create your working directory.
 
 python3 reader/new_lab.py ~/work/spark-book
 
@@ -83,4 +102,7 @@ Add --files for the local guide, exercise files and exported book transcripts.
 Follow the exercise prerequisites and learning routes; record labels are
 references, not additional learning stages.
 
-Use the Version 56 book and the matching GitHub companion. A named command duration is an observed stage on the example laptop. Add your own setup, download and interpretation time.
+Use the Version 58 book and the matching Version 58 companion. A named command duration is an observed stage on the example laptop. Add your own setup, download and interpretation time.
+
+To search all 483 printed transcripts, run python3 reader/import_transcripts.py
+from the working lab. See reader/EVIDENCE.txt.

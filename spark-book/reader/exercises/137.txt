@@ -3,6 +3,14 @@ Exercise 137  Separate liveness readiness and draining
 Question
 Can a live process correctly refuse traffic while loading or draining?
 
+Technology background
+
+Inference APIs, readiness and service health
+
+An inference service turns a model call into a request that another program can make. Its contract specifies the input fields, supported shapes, response structure and error behavior. A vector endpoint, for example, should return one vector of the expected length for each accepted input.
+
+A liveness check asks whether the process is functioning. A readiness check asks whether it can serve the intended workload now. Draining stops accepting new work while allowing in-flight requests to finish. Try a known request and an invalid one, then check which process, status and response correspond to each.
+
 Before you start
 Exercise 136 (establish an inference API contract)
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.

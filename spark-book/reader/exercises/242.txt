@@ -3,6 +3,20 @@ Exercise 242  Evaluate and prepare an adapter for serving
 Question
 Can a serving format constraint improve validity without improving correctness?
 
+Technology background
+
+Unsloth, QLoRA and a training smoke test
+
+Unsloth provides training integrations for supported models and environments. QLoRA stores a frozen base model in low precision and trains small LoRA adapter parameters with higher-precision computation where required. This reduces the storage needed for base weights, while activations and optimizer state still require memory.
+
+A smoke test runs a few bounded updates to establish that this stack works together. Inspect the frozen base identity, the trainable set, supervised tokens and a change in the adapter. For recovery, compare the next optimizer update after resuming. Task quality requires a separate held-out evaluation.
+
+Checkpoints, adapters and merged weights
+
+A checkpoint is saved state that a later process can open. An adapter may contain only changes to named layers and still require the exact base model. A merged checkpoint incorporates those changes into the weights intended for deployment. A file format such as safetensors stores arrays and their types.
+
+A successful save and load proves that a representation could be read. To test numerical fidelity, use identical inputs before and after saving and compare the resulting scores, called logits, or the generated tokens. To resume training, also account for optimizer and other training state in Exercise 69.
+
 Before you start
 Exercise 241 (resume with the original optimizer and base identity) · Exercise 26 (compare complete held-out answers)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

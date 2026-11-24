@@ -3,6 +3,20 @@ Exercise 50  Write a histogram with atomic accumulation
 Question
 Can simultaneous increments lose counts even when the total looks plausible?
 
+Technology background
+
+Reductions, histograms and atomic updates
+
+A reduction combines many values into fewer values, such as summing a vector into one number. A GPU implementation can first write a partial sum per block and then sum those partials. Addition order affects floating-point rounding, so preserve the input type and comparison tolerance.
+
+A histogram instead counts how many inputs fall into each bin. Several threads may choose the same bin. An atomic addition makes each increment indivisible with respect to the other increments at that location. Check the individual bins and whether their total equals the number of counted inputs.
+
+Compute Sanitizer and CUDA correctness checks
+
+Compute Sanitizer observes a GPU program while it runs. Its tools check different properties. Memcheck examines memory accesses, racecheck detects supported shared-memory hazards, initcheck looks for uninitialized global-memory reads and synccheck examines synchronization use. Choose the tool that matches the question.
+
+Compare an intentionally defective teaching case with the otherwise equivalent valid control. Record whether instrumentation started, the reported location and the process exit. A numerical pass with the tool unavailable still leaves the requested instrumentation check open.
+
 Before you start
 Exercise 49 (write a two-stage sum)
 NVCC and host C++ compiler; small bounded tensors, no model download.

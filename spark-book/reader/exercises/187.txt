@@ -3,6 +3,20 @@ Exercise 187  Change an image while preserving the experiment identity
 Question
 Which requested edit is visible when only image-to-image strength changes?
 
+Technology background
+
+Stable Diffusion XL, Diffusers and the VAE
+
+Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.
+
+Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change.
+
+Diffusion, noise prediction and a sampling schedule
+
+A diffusion exercise starts with clean data and adds noise at a chosen level according to a schedule. A denoising model learns to estimate a quantity needed to step back toward a sample. Generation begins with noise and repeatedly updates it using the model and scheduler.
+
+The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved.
+
 Before you start
 Exercise 184 (generate one bounded image)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

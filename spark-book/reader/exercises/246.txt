@@ -3,6 +3,26 @@ Exercise 246  Serve embeddings and connect local agents
 Question
 Does the same local server satisfy the embedding and agent contracts independently?
 
+Technology background
+
+LM Studio, llmster and the lms command line
+
+LM Studio can run a headless service called llmster. In this book that service and its lms command-line client run in WSL2. Importing a model makes its files available to the runtime. Loading creates an active model instance. The server then exposes an endpoint that a separate client can call.
+
+Compare the catalog of downloaded models with the list of loaded instances before and after a request. A first request can include just-in-time loading. Record that separately from a later warm request and check that the reply identifies the model you intended.
+
+Sentence embeddings and semantic similarity
+
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+
+For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
+
+Agent loops, tools and action validation
+
+An agent combines a decision step with actions the application can perform. A model may propose reading a file or calling a tool. A controller checks the tool name and arguments, executes an allowed action and gives the resulting observation back to the decision step. The loop needs a stop condition.
+
+A replay supplies predetermined proposals, so we can test the controller with a known sequence. A live planner uses the model’s own proposals. Read proposal, validation, action and result in order. Only the action record establishes which tool actually ran.
+
 Before you start
 Exercise 244 (import a verified model and exercise the local API) · Exercise 75 (prepare the environment and freeze the encoder) · Exercise 222 (qualify the HTTP boundary and local model)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

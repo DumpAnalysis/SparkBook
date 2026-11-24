@@ -3,6 +3,20 @@ Exercise 141  Run a bounded container and inspect its lifecycle
 Question
 Does the containerized owner start, serve a valid vector and stop cleanly?
 
+Technology background
+
+Docker Compose and service networking
+
+Docker Compose describes related containers, their configuration, networks and mounts in a YAML file. One service can refer to another by its service name on a shared Compose network. Inside a container, 127.0.0.1 identifies that container’s own loopback interface in the usual network configuration.
+
+Follow one request from its caller to the declared port and destination service. Check the effective configuration and lifecycle events if the service exits. Record whether a model file should come from the image or a mount. A missing mount can make a healthy executable fail before inference starts.
+
+Docker images, containers and volumes
+
+An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.
+
+Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content.
+
 Before you start
 Exercise 140 (build and inspect the CPU service image)
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.

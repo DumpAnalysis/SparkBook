@@ -1,7 +1,21 @@
-Exercise 115  Produce a one minimal reproducer
+Exercise 115  Produce a 1-minimal reproducer
 
 Question
 Which smallest retained input still triggers the failure predicate?
+
+Technology background
+
+Reducing a failing case and isolating a change
+
+A reproducer is an input and procedure that reliably expose a chosen failure. Its predicate answers whether a candidate still fails in the required way. Reduction removes parts of an input and runs the predicate again. A result is 1-minimal when removing any single remaining element stops that failure.
+
+When comparing configurations, test the same predicate on the same input. Bisection can narrow a transition if the ordered candidates separate passing from failing consistently. Keep the actual observation at each step. An unrelated crash during reduction would otherwise count as success for the wrong reason.
+
+Diagnostic observations, controls and written conclusions
+
+A diagnostic observation is something a reader can check in an artifact, such as a response status or a timestamp. A hypothesis proposes an explanation. A control changes or removes a suspected factor so that competing explanations predict different observations. An oracle supplies an expected result against which a computation can be checked.
+
+For the fictional R17 incident, start with one observed event. Name two explanations consistent with it, then say what you would measure to tell them apart. The remaining uncertainty is part of the conclusion. This same method applies later to kernels, generated images and stalled workers.
 
 Before you start
 Exercise 99 (compare controlled precision paths)
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Re-run the oracle on the reduced input, then remove each remaining element in turn and record its decision.
+
+Reading the result
+A 1-minimal reproducer still triggers the oracle, and deleting any one remaining element removes that failure. Try each single deletion to establish that property for your result.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

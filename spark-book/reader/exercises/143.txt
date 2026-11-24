@@ -3,6 +3,26 @@ Exercise 143  Classify container failures before changing limits
 Question
 At which boundary did the container request fail?
 
+Technology background
+
+Docker images, containers and volumes
+
+An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.
+
+Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content.
+
+The NVIDIA Container Toolkit and GPU visibility
+
+A GPU container needs two things at once. Its image supplies the application and compatible user-space libraries. The container runtime makes the required GPU device interface and driver components available to the running container. Under WSL2 the Windows host still owns the mapped display driver.
+
+Run a small device check inside the intended container, then perform a known calculation and check its output. A successful query in the surrounding WSL shell describes that shell. A container that starts successfully may still be missing the GPU interface its model needs.
+
+Inference APIs, readiness and service health
+
+An inference service turns a model call into a request that another program can make. Its contract specifies the input fields, supported shapes, response structure and error behavior. A vector endpoint, for example, should return one vector of the expected length for each accepted input.
+
+A liveness check asks whether the process is functioning. A readiness check asks whether it can serve the intended workload now. Draining stops accepting new work while allowing in-flight requests to finish. Try a known request and an invalid one, then check which process, status and response correspond to each.
+
 Before you start
 Exercise 141 (run a bounded container and inspect its lifecycle)
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.

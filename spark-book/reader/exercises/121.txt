@@ -3,6 +3,14 @@ Exercise 121  Investigate the evidence cards
 Question
 Can an investigator diagnose an unseen card before opening its worked answer?
 
+Technology background
+
+Diagnostic patterns and evidence cards
+
+A diagnostic pattern names a recurring structure in evidence, such as a worker repeatedly waiting on an empty queue. The same visible symptom can have several causes. A pattern suggests a question and a discriminating check. It becomes useful when you can point to the artifact that supports its application.
+
+For an evidence card, identify the observed state first and write your competing explanation before revealing the worked answer. A deliberately injected delay can test how your method responds to a known fault. Keep that distinction when you later investigate a real stall with an unknown cause.
+
 Before you start
 Exercise 119 (navigate the unified catalog)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.
@@ -12,6 +20,9 @@ Recorded step time
 
 Check for success
 Save the evidence-only account first. Record prior exposure and use the blind rubric only for an unseen case.
+
+Reading the result
+Use the six familiar cards for guided comparison. Card C05 is illustrative. Score blind performance only on a new set that the investigator has never seen.
 
 Run in your lab
 Save a dated independent account for all six cards before opening Exercise 122.

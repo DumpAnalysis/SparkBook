@@ -3,6 +3,26 @@ Exercise 248  Admit a model that exceeds the reported GPU budget
 Question
 Is there enough headroom for a bounded partial-placement trial?
 
+Technology background
+
+Nemotron, mixtures of experts and hybrid state
+
+Nemotron names a family of models. The Nemotron 3 Nano variant used here combines expert routing with different kinds of sequence-processing layers. A mixture of experts selects part of the model for each token. The active parameter count describes work selected per token. The full stored model can still be much larger.
+
+Trace the GGUF conversion back to a particular upstream revision. Inspect actual file bytes, the available memory views and which layers the native runtime placed on CUDA. Attention caches and recurrent state may have different layouts, so use the model’s own logs when interpreting its buffers.
+
+Loading a model larger than the GPU budget
+
+The “32B” in this model’s name describes roughly 32 billion parameters. Storage depends on how each number is represented. The nine Q8 shards in this exercise total 32.43 GiB. Loading also requires working buffers and room for the request. The loader can keep some layers on the CPU while placing others on the GPU.
+
+A guard samples available memory and can stop a load before it reaches readiness. Treat that stop as an outcome with a timestamp and a threshold. A useful successful run records the actual layer split, replies completed and memory observations over the same interval.
+
+Bytes, memory budgets and unified memory
+
+One GiB is 1,073,741,824 bytes. On this 64 GB unified-memory laptop, Windows, the WSL2 guest and a CUDA process describe memory from different positions. The free command reports guest RAM. nvidia-smi reports the management interface’s GPU memory view. PyTorch can query the CUDA runtime for free and total bytes visible to its process.
+
+Keep the name, unit, time and calling process beside each value. The recorded 31,232 MiB management total and 45.97 GiB CUDA total overlap. Adding them would count some of the same capacity twice. Exercise 251 tests what an allocation can actually write and verify.
+
 Before you start
 Exercise 247 (record the upstream and conversion identities) · Exercise 2 (calculate before allocating) · Exercise 28 (learn partial offload with the small model)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Compare weight bytes with the correctly scoped reports and current host/guest headroom. Document the proposed layer count and stop conditions.
+
+Reading the result
+Run the synthetic admission example to inspect its arithmetic. For actual available memory or model placement, use timestamped counters and the native loader log from the measured run.
 
 Run in your lab
 The entry is a CPU admission-arithmetic control with teaching inputs. Replace them with measured guest/host/device observations before any large-model launch.

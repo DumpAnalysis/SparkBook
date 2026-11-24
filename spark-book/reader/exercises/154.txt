@@ -3,6 +3,20 @@ Exercise 154  Compare cuML principal components by subspace
 Question
 Do two PCA implementations learn the same subspace despite possible sign changes?
 
+Technology background
+
+RAPIDS, cuDF and cuML
+
+RAPIDS is a collection of libraries for data analysis on NVIDIA GPUs. cuDF provides dataframe operations, such as grouping rows by a category and summing a column. cuML supplies machine-learning algorithms, including PCA. A familiar operation name makes a CPU implementation a useful reference.
+
+Begin with a tiny table whose groups you can sum by hand. Run the corresponding CPU and GPU operations, align the group keys and compare the sums. For PCA, compare the fitted subspace or its projector. Two mathematically equivalent bases can have different signs or orientations.
+
+PCA and a two-dimensional map of embeddings
+
+The scikit-learn library provides a Python implementation of principal component analysis (PCA). PCA finds directions in which centered data vary most. Plotting the first two components assigns a point to each sentence and retains only part of the original variation. The explained-variance ratios report how much the displayed components capture in the fitted data.
+
+Fit the axes on the training vectors and use that same fit to transform held-out vectors. Follow a pair of points back through their row IDs and compare their original-space similarity. PCA axes can reverse sign across implementations, so a reflected plot can still represent the same subspace.
+
 Before you start
 Exercise 153 (compare a cuDF aggregation with the CPU control) · Exercise 79 (produce a PCA map with its numerical limits)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
@@ -32,4 +46,5 @@ Recorded result  PASSED — The same two actual cuML runs passed the 0.001 proje
 Scope  Use the combined capture in Exercise 153; coordinate sign changes are not a failure, and visual separation does not establish retrieval quality.
 
 Recorded files
+Read the PCA result in run 153.01. Compare the subspace projector to account for direction signs or a rotated basis.
 python reader/records.py 154 --files

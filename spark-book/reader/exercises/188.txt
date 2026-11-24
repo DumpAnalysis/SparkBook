@@ -3,6 +3,20 @@ Exercise 188  Generate a short music clip from a description
 Question
 Does the generation record identify a playable audio signal for the requested prompt?
 
+Technology background
+
+MusicGen and discrete audio tokens
+
+MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file.
+
+Generate one short clip and record the prompt, seed, number of generated steps, waveform shape and sample rate. Derive playback duration from the waveform. Listening answers questions about music or artifacts that a successful WAV write and the model’s timing numbers cannot settle.
+
+Images, waveforms and model processors
+
+An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
+
+Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript.
+
 Before you start
 Exercise 174 (download and verify one model at a time) · Exercise 175 (validate the media contracts)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

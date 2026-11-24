@@ -3,6 +3,20 @@ Exercise 79  Produce a PCA map with its numerical limits
 Question
 How much of the original geometry survives a two-dimensional PCA projection?
 
+Technology background
+
+PCA and a two-dimensional map of embeddings
+
+The scikit-learn library provides a Python implementation of principal component analysis (PCA). PCA finds directions in which centered data vary most. Plotting the first two components assigns a point to each sentence and retains only part of the original variation. The explained-variance ratios report how much the displayed components capture in the fitted data.
+
+Fit the axes on the training vectors and use that same fit to transform held-out vectors. Follow a pair of points back through their row IDs and compare their original-space similarity. PCA axes can reverse sign across implementations, so a reflected plot can still represent the same subspace.
+
+Retrieval, relevance labels and rank metrics
+
+A retrieval system compares a query with a collection of documents and returns an ordered list. Relevance labels tell the evaluator which documents answer a particular query. The top match can be semantically similar yet irrelevant to the question, so retain query and document identifiers alongside their scores.
+
+Recall at k measures the fraction of relevant documents found in the first k places. Reciprocal rank uses the position of the first relevant result. A first relevant result at rank four contributes 0.25. Mean reciprocal rank, or MRR, averages those contributions across queries. Inspect individual ranks when the test set is small.
+
 Before you start
 Exercise 78 (measure search before changing the model)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.

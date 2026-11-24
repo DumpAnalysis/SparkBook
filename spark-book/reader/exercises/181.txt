@@ -3,6 +3,20 @@ Exercise 181  Train and retain a tiny diffusion model
 Question
 Did the tiny denoiser learn anything on held-out noise targets?
 
+Technology background
+
+Diffusion, noise prediction and a sampling schedule
+
+A diffusion exercise starts with clean data and adds noise at a chosen level according to a schedule. A denoising model learns to estimate a quantity needed to step back toward a sample. Generation begins with noise and repeatedly updates it using the model and scheduler.
+
+The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved.
+
+Gradients, optimizers and resuming an update
+
+A gradient tells an optimizer how the loss changes as a trainable value changes. AdamW also carries running estimates derived from earlier gradients. A training process may keep random-number state, a batch position and a scaler for limited-precision arithmetic. Live tensors retained by Python can change the memory picture.
+
+To test recovery, save at a known step, resume in a new process and compare the next batch, loss and updated parameters with an uninterrupted run. Restoring only the visible model weights can produce the same immediate prediction yet a different next update.
+
 Before you start
 Exercise 180 (verify forward corruption and an oracle reconstruction)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

@@ -1,6 +1,6 @@
 Historical commands retain their original working paths. Use reader/guide.py for a fresh run and reader/records.py for the corresponding book pages.
 
-CURRENT READER EDITION — VERSION 56
+CURRENT READER EDITION — VERSION 58
 Start with reader/START_HERE.txt at the companion root. Use
 reader/guide.py NUMBER for the portable entry procedure and the book for
 current verified outcomes. Source-era environment/transcript statements below
@@ -70,3 +70,10 @@ separate experiments that require evaluation and memory measurement.
 Use .npy and .npz with allow_pickle=False. Projection fits do not consume labels.
 Maps are exploratory; retrieval always uses the original vector space.
 No CUDA timings, peak capacity, or WSL2 GPU success is claimed by the CPU evidence.
+
+Current checkpoint comparison for Exercises 86–88
+The selected in-memory encoder supplies two normalized reference vectors before saving.
+A single fresh load must reproduce their shape and finite values within atol=1e-6 and
+rtol=1e-5. selected-probe.npy and finetune-report.json retain the reference, selected
+epoch and evaluation details. Read the individual validation and test query ranks.
+Run python embeddings/check_reload.py --self-test to exercise the comparison controls.

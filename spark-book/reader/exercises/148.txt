@@ -3,6 +3,20 @@ Exercise 148  Qualify a vLLM image and a small generation model
 Question
 Can the selected ARM64 vLLM image load this pinned model under the local budget?
 
+Technology background
+
+vLLM and serving language models
+
+vLLM is an inference engine and server for language models. It schedules generation for active requests and manages memory used by their attention caches. Continuous batching lets the set of active sequences change as requests arrive or finish. A compatible HTTP API lets the lab use a familiar client.
+
+Qualify the chosen image, model and device together. Check the server’s ready model identity, make one bounded generation request, then raise concurrency. Separate time in the queue, time to first content and completion. More available weight memory alone does not determine the number of concurrent sequences it can serve.
+
+Model weights, tokens and the context window
+
+A language model stores learned numbers called weights. A tokenizer splits text into pieces and assigns each piece an integer. A piece might be part of a word. During inference the model reads the prompt and predicts successive tokens using the existing weights. Training changes those weights.
+
+The context window bounds how many tokens the model can use in a request. During generation a transformer saves attention keys and values for earlier positions in a KV cache. Increasing the context or serving additional sequences can require more memory even when the weight file stays exactly the same size.
+
 Before you start
 Exercise 142 (add the GPU runtime and a generation image)
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.

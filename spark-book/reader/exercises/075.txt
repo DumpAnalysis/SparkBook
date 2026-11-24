@@ -3,6 +3,20 @@ Exercise 75  Prepare the environment and freeze the encoder
 Question
 Can a later embedding run identify the exact encoder and Python environment?
 
+Technology background
+
+Sentence embeddings and semantic similarity
+
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+
+For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
+
+Transformers, tokenizers and the Hugging Face libraries
+
+Several libraries can participate in one model run. Transformers loads a model implementation and exposes training or generation methods. Its tokenizer turns text into IDs using the saved vocabulary. PEFT attaches parameter-efficient adapters. Accelerate provides device-placement and training utilities. bitsandbytes supplies supported low-precision operations for configurations that use them.
+
+Read the particular loader and training configuration in the companion. An ordinary BF16 LoRA run and a run using a quantized base have different memory requirements. Identify which precision and libraries were actually selected before comparing two results.
+
 Before you start
 Exercise 1 (inventory the existing environment) · Exercise 14 (run a small synchronized computation)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.

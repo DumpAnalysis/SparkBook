@@ -3,6 +3,26 @@ Exercise 171  Validate the adapter handoff and extend to retrieval
 Question
 Does the adapted model improve a held-out answer after the adapter handoff?
 
+Technology background
+
+NVIDIA NeMo AutoModel and supervised training recipes
+
+NeMo AutoModel runs training from a recipe that brings together a model, tokenizer, data reader, optimizer and checkpoint settings. Changing one of these can change what the training run means. This exercise follows the data from a teaching example to the token positions that receive a training loss.
+
+For prompt-and-answer training, the labels can exclude the prompt and padding so that only intended answer tokens contribute to the objective. Decode a few labeled positions and inspect one batch before training. Keep the recipe, model identity, trainable parameter list and checkpoint needed for the recovery test.
+
+Fine-tuning, LoRA and trainable parameters
+
+In a training step the model makes a prediction. A loss measures its disagreement with the target. Backpropagation computes gradients, and an optimizer uses them to adjust trainable parameters. Fine-tuning starts from a pretrained model. The Transformers library loads the model and tokenizer, while PEFT provides parameter-efficient training methods.
+
+LoRA freezes selected base weights and learns a smaller update represented by two matrices. An adapter stores these learned changes. Inspect the trainable parameter count, the base revision and a held-out answer. A fall in training loss is evidence about the training examples.
+
+Checkpoints, adapters and merged weights
+
+A checkpoint is saved state that a later process can open. An adapter may contain only changes to named layers and still require the exact base model. A merged checkpoint incorporates those changes into the weights intended for deployment. A file format such as safetensors stores arrays and their types.
+
+A successful save and load proves that a representation could be read. To test numerical fidelity, use identical inputs before and after saving and compare the resulting scores, called logits, or the generated tokens. To resume training, also account for optimizer and other training state in Exercise 69.
+
 Before you start
 Exercise 170 (verify frozen weights and checkpoint recovery) · Exercise 78 (measure search before changing the model)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Bind adapter and base identities, inspect the complete generated answer, and score its claims against the held-out evidence.
+
+Reading the result
+Record both the FP32 merge comparison and the held-out task score. The merge passed numerical fidelity. The CUDA generation scored 13/20 and failed the untrusted-log action boundary.
 
 Run in your lab
 Set NEMO_CHECKPOINT to the exact adapter you intend to export. Save its identity. Record 171.01 used the earlier resumed/LATEST adapter, so a new export of the corrected Exercise 170 checkpoint has a different input.

@@ -3,6 +3,20 @@ Exercise 183  Map the teaching loop to an image pipeline
 Question
 Which operations in the small diffusion loop correspond to stages in an image pipeline?
 
+Technology background
+
+Diffusion, noise prediction and a sampling schedule
+
+A diffusion exercise starts with clean data and adds noise at a chosen level according to a schedule. A denoising model learns to estimate a quantity needed to step back toward a sample. Generation begins with noise and repeatedly updates it using the model and scheduler.
+
+The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved.
+
+Images, waveforms and model processors
+
+An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
+
+Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript.
+
 Before you start
 Exercise 180 (verify forward corruption and an oracle reconstruction) · Exercise 182 (inspect reverse sampling and distribution coverage)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
@@ -13,11 +27,15 @@ Recorded step time
 Check for success
 Map conditioning, scheduler, denoiser, latent update and decoding. Identify which stages have no equivalent in the point model.
 
-Run in your lab
-Use the first command to find the numerical oracle procedure and the second to inspect its combined training record. Write the five-stage mapping yourself.
+Reading the result
+Use the oracle comparison in Exercise 180 and the combined training capture in 181.01 to explain the teaching loop. Compare it with Exercise 184 for the actual image pipeline, including decoding.
 
-python reader/guide.py 180
+Run in your lab
+Run the two numerical oracle controls. Read 181.01 for the combined teaching run and Exercise 184 for the real image pipeline. Map conditioning, scheduling, denoising, updating and decoding.
+
+python media/validate.py Contracts.test_17_oracle_recovers_clean_point Contracts.test_18_wrong_noise_detected
 python reader/records.py 181
+python reader/guide.py 184
 
 Interpret the result
 Separate signal validity, task quality, listening/visual review and profiler availability.

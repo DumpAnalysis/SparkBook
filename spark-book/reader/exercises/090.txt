@@ -3,6 +3,26 @@ Exercise 90  Move the measured pipeline to WSL2 CUDA
 Question
 Which stages of the embedding pipeline actually execute on CUDA?
 
+Technology background
+
+Sentence embeddings and semantic similarity
+
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+
+For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
+
+PyTorch tensors and synchronized CUDA execution
+
+A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A Python package called a wheel supplies the installed framework build.
+
+A CUDA kernel is a function that runs on the GPU. PyTorch launches kernels for tensor operations. GPU work can continue after the Python call that launched it returns. The probe performs a small calculation, synchronizes and checks its result. Read the interpreter path, device name, tensor device and result together. They connect a particular Python environment with an operation that completed.
+
+PyTorch Profiler and operators
+
+A framework operator is a named operation such as matrix multiplication. PyTorch Profiler can collect CPU-side operator events and, where supported, GPU activity. A trace viewer draws each event on the track of the thread or device that produced it. One Python operation can issue several kernels.
+
+Choose a short, named operation and check both tracks. A CPU operator range can include launches and waiting. To report GPU execution time, find valid device intervals for the workload. If the native model runs in a separate process, identify that process before interpreting a client trace.
+
 Before you start
 Exercise 14 (run a small synchronized computation) · Exercise 78 (measure search before changing the model)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Read the device probe and each stage's device and memory record. Qualify device tracing separately from successful encoding.
+
+Reading the result
+Keep the CUDA encoding and training results and the CPU projection under their recorded devices. The missing kernel timings apply to tracing.
 
 Run in your lab
 Stop the inference server before measuring the embedding pipeline if it is not part of the experiment. Profiling is a separate run after timing qualification.

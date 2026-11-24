@@ -3,6 +3,20 @@ Exercise 21  Compare one and two client workers
 Question
 Does adding a second client shorten each request or increase total throughput?
 
+Technology background
+
+Client workers, queues and concurrency
+
+A worker handles a unit of work. Two clients can have requests in flight at the same time while one server processes them sequentially, interleaves them, or groups them. An open connection is therefore a different observation from GPU execution. More clients can increase memory use and time spent waiting.
+
+Compare the same number of requests first with one worker and then with two. Record when each request enters, receives its first content and finishes. Changes in total throughput and in the latency experienced by an individual reader can point in different directions.
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
 Before you start
 Exercise 8 (measure repeated local requests)
 Python standard library; native runtime for inference. Reserve at least 20 GB free disk before Exercise 4 (planning allowance, not a measured peak).

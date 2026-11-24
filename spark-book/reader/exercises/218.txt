@@ -3,6 +3,26 @@ Exercise 218  Observe a live workload and attach inference servers
 Question
 Can a device-wide signal be aligned with a live, numerically verified inference workload?
 
+Technology background
+
+Prometheus, exporters and time series
+
+Prometheus asks configured targets for metrics at intervals called scrapes. An exporter translates another system’s measurements into named values that Prometheus can read. Labels distinguish series, for example by device. A gauge can rise or fall, while a counter usually accumulates events until its process restarts.
+
+Trace one value from the original provider through the exporter’s metrics response to a raw Prometheus query. The lab’s WSL2 exporter can indicate when a management field is unavailable. NVIDIA’s DCGM exporter is another possible data source where DCGM is supported. A successful scrape says the endpoint answered.
+
+NVIDIA Triton Inference Server and model repositories
+
+NVIDIA Triton Inference Server serves models through named backends. Its model repository contains model names, numbered version directories and configuration describing input and output tensors. A Python backend can implement an encoder. Other backends can execute an ONNX graph or a TensorRT engine.
+
+Follow a small request from its input name and shape to the returned embedding. Check the model version that actually answered. Dynamic batching can combine several requests into one backend execution, so request count and execution count need not match. The Triton kernel programming language introduced in Exercise 101 is a different project.
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
 Before you start
 Exercise 214 (qualify the native monitoring stack) · Exercise 163 (serve the qualified lab_linear engine through Triton).
 A ready lab_linear TensorRT service and its qualified GPU owner, the WSL2 monitoring binaries and a fresh output directory.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Compare matched monitored and unmonitored trials and their server counters. Mark the outer observation window explicitly.
+
+Reading the result
+Read the order of the three unmonitored and three monitored trials before comparing p95. All six completed. The five-second device sampling interval spans many of these short requests.
 
 Run in your lab
 Keep the qualified lab_linear service running and stop earlier monitoring stacks. Use port 8013 for the recorded service, or set TRITON_BASE to your active loopback URL, such as http://127.0.0.1:8000 for the Exercise 163 launcher. The client runs three trials, starts live WSL GPU sampling, repeats three trials and stops the monitoring stack. Leave the model owner in place until the comparison ends.

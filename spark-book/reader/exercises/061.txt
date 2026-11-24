@@ -3,6 +3,20 @@ Exercise 61  Write and verify a warp reduction
 Question
 Which lanes contribute to a warp reduction when the input has a tail?
 
+Technology background
+
+Warps, Tensor Cores, cuBLAS and CUTLASS
+
+A warp is a group of 32 CUDA threads. Warp instructions can exchange values among participating lanes, which is useful in a reduction. Tensor Cores carry out supported small matrix multiply-and-accumulate operations. CUDA’s WMMA interface exposes such operations to a cooperating warp.
+
+cuBLAS is NVIDIA’s library of numerical linear algebra routines. CUTLASS provides C++ components for constructing optimized kernels and has a profiler for testing implementations. Match input types, matrix layout, dimensions and the numerical oracle before comparing implementations. A profiler disposition of “Not verified” leaves the correctness comparison open.
+
+Reductions, histograms and atomic updates
+
+A reduction combines many values into fewer values, such as summing a vector into one number. A GPU implementation can first write a partial sum per block and then sum those partials. Addition order affects floating-point rounding, so preserve the input type and comparison tolerance.
+
+A histogram instead counts how many inputs fall into each bin. Several threads may choose the same bin. An atomic addition makes each increment indivisible with respect to the other increments at that location. Check the individual bins and whether their total equals the number of counted inputs.
+
 Before you start
 Exercise 32 (build debug and performance variants)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Inspect the active-lane mask and the identity value for missing inputs. Check all configured tail sizes against the CPU sum.
+
+Reading the result
+Record the warp-reduction result for each tested boundary. The recorded numerical control succeeded. Sanitizer coverage remained unavailable.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

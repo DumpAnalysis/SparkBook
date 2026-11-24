@@ -3,6 +3,20 @@ Exercise 3  Verify the client without a model
 Question
 Can a client send the right request before a model is available?
 
+Technology background
+
+Clients, servers and a local HTTP request
+
+A server waits for requests. A client sends one to an address and a port. The address 127.0.0.1 means this machine’s loopback interface. An HTTP request names an operation and may carry a body. Here, JSON expresses that body as named fields, such as a model name and a prompt.
+
+Exercise 3 uses a fixture, a small server with a known reply, to test the client before loading any weights. First read the HTTP status, then the body. A successful exchange tells us the two programs communicated. Grading a generated answer requires a separate check of its contents.
+
+Bash, Python and the working directory
+
+Bash reads a command, expands variables and starts the named program. In bash inventory.sh, Bash runs a shell script. In python gpu_probe.py, the selected Python interpreter runs a Python file. Relative filenames start at the working directory. The tilde in ~/work denotes your home directory, and $LAB_RUN expands to the location of your current run.
+
+A Python virtual environment gives the project its own interpreter and installed packages. Activating it affects the current shell. The command python -c "import sys; print(sys.executable)" shows which interpreter would run the next Python exercise. A new terminal can select a different one.
+
 Before you start
 Exercise 1 (inventory the existing environment)
 Python standard library, local loopback networking and a new output path. No model download or GPU is needed.

@@ -3,6 +3,20 @@ Exercise 165  Expose calibration shift with an outlier
 Question
 Which values clip when held-out data differs from the calibration range?
 
+Technology background
+
+Calibration and explicit quantize and dequantize operations
+
+A quantizer maps a range of real values to a limited set of codes using a scale and sometimes a zero point. Calibration estimates suitable ranges from example inputs. A rare large value can stretch a scale, leaving fewer useful codes for the many small values. Per-channel scales allow different ranges for different channels.
+
+An ONNX QDQ graph marks where values are quantized and dequantized. Measure reconstruction error on separate evaluation rows. Then inspect the engine and its selected implementations before attributing a speed change to integer kernels.
+
+Datasets, labels and independent evaluation
+
+A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
+
+If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together.
+
 Before you start
 Exercise 164 (compute scales and inspect channel error)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.
@@ -32,4 +46,5 @@ Recorded result  PASSED — Calibration uses 96 rows, with 32 separate held-out 
 Scope  The selected calibration samples and the actual execution precision delimit the comparison.
 
 Recorded files
+Run 164.01 contains the outlier comparison. Separate the calibration rows from the rows used to evaluate the resulting error.
 python reader/records.py 165 --files

@@ -3,6 +3,26 @@ Exercise 147  Deploy one GPU owner and retain scheduling evidence
 Question
 Was the single GPU assigned to the intended owner?
 
+Technology background
+
+GPU scheduling in a Kubernetes cluster
+
+Kubernetes can schedule a GPU request only when a node advertises the corresponding resource. An NVIDIA device plugin reports supported devices to Kubernetes. The scheduler selects a suitable node, and the container runtime must then expose the assigned device to the process.
+
+Start with the node’s allocatable resource, then read the Pod’s resource request and scheduling events. Once it starts, verify CUDA from inside that Pod. Replicating a Deployment creates additional Pods. It cannot create additional physical GPUs on a one-device laptop.
+
+Kubernetes, K3s, Pods and Services
+
+Kubernetes runs workloads from a declared desired state. K3s is the Kubernetes distribution used for the local cluster. A Pod runs one or more containers together. A Deployment manages replicas and replacements. A Service gives clients an address that can route requests to matching ready Pods. kubectl is the command-line client.
+
+Follow the chain from Deployment to Pod to ready endpoint and, finally, one inference reply. If a rollout stalls, inspect the Pod’s events, logs and readiness check. A created Deployment confirms that Kubernetes accepted the description; the request tests whether the model can serve.
+
+Sharing a GPU and owning a model
+
+Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers.
+
+NVIDIA Multi-Process Service, or MPS, is a separate GPU scheduling facility with platform requirements. It does not automatically merge separate model copies. The single-owner queue in this lab lets us study waiting, cancellations and sharing on the available laptop without assuming MPS support.
+
 Before you start
 Exercise 146 (qualify GPU discovery separately)
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.

@@ -3,6 +3,20 @@ Exercise 176  Ask a bounded question about a known image
 Question
 What visual evidence supports the model's answer about a known image?
 
+Technology background
+
+Vision-language models and visual grounding
+
+A vision-language model combines a visual representation with text so that a language component can generate an answer about an image. The processor resizes or tiles the pixels and prepares the visual input expected by the model. Increasing the visual input size can affect token count, memory use and latency.
+
+Ask for a property you can verify in the source image, such as the position of a colored shape. Compare the answer with the image itself. Words printed inside a picture are also input data. They can test whether the model follows the caller’s task when the picture contains conflicting text.
+
+Images, waveforms and model processors
+
+An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
+
+Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript.
+
 Before you start
 Exercise 173 (create inspectable image and audio fixtures) · Exercise 174 (download and verify one model at a time) · Exercise 175 (validate the media contracts)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

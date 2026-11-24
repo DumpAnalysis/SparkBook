@@ -3,6 +3,20 @@ Exercise 196  Transcribe the retained speech control
 Question
 What does the recognizer hear in the saved speech control?
 
+Technology background
+
+Speech recognition with Whisper
+
+Automatic speech recognition turns sound into text. Whisper processes acoustic features from audio, then decodes text tokens. The expected sampling rate, language and decoding settings affect the input or output. A fluent sentence is possible even when the audio contains little evidence for it.
+
+Start with a known utterance and its reference wording. Save the original audio, hypothesis and settings together. Try a silent or non-speech control and inspect what was produced. For longer recordings, retain chunk start times so text can be traced back to the corresponding audio.
+
+Images, waveforms and model processors
+
+An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
+
+Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript.
+
 Before you start
 Exercise 192 (synthesize a short diagnostic statement) · Exercise 174 (download and verify one model at a time)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

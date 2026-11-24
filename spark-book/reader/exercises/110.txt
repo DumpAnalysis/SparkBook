@@ -3,6 +3,20 @@ Exercise 110  Repair progress and define recovery
 Question
 How do we know the stalled operation made progress after repair?
 
+Technology background
+
+Stalled workers and stack traces
+
+A process can be alive while it makes no progress. A stack trace lists the active chain of function calls in a thread. A heartbeat records progress or liveness at intervals, depending on what it measures. A supervisor can impose a deadline and collect a stack from a deliberately stalled teaching worker.
+
+Read the last completed step, stack and child exit together. If several samples show the worker waiting at the same point, inspect what would release that wait. The supervisor can complete successfully after recording a child failure, so retain both exits.
+
+Client workers, queues and concurrency
+
+A worker handles a unit of work. Two clients can have requests in flight at the same time while one server processes them sequentially, interleaves them, or groups them. An open connection is therefore a different observation from GPU execution. More clients can increase memory use and time spent waiting.
+
+Compare the same number of requests first with one worker and then with two. Record when each request enters, receives its first content and finishes. Changes in total throughput and in the latency experienced by an individual reader can point in different directions.
+
 Before you start
 Exercise 109 (capture a bounded stall)
 Small diagnostic fixtures; CUDA only for the selected GPU mode. No production data is required.

@@ -3,6 +3,20 @@ Exercise 199  Chunk longer recordings without losing offsets
 Question
 Does chunking cover every sample once and preserve the word offsets?
 
+Technology background
+
+Speech recognition with Whisper
+
+Automatic speech recognition turns sound into text. Whisper processes acoustic features from audio, then decodes text tokens. The expected sampling rate, language and decoding settings affect the input or output. A fluent sentence is possible even when the audio contains little evidence for it.
+
+Start with a known utterance and its reference wording. Save the original audio, hypothesis and settings together. Try a silent or non-speech control and inspect what was produced. For longer recordings, retain chunk start times so text can be traced back to the corresponding audio.
+
+Word error rate and transcript alignment
+
+Word error rate compares a recognition hypothesis with reference words. Count substitutions, deletions and insertions in an alignment, then divide their sum by the number of reference words. With four reference words and one substitution, the rate is 0.25. Extra inserted words can even make a rate exceed one.
+
+Write down your rules for case, punctuation and numbers before comparing systems. Keep both the raw and normalized transcripts. An empty reference leaves the usual denominator undefined, so report the actual silence or non-speech behavior directly.
+
 Before you start
 Exercise 196 (transcribe the retained speech control)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

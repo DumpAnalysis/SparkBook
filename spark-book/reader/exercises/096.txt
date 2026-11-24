@@ -3,6 +3,26 @@ Exercise 96  Monitor embedding and training episodes
 Question
 Can embedding and training peaks be assigned to the right process and phase?
 
+Technology background
+
+Plotting GPU activity against a workload
+
+Matplotlib is the Python plotting library used here. A time-series plot gives timestamps horizontal positions and measured values vertical positions. The plotting program reads the sampler’s records and draws lines or points for related quantities. Request start and finish markers show which part of the picture belongs to the workload.
+
+Read the axis units before comparing curves. Bytes and percentages belong to different scales. Leave gaps where the source returned no sample and keep the original CSV or JSON alongside the figure. A rise in device activity during a request is a reason to inspect a trace for attribution.
+
+GPU metrics, samples and missing observations
+
+A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+
+Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
+
+Gradients, optimizers and resuming an update
+
+A gradient tells an optimizer how the loss changes as a trainable value changes. AdamW also carries running estimates derived from earlier gradients. A training process may keep random-number state, a batch position and a scaler for limited-precision arithmetic. Live tensors retained by Python can change the memory picture.
+
+To test recovery, save at a known step, resume in a new process and compare the next batch, loss and updated parameters with an uninterrupted run. Restoring only the visible model weights can produce the same immediate prediction yet a different next update.
+
 Before you start
 Exercise 25 (establish the framework and run ten updates) · Exercise 90 (move the measured pipeline to WSL2 CUDA) · Exercise 94 (capture an idle WSL2 baseline)
 CPU sampler plus an explicitly selected workload. Raw logs need disk; unsupported counters are missing, not zero.

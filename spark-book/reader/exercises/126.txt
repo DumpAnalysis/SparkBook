@@ -3,6 +3,20 @@ Exercise 126  Distinguish a failed worker a mismatch and a timeout
 Question
 Can the supervisor tell a crash, a collective mismatch and an absent rank apart?
 
+Technology background
+
+Distributed training on one physical laptop
+
+Distributed training uses several processes that coordinate their work. Each process has a rank, its identifier within a group. World size is the number of participating processes. A rendezvous brings those ranks together. Gloo and NVIDIA’s NCCL are communication backends used in different configurations.
+
+On one laptop, two CPU processes can act as two ranks over loopback and expose coordination, delays or failures. They still share one physical machine. A one-rank NCCL check can exercise the available GPU. Two-device training requires two independently addressable CUDA devices.
+
+Stalled workers and stack traces
+
+A process can be alive while it makes no progress. A stack trace lists the active chain of function calls in a thread. A heartbeat records progress or liveness at intervals, depending on what it measures. A supervisor can impose a deadline and collect a stack from a deliberately stalled teaching worker.
+
+Read the last completed step, stack and child exit together. If several samples show the worker waiting at the same point, inspect what would release that wait. The supervisor can complete successfully after recording a child failure, so retain both exits.
+
 Before you start
 Exercise 123 (qualify the environment and the resource budget)
 CPU processes for emulation; one qualified GPU for CUDA comparisons. Worker count does not add physical GPUs.

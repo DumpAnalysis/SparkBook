@@ -3,6 +3,20 @@ Exercise 63  Implement a double buffer with explicit ownership
 Question
 When is a host buffer slot safe to reuse in a two-stream pipeline?
 
+Technology background
+
+CUDA streams, events and graphs
+
+A stream is an ordered queue of GPU work. Two streams may run work concurrently if dependencies and resources allow it. An event recorded after a producer lets a consumer stream wait for that producer. Double buffering lets one buffer accept new data while another is being processed.
+
+A CUDA Graph records a set of operations and their dependencies for replay with lower submission overhead. Keep the test’s input shapes and storage addresses consistent with its capture. Verify the resulting values. Actual overlap between streams requires device intervals that overlap in time.
+
+Kernel fusion and CUDA event timing
+
+Kernel fusion combines operations that would otherwise run as separate kernels. For example, an addition followed by an activation may reuse a value already in a register, avoiding a write to and a read from an intermediate array. It can also change resource use or arithmetic order.
+
+Compare the final arrays first. For timing, record events in the stream that owns the work and wait for the ending event before reading elapsed time. A CPU clock around an asynchronous launch can measure little more than submission. Keep warm-up and measured iterations identifiable.
+
 Before you start
 Exercise 32 (build debug and performance variants)
 Qualified CUDA framework for operators/training; native toolkit for compiled examples. API-specific tools may remain unavailable.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Follow each slot through its copy, kernel and completion event. Verify the values before claiming any overlap.
+
+Reading the result
+First check both buffers against their references. To claim overlap, find device intervals that overlap on two streams. The recorded timings did not supply those intervals.
 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.

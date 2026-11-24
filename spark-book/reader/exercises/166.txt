@@ -3,6 +3,26 @@ Exercise 166  Inspect explicit QDQ and qualify its kernels
 Question
 Did an exported QDQ graph preserve the intended quantization boundaries?
 
+Technology background
+
+Calibration and explicit quantize and dequantize operations
+
+A quantizer maps a range of real values to a limited set of codes using a scale and sometimes a zero point. Calibration estimates suitable ranges from example inputs. A rare large value can stretch a scale, leaving fewer useful codes for the many small values. Per-channel scales allow different ranges for different channels.
+
+An ONNX QDQ graph marks where values are quantized and dequantized. Measure reconstruction error on separate evaluation rows. Then inspect the engine and its selected implementations before attributing a speed change to integer kernels.
+
+ONNX graphs and ONNX Runtime execution providers
+
+ONNX describes a model as a graph of operations, named inputs and outputs, and stored parameters. An opset specifies the operator definitions the graph expects. ONNX Runtime executes a graph by assigning supported groups of operations to execution providers, for example a CPU provider or the CUDA provider.
+
+Check the graph structure and run a known input against an independent numerical result. Then examine provider assignment for the relevant nodes. A listed CUDA provider establishes availability. An assignment log establishes placement, while timed device activity requires a usable trace.
+
+TensorRT engines and optimization profiles
+
+TensorRT optimizes a model for inference and builds an engine for a target environment. An execution context runs that engine. With dynamic inputs, an optimization profile gives permitted minimum and maximum shapes and an optimum shape used in optimization. An engine’s portability depends on the build and target configuration.
+
+Build from the small known graph, keep its profile and test a shape inside the allowed range. Compare output with the independent reference. Measure build time, transfers and execution separately. A prebuilt engine repeated many times answers a different timing question from building one before every request.
+
 Before you start
 Exercise 160 (qualify a TensorRT 11 environment) · Exercise 165 (expose calibration shift with an outlier)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

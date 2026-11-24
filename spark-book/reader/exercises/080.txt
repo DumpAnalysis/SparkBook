@@ -3,6 +3,20 @@ Exercise 80  Transform held-out vectors without refitting PCA
 Question
 Can a new sentence be placed on the existing PCA map without changing the axes?
 
+Technology background
+
+PCA and a two-dimensional map of embeddings
+
+The scikit-learn library provides a Python implementation of principal component analysis (PCA). PCA finds directions in which centered data vary most. Plotting the first two components assigns a point to each sentence and retains only part of the original variation. The explained-variance ratios report how much the displayed components capture in the fitted data.
+
+Fit the axes on the training vectors and use that same fit to transform held-out vectors. Follow a pair of points back through their row IDs and compare their original-space similarity. PCA axes can reverse sign across implementations, so a reflected plot can still represent the same subspace.
+
+Datasets, labels and independent evaluation
+
+A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
+
+If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together.
+
 Before you start
 Exercise 79 (produce a PCA map with its numerical limits)
 Pinned encoder and embedding requirements; tiny custom BERT uses CPU in the recorded run. Projection memory grows with sample count.

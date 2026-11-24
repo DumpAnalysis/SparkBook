@@ -3,6 +3,26 @@ Exercise 195  Bound long speech and diagnose service latency
 Question
 What limits the response to a long speech request?
 
+Technology background
+
+Text-to-speech with MMS and VITS
+
+A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.
+
+Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard.
+
+Latency, throughput and repeatable timing
+
+Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
+
+A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+
+PyTorch Profiler and operators
+
+A framework operator is a named operation such as matrix multiplication. PyTorch Profiler can collect CPU-side operator events and, where supported, GPU activity. A trace viewer draws each event on the track of the thread or device that produced it. One Python operation can issue several kernels.
+
+Choose a short, named operation and check both tracks. A CPU operator range can include launches and waiting. To report GPU execution time, find valid device intervals for the workload. If the native model runs in a separate process, identify that process before interpreting a client trace.
+
 Before you start
 Exercise 192 (synthesize a short diagnostic statement) · Exercise 91 (establish the monitoring contract)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Check over-limit rejection, chunk coverage and joined pauses. Measure time to first audio separately from full synthesis time.
+
+Reading the result
+Check waveform and synthesis completion first. Use the host measurements for latency. The later probe supplied no device intervals for identifying a slow kernel.
 
 Run in your lab
 Bound the text, duration and request count using the bounds below. A successful synthesis and an unavailable GPU activity timeline are separate outcomes.

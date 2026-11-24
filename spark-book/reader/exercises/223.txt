@@ -3,6 +3,20 @@ Exercise 223  Resume after the Python process exits
 Question
 What evidence shows that the second process resumed the saved graph state?
 
+Technology background
+
+LangGraph state, checkpoints and human review
+
+LangGraph represents an agent workflow as a graph. A node performs a step, an edge selects the next step and shared state carries information between them. A checkpointer saves state for a particular thread identifier. An interrupt can pause execution until the application supplies a review decision.
+
+In the exercise a new Python process opens the saved state and resumes the intended thread. Check the thread ID, pending action and state after resumption. A resumed node can re-execute earlier code, so an external action needs its own record to prevent doing it twice.
+
+Reading an exported trace with SQLite
+
+SQLite stores a relational database in a file. Each table contains rows with named columns. A trace exporter can put API calls, kernels and text labels into different tables. SQL queries select rows or join tables through a recorded key, such as a correlation identifier.
+
+Inspect the available table names and column definitions before applying a query from another installation. Check the time units and find one known iteration. An empty result can mean the requested activity was never captured, the table has a different layout, or the filter selected no matching rows.
+
 Before you start
 Exercise 220 (isolate and identify the orchestration environment)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.

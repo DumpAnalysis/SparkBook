@@ -3,6 +3,20 @@ Exercise 150  Build and serve a versioned Triton embedding model
 Question
 Can Triton select a model version and return the expected embedding?
 
+Technology background
+
+NVIDIA Triton Inference Server and model repositories
+
+NVIDIA Triton Inference Server serves models through named backends. Its model repository contains model names, numbered version directories and configuration describing input and output tensors. A Python backend can implement an encoder. Other backends can execute an ONNX graph or a TensorRT engine.
+
+Follow a small request from its input name and shape to the returned embedding. Check the model version that actually answered. Dynamic batching can combine several requests into one backend execution, so request count and execution count need not match. The Triton kernel programming language introduced in Exercise 101 is a different project.
+
+Dynamic batching and bounded admission
+
+A batch groups compatible inputs into one model operation. Dynamic batching collects requests that arrive separately and can briefly wait for more work before dispatch. This can improve throughput while increasing the wait for an individual request. A bounded queue limits how much pending work the server admits.
+
+Give every request its own ID. On overload, follow it from submission to rejection, cancellation or exactly one completed response. Compare queue time with model execution time. A request that timed out at the client may still occupy the server until cancellation reaches the owner.
+
 Before you start
 Exercise 136 (establish an inference API contract) · Exercise 142 (add the GPU runtime and a generation image)
 CPU service first; Docker, cluster and GPU discovery qualify separately. Images and model files require extra disk.
@@ -12,6 +26,9 @@ Recorded step time
 
 Check for success
 Start the qualified Triton server with the repository mounted. Query readiness and version, then compare the returned vector with the oracle.
+
+Reading the result
+The API double checks request handling locally. The Docker and Kubernetes requests used a real Triton server and the CPU Python embedding backend. Identify which backend produced the vectors.
 
 Run in your lab
 The entry tests the repository locally. To serve it, supply the verified Triton image digest to bash serving/docker/run_backend.sh triton "$TRITON_IMAGE" "$LAB_RUN/triton-repository" and wait for readiness before using serving/client.py triton.

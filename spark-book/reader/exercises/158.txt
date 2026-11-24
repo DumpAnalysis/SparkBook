@@ -3,6 +3,20 @@ Exercise 158  Require and observe a GPU execution provider
 Question
 Is the CUDA execution provider really handling the selected operations?
 
+Technology background
+
+ONNX graphs and ONNX Runtime execution providers
+
+ONNX describes a model as a graph of operations, named inputs and outputs, and stored parameters. An opset specifies the operator definitions the graph expects. ONNX Runtime executes a graph by assigning supported groups of operations to execution providers, for example a CPU provider or the CUDA provider.
+
+Check the graph structure and run a known input against an independent numerical result. Then examine provider assignment for the relevant nodes. A listed CUDA provider establishes availability. An assignment log establishes placement, while timed device activity requires a usable trace.
+
+PyTorch Profiler and operators
+
+A framework operator is a named operation such as matrix multiplication. PyTorch Profiler can collect CPU-side operator events and, where supported, GPU activity. A trace viewer draws each event on the track of the thread or device that produced it. One Python operation can issue several kernels.
+
+Choose a short, named operation and check both tracks. A CPU operator range can include launches and waiting. To report GPU execution time, find valid device intervals for the workload. If the native model runs in a separate process, identify that process before interpreting a client trace.
+
 Before you start
 Exercise 157 (verify ONNX Runtime values and input rejection) · Exercise 14 (run a small synchronized computation)
 Separate qualified framework/container per ecosystem. Engine/build/calibration peaks can exceed inference memory.

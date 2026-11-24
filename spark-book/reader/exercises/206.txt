@@ -3,6 +3,26 @@ Exercise 206  Resolve a container to a native immutable identity
 Question
 Which immutable image will actually run on this architecture?
 
+Technology background
+
+Container registries, manifests and platform selection
+
+An image tag can point to an index of builds for several platforms. An entry in that index identifies an operating system, an architecture and a manifest digest. The selected manifest in turn identifies the image’s contents. The ARM64 laptop needs the appropriate Linux ARM64 entry.
+
+Keep the index and the selected manifest together. A digest identifies particular bytes even if a tag is moved later. Exercise 207 deliberately changes copies of these records. A missing platform, duplicate selection or mismatching digest can be diagnosed before pulling layers or launching a GPU.
+
+NVIDIA NGC Catalog, resources and container images
+
+NGC Catalog is NVIDIA’s catalog of GPU software and other assets. A resource entry can describe a downloadable file or tool. A container entry identifies an image in a registry. Reading a catalog page, acquiring an asset and executing it are three distinct operations.
+
+Start by recording the item type, owner, version, expected size and available files. For a native command-line tool, inspect the executable’s target architecture before running it in this ARM64 WSL2 guest. For a container, follow its platform-specific digest in Exercise 206.
+
+Docker images, containers and volumes
+
+An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.
+
+Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content.
+
 Before you start
 Exercise 204 (inspect an NGC resource before downloading it)
 Network for acquisition; disk for selected assets. Inspection is smaller than a container pull or model download.
@@ -12,6 +32,9 @@ Recorded step time
 
 Check for success
 Follow the tag through index, platform manifest and configuration digest. Verify the selected container with its own CUDA check.
+
+Reading the result
+Keep the entire ngc-image output directory. Exercise 207 needs index.json and image.json together to validate the native ARM64 selection.
 
 Run in your lab
 This resolves a platform-specific image identity. A container pull/probe is a later action after inspecting the retained receipt.

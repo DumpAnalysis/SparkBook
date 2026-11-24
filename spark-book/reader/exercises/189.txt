@@ -3,6 +3,20 @@ Exercise 189  Inspect waveform and spectral activity
 Question
 Which waveform or spectral evidence would reveal clipping, silence or unwanted energy?
 
+Technology background
+
+Waveforms, spectrograms and audio levels
+
+A waveform shows amplitude over time. A spectrogram divides the signal into short, often overlapping windows and shows how energy is distributed across frequencies in each window. The short-time Fourier transform is one way to compute it. Window length influences how well nearby times and frequencies can be distinguished.
+
+Start with the known tone and a silent interval. Check the sample rate, time axis, frequency axis and level scale. Then inspect a generated clip and listen at the same locations. A bright band can identify energy at a frequency but cannot score pronunciation, musicality or intelligibility.
+
+MusicGen and discrete audio tokens
+
+MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file.
+
+Generate one short clip and record the prompt, seed, number of generated steps, waveform shape and sample rate. Derive playback duration from the waveform. Listening answers questions about music or artifacts that a successful WAV write and the model’s timing numbers cannot settle.
+
 Before you start
 Exercise 188 (generate a short music clip from a description)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

@@ -3,6 +3,20 @@ Exercise 232  Verify Choice, Score and Noul contracts
 Question
 Can the Jev client distinguish Choice, Score and Noul response contracts?
 
+Technology background
+
+Jev decision models and typed questions
+
+Jev takes supplied state and typed questions about it. Choice selects from named options. Score represents a result on an ordered rubric. Noul answers a yes-or-no question with a probability of yes. The response fields differ, so the caller must use the contract for the particular question type.
+
+Imagine routing an incident to storage or networking. Compare the returned label with its distribution, then inspect the separate confidence field where the contract supplies one. The local fixtures exercise how the client checks these responses. The optional hosted-service procedure has its own execution status.
+
+PydanticAI and typed model outputs
+
+Pydantic models describe fields, types and validation rules for data. PydanticAI uses such contracts in agents, including for a model’s final output. A structured finding might require a named observation and a reference to evidence. A plausible paragraph or a well-formed JSON object can still fail that contract.
+
+Feed the validator one accepted example and one that violates a specific rule. Then trace what happens when the model repeatedly returns invalid output. Keep the retry budget and actual request count visible. Passing field validation does not establish that the evidence supports the reported conclusion.
+
 Before you start
 Exercise 220 (isolate and identify the orchestration environment)
 Separate orchestration environment; local endpoint for learned calls. Optional hosted exercises need account/network access.

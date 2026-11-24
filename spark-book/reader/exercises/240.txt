@@ -3,6 +3,20 @@ Exercise 240  Run a bounded QLoRA smoke training session
 Question
 Can this quantized-base training configuration reach a usable intermediate checkpoint?
 
+Technology background
+
+Unsloth, QLoRA and a training smoke test
+
+Unsloth provides training integrations for supported models and environments. QLoRA stores a frozen base model in low precision and trains small LoRA adapter parameters with higher-precision computation where required. This reduces the storage needed for base weights, while activations and optimizer state still require memory.
+
+A smoke test runs a few bounded updates to establish that this stack works together. Inspect the frozen base identity, the trainable set, supervised tokens and a change in the adapter. For recovery, compare the next optimizer update after resuming. Task quality requires a separate held-out evaluation.
+
+Fine-tuning, LoRA and trainable parameters
+
+In a training step the model makes a prediction. A loss measures its disagreement with the target. Backpropagation computes gradients, and an optimizer uses them to adjust trainable parameters. Fine-tuning starts from a pretrained model. The Transformers library loads the model and tokenizer, while PEFT provides parameter-efficient training methods.
+
+LoRA freezes selected base weights and learns a smaller update represented by two matrices. An adapter stores these learned changes. Inspect the trainable parameter count, the base revision and a held-out answer. A fall in training loss is evidence about the training examples.
+
 Before you start
 Exercise 239 (freeze the base and audit a tiny training split) · Exercise 14 (run a small synchronized computation)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

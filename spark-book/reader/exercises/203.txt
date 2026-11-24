@@ -3,6 +3,26 @@ Exercise 203  Share GPU ownership and deploy bounded media requests
 Question
 Does a bounded media service keep one GPU owner while enforcing admission limits?
 
+Technology background
+
+Connecting speech recognition, generation and synthesis
+
+A speech assistant can contain three independent model calls. The recognizer produces text, the language model answers it, and the synthesizer produces speech from that answer. A plausible final recording can hide a transcription error or a changed instruction in an intermediate step.
+
+Carry one request ID through all three stages. Retain the input audio identity, transcript, generated reply and output audio identity. Listen to the input before blaming the recognizer, and compare the reply with the text passed to synthesis. This lets you locate the first change that explains the final symptom.
+
+Sharing a GPU and owning a model
+
+Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers.
+
+NVIDIA Multi-Process Service, or MPS, is a separate GPU scheduling facility with platform requirements. It does not automatically merge separate model copies. The single-owner queue in this lab lets us study waiting, cancellations and sharing on the available laptop without assuming MPS support.
+
+Kubernetes, K3s, Pods and Services
+
+Kubernetes runs workloads from a declared desired state. K3s is the Kubernetes distribution used for the local cluster. A Pod runs one or more containers together. A Deployment manages replicas and replacements. A Service gives clients an address that can route requests to matching ready Pods. kubectl is the command-line client.
+
+Follow the chain from Deployment to Pod to ready endpoint and, finally, one inference reply. If a rollout stalls, inspect the Pod’s events, logs and readiness check. A created Deployment confirms that Kubernetes accepted the description; the request tests whether the model can serve.
+
 Before you start
 Exercise 202 (connect speech recognition to a local language model and speech synthesis) · Exercise 132 (batch compatible work and bound admission) · Exercise 141 (run a bounded container and inspect its lifecycle)
 Download one pinned model at a time. Qualify media dependencies; measure sequence, resolution and offload headroom.

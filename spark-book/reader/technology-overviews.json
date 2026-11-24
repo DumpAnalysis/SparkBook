@@ -1,0 +1,4741 @@
+{
+  "version": 58,
+  "topics": [
+    {
+      "slug": "mediaadapter",
+      "title": "Adapting speech and image models",
+      "first_exercise": 200,
+      "aliases": [
+        "speech fine-tuning",
+        "image adapter",
+        "LoRA",
+        "transcription labels",
+        "paired prompts",
+        "ASR adaptation"
+      ],
+      "paragraphs": [
+        "A speech recognizer can learn from recordings paired with verified transcripts. An image adapter can learn from images paired with descriptions. In both cases the examples define what the training objective rewards. Two recordings of the same utterance or nearly identical image captions can make a held-out comparison misleading.",
+        "For speech, inspect the audio and its actual reference words before training. For images, hold the base, prompt, seed and sampling settings fixed when enabling or disabling the adapter. Score the requested change and what should be preserved. A changed waveform or image fingerprint establishes a different output."
+      ],
+      "references": [
+        18,
+        156,
+        158,
+        160,
+        164
+      ],
+      "book_page": 626
+    },
+    {
+      "slug": "agent",
+      "title": "Agent loops, tools and action validation",
+      "first_exercise": 17,
+      "aliases": [
+        "agentic AI",
+        "tool calling",
+        "planner",
+        "controller",
+        "replay",
+        "allowlist"
+      ],
+      "paragraphs": [
+        "An agent combines a decision step with actions the application can perform. A model may propose reading a file or calling a tool. A controller checks the tool name and arguments, executes an allowed action and gives the resulting observation back to the decision step. The loop needs a stop condition.",
+        "A replay supplies predetermined proposals, so we can test the controller with a known sequence. A live planner uses the model’s own proposals. Read proposal, validation, action and result in order. Only the action record establishes which tool actually ran."
+      ],
+      "references": [
+        17,
+        205,
+        215
+      ],
+      "book_page": 91
+    },
+    {
+      "slug": "shell",
+      "title": "Bash, Python and the working directory",
+      "first_exercise": 1,
+      "aliases": [
+        "terminal",
+        "command line",
+        "CLI",
+        "venv",
+        "pip",
+        "PATH",
+        "stdout",
+        "stderr",
+        "environment variable"
+      ],
+      "paragraphs": [
+        "Bash reads a command, expands variables and starts the named program. In bash inventory.sh, Bash runs a shell script. In python gpu_probe.py, the selected Python interpreter runs a Python file. Relative filenames start at the working directory. The tilde in ~/work denotes your home directory, and $LAB_RUN expands to the location of your current run.",
+        "A Python virtual environment gives the project its own interpreter and installed packages. Activating it affects the current shell. The command python -c \"import sys; print(sys.executable)\" shows which interpreter would run the next Python exercise. A new terminal can select a different one."
+      ],
+      "references": [
+        10,
+        260,
+        261
+      ],
+      "book_page": 20
+    },
+    {
+      "slug": "bert",
+      "title": "BERT, WordPiece and masked language modeling",
+      "first_exercise": 83,
+      "aliases": [
+        "tokenizer vocabulary",
+        "MLM",
+        "custom BERT",
+        "Transformers",
+        "mask token",
+        "bidirectional encoder"
+      ],
+      "paragraphs": [
+        "BERT is a transformer encoder that builds a representation of a token using surrounding input on both sides. A WordPiece tokenizer splits text into vocabulary entries, sometimes parts of words, and maps them to integer IDs. A masked-language-model objective hides selected positions and trains the encoder to predict their original tokens.",
+        "In this exercise we train a small vocabulary and a small BERT on teaching text. Try a known phrase with one masked word and inspect its token IDs and candidate predictions. Save the tokenizer with the model. Reassigning an ID would cause the same number to name a different token."
+      ],
+      "references": [
+        72,
+        73,
+        74,
+        75
+      ],
+      "book_page": 292
+    },
+    {
+      "slug": "budgets",
+      "title": "Bytes, memory budgets and unified memory",
+      "first_exercise": 2,
+      "aliases": [
+        "GB",
+        "GiB",
+        "WSL memory cap",
+        "host RAM",
+        "VRAM",
+        "dedicated segment",
+        "nvidia-smi",
+        "free",
+        "mem_get_info"
+      ],
+      "paragraphs": [
+        "One GiB is 1,073,741,824 bytes. On this 64 GB unified-memory laptop, Windows, the WSL2 guest and a CUDA process describe memory from different positions. The free command reports guest RAM. nvidia-smi reports the management interface’s GPU memory view. PyTorch can query the CUDA runtime for free and total bytes visible to its process.",
+        "Keep the name, unit, time and calling process beside each value. The recorded 31,232 MiB management total and 45.97 GiB CUDA total overlap. Adding them would count some of the same capacity twice. Exercise 251 tests what an allocation can actually write and verify."
+      ],
+      "references": [
+        4,
+        5,
+        16,
+        81
+      ],
+      "book_page": 25
+    },
+    {
+      "slug": "qdq",
+      "title": "Calibration and explicit quantize and dequantize operations",
+      "first_exercise": 164,
+      "aliases": [
+        "QDQ",
+        "QuantizeLinear",
+        "DequantizeLinear",
+        "INT8",
+        "zero point",
+        "per-channel scale",
+        "saturation",
+        "calibration dataset"
+      ],
+      "paragraphs": [
+        "A quantizer maps a range of real values to a limited set of codes using a scale and sometimes a zero point. Calibration estimates suitable ranges from example inputs. A rare large value can stretch a scale, leaving fewer useful codes for the many small values. Per-channel scales allow different ranges for different channels.",
+        "An ONNX QDQ graph marks where values are quantized and dequantized. Measure reconstruction error on separate evaluation rows. Then inspect the engine and its selected implementations before attributing a speed change to integer kernels."
+      ],
+      "references": [
+        137,
+        138
+      ],
+      "book_page": 509
+    },
+    {
+      "slug": "obschecks",
+      "title": "Checking the telemetry itself",
+      "first_exercise": 117,
+      "aliases": [
+        "stale sample",
+        "duplicate event",
+        "time units",
+        "missing span",
+        "weighted mean",
+        "telemetry validation"
+      ],
+      "paragraphs": [
+        "A monitoring pipeline can lose or distort evidence. A duplicate event can double a count, a wrong clock unit can stretch a duration a thousandfold, and a missing span can make a request look shorter. First check identities, timestamps, units and the relationship between related records.",
+        "The exercise damages copies of a known trace and compares them with the unaltered directory. For aggregated latency, preserve both sum and count. A one-request group and a hundred-request group should contribute in proportion to their request counts when computing a combined mean."
+      ],
+      "references": [
+        80,
+        89,
+        194
+      ],
+      "book_page": 385
+    },
+    {
+      "slug": "checkpoints",
+      "title": "Checkpoints, adapters and merged weights",
+      "first_exercise": 27,
+      "aliases": [
+        "persistence",
+        "serialization",
+        "safetensors",
+        "model reload",
+        "logits",
+        "checkpoint fidelity"
+      ],
+      "paragraphs": [
+        "A checkpoint is saved state that a later process can open. An adapter may contain only changes to named layers and still require the exact base model. A merged checkpoint incorporates those changes into the weights intended for deployment. A file format such as safetensors stores arrays and their types.",
+        "A successful save and load proves that a representation could be read. To test numerical fidelity, use identical inputs before and after saving and compare the resulting scores, called logits, or the generated tokens. To resume training, also account for optimizer and other training state in Exercise 69."
+      ],
+      "references": [
+        21,
+        61,
+        240
+      ],
+      "book_page": 125
+    },
+    {
+      "slug": "concurrency",
+      "title": "Client workers, queues and concurrency",
+      "first_exercise": 21,
+      "aliases": [
+        "parallel requests",
+        "workers",
+        "in-flight requests",
+        "queue delay",
+        "capacity"
+      ],
+      "paragraphs": [
+        "A worker handles a unit of work. Two clients can have requests in flight at the same time while one server processes them sequentially, interleaves them, or groups them. An open connection is therefore a different observation from GPU execution. More clients can increase memory use and time spent waiting.",
+        "Compare the same number of requests first with one worker and then with two. Record when each request enters, receives its first content and finishes. Changes in total throughput and in the latency experienced by an individual reader can point in different directions."
+      ],
+      "references": [
+        3,
+        101,
+        118
+      ],
+      "book_page": 102
+    },
+    {
+      "slug": "http",
+      "title": "Clients, servers and a local HTTP request",
+      "first_exercise": 3,
+      "aliases": [
+        "HTTP",
+        "JSON",
+        "API",
+        "loopback",
+        "localhost",
+        "port",
+        "request",
+        "response",
+        "mock",
+        "fixture"
+      ],
+      "paragraphs": [
+        "A server waits for requests. A client sends one to an address and a port. The address 127.0.0.1 means this machine’s loopback interface. An HTTP request names an operation and may carry a body. Here, JSON expresses that body as named fields, such as a model name and a prompt.",
+        "Exercise 3 uses a fixture, a small server with a known reply, to test the client before loading any weights. First read the HTTP status, then the body. A successful exchange tells us the two programs communicated. Grading a generated answer requires a separate check of its contents."
+      ],
+      "references": [
+        3,
+        14,
+        262
+      ],
+      "book_page": 29
+    },
+    {
+      "slug": "build",
+      "title": "Compiling CUDA C++ for this GPU",
+      "first_exercise": 32,
+      "aliases": [
+        "nvcc",
+        "compilation",
+        "linking",
+        "symbols",
+        "build target",
+        "debug build",
+        "optimization"
+      ],
+      "paragraphs": [
+        "A CUDA C++ source file can contain code for the host CPU and functions called kernels for the GPU. nvcc coordinates the compilation steps. A build target tells the compiler which device architecture it should generate code for. The linker brings the compiled pieces and their libraries together as a program.",
+        "A debug build retains information that helps connect execution with source lines. Optimizations can change instructions and timing. Give the debug and optimized executables different names and run the same numerical input through both. Keep the compiler command with the result."
+      ],
+      "references": [
+        31,
+        42,
+        45
+      ],
+      "book_page": 151
+    },
+    {
+      "slug": "compile",
+      "title": "Compiling PyTorch with Dynamo, Inductor and Triton",
+      "first_exercise": 101,
+      "aliases": [
+        "torch.compile",
+        "TorchDynamo",
+        "TorchInductor",
+        "compiler graph",
+        "specialization",
+        "graph break",
+        "GPU programming language"
+      ],
+      "paragraphs": [
+        "In eager mode Python issues framework operations as execution reaches them. With torch.compile, TorchDynamo can capture compatible operations into a graph, and a backend such as TorchInductor can optimize and generate executable code. On GPUs that code may include kernels written using the Triton programming language. NVIDIA Triton Inference Server, used in Exercise 150, serves models over a network interface.",
+        "Compare two input shapes. Inspect the compiler’s guards, recompilation and graph-break messages. Keep the initial compilation time separate from the timings of later calls. A graph break can return part of the computation to eager execution."
+      ],
+      "references": [
+        84,
+        270
+      ],
+      "book_page": 346
+    },
+    {
+      "slug": "sanitizer",
+      "title": "Compute Sanitizer and CUDA correctness checks",
+      "first_exercise": 37,
+      "aliases": [
+        "memcheck",
+        "racecheck",
+        "initcheck",
+        "synccheck",
+        "asynchronous errors"
+      ],
+      "paragraphs": [
+        "Compute Sanitizer observes a GPU program while it runs. Its tools check different properties. Memcheck examines memory accesses, racecheck detects supported shared-memory hazards, initcheck looks for uninitialized global-memory reads and synccheck examines synchronization use. Choose the tool that matches the question.",
+        "Compare an intentionally defective teaching case with the otherwise equivalent valid control. Record whether instrumentation started, the reported location and the process exit. A numerical pass with the tool unavailable still leaves the requested instrumentation check open."
+      ],
+      "references": [
+        35
+      ],
+      "book_page": 166
+    },
+    {
+      "slug": "multimediapipe",
+      "title": "Connecting speech recognition, generation and synthesis",
+      "first_exercise": 202,
+      "aliases": [
+        "ASR to LLM to TTS",
+        "multimodal pipeline",
+        "handoff",
+        "media inference",
+        "request ID",
+        "compound error"
+      ],
+      "paragraphs": [
+        "A speech assistant can contain three independent model calls. The recognizer produces text, the language model answers it, and the synthesizer produces speech from that answer. A plausible final recording can hide a transcription error or a changed instruction in an intermediate step.",
+        "Carry one request ID through all three stages. Retain the input audio identity, transcript, generated reply and output audio identity. Listen to the input before blaming the recognizer, and compare the reply with the text passed to synthesis. This lets you locate the first change that explains the final symptom."
+      ],
+      "references": [
+        151,
+        154,
+        156
+      ],
+      "book_page": 639
+    },
+    {
+      "slug": "oci",
+      "title": "Container registries, manifests and platform selection",
+      "first_exercise": 206,
+      "aliases": [
+        "OCI",
+        "image index",
+        "registry",
+        "tag",
+        "manifest digest",
+        "linux/arm64",
+        "descriptor"
+      ],
+      "paragraphs": [
+        "An image tag can point to an index of builds for several platforms. An entry in that index identifies an operating system, an architecture and a manifest digest. The selected manifest in turn identifies the image’s contents. The ARM64 laptop needs the appropriate Linux ARM64 entry.",
+        "Keep the index and the selected manifest together. A digest identifies particular bytes even if a tag is moved later. Exercise 207 deliberately changes copies of these records. A missing platform, duplicate selection or mismatching digest can be diagnosed before pulling layers or launching a GPU."
+      ],
+      "references": [
+        170,
+        174,
+        175
+      ],
+      "book_page": 654
+    },
+    {
+      "slug": "contrast",
+      "title": "Contrastive training for sentence encoders",
+      "first_exercise": 86,
+      "aliases": [
+        "positive pairs",
+        "in-batch negatives",
+        "fine-tuning embedding models",
+        "MultipleNegativesRankingLoss"
+      ],
+      "paragraphs": [
+        "A pretrained token encoder can produce sentence vectors without having learned which incident descriptions should match a query. Contrastive training supplies that relationship. A positive pair consists of a query and its relevant passage. Other passages in the batch can act as negatives.",
+        "Rotating passages among unrelated incident families creates a control with deliberately wrong labels. Compare the training losses, then inspect the ranks on identical held-out queries. A small test set can reward a corrupted training run by chance. The checkpoint reload check asks a different question about preserving the selected vectors."
+      ],
+      "references": [
+        63,
+        76,
+        77
+      ],
+      "book_page": 300
+    },
+    {
+      "slug": "placement",
+      "title": "CPU execution and partial GPU offload",
+      "first_exercise": 12,
+      "aliases": [
+        "hybrid inference",
+        "layers",
+        "resident weights",
+        "CPU control",
+        "device placement"
+      ],
+      "paragraphs": [
+        "A model is an ordered computation built from layers. A runtime can execute some layers on the GPU and others on the CPU. The boundary may require moving intermediate results. Decoder state, work buffers and the operating system also need memory while a request runs.",
+        "A CPU control runs the workload with GPU layers disabled. Compare it with a run that requests GPU layers. In both cases inspect the loader’s actual layer and buffer report, then submit the same prompt. The requested layer count alone cannot tell us what placement the runtime achieved."
+      ],
+      "references": [
+        3,
+        24,
+        25
+      ],
+      "book_page": 66
+    },
+    {
+      "slug": "toolkit",
+      "title": "The CUDA driver, toolkit and runtime",
+      "first_exercise": 31,
+      "aliases": [
+        "CUDA ecosystem",
+        "nvcc",
+        "cuRuntime",
+        "driver API",
+        "compute capability",
+        "NVML",
+        "CUPTI"
+      ],
+      "paragraphs": [
+        "CUDA is NVIDIA’s platform for running computations on a GPU. The driver exposes the device. The toolkit supplies development tools such as the nvcc compiler. A runtime library lets an application allocate device memory and launch work. A framework or container may carry its own user-space libraries.",
+        "Version labels at these layers can differ. Record the mapped driver query, nvcc version, PyTorch build and device compute capability in their own fields. A missing compiler affects building source. A working prebuilt application can still use the GPU."
+      ],
+      "references": [
+        4,
+        13,
+        26,
+        31
+      ],
+      "book_page": 148
+    },
+    {
+      "slug": "streams",
+      "title": "CUDA streams, events and graphs",
+      "first_exercise": 58,
+      "aliases": [
+        "asynchronous copy",
+        "stream dependencies",
+        "double buffering",
+        "CUDA Graphs",
+        "graph replay",
+        "event ordering"
+      ],
+      "paragraphs": [
+        "A stream is an ordered queue of GPU work. Two streams may run work concurrently if dependencies and resources allow it. An event recorded after a producer lets a consumer stream wait for that producer. Double buffering lets one buffer accept new data while another is being processed.",
+        "A CUDA Graph records a set of operations and their dependencies for replay with lower submission overhead. Keep the test’s input shapes and storage addresses consistent with its capture. Verify the resulting values. Actual overlap between streams requires device intervals that overlap in time."
+      ],
+      "references": [
+        28,
+        55
+      ],
+      "book_page": 221
+    },
+    {
+      "slug": "debugger",
+      "title": "CUDA-GDB, breakpoints and exception cores",
+      "first_exercise": 35,
+      "aliases": [
+        "GPU debugger",
+        "CUDA core dump",
+        "symbols",
+        "cuda-gdb",
+        "CUDA_EXCEPTION",
+        "debugger attach"
+      ],
+      "paragraphs": [
+        "A debugger can stop an executing program at a breakpoint so you can inspect its current state. For CUDA, selecting a kernel, block and thread identifies whose registers and variables you are examining. Symbols connect source names and line information with a particular build.",
+        "An exception core permits later inspection of state that the platform captured at a fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped."
+      ],
+      "references": [
+        34
+      ],
+      "book_page": 161
+    },
+    {
+      "slug": "operators",
+      "title": "Custom PyTorch operators and gradients",
+      "first_exercise": 57,
+      "aliases": [
+        "extension",
+        "CUDA operator",
+        "dispatcher",
+        "opcheck",
+        "autograd",
+        "gradcheck"
+      ],
+      "paragraphs": [
+        "A custom operator exposes compiled code as a named PyTorch operation. Its registration describes inputs and outputs. The dispatcher selects the appropriate implementation for a device. If the operation is to take part in training, PyTorch also needs a rule for propagating gradients backwards.",
+        "First call the operator from Python on a small tensor and compare its output against a familiar operation. Check registration and gradient behavior separately. Then run on the caller’s selected stream. An operation can return the right value on the default stream while mishandling ordering elsewhere."
+      ],
+      "references": [
+        52,
+        53,
+        60
+      ],
+      "book_page": 219
+    },
+    {
+      "slug": "parallel",
+      "title": "Data parallelism, sharding and gradient averaging",
+      "first_exercise": 124,
+      "aliases": [
+        "DDP",
+        "DistributedDataParallel",
+        "all-reduce",
+        "tensor parallelism",
+        "FSDP",
+        "shards",
+        "collective"
+      ],
+      "paragraphs": [
+        "In data parallelism, each worker owns a model replica and processes part of the batch. An all-reduce combines contributions across ranks. PyTorch DistributedDataParallel synchronizes gradients so replicas can take consistent updates. Unequal local batch sizes require care when relating those updates to a full-batch reference.",
+        "Sharding divides storage or computation, such as assigning different columns of a matrix to different workers. Fully Sharded Data Parallel uses sharding for training state. Compare a small partitioned calculation and its gradients with an unpartitioned reference. That mathematical check can run on CPU before any multi-GPU communication test."
+      ],
+      "references": [
+        96,
+        98,
+        99,
+        100
+      ],
+      "book_page": 402
+    },
+    {
+      "slug": "supply",
+      "title": "DataLoader, queues and prefetching",
+      "first_exercise": 103,
+      "aliases": [
+        "input pipeline",
+        "producer",
+        "consumer",
+        "pinned memory",
+        "data workers",
+        "GPU starvation"
+      ],
+      "paragraphs": [
+        "Training often needs the CPU to read, decode and assemble examples before the GPU can use them. PyTorch’s DataLoader makes batches and can use worker processes. Prefetching lets the producer prepare future batches while the consumer processes the current one. Buffer space and memory place a limit on how much work can wait.",
+        "Introduce a known delay before a batch is ready. Measure time waiting for input separately from computation. Then change the queue depth while keeping the work fixed. Low GPU utilization alone cannot tell input starvation from a small or intermittent workload."
+      ],
+      "references": [
+        85,
+        101,
+        102
+      ],
+      "book_page": 353
+    },
+    {
+      "slug": "splits",
+      "title": "Datasets, labels and independent evaluation",
+      "first_exercise": 24,
+      "aliases": [
+        "training set",
+        "validation set",
+        "held-out test",
+        "JSONL",
+        "family split",
+        "leakage",
+        "supervised fine-tuning"
+      ],
+      "paragraphs": [
+        "A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.",
+        "If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together."
+      ],
+      "references": [
+        74,
+        178,
+        180
+      ],
+      "book_page": 116
+    },
+    {
+      "slug": "calibration",
+      "title": "Decision calibration, risk and coverage",
+      "first_exercise": 233,
+      "aliases": [
+        "Brier score",
+        "confidence threshold",
+        "abstention",
+        "selective prediction",
+        "probability calibration"
+      ],
+      "paragraphs": [
+        "A probability forecast can be checked against labeled outcomes. For a binary event with outcome one and predicted probability 0.8, the squared error is 0.04. Averaging squared probability errors gives the binary Brier score. A single confident prediction cannot establish that a model is calibrated.",
+        "A routing system can abstain below a confidence threshold. Coverage is the fraction of cases it accepts. Selective risk describes the error among accepted cases. Count both accepted cases and mistakes at each threshold. If none were accepted, the error fraction among them has no denominator."
+      ],
+      "references": [
+        223
+      ],
+      "book_page": 734
+    },
+    {
+      "slug": "dumps",
+      "title": "A device buffer, a tensor snapshot and a GPU core dump",
+      "first_exercise": 34,
+      "aliases": [
+        "GPU memory dump",
+        "binary dump",
+        "exception",
+        "selected buffer",
+        "tensor values",
+        "shape",
+        "byte order"
+      ],
+      "paragraphs": [
+        "Each of these artifacts answers a different question. A buffer dump copies bytes from a selected allocation after the program finishes writing it. To decode the bytes you need their element type, shape and byte order. A framework allocator snapshot describes allocations and their histories. A GPU exception core records supported debugging state when execution faults.",
+        "Begin with a buffer initialized to a known pattern. Synchronize, export just that allocation, decode a few elements and compare them with the pattern. A matching payload checks this buffer at that point in the program."
+      ],
+      "references": [
+        27,
+        34,
+        39
+      ],
+      "book_page": 157
+    },
+    {
+      "slug": "reasoning",
+      "title": "Diagnostic observations, controls and written conclusions",
+      "first_exercise": 13,
+      "aliases": [
+        "Pattern-Oriented Diagnostics",
+        "hypothesis",
+        "comparator",
+        "oracle",
+        "evidence",
+        "diagnosis"
+      ],
+      "paragraphs": [
+        "A diagnostic observation is something a reader can check in an artifact, such as a response status or a timestamp. A hypothesis proposes an explanation. A control changes or removes a suspected factor so that competing explanations predict different observations. An oracle supplies an expected result against which a computation can be checked.",
+        "For the fictional R17 incident, start with one observed event. Name two explanations consistent with it, then say what you would measure to tell them apart. The remaining uncertainty is part of the conclusion. This same method applies later to kernels, generated images and stalled workers."
+      ],
+      "references": [],
+      "book_page": 72
+    },
+    {
+      "slug": "casebook",
+      "title": "Diagnostic patterns and evidence cards",
+      "first_exercise": 70,
+      "aliases": [
+        "diagnostic casebook",
+        "pattern catalog",
+        "fault",
+        "symptom",
+        "evidence card",
+        "fault injection"
+      ],
+      "paragraphs": [
+        "A diagnostic pattern names a recurring structure in evidence, such as a worker repeatedly waiting on an empty queue. The same visible symptom can have several causes. A pattern suggests a question and a discriminating check. It becomes useful when you can point to the artifact that supports its application.",
+        "For an evidence card, identify the observed state first and write your competing explanation before revealing the worked answer. A deliberately injected delay can test how your method responds to a known fault. Keep that distinction when you later investigate a real stall with an unknown cause."
+      ],
+      "references": [],
+      "book_page": 253
+    },
+    {
+      "slug": "diffusion",
+      "title": "Diffusion, noise prediction and a sampling schedule",
+      "first_exercise": 180,
+      "aliases": [
+        "forward corruption",
+        "reverse sampling",
+        "denoiser",
+        "noise schedule",
+        "seed",
+        "reconstruction oracle"
+      ],
+      "paragraphs": [
+        "A diffusion exercise starts with clean data and adds noise at a chosen level according to a schedule. A denoising model learns to estimate a quantity needed to step back toward a sample. Generation begins with noise and repeatedly updates it using the model and scheduler.",
+        "The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved."
+      ],
+      "references": [
+        148,
+        150
+      ],
+      "book_page": 568
+    },
+    {
+      "slug": "dist",
+      "title": "Distributed training on one physical laptop",
+      "first_exercise": 123,
+      "aliases": [
+        "torchrun",
+        "process group",
+        "rank",
+        "world size",
+        "rendezvous",
+        "Gloo",
+        "NCCL",
+        "loopback",
+        "emulation"
+      ],
+      "paragraphs": [
+        "Distributed training uses several processes that coordinate their work. Each process has a rank, its identifier within a group. World size is the number of participating processes. A rendezvous brings those ranks together. Gloo and NVIDIA’s NCCL are communication backends used in different configurations.",
+        "On one laptop, two CPU processes can act as two ranks over loopback and expose coordination, delays or failures. They still share one physical machine. A one-rank NCCL check can exercise the available GPU. Two-device training requires two independently addressable CUDA devices."
+      ],
+      "references": [
+        96,
+        97,
+        98,
+        100
+      ],
+      "book_page": 401
+    },
+    {
+      "slug": "compose",
+      "title": "Docker Compose and service networking",
+      "first_exercise": 141,
+      "aliases": [
+        "compose.yaml",
+        "YAML",
+        "service name",
+        "network namespace",
+        "bind mount",
+        "container lifecycle"
+      ],
+      "paragraphs": [
+        "Docker Compose describes related containers, their configuration, networks and mounts in a YAML file. One service can refer to another by its service name on a shared Compose network. Inside a container, 127.0.0.1 identifies that container’s own loopback interface in the usual network configuration.",
+        "Follow one request from its caller to the declared port and destination service. Check the effective configuration and lifecycle events if the service exits. Record whether a model file should come from the image or a mount. A missing mount can make a healthy executable fail before inference starts."
+      ],
+      "references": [
+        200,
+        268
+      ],
+      "book_page": 445
+    },
+    {
+      "slug": "docker",
+      "title": "Docker images, containers and volumes",
+      "first_exercise": 140,
+      "aliases": [
+        "Docker Engine",
+        "Dockerfile",
+        "image layers",
+        "container",
+        "port",
+        "volume",
+        "mount",
+        "image tag",
+        "digest"
+      ],
+      "paragraphs": [
+        "An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.",
+        "Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content."
+      ],
+      "references": [
+        105,
+        120,
+        272
+      ],
+      "book_page": 441
+    },
+    {
+      "slug": "batching",
+      "title": "Dynamic batching and bounded admission",
+      "first_exercise": 132,
+      "aliases": [
+        "scheduler",
+        "queue",
+        "batch size",
+        "admission",
+        "backpressure",
+        "cancellation",
+        "overload"
+      ],
+      "paragraphs": [
+        "A batch groups compatible inputs into one model operation. Dynamic batching collects requests that arrive separately and can briefly wait for more work before dispatch. This can improve throughput while increasing the wait for an individual request. A bounded queue limits how much pending work the server admits.",
+        "Give every request its own ID. On overload, follow it from submission to rejection, cancellation or exactly one completed response. Compare queue time with model execution time. A request that timed out at the client may still occupy the server until cancellation reaches the owner."
+      ],
+      "references": [
+        114,
+        118
+      ],
+      "book_page": 423
+    },
+    {
+      "slug": "lora",
+      "title": "Fine-tuning, LoRA and trainable parameters",
+      "first_exercise": 25,
+      "aliases": [
+        "PEFT",
+        "Hugging Face Transformers",
+        "adapters",
+        "optimizer",
+        "gradient",
+        "BF16",
+        "loss",
+        "backpropagation"
+      ],
+      "paragraphs": [
+        "In a training step the model makes a prediction. A loss measures its disagreement with the target. Backpropagation computes gradients, and an optimizer uses them to adjust trainable parameters. Fine-tuning starts from a pretrained model. The Transformers library loads the model and tokenizer, while PEFT provides parameter-efficient training methods.",
+        "LoRA freezes selected base weights and learns a smaller update represented by two matrices. An adapter stores these learned changes. Inspect the trainable parameter count, the base revision and a held-out answer. A fall in training loss is evidence about the training examples."
+      ],
+      "references": [
+        18,
+        19,
+        21,
+        57
+      ],
+      "book_page": 118
+    },
+    {
+      "slug": "precision",
+      "title": "Floating-point precision and numerical tolerances",
+      "first_exercise": 99,
+      "aliases": [
+        "FP32",
+        "BF16",
+        "FP16",
+        "TF32",
+        "mixed precision",
+        "absolute error",
+        "relative error",
+        "numerical oracle"
+      ],
+      "paragraphs": [
+        "Floating-point types store finite approximations to numbers. FP16, BF16 and FP32 use different bit layouts and preserve different ranges and precision. Even in the same type, two orders of summation can give slightly different answers. A reference calculation lets us inspect those differences.",
+        "An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error."
+      ],
+      "references": [
+        47,
+        57,
+        83
+      ],
+      "book_page": 341
+    },
+    {
+      "slug": "identifiers",
+      "title": "Git repositories, snapshots and saved run directories",
+      "first_exercise": 4,
+      "aliases": [
+        "GitHub",
+        "git clone",
+        "commit",
+        "repository",
+        "working tree",
+        "ZIP",
+        "reproducibility"
+      ],
+      "paragraphs": [
+        "Git records versions of a project. A commit identifies one saved version. GitHub hosts the companion repository. A clone gives you its files and Git history. A release ZIP gives you a snapshot you can use without learning Git commands. The companion supplies the small programs and teaching inputs. Large downloaded model weights have their own identities.",
+        "Keep the staging copy apart from your working lab. A fresh run directory holds the command, results and logs from one attempt. When comparing two trials, keep both directories and note the software revision used for each."
+      ],
+      "references": [
+        10,
+        176,
+        277
+      ],
+      "book_page": 31
+    },
+    {
+      "slug": "metrics",
+      "title": "GPU metrics, samples and missing observations",
+      "first_exercise": 91,
+      "aliases": [
+        "NVIDIA Management Library",
+        "NVML",
+        "nvidia-smi",
+        "GPU utilization",
+        "gauge",
+        "telemetry",
+        "polling"
+      ],
+      "paragraphs": [
+        "A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.",
+        "Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request."
+      ],
+      "references": [
+        5,
+        78,
+        79,
+        82
+      ],
+      "book_page": 317
+    },
+    {
+      "slug": "scheduling",
+      "title": "GPU scheduling in a Kubernetes cluster",
+      "first_exercise": 146,
+      "aliases": [
+        "NVIDIA device plugin",
+        "allocatable GPU",
+        "resource limit",
+        "Pending pod",
+        "node",
+        "scheduler"
+      ],
+      "paragraphs": [
+        "Kubernetes can schedule a GPU request only when a node advertises the corresponding resource. An NVIDIA device plugin reports supported devices to Kubernetes. The scheduler selects a suitable node, and the container runtime must then expose the assigned device to the process.",
+        "Start with the node’s allocatable resource, then read the Pod’s resource request and scheduling events. Once it starts, verify CUDA from inside that Pod. Replicating a Deployment creates additional Pods. It cannot create additional physical GPUs on a one-device laptop."
+      ],
+      "references": [
+        106,
+        109,
+        111
+      ],
+      "book_page": 456
+    },
+    {
+      "slug": "trainingstate",
+      "title": "Gradients, optimizers and resuming an update",
+      "first_exercise": 68,
+      "aliases": [
+        "AdamW",
+        "gradient accumulation",
+        "optimizer moments",
+        "RNG",
+        "checkpoint",
+        "training recovery"
+      ],
+      "paragraphs": [
+        "A gradient tells an optimizer how the loss changes as a trainable value changes. AdamW also carries running estimates derived from earlier gradients. A training process may keep random-number state, a batch position and a scaler for limited-precision arithmetic. Live tensors retained by Python can change the memory picture.",
+        "To test recovery, save at a known step, resume in a new process and compare the next batch, loss and updated parameters with an uninterrupted run. Restoring only the visible model weights can produce the same immediate prediction yet a different next update."
+      ],
+      "references": [
+        54,
+        57,
+        61,
+        264
+      ],
+      "book_page": 248
+    },
+    {
+      "slug": "grafana",
+      "title": "Grafana dashboards and data sources",
+      "first_exercise": 215,
+      "aliases": [
+        "Grafana",
+        "panel",
+        "data source",
+        "provisioning",
+        "dashboard JSON",
+        "time range"
+      ],
+      "paragraphs": [
+        "Grafana displays results queried from a data source, here Prometheus. A dashboard contains panels. Each panel applies a query, a time range and display settings such as units. Provisioning describes these connections and panels in files that another installation can reproduce.",
+        "Choose one GPU memory panel. Read its data source, expression and unit, run that expression directly in Prometheus and compare the same time window. An empty panel can result from a label mismatch or an unsuitable time range even when the exporter has working data."
+      ],
+      "references": [
+        190,
+        192,
+        193
+      ],
+      "book_page": 681
+    },
+    {
+      "slug": "grounding",
+      "title": "Grounding a model in retrieved evidence",
+      "first_exercise": 15,
+      "aliases": [
+        "retrieval-augmented generation",
+        "RAG",
+        "citations",
+        "context",
+        "log excerpts"
+      ],
+      "paragraphs": [
+        "A language model can answer from the text supplied in its prompt. Grounding means requiring its factual claims to agree with identifiable evidence. A retrieval step can select passages before generation. Together these operations are often called retrieval-augmented generation, or RAG. A small lab can select evidence directly from local files.",
+        "Take one claim in the answer and find the exact log line that supports it. If there is no such line, describe the claim as a hypothesis. This works even before a vector search engine is introduced."
+      ],
+      "references": [
+        17,
+        63
+      ],
+      "book_page": 86
+    },
+    {
+      "slug": "paging",
+      "title": "Guest paging, Windows commit and vmstat",
+      "first_exercise": 30,
+      "aliases": [
+        "WSL2 memory",
+        "Windows CIM",
+        "swap",
+        "si",
+        "so",
+        "MemAvailable",
+        "commit limit",
+        "pressure"
+      ],
+      "paragraphs": [
+        "When memory is under pressure the operating system may move pages between RAM and backing storage. In WSL2, vmstat reports guest activity. Its si and so columns show swap-in and swap-out rates. The first rate row normally summarizes time since boot. Later rows cover sampling intervals.",
+        "Windows available physical memory and Windows commit headroom answer other questions. Commit headroom is the difference between the commit limit and committed bytes. Match timestamps from both systems to the actual request interval. Used swap by itself cannot establish that a slow request was paging."
+      ],
+      "references": [
+        81,
+        257,
+        258,
+        259
+      ],
+      "book_page": 140
+    },
+    {
+      "slug": "hfhub",
+      "title": "Hugging Face Hub, snapshots and dataset cards",
+      "first_exercise": 208,
+      "aliases": [
+        "Hugging Face",
+        "model card",
+        "dataset card",
+        "snapshot",
+        "revision",
+        "gated repository",
+        "offline cache",
+        "access token"
+      ],
+      "paragraphs": [
+        "Hugging Face Hub hosts versioned repositories for models, datasets and other artifacts. A model card documents a model’s purpose and usage. A dataset card describes data and its intended scope. A snapshot collects files at one revision. A moving branch name can later select different bytes.",
+        "Inspect a revision and its file list before downloading. A tiny encoder may need configuration, a tokenizer and weights. For a dataset, check the actual rows and split membership as well as the card. If access is gated, authorization is a separate prerequisite from the ability to load the files."
+      ],
+      "references": [
+        176,
+        177,
+        178,
+        183,
+        184
+      ],
+      "book_page": 663
+    },
+    {
+      "slug": "media",
+      "title": "Images, waveforms and model processors",
+      "first_exercise": 172,
+      "aliases": [
+        "multimodal models",
+        "pixel tensor",
+        "Pillow",
+        "RGB",
+        "PNG",
+        "WAV",
+        "sample rate",
+        "channels",
+        "preprocessor"
+      ],
+      "paragraphs": [
+        "An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.",
+        "Pillow reads image files into pixel arrays, while SciPy supplies tools for audio signals. A model processor converts such files into the tensors the model expects. Its resizing, normalization or resampling settings affect those tensors. Use a known shape image or short tone to check the file, decoded values and processing settings before interpreting a generated caption or transcript."
+      ],
+      "references": [
+        146,
+        154,
+        156,
+        159
+      ],
+      "book_page": 546
+    },
+    {
+      "slug": "serving",
+      "title": "Inference APIs, readiness and service health",
+      "first_exercise": 136,
+      "aliases": [
+        "endpoint",
+        "API contract",
+        "liveness",
+        "readiness",
+        "draining",
+        "validation",
+        "HTTP status"
+      ],
+      "paragraphs": [
+        "An inference service turns a model call into a request that another program can make. Its contract specifies the input fields, supported shapes, response structure and error behavior. A vector endpoint, for example, should return one vector of the expected length for each accepted input.",
+        "A liveness check asks whether the process is functioning. A readiness check asks whether it can serve the intended workload now. Draining stops accepting new work while allowing in-flight requests to finish. Try a known request and an invalid one, then check which process, status and response correspond to each."
+      ],
+      "references": [
+        3,
+        110,
+        262
+      ],
+      "book_page": 433
+    },
+    {
+      "slug": "jev",
+      "title": "Jev decision models and typed questions",
+      "first_exercise": 232,
+      "aliases": [
+        "Jev AI models",
+        "TypeSafe",
+        "Choice",
+        "Score",
+        "Noul",
+        "probability",
+        "confidence",
+        "decision model"
+      ],
+      "paragraphs": [
+        "Jev takes supplied state and typed questions about it. Choice selects from named options. Score represents a result on an ordered rubric. Noul answers a yes-or-no question with a probability of yes. The response fields differ, so the caller must use the contract for the particular question type.",
+        "Imagine routing an incident to storage or networking. Compare the returned label with its distribution, then inspect the separate confidence field where the contract supplies one. The local fixtures exercise how the client checks these responses. The optional hosted-service procedure has its own execution status."
+      ],
+      "references": [
+        218,
+        219,
+        220,
+        221,
+        222,
+        223
+      ],
+      "book_page": 732
+    },
+    {
+      "slug": "fusion",
+      "title": "Kernel fusion and CUDA event timing",
+      "first_exercise": 53,
+      "aliases": [
+        "fused operation",
+        "activation",
+        "launch overhead",
+        "events",
+        "host clock"
+      ],
+      "paragraphs": [
+        "Kernel fusion combines operations that would otherwise run as separate kernels. For example, an addition followed by an activation may reuse a value already in a register, avoiding a write to and a read from an intermediate array. It can also change resource use or arithmetic order.",
+        "Compare the final arrays first. For timing, record events in the stream that owns the work and wait for the ending event before reading elapsed time. A CPU clock around an asynchronous launch can measure little more than submission. Keep warm-up and measured iterations identifiable."
+      ],
+      "references": [
+        28,
+        45,
+        86
+      ],
+      "book_page": 207
+    },
+    {
+      "slug": "kube",
+      "title": "Kubernetes, K3s, Pods and Services",
+      "first_exercise": 144,
+      "aliases": [
+        "kubectl",
+        "Kubernetes",
+        "K8s",
+        "cluster",
+        "namespace",
+        "deployment",
+        "replica",
+        "rollout",
+        "service",
+        "YAML"
+      ],
+      "paragraphs": [
+        "Kubernetes runs workloads from a declared desired state. K3s is the Kubernetes distribution used for the local cluster. A Pod runs one or more containers together. A Deployment manages replicas and replacements. A Service gives clients an address that can route requests to matching ready Pods. kubectl is the command-line client.",
+        "Follow the chain from Deployment to Pod to ready endpoint and, finally, one inference reply. If a rollout stalls, inspect the Pod’s events, logs and readiness check. A created Deployment confirms that Kubernetes accepted the description; the request tests whether the model can serve."
+      ],
+      "references": [
+        107,
+        108,
+        110,
+        123
+      ],
+      "book_page": 452
+    },
+    {
+      "slug": "langchain",
+      "title": "LangChain agents and local model adapters",
+      "first_exercise": 220,
+      "aliases": [
+        "LangChain",
+        "chat model",
+        "tool schema",
+        "OpenAI-compatible model",
+        "structured tool call",
+        "orchestration"
+      ],
+      "paragraphs": [
+        "LangChain supplies interfaces for chat models and tools and can assemble them into an agent loop. A model adapter translates between the framework’s messages and a provider’s request and response format. The application still decides which tools are available and validates the arguments it receives.",
+        "Begin with a known tool proposal and watch the controller record its result. Then replace the test responder with the local model endpoint. An endpoint can be compatible with ordinary chat while handling tool calls differently. Inspect the actual structured call before attributing a working tool loop to that model."
+      ],
+      "references": [
+        205,
+        206,
+        226
+      ],
+      "book_page": 705
+    },
+    {
+      "slug": "langgraph",
+      "title": "LangGraph state, checkpoints and human review",
+      "first_exercise": 223,
+      "aliases": [
+        "LangGraph",
+        "node",
+        "edge",
+        "interrupt",
+        "thread_id",
+        "SQLite checkpoint",
+        "durable execution"
+      ],
+      "paragraphs": [
+        "LangGraph represents an agent workflow as a graph. A node performs a step, an edge selects the next step and shared state carries information between them. A checkpointer saves state for a particular thread identifier. An interrupt can pause execution until the application supplies a review decision.",
+        "In the exercise a new Python process opens the saved state and resumes the intended thread. Check the thread ID, pending action and state after resumption. A resumed node can re-execute earlier code, so an external action needs its own record to prevent doing it twice."
+      ],
+      "references": [
+        207,
+        208,
+        209
+      ],
+      "book_page": 713
+    },
+    {
+      "slug": "langsmith",
+      "title": "LangSmith tracing and evaluation",
+      "first_exercise": 226,
+      "aliases": [
+        "LangSmith",
+        "nested runs",
+        "dataset",
+        "evaluator",
+        "tracing",
+        "redaction",
+        "hosted ingestion",
+        "offline mode"
+      ],
+      "paragraphs": [
+        "LangSmith provides tracing and evaluation for model applications. A trace can group a request, model call and tool use as related runs. An evaluator applies a defined test to an output, perhaps comparing it with a reference or checking that a required field is present. Preserve the inputs and criterion behind each score.",
+        "The companion has offline controls for nested records, errors and redaction. A local trace or a prepared upload is evidence about the client. Observing a hosted run additionally requires an authorized send and readback. Each exercise identifies which of those steps actually took place."
+      ],
+      "references": [
+        210,
+        211,
+        212,
+        213
+      ],
+      "book_page": 720
+    },
+    {
+      "slug": "timing",
+      "title": "Latency, throughput and repeatable timing",
+      "first_exercise": 7,
+      "aliases": [
+        "benchmark",
+        "warmup",
+        "cold start",
+        "tokens per second",
+        "p50",
+        "p95",
+        "monotonic clock"
+      ],
+      "paragraphs": [
+        "Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.",
+        "A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests."
+      ],
+      "references": [
+        3,
+        80
+      ],
+      "book_page": 46
+    },
+    {
+      "slug": "lmstudio",
+      "title": "LM Studio, llmster and the lms command line",
+      "first_exercise": 243,
+      "aliases": [
+        "LM Studio",
+        "llmster",
+        "lms",
+        "headless daemon",
+        "model import",
+        "just-in-time loading",
+        "JIT",
+        "compatible endpoint"
+      ],
+      "paragraphs": [
+        "LM Studio can run a headless service called llmster. In this book that service and its lms command-line client run in WSL2. Importing a model makes its files available to the runtime. Loading creates an active model instance. The server then exposes an endpoint that a separate client can call.",
+        "Compare the catalog of downloaded models with the list of loaded instances before and after a request. A first request can include just-in-time loading. Record that separately from a later warm request and check that the reply identifies the model you intended."
+      ],
+      "references": [
+        242,
+        244,
+        245,
+        247,
+        248
+      ],
+      "book_page": 772
+    },
+    {
+      "slug": "bigmodel",
+      "title": "Loading a model larger than the GPU budget",
+      "first_exercise": 29,
+      "aliases": [
+        "32B",
+        "GGUF shards",
+        "admission check",
+        "partial offload",
+        "Windows commit",
+        "headroom"
+      ],
+      "paragraphs": [
+        "The “32B” in this model’s name describes roughly 32 billion parameters. Storage depends on how each number is represented. The nine Q8 shards in this exercise total 32.43 GiB. Loading also requires working buffers and room for the request. The loader can keep some layers on the CPU while placing others on the GPU.",
+        "A guard samples available memory and can stop a load before it reaches readiness. Treat that stop as an outcome with a timestamp and a threshold. A useful successful run records the actual layer split, replies completed and memory observations over the same interval."
+      ],
+      "references": [
+        3,
+        24,
+        25,
+        82
+      ],
+      "book_page": 132
+    },
+    {
+      "slug": "server",
+      "title": "Loading a model with llama.cpp",
+      "first_exercise": 5,
+      "aliases": [
+        "llama-server",
+        "native executable",
+        "readiness",
+        "health",
+        "layers",
+        "context",
+        "process ID",
+        "PID"
+      ],
+      "paragraphs": [
+        "llama.cpp is a native inference runtime. Its llama-server executable opens the model file, prepares memory for inference and listens for requests. The file on disk, the running process and the address clients call are three different things. A downloaded model alone cannot answer a prompt.",
+        "Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server."
+      ],
+      "references": [
+        3,
+        11,
+        92
+      ],
+      "book_page": 37
+    },
+    {
+      "slug": "tiles",
+      "title": "Matrix layout, tiles and shared memory",
+      "first_exercise": 47,
+      "aliases": [
+        "transpose",
+        "row-major",
+        "coalescing",
+        "shared memory",
+        "bank conflicts",
+        "barriers",
+        "tile edges"
+      ],
+      "paragraphs": [
+        "A matrix has rows and columns but occupies a sequence of memory locations. In row-major storage, adjacent columns of one row sit beside each other. A transpose swaps rows with columns. For a rectangular input, reversing the shape as well as the indices helps expose a mistaken stride.",
+        "A tile is a small rectangular portion that a block processes together. Threads can stage a tile in on-chip shared memory and synchronize before consuming one another’s values. Check the last partial tile: threads without a valid output may still need to participate in the block’s barrier."
+      ],
+      "references": [
+        43,
+        45
+      ],
+      "book_page": 193
+    },
+    {
+      "slug": "matmul",
+      "title": "Matrix multiplication on the GPU",
+      "first_exercise": 51,
+      "aliases": [
+        "GEMM",
+        "dot product",
+        "tile",
+        "multiply accumulate",
+        "CPU oracle"
+      ],
+      "paragraphs": [
+        "Each entry of a matrix product is a dot product. Multiply elements from one row of the left matrix by the corresponding elements of one column of the right matrix and add them. An input with shape (2, 3) can multiply one with shape (3, 4) to produce a (2, 4) result.",
+        "A simple kernel assigns one output entry to each thread. A tiled kernel reuses input values across a block to reduce repeated global-memory reads. Start with an asymmetric rectangular example and a separate CPU calculation before timing the optimized variant."
+      ],
+      "references": [
+        42,
+        45,
+        48
+      ],
+      "book_page": 202
+    },
+    {
+      "slug": "offline",
+      "title": "Model caches, local files and offline execution",
+      "first_exercise": 22,
+      "aliases": [
+        "acquisition",
+        "offline inference",
+        "cache",
+        "local_files_only",
+        "dependencies"
+      ],
+      "paragraphs": [
+        "Acquisition copies a model, tokenizer and configuration onto local storage. A cache keeps downloaded files for reuse. Inference reads those files and executes the model. Some libraries still check a remote registry while opening a cached model unless configured for local loading.",
+        "Use the pinned revision, record which files are present and state exactly which process or network access you constrained. A successful local load establishes that the chosen files satisfied that loading path. Testing a fully disconnected laptop requires an actual request under that wider condition."
+      ],
+      "references": [
+        176,
+        183,
+        184,
+        185
+      ],
+      "book_page": 107
+    },
+    {
+      "slug": "files",
+      "title": "Model downloads, Git revisions and GGUF",
+      "first_exercise": 4,
+      "aliases": [
+        "Hugging Face Hub",
+        "Git",
+        "SHA-256",
+        "checksum",
+        "digest",
+        "model card",
+        "llama.cpp",
+        "GGUF",
+        "Qwen",
+        "shards",
+        "manifest"
+      ],
+      "paragraphs": [
+        "A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.",
+        "The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load."
+      ],
+      "references": [
+        2,
+        11,
+        176,
+        177,
+        263
+      ],
+      "book_page": 31
+    },
+    {
+      "slug": "model",
+      "title": "Model weights, tokens and the context window",
+      "first_exercise": 2,
+      "aliases": [
+        "inference",
+        "parameters",
+        "LLM",
+        "tokenizer",
+        "token generation",
+        "key value cache",
+        "KV cache",
+        "transformer",
+        "prefill"
+      ],
+      "paragraphs": [
+        "A language model stores learned numbers called weights. A tokenizer splits text into pieces and assigns each piece an integer. A piece might be part of a word. During inference the model reads the prompt and predicts successive tokens using the existing weights. Training changes those weights.",
+        "The context window bounds how many tokens the model can use in a request. During generation a transformer saves attention keys and values for earlier positions in a KV cache. Increasing the context or serving additional sequences can require more memory even when the weight file stays exactly the same size."
+      ],
+      "references": [
+        2,
+        7,
+        8
+      ],
+      "book_page": 24
+    },
+    {
+      "slug": "music",
+      "title": "MusicGen and discrete audio tokens",
+      "first_exercise": 188,
+      "aliases": [
+        "text-to-music",
+        "codec",
+        "audio codebook",
+        "generative music",
+        "duration",
+        "sample rate"
+      ],
+      "paragraphs": [
+        "MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file.",
+        "Generate one short clip and record the prompt, seed, number of generated steps, waveform shape and sample rate. Derive playback duration from the waveform. Listening answers questions about music or artifacts that a successful WAV write and the model’s timing numbers cannot settle."
+      ],
+      "references": [
+        151,
+        152,
+        153
+      ],
+      "book_page": 593
+    },
+    {
+      "slug": "nemotron",
+      "title": "Nemotron, mixtures of experts and hybrid state",
+      "first_exercise": 247,
+      "aliases": [
+        "NVIDIA Nemotron",
+        "Nemotron 3 Nano",
+        "30B A3B",
+        "MoE",
+        "mixture of experts",
+        "recurrent state",
+        "hybrid",
+        "GGUF conversion"
+      ],
+      "paragraphs": [
+        "Nemotron names a family of models. The Nemotron 3 Nano variant used here combines expert routing with different kinds of sequence-processing layers. A mixture of experts selects part of the model for each token. The active parameter count describes work selected per token. The full stored model can still be much larger.",
+        "Trace the GGUF conversion back to a particular upstream revision. Inspect actual file bytes, the available memory views and which layers the native runtime placed on CUDA. Attention caches and recurrent state may have different layouts, so use the model’s own logs when interpreting its buffers."
+      ],
+      "references": [
+        249,
+        250,
+        251,
+        252
+      ],
+      "book_page": 783
+    },
+    {
+      "slug": "ncu",
+      "title": "Nsight Compute and hardware counters",
+      "first_exercise": 41,
+      "aliases": [
+        "ncu",
+        "profiler",
+        "occupancy",
+        "achieved throughput",
+        "performance counters"
+      ],
+      "paragraphs": [
+        "Nsight Compute examines selected GPU kernels in detail. Hardware counters record events such as memory traffic or executed operations. A profiler can combine counters into measures of achieved throughput and may need multiple passes to collect them. This differs from measuring the duration of an entire request.",
+        "Pick one named kernel and a bounded input. First check its numerical result. Then look for a kernel report containing the requested metric and unit. A permissions error or an unavailable metric is a finding about measurement access and supplies no value for that counter."
+      ],
+      "references": [
+        37,
+        38,
+        86
+      ],
+      "book_page": 178
+    },
+    {
+      "slug": "nsys",
+      "title": "Nsight Systems, NVTX and CUPTI timelines",
+      "first_exercise": 39,
+      "aliases": [
+        "nsys",
+        "time line",
+        "tracing",
+        "CUDA activity",
+        "ranges",
+        "kernel timestamps",
+        "host API"
+      ],
+      "paragraphs": [
+        "Nsight Systems records a timeline across CPU threads, CUDA API calls and supported GPU activity. NVTX lets the application name a region such as “iteration 2”. CUPTI is an NVIDIA interface that tools can use to collect activity records. A host range describes what the CPU was doing while it was open.",
+        "Start with one named iteration. Look for the CPU launch call, then the corresponding GPU work with usable start and end times. A launch returning to the CPU does not mark the end of device execution. Zero device timestamps leave the duration unresolved."
+      ],
+      "references": [
+        32,
+        36,
+        41
+      ],
+      "book_page": 172
+    },
+    {
+      "slug": "arrays",
+      "title": "NumPy arrays, dataframes and data provenance",
+      "first_exercise": 152,
+      "aliases": [
+        "NumPy",
+        "pandas",
+        "NPZ",
+        "CSV",
+        "column",
+        "schema",
+        "dtype",
+        "Parquet",
+        "dataframe"
+      ],
+      "paragraphs": [
+        "NumPy stores numeric arrays with a shape and an element type. A dataframe is a table with named columns that may have different types. pandas provides dataframes on the CPU. A CSV file stores rows as text, while Parquet stores typed columns. Loading the same values with a different type can change a comparison.",
+        "The ecosystem exercises reuse small arrays and tables as reference inputs. Record their shape, column names, row identifiers, types and file digests. When comparing a CPU and GPU operation, put rows in the same documented order before comparing values."
+      ],
+      "references": [
+        66,
+        124,
+        266,
+        273
+      ],
+      "book_page": 480
+    },
+    {
+      "slug": "containersgpu",
+      "title": "The NVIDIA Container Toolkit and GPU visibility",
+      "first_exercise": 142,
+      "aliases": [
+        "NVIDIA runtime",
+        "device injection",
+        "Docker GPU",
+        "CUDA container",
+        "mapped driver",
+        "userspace"
+      ],
+      "paragraphs": [
+        "A GPU container needs two things at once. Its image supplies the application and compatible user-space libraries. The container runtime makes the required GPU device interface and driver components available to the running container. Under WSL2 the Windows host still owns the mapped display driver.",
+        "Run a small device check inside the intended container, then perform a known calculation and check its output. A successful query in the surrounding WSL shell describes that shell. A container that starts successfully may still be missing the GPU interface its model needs."
+      ],
+      "references": [
+        4,
+        106,
+        109
+      ],
+      "book_page": 447
+    },
+    {
+      "slug": "nemo",
+      "title": "NVIDIA NeMo AutoModel and supervised training recipes",
+      "first_exercise": 168,
+      "aliases": [
+        "NeMo",
+        "recipe",
+        "YAML",
+        "AutoModel",
+        "supervised token masks",
+        "labels",
+        "Parquet",
+        "PEFT"
+      ],
+      "paragraphs": [
+        "NeMo AutoModel runs training from a recipe that brings together a model, tokenizer, data reader, optimizer and checkpoint settings. Changing one of these can change what the training run means. This exercise follows the data from a teaching example to the token positions that receive a training loss.",
+        "For prompt-and-answer training, the labels can exclude the prompt and padding so that only intended answer tokens contribute to the objective. Decode a few labeled positions and inspect one batch before training. Keep the recipe, model identity, trainable parameter list and checkpoint needed for the recovery test."
+      ],
+      "references": [
+        139,
+        140,
+        141,
+        144
+      ],
+      "book_page": 520
+    },
+    {
+      "slug": "ngc",
+      "title": "NVIDIA NGC Catalog, resources and container images",
+      "first_exercise": 204,
+      "aliases": [
+        "NGC",
+        "NVIDIA GPU Cloud",
+        "NGC CLI",
+        "registry",
+        "catalog entry",
+        "ARM64",
+        "ELF"
+      ],
+      "paragraphs": [
+        "NGC Catalog is NVIDIA’s catalog of GPU software and other assets. A resource entry can describe a downloadable file or tool. A container entry identifies an image in a registry. Reading a catalog page, acquiring an asset and executing it are three distinct operations.",
+        "Start by recording the item type, owner, version, expected size and available files. For a native command-line tool, inspect the executable’s target architecture before running it in this ARM64 WSL2 guest. For a container, follow its platform-specific digest in Exercise 206."
+      ],
+      "references": [
+        170,
+        171,
+        172,
+        173
+      ],
+      "book_page": 648
+    },
+    {
+      "slug": "tritonserver",
+      "title": "NVIDIA Triton Inference Server and model repositories",
+      "first_exercise": 150,
+      "aliases": [
+        "Triton server",
+        "Python backend",
+        "config.pbtxt",
+        "version policy",
+        "dynamic batching",
+        "ensemble"
+      ],
+      "paragraphs": [
+        "NVIDIA Triton Inference Server serves models through named backends. Its model repository contains model names, numbered version directories and configuration describing input and output tensors. A Python backend can implement an encoder. Other backends can execute an ONNX graph or a TensorRT engine.",
+        "Follow a small request from its input name and shape to the returned embedding. Check the model version that actually answered. Dynamic batching can combine several requests into one backend execution, so request count and execution count need not match. The Triton kernel programming language introduced in Exercise 101 is a different project."
+      ],
+      "references": [
+        115,
+        116,
+        117,
+        118,
+        119
+      ],
+      "book_page": 469
+    },
+    {
+      "slug": "ollama",
+      "title": "Ollama, local model names and residency",
+      "first_exercise": 235,
+      "aliases": [
+        "Ollama",
+        "Modelfile",
+        "ollama serve",
+        "keep_alive",
+        "embeddings",
+        "NDJSON",
+        "model owner"
+      ],
+      "paragraphs": [
+        "Ollama runs a local service that manages models and exposes generation and embedding endpoints. A local model name identifies what to request. Importing a GGUF file creates a usable model entry, while loading it creates a running model that consumes resources. A residency setting influences how long it can stay loaded between calls.",
+        "Read the installed model list, then inspect the running models around a bounded request. For streamed generation, read the sequence of JSON objects through the final completion record. For embeddings, inspect vector count, dimension and response model identity."
+      ],
+      "references": [
+        227,
+        229,
+        230,
+        231,
+        232,
+        233
+      ],
+      "book_page": 741
+    },
+    {
+      "slug": "onnx",
+      "title": "ONNX graphs and ONNX Runtime execution providers",
+      "first_exercise": 151,
+      "aliases": [
+        "Open Neural Network Exchange",
+        "ONNX Runtime",
+        "ORT",
+        "CUDAExecutionProvider",
+        "graph nodes",
+        "fallback",
+        "opset"
+      ],
+      "paragraphs": [
+        "ONNX describes a model as a graph of operations, named inputs and outputs, and stored parameters. An opset specifies the operator definitions the graph expects. ONNX Runtime executes a graph by assigning supported groups of operations to execution providers, for example a CPU provider or the CUDA provider.",
+        "Check the graph structure and run a known input against an independent numerical result. Then examine provider assignment for the relevant nodes. A listed CUDA provider establishes availability. An assignment log establishes placement, while timed device activity requires a usable trace."
+      ],
+      "references": [
+        122,
+        128,
+        129,
+        130
+      ],
+      "book_page": 473
+    },
+    {
+      "slug": "otel",
+      "title": "OpenTelemetry traces, spans and correlated logs",
+      "first_exercise": 111,
+      "aliases": [
+        "distributed tracing",
+        "trace ID",
+        "span ID",
+        "parent span",
+        "instrumented request",
+        "OTel"
+      ],
+      "paragraphs": [
+        "A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it.",
+        "Follow one synthetic request from its root span through retrieval and generation. Match a log to its span ID and look for a second attempt after a failure. Adding all span durations can double-count time when a parent includes a child or two operations overlap."
+      ],
+      "references": [
+        89,
+        271
+      ],
+      "book_page": 373
+    },
+    {
+      "slug": "packing",
+      "title": "Packing INT4 values into bytes",
+      "first_exercise": 66,
+      "aliases": [
+        "four bit",
+        "lower nibble",
+        "upper nibble",
+        "signed integer",
+        "dequantization",
+        "rounding"
+      ],
+      "paragraphs": [
+        "A byte has eight bits, so it can hold two four-bit codes. An INT4 representation must specify how a signed integer maps to a code, which half-byte comes first, and what happens to the last value when the count is odd. To represent real-valued weights, a scale maps codes back to approximate numbers.",
+        "Write down a tiny input, its expected codes and the exact packed byte sequence. Check bytes, then unpack and compare the reconstructed numbers. One implementation can pack and unpack consistently while still using a layout incompatible with another runtime."
+      ],
+      "references": [
+        137,
+        138
+      ],
+      "book_page": 243
+    },
+    {
+      "slug": "pca",
+      "title": "PCA and a two-dimensional map of embeddings",
+      "first_exercise": 79,
+      "aliases": [
+        "principal component analysis",
+        "coordinates",
+        "explained variance",
+        "projection",
+        "scikit-learn",
+        "cuML"
+      ],
+      "paragraphs": [
+        "The scikit-learn library provides a Python implementation of principal component analysis (PCA). PCA finds directions in which centered data vary most. Plotting the first two components assigns a point to each sentence and retains only part of the original variation. The explained-variance ratios report how much the displayed components capture in the fitted data.",
+        "Fit the axes on the training vectors and use that same fit to transform held-out vectors. Follow a pair of points back through their row IDs and compare their original-space similarity. PCA axes can reverse sign across implementations, so a reflected plot can still represent the same subspace."
+      ],
+      "references": [
+        66,
+        68,
+        126
+      ],
+      "book_page": 282
+    },
+    {
+      "slug": "plots",
+      "title": "Plotting GPU activity against a workload",
+      "first_exercise": 92,
+      "aliases": [
+        "Matplotlib",
+        "time series",
+        "CSV",
+        "axis",
+        "counters",
+        "visualization",
+        "timestamps"
+      ],
+      "paragraphs": [
+        "Matplotlib is the Python plotting library used here. A time-series plot gives timestamps horizontal positions and measured values vertical positions. The plotting program reads the sampler’s records and draws lines or points for related quantities. Request start and finish markers show which part of the picture belongs to the workload.",
+        "Read the axis units before comparing curves. Bytes and percentages belong to different scales. Leave gaps where the source returned no sample and keep the original CSV or JSON alongside the figure. A rise in device activity during a request is a reason to inspect a trace for attribution."
+      ],
+      "references": [
+        78,
+        80,
+        269
+      ],
+      "book_page": 321
+    },
+    {
+      "slug": "prometheus",
+      "title": "Prometheus, exporters and time series",
+      "first_exercise": 212,
+      "aliases": [
+        "Prometheus",
+        "scrape",
+        "exporter",
+        "target",
+        "NVML",
+        "DCGM",
+        "metric labels",
+        "time series"
+      ],
+      "paragraphs": [
+        "Prometheus asks configured targets for metrics at intervals called scrapes. An exporter translates another system’s measurements into named values that Prometheus can read. Labels distinguish series, for example by device. A gauge can rise or fall, while a counter usually accumulates events until its process restarts.",
+        "Trace one value from the original provider through the exporter’s metrics response to a raw Prometheus query. The lab’s WSL2 exporter can indicate when a management field is unavailable. NVIDIA’s DCGM exporter is another possible data source where DCGM is supported. A successful scrape says the endpoint answered."
+      ],
+      "references": [
+        187,
+        188,
+        191,
+        194
+      ],
+      "book_page": 674
+    },
+    {
+      "slug": "prompt",
+      "title": "Prompts, generated answers and acceptance checks",
+      "first_exercise": 6,
+      "aliases": [
+        "system prompt",
+        "user message",
+        "token limit",
+        "finish reason",
+        "instruction following",
+        "rubric"
+      ],
+      "paragraphs": [
+        "A chat prompt can contain messages with different roles. The system message sets overall instructions, while the user message supplies the task and its evidence. The model generates a sequence of tokens. A finish reason records why generation ended, such as a normal stop or an output length limit.",
+        "An answer can be fluent and still miss the task. If a prompt asks for two observations, count them and check both against the supplied lines. Recording the prompt, the complete reply and its finish reason lets a second reader grade that same answer."
+      ],
+      "references": [
+        2,
+        3
+      ],
+      "book_page": 41
+    },
+    {
+      "slug": "promql",
+      "title": "PromQL rates, histograms and alert rules",
+      "first_exercise": 216,
+      "aliases": [
+        "PromQL",
+        "histogram buckets",
+        "quantile",
+        "rate",
+        "counters",
+        "gauges",
+        "promtool",
+        "firing",
+        "pending"
+      ],
+      "paragraphs": [
+        "PromQL is Prometheus’s query language. A rate over a counter estimates change per second across a time window. Histogram buckets accumulate observations up to specified boundaries. From those counts we can estimate a percentile such as p95, with precision limited by the bucket boundaries and available events.",
+        "An alert rule evaluates an expression repeatedly and can require it to remain true for a specified duration. Follow a teaching sequence from pending to firing and recovery. Test absent samples as a separate case. A missing series might otherwise suppress the very alert you hoped would reveal a lost measurement."
+      ],
+      "references": [
+        194,
+        195,
+        196,
+        197
+      ],
+      "book_page": 684
+    },
+    {
+      "slug": "instructions",
+      "title": "PTX, SASS and device registers",
+      "first_exercise": 33,
+      "aliases": [
+        "cuobjdump",
+        "nvdisasm",
+        "assembly",
+        "virtual instruction",
+        "disassembly",
+        "cubin"
+      ],
+      "paragraphs": [
+        "CUDA can represent a kernel as PTX, a virtual instruction language, and as native machine code for a target GPU. A disassembler displays that native code in a readable form often called SASS. Registers hold intermediate values used by a thread. Compiler optimization can combine operations or remove a source variable altogether.",
+        "Use cuobjdump to identify which images an executable actually contains. If it contains a native image only, generate PTX separately for comparison. Static instructions show what was built. A debugger stop or a measured trace is needed to identify what happened during one execution."
+      ],
+      "references": [
+        33,
+        34,
+        62
+      ],
+      "book_page": 154
+    },
+    {
+      "slug": "pydantic",
+      "title": "PydanticAI and typed model outputs",
+      "first_exercise": 229,
+      "aliases": [
+        "Pydantic AI",
+        "PydanticAI",
+        "schema validation",
+        "field",
+        "output validator",
+        "retry",
+        "usage limits"
+      ],
+      "paragraphs": [
+        "Pydantic models describe fields, types and validation rules for data. PydanticAI uses such contracts in agents, including for a model’s final output. A structured finding might require a named observation and a reference to evidence. A plausible paragraph or a well-formed JSON object can still fail that contract.",
+        "Feed the validator one accepted example and one that violates a specific rule. Then trace what happens when the model repeatedly returns invalid output. Keep the retry budget and actual request count visible. Passing field validation does not establish that the evidence supports the reported conclusion."
+      ],
+      "references": [
+        214,
+        215,
+        216,
+        217
+      ],
+      "book_page": 726
+    },
+    {
+      "slug": "pythonpackages",
+      "title": "Python environments, pip and binary wheels",
+      "first_exercise": 14,
+      "aliases": [
+        "pip check",
+        "wheel",
+        "Python.h",
+        "dependencies",
+        "virtualenv",
+        "framework build",
+        "Python ABI"
+      ],
+      "paragraphs": [
+        "Python packages can contain interpreted code and compiled libraries. A wheel is an installable package archive. Its platform and interpreter tags matter on an ARM64 laptop. A source build may also need a compiler and matching Python development headers. A virtual environment keeps project packages together and selects an interpreter for the current shell.",
+        "Use python -m pip with the same interpreter you use for the exercise. A successful dependency check, a successful import and a synchronized CUDA calculation each establish something different. When one fails, record its actual message before changing packages."
+      ],
+      "references": [
+        15,
+        23,
+        260,
+        274
+      ],
+      "book_page": 82
+    },
+    {
+      "slug": "allocator",
+      "title": "PyTorch allocator snapshots and tensor ownership",
+      "first_exercise": 42,
+      "aliases": [
+        "allocated memory",
+        "reserved memory",
+        "cached allocator",
+        "memory history",
+        "object lifetime",
+        "empty_cache"
+      ],
+      "paragraphs": [
+        "When a program creates a CUDA tensor, PyTorch obtains storage for it. Its allocator can retain unused blocks so that the next tensor can reuse them. Allocated bytes describe storage currently used by tensors. Reserved bytes include blocks held by the allocator. A management tool has a broader view again.",
+        "An allocator snapshot records blocks and their state, and can include allocation history if recording was enabled. To inspect numerical content, explicitly copy a small selected tensor. When diagnosing growth, first release the object that owns it, then compare live and reserved bytes in the same process."
+      ],
+      "references": [
+        16,
+        39,
+        87
+      ],
+      "book_page": 181
+    },
+    {
+      "slug": "profiler",
+      "title": "PyTorch Profiler and operators",
+      "first_exercise": 43,
+      "aliases": [
+        "torch.profiler",
+        "operator",
+        "Chrome trace",
+        "device event",
+        "CPU activity",
+        "trace viewer"
+      ],
+      "paragraphs": [
+        "A framework operator is a named operation such as matrix multiplication. PyTorch Profiler can collect CPU-side operator events and, where supported, GPU activity. A trace viewer draws each event on the track of the thread or device that produced it. One Python operation can issue several kernels.",
+        "Choose a short, named operation and check both tracks. A CPU operator range can include launches and waiting. To report GPU execution time, find valid device intervals for the workload. If the native model runs in a separate process, identify that process before interpreting a client trace."
+      ],
+      "references": [
+        36,
+        40,
+        41
+      ],
+      "book_page": 183
+    },
+    {
+      "slug": "torch",
+      "title": "PyTorch tensors and synchronized CUDA execution",
+      "first_exercise": 14,
+      "aliases": [
+        "torch",
+        "tensor",
+        "dtype",
+        "device",
+        "CUDA",
+        "CPU",
+        "synchronization",
+        "wheel",
+        "NumPy"
+      ],
+      "paragraphs": [
+        "A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A Python package called a wheel supplies the installed framework build.",
+        "A CUDA kernel is a function that runs on the GPU. PyTorch launches kernels for tensor operations. GPU work can continue after the Python call that launched it returns. The probe performs a small calculation, synchronizes and checks its result. Read the interpreter path, device name, tensor device and result together. They connect a particular Python environment with an operation that completed."
+      ],
+      "references": [
+        15,
+        16,
+        27,
+        264
+      ],
+      "book_page": 82
+    },
+    {
+      "slug": "quant",
+      "title": "Quantization and weight formats",
+      "first_exercise": 11,
+      "aliases": [
+        "Q4",
+        "Q8",
+        "FP16",
+        "INT8",
+        "lower precision",
+        "scale",
+        "bits"
+      ],
+      "paragraphs": [
+        "Quantization represents numbers using fewer possible values. A weight group can share a scale so a small integer represents an approximate weight. Four bits can encode sixteen patterns. A real Q4 file also stores scales, metadata and sometimes tensors at other precisions, so its byte count need not be exactly half that of Q8.",
+        "The smaller file is easier to place in memory. Approximation can change the generated tokens. Compare the same prompt with the same context, output cap and runtime settings. Keep the finish reason alongside reply quality and measured latency."
+      ],
+      "references": [
+        2,
+        19,
+        137,
+        138
+      ],
+      "book_page": 60
+    },
+    {
+      "slug": "rmm",
+      "title": "RAPIDS Memory Manager and allocation statistics",
+      "first_exercise": 155,
+      "aliases": [
+        "RMM",
+        "memory resource",
+        "pool allocator",
+        "pool reserve",
+        "high-water mark"
+      ],
+      "paragraphs": [
+        "GPU dataframe and machine-learning operations allocate temporary as well as long-lived buffers. RAPIDS Memory Manager, or RMM, provides memory resources through which participating libraries obtain device storage. A pool can hold memory between operations and fulfill several small allocations from its reserve.",
+        "Record RMM’s statistics before, during and after the same operation. Compare peak and current bytes with the device-level free-memory reading. The statistics describe allocations that passed through the monitored resource. Other libraries and processes may allocate outside it."
+      ],
+      "references": [
+        16,
+        127
+      ],
+      "book_page": 487
+    },
+    {
+      "slug": "rapids",
+      "title": "RAPIDS, cuDF and cuML",
+      "first_exercise": 153,
+      "aliases": [
+        "GPU dataframe",
+        "cuDF",
+        "cuML",
+        "groupby",
+        "GPU machine learning",
+        "pandas",
+        "PCA"
+      ],
+      "paragraphs": [
+        "RAPIDS is a collection of libraries for data analysis on NVIDIA GPUs. cuDF provides dataframe operations, such as grouping rows by a category and summing a column. cuML supplies machine-learning algorithms, including PCA. A familiar operation name makes a CPU implementation a useful reference.",
+        "Begin with a tiny table whose groups you can sum by hand. Run the corresponding CPU and GPU operations, align the group keys and compare the sums. For PCA, compare the fitted subspace or its projector. Two mathematically equivalent bases can have different signs or orientations."
+      ],
+      "references": [
+        124,
+        125,
+        126
+      ],
+      "book_page": 483
+    },
+    {
+      "slug": "sqlite",
+      "title": "Reading an exported trace with SQLite",
+      "first_exercise": 40,
+      "aliases": [
+        "SQL",
+        "SQLite",
+        "database",
+        "tables",
+        "schema",
+        "correlation IDs",
+        "join"
+      ],
+      "paragraphs": [
+        "SQLite stores a relational database in a file. Each table contains rows with named columns. A trace exporter can put API calls, kernels and text labels into different tables. SQL queries select rows or join tables through a recorded key, such as a correlation identifier.",
+        "Inspect the available table names and column definitions before applying a query from another installation. Check the time units and find one known iteration. An empty result can mean the requested activity was never captured, the table has a different layout, or the filter selected no matching rows."
+      ],
+      "references": [
+        41,
+        267
+      ],
+      "book_page": 175
+    },
+    {
+      "slug": "reductiontest",
+      "title": "Reducing a failing case and isolating a change",
+      "first_exercise": 115,
+      "aliases": [
+        "1-minimal",
+        "reproducer",
+        "delta debugging",
+        "bisection",
+        "failure predicate",
+        "regression"
+      ],
+      "paragraphs": [
+        "A reproducer is an input and procedure that reliably expose a chosen failure. Its predicate answers whether a candidate still fails in the required way. Reduction removes parts of an input and runs the predicate again. A result is 1-minimal when removing any single remaining element stops that failure.",
+        "When comparing configurations, test the same predicate on the same input. Bisection can narrow a transition if the ordered candidates separate passing from failing consistently. Keep the actual observation at each step. An unrelated crash during reduction would otherwise count as success for the wrong reason."
+      ],
+      "references": [],
+      "book_page": 382
+    },
+    {
+      "slug": "reductions",
+      "title": "Reductions, histograms and atomic updates",
+      "first_exercise": 49,
+      "aliases": [
+        "partial sums",
+        "reduction tree",
+        "atomicAdd",
+        "histogram bins",
+        "race"
+      ],
+      "paragraphs": [
+        "A reduction combines many values into fewer values, such as summing a vector into one number. A GPU implementation can first write a partial sum per block and then sum those partials. Addition order affects floating-point rounding, so preserve the input type and comparison tolerance.",
+        "A histogram instead counts how many inputs fall into each bin. Several threads may choose the same bin. An atomic addition makes each increment indivisible with respect to the other increments at that location. Check the individual bins and whether their total equals the number of counted inputs."
+      ],
+      "references": [
+        43,
+        46,
+        47
+      ],
+      "book_page": 197
+    },
+    {
+      "slug": "ranking",
+      "title": "Retrieval, relevance labels and rank metrics",
+      "first_exercise": 78,
+      "aliases": [
+        "Recall at k",
+        "mean reciprocal rank",
+        "MRR",
+        "semantic search",
+        "retrieval evaluation"
+      ],
+      "paragraphs": [
+        "A retrieval system compares a query with a collection of documents and returns an ordered list. Relevance labels tell the evaluator which documents answer a particular query. The top match can be semantically similar yet irrelevant to the question, so retain query and document identifiers alongside their scores.",
+        "Recall at k measures the fraction of relevant documents found in the first k places. Reciprocal rank uses the position of the first relevant result. A first relevant result at rank four contributes 0.25. Mean reciprocal rank, or MRR, averages those contributions across queries. Inspect individual ranks when the test set is small."
+      ],
+      "references": [
+        63,
+        65,
+        76
+      ],
+      "book_page": 279
+    },
+    {
+      "slug": "normalization",
+      "title": "RMS normalization, softmax and numerical stability",
+      "first_exercise": 55,
+      "aliases": [
+        "RMSNorm",
+        "activation scale",
+        "probability",
+        "exponentiation",
+        "overflow"
+      ],
+      "paragraphs": [
+        "RMS normalization scales a vector using the square root of its mean squared value and a small stabilizing constant. Softmax turns a row of scores into positive weights that sum to one. These operations appear inside neural networks and involve reductions across a row.",
+        "For softmax, subtract the largest score before exponentiating. This leaves the mathematical probabilities unchanged and reduces overflow risk. Inspect a row containing large scores, a row with repeated scores and a partial final row. Compare finite values and row sums with an independent reference."
+      ],
+      "references": [
+        47,
+        50,
+        51
+      ],
+      "book_page": 212
+    },
+    {
+      "slug": "roofline",
+      "title": "Roofline models of kernel performance",
+      "first_exercise": 105,
+      "aliases": [
+        "arithmetic intensity",
+        "operations per byte",
+        "FLOPS",
+        "memory bandwidth",
+        "performance ceiling"
+      ],
+      "paragraphs": [
+        "A roofline relates work performed to data moved. Arithmetic intensity is operations divided by bytes transferred at a stated memory boundary. Multiplying that intensity by bandwidth gives a memory-based ceiling. The smaller of that number and the compute ceiling gives the model’s upper bound for that intensity.",
+        "For example, two operations per byte and an assumed 100 GB/s give a 200 billion operations/s memory ceiling. Those are teaching inputs. An achieved point for this laptop requires measured work, time and an appropriate account of memory traffic. Keep estimated and measured values labeled."
+      ],
+      "references": [
+        45,
+        86
+      ],
+      "book_page": 359
+    },
+    {
+      "slug": "embeddings",
+      "title": "Sentence embeddings and semantic similarity",
+      "first_exercise": 75,
+      "aliases": [
+        "Sentence Transformers",
+        "SBERT",
+        "MiniLM",
+        "vector",
+        "encoder",
+        "cosine similarity",
+        "sentence embedding"
+      ],
+      "paragraphs": [
+        "An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.",
+        "For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query."
+      ],
+      "references": [
+        63,
+        64,
+        65
+      ],
+      "book_page": 271
+    },
+    {
+      "slug": "ownership",
+      "title": "Sharing a GPU and owning a model",
+      "first_exercise": 130,
+      "aliases": [
+        "multiprocessing",
+        "independent replicas",
+        "IPC",
+        "MPS",
+        "CUDA context",
+        "GPU workers",
+        "time sharing"
+      ],
+      "paragraphs": [
+        "Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers.",
+        "NVIDIA Multi-Process Service, or MPS, is a separate GPU scheduling facility with platform requirements. It does not automatically merge separate model copies. The single-owner queue in this lab lets us study waiting, cancellations and sharing on the available laptop without assuming MPS support."
+      ],
+      "references": [
+        16,
+        101,
+        103,
+        104
+      ],
+      "book_page": 419
+    },
+    {
+      "slug": "asr",
+      "title": "Speech recognition with Whisper",
+      "first_exercise": 196,
+      "aliases": [
+        "ASR",
+        "automatic speech recognition",
+        "Whisper",
+        "audio features",
+        "transcript",
+        "chunks",
+        "decoding"
+      ],
+      "paragraphs": [
+        "Automatic speech recognition turns sound into text. Whisper processes acoustic features from audio, then decodes text tokens. The expected sampling rate, language and decoding settings affect the input or output. A fluent sentence is possible even when the audio contains little evidence for it.",
+        "Start with a known utterance and its reference wording. Save the original audio, hypothesis and settings together. Try a silent or non-speech control and inspect what was produced. For longer recordings, retain chunk start times so text can be traced back to the corresponding audio."
+      ],
+      "references": [
+        156,
+        157,
+        159
+      ],
+      "book_page": 614
+    },
+    {
+      "slug": "sdxl",
+      "title": "Stable Diffusion XL, Diffusers and the VAE",
+      "first_exercise": 184,
+      "aliases": [
+        "SDXL",
+        "Hugging Face Diffusers",
+        "latent",
+        "UNet",
+        "text encoder",
+        "scheduler",
+        "variational autoencoder",
+        "image-to-image"
+      ],
+      "paragraphs": [
+        "Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.",
+        "Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change."
+      ],
+      "references": [
+        148,
+        149,
+        160
+      ],
+      "book_page": 576
+    },
+    {
+      "slug": "stalls",
+      "title": "Stalled workers and stack traces",
+      "first_exercise": 109,
+      "aliases": [
+        "hang",
+        "heartbeat",
+        "deadline",
+        "faulthandler",
+        "timeout",
+        "stack",
+        "supervisor"
+      ],
+      "paragraphs": [
+        "A process can be alive while it makes no progress. A stack trace lists the active chain of function calls in a thread. A heartbeat records progress or liveness at intervals, depending on what it measures. A supervisor can impose a deadline and collect a stack from a deliberately stalled teaching worker.",
+        "Read the last completed step, stack and child exit together. If several samples show the worker waiting at the same point, inspect what would release that wait. The supervisor can complete successfully after recording a child failure, so retain both exits."
+      ],
+      "references": [
+        88,
+        96
+      ],
+      "book_page": 369
+    },
+    {
+      "slug": "streaming",
+      "title": "Streaming text and the first content event",
+      "first_exercise": 9,
+      "aliases": [
+        "Server-Sent Events",
+        "SSE",
+        "time to first token",
+        "TTFT",
+        "chunk",
+        "terminal marker"
+      ],
+      "paragraphs": [
+        "A streaming server sends pieces of a reply while it is still generating. In Server-Sent Events, a single HTTP connection carries a sequence of events. An event can announce a role or carry metadata before any text appears. Network chunks and model tokens also have different boundaries.",
+        "For the first-content latency, start the clock when the client sends the request and stop it at the first event containing text. Keep reading through the protocol’s completion marker. This gives two useful observations, time to visible content and time to a complete reply."
+      ],
+      "references": [
+        3,
+        265
+      ],
+      "book_page": 50
+    },
+    {
+      "slug": "tsne",
+      "title": "t-SNE and neighbourhoods in a plot",
+      "first_exercise": 81,
+      "aliases": [
+        "t-distributed stochastic neighbor embedding",
+        "perplexity",
+        "manifold learning",
+        "visualization"
+      ],
+      "paragraphs": [
+        "t-SNE builds a low-dimensional arrangement that tries to keep similar points near each other. Its perplexity parameter controls the effective neighbourhood size, and an optimization procedure finds the plotted coordinates. Both the parameter and the random initialization can affect the picture.",
+        "Choose one query and label its plotted neighbours by ID. Check those IDs against the neighbours in the original embedding space. Repeat with another suitable perplexity or seed. A broad empty region between two groups on a t-SNE map is insufficient evidence for a corresponding gap in the original space."
+      ],
+      "references": [
+        67,
+        68
+      ],
+      "book_page": 287
+    },
+    {
+      "slug": "tensorrt",
+      "title": "TensorRT engines and optimization profiles",
+      "first_exercise": 160,
+      "aliases": [
+        "trtexec",
+        "serialized engine",
+        "plan",
+        "execution context",
+        "minimum optimum maximum",
+        "build",
+        "inference"
+      ],
+      "paragraphs": [
+        "TensorRT optimizes a model for inference and builds an engine for a target environment. An execution context runs that engine. With dynamic inputs, an optimization profile gives permitted minimum and maximum shapes and an optimum shape used in optimization. An engine’s portability depends on the build and target configuration.",
+        "Build from the small known graph, keep its profile and test a shape inside the allowed range. Compare output with the independent reference. Measure build time, transfers and execution separately. A prebuilt engine repeated many times answers a different timing question from building one before every request."
+      ],
+      "references": [
+        132,
+        133,
+        134,
+        135,
+        136
+      ],
+      "book_page": 498
+    },
+    {
+      "slug": "tts",
+      "title": "Text-to-speech with MMS and VITS",
+      "first_exercise": 192,
+      "aliases": [
+        "TTS",
+        "speech synthesis",
+        "VITS",
+        "MMS",
+        "text normalization",
+        "pronunciation",
+        "waveform"
+      ],
+      "paragraphs": [
+        "A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.",
+        "Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard."
+      ],
+      "references": [
+        154,
+        155
+      ],
+      "book_page": 602
+    },
+    {
+      "slug": "pooling",
+      "title": "Token vectors, attention masks and pooling",
+      "first_exercise": 76,
+      "aliases": [
+        "padding",
+        "pooling",
+        "normalization",
+        "attention mask",
+        "sentence vectors"
+      ],
+      "paragraphs": [
+        "A token encoder produces one vector for each input position. To process sentences of different lengths in the same batch, the tokenizer can add padding. An attention mask identifies positions containing real input. In masked mean pooling we sum the real token vectors and divide by the number of real positions.",
+        "Imagine a two-token sentence padded to four positions. The denominator for its mean is two. If encoding the same sentence beside a longer one changes its representation substantially, inspect the mask and denominator first. L2 normalization then scales a nonzero sentence vector to length one."
+      ],
+      "references": [
+        63,
+        65,
+        73
+      ],
+      "book_page": 275
+    },
+    {
+      "slug": "attention",
+      "title": "Transformer attention and cached decoding",
+      "first_exercise": 59,
+      "aliases": [
+        "attention",
+        "queries",
+        "keys",
+        "values",
+        "transformer block",
+        "RoPE",
+        "rotary positions",
+        "cache position"
+      ],
+      "paragraphs": [
+        "Self-attention lets one token combine information from other allowed positions. It produces a query for the current position, compares it with keys, and uses the resulting weights to combine values. A causal language model can attend to earlier positions while generating the next token.",
+        "During incremental decoding, saved keys and values avoid recomputing the whole prefix. Their positions must agree with the model’s position encoding. Feed the same short sequence once as a whole and once token by token. Compare the scores at each position to locate the first departure."
+      ],
+      "references": [
+        7,
+        58,
+        59
+      ],
+      "book_page": 226
+    },
+    {
+      "slug": "hfstack",
+      "title": "Transformers, tokenizers and the Hugging Face libraries",
+      "first_exercise": 25,
+      "aliases": [
+        "Transformers",
+        "Tokenizers",
+        "Accelerate",
+        "PEFT",
+        "bitsandbytes",
+        "pretrained model",
+        "generation"
+      ],
+      "paragraphs": [
+        "Several libraries can participate in one model run. Transformers loads a model implementation and exposes training or generation methods. Its tokenizer turns text into IDs using the saved vocabulary. PEFT attaches parameter-efficient adapters. Accelerate provides device-placement and training utilities. bitsandbytes supplies supported low-precision operations for configurations that use them.",
+        "Read the particular loader and training configuration in the companion. An ordinary BF16 LoRA run and a run using a quantized base have different memory requirements. Identify which precision and libraries were actually selected before comparing two results."
+      ],
+      "references": [
+        21,
+        22,
+        24,
+        94,
+        275,
+        276
+      ],
+      "book_page": 118
+    },
+    {
+      "slug": "umap",
+      "title": "UMAP and the neighbourhood graph",
+      "first_exercise": 81,
+      "aliases": [
+        "Uniform Manifold Approximation and Projection",
+        "n_neighbors",
+        "min_dist",
+        "umap-learn"
+      ],
+      "paragraphs": [
+        "UMAP builds a graph of nearby points and looks for a low-dimensional layout that preserves aspects of those relationships. The number of neighbours influences the scale at which it builds the graph. The minimum-distance setting influences how tightly points may be packed in the layout.",
+        "Use the same saved vectors and row identities you used for PCA and t-SNE. Change one setting at a time and inspect how the neighbours of a named sentence change. A fitted UMAP model can place new vectors using its transform procedure. Record the fit used for that transformation."
+      ],
+      "references": [
+        69,
+        70,
+        71
+      ],
+      "book_page": 287
+    },
+    {
+      "slug": "unsloth",
+      "title": "Unsloth, QLoRA and a training smoke test",
+      "first_exercise": 239,
+      "aliases": [
+        "Unsloth",
+        "QLoRA",
+        "bitsandbytes",
+        "frozen base",
+        "PEFT",
+        "quantized fine-tuning",
+        "trainer checkpoint"
+      ],
+      "paragraphs": [
+        "Unsloth provides training integrations for supported models and environments. QLoRA stores a frozen base model in low precision and trains small LoRA adapter parameters with higher-precision computation where required. This reduces the storage needed for base weights, while activations and optimizer state still require memory.",
+        "A smoke test runs a few bounded updates to establish that this stack works together. Inspect the frozen base identity, the trainable set, supervised tokens and a change in the adapter. For recovery, compare the next optimizer update after resuming. Task quality requires a separate held-out evaluation."
+      ],
+      "references": [
+        19,
+        21,
+        235,
+        236,
+        237
+      ],
+      "book_page": 754
+    },
+    {
+      "slug": "vectorindex",
+      "title": "Vector indexes and model identity",
+      "first_exercise": 89,
+      "aliases": [
+        "nearest neighbour search",
+        "cosine scores",
+        "encoder fingerprint",
+        "vector index",
+        "row IDs"
+      ],
+      "paragraphs": [
+        "A vector index connects stored document vectors with stable document identifiers so a new query can retrieve the matching text. A small teaching index can score every row directly. Larger systems may trade exact search for speed. Either way, the query and document vectors must occupy compatible coordinate systems.",
+        "Store the encoder identity, pooling method, dimension and document order with the index. A replacement encoder can produce vectors of the same length with different meanings. Search for a known passage after reopening the index, and verify the returned document ID as well as the score."
+      ],
+      "references": [
+        63,
+        65
+      ],
+      "book_page": 310
+    },
+    {
+      "slug": "retained",
+      "title": "Verifying a CUDA allocation above guest RAM",
+      "first_exercise": 251,
+      "aliases": [
+        "WSL2 memory boundaries",
+        "MemTotal",
+        "torch.cuda.mem_get_info",
+        "allocated",
+        "reserved",
+        "Windows CIM",
+        "1 GiB pilot",
+        "18 GiB target"
+      ],
+      "paragraphs": [
+        "A memory query returns the number reported by one interface at one moment. An allocation test makes a different observation. To show that several blocks were usable together, the program must retain them simultaneously, write distinguishable patterns, read them back and check the results before releasing them.",
+        "On the worked laptop, guest MemTotal, the management-interface GPU total and CUDA’s reported budget are separate views of a unified-memory machine. Read the query, guarded 1 GiB pilot and optional 18 GiB target as successive stages. A successful target establishes the verified byte count for that run. Maximum capacity, physical residency and a model’s fit require different experiments."
+      ],
+      "references": [
+        4,
+        16,
+        257,
+        258,
+        259
+      ],
+      "book_page": 800
+    },
+    {
+      "slug": "vlm",
+      "title": "Vision-language models and visual grounding",
+      "first_exercise": 176,
+      "aliases": [
+        "Qwen2.5-VL",
+        "visual tokens",
+        "vision encoder",
+        "multimodal prompt",
+        "OCR",
+        "grounding"
+      ],
+      "paragraphs": [
+        "A vision-language model combines a visual representation with text so that a language component can generate an answer about an image. The processor resizes or tiles the pixels and prepares the visual input expected by the model. Increasing the visual input size can affect token count, memory use and latency.",
+        "Ask for a property you can verify in the source image, such as the position of a colored shape. Compare the answer with the image itself. Words printed inside a picture are also input data. They can test whether the model follows the caller’s task when the picture contains conflicting text."
+      ],
+      "references": [
+        146,
+        147,
+        166
+      ],
+      "book_page": 555
+    },
+    {
+      "slug": "vllm",
+      "title": "vLLM and serving language models",
+      "first_exercise": 148,
+      "aliases": [
+        "continuous batching",
+        "PagedAttention",
+        "generation engine",
+        "OpenAI-compatible API",
+        "KV blocks",
+        "vLLM"
+      ],
+      "paragraphs": [
+        "vLLM is an inference engine and server for language models. It schedules generation for active requests and manages memory used by their attention caches. Continuous batching lets the set of active sequences change as requests arrive or finish. A compatible HTTP API lets the lab use a familiar client.",
+        "Qualify the chosen image, model and device together. Check the server’s ready model identity, make one bounded generation request, then raise concurrency. Separate time in the queue, time to first content and completion. More available weight memory alone does not determine the number of concurrent sequences it can serve."
+      ],
+      "references": [
+        112,
+        113,
+        114
+      ],
+      "book_page": 461
+    },
+    {
+      "slug": "warps",
+      "title": "Warps, Tensor Cores, cuBLAS and CUTLASS",
+      "first_exercise": 61,
+      "aliases": [
+        "warp shuffle",
+        "WMMA",
+        "cuBLAS",
+        "CUTLASS",
+        "Tensor Core",
+        "matrix fragments"
+      ],
+      "paragraphs": [
+        "A warp is a group of 32 CUDA threads. Warp instructions can exchange values among participating lanes, which is useful in a reduction. Tensor Cores carry out supported small matrix multiply-and-accumulate operations. CUDA’s WMMA interface exposes such operations to a cooperating warp.",
+        "cuBLAS is NVIDIA’s library of numerical linear algebra routines. CUTLASS provides C++ components for constructing optimized kernels and has a profiler for testing implementations. Match input types, matrix layout, dimensions and the numerical oracle before comparing implementations. A profiler disposition of “Not verified” leaves the correctness comparison open."
+      ],
+      "references": [
+        43,
+        48,
+        49,
+        56
+      ],
+      "book_page": 230
+    },
+    {
+      "slug": "spectrum",
+      "title": "Waveforms, spectrograms and audio levels",
+      "first_exercise": 189,
+      "aliases": [
+        "FFT",
+        "STFT",
+        "short-time Fourier transform",
+        "spectrum",
+        "RMS",
+        "clipping",
+        "silence"
+      ],
+      "paragraphs": [
+        "A waveform shows amplitude over time. A spectrogram divides the signal into short, often overlapping windows and shows how energy is distributed across frequencies in each window. The short-time Fourier transform is one way to compute it. Window length influences how well nearby times and frequencies can be distinguished.",
+        "Start with the known tone and a silent interval. Check the sample rate, time axis, frequency axis and level scale. Then inspect a generated clip and listen at the same locations. A bright band can identify energy at a frequency but cannot score pronunciation, musicality or intelligibility."
+      ],
+      "references": [
+        159,
+        168
+      ],
+      "book_page": 596
+    },
+    {
+      "slug": "wsl",
+      "title": "Windows, WSL2 and the mapped GPU",
+      "first_exercise": 1,
+      "aliases": [
+        "Ubuntu",
+        "ARM64",
+        "AArch64",
+        "host",
+        "guest",
+        "dxg",
+        "Linux kernel"
+      ],
+      "paragraphs": [
+        "WSL2 runs a Linux kernel in a lightweight virtual machine managed by Windows. Windows is the host. Ubuntu is the Linux system in which we open a terminal and run the exercises. ARM64, also called AArch64, describes the processor instruction set that a Linux executable must support on this laptop.",
+        "The NVIDIA driver lives on the Windows side. WSL2 makes its GPU interface available to Linux applications. The inventory asks Linux for its kernel and architecture, then runs nvidia-smi, NVIDIA’s management query for the GPU. These observations establish what the guest can see. A later synchronized calculation establishes that a CUDA program can execute there."
+      ],
+      "references": [
+        4,
+        9,
+        10,
+        90
+      ],
+      "book_page": 20
+    },
+    {
+      "slug": "wer",
+      "title": "Word error rate and transcript alignment",
+      "first_exercise": 197,
+      "aliases": [
+        "WER",
+        "substitutions",
+        "insertions",
+        "deletions",
+        "reference",
+        "hypothesis",
+        "normalization"
+      ],
+      "paragraphs": [
+        "Word error rate compares a recognition hypothesis with reference words. Count substitutions, deletions and insertions in an alignment, then divide their sum by the number of reference words. With four reference words and one substitution, the rate is 0.25. Extra inserted words can even make a rate exceed one.",
+        "Write down your rules for case, punctuation and numbers before comparing systems. Keep both the raw and normalized transcripts. An empty reference leaves the usual denominator undefined, so report the actual silence or non-speech behavior directly."
+      ],
+      "references": [
+        156,
+        158
+      ],
+      "book_page": 616
+    },
+    {
+      "slug": "kernels",
+      "title": "Writing a CUDA kernel with threads and blocks",
+      "first_exercise": 32,
+      "aliases": [
+        "vector addition",
+        "threadIdx",
+        "blockIdx",
+        "grid",
+        "block",
+        "indexing",
+        "grid-stride loop",
+        "tail guard"
+      ],
+      "paragraphs": [
+        "A kernel is a function that many GPU threads execute on different data. Threads are grouped into blocks, and the blocks form a grid. In one dimension, a thread can compute its element index from its block number, block size and position inside the block.",
+        "Imagine adding two vectors of length five with blocks of four threads. Two blocks supply eight thread positions. Only indices zero through four correspond to elements. A bounds check protects the tail. A grid-stride loop lets each valid thread handle further elements when the vector is much longer than the grid."
+      ],
+      "references": [
+        42,
+        43,
+        44
+      ],
+      "book_page": 151
+    }
+  ],
+  "exercises": {
+    "1": [
+      "wsl",
+      "shell"
+    ],
+    "2": [
+      "model",
+      "budgets"
+    ],
+    "3": [
+      "http",
+      "shell"
+    ],
+    "4": [
+      "files",
+      "identifiers"
+    ],
+    "5": [
+      "server",
+      "model"
+    ],
+    "6": [
+      "prompt",
+      "http"
+    ],
+    "7": [
+      "timing"
+    ],
+    "8": [
+      "timing",
+      "server"
+    ],
+    "9": [
+      "streaming",
+      "timing"
+    ],
+    "10": [
+      "model",
+      "server",
+      "timing"
+    ],
+    "11": [
+      "quant",
+      "prompt"
+    ],
+    "12": [
+      "placement",
+      "budgets"
+    ],
+    "13": [
+      "server",
+      "files",
+      "reasoning"
+    ],
+    "14": [
+      "torch",
+      "pythonpackages"
+    ],
+    "15": [
+      "grounding",
+      "prompt"
+    ],
+    "16": [
+      "prompt",
+      "grounding"
+    ],
+    "17": [
+      "agent"
+    ],
+    "18": [
+      "agent",
+      "http"
+    ],
+    "19": [
+      "agent",
+      "prompt"
+    ],
+    "20": [
+      "agent",
+      "grounding"
+    ],
+    "21": [
+      "concurrency",
+      "timing"
+    ],
+    "22": [
+      "offline",
+      "files"
+    ],
+    "23": [
+      "reasoning",
+      "grounding"
+    ],
+    "24": [
+      "splits"
+    ],
+    "25": [
+      "lora",
+      "hfstack"
+    ],
+    "26": [
+      "splits",
+      "lora",
+      "prompt"
+    ],
+    "27": [
+      "checkpoints",
+      "lora"
+    ],
+    "28": [
+      "placement",
+      "server"
+    ],
+    "29": [
+      "bigmodel",
+      "budgets",
+      "placement"
+    ],
+    "30": [
+      "paging",
+      "bigmodel"
+    ],
+    "31": [
+      "toolkit",
+      "wsl"
+    ],
+    "32": [
+      "build",
+      "kernels",
+      "toolkit"
+    ],
+    "33": [
+      "instructions",
+      "build"
+    ],
+    "34": [
+      "dumps",
+      "torch"
+    ],
+    "35": [
+      "debugger",
+      "dumps"
+    ],
+    "36": [
+      "debugger",
+      "dumps"
+    ],
+    "37": [
+      "sanitizer",
+      "kernels"
+    ],
+    "38": [
+      "sanitizer",
+      "debugger"
+    ],
+    "39": [
+      "nsys"
+    ],
+    "40": [
+      "sqlite",
+      "nsys"
+    ],
+    "41": [
+      "ncu",
+      "nsys"
+    ],
+    "42": [
+      "allocator",
+      "dumps"
+    ],
+    "43": [
+      "profiler",
+      "nsys"
+    ],
+    "44": [
+      "profiler",
+      "server",
+      "nsys"
+    ],
+    "45": [
+      "kernels",
+      "build"
+    ],
+    "46": [
+      "kernels"
+    ],
+    "47": [
+      "tiles",
+      "kernels"
+    ],
+    "48": [
+      "tiles",
+      "sanitizer"
+    ],
+    "49": [
+      "reductions",
+      "tiles"
+    ],
+    "50": [
+      "reductions",
+      "sanitizer"
+    ],
+    "51": [
+      "matmul"
+    ],
+    "52": [
+      "matmul",
+      "tiles"
+    ],
+    "53": [
+      "fusion"
+    ],
+    "54": [
+      "fusion",
+      "nsys"
+    ],
+    "55": [
+      "normalization",
+      "reductions"
+    ],
+    "56": [
+      "normalization",
+      "reductions"
+    ],
+    "57": [
+      "operators",
+      "torch"
+    ],
+    "58": [
+      "operators",
+      "streams"
+    ],
+    "59": [
+      "attention",
+      "model"
+    ],
+    "60": [
+      "attention"
+    ],
+    "61": [
+      "warps",
+      "reductions"
+    ],
+    "62": [
+      "warps",
+      "matmul"
+    ],
+    "63": [
+      "streams",
+      "fusion"
+    ],
+    "64": [
+      "streams",
+      "nsys"
+    ],
+    "65": [
+      "streams"
+    ],
+    "66": [
+      "packing",
+      "quant"
+    ],
+    "67": [
+      "packing",
+      "sanitizer"
+    ],
+    "68": [
+      "trainingstate",
+      "allocator"
+    ],
+    "69": [
+      "trainingstate",
+      "checkpoints"
+    ],
+    "70": [
+      "casebook",
+      "reasoning"
+    ],
+    "71": [
+      "agent",
+      "casebook"
+    ],
+    "72": [
+      "agent",
+      "grounding"
+    ],
+    "73": [
+      "instructions",
+      "debugger"
+    ],
+    "74": [
+      "timing",
+      "toolkit",
+      "budgets"
+    ],
+    "75": [
+      "embeddings",
+      "hfstack"
+    ],
+    "76": [
+      "pooling",
+      "embeddings"
+    ],
+    "77": [
+      "splits",
+      "embeddings"
+    ],
+    "78": [
+      "ranking",
+      "pooling"
+    ],
+    "79": [
+      "pca",
+      "ranking"
+    ],
+    "80": [
+      "pca",
+      "splits"
+    ],
+    "81": [
+      "tsne",
+      "umap",
+      "pca"
+    ],
+    "82": [
+      "tsne",
+      "umap",
+      "ranking"
+    ],
+    "83": [
+      "bert",
+      "splits"
+    ],
+    "84": [
+      "bert"
+    ],
+    "85": [
+      "bert",
+      "checkpoints"
+    ],
+    "86": [
+      "contrast",
+      "bert",
+      "pooling"
+    ],
+    "87": [
+      "contrast",
+      "ranking",
+      "checkpoints"
+    ],
+    "88": [
+      "contrast",
+      "ranking"
+    ],
+    "89": [
+      "vectorindex",
+      "embeddings"
+    ],
+    "90": [
+      "embeddings",
+      "torch",
+      "profiler"
+    ],
+    "91": [
+      "metrics"
+    ],
+    "92": [
+      "plots",
+      "metrics"
+    ],
+    "93": [
+      "metrics",
+      "http"
+    ],
+    "94": [
+      "metrics",
+      "wsl"
+    ],
+    "95": [
+      "plots",
+      "metrics",
+      "timing"
+    ],
+    "96": [
+      "plots",
+      "metrics",
+      "trainingstate"
+    ],
+    "97": [
+      "metrics",
+      "timing",
+      "plots"
+    ],
+    "98": [
+      "plots",
+      "nsys"
+    ],
+    "99": [
+      "precision",
+      "torch"
+    ],
+    "100": [
+      "precision",
+      "pooling"
+    ],
+    "101": [
+      "compile"
+    ],
+    "102": [
+      "compile",
+      "instructions"
+    ],
+    "103": [
+      "supply",
+      "metrics"
+    ],
+    "104": [
+      "supply",
+      "concurrency"
+    ],
+    "105": [
+      "roofline"
+    ],
+    "106": [
+      "roofline",
+      "ncu"
+    ],
+    "107": [
+      "allocator",
+      "trainingstate"
+    ],
+    "108": [
+      "allocator",
+      "budgets"
+    ],
+    "109": [
+      "stalls"
+    ],
+    "110": [
+      "stalls",
+      "concurrency"
+    ],
+    "111": [
+      "otel"
+    ],
+    "112": [
+      "otel",
+      "timing"
+    ],
+    "113": [
+      "grounding",
+      "reasoning"
+    ],
+    "114": [
+      "ranking",
+      "splits"
+    ],
+    "115": [
+      "reductiontest",
+      "reasoning"
+    ],
+    "116": [
+      "reductiontest"
+    ],
+    "117": [
+      "obschecks",
+      "otel"
+    ],
+    "118": [
+      "obschecks",
+      "metrics"
+    ],
+    "119": [
+      "casebook",
+      "reasoning"
+    ],
+    "120": [
+      "casebook",
+      "reasoning"
+    ],
+    "121": [
+      "casebook"
+    ],
+    "122": [
+      "casebook",
+      "reasoning"
+    ],
+    "123": [
+      "dist",
+      "budgets"
+    ],
+    "124": [
+      "parallel",
+      "dist"
+    ],
+    "125": [
+      "parallel",
+      "dist",
+      "plots"
+    ],
+    "126": [
+      "dist",
+      "stalls"
+    ],
+    "127": [
+      "trainingstate",
+      "parallel"
+    ],
+    "128": [
+      "parallel",
+      "matmul"
+    ],
+    "129": [
+      "dist",
+      "parallel"
+    ],
+    "130": [
+      "ownership",
+      "concurrency"
+    ],
+    "131": [
+      "ownership",
+      "allocator"
+    ],
+    "132": [
+      "batching",
+      "ownership"
+    ],
+    "133": [
+      "ownership",
+      "trainingstate",
+      "supply"
+    ],
+    "134": [
+      "streams",
+      "ownership",
+      "nsys"
+    ],
+    "135": [
+      "batching",
+      "ownership",
+      "stalls"
+    ],
+    "136": [
+      "serving",
+      "http"
+    ],
+    "137": [
+      "serving"
+    ],
+    "138": [
+      "batching",
+      "serving",
+      "timing"
+    ],
+    "139": [
+      "streaming",
+      "serving"
+    ],
+    "140": [
+      "docker"
+    ],
+    "141": [
+      "compose",
+      "docker"
+    ],
+    "142": [
+      "containersgpu",
+      "docker"
+    ],
+    "143": [
+      "docker",
+      "containersgpu",
+      "serving"
+    ],
+    "144": [
+      "kube",
+      "compose"
+    ],
+    "145": [
+      "kube",
+      "serving"
+    ],
+    "146": [
+      "scheduling",
+      "containersgpu"
+    ],
+    "147": [
+      "scheduling",
+      "kube",
+      "ownership"
+    ],
+    "148": [
+      "vllm",
+      "model"
+    ],
+    "149": [
+      "vllm",
+      "batching",
+      "kube"
+    ],
+    "150": [
+      "tritonserver",
+      "batching"
+    ],
+    "151": [
+      "onnx",
+      "tritonserver",
+      "nsys"
+    ],
+    "152": [
+      "arrays",
+      "onnx"
+    ],
+    "153": [
+      "rapids",
+      "arrays"
+    ],
+    "154": [
+      "rapids",
+      "pca"
+    ],
+    "155": [
+      "rmm",
+      "allocator"
+    ],
+    "156": [
+      "onnx",
+      "arrays"
+    ],
+    "157": [
+      "onnx",
+      "precision"
+    ],
+    "158": [
+      "onnx",
+      "profiler"
+    ],
+    "159": [
+      "onnx",
+      "pooling"
+    ],
+    "160": [
+      "tensorrt",
+      "onnx"
+    ],
+    "161": [
+      "tensorrt",
+      "onnx"
+    ],
+    "162": [
+      "tensorrt",
+      "timing"
+    ],
+    "163": [
+      "tensorrt",
+      "tritonserver"
+    ],
+    "164": [
+      "qdq",
+      "quant"
+    ],
+    "165": [
+      "qdq",
+      "splits"
+    ],
+    "166": [
+      "qdq",
+      "onnx",
+      "tensorrt"
+    ],
+    "167": [
+      "qdq",
+      "timing",
+      "serving"
+    ],
+    "168": [
+      "nemo",
+      "splits"
+    ],
+    "169": [
+      "nemo",
+      "hfstack"
+    ],
+    "170": [
+      "nemo",
+      "trainingstate",
+      "checkpoints"
+    ],
+    "171": [
+      "nemo",
+      "lora",
+      "checkpoints"
+    ],
+    "172": [
+      "media",
+      "pythonpackages"
+    ],
+    "173": [
+      "media"
+    ],
+    "174": [
+      "media",
+      "files",
+      "hfstack"
+    ],
+    "175": [
+      "media",
+      "reasoning"
+    ],
+    "176": [
+      "vlm",
+      "media"
+    ],
+    "177": [
+      "vlm",
+      "budgets"
+    ],
+    "178": [
+      "vlm",
+      "grounding"
+    ],
+    "179": [
+      "vlm",
+      "profiler",
+      "nsys"
+    ],
+    "180": [
+      "diffusion"
+    ],
+    "181": [
+      "diffusion",
+      "trainingstate"
+    ],
+    "182": [
+      "diffusion",
+      "plots"
+    ],
+    "183": [
+      "diffusion",
+      "media"
+    ],
+    "184": [
+      "sdxl",
+      "diffusion"
+    ],
+    "185": [
+      "sdxl",
+      "placement"
+    ],
+    "186": [
+      "sdxl",
+      "allocator",
+      "profiler"
+    ],
+    "187": [
+      "sdxl",
+      "diffusion"
+    ],
+    "188": [
+      "music",
+      "media"
+    ],
+    "189": [
+      "spectrum",
+      "music"
+    ],
+    "190": [
+      "music",
+      "timing"
+    ],
+    "191": [
+      "music",
+      "spectrum",
+      "profiler"
+    ],
+    "192": [
+      "tts",
+      "media"
+    ],
+    "193": [
+      "spectrum",
+      "tts"
+    ],
+    "194": [
+      "tts",
+      "prompt"
+    ],
+    "195": [
+      "tts",
+      "timing",
+      "profiler"
+    ],
+    "196": [
+      "asr",
+      "media"
+    ],
+    "197": [
+      "wer",
+      "asr"
+    ],
+    "198": [
+      "asr",
+      "spectrum"
+    ],
+    "199": [
+      "asr",
+      "wer"
+    ],
+    "200": [
+      "mediaadapter",
+      "asr",
+      "wer"
+    ],
+    "201": [
+      "mediaadapter",
+      "sdxl",
+      "lora"
+    ],
+    "202": [
+      "multimediapipe",
+      "asr",
+      "tts"
+    ],
+    "203": [
+      "multimediapipe",
+      "ownership",
+      "kube"
+    ],
+    "204": [
+      "ngc",
+      "files"
+    ],
+    "205": [
+      "ngc",
+      "toolkit"
+    ],
+    "206": [
+      "oci",
+      "ngc",
+      "docker"
+    ],
+    "207": [
+      "oci",
+      "ngc"
+    ],
+    "208": [
+      "hfhub",
+      "files"
+    ],
+    "209": [
+      "hfhub",
+      "offline"
+    ],
+    "210": [
+      "hfhub",
+      "hfstack",
+      "offline"
+    ],
+    "211": [
+      "hfhub",
+      "splits",
+      "arrays"
+    ],
+    "212": [
+      "prometheus",
+      "metrics"
+    ],
+    "213": [
+      "prometheus",
+      "metrics"
+    ],
+    "214": [
+      "prometheus",
+      "serving"
+    ],
+    "215": [
+      "grafana",
+      "prometheus"
+    ],
+    "216": [
+      "promql",
+      "prometheus"
+    ],
+    "217": [
+      "promql",
+      "obschecks"
+    ],
+    "218": [
+      "prometheus",
+      "tritonserver",
+      "timing"
+    ],
+    "219": [
+      "prometheus",
+      "grafana",
+      "kube"
+    ],
+    "220": [
+      "langchain",
+      "agent"
+    ],
+    "221": [
+      "langchain",
+      "agent"
+    ],
+    "222": [
+      "langchain",
+      "http",
+      "server"
+    ],
+    "223": [
+      "langgraph",
+      "sqlite"
+    ],
+    "224": [
+      "langgraph",
+      "agent"
+    ],
+    "225": [
+      "langgraph",
+      "langchain"
+    ],
+    "226": [
+      "langsmith",
+      "otel"
+    ],
+    "227": [
+      "langsmith",
+      "splits"
+    ],
+    "228": [
+      "langsmith",
+      "offline"
+    ],
+    "229": [
+      "pydantic",
+      "agent"
+    ],
+    "230": [
+      "pydantic",
+      "agent"
+    ],
+    "231": [
+      "pydantic",
+      "http"
+    ],
+    "232": [
+      "jev",
+      "pydantic"
+    ],
+    "233": [
+      "calibration",
+      "jev"
+    ],
+    "234": [
+      "jev",
+      "http"
+    ],
+    "235": [
+      "ollama",
+      "server"
+    ],
+    "236": [
+      "ollama",
+      "streaming",
+      "files"
+    ],
+    "237": [
+      "ollama",
+      "embeddings"
+    ],
+    "238": [
+      "ollama",
+      "ownership"
+    ],
+    "239": [
+      "unsloth",
+      "splits"
+    ],
+    "240": [
+      "unsloth",
+      "lora"
+    ],
+    "241": [
+      "unsloth",
+      "trainingstate"
+    ],
+    "242": [
+      "unsloth",
+      "checkpoints"
+    ],
+    "243": [
+      "lmstudio",
+      "server"
+    ],
+    "244": [
+      "lmstudio",
+      "serving",
+      "files"
+    ],
+    "245": [
+      "lmstudio",
+      "streaming",
+      "timing"
+    ],
+    "246": [
+      "lmstudio",
+      "embeddings",
+      "agent"
+    ],
+    "247": [
+      "nemotron",
+      "files"
+    ],
+    "248": [
+      "nemotron",
+      "bigmodel",
+      "budgets"
+    ],
+    "249": [
+      "nemotron",
+      "placement",
+      "paging"
+    ],
+    "250": [
+      "nemotron",
+      "prompt",
+      "lora"
+    ],
+    "251": [
+      "retained",
+      "budgets",
+      "paging"
+    ]
+  },
+  "references": {
+    "2": {
+      "label": "Qwen. Qwen2.5-7B-Instruct-GGUF model card and files",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct-GGUF"
+    },
+    "3": {
+      "label": "ggml-org. llama.cpp HTTP server documentation, pinned tag b11898",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b11898/tools/server/README.md"
+    },
+    "4": {
+      "label": "NVIDIA. CUDA on WSL User Guide",
+      "url": "https://docs.nvidia.com/cuda/wsl-user-guide/index.html"
+    },
+    "5": {
+      "label": "NVIDIA. NVIDIA System Management Interface documentation",
+      "url": "https://docs.nvidia.com/deploy/nvidia-smi/index.html"
+    },
+    "7": {
+      "label": "Hugging Face. Transformers cache strategies",
+      "url": "https://huggingface.co/docs/transformers/en/kv_cache"
+    },
+    "8": {
+      "label": "Qwen. Qwen2.5-7B-Instruct configuration",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/blob/main/config.json"
+    },
+    "9": {
+      "label": "Microsoft. Advanced settings configuration in WSL",
+      "url": "https://learn.microsoft.com/en-us/windows/wsl/wsl-config"
+    },
+    "10": {
+      "label": "Microsoft. Working across Windows and Linux file systems",
+      "url": "https://learn.microsoft.com/en-us/windows/wsl/filesystems"
+    },
+    "11": {
+      "label": "ggml-org. llama.cpp release b11898",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b11898"
+    },
+    "13": {
+      "label": "NVIDIA. CUDA Installation Guide for Linux",
+      "url": "https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html"
+    },
+    "14": {
+      "label": "Microsoft. Accessing network applications with WSL",
+      "url": "https://learn.microsoft.com/en-us/windows/wsl/networking"
+    },
+    "15": {
+      "label": "PyTorch. Local installation guidance and platform selection",
+      "url": "https://pytorch.org/get-started/locally/"
+    },
+    "16": {
+      "label": "PyTorch. CUDA semantics and memory management",
+      "url": "https://docs.pytorch.org/docs/2.14/notes/cuda.html"
+    },
+    "17": {
+      "label": "Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., and Cao, Y. ReAct Synergizing Reasoning and Acting in Language Models. ICLR 2023",
+      "url": "https://arxiv.org/abs/2210.03629"
+    },
+    "18": {
+      "label": "Hu, E. J., et al. LoRA: Low-Rank Adaptation of Large Language Models. 2021",
+      "url": "https://arxiv.org/abs/2106.09685"
+    },
+    "19": {
+      "label": "Dettmers, T., et al. QLoRA: Efficient Finetuning of Quantized LLMs. 2023",
+      "url": "https://arxiv.org/abs/2305.14314"
+    },
+    "21": {
+      "label": "Hugging Face. PEFT LoRA documentation",
+      "url": "https://huggingface.co/docs/peft/en/developer_guides/lora"
+    },
+    "22": {
+      "label": "Hugging Face. bitsandbytes installation and supported platforms",
+      "url": "https://huggingface.co/docs/bitsandbytes/main/en/installation"
+    },
+    "23": {
+      "label": "PyTorch. Official CUDA 13.0 torch wheel index, including aarch64 builds",
+      "url": "https://download.pytorch.org/whl/cu130/torch/"
+    },
+    "24": {
+      "label": "Hugging Face. Accelerate: Loading big models into memory",
+      "url": "https://huggingface.co/docs/accelerate/en/concept_guides/big_model_inference"
+    },
+    "25": {
+      "label": "Qwen. Qwen2.5-32B-Instruct-GGUF model card and files",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct-GGUF"
+    },
+    "26": {
+      "label": "NVIDIA. CUDA Programming Guide: The CUDA platform",
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/01-introduction/cuda-platform.html"
+    },
+    "27": {
+      "label": "NVIDIA. CUDA Runtime API: Memory Management",
+      "url": "https://docs.nvidia.com/cuda/cuda-runtime-api/cuda_runtime_api/group__CUDART__MEMORY.html"
+    },
+    "28": {
+      "label": "NVIDIA. CUDA Programming Guide: Asynchronous Execution",
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/asynchronous-execution.html"
+    },
+    "31": {
+      "label": "NVIDIA. CUDA Compiler Driver NVCC",
+      "url": "https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html"
+    },
+    "32": {
+      "label": "NVIDIA. NVTX: NVIDIA Tools Extension Library",
+      "url": "https://nvidia.github.io/NVTX/"
+    },
+    "33": {
+      "label": "NVIDIA. CUDA Binary Utilities",
+      "url": "https://docs.nvidia.com/cuda/cuda-binary-utilities/index.html"
+    },
+    "34": {
+      "label": "NVIDIA. CUDA-GDB 13.4 manual, sections 4.5, 13.14 and 16",
+      "url": "https://docs.nvidia.com/cuda/cuda-gdb/index.html#known-issues"
+    },
+    "35": {
+      "label": "NVIDIA. Compute Sanitizer User Guide",
+      "url": "https://docs.nvidia.com/compute-sanitizer/ComputeSanitizer/index.html"
+    },
+    "36": {
+      "label": "NVIDIA. CUPTI usage and collection interfaces",
+      "url": "https://docs.nvidia.com/cupti/main/main.html"
+    },
+    "37": {
+      "label": "NVIDIA. Nsight Compute CLI",
+      "url": "https://docs.nvidia.com/nsight-compute/NsightComputeCli/index.html"
+    },
+    "38": {
+      "label": "NVIDIA. ERR_NVGPUCTRPERM and performance-counter access",
+      "url": "https://developer.nvidia.com/ERR_NVGPUCTRPERM"
+    },
+    "39": {
+      "label": "PyTorch. Understanding CUDA Memory Usage, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html"
+    },
+    "40": {
+      "label": "PyTorch. torch.profiler, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/profiler.html"
+    },
+    "41": {
+      "label": "NVIDIA. Nsight Systems User Guide, capture ranges, statistics, and export",
+      "url": "https://docs.nvidia.com/nsight-systems/UserGuide/index.html"
+    },
+    "42": {
+      "label": "NVIDIA. CUDA Programming Guide. Intro to CUDA C++",
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/intro-to-cuda-cpp.html"
+    },
+    "43": {
+      "label": "NVIDIA. CUDA Programming Guide. Writing SIMT Kernels",
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/writing-cuda-kernels.html"
+    },
+    "44": {
+      "label": "Harris, M. CUDA Pro Tip: Write Flexible Kernels with Grid-Stride Loops. NVIDIA, 2013",
+      "url": "https://developer.nvidia.com/blog/cuda-pro-tip-write-flexible-kernels-grid-stride-loops/"
+    },
+    "45": {
+      "label": "NVIDIA. CUDA C++ Best Practices Guide",
+      "url": "https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/"
+    },
+    "46": {
+      "label": "NVIDIA. CUDA Programming Guide. C/C++ Language Extensions, atomic functions",
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/05-appendices/cpp-language-extensions.html"
+    },
+    "47": {
+      "label": "NVIDIA. Floating Point and IEEE 754",
+      "url": "https://docs.nvidia.com/cuda/floating-point/index.html"
+    },
+    "48": {
+      "label": "NVIDIA. cuBLAS Library documentation",
+      "url": "https://docs.nvidia.com/cuda/cublas/index.html"
+    },
+    "49": {
+      "label": "NVIDIA. CUTLASS documentation overview",
+      "url": "https://docs.nvidia.com/cutlass/latest/overview.html"
+    },
+    "50": {
+      "label": "Zhang, B., and Sennrich, R. Root Mean Square Layer Normalization. 2019",
+      "url": "https://arxiv.org/abs/1910.07467"
+    },
+    "51": {
+      "label": "Milakov, M., and Gimelshein, N. Online normalizer calculation for softmax. 2018",
+      "url": "https://arxiv.org/abs/1805.02867"
+    },
+    "52": {
+      "label": "PyTorch. Custom C++ and CUDA Operators",
+      "url": "https://docs.pytorch.org/tutorials/advanced/cpp_custom_ops.html"
+    },
+    "53": {
+      "label": "PyTorch. torch.library, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/library.html"
+    },
+    "54": {
+      "label": "PyTorch. torch.utils.checkpoint, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/checkpoint.html"
+    },
+    "55": {
+      "label": "NVIDIA. CUDA Programming Guide. CUDA Graphs",
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/04-special-topics/cuda-graphs.html"
+    },
+    "56": {
+      "label": "NVIDIA. CUTLASS Profiler",
+      "url": "https://docs.nvidia.com/cutlass/latest/media/docs/cpp/profiler.html"
+    },
+    "57": {
+      "label": "PyTorch. Automatic Mixed Precision package, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/amp.html"
+    },
+    "58": {
+      "label": "Vaswani, A., et al. Attention Is All You Need. 2017",
+      "url": "https://arxiv.org/abs/1706.03762"
+    },
+    "59": {
+      "label": "Su, J., et al. RoFormer Enhanced Transformer with Rotary Position Embedding. 2021",
+      "url": "https://arxiv.org/abs/2104.09864"
+    },
+    "60": {
+      "label": "PyTorch. torch.utils.cpp_extension, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/cpp_extension.html"
+    },
+    "61": {
+      "label": "PyTorch. Saving and Loading a General Checkpoint",
+      "url": "https://docs.pytorch.org/tutorials/recipes/recipes/saving_and_loading_a_general_checkpoint.html"
+    },
+    "62": {
+      "label": "NVIDIA. Parallel Thread Execution ISA 9.4",
+      "url": "https://docs.nvidia.com/cuda/parallel-thread-execution/index.html"
+    },
+    "63": {
+      "label": "Reimers, N., and Gurevych, I. Sentence-BERT. 2019",
+      "url": "https://arxiv.org/abs/1908.10084"
+    },
+    "64": {
+      "label": "Sentence Transformers. all-MiniLM-L6-v2 model card",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    "65": {
+      "label": "Sentence Transformers. SentenceTransformer API",
+      "url": "https://sbert.net/docs/package_reference/sentence_transformer/model.html"
+    },
+    "66": {
+      "label": "scikit-learn. PCA API",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"
+    },
+    "67": {
+      "label": "scikit-learn. t-SNE API and parameter interpretation",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html"
+    },
+    "68": {
+      "label": "scikit-learn. Trustworthiness API",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.manifold.trustworthiness.html"
+    },
+    "69": {
+      "label": "UMAP. Basic parameters",
+      "url": "https://umap-learn.readthedocs.io/en/latest/parameters.html"
+    },
+    "70": {
+      "label": "UMAP. Reproducibility",
+      "url": "https://umap-learn.readthedocs.io/en/latest/reproducibility.html"
+    },
+    "71": {
+      "label": "UMAP. Transforming new data",
+      "url": "https://umap-learn.readthedocs.io/en/latest/transform.html"
+    },
+    "72": {
+      "label": "Devlin, J., et al. BERT. 2018",
+      "url": "https://arxiv.org/abs/1810.04805"
+    },
+    "73": {
+      "label": "Hugging Face. BERT API, Transformers 4.57.1",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/en/model_doc/bert"
+    },
+    "74": {
+      "label": "Hugging Face. Tokenizers quicktour",
+      "url": "https://huggingface.co/docs/tokenizers/en/quicktour"
+    },
+    "75": {
+      "label": "Hugging Face. Masked language modeling, Transformers 4.57.1",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/en/tasks/masked_language_modeling"
+    },
+    "76": {
+      "label": "Sentence Transformers. Loss functions",
+      "url": "https://sbert.net/docs/package_reference/sentence_transformer/losses.html"
+    },
+    "77": {
+      "label": "Sentence Transformers. Batch samplers",
+      "url": "https://sbert.net/docs/package_reference/sentence_transformer/sampler.html"
+    },
+    "78": {
+      "label": "NVIDIA. NVIDIA System Management Interface and field definitions",
+      "url": "https://docs.nvidia.com/deploy/nvidia-smi/"
+    },
+    "79": {
+      "label": "NVIDIA. Useful nvidia-smi Queries",
+      "url": "https://nvidia.custhelp.com/app/answers/detail/a_id/3751"
+    },
+    "80": {
+      "label": "Python. time and monotonic clocks",
+      "url": "https://docs.python.org/3/library/time.html"
+    },
+    "81": {
+      "label": "Linux Kernel. The proc filesystem and memory accounting",
+      "url": "https://docs.kernel.org/filesystems/proc.html"
+    },
+    "82": {
+      "label": "NVIDIA. CUDA on WSL User Guide and NVML limitations",
+      "url": "https://docs.nvidia.com/cuda/wsl-user-guide/"
+    },
+    "83": {
+      "label": "PyTorch. Numerical accuracy, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/notes/numerical_accuracy.html"
+    },
+    "84": {
+      "label": "PyTorch. Compiler observability and TORCH_LOGS, 2.14 guide",
+      "url": "https://docs.pytorch.org/docs/2.14/user_guide/torch_compiler/compile/programming_model.observability.html"
+    },
+    "85": {
+      "label": "PyTorch. DataLoader and data processing, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/data.html"
+    },
+    "86": {
+      "label": "NVIDIA. Nsight Compute Profiling Guide, roofline charts",
+      "url": "https://docs.nvidia.com/nsight-compute/ProfilingGuide/"
+    },
+    "87": {
+      "label": "PyTorch CUDA memory snapshots. See [39]",
+      "url": "https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html"
+    },
+    "88": {
+      "label": "Python. faulthandler traceback collection",
+      "url": "https://docs.python.org/3/library/faulthandler.html"
+    },
+    "89": {
+      "label": "OpenTelemetry. Python manual instrumentation",
+      "url": "https://opentelemetry.io/docs/languages/python/instrumentation/"
+    },
+    "90": {
+      "label": "Microsoft. What is the Windows Subsystem for Linux?",
+      "url": "https://learn.microsoft.com/en-us/windows/wsl/about"
+    },
+    "92": {
+      "label": "ggml-org. llama.cpp option registration, pinned tag b11898",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b11898/common/arg.cpp"
+    },
+    "94": {
+      "label": "Hugging Face. Transformers 4.57.1 model loading and dtype",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/en/main_classes/model"
+    },
+    "96": {
+      "label": "PyTorch. Distributed communication package and debugging, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/distributed.html"
+    },
+    "97": {
+      "label": "PyTorch. torchrun Elastic Launch, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/elastic/run.html"
+    },
+    "98": {
+      "label": "PyTorch. DistributedDataParallel, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/generated/torch.nn.parallel.DistributedDataParallel.html"
+    },
+    "99": {
+      "label": "PyTorch. FSDP2 fully_shard, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/distributed.fsdp.fully_shard.html"
+    },
+    "100": {
+      "label": "NVIDIA. NCCL Creating a Communicator, consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/usage/communicators.html"
+    },
+    "101": {
+      "label": "PyTorch. Multiprocessing best practices, version 2.14",
+      "url": "https://docs.pytorch.org/docs/2.14/notes/multiprocessing.html"
+    },
+    "102": {
+      "label": "PyTorch data loading with worker processes. See [85]",
+      "url": "https://docs.pytorch.org/docs/2.14/data.html"
+    },
+    "103": {
+      "label": "NVIDIA. Multi-Process Service, consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deploy/mps/latest/index.html"
+    },
+    "104": {
+      "label": "NVIDIA. When to Use MPS and system limitations, consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deploy/mps/latest/when-to-use-mps.html"
+    },
+    "105": {
+      "label": "Docker. Install Docker Engine on Ubuntu. Consulted 27 October 2026",
+      "url": "https://docs.docker.com/engine/install/ubuntu/"
+    },
+    "106": {
+      "label": "NVIDIA. Container Toolkit installation guide. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html"
+    },
+    "107": {
+      "label": "K3s. Quick-start guide. Consulted 27 October 2026",
+      "url": "https://docs.k3s.io/quick-start"
+    },
+    "108": {
+      "label": "K3s. Advanced options and alternative container runtimes. Consulted 27 October 2026",
+      "url": "https://docs.k3s.io/advanced"
+    },
+    "109": {
+      "label": "Kubernetes. Schedule GPUs. Consulted 27 October 2026",
+      "url": "https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/"
+    },
+    "110": {
+      "label": "Kubernetes. Liveness readiness and startup probes. Consulted 27 October 2026",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/"
+    },
+    "111": {
+      "label": "NVIDIA. Kubernetes device plugin and releases. Consulted 27 October 2026",
+      "url": "https://github.com/NVIDIA/k8s-device-plugin"
+    },
+    "112": {
+      "label": "vLLM. Docker deployment version 0.26.0. Consulted 27 October 2026",
+      "url": "https://docs.vllm.ai/en/v0.26.0/deployment/docker/"
+    },
+    "113": {
+      "label": "vLLM. Engine arguments version 0.26.0. Consulted 27 October 2026",
+      "url": "https://docs.vllm.ai/en/v0.26.0/configuration/engine_args/"
+    },
+    "114": {
+      "label": "vLLM. Production metrics. Consulted 27 October 2026",
+      "url": "https://github.com/vllm-project/vllm/blob/main/docs/usage/metrics.md"
+    },
+    "115": {
+      "label": "NVIDIA. Triton Inference Server 26.09 release notes. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/triton-inference-server/archives/triton-inference-server-2730/release-notes/rel-26-09.html"
+    },
+    "116": {
+      "label": "NVIDIA. Triton model repositories. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/model_repository.html"
+    },
+    "117": {
+      "label": "NVIDIA. Triton Python backend. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/python_backend/README.html"
+    },
+    "118": {
+      "label": "NVIDIA. Triton dynamic batching. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/batcher.html"
+    },
+    "119": {
+      "label": "NVIDIA. Triton model configuration. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/model_configuration.html"
+    },
+    "120": {
+      "label": "ggml-org. llama.cpp Docker documentation. Consulted 27 October 2026",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/b11898/docs/docker.md"
+    },
+    "122": {
+      "label": "ONNX. Model versioning. Consulted 27 October 2026",
+      "url": "https://onnx.ai/onnx/repo-docs/Versioning.html"
+    },
+    "123": {
+      "label": "Kubernetes. Deployments and rollout strategies. Consulted 27 October 2026",
+      "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    },
+    "124": {
+      "label": "NVIDIA RAPIDS. Installation guide. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/datascience/install/"
+    },
+    "125": {
+      "label": "NVIDIA NGC. RAPIDS Base 26.10 CUDA 13 Python 3.13. Consulted 27 October 2026",
+      "url": "https://catalog.ngc.nvidia.com/orgs/nvidia/rapidsai/containers/base/26.10-cuda13-py3.13"
+    },
+    "126": {
+      "label": "NVIDIA cuML. PCA API. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/cuml/latest/api/generated/cuml.decomposition.PCA/"
+    },
+    "127": {
+      "label": "RAPIDS RMM. Allocation statistics API. Consulted 27 October 2026",
+      "url": "https://docs.rapids.ai/api/rmm/stable/python/statistics/"
+    },
+    "128": {
+      "label": "ONNX. Checker API. Consulted 27 October 2026",
+      "url": "https://onnx.ai/onnx/api/checker.html"
+    },
+    "129": {
+      "label": "ONNX Runtime. Profiling tools. Consulted 27 October 2026",
+      "url": "https://onnxruntime.ai/docs/performance/tune-performance/profiling-tools.html"
+    },
+    "130": {
+      "label": "ONNX Runtime. CUDA execution provider. Consulted 27 October 2026",
+      "url": "https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html"
+    },
+    "132": {
+      "label": "NVIDIA TensorRT. 11.3.0 release notes. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/getting-started/release-notes-11/11.3.0.html"
+    },
+    "133": {
+      "label": "NVIDIA TensorRT. Support matrix and engine portability. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/getting-started/support-matrix.html"
+    },
+    "134": {
+      "label": "NVIDIA TensorRT. Migrating trtexec from 10 to 11. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/api/migration/tensorrt-10x-to-11x-trtexec.html"
+    },
+    "135": {
+      "label": "NVIDIA TensorRT. Python API documentation. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/inference-library/python-api-docs.html"
+    },
+    "136": {
+      "label": "NVIDIA TensorRT. Performance benchmarking. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/tensorrt/latest/performance/benchmarking.html"
+    },
+    "137": {
+      "label": "ONNX Runtime. Quantize ONNX models. Consulted 27 October 2026",
+      "url": "https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html"
+    },
+    "138": {
+      "label": "ONNX. QuantizeLinear operator. Consulted 27 October 2026",
+      "url": "https://onnx.ai/onnx/operators/onnx__QuantizeLinear.html"
+    },
+    "139": {
+      "label": "NVIDIA NeMo AutoModel. Installation. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/nemo/automodel/latest/get-started/installation"
+    },
+    "140": {
+      "label": "NVIDIA NeMo AutoModel. Supervised and parameter efficient fine tuning. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/nemo/automodel/latest/recipes-e2e-examples/sft-peft"
+    },
+    "141": {
+      "label": "NVIDIA NeMo AutoModel. Checkpointing. Consulted 27 October 2026",
+      "url": "https://docs.nvidia.com/nemo/automodel/latest/development/checkpointing"
+    },
+    "144": {
+      "label": "NVIDIA NeMo AutoModel. Qwen3 0.6B HellaSwag PEFT recipe at v0.7.0. Consulted 27 October 2026",
+      "url": "https://github.com/NVIDIA-NeMo/Automodel/blob/v0.7.0/examples/llm_finetune/qwen/qwen3_0p6b_hellaswag_peft.yaml"
+    },
+    "146": {
+      "label": "Hugging Face. Qwen2.5 VL Transformers 4.57.1. Consulted 27 October 2026",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/en/model_doc/qwen2_5_vl"
+    },
+    "147": {
+      "label": "Qwen. Qwen2.5 VL 3B Instruct license. Consulted 27 October 2026",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/blob/66285546d2b821cf421d4f5eb2576359d3770cd3/LICENSE"
+    },
+    "148": {
+      "label": "Hugging Face. Stable Diffusion XL Diffusers 0.35.1. Consulted 27 October 2026",
+      "url": "https://huggingface.co/docs/diffusers/v0.35.1/en/using-diffusers/sdxl"
+    },
+    "149": {
+      "label": "Hugging Face. Reducing diffusion memory use. Consulted 27 October 2026",
+      "url": "https://huggingface.co/docs/diffusers/v0.35.1/en/optimization/memory"
+    },
+    "150": {
+      "label": "Jonathan Ho Ajay Jain and Pieter Abbeel. Denoising Diffusion Probabilistic Models 2020. Consulted 27 October 2026",
+      "url": "https://arxiv.org/abs/2006.11239"
+    },
+    "151": {
+      "label": "Hugging Face. MusicGen Transformers 4.57.1. Consulted 27 October 2026",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/en/model_doc/musicgen"
+    },
+    "152": {
+      "label": "Meta. MusicGen small model card. Consulted 27 October 2026",
+      "url": "https://huggingface.co/facebook/musicgen-small/tree/4c8334b02c6ec4e8664a91979669a501ec497792"
+    },
+    "153": {
+      "label": "Jade Copet and colleagues. Simple and Controllable Music Generation 2023. Consulted 27 October 2026",
+      "url": "https://arxiv.org/abs/2306.05284"
+    },
+    "154": {
+      "label": "Hugging Face. VITS Transformers 4.57.1. Consulted 27 October 2026",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/en/model_doc/vits"
+    },
+    "155": {
+      "label": "Meta. MMS English text to speech model card. Consulted 27 October 2026",
+      "url": "https://huggingface.co/facebook/mms-tts-eng/tree/c71de0fe7204c83f1c10820a7d696d0b450048ba"
+    },
+    "156": {
+      "label": "Hugging Face. Whisper Transformers 4.57.1. Consulted 27 October 2026",
+      "url": "https://huggingface.co/docs/transformers/v4.57.1/en/model_doc/whisper"
+    },
+    "157": {
+      "label": "OpenAI. Whisper tiny model card. Consulted 27 October 2026",
+      "url": "https://huggingface.co/openai/whisper-tiny/tree/169d4a4341b33bc18d8881c4b69c2e104e1cc0af"
+    },
+    "158": {
+      "label": "Hugging Face Evaluate. Word error rate metric. Consulted 27 October 2026",
+      "url": "https://huggingface.co/spaces/evaluate-metric/wer/blob/main/README.md"
+    },
+    "159": {
+      "label": "SciPy. Polyphase resampling. Consulted 27 October 2026",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample_poly.html"
+    },
+    "160": {
+      "label": "Hugging Face. LoRA training with Diffusers 0.35.1. Consulted 27 October 2026",
+      "url": "https://huggingface.co/docs/diffusers/v0.35.1/en/training/lora"
+    },
+    "164": {
+      "label": "Hugging Face. SDXL LoRA training script at v0.35.1. Consulted 27 October 2026",
+      "url": "https://github.com/huggingface/diffusers/blob/v0.35.1/examples/text_to_image/train_text_to_image_lora_sdxl.py"
+    },
+    "166": {
+      "label": "Qwen. Model and preprocessor configurations at revision 66285546d2b821cf421d4f5eb2576359d3770cd3",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/tree/66285546d2b821cf421d4f5eb2576359d3770cd3"
+    },
+    "168": {
+      "label": "SciPy. Short time Fourier transform and spectrum scaling",
+      "url": "https://docs.scipy.org/doc/scipy-1.17.0/reference/generated/scipy.signal.stft.html"
+    },
+    "170": {
+      "label": "NVIDIA. NGC catalog user guide. Consulted 28 October 2026",
+      "url": "https://docs.nvidia.com/ngc/latest/ngc-catalog-user-guide.html"
+    },
+    "171": {
+      "label": "NVIDIA. NGC user guide and account access. Consulted 28 October 2026",
+      "url": "https://docs.nvidia.com/ngc/latest/ngc-user-guide.html"
+    },
+    "172": {
+      "label": "NVIDIA. NGC CLI setup with pinned 4.34.10 installation commands. Consulted 28 October 2026",
+      "url": "https://catalog.ngc.nvidia.com/orgs/nvidia/ngc-apps/resources/ngc_cli/-/setup"
+    },
+    "173": {
+      "label": "NVIDIA. NGC CLI registry resource info command, including --files. Consulted 28 October 2026",
+      "url": "https://docs.ngc.nvidia.com/cli/cmd_registry.html#info_repeat11"
+    },
+    "174": {
+      "label": "NVIDIA. PyTorch release 26.09. Consulted 28 October 2026",
+      "url": "https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel-26-09.html"
+    },
+    "175": {
+      "label": "Docker. Buildx imagetools inspect. Consulted 28 October 2026",
+      "url": "https://docs.docker.com/reference/cli/docker/buildx/imagetools/inspect/"
+    },
+    "176": {
+      "label": "Hugging Face. Hub overview. Consulted 28 October 2026",
+      "url": "https://huggingface.co/docs/hub/index"
+    },
+    "177": {
+      "label": "Hugging Face. Model cards. Consulted 28 October 2026",
+      "url": "https://huggingface.co/docs/hub/en/model-cards"
+    },
+    "178": {
+      "label": "Hugging Face. Dataset cards. Consulted 28 October 2026",
+      "url": "https://huggingface.co/docs/hub/main/datasets-cards"
+    },
+    "180": {
+      "label": "Hugging Face. lhoestq demo1 dataset at the selected revision. Consulted 28 October 2026",
+      "url": "https://huggingface.co/datasets/lhoestq/demo1/tree/87ecf163bedca9d80598b528940a9c4f99e14c11"
+    },
+    "183": {
+      "label": "Hugging Face. Hub download API 0.36.0. Consulted 28 October 2026",
+      "url": "https://huggingface.co/docs/huggingface_hub/v0.36.0/package_reference/file_download"
+    },
+    "184": {
+      "label": "Hugging Face. Hub cache behavior 0.36.0. Consulted 28 October 2026",
+      "url": "https://huggingface.co/docs/huggingface_hub/v0.36.0/en/guides/manage-cache"
+    },
+    "185": {
+      "label": "Hugging Face. Hub environment variables 0.36.0. Consulted 28 October 2026",
+      "url": "https://huggingface.co/docs/huggingface_hub/v0.36.0/package_reference/environment_variables"
+    },
+    "187": {
+      "label": "NVIDIA. DCGM getting started and supported environments. Consulted 28 October 2026",
+      "url": "https://docs.nvidia.com/datacenter/dcgm/latest/user-guide/getting-started.html"
+    },
+    "188": {
+      "label": "NVIDIA. DCGM installation and exporter architecture. Consulted 28 October 2026",
+      "url": "https://docs.nvidia.com/datacenter/dcgm/latest/installation/index.html"
+    },
+    "190": {
+      "label": "Grafana Labs. Grafana OSS 13.3.0 download. Consulted 28 October 2026",
+      "url": "https://grafana.com/grafana/download/13.3.0?edition=oss&platform=linux"
+    },
+    "191": {
+      "label": "Prometheus. Configuration and scrape jobs. Consulted 28 October 2026",
+      "url": "https://prometheus.io/docs/prometheus/latest/configuration/configuration/"
+    },
+    "192": {
+      "label": "Grafana Labs. Provision Grafana data sources and dashboards. Consulted 28 October 2026",
+      "url": "https://grafana.com/docs/grafana/latest/administration/provisioning/"
+    },
+    "193": {
+      "label": "Grafana Labs. HTTP API and health endpoint. Consulted 28 October 2026",
+      "url": "https://grafana.com/docs/grafana/latest/developer-resources/api-reference/http-api/api-legacy/other/"
+    },
+    "194": {
+      "label": "Prometheus. Query functions including rate resets and histogram_quantile. Consulted 28 October 2026",
+      "url": "https://prometheus.io/docs/prometheus/latest/querying/functions/"
+    },
+    "195": {
+      "label": "Prometheus. Histograms and summaries. Consulted 28 October 2026",
+      "url": "https://prometheus.io/docs/practices/histograms/"
+    },
+    "196": {
+      "label": "Prometheus. Alerting rules and hold duration. Consulted 28 October 2026",
+      "url": "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/"
+    },
+    "197": {
+      "label": "Prometheus. Unit testing recording and alerting rules. Consulted 28 October 2026",
+      "url": "https://prometheus.io/docs/prometheus/latest/configuration/unit_testing_rules/"
+    },
+    "200": {
+      "label": "Docker. Host networking driver. Consulted 28 October 2026",
+      "url": "https://docs.docker.com/engine/network/drivers/host/"
+    },
+    "205": {
+      "label": "LangChain. Agents. Consulted 28 October 2026",
+      "url": "https://docs.langchain.com/oss/python/langchain/agents"
+    },
+    "206": {
+      "label": "LangChain. ChatOpenAI integration and compatible API scope. Consulted 28 October 2026",
+      "url": "https://docs.langchain.com/oss/python/integrations/chat/openai"
+    },
+    "207": {
+      "label": "LangChain. LangGraph persistence. Consulted 28 October 2026",
+      "url": "https://docs.langchain.com/oss/python/langgraph/persistence"
+    },
+    "208": {
+      "label": "LangChain. LangGraph interrupts and replay. Consulted 28 October 2026",
+      "url": "https://docs.langchain.com/oss/python/langgraph/interrupts"
+    },
+    "209": {
+      "label": "LangChain. SqliteSaver.from_conn_string. Consulted 28 October 2026",
+      "url": "https://reference.langchain.com/python/langgraph.checkpoint.sqlite/SqliteSaver/from_conn_string"
+    },
+    "210": {
+      "label": "LangChain. LangSmith custom instrumentation. Consulted 28 October 2026",
+      "url": "https://docs.langchain.com/langsmith/annotate-code"
+    },
+    "211": {
+      "label": "LangChain. LangSmith tracing_context API. Consulted 28 October 2026",
+      "url": "https://reference.langchain.com/python/langsmith/run_helpers/tracing_context"
+    },
+    "212": {
+      "label": "LangChain. LangSmith evaluate API, upload_results option. Consulted 28 October 2026",
+      "url": "https://reference.langchain.com/python/langsmith/evaluation/_runner/evaluate"
+    },
+    "213": {
+      "label": "LangChain. Self-hosted LangSmith requirements. Consulted 28 October 2026",
+      "url": "https://docs.langchain.com/langsmith/self-hosted"
+    },
+    "214": {
+      "label": "Pydantic. PydanticAI unit testing and FunctionModel. Consulted 28 October 2026",
+      "url": "https://pydantic.dev/docs/ai/guides/testing/"
+    },
+    "215": {
+      "label": "Pydantic. PydanticAI output validation. Consulted 28 October 2026",
+      "url": "https://pydantic.dev/docs/ai/core-concepts/output/"
+    },
+    "216": {
+      "label": "Pydantic. PydanticAI retry layers. Consulted 28 October 2026",
+      "url": "https://pydantic.dev/docs/ai/core-concepts/retries/"
+    },
+    "217": {
+      "label": "Pydantic. Other compatible APIs and OpenAICompatibleProvider. Consulted 28 October 2026",
+      "url": "https://pydantic.dev/docs/ai/models/compatible-apis/"
+    },
+    "218": {
+      "label": "TypeSafe. Jev models and version aliases. Consulted 28 October 2026",
+      "url": "https://docs.typesafe.ai/models"
+    },
+    "219": {
+      "label": "TypeSafe. Official OpenAPI request, response and header schema. Consulted 28 October 2026",
+      "url": "https://api.typesafe.ai/openapi.json"
+    },
+    "220": {
+      "label": "TypeSafe. Choice primitive. Consulted 28 October 2026",
+      "url": "https://docs.typesafe.ai/primitives/choice"
+    },
+    "221": {
+      "label": "TypeSafe. Score primitive. Consulted 28 October 2026",
+      "url": "https://docs.typesafe.ai/primitives/score"
+    },
+    "222": {
+      "label": "TypeSafe. Noul primitive. Consulted 28 October 2026",
+      "url": "https://docs.typesafe.ai/primitives/noul"
+    },
+    "223": {
+      "label": "TypeSafe. Confidence definitions. Consulted 28 October 2026",
+      "url": "https://docs.typesafe.ai/confidence"
+    },
+    "226": {
+      "label": "vLLM. Tool calling and parser qualification. Consulted 28 October 2026",
+      "url": "https://docs.vllm.ai/en/latest/features/tool_calling/"
+    },
+    "227": {
+      "label": "Ollama. Linux installation. Consulted 28 October 2026",
+      "url": "https://docs.ollama.com/linux"
+    },
+    "229": {
+      "label": "Ollama. FAQ on local mode, residency and concurrency. Consulted 28 October 2026",
+      "url": "https://docs.ollama.com/faq"
+    },
+    "230": {
+      "label": "Ollama. API schema and model metadata. Consulted 28 October 2026",
+      "url": "https://github.com/ollama/ollama/blob/main/docs/openapi.yaml"
+    },
+    "231": {
+      "label": "Ollama. Generation API. Consulted 28 October 2026",
+      "url": "https://docs.ollama.com/api/generate"
+    },
+    "232": {
+      "label": "Ollama. Embedding API. Consulted 28 October 2026",
+      "url": "https://docs.ollama.com/api/embed"
+    },
+    "233": {
+      "label": "Ollama. Importing a model. Consulted 28 October 2026",
+      "url": "https://docs.ollama.com/import"
+    },
+    "235": {
+      "label": "Unsloth. Native requirements. Consulted 28 October 2026",
+      "url": "https://unsloth.ai/docs/get-started/fine-tuning-for-beginners/unsloth-requirements"
+    },
+    "236": {
+      "label": "Unsloth. Installation with WSL instructions. Consulted 28 October 2026",
+      "url": "https://unsloth.ai/docs/get-started/install/windows-installation"
+    },
+    "237": {
+      "label": "Unsloth. Official FastLanguageModel training script. Consulted 28 October 2026",
+      "url": "https://github.com/unslothai/unsloth/blob/main/unsloth-cli.py"
+    },
+    "240": {
+      "label": "Hugging Face. Transformers Trainer and checkpoint continuation. Consulted 28 October 2026",
+      "url": "https://huggingface.co/docs/transformers/main_classes/trainer"
+    },
+    "242": {
+      "label": "LM Studio. Headless service and llmster. Consulted 28 October 2026",
+      "url": "https://lmstudio.ai/docs/developer/core/headless"
+    },
+    "244": {
+      "label": "LM Studio. Runtime management CLI. Consulted 28 October 2026",
+      "url": "https://lmstudio.ai/docs/cli/runtime/runtime"
+    },
+    "245": {
+      "label": "LM Studio. Importing local model files. Consulted 28 October 2026",
+      "url": "https://lmstudio.ai/docs/cli/local-models/import"
+    },
+    "247": {
+      "label": "LM Studio. Local server bind and port. Consulted 28 October 2026",
+      "url": "https://lmstudio.ai/docs/cli/serve/server-start"
+    },
+    "248": {
+      "label": "LM Studio. OpenAI-compatible endpoints. Consulted 28 October 2026",
+      "url": "https://lmstudio.ai/docs/developer/openai-compat"
+    },
+    "249": {
+      "label": "NVIDIA. Nemotron 3 Nano 30B A3B model card. Consulted 28 October 2026",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16"
+    },
+    "250": {
+      "label": "ggml-org. Pinned Nemotron GGUF conversion files. Consulted 28 October 2026",
+      "url": "https://huggingface.co/ggml-org/NVIDIA-Nemotron-3-Nano-30B-A3B-GGUF/tree/fe801509a580ff84a5728d4a9104e3f6f7e9b0dd"
+    },
+    "251": {
+      "label": "Hugging Face. Nemotron conversion catalog metadata with blob identities. Consulted 28 October 2026",
+      "url": "https://huggingface.co/api/models/ggml-org/NVIDIA-Nemotron-3-Nano-30B-A3B-GGUF?blobs=true"
+    },
+    "252": {
+      "label": "Unsloth. Nemotron inference and fine-tuning guidance. Consulted 28 October 2026",
+      "url": "https://unsloth.ai/docs/models/nemotron-3"
+    },
+    "257": {
+      "label": "PyTorch. torch.cuda.memory.mem_get_info",
+      "url": "https://docs.pytorch.org/docs/2.14/generated/torch.cuda.memory.mem_get_info.html"
+    },
+    "258": {
+      "label": "procps-ng. free(1)",
+      "url": "https://man7.org/linux/man-pages/man1/free.1.html"
+    },
+    "259": {
+      "label": "procps-ng. vmstat(8)",
+      "url": "https://man7.org/linux/man-pages/man8/vmstat.8.html"
+    },
+    "260": {
+      "label": "Python Software Foundation. Virtual environments and packages",
+      "url": "https://docs.python.org/3/tutorial/venv.html"
+    },
+    "261": {
+      "label": "GNU Project. Bash shell parameters",
+      "url": "https://www.gnu.org/software/bash/manual/html_node/Shell-Parameters.html"
+    },
+    "262": {
+      "label": "MDN Web Docs. Overview of HTTP",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"
+    },
+    "263": {
+      "label": "ggml-org. GGUF file format specification",
+      "url": "https://github.com/ggml-org/ggml/blob/master/docs/gguf.md"
+    },
+    "264": {
+      "label": "PyTorch. Automatic differentiation with torch.autograd",
+      "url": "https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
+    },
+    "265": {
+      "label": "MDN Web Docs. Using server-sent events",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events"
+    },
+    "266": {
+      "label": "NumPy. The absolute basics for beginners",
+      "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+    },
+    "267": {
+      "label": "SQLite. About SQLite",
+      "url": "https://www.sqlite.org/about.html"
+    },
+    "268": {
+      "label": "Docker. The Compose application model",
+      "url": "https://docs.docker.com/compose/intro/compose-application-model/"
+    },
+    "269": {
+      "label": "Matplotlib. Quick start guide",
+      "url": "https://matplotlib.org/stable/users/explain/quick_start.html"
+    },
+    "270": {
+      "label": "PyTorch. PyTorch compiler",
+      "url": "https://docs.pytorch.org/docs/stable/torch.compiler.html"
+    },
+    "271": {
+      "label": "OpenTelemetry. Traces",
+      "url": "https://opentelemetry.io/docs/concepts/signals/traces/"
+    },
+    "272": {
+      "label": "Docker. What is a container",
+      "url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/"
+    },
+    "273": {
+      "label": "pandas. What kind of data does pandas handle",
+      "url": "https://pandas.pydata.org/docs/getting_started/intro_tutorials/01_table_oriented.html"
+    },
+    "274": {
+      "label": "Python Packaging Authority. Package formats",
+      "url": "https://packaging.python.org/en/latest/discussions/package-formats/"
+    },
+    "275": {
+      "label": "Hugging Face. Transformers documentation",
+      "url": "https://huggingface.co/docs/transformers/en/index"
+    },
+    "276": {
+      "label": "Hugging Face. Accelerate documentation",
+      "url": "https://huggingface.co/docs/accelerate/en/index"
+    },
+    "277": {
+      "label": "Scott Chacon and Ben Straub. Pro Git, Getting Started with Git",
+      "url": "https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F"
+    }
+  }
+}

@@ -3,6 +3,26 @@ Exercise 249  Qualify hybrid kernels and partial offload
 Question
 Which Nemotron layers and buffers actually use CUDA during this request?
 
+Technology background
+
+Nemotron, mixtures of experts and hybrid state
+
+Nemotron names a family of models. The Nemotron 3 Nano variant used here combines expert routing with different kinds of sequence-processing layers. A mixture of experts selects part of the model for each token. The active parameter count describes work selected per token. The full stored model can still be much larger.
+
+Trace the GGUF conversion back to a particular upstream revision. Inspect actual file bytes, the available memory views and which layers the native runtime placed on CUDA. Attention caches and recurrent state may have different layouts, so use the model’s own logs when interpreting its buffers.
+
+CPU execution and partial GPU offload
+
+A model is an ordered computation built from layers. A runtime can execute some layers on the GPU and others on the CPU. The boundary may require moving intermediate results. Decoder state, work buffers and the operating system also need memory while a request runs.
+
+A CPU control runs the workload with GPU layers disabled. Compare it with a run that requests GPU layers. In both cases inspect the loader’s actual layer and buffer report, then submit the same prompt. The requested layer count alone cannot tell us what placement the runtime achieved.
+
+Guest paging, Windows commit and vmstat
+
+When memory is under pressure the operating system may move pages between RAM and backing storage. In WSL2, vmstat reports guest activity. Its si and so columns show swap-in and swap-out rates. The first rate row normally summarizes time since boot. Later rows cover sampling intervals.
+
+Windows available physical memory and Windows commit headroom answer other questions. Commit headroom is the difference between the commit limit and committed bytes. Match timestamps from both systems to the actual request interval. Used swap by itself cannot establish that a slow request was paging.
+
 Before you start
 Exercise 248 (admit a model that exceeds the reported GPU budget)
 Native runtime/model assets, separate training environment where required. Check placement and headroom for each model.

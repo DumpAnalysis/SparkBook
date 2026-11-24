@@ -3,6 +3,20 @@ Exercise 1  Inventory the existing environment
 Question
 Which parts of the laptop can this WSL shell actually see?
 
+Technology background
+
+Windows, WSL2 and the mapped GPU
+
+WSL2 runs a Linux kernel in a lightweight virtual machine managed by Windows. Windows is the host. Ubuntu is the Linux system in which we open a terminal and run the exercises. ARM64, also called AArch64, describes the processor instruction set that a Linux executable must support on this laptop.
+
+The NVIDIA driver lives on the Windows side. WSL2 makes its GPU interface available to Linux applications. The inventory asks Linux for its kernel and architecture, then runs nvidia-smi, NVIDIA’s management query for the GPU. These observations establish what the guest can see. A later synchronized calculation establishes that a CUDA program can execute there.
+
+Bash, Python and the working directory
+
+Bash reads a command, expands variables and starts the named program. In bash inventory.sh, Bash runs a shell script. In python gpu_probe.py, the selected Python interpreter runs a Python file. Relative filenames start at the working directory. The tilde in ~/work denotes your home directory, and $LAB_RUN expands to the location of your current run.
+
+A Python virtual environment gives the project its own interpreter and installed packages. Activating it affects the current shell. The command python -c "import sys; print(sys.executable)" shows which interpreter would run the next Python exercise. A new terminal can select a different one.
+
 Before you start
 Start in the prepared WSL2 working directory.
 Python standard library and Bash. This inventory does not allocate model tensors.
