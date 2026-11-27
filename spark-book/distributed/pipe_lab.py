@@ -50,15 +50,7 @@ def worker(rank, world, conn, out, case, steps, resume):
         return response["values"]
     try:
         collective("barrier",None)
-        rank_errors = {}
-    for rank,code in enumerate(codes):
-        if code:
-            trace = out/f"error-{rank}.txt"
-            rank_errors[str(rank)] = {"exit":code,"stderr":str(out/f"stderr-{rank}.txt"),
-                "exception":trace.read_text(errors="replace").splitlines()[-1][:500] if trace.exists() else None}
-    if failure or rank_errors:
-        save(out/"worker-diagnosis.json", {"coordinator":failure,"ranks":rank_errors})
-    if case in ["crash","mismatch","timeout"]:
+        if case in ["crash","mismatch","timeout"]:
             event("fault_boundary",case=case)
             if rank==1 and case=="crash":
                 event("injected_exit",code=17)
