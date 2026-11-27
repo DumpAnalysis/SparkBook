@@ -68,7 +68,7 @@
       },
       "options": {
         "mode": "markdown",
-        "content": "**Select source `fixture` for SIMULATED values or `wsl` for live mapped-driver observations.** No-data is not zero. GPU byte totals are device-reported; 64 GB host memory is not a 64 GB GPU allocation budget. Synthetic CPU request panels are pipeline exercises, not model measurements. Rate and p95 panels need several scrapes and requests."
+        "content": "**Select source `fixture` for SIMULATED values or `wsl` for live mapped-driver observations.** No-data is not zero. The measured NVML total is 30.50 GiB on the laptop with 64 GiB installed. Synthetic CPU request panels are pipeline exercises, not model measurements. Rate and p95 panels need several scrapes and requests."
       }
     },
     {
@@ -95,10 +95,11 @@
       "fieldConfig": {
         "defaults": {
           "unit": "percentunit",
-          "max": 1,
           "custom": {
             "spanNulls": false
-          }
+          },
+          "min": 0,
+          "max": 1
         },
         "overrides": []
       },

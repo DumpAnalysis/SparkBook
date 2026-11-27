@@ -33,6 +33,8 @@ class ExporterTests(unittest.TestCase):
   result=render(self.sample('baseline'),now=101);self.assertEqual(sum(x.startswith('lab_gpu_field_status{') for x in result.splitlines()),len(FIELDS))
  def test_dashboard_nulls_and_units(self):
   d=dashboard();self.assertEqual(len(d['panels']),13)
+  busy=next(p['fieldConfig']['defaults'] for p in d['panels'] if p['title']=='GPU busy ratio')
+  self.assertEqual((busy['min'],busy['max']),(0,1))
   self.assertTrue(all(not p['fieldConfig']['defaults']['custom']['spanNulls'] for p in d['panels'][1:]))
   self.assertTrue(all('or vector(0)' not in p['targets'][0]['expr'] for p in d['panels'][1:]))
  def test_cumulative_histogram(self):
