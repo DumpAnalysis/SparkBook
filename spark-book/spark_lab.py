@@ -63,7 +63,16 @@ def http(base, route, payload=None, timeout=120):
         return {"status": status, "body": raw}
 
 
-def request(base, prompt, limit=128):
+def object_schema(fields):
+    return {"type": "object", "properties": fields, "required": list(fields),
+            "additionalProperties": False}
+
+
+def string_choice(values):
+    return {"type": "string", "enum": list(values)}
+
+
+def request(base, prompt, limit=128, *, schema=None):
     payload = {"model": "local-model", "messages": [
         {"role": "system", "content":
          "Use supplied evidence. Separate observations from hypotheses. "
@@ -71,6 +80,9 @@ def request(base, prompt, limit=128):
         {"role": "user", "content": prompt}],
         "temperature": 0, "seed": 42, "max_tokens": limit,
         "stream": False}
+    if schema is not None:
+        payload["response_format"] = {"type": "json_schema", "json_schema": {
+            "name": "reader_response", "strict": True, "schema": schema}}
     start = time.perf_counter()
     result = http(base, "/v1/chat/completions", payload)
     result["elapsed_s"] = time.perf_counter() - start
@@ -123,7 +135,19 @@ def inspect(args):
 
 def query(args):
     prompt = pathlib.Path(args.prompt).read_text(encoding="utf-8")
-    result = request(args.base, prompt, args.tokens)
+    schema = None
+    item = {"type": "string", "minLength": 1}
+    if args.format == "r17":
+        pair = {"type": "array", "items": item, "minItems": 2, "maxItems": 2}
+        schema = object_schema({"observations": pair, "possible_explanations": pair,
+                                "next_measurement": item})
+        prompt += "\nUse short strings. Report one directly observed event per observation."
+    elif args.format == "grounded":
+        schema = object_schema({"observed_with_citations": item, "cause_assessment": item,
+                                "missing_measurement": item})
+        prompt += ("\nDistinguish a gap in coverage from a causal event. Only identify a cause "
+                   "when a passage directly establishes it. Identify the missing measurement separately.")
+    result = request(args.base, prompt, args.tokens, schema=schema)
     save(args.out, result)
     print("status=" + str(result["status"]))
     text, finish = answer(result)
@@ -133,6 +157,19 @@ def query(args):
     print("finish=" + str(finish))
     print(text)
     print("saved=" + args.out)
+    if schema is not None:
+        if finish != "stop":
+            return 2
+        obj = json.loads(text)
+        if set(obj) != set(schema["required"]):
+            return 2
+        for key, spec in schema["properties"].items():
+            value = obj[key]
+            if spec["type"] == "array":
+                if not isinstance(value, list) or len(value) != 2 or not all(isinstance(x, str) and x.strip() for x in value):
+                    return 2
+            elif not isinstance(value, str) or not value.strip():
+                return 2
     return 0
 
 
@@ -279,6 +316,8 @@ def main():
         p.add_argument("--base", default="http://127.0.0.1:8080")
         p.add_argument("--tokens", type=int, default=128)
         p.add_argument("--out", required=True)
+        if name == "query":
+            p.add_argument("--format", choices=["text", "r17", "grounded"], default="text")
         if name == "bench":
             p.add_argument("--runs", type=int, default=5)
             p.add_argument("--workers", type=int, default=1)

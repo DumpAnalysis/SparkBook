@@ -22,6 +22,27 @@ def read_owned(relative, limit=6000):
     return f'SOURCE {relative}\nMODIFIED {stamp}\n{text}'
 
 
+def exchange(relative):
+    path = (root / relative).resolve()
+    if not path.is_relative_to(root / 'runs'):
+        raise ValueError('Request receipt must be inside runs/')
+    if not path.is_file():
+        return 'UNAVAILABLE: no request receipt'
+    receipt = json.loads(path.read_text())
+    status = receipt.get('status')
+    if type(status) is not int:
+        raise ValueError('Request receipt has no numeric HTTP status')
+    # Only transport metadata can serve as a measurement of this exchange.
+    fields = [f'HTTP status {status}']
+    body = receipt.get('body')
+    if isinstance(body, dict):
+        for key in ('prompt_tokens','completion_tokens'):
+            number = (body.get('usage') or {}).get(key)
+            if type(number) is int:
+                fields.append(f'{key}={number}')
+    return '\n'.join(fields)
+
+
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--inventory', default='runs/inventory.txt')
 parser.add_argument('--request', default='runs/first.json')
@@ -42,7 +63,7 @@ else:
 snapshot = {
     'inventory': read_owned(args.inventory),
     'runtime': runtime,
-    'request': read_owned(args.request),
+    'request': exchange(args.request),
     'limits': limits
 }
 if args.out:

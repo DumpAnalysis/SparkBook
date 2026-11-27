@@ -1,4 +1,4 @@
-"""Compare a saved BF16 merge with its base-plus-adapter model on the held-out prompts."""
+"""Compare a saved merge with its base-plus-adapter model on the held-out prompts."""
 import argparse
 import gc
 import json
@@ -12,6 +12,7 @@ def main():
     parser.add_argument('--adapter', required=True, type=Path)
     parser.add_argument('--merged', required=True, type=Path)
     parser.add_argument('--out', required=True, type=Path)
+    parser.add_argument('--dtype', choices=['bfloat16','float32'], default='bfloat16')
     args = parser.parse_args()
     import torch
     from peft import PeftModel
@@ -21,7 +22,9 @@ def main():
     if not rows or not torch.cuda.is_available():
         raise SystemExit('This comparison requires held-out rows and CUDA.')
     args.out.mkdir(parents=True, exist_ok=False)
-    options = dict(dtype=torch.bfloat16, attn_implementation='sdpa', local_files_only=True)
+    torch.set_float32_matmul_precision('highest')
+    torch.backends.cuda.matmul.allow_tf32 = False
+    options = dict(dtype=getattr(torch,args.dtype), attn_implementation='sdpa', local_files_only=True)
     tokenizer = AutoTokenizer.from_pretrained(MODEL, revision=REVISION, local_files_only=True)
 
     def evaluate(which):
@@ -52,7 +55,7 @@ def main():
     delta = merged-reference
     errors = [a['id'] for a,b in zip(first,second) if a['generated_token_ids'] != b['generated_token_ids']]
     finite = bool(torch.isfinite(reference).all() and torch.isfinite(merged).all())
-    result = {'base':MODEL, 'revision':REVISION, 'adapter':str(args.adapter.resolve()),
+    result = {'base':MODEL, 'revision':REVISION, 'evaluation_dtype':args.dtype, 'adapter':str(args.adapter.resolve()),
               'merged':str(args.merged.resolve()), 'finite_logits':finite,
               'first_token_argmax_equal':bool(torch.equal(reference.argmax(-1),merged.argmax(-1))),
               'maximum_absolute_logit_difference':float(delta.abs().max()) if finite else None,
