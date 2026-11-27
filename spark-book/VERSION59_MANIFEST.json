@@ -1,7 +1,7 @@
 {
   "book": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R5.docx",
-    "sha256": "73fc2c99ec834994d4b9ef16975239aca9c35811ae6cec69fcf5ca59c61c4ede"
+    "sha256": "418fc50badf6892aeea7bb10b902235b98bbd8076b14a561cfc543904ddcc0ec"
   },
   "compatible_books": [
     {
@@ -47,7 +47,7 @@
   ],
   "print_pdf": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R5.pdf",
-    "sha256": "825d7e4f62c749489b65d98d0003c970f93d43819e60345086864c91150aa762"
+    "sha256": "dff5b43263cd38e2944f1c0ff2a2ceb28f7881fd8bdaaadf21b654085a889ad3"
   },
   "version": 59,
   "profile": "learner",
@@ -63,8 +63,8 @@
     },
     {
       "path": "README.txt",
-      "bytes": 2056,
-      "sha256": "9a7ec1413e945428a905130bdfff40706e1ff71ce50cd3aea82e277415ddb7eb"
+      "bytes": 2123,
+      "sha256": "7c99df40d5bd12c06ee3c59f2f2399044356562f1d3719688515a0c719202134"
     },
     {
       "path": "TRANSCRIPT_POLICY.txt",
@@ -1603,13 +1603,13 @@
     },
     {
       "path": "observability/configure.py",
-      "bytes": 5155,
-      "sha256": "7810668b0048d188bc82f37ea9ef5a44e83c22e1f7e1947125ec9b802bcae2c6"
+      "bytes": 5245,
+      "sha256": "da9fa744f922940d8d453ace6a84342e5fadd8ea5ace0fb9cfb33b46c555661b"
     },
     {
       "path": "observability/dashboard.json",
-      "bytes": 11425,
-      "sha256": "b31693cfb4f3f10082f1de7a89020cbfc0ceade1c08aa778ace5f7b8203e5f6c"
+      "bytes": 11426,
+      "sha256": "e59f371b11ddae4459ce6860508d6b75542e5acee5732fec39a5ad95a17178f3"
     },
     {
       "path": "observability/docker_config.py",
@@ -1758,8 +1758,8 @@
     },
     {
       "path": "observability/test_exporter.py",
-      "bytes": 2849,
-      "sha256": "d1d6f9288929b7beed7a425efe163d71a32d86e10db3d92d48f44921466687ab"
+      "bytes": 2996,
+      "sha256": "694587c223d5c0be4de09883562f50dbda05f14d62080afab6f44d28d8a212e1"
     },
     {
       "path": "observability/trial_stack.py",
@@ -3289,7 +3289,7 @@
     {
       "path": "reader/workspace-files.json",
       "bytes": 123912,
-      "sha256": "3d7483c62a3b093fcbedfd7d0e7f026701f97d6a4035ece4a2c2ecc53a198409"
+      "sha256": "6d3555d60e87948eb0af0207859b2e48f999422f6dda78f1680196dfffbbab24"
     },
     {
       "path": "requirements-exercises.lock",
@@ -3818,8 +3818,8 @@
     },
     {
       "path": "spark_lab.py",
-      "bytes": 14307,
-      "sha256": "ca69d7b3d8e1d9d7a9856fecd3a3121660c9ff2cd2f9c6516128287f6563d8e3"
+      "bytes": 14463,
+      "sha256": "87f0a973b2fe8c2f7daee0b2a6f22c9944bd0da5202428d08ef220b36a08b54e"
     },
     {
       "path": "stream.py",
@@ -3848,8 +3848,8 @@
     },
     {
       "path": "validate.py",
-      "bytes": 6891,
-      "sha256": "cb290b9599b8dafd7dac65c44aa72a4a84dac0e39f2843fff03d0afbcac705f8"
+      "bytes": 6989,
+      "sha256": "aa4f7404850a90f019f973c7250037b8e903d97ffc15a31489f589dce0b4b8d9"
     },
     {
       "path": "validation.txt",
