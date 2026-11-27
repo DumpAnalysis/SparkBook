@@ -43,7 +43,7 @@ bash media/train_image_adapter.sh models/media/sdxl "$LAB_RUN/image-data" "$LAB_
 python media/image_adapter.py --model models/media/sdxl --adapter "$LAB_RUN/image-adapter" --out "$LAB_RUN/image-adapter-check"
 
 Interpret the result
-Separate signal validity, task quality, listening/visual review and profiler availability.
+Compare base.png and adapter.png at the same seed against a filled green square on white. In Figure 88.1 both show green frames around a pale center. Green is present (1/1), the center is filled green (0/1). Record the raw images, the unrelated-prompt control and two-update loss separately.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.

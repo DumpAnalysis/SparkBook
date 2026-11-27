@@ -130,3 +130,15 @@ image digest, architecture and runtime record. Do not merge them indiscriminatel
 into the qualified framework environment.
 
 Use reader/FIRST_RUN_CHECKLIST.txt to record your own first WSL2 run.
+
+Nsight Systems 2026.5.1 on Linux ARM64
+
+Activate a reader run in the lab. Docker must be able to pull Linux ARM64 images on first use. To stage the exact image and check the CLI, run:
+
+IMAGE=$(bash cuda/nsys_2026.sh --image)
+docker pull --platform linux/arm64 "$IMAGE"
+bash cuda/nsys_2026.sh --version
+
+The image is nvcr.io/nvidia/pytorch@sha256:307c449df7dabed6b36e017a2b2f2e45bdec9dc203b81507111315f1e971de6e. If the image is already local, the helper can use it offline. It extracts /usr/local/cuda-13.4/NsightSystems-cli-2026.5.1 into $LAB_RUN/tools and runs the target-linux-sbsa-armv8 build. On the N1X the version string began with 2026.5.1.161. Your CUDA workload uses its own interpreter and libraries. Exercise 39 captures four annotated iterations; Exercise 40 checks the resulting SQLite. Run both profile and export with bash cuda/nsys_2026.sh. An older exporter can reject the newer report. Count positive device intervals before comparing kernel times, streams or overlap.
+
+NVIDIA CLI reference: https://docs.nvidia.com/nsight-systems/UserGuide/index.html

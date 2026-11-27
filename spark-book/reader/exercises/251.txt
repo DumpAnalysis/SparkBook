@@ -49,7 +49,7 @@ python memory_budget/guarded.py pilot --out "$LAB_RUN/memory-pilot"
 python memory_budget/guarded.py target --pilot "$LAB_RUN/memory-pilot" --out "$LAB_RUN/memory-above-guest"
 
 Interpret the result
-Retain every pilot decision. In the reader run three pilots stopped at the 4 GiB Windows floor. After headroom recovered, the unchanged pilot and target passed and all 19,327,352,832 retained bytes were verified.
+Keep the memory views, 1 GiB pilot and 18 GiB target in separate directories. The pilot requires 4 GiB of Windows availability. Proceed to the target only with a passing pilot from this WSL boot and interpreter. Record the sampled minimum, retained bytes and release outcome.
 
 If the check fails
 Stop at a guard or allocation failure; retain observations without increasing the target.

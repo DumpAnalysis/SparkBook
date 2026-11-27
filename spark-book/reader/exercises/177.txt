@@ -40,7 +40,7 @@ python media/targets.py vlm --model models/media/qwen-vl --input media/data/larg
 python media/targets.py vlm --model models/media/qwen-vl --input media/data/larger-diagram.png --text "Name each shape, its color, and its position." --tokens 96 --max-pixels 802816 --out "$LAB_RUN/large-high-budget"
 
 Interpret the result
-Separate signal validity, task quality, listening/visual review and profiler availability.
+Score one point per shape with its correct color and position. The larger diagram contains a red square at top left, a blue circle at top right and a green triangle below. The earlier high-budget answer placed the circle “above the red square, slightly to the right.” Score 2/3. Compare the full low- and high-budget replies with the image.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.

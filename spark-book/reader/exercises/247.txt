@@ -35,7 +35,7 @@ Plan mode writes acquisition-plan.json locally, including the pinned revision, f
 python runtimes/acquire.py Q4_K_M --out "$LAB_RUN/nemotron-plan"
 
 Interpret the result
-Separate completion, format, quality and residency; do not promote a model on protocol success.
+The plan identifies the intended file. After --download, compare acquisition-receipt.json with the publisher hash in acquisition-plan.json. For an interrupted transfer record the retained byte count and the full verified size. A completed acquisition still needs a separate admission check.
 
 If the check fails
 Inspect raw final markers and model identity; compare one controlled configuration at a time.

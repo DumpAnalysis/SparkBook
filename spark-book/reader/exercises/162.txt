@@ -28,10 +28,16 @@ Check for success
 Separate build time, warm-up and measured enqueue intervals. Compare only measurements with matching transfer scope.
 
 Run in your lab
-Read the build, transfer and execution intervals in the TensorRT output from Exercise 161. Repeat with unchanged shapes and compare unprofiled and instrumented runs separately.
+Use the pinned ARM64 PyTorch/TensorRT image from Exercise 160. Place the fixture and ONNX output from Exercises 152 and 156 in the current run. The container captures its own TensorRT process. The matching 2026.5.1 CLI exports the report.
+
+: "${LAB_RUN:?Source reader/new_run.sh first}"
+IMAGE=$(bash cuda/nsys_2026.sh --image)
+docker run --rm --network none --platform linux/arm64 --gpus all --user "$(id -u):$(id -g)" -e HOME=/tmp -v "$PWD:/book:ro" -v "$LAB_RUN:/out" -w /book --entrypoint nsys "$IMAGE" profile --trace=cuda,nvtx --sample=none --cpuctxsw=none -o /out/trt-timeline python ecosystem/tensorrt_target.py --src /out/fixture --model /out/onnx/linear.onnx --out /out/trt-traced
+bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/trt-timeline.sqlite" "$LAB_RUN/trt-timeline.nsys-rep"
+python cuda/trace_sqlite.py "$LAB_RUN/trt-timeline.sqlite"
 
 Interpret the result
-Compare against an independent reference and retain provider/build identities.
+Read build_seconds, warmups, repetitions and device_ms for each admitted batch. Check each result against the NumPy oracle. The full-process kernel table also includes build and setup work. Keep it separate from the enqueue-only comparison.
 
 If the check fails
 Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.

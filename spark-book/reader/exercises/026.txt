@@ -38,10 +38,11 @@ Evaluate the selected adapter, retain full held-out outputs and compare with the
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${ADAPTER:?Set ADAPTER to the selected adapter directory from Exercise 25}"
+python finetune.py evaluate --output "$LAB_RUN/evaluation-base"
 python finetune.py evaluate --adapter "$ADAPTER" --output "$LAB_RUN/evaluation"
 
 Interpret the result
-Report regressions and incomplete answers alongside improvements; keep evaluation separate from training examples.
+Pair answers.json from evaluation-base and evaluation by E01–E04. Keep the full decoded answer for each side. Score all five items in reader/ANSWER_RUBRICS.txt before comparing totals out of 20. Report output-format compliance separately.
 
 If the check fails
 Check dataset/tokenizer identity and memory at the failing phase before changing precision.

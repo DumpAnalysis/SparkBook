@@ -30,12 +30,13 @@ Inspect the operator table and device-event lane separately. A GPU timing claim 
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
 
-: "${LAB_RUN:?Run source reader/new_run.sh first}"
-
-python cuda/torch_evidence.py trace --out "$LAB_RUN/trace"
+: "${LAB_RUN:?Source reader/new_run.sh first}"
+bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none -o "$LAB_RUN/operators" python cuda/torch_evidence.py trace --out "$LAB_RUN/trace"
+bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/operators.sqlite" "$LAB_RUN/operators.nsys-rep"
+python cuda/trace_sqlite.py "$LAB_RUN/operators.sqlite"
 
 Interpret the result
-A successful workload does not establish usable debugger, counter or trace data.
+Compare framework operator names and shapes with positive CUDA intervals from the external capture. Record each source and count before assigning GPU duration.
 
 If the check fails
 Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.

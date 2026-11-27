@@ -41,7 +41,7 @@ Complete the guarded admission and launch in this exercise. Set NEMOTRON_MODEL t
 python runtimes/probe.py --backend openai --base http://127.0.0.1:8087 --model "$NEMOTRON_MODEL" --out "$LAB_RUN/nemotron"
 
 Interpret the result
-Read the placement and model buffers directly from the loader. The reader observed 43/53 on GPU, 26,181.93 MiB of GPU model buffers and 5,840.22 MiB of host buffers. Windows reached 1.80 GiB before the two responses could be verified.
+Verify the Q8 acquisition receipt, retain the live admission record, then retain the native placement log and a completed request if admitted. Below the 3 GiB Windows entry floor, record the gate and stop here.
 
 If the check fails
 Inspect raw final markers and model identity; compare one controlled configuration at a time.

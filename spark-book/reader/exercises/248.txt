@@ -44,7 +44,7 @@ The entry is a CPU admission-arithmetic control with teaching inputs. Replace th
 python runtimes/lab.py 248 --out "$LAB_RUN/admission-control"
 
 Interpret the result
-Separate completion, format, quality and residency; do not promote a model on protocol success.
+Record the live CUDA, dedicated, guest and Windows readings at the same boundary. The CPU exercise uses fixture values. Retain the admission decision, its units and thresholds before launching a model.
 
 If the check fails
 Inspect raw final markers and model identity; compare one controlled configuration at a time.

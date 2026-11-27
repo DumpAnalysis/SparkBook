@@ -42,9 +42,12 @@ Proceed only after a tiny GPU timing probe supplies usable activity timestamps. 
 : "${LAB_RUN:?Start a new lab run first}"
 : "${IMAGE:?Set IMAGE to the shapes.png from Exercise 173}"
 python media/targets.py vlm --model models/media/qwen-vl --input "$IMAGE" --text "Describe the three shapes." --tokens 64 --profile --snapshot --out "$LAB_RUN/vlm-profile"
+bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none -o "$LAB_RUN/vlm-timeline" python media/targets.py vlm --model models/media/qwen-vl --input "$IMAGE" --text "Describe the three shapes." --tokens 64 --nvtx --snapshot --out "$LAB_RUN/vlm-timeline-media"
+bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/vlm-timeline.sqlite" "$LAB_RUN/vlm-timeline.nsys-rep"
+python cuda/trace_sqlite.py "$LAB_RUN/vlm-timeline.sqlite" --ranges media/
 
 Interpret the result
-Separate signal validity, task quality, listening/visual review and profiler availability.
+Read the synchronized media/load, preprocess, infer and decode ranges. Compare enclosed kernels with framework operator names. The infer range includes vision and token generation. Assign narrower costs only where the operator trace identifies their boundaries.
 
 If the check fails
 Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.

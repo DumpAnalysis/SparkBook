@@ -45,7 +45,7 @@ Inspect
 Read the exact prompt, complete response, finish reason, usage fields and saved request JSON.
 
 Interpret the result
-Count the requested fields using reader/ANSWER_RUBRICS.txt. The reader received HTTP 200 and a normal stop, but found four observations where the prompt asked for two. Save the reply before scoring it.
+Worked R17 score. The saved reader reply listed four supported observations, two possible explanations and one measurement. Give 0/1 for exactly two observations, 1/1 for two explanations and 1/1 for the measurement. Keep the HTTP status and finish reason alongside the full text.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.

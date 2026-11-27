@@ -35,7 +35,7 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 python cuda/torch_evidence.py memory --out "$LAB_RUN/memory"
 
 Interpret the result
-A successful workload does not establish usable debugger, counter or trace data.
+The allocator snapshot describes allocations. The saved tensor file supplies the selected values. Verify their run, device, shape and capture point independently of a Systems timeline.
 
 If the check fails
 Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.

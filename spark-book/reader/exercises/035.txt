@@ -33,7 +33,7 @@ A qualified debugger interface is required. If unavailable, preserve that result
 cuda-gdb --nx --batch -x cuda/inspect.gdb cuda/bin/cuda-lab-debug
 
 Interpret the result
-A successful workload does not establish usable debugger, counter or trace data.
+A host breakpoint confirms host debugging. Credit device inspection only when CUDA-GDB reads the intended device values.
 
 If the check fails
 Record the Windows driver, GPU debugger-interface state, tool version and the result on a known-good kernel before the fault control. If device inspection or sanitizer initialization fails on the good control, record the prerequisite as blocked. The host breakpoint still has its own result.

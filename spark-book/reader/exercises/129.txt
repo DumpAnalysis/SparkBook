@@ -40,7 +40,7 @@ python distributed/lab.py nodes --workers 2 --debug-level INFO --out "$LAB_RUN/n
 python distributed/lab.py gpu-ddp --workers 2 --out "$LAB_RUN/gpu-ddp"
 
 Interpret the result
-Record the physical device count before the two-GPU launch. Two CPU ranks or two logical nodes on one laptop exercise communication. A second physical GPU is required to verify the two-device placement.
+Log visible CUDA device IDs before requesting two NCCL ranks. Two CPU/Gloo workers demonstrate coordination. Two physical CUDA devices are required for the GPU DDP comparison.
 
 If the check fails
 Check rank identity, rendezvous, operation order and missing participants.

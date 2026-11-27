@@ -35,10 +35,12 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${SILENCE_WAV:?Set SILENCE_WAV to the silence.wav from Exercise 173}"
-python media/targets.py asr --model models/media/whisper --input "$SILENCE_WAV" --out "$LAB_RUN/silence-asr"
+touch "$LAB_RUN/silence-reference.txt"
+test ! -s "$LAB_RUN/silence-reference.txt"
+python media/targets.py asr --model models/media/whisper --input "$SILENCE_WAV" --reference "$LAB_RUN/silence-reference.txt" --out "$LAB_RUN/silence-asr"
 
 Interpret the result
-Measure peak and RMS before running the silence control. The reader’s two-second input had zero RMS, yet Whisper emitted “you”. Save the exact hypothesis and count any emitted words as insertions against silence.
+Verify that the input samples are zero. Expected transcript: empty. Earlier raw hypothesis: “you”. Score silence recognition 0/1, with one inserted word and zero reference words. WER is undefined; result.json records null. Keep output.txt, including any leading whitespace.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.

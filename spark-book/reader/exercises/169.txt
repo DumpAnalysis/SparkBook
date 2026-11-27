@@ -35,7 +35,7 @@ This prepares data/configuration only. Inspect the qualified recipe and launch t
 python ecosystem/nemo_prepare_target.py --recipe "$NEMO_RECIPE" --out "$LAB_RUN/nemo"
 
 Interpret the result
-Compare against an independent reference and retain provider/build identities.
+Record the effective recipe, trainable tensor names, finite loss and checkpoint step. Freeze the four held-out prompts before reviewing any response.
 
 If the check fails
 Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.

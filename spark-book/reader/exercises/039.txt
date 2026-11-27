@@ -22,14 +22,17 @@ Check for success
 Open the original trace and count the annotated iterations. Check whether each required device event has a usable interval.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Use the Linux ARM64 Nsight Systems 2026.5.1 CLI bundled in the pinned NVIDIA PyTorch image. Its digest is sha256:307c449df7dabed6b36e017a2b2f2e45bdec9dc203b81507111315f1e971de6e. The helper prints the full image reference with --image. It pulls a missing image by digest, extracts the CLI under $LAB_RUN/tools, and leaves the system installation in place. Use the same helper for capture and export.
 
-: "${LAB_RUN:?Run source reader/new_run.sh first}"
-
-nsys profile --trace=cuda,nvtx --sample=none --cpuctxsw=none --capture-range=cudaProfilerApi --capture-range-end=stop -o "$LAB_RUN/timeline" ./cuda/bin/cuda-lab trace
+: "${LAB_RUN:?Source reader/new_run.sh first}"
+bash cuda/nsys_2026.sh --image
+bash cuda/nsys_2026.sh --version
+bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none --capture-range=cudaProfilerApi --capture-range-end=stop -o "$LAB_RUN/timeline" ./cuda/bin/cuda-lab trace
+bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/timeline.sqlite" "$LAB_RUN/timeline.nsys-rep"
+python cuda/trace_sqlite.py "$LAB_RUN/timeline.sqlite" --ranges iteration
 
 Interpret the result
-A successful workload does not establish usable debugger, counter or trace data.
+Count four transform kernels with positive device intervals and four NVTX iteration ranges. Inspect their boundaries separately. On the reader’s N1X, native 2026.3.2 produced host ranges without the CUPTI kernel table. Keep the simulator or host-only result separately if collection is unavailable.
 
 If the check fails
 Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.

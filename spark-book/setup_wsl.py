@@ -50,6 +50,45 @@ def fetch(url, path, pin=None):
         temp.unlink(missing_ok=True)
 
 
+def install_runtime(archives, destination, server_state):
+    """Stage verified archives, then replace only missing or different members."""
+    destination.mkdir(exist_ok=True)
+    if destination.is_symlink():
+        raise ValueError(f'Expected a runtime directory: {destination}')
+    with locked_directory(destination), tempfile.TemporaryDirectory(dir=destination.parent) as temp:
+        stage = Path(temp)
+        for path in archives:
+            with tarfile.open(path) as archive:
+                archive.extractall(stage, filter="data")
+        directories, changes = [], []
+        for source in sorted(stage.rglob('*')):
+            target = destination / source.relative_to(stage)
+            if source.is_symlink():
+                if target.is_symlink() and target.readlink() == source.readlink():
+                    continue
+            elif source.is_dir():
+                if target.is_symlink() or (target.exists() and not target.is_dir()):
+                    raise ValueError(f'Unexpected runtime directory entry: {target}')
+                directories.append(target)
+                continue
+            elif not target.is_symlink() and target.is_file():
+                mode, installed = source.stat(), target.stat()
+                if mode.st_size == installed.st_size and (mode.st_mode & 0o111) == (installed.st_mode & 0o111):
+                    with source.open('rb') as expected, target.open('rb') as actual:
+                        if hashlib.file_digest(expected, 'sha256').digest() == hashlib.file_digest(actual, 'sha256').digest():
+                            continue
+            if target.is_dir() and not target.is_symlink():
+                raise ValueError(f'Unexpected directory in place of a runtime file: {target}')
+            changes.append((source, target))
+        if changes and server_state.exists():
+            raise SystemExit('Runtime files need repair. Stop the recorded server with bash serve.sh stop and retry.')
+        for directory in directories:
+            directory.mkdir(exist_ok=True)
+        for source, target in changes:
+            os.replace(source, target)
+        print(f'runtime_files_replaced={len(changes)}')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--quant", choices=["q4_k_m", "q8_0"], default="q4_k_m")
@@ -81,9 +120,8 @@ def main():
         print(f"matched_files={len(records)} quant={args.quant}")
         return
     # Verify the complete set before altering the installed runtime or receipt.
-    for pin in archives:
-        with tarfile.open(ROOT / "downloads" / pin["name"]) as archive:
-            archive.extractall(ROOT / "linux-bin", filter="data")
+    install_runtime([ROOT / "downloads" / pin["name"] for pin in archives],
+                    ROOT / "linux-bin", ROOT / "runs/linux-server-state.json")
     manifest = {"release": tag, "model": repo, "revision": revision, "records": records}
     receipt = ROOT / "runs" / f"linux-manifest-{args.quant}.json"
     with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=receipt.parent, delete=False) as temp:

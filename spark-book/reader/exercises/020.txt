@@ -43,7 +43,7 @@ Inspect
 Read the collected snapshot, its timestamp, available fields and the agent’s evidence references.
 
 Interpret the result
-Separate events in the fictional incident text from events in the captured snapshot. The reader’s selected HTTP exchange succeeded even though its prompt described a timeout. Check the final diagnosis against the exchange and its timestamp.
+For each claim, record the key actually read, source path and evidence type. In the reader trial, request pointed to answer.json. Its HTTP 200 documents a reply from the local model. The R17 timestamps inside the reply are generated text. Score an independent observation of the R17 incident 0/1. Inspect runtime and inventory for claims about this lab.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.

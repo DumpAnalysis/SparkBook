@@ -386,7 +386,8 @@
       "book_page": 124,
       "companion_files": [
         "finetune.py",
-        "reader/new_run.sh"
+        "reader/new_run.sh",
+        "reader/ANSWER_RUBRICS.txt"
       ]
     },
     {
@@ -400,7 +401,8 @@
       "companion_files": [
         "compare_merge.py",
         "finetune.py",
-        "reader/new_run.sh"
+        "reader/new_run.sh",
+        "reader/ANSWER_RUBRICS.txt"
       ]
     },
     {
@@ -573,7 +575,9 @@
       ],
       "book_page": 175,
       "companion_files": [
-        "reader/new_run.sh"
+        "reader/new_run.sh",
+        "cuda/nsys_2026.sh",
+        "cuda/trace_sqlite.py"
       ]
     },
     {
@@ -624,7 +628,9 @@
       "book_page": 186,
       "companion_files": [
         "cuda/torch_evidence.py",
-        "reader/new_run.sh"
+        "reader/new_run.sh",
+        "cuda/nsys_2026.sh",
+        "cuda/trace_sqlite.py"
       ]
     },
     {
@@ -634,7 +640,10 @@
       "recorded_run_ids": [],
       "book_page": 187,
       "companion_files": [
-        "cuda/profile_llama.sh"
+        "cuda/profile_llama.sh",
+        "cuda/nsys_2026.sh",
+        "cuda/trace_server.py",
+        "cuda/trace_sqlite.py"
       ],
       "shared_record_ids": [],
       "record_locator": "The native-model profile remained blocked. The command and its prerequisite discussion are in this exercise. There is no completed llama-completion trace to inspect."
@@ -760,7 +769,9 @@
       "book_page": 212,
       "companion_files": [
         "kernels/timing_summary.py",
-        "reader/new_run.sh"
+        "reader/new_run.sh",
+        "cuda/nsys_2026.sh",
+        "cuda/trace_sqlite.py"
       ]
     },
     {
@@ -870,7 +881,10 @@
         "063.01"
       ],
       "book_page": 239,
-      "companion_files": []
+      "companion_files": [
+        "cuda/nsys_2026.sh",
+        "cuda/trace_sqlite.py"
+      ]
     },
     {
       "number": 64,
@@ -1812,7 +1826,10 @@
       "book_page": 429,
       "companion_files": [
         "reader/new_run.sh",
-        "sharing/plot.py"
+        "sharing/plot.py",
+        "cuda/nsys_2026.sh",
+        "sharing/streams.py",
+        "cuda/trace_sqlite.py"
       ]
     },
     {
@@ -2230,7 +2247,11 @@
         "162.01"
       ],
       "book_page": 507,
-      "companion_files": []
+      "companion_files": [
+        "cuda/nsys_2026.sh",
+        "ecosystem/tensorrt_target.py",
+        "cuda/trace_sqlite.py"
+      ]
     },
     {
       "number": 163,
@@ -2442,7 +2463,8 @@
       "book_page": 562,
       "companion_files": [
         "media/data/larger-diagram.png",
-        "media/targets.py"
+        "media/targets.py",
+        "reader/ANSWER_RUBRICS.txt"
       ]
     },
     {
@@ -2470,7 +2492,9 @@
       ],
       "book_page": 568,
       "companion_files": [
-        "media/targets.py"
+        "media/targets.py",
+        "cuda/nsys_2026.sh",
+        "cuda/trace_sqlite.py"
       ]
     },
     {
@@ -2565,7 +2589,9 @@
       ],
       "book_page": 587,
       "companion_files": [
-        "media/targets.py"
+        "media/targets.py",
+        "cuda/nsys_2026.sh",
+        "cuda/trace_sqlite.py"
       ]
     },
     {
@@ -2694,7 +2720,9 @@
       "book_page": 614,
       "companion_files": [
         "media/targets.py",
-        "reader/new_run.sh"
+        "reader/new_run.sh",
+        "cuda/nsys_2026.sh",
+        "cuda/trace_sqlite.py"
       ]
     },
     {
@@ -2740,7 +2768,8 @@
       "book_page": 626,
       "companion_files": [
         "media/targets.py",
-        "reader/new_run.sh"
+        "reader/new_run.sh",
+        "reader/ANSWER_RUBRICS.txt"
       ]
     },
     {

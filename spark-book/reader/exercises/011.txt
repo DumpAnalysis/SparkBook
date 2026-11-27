@@ -31,14 +31,14 @@ Reading the result
 Read the finish reason before judging reply quality. Q4 stopped normally. Q8 reached the 128-token cap and its last sentence was incomplete.
 
 Run in your lab
-Begin with the 4096-token Q4 GPU owner restored in Exercise 10. Send the same prompt to the Q4 and Q8 models. Restore Q4 before the next control.
+Start with the Q4 server from Exercise 10. Save its answer, stop its owner, then prepare Q8. Setup verifies both runtime archives and the selected model shards. It preserves matching installed files. Start Q8 with the same context, prompt and 128-token budget, then restore Q4.
 
 : "${LAB_RUN:?Start a new lab run first}"
 python spark_lab.py query prompt.txt --tokens 128 --out "$LAB_RUN/q4-answer.json"
-python setup_wsl.py --quant q8_0
 bash serve.sh stop
+python setup_wsl.py --quant q8_0
 env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q8_0
-python spark_lab.py query prompt.txt --out "$LAB_RUN/q8-answer.json"
+python spark_lab.py query prompt.txt --tokens 128 --out "$LAB_RUN/q8-answer.json"
 bash serve.sh stop
 env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q4_k_m
 
@@ -49,7 +49,7 @@ If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.
 
 Finish
-Keep the exact model choice with each result; stop the server before switching configurations.
+Keep both full response receipts and runs/linux-manifest-{q4_k_m,q8_0}.json. Verify that Q4 serves the next request after the final restart.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

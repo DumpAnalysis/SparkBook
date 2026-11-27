@@ -31,7 +31,7 @@ Run in your lab
 Follow the qualified debugger/core-dump procedure in Chapter 29. Confirm the host prerequisites first; keep any unsupported result. Do not change Windows settings solely to imitate a successful transcript.
 
 Interpret the result
-A successful workload does not establish usable debugger, counter or trace data.
+Record the Windows scheduling setting and debugger interface before the controlled fault. If the prerequisite fails, keep that result and the separate numerical control.
 
 If the check fails
 Record the Windows driver, GPU debugger-interface state, tool version and the result on a known-good kernel before the fault control. If device inspection or sanitizer initialization fails on the good control, record the prerequisite as blocked. The host breakpoint still has its own result.

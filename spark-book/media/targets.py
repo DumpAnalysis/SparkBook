@@ -20,13 +20,16 @@ class Record:
         self.sync()
         if self.a.device=='cuda':torch.cuda.reset_peak_memory_stats()
         start=time.perf_counter()
-        try:
-            with torch.profiler.record_function('media/'+name):yield
-        finally:
-            self.sync();row={'name':name,'wall_s':time.perf_counter()-start}
-            if self.a.device=='cuda':
-                free,total=torch.cuda.mem_get_info();row.update(allocated=torch.cuda.memory_allocated(),reserved=torch.cuda.memory_reserved(),peak_allocated=torch.cuda.max_memory_allocated(),peak_reserved=torch.cuda.max_memory_reserved(),cuda_free=free,cuda_total=total)
-            self.events.append(row)
+        label = 'media/' + name
+        marker = torch.cuda.nvtx.range(label) if self.a.nvtx and self.a.device == 'cuda' else contextlib.nullcontext()
+        with marker:
+            try:
+                with torch.profiler.record_function(label):yield
+            finally:
+                self.sync();row={'name':name,'wall_s':time.perf_counter()-start}
+                if self.a.device=='cuda':
+                    free,total=torch.cuda.mem_get_info();row.update(allocated=torch.cuda.memory_allocated(),reserved=torch.cuda.memory_reserved(),peak_allocated=torch.cuda.max_memory_allocated(),peak_reserved=torch.cuda.max_memory_allocated(),cuda_free=free,cuda_total=total)
+                self.events.append(row)
     @contextlib.contextmanager
     def profile(self):
         if not self.a.profile:yield;return
@@ -166,6 +169,7 @@ def main():
     p.add_argument('--reference',type=Path);p.add_argument('--seed',type=int,default=1606);p.add_argument('--tokens',type=int,default=128)
     p.add_argument('--max-pixels',type=int,default=512*28*28);p.add_argument('--width',type=int,default=512);p.add_argument('--height',type=int,default=512);p.add_argument('--steps',type=int,default=20)
     p.add_argument('--guidance',type=float,default=3.0);p.add_argument('--strength',type=float,default=.5)
+    p.add_argument('--nvtx', action='store_true', help='mark synchronized CUDA phases for an external Nsight Systems capture')
     p.add_argument('--placement',choices=['resident','model-offload','sequential-offload'],default='resident');p.add_argument('--tiling',action='store_true');p.add_argument('--trace-steps',action='store_true');p.add_argument('--profile',action='store_true');p.add_argument('--snapshot',action='store_true');a=p.parse_args()
     if a.kind in ('vlm','asr') and not a.input:p.error('this modality needs --input')
     if a.device=='cpu' and a.kind not in ('tts','asr'):p.error('CPU target controls are limited to tts and asr')

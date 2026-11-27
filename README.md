@@ -67,3 +67,7 @@ The [CUDA timestamp probe](spark-book/cuda/timestamp_probe) and [NeMo recovery h
 ## License
 
 The original SparkBook materials use the [PolyForm Strict License 1.0.0](LICENSE.md). Third-party components and models retain their own licenses.
+
+### Version 59 illustrated revision 2
+
+Exercise 11 now stops the Q4 owner before preparing Q8 and restores Q4 after the matched requests. For Nsight Systems 2026.5.1, start a lab run and follow Exercises 39–40. The digest-pinned ARM64 setup, capture and same-version export are in `spark-book/reader/FRESH_SETUP.txt`. The revised scoring examples are in `spark-book/reader/ANSWER_RUBRICS.txt`.
