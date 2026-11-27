@@ -58,9 +58,10 @@ def main():
     if dtype == torch.bfloat16 and not torch.cuda.is_bf16_supported(): raise SystemExit('BF16 unavailable')
     random.seed(42);torch.manual_seed(42);torch.cuda.manual_seed_all(42)
     tokenizer=AutoTokenizer.from_pretrained(MODEL,revision=REVISION)
+    placement={'device_map':{'':'cuda'}} if args.mode=='merge' and dtype==torch.float32 else {}
     base=AutoModelForCausalLM.from_pretrained(MODEL,
         revision=REVISION, dtype=dtype,
-        attn_implementation='sdpa', low_cpu_mem_usage=True)
+        attn_implementation='sdpa', low_cpu_mem_usage=True, **placement)
     base.to('cuda')
     if args.mode=='train':
         if args.adapter: raise SystemExit('This lab starts a fresh adapter')

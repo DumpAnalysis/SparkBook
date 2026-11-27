@@ -25,7 +25,14 @@ def main():
     torch.set_float32_matmul_precision('highest')
     torch.backends.cuda.matmul.allow_tf32 = False
     options = dict(dtype=getattr(torch,args.dtype), attn_implementation='sdpa', local_files_only=True)
+    if args.dtype=='float32':
+        options['device_map']={'':'cuda'}
     tokenizer = AutoTokenizer.from_pretrained(MODEL, revision=REVISION, local_files_only=True)
+    saved_tokenizer = AutoTokenizer.from_pretrained(args.merged, local_files_only=True)
+    if (saved_tokenizer.get_vocab()!=tokenizer.get_vocab() or saved_tokenizer.chat_template!=tokenizer.chat_template
+            or saved_tokenizer.special_tokens_map!=tokenizer.special_tokens_map):
+        raise ValueError('Exported tokenizer differs from the pinned base')
+
 
     def evaluate(which):
         torch.manual_seed(42)
@@ -55,7 +62,7 @@ def main():
     delta = merged-reference
     errors = [a['id'] for a,b in zip(first,second) if a['generated_token_ids'] != b['generated_token_ids']]
     finite = bool(torch.isfinite(reference).all() and torch.isfinite(merged).all())
-    result = {'base':MODEL, 'revision':REVISION, 'evaluation_dtype':args.dtype, 'adapter':str(args.adapter.resolve()),
+    result = {'base':MODEL, 'revision':REVISION, 'tokenizer_equal':True, 'evaluation_dtype':args.dtype, 'adapter':str(args.adapter.resolve()),
               'merged':str(args.merged.resolve()), 'finite_logits':finite,
               'first_token_argmax_equal':bool(torch.equal(reference.argmax(-1),merged.argmax(-1))),
               'maximum_absolute_logit_difference':float(delta.abs().max()) if finite else None,
