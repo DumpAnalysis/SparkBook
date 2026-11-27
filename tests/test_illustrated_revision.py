@@ -19,7 +19,7 @@ class IllustratedRevision(unittest.TestCase):
             root = Path(folder)
             archive = root / 'native.tar'
             with tarfile.open(archive, 'w') as tar:
-                tar.add('/bin/sleep', 'release/server')
+                tar.add(Path(sys.executable).resolve(), 'release/server')
                 alias = tarfile.TarInfo('release/current')
                 alias.type, alias.linkname = tarfile.SYMTYPE, 'server'
                 tar.addfile(alias)
@@ -28,7 +28,7 @@ class IllustratedRevision(unittest.TestCase):
             exe = dest / 'release/server'
             initial = exe.stat()
             state.touch()
-            with subprocess.Popen([dest / 'release/current', '30']) as child:
+            with subprocess.Popen([dest / 'release/current', '-c', 'import time; time.sleep(30)']) as child:
                 try:
                     install_runtime([archive], dest, state)
                     self.assertEqual((exe.stat().st_ino, exe.stat().st_mtime_ns), (initial.st_ino, initial.st_mtime_ns))
@@ -41,7 +41,7 @@ class IllustratedRevision(unittest.TestCase):
             state.unlink()
             exe.write_bytes(b'corrupt')
             install_runtime([archive], dest, state)
-            self.assertEqual(exe.read_bytes(), Path('/bin/sleep').read_bytes())
+            self.assertEqual(exe.read_bytes(), Path(sys.executable).read_bytes())
             self.assertEqual((dest / 'release/current').readlink(), Path('server'))
 
     def test_trace_excludes_incomplete_intervals(self):
