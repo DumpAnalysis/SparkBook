@@ -28,7 +28,7 @@ Check for success
 Compare the normalized input and processed dimensions with the complete answer. Score shape, color and position individually.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Before downloading the vision weights, run python media/inventory.py --require-cuda --vision with the interpreter used here. The expected selection for the overlapping boxes is [0]. If the operator is missing, install the matching torchvision CUDA wheel in this environment and repeat the control.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${IMAGE:?Set IMAGE to the shapes.png from Exercise 173}"

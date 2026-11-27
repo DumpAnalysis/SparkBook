@@ -17,12 +17,22 @@ def documents(backend,image,model_dir=None,first_shard=None,gpu=False):
         ready='/health';live=None
         args=['-m','/models/'+first_shard,'--alias','local-model','--host','0.0.0.0','--port','8080',
               '-c','4096','-np','1','-ngl','99','--fit','off','--no-context-shift','--metrics']
+    config_maps=[]
     if backend=='vllm':
+        bootstrap='spark-vllm-wsl-entrypoint'
+        source=Path(__file__).parent/'docker'/'vllm_wsl_entrypoint.py'
+        config_maps.append({'apiVersion':'v1','kind':'ConfigMap','metadata':{'name':bootstrap,'namespace':'spark-lab'},
+                            'data':{'entry.py':source.read_text(encoding='utf-8')}})
+        volumes.append({'name':'bootstrap','configMap':{'name':bootstrap}})
+        mounts.append({'name':'bootstrap','mountPath':'/bootstrap','readOnly':True})
+        command=['python3','/bootstrap/entry.py','vllm','serve']
         ready='/health';live=None
         args=['/models','--served-model-name','local-model','--host','0.0.0.0','--port','8000',
               '--max-model-len','2048','--max-num-seqs','2','--tensor-parallel-size','1',
-              '--kv-cache-memory-bytes','1073741824','--enforce-eager','--dtype','auto']
-        env=[{'name':'HOME','value':'/tmp'},{'name':'XDG_CACHE_HOME','value':'/tmp/cache'},
+              '--kv-cache-memory-bytes','1073741824','--enforce-eager','--dtype','auto','--gpu-memory-utilization','0.12']
+        env=[{'name':'USER','value':'sparkbook'},{'name':'TORCHINDUCTOR_CACHE_DIR','value':'/tmp/torchinductor'},
+             {'name':'VLLM_WSL2_ENABLE_PIN_MEMORY','value':'1'},{'name':'HF_HUB_OFFLINE','value':'1'},
+             {'name':'HOME','value':'/tmp'},{'name':'XDG_CACHE_HOME','value':'/tmp/cache'},
              {'name':'TRITON_CACHE_DIR','value':'/tmp/triton'},{'name':'HF_HOME','value':'/tmp/hf'},{'name':'VLLM_CACHE_ROOT','value':'/tmp/vllm'}]
     if backend=='triton':
         ready='/v2/health/ready';live='/v2/health/live'
@@ -60,7 +70,7 @@ def documents(backend,image,model_dir=None,first_shard=None,gpu=False):
        'selector':{'matchLabels':{'app':name}},'strategy':strategy,
        'template':{'metadata':{'labels':{'app':name}},'spec':spec}}},
       {'apiVersion':'v1','kind':'Service','metadata':{'name':name,'namespace':'spark-lab'},
-       'spec':{'type':'ClusterIP','selector':{'app':name},'ports':[{'name':'http','port':port,'targetPort':'http'}]}}]
+       'spec':{'type':'ClusterIP','selector':{'app':name},'ports':[{'name':'http','port':port,'targetPort':'http'}]}}]+config_maps
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('backend',choices=['fixture','llama','vllm','triton'])

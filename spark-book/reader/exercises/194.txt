@@ -35,7 +35,7 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 python media/targets.py tts --model models/media/mms --text "GPU memory is available." --out "$LAB_RUN/pronunciation"
 
 Interpret the result
-Separate signal validity, task quality, listening/visual review and profiler availability.
+Have a listener transcribe each generated phrase before seeing the source text. Compare the intended pronunciation, repeat-seed waveform identity and machine transcript separately. Record unscored words when a listener is unavailable.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.

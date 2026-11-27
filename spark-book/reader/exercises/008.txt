@@ -28,7 +28,7 @@ Check for success
 Separate the warm-up from the five measured requests. Compare token counts, complete answers and cached input before comparing elapsed times.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Record whether this server has already seen prompt.txt. Continue from Exercise 6 to measure a primed prefix. For a cold control, stop your recorded server, restart the same configuration and run the benchmark first with a new output filename. In the reader check, warm-up used 113 cached prompt tokens on the primed owner and zero on the new owner. Both then used 113 on the measured repeats.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 

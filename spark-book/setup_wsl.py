@@ -10,6 +10,8 @@ import tarfile
 import tempfile
 import urllib.request
 
+from runtimes.pinned_download import fetch_pinned, locked_directory
+
 ROOT = Path(__file__).resolve().parent
 
 
@@ -31,6 +33,9 @@ def verify_file(path, pin=None):
 
 
 def fetch(url, path, pin=None):
+    if pin and "bytes" in pin:
+        with locked_directory(path.parent):
+            return fetch_pinned(url, path, pin["bytes"], sha256=pin["sha256"])
     if path.exists():
         return verify_file(path, pin)
     with tempfile.NamedTemporaryFile(dir=path.parent, prefix=path.name + ".", suffix=".partial", delete=False) as out:

@@ -41,7 +41,7 @@ Use the full held-out task set and rubric from Chapter 100. A completed stream i
 python runtimes/probe.py --backend openai --base http://127.0.0.1:8087 --model "$NEMOTRON_MODEL" --out "$LAB_RUN/nemotron-evaluation"
 
 Interpret the result
-Separate completion, format, quality and residency; do not promote a model on protocol success.
+Keep the number-only arithmetic scores separate from the eight HTTP outcomes and diagnostic evidence. The reader saw 53/53 native layers and a stop at 1.99 GiB before the matched native/Ollama requests completed.
 
 If the check fails
 Inspect raw final markers and model identity; compare one controlled configuration at a time.

@@ -38,7 +38,7 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 python advanced/diagnostic_agent.py --replay missing --out "$LAB_RUN/agent-missing.json"
 
 Interpret the result
-Separate numerical correctness, recovery equivalence and measured activity.
+Retain the proposed status, schema decision and cited evidence even when validation rejects the plan. The reader’s live planner returned an invalid status. The validator denied it and left the case for human review.
 
 If the check fails
 Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.

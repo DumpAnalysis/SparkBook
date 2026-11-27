@@ -45,7 +45,7 @@ Inspect
 Read the exact prompt, complete response, finish reason, usage fields and saved request JSON.
 
 Interpret the result
-A complete HTTP response can contain an incorrect answer. Apply the task rubric to the full text.
+Count the requested fields using reader/ANSWER_RUBRICS.txt. The reader received HTTP 200 and a normal stop, but found four observations where the prompt asked for two. Save the reply before scoring it.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.

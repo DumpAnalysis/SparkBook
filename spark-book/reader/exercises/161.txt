@@ -28,11 +28,11 @@ Check for success
 Inspect minimum, preferred and maximum shapes. Compare valid outputs and test a batch beyond the maximum.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Continue with the fixture and graph generated earlier in this LAB_RUN. For a stand-alone replay, select the corresponding files under ecosystem/controls and record their paths and hashes.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
-python ecosystem/tensorrt_target.py --model ecosystem/controls/onnx/linear.onnx --src ecosystem/controls/fixture --out "$LAB_RUN/trt"
+python ecosystem/tensorrt_target.py --model "$LAB_RUN/onnx/linear.onnx" --src "$LAB_RUN/fixture" --out "$LAB_RUN/trt"
 
 Interpret the result
 Compare against an independent reference and retain provider/build identities.

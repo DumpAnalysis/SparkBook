@@ -35,7 +35,7 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 python agent.py --out "$LAB_RUN/agent-live.json"
 
 Interpret the result
-Tool use must be bounded and evidence relevant. Compare with the deterministic control separately.
+Match each claimed tool result to a saved tool receipt. In the reader run, the planner cited a read request and also claimed that a load succeeded. The receipts supported only the read.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.

@@ -28,11 +28,12 @@ Check for success
 Check queue capacity, record order and output equality. Compare steady-state completion times after startup.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+After the prefetch run, compare zero and two DataLoader workers in a saved Python script. Its main guard supports spawned workers. Both settings should yield the same 1,024 ordered values in 32 batches. Compare first-batch latency separately from the time for the remaining batches.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 python diagnostics/lab.py pipeline --mode prefetch --device cuda --out "$LAB_RUN/pipeline-prefetch"
+python diagnostics/dataloader.py --out "$LAB_RUN/dataloader-matched.json"
 
 Interpret the result
 Tie the diagnosis to a discriminating observation and a counterexample.

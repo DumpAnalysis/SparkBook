@@ -1,0 +1,8 @@
+**
+!media/
+!media/service/
+!media/service/requirements.txt
+!media/service/server.py
+!serving/
+!serving/docker/
+!serving/docker/vllm_wsl_entrypoint.py

@@ -28,7 +28,7 @@ Check for success
 Record interpreter and package identities and require a small CUDA operation from the selected media dependency.
 
 Run in your lab
-Qualify the actual media interpreter and dependencies; package installation by itself does not pass this exercise.
+Run the matrix control for the general media environment. For Qwen-VL, add --vision now, before downloading its model. This executes CUDA non-maximum suppression through the installed torchvision wheel and checks the selected index. Record torch and torchvision versions from this same interpreter.
 
 python media/inventory.py --require-cuda
 

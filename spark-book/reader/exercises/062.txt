@@ -39,7 +39,7 @@ Interpret the result
 Separate numerical correctness, recovery equivalence and measured activity.
 
 If the check fails
-Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+For pinned CUTLASS revision e13f5cd4142c43efc37c2f6339923eb4a57afb99, the basic GEMM example needs the source tree’s include, tools/util/include and examples/common include directories. The reader built and ran the 512-square example. Record the separate profiler binary and operation name when available.
 
 Finish
 Keep CPU and cuBLAS verification plus qualified CUTLASS record.

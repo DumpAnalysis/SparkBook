@@ -37,7 +37,7 @@ Interpret the result
 A successful workload does not establish usable debugger, counter or trace data.
 
 If the check fails
-Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.
 
 Finish
 Keep sQLite export and verified query.

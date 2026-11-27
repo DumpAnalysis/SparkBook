@@ -50,6 +50,7 @@ modeldir=${7:-models/$quant}
 python3 - <<'PY'
 import socket
 with socket.socket() as s:
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     try:
         s.bind(('127.0.0.1', 8080))
     except OSError:

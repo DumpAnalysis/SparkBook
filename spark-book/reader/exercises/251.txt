@@ -49,7 +49,7 @@ python memory_budget/guarded.py pilot --out "$LAB_RUN/memory-pilot"
 python memory_budget/guarded.py target --pilot "$LAB_RUN/memory-pilot" --out "$LAB_RUN/memory-above-guest"
 
 Interpret the result
-A bounded allocation pass does not establish maximum capacity, residency or model fit.
+Retain every pilot decision. In the reader run three pilots stopped at the 4 GiB Windows floor. After headroom recovered, the unchanged pilot and target passed and all 19,327,352,832 retained bytes were verified.
 
 If the check fails
 Stop at a guard or allocation failure; retain observations without increasing the target.

@@ -48,7 +48,7 @@ Interpret the result
 Separate signal validity, task quality, listening/visual review and profiler availability.
 
 If the check fails
-Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+Compare the plain and tiled outputs at the same size and seed. The reader retained 20 finite latent snapshots from the instrumented run. Record the shape and step for each snapshot, and report device time only for a trace with a valid device interval.
 
 Finish
 Keep profiled-tiling, plain-tiling, plain-no-tiling with their output images and result files. Record timings and placement for each separate process.

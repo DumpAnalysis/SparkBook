@@ -41,6 +41,9 @@ dynamic_batching {{
   default_queue_policy {{ max_queue_size: 16 timeout_action: REJECT default_timeout_microseconds: 1000000 }}
 }}
 '''
+    if a.onnx:
+        # The reader compares FP32 vectors with a 1e-5 absolute tolerance.
+        config += 'optimization { execution_accelerators { gpu_execution_accelerator [ { name: "cuda" parameters { key: "use_tf32" value: "0" } } ] } }\n'
     (model/'config.pbtxt').write_text(config)
     (out/'model-identity.json').write_text(json.dumps({'revision':REVISION,'backend':backend,'instance_kind':kind},indent=2))
     print(f'GENERATED version=1 backend={backend} instance={kind} max_batch=8 queue_limit=16')

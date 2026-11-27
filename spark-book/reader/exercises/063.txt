@@ -39,7 +39,7 @@ Interpret the result
 Separate numerical correctness, recovery equivalence and measured activity.
 
 If the check fails
-Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.
 
 Finish
 Keep ownership proof, values, and execution timeline.

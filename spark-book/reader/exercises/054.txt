@@ -40,7 +40,7 @@ Interpret the result
 Validate values and bounds before comparing performance.
 
 If the check fails
-Reduce the failing shape and inspect indexing, synchronization and launch arguments.
+Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.
 
 Finish
 Keep units, scope, and original profiler report.

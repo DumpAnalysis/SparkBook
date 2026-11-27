@@ -1,5 +1,5 @@
 {
-  "version": 58,
+  "version": 59,
   "topics": [
     {
       "slug": "mediaadapter",
@@ -24,7 +24,7 @@
         160,
         164
       ],
-      "book_page": 626
+      "book_page": 632
     },
     {
       "slug": "agent",
@@ -47,7 +47,7 @@
         205,
         215
       ],
-      "book_page": 91
+      "book_page": 93
     },
     {
       "slug": "shell",
@@ -73,7 +73,7 @@
         260,
         261
       ],
-      "book_page": 20
+      "book_page": 22
     },
     {
       "slug": "bert",
@@ -97,7 +97,7 @@
         74,
         75
       ],
-      "book_page": 292
+      "book_page": 295
     },
     {
       "slug": "budgets",
@@ -124,7 +124,7 @@
         16,
         81
       ],
-      "book_page": 25
+      "book_page": 27
     },
     {
       "slug": "qdq",
@@ -148,7 +148,7 @@
         137,
         138
       ],
-      "book_page": 509
+      "book_page": 513
     },
     {
       "slug": "obschecks",
@@ -171,7 +171,7 @@
         89,
         194
       ],
-      "book_page": 385
+      "book_page": 388
     },
     {
       "slug": "checkpoints",
@@ -194,7 +194,7 @@
         61,
         240
       ],
-      "book_page": 125
+      "book_page": 127
     },
     {
       "slug": "concurrency",
@@ -216,7 +216,7 @@
         101,
         118
       ],
-      "book_page": 102
+      "book_page": 104
     },
     {
       "slug": "http",
@@ -243,7 +243,7 @@
         14,
         262
       ],
-      "book_page": 29
+      "book_page": 31
     },
     {
       "slug": "build",
@@ -267,7 +267,7 @@
         42,
         45
       ],
-      "book_page": 151
+      "book_page": 153
     },
     {
       "slug": "compile",
@@ -290,7 +290,7 @@
         84,
         270
       ],
-      "book_page": 346
+      "book_page": 349
     },
     {
       "slug": "sanitizer",
@@ -310,7 +310,7 @@
       "references": [
         35
       ],
-      "book_page": 166
+      "book_page": 169
     },
     {
       "slug": "multimediapipe",
@@ -333,7 +333,7 @@
         154,
         156
       ],
-      "book_page": 639
+      "book_page": 645
     },
     {
       "slug": "oci",
@@ -357,7 +357,7 @@
         174,
         175
       ],
-      "book_page": 654
+      "book_page": 661
     },
     {
       "slug": "contrast",
@@ -378,7 +378,7 @@
         76,
         77
       ],
-      "book_page": 300
+      "book_page": 303
     },
     {
       "slug": "placement",
@@ -400,7 +400,7 @@
         24,
         25
       ],
-      "book_page": 66
+      "book_page": 68
     },
     {
       "slug": "toolkit",
@@ -425,7 +425,7 @@
         26,
         31
       ],
-      "book_page": 148
+      "book_page": 150
     },
     {
       "slug": "streams",
@@ -447,7 +447,7 @@
         28,
         55
       ],
-      "book_page": 221
+      "book_page": 224
     },
     {
       "slug": "debugger",
@@ -468,7 +468,7 @@
       "references": [
         34
       ],
-      "book_page": 161
+      "book_page": 163
     },
     {
       "slug": "operators",
@@ -491,7 +491,7 @@
         53,
         60
       ],
-      "book_page": 219
+      "book_page": 222
     },
     {
       "slug": "parallel",
@@ -516,7 +516,7 @@
         99,
         100
       ],
-      "book_page": 402
+      "book_page": 405
     },
     {
       "slug": "supply",
@@ -539,7 +539,7 @@
         101,
         102
       ],
-      "book_page": 353
+      "book_page": 356
     },
     {
       "slug": "splits",
@@ -563,7 +563,7 @@
         178,
         180
       ],
-      "book_page": 116
+      "book_page": 118
     },
     {
       "slug": "calibration",
@@ -583,7 +583,7 @@
       "references": [
         223
       ],
-      "book_page": 734
+      "book_page": 741
     },
     {
       "slug": "dumps",
@@ -607,7 +607,7 @@
         34,
         39
       ],
-      "book_page": 157
+      "book_page": 159
     },
     {
       "slug": "reasoning",
@@ -626,7 +626,7 @@
         "For the fictional R17 incident, start with one observed event. Name two explanations consistent with it, then say what you would measure to tell them apart. The remaining uncertainty is part of the conclusion. This same method applies later to kernels, generated images and stalled workers."
       ],
       "references": [],
-      "book_page": 72
+      "book_page": 74
     },
     {
       "slug": "casebook",
@@ -645,7 +645,7 @@
         "For an evidence card, identify the observed state first and write your competing explanation before revealing the worked answer. A deliberately injected delay can test how your method responds to a known fault. Keep that distinction when you later investigate a real stall with an unknown cause."
       ],
       "references": [],
-      "book_page": 253
+      "book_page": 256
     },
     {
       "slug": "diffusion",
@@ -667,7 +667,7 @@
         148,
         150
       ],
-      "book_page": 568
+      "book_page": 572
     },
     {
       "slug": "dist",
@@ -694,7 +694,7 @@
         98,
         100
       ],
-      "book_page": 401
+      "book_page": 404
     },
     {
       "slug": "compose",
@@ -716,7 +716,7 @@
         200,
         268
       ],
-      "book_page": 445
+      "book_page": 448
     },
     {
       "slug": "docker",
@@ -742,7 +742,7 @@
         120,
         272
       ],
-      "book_page": 441
+      "book_page": 444
     },
     {
       "slug": "batching",
@@ -765,7 +765,7 @@
         114,
         118
       ],
-      "book_page": 423
+      "book_page": 426
     },
     {
       "slug": "lora",
@@ -791,7 +791,7 @@
         21,
         57
       ],
-      "book_page": 118
+      "book_page": 120
     },
     {
       "slug": "precision",
@@ -816,7 +816,7 @@
         57,
         83
       ],
-      "book_page": 341
+      "book_page": 344
     },
     {
       "slug": "identifiers",
@@ -840,7 +840,7 @@
         176,
         277
       ],
-      "book_page": 31
+      "book_page": 33
     },
     {
       "slug": "metrics",
@@ -865,7 +865,7 @@
         79,
         82
       ],
-      "book_page": 317
+      "book_page": 320
     },
     {
       "slug": "scheduling",
@@ -888,7 +888,7 @@
         109,
         111
       ],
-      "book_page": 456
+      "book_page": 460
     },
     {
       "slug": "trainingstate",
@@ -912,7 +912,7 @@
         61,
         264
       ],
-      "book_page": 248
+      "book_page": 251
     },
     {
       "slug": "grafana",
@@ -935,7 +935,7 @@
         192,
         193
       ],
-      "book_page": 681
+      "book_page": 688
     },
     {
       "slug": "grounding",
@@ -956,7 +956,7 @@
         17,
         63
       ],
-      "book_page": 86
+      "book_page": 88
     },
     {
       "slug": "paging",
@@ -982,7 +982,7 @@
         258,
         259
       ],
-      "book_page": 140
+      "book_page": 142
     },
     {
       "slug": "hfhub",
@@ -1009,7 +1009,7 @@
         183,
         184
       ],
-      "book_page": 663
+      "book_page": 670
     },
     {
       "slug": "media",
@@ -1036,7 +1036,7 @@
         156,
         159
       ],
-      "book_page": 546
+      "book_page": 550
     },
     {
       "slug": "serving",
@@ -1060,7 +1060,7 @@
         110,
         262
       ],
-      "book_page": 433
+      "book_page": 436
     },
     {
       "slug": "jev",
@@ -1088,7 +1088,7 @@
         222,
         223
       ],
-      "book_page": 732
+      "book_page": 739
     },
     {
       "slug": "fusion",
@@ -1110,7 +1110,7 @@
         45,
         86
       ],
-      "book_page": 207
+      "book_page": 210
     },
     {
       "slug": "kube",
@@ -1138,7 +1138,7 @@
         110,
         123
       ],
-      "book_page": 452
+      "book_page": 456
     },
     {
       "slug": "langchain",
@@ -1161,7 +1161,7 @@
         206,
         226
       ],
-      "book_page": 705
+      "book_page": 712
     },
     {
       "slug": "langgraph",
@@ -1185,7 +1185,7 @@
         208,
         209
       ],
-      "book_page": 713
+      "book_page": 720
     },
     {
       "slug": "langsmith",
@@ -1211,7 +1211,7 @@
         212,
         213
       ],
-      "book_page": 720
+      "book_page": 727
     },
     {
       "slug": "timing",
@@ -1234,7 +1234,7 @@
         3,
         80
       ],
-      "book_page": 46
+      "book_page": 48
     },
     {
       "slug": "lmstudio",
@@ -1261,7 +1261,7 @@
         247,
         248
       ],
-      "book_page": 772
+      "book_page": 779
     },
     {
       "slug": "bigmodel",
@@ -1285,7 +1285,7 @@
         25,
         82
       ],
-      "book_page": 132
+      "book_page": 134
     },
     {
       "slug": "server",
@@ -1310,7 +1310,7 @@
         11,
         92
       ],
-      "book_page": 37
+      "book_page": 39
     },
     {
       "slug": "tiles",
@@ -1333,7 +1333,7 @@
         43,
         45
       ],
-      "book_page": 193
+      "book_page": 196
     },
     {
       "slug": "matmul",
@@ -1355,7 +1355,7 @@
         45,
         48
       ],
-      "book_page": 202
+      "book_page": 205
     },
     {
       "slug": "offline",
@@ -1378,7 +1378,7 @@
         184,
         185
       ],
-      "book_page": 107
+      "book_page": 109
     },
     {
       "slug": "files",
@@ -1399,7 +1399,7 @@
       ],
       "paragraphs": [
         "A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.",
-        "The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load."
+        "The early exercises use Qwen models. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load."
       ],
       "references": [
         2,
@@ -1408,7 +1408,7 @@
         177,
         263
       ],
-      "book_page": 31
+      "book_page": 33
     },
     {
       "slug": "model",
@@ -1434,7 +1434,7 @@
         7,
         8
       ],
-      "book_page": 24
+      "book_page": 26
     },
     {
       "slug": "music",
@@ -1457,7 +1457,7 @@
         152,
         153
       ],
-      "book_page": 593
+      "book_page": 599
     },
     {
       "slug": "nemotron",
@@ -1483,7 +1483,7 @@
         251,
         252
       ],
-      "book_page": 783
+      "book_page": 790
     },
     {
       "slug": "ncu",
@@ -1505,7 +1505,7 @@
         38,
         86
       ],
-      "book_page": 178
+      "book_page": 181
     },
     {
       "slug": "nsys",
@@ -1529,7 +1529,7 @@
         36,
         41
       ],
-      "book_page": 172
+      "book_page": 175
     },
     {
       "slug": "arrays",
@@ -1556,7 +1556,7 @@
         266,
         273
       ],
-      "book_page": 480
+      "book_page": 484
     },
     {
       "slug": "containersgpu",
@@ -1579,7 +1579,7 @@
         106,
         109
       ],
-      "book_page": 447
+      "book_page": 450
     },
     {
       "slug": "nemo",
@@ -1605,7 +1605,7 @@
         141,
         144
       ],
-      "book_page": 520
+      "book_page": 524
     },
     {
       "slug": "ngc",
@@ -1630,7 +1630,7 @@
         172,
         173
       ],
-      "book_page": 648
+      "book_page": 655
     },
     {
       "slug": "tritonserver",
@@ -1655,7 +1655,7 @@
         118,
         119
       ],
-      "book_page": 469
+      "book_page": 473
     },
     {
       "slug": "ollama",
@@ -1682,7 +1682,7 @@
         232,
         233
       ],
-      "book_page": 741
+      "book_page": 748
     },
     {
       "slug": "onnx",
@@ -1707,7 +1707,7 @@
         129,
         130
       ],
-      "book_page": 473
+      "book_page": 477
     },
     {
       "slug": "otel",
@@ -1729,7 +1729,7 @@
         89,
         271
       ],
-      "book_page": 373
+      "book_page": 376
     },
     {
       "slug": "packing",
@@ -1751,7 +1751,7 @@
         137,
         138
       ],
-      "book_page": 243
+      "book_page": 246
     },
     {
       "slug": "pca",
@@ -1774,7 +1774,7 @@
         68,
         126
       ],
-      "book_page": 282
+      "book_page": 285
     },
     {
       "slug": "plots",
@@ -1798,7 +1798,7 @@
         80,
         269
       ],
-      "book_page": 321
+      "book_page": 324
     },
     {
       "slug": "prometheus",
@@ -1824,7 +1824,7 @@
         191,
         194
       ],
-      "book_page": 674
+      "book_page": 681
     },
     {
       "slug": "prompt",
@@ -1846,7 +1846,7 @@
         2,
         3
       ],
-      "book_page": 41
+      "book_page": 43
     },
     {
       "slug": "promql",
@@ -1873,7 +1873,7 @@
         196,
         197
       ],
-      "book_page": 684
+      "book_page": 691
     },
     {
       "slug": "instructions",
@@ -1896,7 +1896,7 @@
         34,
         62
       ],
-      "book_page": 154
+      "book_page": 156
     },
     {
       "slug": "pydantic",
@@ -1921,7 +1921,7 @@
         216,
         217
       ],
-      "book_page": 726
+      "book_page": 733
     },
     {
       "slug": "pythonpackages",
@@ -1946,7 +1946,7 @@
         260,
         274
       ],
-      "book_page": 82
+      "book_page": 84
     },
     {
       "slug": "allocator",
@@ -1969,7 +1969,7 @@
         39,
         87
       ],
-      "book_page": 181
+      "book_page": 184
     },
     {
       "slug": "profiler",
@@ -1992,7 +1992,7 @@
         40,
         41
       ],
-      "book_page": 183
+      "book_page": 186
     },
     {
       "slug": "torch",
@@ -2019,7 +2019,7 @@
         27,
         264
       ],
-      "book_page": 82
+      "book_page": 84
     },
     {
       "slug": "quant",
@@ -2044,7 +2044,7 @@
         137,
         138
       ],
-      "book_page": 60
+      "book_page": 62
     },
     {
       "slug": "rmm",
@@ -2065,7 +2065,7 @@
         16,
         127
       ],
-      "book_page": 487
+      "book_page": 491
     },
     {
       "slug": "rapids",
@@ -2089,7 +2089,7 @@
         125,
         126
       ],
-      "book_page": 483
+      "book_page": 487
     },
     {
       "slug": "sqlite",
@@ -2112,7 +2112,7 @@
         41,
         267
       ],
-      "book_page": 175
+      "book_page": 178
     },
     {
       "slug": "reductiontest",
@@ -2131,7 +2131,7 @@
         "When comparing configurations, test the same predicate on the same input. Bisection can narrow a transition if the ordered candidates separate passing from failing consistently. Keep the actual observation at each step. An unrelated crash during reduction would otherwise count as success for the wrong reason."
       ],
       "references": [],
-      "book_page": 382
+      "book_page": 385
     },
     {
       "slug": "reductions",
@@ -2153,7 +2153,7 @@
         46,
         47
       ],
-      "book_page": 197
+      "book_page": 200
     },
     {
       "slug": "ranking",
@@ -2175,7 +2175,7 @@
         65,
         76
       ],
-      "book_page": 279
+      "book_page": 282
     },
     {
       "slug": "normalization",
@@ -2197,7 +2197,7 @@
         50,
         51
       ],
-      "book_page": 212
+      "book_page": 215
     },
     {
       "slug": "roofline",
@@ -2218,7 +2218,7 @@
         45,
         86
       ],
-      "book_page": 359
+      "book_page": 362
     },
     {
       "slug": "embeddings",
@@ -2242,7 +2242,7 @@
         64,
         65
       ],
-      "book_page": 271
+      "book_page": 274
     },
     {
       "slug": "ownership",
@@ -2267,7 +2267,7 @@
         103,
         104
       ],
-      "book_page": 419
+      "book_page": 422
     },
     {
       "slug": "asr",
@@ -2291,7 +2291,7 @@
         157,
         159
       ],
-      "book_page": 614
+      "book_page": 620
     },
     {
       "slug": "sdxl",
@@ -2316,7 +2316,7 @@
         149,
         160
       ],
-      "book_page": 576
+      "book_page": 580
     },
     {
       "slug": "stalls",
@@ -2339,7 +2339,7 @@
         88,
         96
       ],
-      "book_page": 369
+      "book_page": 372
     },
     {
       "slug": "streaming",
@@ -2361,7 +2361,7 @@
         3,
         265
       ],
-      "book_page": 50
+      "book_page": 52
     },
     {
       "slug": "tsne",
@@ -2381,7 +2381,7 @@
         67,
         68
       ],
-      "book_page": 287
+      "book_page": 290
     },
     {
       "slug": "tensorrt",
@@ -2407,7 +2407,7 @@
         135,
         136
       ],
-      "book_page": 498
+      "book_page": 502
     },
     {
       "slug": "tts",
@@ -2430,7 +2430,7 @@
         154,
         155
       ],
-      "book_page": 602
+      "book_page": 608
     },
     {
       "slug": "pooling",
@@ -2452,7 +2452,7 @@
         65,
         73
       ],
-      "book_page": 275
+      "book_page": 278
     },
     {
       "slug": "attention",
@@ -2477,7 +2477,7 @@
         58,
         59
       ],
-      "book_page": 226
+      "book_page": 229
     },
     {
       "slug": "hfstack",
@@ -2504,7 +2504,7 @@
         275,
         276
       ],
-      "book_page": 118
+      "book_page": 120
     },
     {
       "slug": "umap",
@@ -2525,7 +2525,7 @@
         70,
         71
       ],
-      "book_page": 287
+      "book_page": 290
     },
     {
       "slug": "unsloth",
@@ -2551,7 +2551,7 @@
         236,
         237
       ],
-      "book_page": 754
+      "book_page": 761
     },
     {
       "slug": "vectorindex",
@@ -2572,7 +2572,7 @@
         63,
         65
       ],
-      "book_page": 310
+      "book_page": 313
     },
     {
       "slug": "retained",
@@ -2599,7 +2599,7 @@
         258,
         259
       ],
-      "book_page": 800
+      "book_page": 807
     },
     {
       "slug": "vlm",
@@ -2622,7 +2622,7 @@
         147,
         166
       ],
-      "book_page": 555
+      "book_page": 559
     },
     {
       "slug": "vllm",
@@ -2645,7 +2645,7 @@
         113,
         114
       ],
-      "book_page": 461
+      "book_page": 465
     },
     {
       "slug": "warps",
@@ -2669,7 +2669,7 @@
         49,
         56
       ],
-      "book_page": 230
+      "book_page": 233
     },
     {
       "slug": "spectrum",
@@ -2692,7 +2692,7 @@
         159,
         168
       ],
-      "book_page": 596
+      "book_page": 602
     },
     {
       "slug": "wsl",
@@ -2717,7 +2717,7 @@
         10,
         90
       ],
-      "book_page": 20
+      "book_page": 22
     },
     {
       "slug": "wer",
@@ -2740,7 +2740,7 @@
         156,
         158
       ],
-      "book_page": 616
+      "book_page": 622
     },
     {
       "slug": "kernels",
@@ -2765,7 +2765,7 @@
         43,
         44
       ],
-      "book_page": 151
+      "book_page": 153
     }
   ],
   "exercises": {

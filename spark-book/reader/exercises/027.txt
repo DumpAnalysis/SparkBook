@@ -39,7 +39,7 @@ python finetune.py merge --adapter "$ADAPTER" --output "$LAB_RUN/merged"
 python compare_merge.py --adapter "$ADAPTER" --merged "$LAB_RUN/merged/merged" --out "$LAB_RUN/merge-check"
 
 Interpret the result
-A written checkpoint is not yet a qualified deployment; loading and output checks come next.
+Compare the maximum absolute logit difference, the first greedy token and the complete greedy continuation. The reader reproduced a maximum difference of 0.375 and matching first-token argmax. All four held-out continuations diverged.
 
 If the check fails
 Check dataset/tokenizer identity and memory at the failing phase before changing precision.

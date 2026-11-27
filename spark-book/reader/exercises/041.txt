@@ -38,7 +38,7 @@ Interpret the result
 A successful workload does not establish usable debugger, counter or trace data.
 
 If the check fails
-Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+Retain the exact Nsight Compute permission error and the passing workload result. Record the requested GPU counter and the Windows driver permission state before repeating the same measurement.
 
 Finish
 Keep nsight Compute report.

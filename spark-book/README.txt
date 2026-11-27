@@ -1,5 +1,5 @@
 Local AI on RTX Spark Laptops
-Learner companion Version 58 — 31 October 2026
+Learner companion Version 59 — 27 November 2026
 
 START HERE
 Read reader/START_HERE.txt. Clone https://github.com/DumpAnalysis/SparkBook or unzip the companion

@@ -40,7 +40,7 @@ Reading the result
 This is an optional context-size variation. On a first pass, take the result from Exercise 9 to the four-part conclusion in Exercise 23. Return here to compare 4,096 and 8,192 tokens.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Keep the PID and the server directory for each context. Stop the recorded owner before the restart. Each query or benchmark needs a new output filename, including retries after a failed request. An existing evidence file is rejected before the request is sent.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 

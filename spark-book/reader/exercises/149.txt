@@ -34,11 +34,27 @@ Check for success
 Compare accepted/completed counts and server counters at each concurrency. Verify the cluster owner with its own response.
 
 Run in your lab
-The entry is a load probe of the running owner. Deployment is a separate step using serving/deploy.py after the local serving criteria pass.
+Use the Docker owner, pinned image and model directory from Exercise 148. After the Docker measurement, release the GPU and run the K3s commands on the qualified lab cluster. The generated manifest supplies the WSL driver bootstrap, writable caches, a 1 GiB KV cache and GPU utilization 0.12. The reader’s pod returned two HTTP 200 replies as UID 10001.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 python serving/client.py chat-load --base http://127.0.0.1:8000 --model local-model --requests 8 --concurrency 2 --out "$LAB_RUN/vllm-load"
+# Complete the Docker comparison and stop your Exercise 148 GPU owner.
+docker logs spark-vllm > "$LAB_RUN/vllm-docker.log" 2>&1
+docker stop spark-vllm
+: "${VLLM_IMAGE:?Export the same qualified repository digest used in Exercise 148}"
+: "${MODEL_DIR:?Export the absolute model directory used in Exercise 148}"
+python serving/deploy.py vllm --image "$VLLM_IMAGE" --model-dir "$MODEL_DIR" --gpu --out "$LAB_RUN/vllm.yaml"
+kubectl apply -f "$LAB_RUN/vllm.yaml"
+kubectl -n spark-lab rollout status deployment/spark-vllm --timeout=900s
+(
+  kubectl -n spark-lab port-forward --address 127.0.0.1 service/spark-vllm 18000:8000 > "$LAB_RUN/vllm-forward.log" 2>&1 &
+  forward_pid=$!
+  trap 'kill "$forward_pid" 2>/dev/null || true' EXIT
+  curl -fsS --retry 12 --retry-connrefused --retry-delay 1 http://127.0.0.1:18000/health &&
+  python serving/client.py chat-load --base http://127.0.0.1:18000 --model local-model --requests 2 --concurrency 1 --out "$LAB_RUN/vllm-k3s"
+)
+kubectl -n spark-lab logs deployment/spark-vllm > "$LAB_RUN/vllm-pod.log"
 
 Interpret the result
 A healthy endpoint, scheduled pod and correct model response are distinct checks.
@@ -47,7 +63,7 @@ If the check fails
 Work through process, container, scheduling, backend and request boundaries.
 
 Finish
-Keep $LAB_RUN/vllm-load with the command and exit that produced it.
+Keep the Docker and pod logs, both client summaries and vllm.yaml. After saving the evidence, scale your spark-vllm deployment to zero to release the GPU for the next backend.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

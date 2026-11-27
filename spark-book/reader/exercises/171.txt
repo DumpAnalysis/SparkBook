@@ -45,7 +45,7 @@ Set NEMO_CHECKPOINT to the exact adapter you intend to export. Save its identity
 python ecosystem/nemo_export_target.py --base "$NEMO_BASE" --checkpoint "$NEMO_CHECKPOINT" --out "$LAB_RUN/nemo-export"
 
 Interpret the result
-Compare against an independent reference and retain provider/build identities.
+Keep the maximum export-logit difference, the held-out decoding result and the five per-case rubric scores separate. Use reader/ANSWER_RUBRICS.txt and retain the original answers.
 
 If the check fails
 Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.

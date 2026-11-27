@@ -34,12 +34,13 @@ Check for success
 Inspect the pod's resource request, scheduling events and native placement log. Confirm an actual served response.
 
 Run in your lab
-Use the same qualified image and model files from the container exercise. Inspect the generated manifest before applying it.
+The pod reads every shard as UID 10001. Probe the same mount and UID before deployment. If a 0600 download fails, create a new staging directory with mode 0755 and copy the verified GGUF shards into it with install -m 0444. Set MODEL_DIR to that directory and repeat the probe.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${FIRST_SHARD:?Set FIRST_SHARD to the basename of the first GGUF shard, with every shard present}"
 : "${LLAMA_IMAGE:?Set LLAMA_IMAGE to the qualified ARM64 llama.cpp image pinned by digest}"
 : "${MODEL_DIR:?Set MODEL_DIR to the absolute model directory available to the container or cluster node}"
+bash serving/docker/check_model_access.sh "$LLAMA_IMAGE" "$MODEL_DIR"
 python serving/deploy.py llama --image "$LLAMA_IMAGE" --model-dir "$MODEL_DIR" --first-shard "$FIRST_SHARD" --gpu --out "$LAB_RUN/llama.yaml"
 kubectl apply -f "$LAB_RUN/llama.yaml"
 

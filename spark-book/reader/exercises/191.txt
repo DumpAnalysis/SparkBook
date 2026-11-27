@@ -44,7 +44,7 @@ The entry supplies one controlled seed. Repeat the same prompt and limit, then v
 python media/targets.py music --model models/media/musicgen --text "A quiet solo piano phrase with a slow steady rhythm" --tokens 256 --guidance 3 --seed 1607 --profile --out "$LAB_RUN/music-seed1607"
 
 Interpret the result
-Separate signal validity, task quality, listening/visual review and profiler availability.
+Record sample rate, duration, peak, repeat-seed hash and codec positions separately. Use a listener to assess the requested sound and intelligibility. A matching hash qualifies repeatability only.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.

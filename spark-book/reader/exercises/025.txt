@@ -32,6 +32,7 @@ Use the qualified framework environment. The recorded experiment preserves an in
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
+python reader/preflight.py --check-headers
 python finetune.py train --steps 10 --output "$LAB_RUN/lora"
 
 Interpret the result

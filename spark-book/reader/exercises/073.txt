@@ -39,7 +39,7 @@ Interpret the result
 Separate numerical correctness, recovery equivalence and measured activity.
 
 If the check fails
-Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.
+If CUDA-GDB cannot select valid live device coordinates, keep the executable identity, PTX, SASS and passing numerical result. Record the rejected focus request and the debugger’s exact diagnostic. Leave the live-stop criterion open.
 
 Finish
 Keep PTX, SASS, build resources, focus, and debugger log.

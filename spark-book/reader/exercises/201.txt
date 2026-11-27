@@ -34,11 +34,13 @@ Check for success
 Compare adapter-enabled and disabled images with the same base, prompt and seed. Score the requested visual change independently of pixel differences.
 
 Run in your lab
-The entry compares an existing adapter. For the preceding two-update training command, open record 201.01 with reader/records.py 201 --files and inspect command_argv in metadata.json. Use the pinned trainer and your own fresh output directory.
+Activate the SDXL training environment from Chapter 88. The launcher verifies the upstream trainer and the supplied patch, loads the frozen weights in FP16 and runs two offline updates. An optional fourth argument selects a local copy of the pinned upstream script. Compare the filled-square target with both images and score the shape separately from the training loss.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
-: "${IMAGE_ADAPTER:?Set IMAGE_ADAPTER to the LoRA directory trained using Chapter 88}"
-python media/image_adapter.py --model models/media/sdxl --adapter "$IMAGE_ADAPTER" --out "$LAB_RUN/image-adapter-check"
+
+python media/prepare_adaptation.py --out "$LAB_RUN/image-data"
+bash media/train_image_adapter.sh models/media/sdxl "$LAB_RUN/image-data" "$LAB_RUN/image-adapter"
+python media/image_adapter.py --model models/media/sdxl --adapter "$LAB_RUN/image-adapter" --out "$LAB_RUN/image-adapter-check"
 
 Interpret the result
 Separate signal validity, task quality, listening/visual review and profiler availability.
@@ -47,7 +49,7 @@ If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.
 
 Finish
-Keep $LAB_RUN/image-adapter-check with the command and exit that produced it.
+Keep the two losses, adapter weights, base.png and adapter.png from this LAB_RUN. A changed image is evidence of an adapter effect. Mark the shape criterion separately.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

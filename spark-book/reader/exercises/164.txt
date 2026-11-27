@@ -28,11 +28,11 @@ Check for success
 Inspect channel ranges, scales and reconstructed values against the original tensor. Keep calibration and evaluation rows distinct.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Continue with the fixture and graph generated earlier in this LAB_RUN. For a stand-alone replay, select the corresponding files under ecosystem/controls and record their paths and hashes.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
-python ecosystem/lab.py quantize --src ecosystem/controls/fixture --models ecosystem/controls/onnx --out "$LAB_RUN/quantization"
+python ecosystem/lab.py quantize --src "$LAB_RUN/fixture" --models "$LAB_RUN/onnx" --out "$LAB_RUN/quantization"
 
 Interpret the result
 Compare against an independent reference and retain provider/build identities.

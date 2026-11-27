@@ -1,5 +1,5 @@
 HISTORICAL PROCEDURE NOTES
-Book Version 58 and reader/exercises/ are the current reader instructions.
+Book Version 59 and reader/exercises/ are the current reader instructions.
 These retained source-era notes explain concepts and repeat procedures; their
 old environment and execution-status statements are historical. Superseded
 preparation transcript blocks remain omitted. Use the evidence map for current
@@ -117,7 +117,7 @@ Exercise 141 Run a bounded container and inspect its lifecycle
 
 docker compose -f serving/docker/compose.yaml config
 
-docker compose -f serving/docker/compose.yaml up -d
+docker compose -f serving/docker/compose.yaml up -d --wait --wait-timeout 90
 
 docker compose -f serving/docker/compose.yaml ps
 
@@ -483,7 +483,7 @@ sudo k3s kubectl -n spark-lab port-forward \
 
   --address 127.0.0.1 service/spark-vllm 8000:8000
 
-Remove or scale down the previous GPU Deployment before this step. The generator uses one GPU, Recreate, a bounded shared-memory mount, read-only model files and startup/readiness probes. It deliberately omits a liveness probe based only on /health; qualify a failure detector before enabling automatic restarts of a heavily loaded model. The 20 GiB host-memory limit is a starting budget to adjust from measured peaks, not a GPU memory quota. Retain the generated YAML and server-side validation result. K3s pulls the digest-pinned image into its separate store when absent; Docker’s copy is not visible there. Allow for this download in the rollout timeout and K3s service proxy settings. Retain kubectl describe pod output if the pull fails. The manifest sets the same writable cache paths as Docker. [108]
+Remove or scale down the previous GPU Deployment before this step. The generator uses one GPU, Recreate, a bounded shared-memory mount, read-only model files and startup/readiness probes. It deliberately omits a liveness probe based only on /health; qualify a failure detector before enabling automatic restarts of a heavily loaded model. The 20 GiB host-memory limit is a starting budget to adjust from measured peaks, not a GPU memory quota. Retain the generated YAML and server-side validation result. K3s pulls the digest-pinned image into its separate store when absent; Docker’s copy is not visible there. Allow for this download in the rollout timeout and K3s service proxy settings. Retain kubectl describe pod output if the pull fails. The manifest includes the Docker WSL driver bootstrap in a ConfigMap, the USER and cache settings needed by UID 10001, the 1 GiB KV budget and GPU utilization of 0.12. Probe GGUF file access with serving/docker/check_model_access.sh before the llama deployment. [108]
 
 Exercise 150 Build and serve a versioned Triton embedding model
 

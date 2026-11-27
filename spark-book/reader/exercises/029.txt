@@ -42,7 +42,7 @@ python large_model.py --download
 python memory_budget/guarded.py model --out "$LAB_RUN/model32"
 
 Interpret the result
-A model that exceeds the reported GPU budget may require host-backed placement; success still depends on the actual host and guest budget.
+Retain the native placement line and each HTTP reply, including evidence from a guard stop. In the reader trial 51/65 layers appeared on GPU and four requests returned 200 before Windows fell below the 2 GiB active floor.
 
 If the check fails
 Check dataset/tokenizer identity and memory at the failing phase before changing precision.

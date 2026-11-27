@@ -28,11 +28,11 @@ Check for success
 Inspect ONNX input/output names, symbolic dimension and initializer shapes, then run the structural checker.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Use the fixture produced by Exercise 152. The bundled ecosystem/controls/fixture directory is available for an explicitly labelled replay.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
-python ecosystem/lab.py onnx --src ecosystem/controls/fixture --out "$LAB_RUN/onnx"
+python ecosystem/lab.py onnx --src "$LAB_RUN/fixture" --out "$LAB_RUN/onnx"
 
 Interpret the result
 Compare against an independent reference and retain provider/build identities.

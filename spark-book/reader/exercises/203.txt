@@ -34,11 +34,13 @@ Check for success
 Match request IDs to acceptance, rejection and completion, then verify owner identity and orderly shutdown.
 
 Run in your lab
-The entry tests local admission. The recorded Docker service and its client/shutdown driver are separate stages. Use reader/records.py 203 --files and the exercise source index to locate the exact deployment resources.
+First run the queue control. The supplied Docker build uses a pinned ARM64 NVIDIA base and hash-checked packages. The runner starts a single loopback CUDA owner, sends bounded requests, verifies the 200, 422, 408 and 429 responses, and checks the drained shutdown.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 python media/controls.py queue --out "$LAB_RUN/media-queue"
+docker build --platform linux/arm64 -f media/service/Dockerfile -t local/spark-mms:v59 .
+bash media/service/run.sh local/spark-mms:v59 models/media/mms "$LAB_RUN/mms-service"
 
 Interpret the result
 Separate signal validity, task quality, listening/visual review and profiler availability.
@@ -47,7 +49,7 @@ If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.
 
 Finish
-Keep $LAB_RUN/media-queue with the command and exit that produced it.
+Keep media-queue, mms-service/image-id.txt, identity.json, requests.json, the generated WAV files, service.log and exit.txt.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

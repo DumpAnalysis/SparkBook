@@ -37,7 +37,7 @@ Reading the result
 Read three results independently. The deployed service passed v1, v2 and rollback vector checks. Backend logs placed nine optimized nodes on CUDAExecutionProvider. The four elevated diagnostic probes returned eight kernel records with zero timestamps, leaving device timing blocked.
 
 Run in your lab
-Begin with the CPU repository control from Exercise 150. Exercise 158 supplies the later provider-placement check. Return here for the GPU serving and trace criteria after that check.
+Build the ONNX repository with the NVIDIA GPU accelerator setting use_tf32=0 for the 0.00001 vector tolerance. Compare v1, an independently calculated changed v2, and v1 after rollback. The numerical result, provider placement and device timestamp each have their own check.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
@@ -48,7 +48,7 @@ Interpret the result
 A healthy endpoint, scheduled pod and correct model response are distinct checks.
 
 If the check fails
-Work through process, container, scheduling, backend and request boundaries.
+Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.
 
 Finish
 Keep $LAB_RUN/onnx-repository, $LAB_RUN/onnx-control with the command and exit that produced it.

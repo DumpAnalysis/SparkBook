@@ -1,5 +1,5 @@
 HISTORICAL PROCEDURE NOTES
-Book Version 58 and reader/exercises/ are the current reader instructions.
+Book Version 59 and reader/exercises/ are the current reader instructions.
 These retained source-era notes explain concepts and repeat procedures; their
 old environment and execution-status statements are historical. Superseded
 preparation transcript blocks remain omitted. Use the evidence map for current
@@ -205,7 +205,7 @@ We use a pinned ggml-org GGUF conversion and preserve its identity separately fr
 Exercise 247  Record the upstream and conversion identities
 Goal: identify what will be loaded before downloading tens of gigabytes. The companion contains actual public catalog responses for the NVIDIA repository and the selected converter repository. The printed transcript reads those retained metadata bytes; it does not load a model. Record the full revision, selected filename, byte size, SHA256 and license before acquisition. [249–251]
 
-TARGET PROCEDURE. Start with the Q4_K_M plan. Inspect its selected file and available disk, then explicitly request the download. The downloader checks the complete file's byte size and LFS SHA256 and preserves a partial file if verification fails. It will not overwrite an existing directory.
+TARGET PROCEDURE. Start with the Q4_K_M plan. Inspect its selected file and available disk, then explicitly request the download. The downloader checks the complete file's byte size and LFS SHA256 and preserves a partial file if verification fails. Plan mode writes acquisition-plan.json. Reuse that selection with --download. After an interruption, repeat the same command to continue its .partial transfer. Each range is checked against the pinned size and each complete artifact against its publisher hash. A directory containing a different plan is rejected.
 python3 runtimes/acquire.py Q4_K_M --out models/nemotron-q4
 python3 runtimes/acquire.py Q4_K_M --out models/nemotron-q4 \
   --download

@@ -38,7 +38,7 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 python spark_lab.py query "$GROUNDED_PROMPT" --out "$LAB_RUN/grounded-answer.json"
 
 Interpret the result
-Fluent wording and valid output format do not establish a grounded diagnosis.
+For each claim, record the sentence in the supplied notes that supports it. The reader’s answer inferred a missing reply from missing B-side logs. Mark that inference unsupported until a B-side measurement confirms it.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.
