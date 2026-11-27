@@ -26,7 +26,8 @@
       "companion_files": [
         "reader/capture.py",
         "reader/new_run.sh",
-        "spark_lab.py"
+        "spark_lab.py",
+        "reader/technology-overviews.json"
       ]
     },
     {
@@ -39,7 +40,8 @@
       "book_page": 30,
       "companion_files": [
         "reader/new_run.sh",
-        "spark_lab.py"
+        "spark_lab.py",
+        "reader/technology-overviews.json"
       ]
     },
     {
@@ -477,7 +479,7 @@
       "recorded_run_ids": [
         "031.01"
       ],
-      "book_page": 151,
+      "book_page": 150,
       "companion_files": [
         "cuda/inventory_tools.py"
       ]
@@ -578,7 +580,8 @@
       "companion_files": [
         "reader/new_run.sh",
         "cuda/nsys_2026.sh",
-        "cuda/trace_sqlite.py"
+        "cuda/trace_sqlite.py",
+        "reader/technology-overviews.json"
       ]
     },
     {
@@ -591,7 +594,8 @@
       ],
       "book_page": 179,
       "companion_files": [
-        "cuda/trace_sqlite.py"
+        "cuda/trace_sqlite.py",
+        "reader/technology-overviews.json"
       ]
     },
     {
@@ -905,7 +909,7 @@
       "recorded_run_ids": [
         "065.01"
       ],
-      "book_page": 247,
+      "book_page": 246,
       "companion_files": []
     },
     {
@@ -1016,7 +1020,7 @@
       "recorded_run_ids": [
         "074.01"
       ],
-      "book_page": 899,
+      "book_page": 907,
       "companion_files": [
         "advanced/measure.py",
         "reader/new_run.sh"
@@ -1432,7 +1436,8 @@
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh",
-        "diagnostics/dataloader.py"
+        "diagnostics/dataloader.py",
+        "reader/technology-overviews.json"
       ]
     },
     {
@@ -1536,7 +1541,7 @@
         "112.01",
         "112.02"
       ],
-      "book_page": 380,
+      "book_page": 381,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1723,7 +1728,7 @@
       "recorded_run_ids": [
         "127.01"
       ],
-      "book_page": 415,
+      "book_page": 416,
       "companion_files": [
         "distributed/evidence/09-checkpoint/first/checkpoint-0.pt",
         "distributed/evidence/09-checkpoint/resume/checkpoint-0.pt",
@@ -1755,7 +1760,7 @@
         "129.04",
         "129.05"
       ],
-      "book_page": 418,
+      "book_page": 419,
       "companion_files": [
         "distributed/lab.py",
         "distributed/nodes.py",
@@ -1769,7 +1774,7 @@
       "recorded_run_ids": [
         "130.01"
       ],
-      "book_page": 425,
+      "book_page": 426,
       "companion_files": [
         "reader/new_run.sh",
         "sharing/service.py"
@@ -1783,7 +1788,7 @@
         "131.01",
         "131.02"
       ],
-      "book_page": 427,
+      "book_page": 428,
       "companion_files": [
         "reader/new_run.sh",
         "sharing/service.py"
@@ -1797,7 +1802,7 @@
         "132.01",
         "132.02"
       ],
-      "book_page": 428,
+      "book_page": 430,
       "companion_files": [
         "reader/new_run.sh",
         "sharing/service.py"
@@ -1810,7 +1815,7 @@
       "recorded_run_ids": [
         "133.01"
       ],
-      "book_page": 431,
+      "book_page": 432,
       "companion_files": [
         "reader/new_run.sh",
         "sharing/evidence/06-training/training-checkpoint.pt",
@@ -1825,7 +1830,7 @@
         "134.01",
         "134.02"
       ],
-      "book_page": 432,
+      "book_page": 433,
       "companion_files": [
         "reader/new_run.sh",
         "sharing/plot.py",
@@ -1841,7 +1846,7 @@
       "recorded_run_ids": [
         "135.01"
       ],
-      "book_page": 435,
+      "book_page": 436,
       "companion_files": [
         "reader/new_run.sh",
         "sharing/faults.py"
@@ -1854,7 +1859,7 @@
       "recorded_run_ids": [
         "136.01"
       ],
-      "book_page": 439,
+      "book_page": 440,
       "companion_files": [
         "reader/new_run.sh",
         "serving/lab.py"
@@ -1867,7 +1872,7 @@
       "recorded_run_ids": [
         "137.01"
       ],
-      "book_page": 441,
+      "book_page": 442,
       "companion_files": [
         "reader/new_run.sh",
         "serving/lab.py"
@@ -1882,7 +1887,7 @@
         "138.02",
         "138.03"
       ],
-      "book_page": 442,
+      "book_page": 443,
       "companion_files": [
         "reader/new_run.sh",
         "serving/lab.py"
@@ -1895,7 +1900,7 @@
       "recorded_run_ids": [
         "139.01"
       ],
-      "book_page": 444,
+      "book_page": 445,
       "companion_files": [
         "reader/new_run.sh",
         "serving/lab.py"
@@ -1908,7 +1913,7 @@
       "recorded_run_ids": [
         "140.01"
       ],
-      "book_page": 447,
+      "book_page": 448,
       "companion_files": [
         "serving/docker/BOOTSTRAP.txt",
         "serving/docker/qualify_image.sh"
@@ -1922,7 +1927,7 @@
         "141.01",
         "141.02"
       ],
-      "book_page": 451,
+      "book_page": 452,
       "companion_files": [
         "reader/new_run.sh",
         "serving/client.py",
@@ -1939,7 +1944,7 @@
         "142.02",
         "142.03"
       ],
-      "book_page": 453,
+      "book_page": 454,
       "companion_files": [
         "kernels/build.sh",
         "serving/lab.py"
@@ -1953,7 +1958,7 @@
         "143.01",
         "143.02"
       ],
-      "book_page": 456,
+      "book_page": 457,
       "companion_files": [
         "serving/docker/compose.yaml"
       ]
@@ -1966,7 +1971,7 @@
         "144.01",
         "144.02"
       ],
-      "book_page": 459,
+      "book_page": 460,
       "companion_files": [
         "reader/new_run.sh",
         "serving/deploy.py"
@@ -1980,7 +1985,7 @@
         "145.01",
         "145.02"
       ],
-      "book_page": 461,
+      "book_page": 462,
       "companion_files": []
     },
     {
@@ -1991,7 +1996,7 @@
         "146.01",
         "146.02"
       ],
-      "book_page": 463,
+      "book_page": 464,
       "companion_files": []
     },
     {
@@ -2002,7 +2007,7 @@
         "147.01",
         "147.02"
       ],
-      "book_page": 465,
+      "book_page": 466,
       "companion_files": [
         "reader/new_run.sh",
         "serving/deploy.py",
@@ -2018,7 +2023,7 @@
         "148.02",
         "148.03"
       ],
-      "book_page": 468,
+      "book_page": 469,
       "companion_files": [
         "serving/docker/run_backend.sh"
       ]
@@ -2033,7 +2038,7 @@
         "149.03",
         "149.04"
       ],
-      "book_page": 472,
+      "book_page": 473,
       "companion_files": [
         "reader/new_run.sh",
         "serving/client.py",
@@ -2053,7 +2058,7 @@
         "150.05",
         "150.06"
       ],
-      "book_page": 476,
+      "book_page": 477,
       "companion_files": [
         "reader/new_run.sh",
         "serving/backend_control.py",
@@ -2088,7 +2093,7 @@
         "151.21",
         "151.22"
       ],
-      "book_page": 480,
+      "book_page": 481,
       "companion_files": [
         "cuda/timestamp_probe/SUPPORT-REPORT.md",
         "cuda/timestamp_probe/reproduce_timestamps.py",
@@ -2106,7 +2111,7 @@
         "152.01",
         "152.02"
       ],
-      "book_page": 486,
+      "book_page": 487,
       "companion_files": [
         "ecosystem/lab.py",
         "reader/new_run.sh"
@@ -2119,7 +2124,7 @@
       "recorded_run_ids": [
         "153.01"
       ],
-      "book_page": 489,
+      "book_page": 490,
       "companion_files": [
         "ecosystem/rapids_target.py",
         "reader/new_run.sh"
@@ -2133,7 +2138,7 @@
       "shared_capture_exercises": [
         153
       ],
-      "book_page": 492,
+      "book_page": 493,
       "companion_files": [],
       "shared_record_ids": [
         "153.01"
@@ -2147,7 +2152,7 @@
       "recorded_run_ids": [
         "155.01"
       ],
-      "book_page": 494,
+      "book_page": 495,
       "companion_files": []
     },
     {
@@ -2158,7 +2163,7 @@
       "shared_capture_exercises": [
         152
       ],
-      "book_page": 497,
+      "book_page": 498,
       "companion_files": [
         "ecosystem/controls/onnx/linear.onnx",
         "ecosystem/lab.py",
@@ -2177,7 +2182,7 @@
       "shared_capture_exercises": [
         152
       ],
-      "book_page": 498,
+      "book_page": 499,
       "companion_files": [
         "ecosystem/lab.py",
         "reader/new_run.sh"
@@ -2195,7 +2200,7 @@
         "158.01",
         "158.02"
       ],
-      "book_page": 499,
+      "book_page": 500,
       "companion_files": [
         "ecosystem/lab.py",
         "reader/new_run.sh"
@@ -2208,7 +2213,7 @@
       "recorded_run_ids": [
         "159.01"
       ],
-      "book_page": 502,
+      "book_page": 503,
       "companion_files": [
         "ecosystem/export_encoder_target.py",
         "reader/new_run.sh"
@@ -2221,7 +2226,7 @@
       "recorded_run_ids": [
         "160.01"
       ],
-      "book_page": 505,
+      "book_page": 506,
       "companion_files": [
         "ecosystem/lab.py",
         "reader/new_run.sh"
@@ -2235,7 +2240,7 @@
         "161.01",
         "161.02"
       ],
-      "book_page": 507,
+      "book_page": 508,
       "companion_files": [
         "ecosystem/tensorrt_target.py",
         "reader/new_run.sh"
@@ -2248,7 +2253,7 @@
       "recorded_run_ids": [
         "162.01"
       ],
-      "book_page": 510,
+      "book_page": 511,
       "companion_files": [
         "cuda/nsys_2026.sh",
         "ecosystem/tensorrt_target.py",
@@ -2263,7 +2268,7 @@
         "163.01",
         "163.02"
       ],
-      "book_page": 514,
+      "book_page": 515,
       "companion_files": [
         "ecosystem/make_triton_plan.py",
         "reader/new_run.sh"
@@ -2276,7 +2281,7 @@
       "recorded_run_ids": [
         "164.01"
       ],
-      "book_page": 517,
+      "book_page": 518,
       "companion_files": [
         "ecosystem/lab.py",
         "reader/new_run.sh"
@@ -2290,7 +2295,7 @@
       "shared_capture_exercises": [
         164
       ],
-      "book_page": 519,
+      "book_page": 520,
       "companion_files": [],
       "shared_record_ids": [
         "164.01"
@@ -2304,7 +2309,7 @@
       "recorded_run_ids": [
         "166.01"
       ],
-      "book_page": 520,
+      "book_page": 521,
       "companion_files": [
         "ecosystem/tensorrt_target.py",
         "reader/new_run.sh"
@@ -2319,7 +2324,7 @@
         "167.02",
         "167.03"
       ],
-      "book_page": 523,
+      "book_page": 524,
       "companion_files": [
         "reader/ANSWER_RUBRICS.txt",
         "reader/quant_quality.sh",
@@ -2333,7 +2338,7 @@
       "title": "Audit data splits and supervised token masks",
       "evidence_note": "Recorded result  PASSED — Fresh byte-token controls and real Qwen chat-template/NeMo dataset inspection found no all-masked examples or exact split overlap. The byte control is only a transparent teaching fixture. Actual rendered token masks and label identities were audited separately before training.\nScope  The split, base identity, trainable state and held-out behavior are separate parts of the adaptation record.",
       "recorded_run_ids": [],
-      "book_page": 529,
+      "book_page": 530,
       "companion_files": [
         "ecosystem/lab.py",
         "reader/new_run.sh"
@@ -2350,7 +2355,7 @@
       "recorded_run_ids": [
         "169.01"
       ],
-      "book_page": 530,
+      "book_page": 531,
       "companion_files": [
         "ecosystem/nemo_prepare_target.py",
         "reader/new_run.sh",
@@ -2366,7 +2371,7 @@
         "170.02",
         "170.03"
       ],
-      "book_page": 538,
+      "book_page": 539,
       "companion_files": [
         "ecosystem/nemo_hooks/fixed/sitecustomize.py",
         "ecosystem/nemo_hooks/observe/sitecustomize.py",
@@ -2381,7 +2386,7 @@
         "171.01",
         "171.02"
       ],
-      "book_page": 549,
+      "book_page": 550,
       "companion_files": [
         "ecosystem/nemo_export_target.py",
         "reader/new_run.sh",
@@ -2400,7 +2405,7 @@
         "172.01",
         "172.02"
       ],
-      "book_page": 555,
+      "book_page": 557,
       "companion_files": [
         "media/inventory.py"
       ]
@@ -2412,7 +2417,7 @@
       "recorded_run_ids": [
         "173.01"
       ],
-      "book_page": 558,
+      "book_page": 559,
       "companion_files": [
         "media/controls.py",
         "reader/new_run.sh"
@@ -2430,7 +2435,7 @@
         "174.05",
         "174.06"
       ],
-      "book_page": 559,
+      "book_page": 560,
       "companion_files": [
         "media/assets.py"
       ]
@@ -2442,7 +2447,7 @@
       "recorded_run_ids": [
         "175.01"
       ],
-      "book_page": 563,
+      "book_page": 564,
       "companion_files": [
         "media/validate.py"
       ]
@@ -2454,7 +2459,7 @@
       "recorded_run_ids": [
         "176.01"
       ],
-      "book_page": 565,
+      "book_page": 566,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh",
@@ -2470,7 +2475,7 @@
         "177.02",
         "177.03"
       ],
-      "book_page": 568,
+      "book_page": 569,
       "companion_files": [
         "media/data/larger-diagram.png",
         "media/targets.py",
@@ -2487,7 +2492,7 @@
         "178.03",
         "178.04"
       ],
-      "book_page": 571,
+      "book_page": 572,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh"
@@ -2500,7 +2505,7 @@
       "recorded_run_ids": [
         "179.01"
       ],
-      "book_page": 574,
+      "book_page": 575,
       "companion_files": [
         "media/targets.py",
         "cuda/nsys_2026.sh",
@@ -2515,7 +2520,7 @@
       "shared_capture_exercises": [
         181
       ],
-      "book_page": 578,
+      "book_page": 579,
       "companion_files": [
         "media/validate.py"
       ],
@@ -2531,7 +2536,7 @@
       "recorded_run_ids": [
         "181.01"
       ],
-      "book_page": 579,
+      "book_page": 580,
       "companion_files": [
         "media/diffusion_control.py",
         "reader/new_run.sh"
@@ -2544,7 +2549,7 @@
       "recorded_run_ids": [
         "182.01"
       ],
-      "book_page": 581,
+      "book_page": 582,
       "companion_files": []
     },
     {
@@ -2555,7 +2560,7 @@
         "183.01",
         "183.02"
       ],
-      "book_page": 583,
+      "book_page": 584,
       "companion_files": [
         "media/validate.py",
         "reader/guide.py",
@@ -2569,7 +2574,7 @@
       "recorded_run_ids": [
         "184.01"
       ],
-      "book_page": 586,
+      "book_page": 587,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh"
@@ -2583,7 +2588,7 @@
         "185.01",
         "185.02"
       ],
-      "book_page": 589,
+      "book_page": 590,
       "companion_files": [
         "media/targets.py"
       ]
@@ -2597,11 +2602,14 @@
         "186.02",
         "186.03"
       ],
-      "book_page": 593,
+      "book_page": 594,
       "companion_files": [
         "media/targets.py",
         "cuda/nsys_2026.sh",
-        "cuda/trace_sqlite.py"
+        "cuda/trace_sqlite.py",
+        "media/compare_vae.py",
+        "reader/technology-overviews.json",
+        "media/validate.py"
       ]
     },
     {
@@ -2612,7 +2620,7 @@
         "187.01",
         "187.02"
       ],
-      "book_page": 600,
+      "book_page": 602,
       "companion_files": [
         "media/targets.py",
         "reader/ANSWER_RUBRICS.txt",
@@ -2627,7 +2635,7 @@
         "188.01",
         "188.02"
       ],
-      "book_page": 605,
+      "book_page": 607,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh"
@@ -2640,7 +2648,7 @@
       "recorded_run_ids": [
         "189.01"
       ],
-      "book_page": 608,
+      "book_page": 610,
       "companion_files": [
         "media/analyze.py",
         "reader/new_run.sh"
@@ -2653,7 +2661,7 @@
       "recorded_run_ids": [
         "190.01"
       ],
-      "book_page": 609,
+      "book_page": 611,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh"
@@ -2667,7 +2675,7 @@
         "191.01",
         "191.02"
       ],
-      "book_page": 611,
+      "book_page": 613,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh",
@@ -2682,7 +2690,7 @@
       "recorded_run_ids": [
         "192.01"
       ],
-      "book_page": 615,
+      "book_page": 617,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh",
@@ -2697,7 +2705,7 @@
       "recorded_run_ids": [
         "193.01"
       ],
-      "book_page": 617,
+      "book_page": 619,
       "companion_files": [
         "media/analyze.py",
         "reader/new_run.sh"
@@ -2713,7 +2721,7 @@
         "194.03",
         "194.04"
       ],
-      "book_page": 619,
+      "book_page": 621,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh",
@@ -2731,7 +2739,7 @@
         "195.03",
         "195.04"
       ],
-      "book_page": 622,
+      "book_page": 624,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh",
@@ -2747,7 +2755,7 @@
       "recorded_run_ids": [
         "196.01"
       ],
-      "book_page": 628,
+      "book_page": 630,
       "companion_files": [
         "media/data/reference.txt",
         "media/targets.py",
@@ -2765,7 +2773,7 @@
         "197.04",
         "197.05"
       ],
-      "book_page": 629,
+      "book_page": 631,
       "companion_files": [
         "media/controls.py",
         "reader/new_run.sh"
@@ -2780,7 +2788,7 @@
         "198.02",
         "198.03"
       ],
-      "book_page": 634,
+      "book_page": 636,
       "companion_files": [
         "media/targets.py",
         "reader/new_run.sh",
@@ -2796,7 +2804,7 @@
         "199.02",
         "199.03"
       ],
-      "book_page": 637,
+      "book_page": 639,
       "companion_files": [
         "media/chunk_audio.py",
         "reader/new_run.sh"
@@ -2811,11 +2819,12 @@
         "200.02",
         "200.03"
       ],
-      "book_page": 640,
+      "book_page": 642,
       "companion_files": [
         "media/adapt_asr.py",
         "media/prepare_adaptation.py",
-        "reader/new_run.sh"
+        "reader/new_run.sh",
+        "reader/technology-overviews.json"
       ]
     },
     {
@@ -2827,7 +2836,7 @@
         "201.02",
         "201.03"
       ],
-      "book_page": 643,
+      "book_page": 645,
       "companion_files": [
         "media/image_adapter.py",
         "reader/new_run.sh",
@@ -2845,7 +2854,7 @@
         "202.01",
         "202.02"
       ],
-      "book_page": 653,
+      "book_page": 656,
       "companion_files": [
         "media/voice.py",
         "reader/new_run.sh"
@@ -2859,7 +2868,7 @@
         "203.01",
         "203.02"
       ],
-      "book_page": 656,
+      "book_page": 659,
       "companion_files": [
         "media/controls.py",
         "reader/new_run.sh",
@@ -2878,7 +2887,7 @@
       "recorded_run_ids": [
         "204.01"
       ],
-      "book_page": 663,
+      "book_page": 666,
       "companion_files": [
         "catalogs/ngc_lab.py",
         "reader/new_run.sh"
@@ -2892,7 +2901,7 @@
         "205.01",
         "205.02"
       ],
-      "book_page": 665,
+      "book_page": 668,
       "companion_files": [
         "catalogs/ngc_lab.py",
         "reader/new_run.sh"
@@ -2905,7 +2914,7 @@
       "recorded_run_ids": [
         "206.01"
       ],
-      "book_page": 669,
+      "book_page": 672,
       "companion_files": [
         "catalogs/ngc_lab.py",
         "reader/new_run.sh"
@@ -2918,7 +2927,7 @@
       "recorded_run_ids": [
         "207.01"
       ],
-      "book_page": 675,
+      "book_page": 678,
       "companion_files": [
         "catalogs/ngc_lab.py",
         "reader/new_run.sh"
@@ -2931,7 +2940,7 @@
       "recorded_run_ids": [
         "208.01"
       ],
-      "book_page": 679,
+      "book_page": 682,
       "companion_files": [
         "catalogs/hf_lab.py",
         "reader/new_run.sh"
@@ -2944,7 +2953,7 @@
       "recorded_run_ids": [
         "209.01"
       ],
-      "book_page": 681,
+      "book_page": 684,
       "companion_files": [
         "catalogs/hf_lab.py",
         "reader/new_run.sh"
@@ -2958,7 +2967,7 @@
         "210.01",
         "210.02"
       ],
-      "book_page": 683,
+      "book_page": 686,
       "companion_files": [
         "catalogs/hf_lab.py",
         "reader/new_run.sh"
@@ -2971,7 +2980,7 @@
       "recorded_run_ids": [
         "211.01"
       ],
-      "book_page": 686,
+      "book_page": 689,
       "companion_files": [
         "catalogs/hf_lab.py",
         "reader/new_run.sh"
@@ -2984,7 +2993,7 @@
       "recorded_run_ids": [
         "212.01"
       ],
-      "book_page": 690,
+      "book_page": 693,
       "companion_files": [
         "observability/setup_tools.py",
         "reader/new_run.sh"
@@ -2997,7 +3006,7 @@
       "recorded_run_ids": [
         "213.01"
       ],
-      "book_page": 692,
+      "book_page": 695,
       "companion_files": [
         "observability/test_exporter.py"
       ]
@@ -3009,7 +3018,7 @@
       "recorded_run_ids": [
         "214.01"
       ],
-      "book_page": 694,
+      "book_page": 697,
       "companion_files": [
         "observability/integration.py"
       ]
@@ -3023,7 +3032,7 @@
         "215.02",
         "215.03"
       ],
-      "book_page": 697,
+      "book_page": 700,
       "companion_files": [
         "observability/browser_capture.py"
       ]
@@ -3039,7 +3048,7 @@
         "216.04",
         "216.05"
       ],
-      "book_page": 700,
+      "book_page": 703,
       "companion_files": [
         "observability/client.py",
         "observability/fixture.py",
@@ -3054,7 +3063,7 @@
         "217.01",
         "217.02"
       ],
-      "book_page": 705,
+      "book_page": 708,
       "companion_files": [
         "observability/integration.py",
         "reader/new_run.sh"
@@ -3073,7 +3082,7 @@
         "218.06",
         "218.07"
       ],
-      "book_page": 707,
+      "book_page": 710,
       "companion_files": [
         "observability/linear_service_check.py"
       ]
@@ -3089,7 +3098,7 @@
         "219.04",
         "219.05"
       ],
-      "book_page": 714,
+      "book_page": 717,
       "companion_files": [
         "observability/docker_config.py",
         "reader/new_run.sh",
@@ -3103,7 +3112,7 @@
       "recorded_run_ids": [
         "220.01"
       ],
-      "book_page": 721,
+      "book_page": 725,
       "companion_files": [
         "orchestration/environment.py",
         "reader/new_run.sh"
@@ -3117,7 +3126,7 @@
         "221.01",
         "221.02"
       ],
-      "book_page": 722,
+      "book_page": 726,
       "companion_files": [
         "orchestration/langchain_lab.py",
         "reader/new_run.sh"
@@ -3132,7 +3141,7 @@
         "222.02",
         "222.03"
       ],
-      "book_page": 725,
+      "book_page": 729,
       "companion_files": [
         "orchestration/client_contract.py",
         "reader/new_run.sh"
@@ -3145,7 +3154,7 @@
       "recorded_run_ids": [
         "223.01"
       ],
-      "book_page": 729,
+      "book_page": 733,
       "companion_files": [
         "orchestration/graph_control.py",
         "reader/new_run.sh"
@@ -3158,7 +3167,7 @@
       "recorded_run_ids": [
         "224.01"
       ],
-      "book_page": 731,
+      "book_page": 735,
       "companion_files": [
         "orchestration/graph_control.py",
         "reader/new_run.sh"
@@ -3172,7 +3181,7 @@
         "225.01",
         "225.02"
       ],
-      "book_page": 733,
+      "book_page": 737,
       "companion_files": [
         "orchestration/graph_control.py",
         "reader/new_run.sh"
@@ -3185,7 +3194,7 @@
       "recorded_run_ids": [
         "226.01"
       ],
-      "book_page": 736,
+      "book_page": 740,
       "companion_files": [
         "orchestration/langsmith_lab.py",
         "reader/new_run.sh"
@@ -3198,7 +3207,7 @@
       "recorded_run_ids": [
         "227.01"
       ],
-      "book_page": 738,
+      "book_page": 742,
       "companion_files": [
         "orchestration/langsmith_lab.py",
         "reader/new_run.sh"
@@ -3211,7 +3220,7 @@
       "recorded_run_ids": [
         "228.01"
       ],
-      "book_page": 739,
+      "book_page": 743,
       "companion_files": [
         "orchestration/langsmith_lab.py",
         "reader/new_run.sh"
@@ -3224,7 +3233,7 @@
       "recorded_run_ids": [
         "229.01"
       ],
-      "book_page": 742,
+      "book_page": 746,
       "companion_files": [
         "orchestration/pydantic_lab.py",
         "reader/new_run.sh"
@@ -3237,7 +3246,7 @@
       "recorded_run_ids": [
         "230.01"
       ],
-      "book_page": 744,
+      "book_page": 748,
       "companion_files": [
         "orchestration/pydantic_lab.py",
         "reader/new_run.sh"
@@ -3250,7 +3259,7 @@
       "recorded_run_ids": [
         "231.01"
       ],
-      "book_page": 745,
+      "book_page": 749,
       "companion_files": [
         "orchestration/pydantic_lab.py",
         "reader/new_run.sh"
@@ -3263,7 +3272,7 @@
       "recorded_run_ids": [
         "232.01"
       ],
-      "book_page": 748,
+      "book_page": 752,
       "companion_files": [
         "orchestration/jev_lab.py",
         "reader/new_run.sh"
@@ -3276,7 +3285,7 @@
       "recorded_run_ids": [
         "233.01"
       ],
-      "book_page": 750,
+      "book_page": 754,
       "companion_files": [
         "orchestration/jev_lab.py",
         "reader/new_run.sh"
@@ -3289,7 +3298,7 @@
       "recorded_run_ids": [
         "234.01"
       ],
-      "book_page": 753,
+      "book_page": 757,
       "companion_files": [
         "orchestration/jev_lab.py",
         "reader/new_run.sh"
@@ -3303,7 +3312,7 @@
         "235.01",
         "235.02"
       ],
-      "book_page": 757,
+      "book_page": 761,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/ollama_archive.py"
@@ -3316,7 +3325,7 @@
       "recorded_run_ids": [
         "236.01"
       ],
-      "book_page": 759,
+      "book_page": 763,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/probe.py"
@@ -3329,7 +3338,7 @@
       "recorded_run_ids": [
         "237.01"
       ],
-      "book_page": 763,
+      "book_page": 767,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/probe.py"
@@ -3344,7 +3353,7 @@
         "238.02",
         "238.03"
       ],
-      "book_page": 765,
+      "book_page": 769,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/probe.py"
@@ -3358,7 +3367,7 @@
         "239.01",
         "239.02"
       ],
-      "book_page": 770,
+      "book_page": 774,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/lab.py",
@@ -3372,7 +3381,7 @@
       "recorded_run_ids": [
         "240.01"
       ],
-      "book_page": 773,
+      "book_page": 777,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/train_unsloth.py"
@@ -3385,7 +3394,7 @@
       "recorded_run_ids": [
         "241.01"
       ],
-      "book_page": 777,
+      "book_page": 781,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/train_unsloth.py"
@@ -3399,7 +3408,7 @@
         "242.01",
         "242.02"
       ],
-      "book_page": 781,
+      "book_page": 785,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/merge_unsloth.py"
@@ -3414,7 +3423,7 @@
         "243.02",
         "243.03"
       ],
-      "book_page": 788,
+      "book_page": 792,
       "companion_files": []
     },
     {
@@ -3428,7 +3437,7 @@
         "244.04",
         "244.05"
       ],
-      "book_page": 790,
+      "book_page": 794,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/probe.py"
@@ -3442,7 +3451,7 @@
         "245.01",
         "245.02"
       ],
-      "book_page": 794,
+      "book_page": 798,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/probe.py"
@@ -3457,7 +3466,7 @@
         "246.02",
         "246.03"
       ],
-      "book_page": 796,
+      "book_page": 800,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/probe.py"
@@ -3472,7 +3481,7 @@
         "247.02",
         "247.03"
       ],
-      "book_page": 799,
+      "book_page": 803,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/acquire.py",
@@ -3489,7 +3498,7 @@
         "248.03",
         "248.04"
       ],
-      "book_page": 802,
+      "book_page": 806,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/lab.py"
@@ -3505,7 +3514,7 @@
         "249.03",
         "249.04"
       ],
-      "book_page": 806,
+      "book_page": 810,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/probe.py",
@@ -3525,7 +3534,7 @@
         "250.06",
         "250.07"
       ],
-      "book_page": 810,
+      "book_page": 814,
       "companion_files": [
         "reader/new_run.sh",
         "runtimes/probe.py",
@@ -3545,7 +3554,7 @@
         "251.06",
         "251.07"
       ],
-      "book_page": 816,
+      "book_page": 820,
       "companion_files": [
         "memory_budget/README.txt",
         "memory_budget/guarded.py",

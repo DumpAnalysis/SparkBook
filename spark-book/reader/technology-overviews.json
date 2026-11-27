@@ -24,7 +24,7 @@
         160,
         164
       ],
-      "book_page": 640
+      "book_page": 642
     },
     {
       "slug": "agent",
@@ -150,7 +150,7 @@
         137,
         138
       ],
-      "book_page": 517
+      "book_page": 518
     },
     {
       "slug": "obschecks",
@@ -336,7 +336,7 @@
         154,
         156
       ],
-      "book_page": 653
+      "book_page": 656
     },
     {
       "slug": "oci",
@@ -360,7 +360,7 @@
         174,
         175
       ],
-      "book_page": 670
+      "book_page": 673
     },
     {
       "slug": "contrast",
@@ -585,7 +585,7 @@
       "references": [
         223
       ],
-      "book_page": 750
+      "book_page": 754
     },
     {
       "slug": "dumps",
@@ -670,7 +670,7 @@
         148,
         150
       ],
-      "book_page": 578
+      "book_page": 579
     },
     {
       "slug": "dist",
@@ -719,7 +719,7 @@
         200,
         268
       ],
-      "book_page": 451
+      "book_page": 452
     },
     {
       "slug": "docker",
@@ -745,7 +745,7 @@
         120,
         272
       ],
-      "book_page": 447
+      "book_page": 448
     },
     {
       "slug": "batching",
@@ -768,7 +768,7 @@
         114,
         118
       ],
-      "book_page": 429
+      "book_page": 430
     },
     {
       "slug": "lora",
@@ -890,7 +890,7 @@
         109,
         111
       ],
-      "book_page": 463
+      "book_page": 464
     },
     {
       "slug": "trainingstate",
@@ -937,7 +937,7 @@
         192,
         193
       ],
-      "book_page": 697
+      "book_page": 700
     },
     {
       "slug": "grounding",
@@ -1012,7 +1012,7 @@
         183,
         184
       ],
-      "book_page": 679
+      "book_page": 682
     },
     {
       "slug": "media",
@@ -1039,7 +1039,7 @@
         156,
         159
       ],
-      "book_page": 556
+      "book_page": 557
     },
     {
       "slug": "serving",
@@ -1063,7 +1063,7 @@
         110,
         262
       ],
-      "book_page": 439
+      "book_page": 440
     },
     {
       "slug": "jev",
@@ -1091,7 +1091,7 @@
         222,
         223
       ],
-      "book_page": 748
+      "book_page": 752
     },
     {
       "slug": "fusion",
@@ -1141,7 +1141,7 @@
         110,
         123
       ],
-      "book_page": 459
+      "book_page": 460
     },
     {
       "slug": "langchain",
@@ -1164,7 +1164,7 @@
         206,
         226
       ],
-      "book_page": 721
+      "book_page": 725
     },
     {
       "slug": "langgraph",
@@ -1188,7 +1188,7 @@
         208,
         209
       ],
-      "book_page": 729
+      "book_page": 733
     },
     {
       "slug": "langsmith",
@@ -1214,7 +1214,7 @@
         212,
         213
       ],
-      "book_page": 736
+      "book_page": 740
     },
     {
       "slug": "timing",
@@ -1265,7 +1265,7 @@
         247,
         248
       ],
-      "book_page": 788
+      "book_page": 792
     },
     {
       "slug": "bigmodel",
@@ -1461,7 +1461,7 @@
         152,
         153
       ],
-      "book_page": 605
+      "book_page": 607
     },
     {
       "slug": "nemotron",
@@ -1487,7 +1487,7 @@
         251,
         252
       ],
-      "book_page": 799
+      "book_page": 803
     },
     {
       "slug": "ncu",
@@ -1560,7 +1560,7 @@
         266,
         273
       ],
-      "book_page": 487
+      "book_page": 488
     },
     {
       "slug": "containersgpu",
@@ -1583,7 +1583,7 @@
         106,
         109
       ],
-      "book_page": 453
+      "book_page": 454
     },
     {
       "slug": "nemo",
@@ -1609,7 +1609,7 @@
         141,
         144
       ],
-      "book_page": 529
+      "book_page": 530
     },
     {
       "slug": "ngc",
@@ -1634,7 +1634,7 @@
         172,
         173
       ],
-      "book_page": 663
+      "book_page": 666
     },
     {
       "slug": "tritonserver",
@@ -1659,7 +1659,7 @@
         118,
         119
       ],
-      "book_page": 476
+      "book_page": 477
     },
     {
       "slug": "ollama",
@@ -1686,7 +1686,7 @@
         232,
         233
       ],
-      "book_page": 757
+      "book_page": 761
     },
     {
       "slug": "onnx",
@@ -1711,7 +1711,7 @@
         129,
         130
       ],
-      "book_page": 480
+      "book_page": 481
     },
     {
       "slug": "otel",
@@ -1828,7 +1828,7 @@
         191,
         194
       ],
-      "book_page": 690
+      "book_page": 693
     },
     {
       "slug": "prompt",
@@ -1877,7 +1877,7 @@
         196,
         197
       ],
-      "book_page": 700
+      "book_page": 703
     },
     {
       "slug": "instructions",
@@ -1925,7 +1925,7 @@
         216,
         217
       ],
-      "book_page": 742
+      "book_page": 746
     },
     {
       "slug": "pythonpackages",
@@ -2069,7 +2069,7 @@
         16,
         127
       ],
-      "book_page": 494
+      "book_page": 495
     },
     {
       "slug": "rapids",
@@ -2093,7 +2093,7 @@
         125,
         126
       ],
-      "book_page": 490
+      "book_page": 491
     },
     {
       "slug": "sqlite",
@@ -2273,7 +2273,7 @@
         103,
         104
       ],
-      "book_page": 425
+      "book_page": 426
     },
     {
       "slug": "asr",
@@ -2297,7 +2297,7 @@
         157,
         159
       ],
-      "book_page": 628
+      "book_page": 630
     },
     {
       "slug": "sdxl",
@@ -2323,7 +2323,7 @@
         160,
         284
       ],
-      "book_page": 586
+      "book_page": 587
     },
     {
       "slug": "stalls",
@@ -2413,7 +2413,7 @@
         135,
         136
       ],
-      "book_page": 505
+      "book_page": 506
     },
     {
       "slug": "tts",
@@ -2437,7 +2437,7 @@
         155,
         290
       ],
-      "book_page": 615
+      "book_page": 617
     },
     {
       "slug": "pooling",
@@ -2558,7 +2558,7 @@
         236,
         237
       ],
-      "book_page": 770
+      "book_page": 774
     },
     {
       "slug": "vectorindex",
@@ -2606,7 +2606,7 @@
         258,
         259
       ],
-      "book_page": 816
+      "book_page": 820
     },
     {
       "slug": "vlm",
@@ -2629,7 +2629,7 @@
         147,
         166
       ],
-      "book_page": 565
+      "book_page": 566
     },
     {
       "slug": "vllm",
@@ -2652,7 +2652,7 @@
         113,
         114
       ],
-      "book_page": 468
+      "book_page": 469
     },
     {
       "slug": "warps",
@@ -2699,7 +2699,7 @@
         159,
         168
       ],
-      "book_page": 608
+      "book_page": 610
     },
     {
       "slug": "wsl",
@@ -2747,7 +2747,7 @@
         156,
         158
       ],
-      "book_page": 630
+      "book_page": 632
     },
     {
       "slug": "kernels",

@@ -123,7 +123,7 @@ Each entry explains a technology used in the WSL2 laboratory and gives an exampl
 
 ## Adapting speech and image models
 
-[Exercise 200](exercises/200.txt) · book page 640
+[Exercise 200](exercises/200.txt) · book page 642
 
 A speech recognizer can learn from recordings paired with verified transcripts. An image adapter can learn from images paired with descriptions. In both cases the examples define what the training objective rewards. Two recordings of the same utterance or nearly identical image captions can make a held-out comparison misleading. Exercise 200 updates existing parameters in Whisper’s final decoder block. Exercise 201 instead adds trainable low-rank factors to the image model.
 
@@ -209,7 +209,7 @@ Further reading
 
 ## Calibration and explicit quantize and dequantize operations
 
-[Exercise 164](exercises/164.txt) · book page 517
+[Exercise 164](exercises/164.txt) · book page 518
 
 A quantizer maps a range of real values to a limited set of codes using a scale and sometimes a zero point. Calibration estimates suitable ranges from example inputs. A rare large value can stretch a scale, leaving fewer useful codes for the many small values. Per-channel scales allow different ranges for different channels.
 
@@ -334,7 +334,7 @@ Further reading
 
 ## Connecting speech recognition, generation and synthesis
 
-[Exercise 202](exercises/202.txt) · book page 653
+[Exercise 202](exercises/202.txt) · book page 656
 
 A speech assistant can contain three independent model calls. The recognizer produces text, the language model answers it, and the synthesizer produces speech from that answer. A plausible final recording can hide a transcription error or a changed instruction in an intermediate step.
 
@@ -350,7 +350,7 @@ Further reading
 
 ## Container registries, manifests and platform selection
 
-[Exercise 206](exercises/206.txt) · book page 670
+[Exercise 206](exercises/206.txt) · book page 673
 
 An image tag can point to an index of builds for several platforms. An entry in that index identifies an operating system, an architecture and a manifest digest. The selected manifest in turn identifies the image’s contents. The ARM64 laptop needs the appropriate Linux ARM64 entry.
 
@@ -508,7 +508,7 @@ Further reading
 
 ## Decision calibration, risk and coverage
 
-[Exercise 233](exercises/233.txt) · book page 750
+[Exercise 233](exercises/233.txt) · book page 754
 
 A probability forecast can be checked against labeled outcomes. For a binary event with outcome one and predicted probability 0.8, the squared error is 0.04. Averaging squared probability errors gives the binary Brier score. A single confident prediction cannot establish that a model is calibrated.
 
@@ -558,7 +558,7 @@ For an evidence card, identify the observed state first and write your competing
 
 ## Diffusion, noise prediction and a sampling schedule
 
-[Exercise 180](exercises/180.txt) · book page 578
+[Exercise 180](exercises/180.txt) · book page 579
 
 In the epsilon-prediction control, clean x₀ and sampled noise ε are mixed at time t as xₜ = √ᾱₜ x₀ + √(1 − ᾱₜ) ε. Alpha-bar is the cumulative product of the schedule’s retained-signal factors. A model learns to estimate ε. With the exact noise, recover x₀ by subtracting √(1 − ᾱₜ) ε from xₜ and dividing by √ᾱₜ.
 
@@ -590,7 +590,7 @@ Further reading
 
 ## Docker Compose and service networking
 
-[Exercise 141](exercises/141.txt) · book page 451
+[Exercise 141](exercises/141.txt) · book page 452
 
 Docker Compose describes related containers, their configuration, networks and mounts in a YAML file. One service can refer to another by its service name on a shared Compose network. Inside a container, 127.0.0.1 identifies that container’s own loopback interface in the usual network configuration.
 
@@ -605,7 +605,7 @@ Further reading
 
 ## Docker images, containers and volumes
 
-[Exercise 140](exercises/140.txt) · book page 447
+[Exercise 140](exercises/140.txt) · book page 448
 
 An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.
 
@@ -621,7 +621,7 @@ Further reading
 
 ## Dynamic batching and bounded admission
 
-[Exercise 132](exercises/132.txt) · book page 429
+[Exercise 132](exercises/132.txt) · book page 430
 
 A batch groups compatible inputs into one model operation. Dynamic batching collects requests that arrive separately and can briefly wait for more work before dispatch. This can improve throughput while increasing the wait for an individual request. A bounded queue limits how much pending work the server admits.
 
@@ -701,7 +701,7 @@ Further reading
 
 ## GPU scheduling in a Kubernetes cluster
 
-[Exercise 146](exercises/146.txt) · book page 463
+[Exercise 146](exercises/146.txt) · book page 464
 
 Kubernetes can schedule a GPU request only when a node advertises the corresponding resource. An NVIDIA device plugin reports supported devices to Kubernetes. The scheduler selects a suitable node, and the container runtime must then expose the assigned device to the process.
 
@@ -734,7 +734,7 @@ Further reading
 
 ## Grafana dashboards and data sources
 
-[Exercise 215](exercises/215.txt) · book page 697
+[Exercise 215](exercises/215.txt) · book page 700
 
 Grafana displays results queried from a data source, here Prometheus. A dashboard contains panels. Each panel applies a query, a time range and display settings such as units. Provisioning describes these connections and panels in files that another installation can reproduce.
 
@@ -783,7 +783,7 @@ Further reading
 
 ## Hugging Face Hub, snapshots and dataset cards
 
-[Exercise 208](exercises/208.txt) · book page 679
+[Exercise 208](exercises/208.txt) · book page 682
 
 Hugging Face Hub hosts versioned repositories for models, datasets and other artifacts. A model card documents a model’s purpose and usage. A dataset card describes data and its intended scope. A snapshot collects files at one revision. A moving branch name can later select different bytes.
 
@@ -801,7 +801,7 @@ Further reading
 
 ## Images, waveforms and model processors
 
-[Exercise 172](exercises/172.txt) · book page 556
+[Exercise 172](exercises/172.txt) · book page 557
 
 An RGB image can be represented as a grid with three color values at each position. A waveform is a sequence of sample values taken at a known rate. At 16,000 samples per second, 32,000 mono samples represent two seconds. Image dimensions, audio rate and channel count are part of the input.
 
@@ -818,7 +818,7 @@ Further reading
 
 ## Inference APIs, readiness and service health
 
-[Exercise 136](exercises/136.txt) · book page 439
+[Exercise 136](exercises/136.txt) · book page 440
 
 An inference service turns a model call into a request that another program can make. Its contract specifies the input fields, supported shapes, response structure and error behavior. A vector endpoint, for example, should return one vector of the expected length for each accepted input.
 
@@ -834,7 +834,7 @@ Further reading
 
 ## Jev decision models and typed questions
 
-[Exercise 232](exercises/232.txt) · book page 748
+[Exercise 232](exercises/232.txt) · book page 752
 
 Jev takes supplied state and typed questions about it. Choice selects from named options. Score represents a result on an ordered rubric. Noul answers a yes-or-no question with a probability of yes. The response fields differ, so the caller must use the contract for the particular question type.
 
@@ -869,7 +869,7 @@ Further reading
 
 ## Kubernetes, K3s, Pods and Services
 
-[Exercise 144](exercises/144.txt) · book page 459
+[Exercise 144](exercises/144.txt) · book page 460
 
 Kubernetes runs workloads from a declared desired state. K3s is the Kubernetes distribution used for the local cluster. A Pod runs one or more containers together. A Deployment manages replicas and replacements. A Service gives clients an address that can route requests to matching ready Pods. kubectl is the command-line client.
 
@@ -886,7 +886,7 @@ Further reading
 
 ## LangChain agents and local model adapters
 
-[Exercise 220](exercises/220.txt) · book page 721
+[Exercise 220](exercises/220.txt) · book page 725
 
 LangChain supplies interfaces for chat models and tools and can assemble them into an agent loop. A model adapter translates between the framework’s messages and a provider’s request and response format. The application still decides which tools are available and validates the arguments it receives.
 
@@ -902,7 +902,7 @@ Further reading
 
 ## LangGraph state, checkpoints and human review
 
-[Exercise 223](exercises/223.txt) · book page 729
+[Exercise 223](exercises/223.txt) · book page 733
 
 LangGraph represents an agent workflow as a graph. A node performs a step, an edge selects the next step and shared state carries information between them. A checkpointer saves state for a particular thread identifier. An interrupt can pause execution until the application supplies a review decision.
 
@@ -918,7 +918,7 @@ Further reading
 
 ## LangSmith tracing and evaluation
 
-[Exercise 226](exercises/226.txt) · book page 736
+[Exercise 226](exercises/226.txt) · book page 740
 
 LangSmith provides tracing and evaluation for model applications. A trace can group a request, model call and tool use as related runs. An evaluator applies a defined test to an output, perhaps comparing it with a reference or checking that a required field is present. Preserve the inputs and criterion behind each score.
 
@@ -951,7 +951,7 @@ Further reading
 
 ## LM Studio, llmster and the lms command line
 
-[Exercise 243](exercises/243.txt) · book page 788
+[Exercise 243](exercises/243.txt) · book page 792
 
 LM Studio can run a headless service called llmster. In this book that service and its lms command-line client run in WSL2. Importing a model makes its files available to the runtime. Loading creates an active model instance. The server then exposes an endpoint that a separate client can call.
 
@@ -1084,7 +1084,7 @@ Further reading
 
 ## MusicGen and discrete audio tokens
 
-[Exercise 188](exercises/188.txt) · book page 605
+[Exercise 188](exercises/188.txt) · book page 607
 
 MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file. At 32,000 samples/s and 50 codec frames/s, one codec frame covers 640 waveform samples. The four-codebook delay pattern in this run uses three steps. For 256 generation steps the 253 frames yield 161,920 samples, or 5.06 s.
 
@@ -1100,7 +1100,7 @@ Further reading
 
 ## Nemotron, mixtures of experts and hybrid state
 
-[Exercise 247](exercises/247.txt) · book page 799
+[Exercise 247](exercises/247.txt) · book page 803
 
 Nemotron names a family of models. The Nemotron 3 Nano variant used here combines expert routing with different kinds of sequence-processing layers. A mixture of experts selects part of the model for each token. The active parameter count describes work selected per token. The full stored model can still be much larger.
 
@@ -1149,7 +1149,7 @@ Further reading
 
 ## NumPy arrays, dataframes and data provenance
 
-[Exercise 152](exercises/152.txt) · book page 487
+[Exercise 152](exercises/152.txt) · book page 488
 
 NumPy stores numeric arrays with a shape and an element type. A dataframe is a table with named columns that may have different types. pandas provides dataframes on the CPU. A CSV file stores rows as text, while Parquet stores typed columns. Loading the same values with a different type can change a comparison.
 
@@ -1166,7 +1166,7 @@ Further reading
 
 ## The NVIDIA Container Toolkit and GPU visibility
 
-[Exercise 142](exercises/142.txt) · book page 453
+[Exercise 142](exercises/142.txt) · book page 454
 
 A GPU container needs two things at once. Its image supplies the application and compatible user-space libraries. The container runtime makes the required GPU device interface and driver components available to the running container. Under WSL2 the Windows host still owns the mapped display driver.
 
@@ -1182,7 +1182,7 @@ Further reading
 
 ## NVIDIA NeMo AutoModel and supervised training recipes
 
-[Exercise 168](exercises/168.txt) · book page 529
+[Exercise 168](exercises/168.txt) · book page 530
 
 NeMo AutoModel runs training from a recipe that brings together a model, tokenizer, data reader, optimizer and checkpoint settings. Changing one of these can change what the training run means. This exercise follows the data from a teaching example to the token positions that receive a training loss.
 
@@ -1199,7 +1199,7 @@ Further reading
 
 ## NVIDIA NGC Catalog, resources and container images
 
-[Exercise 204](exercises/204.txt) · book page 663
+[Exercise 204](exercises/204.txt) · book page 666
 
 NGC Catalog is NVIDIA’s catalog of GPU software and other assets. A resource entry can describe a downloadable file or tool. A container entry identifies an image in a registry. Reading a catalog page, acquiring an asset and executing it are three distinct operations.
 
@@ -1216,7 +1216,7 @@ Further reading
 
 ## NVIDIA Triton Inference Server and model repositories
 
-[Exercise 150](exercises/150.txt) · book page 476
+[Exercise 150](exercises/150.txt) · book page 477
 
 NVIDIA Triton Inference Server serves models through named backends. Its model repository contains model names, numbered version directories and configuration describing input and output tensors. A Python backend can implement an encoder. Other backends can execute an ONNX graph or a TensorRT engine.
 
@@ -1234,7 +1234,7 @@ Further reading
 
 ## Ollama, local model names and residency
 
-[Exercise 235](exercises/235.txt) · book page 757
+[Exercise 235](exercises/235.txt) · book page 761
 
 Ollama runs a local service that manages models and exposes generation and embedding endpoints. A local model name identifies what to request. Importing a GGUF file creates a usable model entry, while loading it creates a running model that consumes resources. A residency setting influences how long it can stay loaded between calls.
 
@@ -1253,7 +1253,7 @@ Further reading
 
 ## ONNX graphs and ONNX Runtime execution providers
 
-[Exercise 151](exercises/151.txt) · book page 480
+[Exercise 151](exercises/151.txt) · book page 481
 
 ONNX describes a model as a graph of operations, named inputs and outputs, and stored parameters. An opset specifies the operator definitions the graph expects. ONNX Runtime executes a graph by assigning supported groups of operations to execution providers, for example a CPU provider or the CUDA provider.
 
@@ -1332,7 +1332,7 @@ Further reading
 
 ## Prometheus, exporters and time series
 
-[Exercise 212](exercises/212.txt) · book page 690
+[Exercise 212](exercises/212.txt) · book page 693
 
 Prometheus asks configured targets for metrics at intervals called scrapes. An exporter translates another system’s measurements into named values that Prometheus can read. Labels distinguish series, for example by device. A gauge can rise or fall, while a counter usually accumulates events until its process restarts.
 
@@ -1364,7 +1364,7 @@ Further reading
 
 ## PromQL rates, histograms and alert rules
 
-[Exercise 216](exercises/216.txt) · book page 700
+[Exercise 216](exercises/216.txt) · book page 703
 
 PromQL is Prometheus’s query language. A rate over a counter estimates the average increase per second after accounting for counter resets across a time window. Histogram buckets accumulate observations up to specified boundaries. From those counts we can estimate a percentile such as p95, with precision limited by the bucket boundaries and available events.
 
@@ -1397,7 +1397,7 @@ Further reading
 
 ## PydanticAI and typed model outputs
 
-[Exercise 229](exercises/229.txt) · book page 742
+[Exercise 229](exercises/229.txt) · book page 746
 
 Pydantic models describe fields, types and validation rules for data. PydanticAI uses such contracts in agents, including for a model’s final output. A structured finding might require a named observation and a reference to evidence. A plausible paragraph or a well-formed JSON object can still fail that contract.
 
@@ -1497,7 +1497,7 @@ Further reading
 
 ## RAPIDS Memory Manager and allocation statistics
 
-[Exercise 155](exercises/155.txt) · book page 494
+[Exercise 155](exercises/155.txt) · book page 495
 
 GPU dataframe and machine-learning operations allocate temporary as well as long-lived buffers. RAPIDS Memory Manager, or RMM, provides memory resources through which participating libraries obtain device storage. A pool can hold memory between operations and fulfill several small allocations from its reserve.
 
@@ -1512,7 +1512,7 @@ Further reading
 
 ## RAPIDS, cuDF and cuML
 
-[Exercise 153](exercises/153.txt) · book page 490
+[Exercise 153](exercises/153.txt) · book page 491
 
 RAPIDS is a collection of libraries for data analysis on NVIDIA GPUs. cuDF provides dataframe operations, such as grouping rows by a category and summing a column. cuML supplies machine-learning algorithms, including PCA. A familiar operation name makes a CPU implementation a useful reference.
 
@@ -1636,7 +1636,7 @@ Further reading
 
 ## Sharing a GPU and owning a model
 
-[Exercise 130](exercises/130.txt) · book page 425
+[Exercise 130](exercises/130.txt) · book page 426
 
 Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers. The Multi-Process Service (MPS) lets eligible work from several client processes use the GPU concurrently. Each client still owns its model parameters. This laptop’s serving checks use their recorded ownership policy.
 
@@ -1653,7 +1653,7 @@ Further reading
 
 ## Speech recognition with Whisper
 
-[Exercise 196](exercises/196.txt) · book page 628
+[Exercise 196](exercises/196.txt) · book page 630
 
 Automatic speech recognition turns sound into text. Whisper processes acoustic features from audio, then decodes text tokens. The expected sampling rate, language and decoding settings affect the input or output. A fluent sentence is possible even when the audio contains little evidence for it.
 
@@ -1669,7 +1669,7 @@ Further reading
 
 ## Stable Diffusion XL, Diffusers and the VAE
 
-[Exercise 184](exercises/184.txt) · book page 586
+[Exercise 184](exercises/184.txt) · book page 587
 
 Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.
 
@@ -1730,7 +1730,7 @@ Further reading
 
 ## TensorRT engines and optimization profiles
 
-[Exercise 160](exercises/160.txt) · book page 505
+[Exercise 160](exercises/160.txt) · book page 506
 
 TensorRT optimizes a model for inference and builds an engine for a target environment. An execution context runs that engine. With dynamic inputs, an optimization profile gives permitted minimum and maximum shapes and an optimum shape used in optimization. An engine’s portability depends on the build and target configuration.
 
@@ -1748,7 +1748,7 @@ Further reading
 
 ## Text-to-speech with MMS and VITS
 
-[Exercise 192](exercises/192.txt) · book page 615
+[Exercise 192](exercises/192.txt) · book page 617
 
 A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.
 
@@ -1831,7 +1831,7 @@ Further reading
 
 ## Unsloth, QLoRA and a training smoke test
 
-[Exercise 239](exercises/239.txt) · book page 770
+[Exercise 239](exercises/239.txt) · book page 774
 
 Unsloth provides training integrations for supported models and environments. QLoRA stores a frozen base model in low precision and trains small LoRA adapter parameters with higher-precision computation where required. This reduces the storage needed for base weights, while activations and optimizer state still require memory.
 
@@ -1864,7 +1864,7 @@ Further reading
 
 ## Verifying a CUDA allocation above guest RAM
 
-[Exercise 251](exercises/251.txt) · book page 816
+[Exercise 251](exercises/251.txt) · book page 820
 
 A memory query returns the number reported by one interface at one moment. An allocation test makes a different observation. To show that several blocks were usable together, the program must retain them simultaneously, write distinguishable patterns, read them back and check the results before releasing them.
 
@@ -1882,7 +1882,7 @@ Further reading
 
 ## Vision-language models and visual grounding
 
-[Exercise 176](exercises/176.txt) · book page 565
+[Exercise 176](exercises/176.txt) · book page 566
 
 A vision-language model combines a visual representation with text so that a language component can generate an answer about an image. The processor resizes or tiles the pixels and prepares the visual input expected by the model. Increasing the visual input size can affect token count, memory use and latency. For the pinned Qwen2.5-VL-3B processor, 14-pixel patches merge in 2 × 2 groups. This gives the 28-pixel unit in the image-budget calculations.
 
@@ -1898,7 +1898,7 @@ Further reading
 
 ## vLLM and serving language models
 
-[Exercise 148](exercises/148.txt) · book page 468
+[Exercise 148](exercises/148.txt) · book page 469
 
 vLLM is an inference engine and server for language models. It schedules generation for active requests and manages memory used by their attention caches. Continuous batching lets the set of active sequences change as requests arrive or finish. A compatible HTTP API lets the lab use a familiar client.
 
@@ -1931,7 +1931,7 @@ Further reading
 
 ## Waveforms, spectrograms and audio levels
 
-[Exercise 189](exercises/189.txt) · book page 608
+[Exercise 189](exercises/189.txt) · book page 610
 
 A waveform shows amplitude over time. A spectrogram divides the signal into short, often overlapping windows and shows how energy is distributed across frequencies in each window. The short-time Fourier transform is one way to compute it. Window length influences how well nearby times and frequencies can be distinguished.
 
@@ -1963,7 +1963,7 @@ Further reading
 
 ## Word error rate and transcript alignment
 
-[Exercise 197](exercises/197.txt) · book page 630
+[Exercise 197](exercises/197.txt) · book page 632
 
 Word error rate compares a recognition hypothesis with reference words. Count substitutions, deletions and insertions in an alignment, then divide their sum by the number of reference words. With four reference words and one substitution, the rate is 0.25. Extra inserted words can even make a rate exceed one.
 
