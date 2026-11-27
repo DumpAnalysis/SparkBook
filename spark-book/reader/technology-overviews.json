@@ -24,7 +24,7 @@
         160,
         164
       ],
-      "book_page": 636
+      "book_page": 638
     },
     {
       "slug": "agent",
@@ -333,7 +333,7 @@
         154,
         156
       ],
-      "book_page": 649
+      "book_page": 651
     },
     {
       "slug": "oci",
@@ -357,7 +357,7 @@
         174,
         175
       ],
-      "book_page": 665
+      "book_page": 668
     },
     {
       "slug": "contrast",
@@ -583,7 +583,7 @@
       "references": [
         223
       ],
-      "book_page": 745
+      "book_page": 748
     },
     {
       "slug": "dumps",
@@ -935,7 +935,7 @@
         192,
         193
       ],
-      "book_page": 692
+      "book_page": 695
     },
     {
       "slug": "grounding",
@@ -1009,7 +1009,7 @@
         183,
         184
       ],
-      "book_page": 674
+      "book_page": 677
     },
     {
       "slug": "media",
@@ -1088,7 +1088,7 @@
         222,
         223
       ],
-      "book_page": 743
+      "book_page": 746
     },
     {
       "slug": "fusion",
@@ -1161,7 +1161,7 @@
         206,
         226
       ],
-      "book_page": 716
+      "book_page": 719
     },
     {
       "slug": "langgraph",
@@ -1185,7 +1185,7 @@
         208,
         209
       ],
-      "book_page": 724
+      "book_page": 727
     },
     {
       "slug": "langsmith",
@@ -1211,7 +1211,7 @@
         212,
         213
       ],
-      "book_page": 731
+      "book_page": 734
     },
     {
       "slug": "timing",
@@ -1261,7 +1261,7 @@
         247,
         248
       ],
-      "book_page": 783
+      "book_page": 786
     },
     {
       "slug": "bigmodel",
@@ -1483,7 +1483,7 @@
         251,
         252
       ],
-      "book_page": 794
+      "book_page": 797
     },
     {
       "slug": "ncu",
@@ -1630,7 +1630,7 @@
         172,
         173
       ],
-      "book_page": 659
+      "book_page": 661
     },
     {
       "slug": "tritonserver",
@@ -1682,7 +1682,7 @@
         232,
         233
       ],
-      "book_page": 752
+      "book_page": 755
     },
     {
       "slug": "onnx",
@@ -1824,7 +1824,7 @@
         191,
         194
       ],
-      "book_page": 685
+      "book_page": 688
     },
     {
       "slug": "prompt",
@@ -1873,7 +1873,7 @@
         196,
         197
       ],
-      "book_page": 695
+      "book_page": 698
     },
     {
       "slug": "instructions",
@@ -1921,7 +1921,7 @@
         216,
         217
       ],
-      "book_page": 737
+      "book_page": 740
     },
     {
       "slug": "pythonpackages",
@@ -2291,7 +2291,7 @@
         157,
         159
       ],
-      "book_page": 624
+      "book_page": 626
     },
     {
       "slug": "sdxl",
@@ -2430,7 +2430,7 @@
         154,
         155
       ],
-      "book_page": 612
+      "book_page": 613
     },
     {
       "slug": "pooling",
@@ -2551,7 +2551,7 @@
         236,
         237
       ],
-      "book_page": 765
+      "book_page": 768
     },
     {
       "slug": "vectorindex",
@@ -2599,7 +2599,7 @@
         258,
         259
       ],
-      "book_page": 811
+      "book_page": 814
     },
     {
       "slug": "vlm",
@@ -2740,7 +2740,7 @@
         156,
         158
       ],
-      "book_page": 626
+      "book_page": 628
     },
     {
       "slug": "kernels",
