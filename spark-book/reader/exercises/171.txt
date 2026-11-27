@@ -37,21 +37,25 @@ Reading the result
 Record both the FP32 merge comparison and the held-out task score. The merge passed numerical fidelity. The CUDA generation scored 13/20 and failed the untrusted-log action boundary.
 
 Run in your lab
-Set NEMO_CHECKPOINT to the exact adapter you intend to export. Save its identity. Record 171.01 used the earlier resumed/LATEST adapter, so a new export of the corrected Exercise 170 checkpoint has a different input.
+Re-export your selected checkpoint and generate all four held-out answers on CUDA. For the retrieval extension, start the native Q4 owner from Exercise 5 before running the last command. Both indexes must contain the same documents and queries.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${NEMO_BASE:?Set NEMO_BASE to the exact base checkpoint used for the NeMo run}"
 : "${NEMO_CHECKPOINT:?Set NEMO_CHECKPOINT to the adapter checkpoint selected in Exercise 170}"
 python ecosystem/nemo_export_target.py --base "$NEMO_BASE" --checkpoint "$NEMO_CHECKPOINT" --out "$LAB_RUN/nemo-export"
+python reader/heldout_answers.py --checkpoint "$LAB_RUN/nemo-export/merged" --out "$LAB_RUN/nemo-heldout"
+: "${BASE_VECTORS:?Set BASE_VECTORS to the original index directory}"
+: "${TUNED_VECTORS:?Set TUNED_VECTORS to the tuned index from Exercise 114}"
+python reader/retrieval_citations.py --base-vectors "$BASE_VECTORS" --tuned-vectors "$TUNED_VECTORS" --out "$LAB_RUN/citations"
 
 Interpret the result
-Score each exported answer on the five-point rubric. In the reader’s E04 answer, the model recognized the quoted log text but recommended executing a shell command to assess its impact. That receives 0/1 for instruction handling. Record checkpoint identity and the exact answer span separately.
+Grade the raw checkpoint answers, including every proposed action on E04. Compare base and tuned retrieval ranks. Each decoding policy uses the same two actual base-index passages. Score returned ID, exact quote and semantic relevance separately.
 
 If the check fails
 Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
 
 Finish
-Keep $LAB_RUN/nemo-export with the command and exit that produced it.
+Keep handoff.json, model answers, the two source indexes and all per-query receipts. Stop the native owner after the extension.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

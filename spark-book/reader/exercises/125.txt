@@ -37,7 +37,7 @@ Predict before running
 Which rank waits when only its peer is delayed?
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter. The pipe coordinator and its spawned CPU workers hide CUDA. Inspect worker-diagnosis.json, stderr-RANK.txt and any error-RANK.txt when a rank exits unsuccessfully.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 

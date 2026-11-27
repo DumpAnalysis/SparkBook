@@ -38,9 +38,10 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 touch "$LAB_RUN/silence-reference.txt"
 test ! -s "$LAB_RUN/silence-reference.txt"
 python media/targets.py asr --model models/media/whisper --input "$SILENCE_WAV" --reference "$LAB_RUN/silence-reference.txt" --out "$LAB_RUN/silence-asr"
+python media/targets.py asr --model models/media/whisper --input "$SILENCE_WAV" --reference "$LAB_RUN/silence-reference.txt" --decode-silence --out "$LAB_RUN/raw-silence"
 
 Interpret the result
-Verify that the input samples are zero. Expected transcript: empty. Earlier raw hypothesis: “you”. Score silence recognition 0/1, with one inserted word and zero reference words. WER is undefined; result.json records null. Keep output.txt, including any leading whitespace.
+Check peak, RMS, decoder_called and the untouched transcript in each receipt. The exact-zero policy can abstain before decoding. Compare its insertion count to raw Whisper on the identical samples. Empty-reference WER is undefined in both cases.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.

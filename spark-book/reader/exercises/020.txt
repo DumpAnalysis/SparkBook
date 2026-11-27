@@ -31,7 +31,7 @@ Reading the result
 Read the saved prompt and the HTTP response as separate pieces of evidence. The timeout appeared inside the prompt. The live HTTP exchange succeeded.
 
 Run in your lab
-Select the inventory from Exercise 1 and the answer from Exercise 6. The commands assume they are in this LAB_RUN. If they are in an earlier run directory, substitute those two absolute input paths. Use a fresh output directory for the snapshot and planner result.
+Use the inventory from Exercise 1 and the HTTP receipt from Exercise 6. Capture the active native owner. The snapshot records transport counts, startup events and launch flags. Generated replies and echoed prompts are excluded from the incident evidence.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 python capture_evidence.py --inventory "$LAB_RUN/inventory.txt" \
@@ -39,11 +39,8 @@ python capture_evidence.py --inventory "$LAB_RUN/inventory.txt" \
 python agent.py --evidence "$LAB_RUN/snapshot.json" \
   --out "$LAB_RUN/agent-snapshot.json"
 
-Inspect
-Read the collected snapshot, its timestamp, available fields and the agent’s evidence references.
-
 Interpret the result
-For each claim, record the key actually read, source path and evidence type. In the reader trial, request pointed to answer.json. Its HTTP 200 documents a reply from the local model. The R17 timestamps inside the reply are generated text. Score an independent observation of the R17 incident 0/1. Inspect runtime and inventory for claims about this lab.
+Compare the request source and modification time, server-run directory and active flags. An HTTP 200 describes this local exchange. Quote the reported status and a startup observation. Record any missing source explicitly.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.

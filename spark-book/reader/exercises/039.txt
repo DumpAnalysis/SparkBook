@@ -29,10 +29,10 @@ bash cuda/nsys_2026.sh --image
 bash cuda/nsys_2026.sh --version
 bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none --capture-range=cudaProfilerApi --capture-range-end=stop -o "$LAB_RUN/timeline" ./cuda/bin/cuda-lab trace
 bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/timeline.sqlite" "$LAB_RUN/timeline.nsys-rep"
-python cuda/trace_sqlite.py "$LAB_RUN/timeline.sqlite" --ranges iteration
+python cuda/trace_sqlite.py "$LAB_RUN/timeline.sqlite" --ranges iteration --launches iteration
 
 Interpret the result
-Count four transform kernels with positive device intervals and four NVTX iteration ranges. Inspect their boundaries separately. On the reader’s N1X, native 2026.3.2 produced host ranges without the CUPTI kernel table. Keep the simulator or host-only result separately if collection is unavailable.
+For each iteration, match the host-thread CUDA launch and device kernel by process and correlation ID. Compare that list with kernels wholly inside the host range. A kernel can finish after its launch range closes.
 
 If the check fails
 Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.

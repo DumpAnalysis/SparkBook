@@ -28,14 +28,14 @@ Check for success
 Identify its first tool request, the evidence returned and its final response. Check the step limit and ground the response in that evidence.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Use the local server from Exercise 5. The planner chooses the order in which to read request, runtime and limits, then selects one exact fact from each source. Read its full responses in the receipt.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 python agent.py --out "$LAB_RUN/agent-live.json"
 
 Interpret the result
-Read the tool history before grading the final diagnosis. In the reader trial the only tool result said the client received HTTP 400 for an oversized prompt. Score that observation 1/1 and the additional claim that the model loaded 0/1. Runtime evidence was available to read but the planner never requested it.
+The request establishes rejection, the runtime establishes loading, and the limits show whether input length exceeded context. A claim earns credit only when the cited source was read and supports it.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.

@@ -81,7 +81,7 @@ def request_check(con, path):
         raise ValueError('No matching owner kernel entirely inside the request window')
 
 
-def ranges_check(con, prefix):
+def ranges_check(con, prefix, allow_empty_intervals=False):
     rows = con.execute('''SELECT coalesce(n.text,s.value),start,end FROM NVTX_EVENTS n
         LEFT JOIN StringIds s ON s.id=n.textId WHERE end>start ORDER BY start''')
     found = []
@@ -91,8 +91,8 @@ def ranges_check(con, prefix):
                                  (start, end)).fetchone()
             print(f'range={name} contained_kernels={count}')
             found.append(count)
-    if not found:
-        raise ValueError('No matching NVTX ranges')
+    if not found or (not allow_empty_intervals and not any(found)):
+        raise ValueError('No matching NVTX range contains a timed kernel')
 
 
 def launch_check(con, prefix):
@@ -153,7 +153,7 @@ def main():
             if args.launches:
                 launch_check(con, args.launches)
             if args.ranges:
-                ranges_check(con, args.ranges)
+                ranges_check(con, args.ranges, allow_empty_intervals=bool(args.launches))
     except (ValueError, sqlite3.Error) as exc:
         p.exit(2, f'{exc}\n')
 

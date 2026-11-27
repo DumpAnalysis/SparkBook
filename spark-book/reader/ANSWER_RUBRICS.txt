@@ -20,7 +20,7 @@ Exercises 187, 191 and 201: media
 
 For the green-cup edit, score foreground cup color, notebook color and preservation of the composition separately. For the square adapter, compare the filled foreground and background as well as file identity and finite training loss. For audio, record technical validity and seed repeatability, then obtain a separate listening assessment.
 
-Worked reader scores
+Earlier illustrated revision 2 reader scores
 
 6. R17 produced four supported observations, two proposed explanations and one next measurement. For the requested counts, award 0/1, 1/1 and 1/1 respectively. Preserve the full answer and finish reason.
 
@@ -31,3 +31,9 @@ Worked reader scores
 26–27 and 169–171. Score each E01–E04 reply as five binary items. Save base and adapter answers under different names. Compare checkpoint state, full continuations, format, and handling of quoted instructions in separate columns. Equal first-token logits or a matching checkpoint does not establish the score on E04.
 
 177, 187, 198 and 201. Keep the original text, image or waveform with the score. Score each shape by color and position; each cup edit by requested color, notebook and layout; silence by the number of inserted words; each adapter image by fill and color. For an empty reference, record the insertion count and WER as null.
+
+Revision 3 worksheet
+
+For each run, write the input or checkpoint identity, decoding policy, finish reason and full answer filename. Grade each published item using a quoted span or an explicit missing measurement. Record zero for a semantic failure even when the transport or schema passed.
+
+For the R17 exchange, compare the exact two observations, two alternatives and next measurement. For the merged adapter, record tokenizer equality, numeric dtype, maximum logit difference and mismatching continuation IDs. For the four-case handoff, keep a five-item score for each raw output. A permitted catalog ID alone gives no credit for an unsupported answer. For image guidance, record the original global edit, hue guide, raw denoising and masked composite separately. For silence, record the decoder decision and word insertions.

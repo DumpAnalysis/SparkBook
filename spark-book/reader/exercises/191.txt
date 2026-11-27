@@ -42,6 +42,7 @@ The entry supplies one controlled seed. Repeat the same prompt and limit, then v
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 python media/targets.py music --model models/media/musicgen --text "A quiet solo piano phrase with a slow steady rhythm" --tokens 256 --guidance 3 --seed 1607 --profile --out "$LAB_RUN/music-seed1607"
+cat media/listening-scorecard.txt
 
 Interpret the result
 Record sample rate, duration, peak, repeat-seed hash and codec positions separately. Use a listener to assess the requested sound and intelligibility. A matching hash qualifies repeatability only.
@@ -50,7 +51,7 @@ If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.
 
 Finish
-Keep $LAB_RUN/music-seed1607 with the command and exit that produced it.
+Keep the WAV, its hash and one scorecard per listener. Record any unheard item as unassessed.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

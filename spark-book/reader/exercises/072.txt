@@ -31,14 +31,21 @@ Reading the result
 Score the missing-evidence replay and live planner separately. The replay exercised the intended boundary. The live answer failed its tool and evidence rubric.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Run the two replay controls, then use a live Q4 owner. Supply actual evidence paths, including a failed tool receipt when acquisition failed. Save the inventory in the current run or substitute its absolute path.
 
-: "${LAB_RUN:?Run source reader/new_run.sh first}"
-
+: "${LAB_RUN:?Source reader/new_run.sh first}"
 python advanced/diagnostic_agent.py --replay missing --out "$LAB_RUN/agent-missing.json"
+rc=0
+python advanced/diagnostic_agent.py --replay denied --out "$LAB_RUN/agent-denied.json" || rc=$?
+test "$rc" -eq 2
+: "${SANITIZER_LOG:?Set SANITIZER_LOG to your captured sanitizer output}"
+: "${TIMELINE_LOG:?Set TIMELINE_LOG to the trace summary from Exercise 39 or 40}"
+: "${MEMORY_LOG:?Set MEMORY_LOG to a measured allocator record}"
+python advanced/prepare_evidence.py --inventory "$LAB_RUN/inventory.txt" --sanitizer "$SANITIZER_LOG" --timeline "$TIMELINE_LOG" --memory "$MEMORY_LOG" --out "$LAB_RUN/planner-evidence"
+python advanced/diagnostic_agent.py --evidence "$LAB_RUN/planner-evidence" --out "$LAB_RUN/planner-result.json"
 
 Interpret the result
-Retain the proposed status, schema decision and cited evidence even when validation rejects the plan. The reader’s live planner returned an invalid status. The validator denied it and left the case for human review.
+Check each quoted span against the named tool result. An initialization error is evidence about the tool. It cannot establish an application fault. Record missing measurements, final status and any denied action.
 
 If the check fails
 Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.

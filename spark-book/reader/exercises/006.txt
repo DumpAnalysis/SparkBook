@@ -34,18 +34,15 @@ Reading the result
 Count the numbered observations yourself. The prompt asks for two. The recorded answer gave four, although the server returned HTTP 200 and a normal stop.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Read prompt.txt, then request exactly two observations, two possible explanations and one next measurement. The local server constrains the JSON structure. Read each field to decide whether its content earns credit.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 cat prompt.txt
-python spark_lab.py query prompt.txt --tokens 128 --out "$LAB_RUN/answer.json"
-
-Inspect
-Read the exact prompt, complete response, finish reason, usage fields and saved request JSON.
+python spark_lab.py query prompt.txt --format r17 --tokens 256 --out "$LAB_RUN/answer.json"
 
 Interpret the result
-Worked R17 score. The saved reader reply listed four supported observations, two possible explanations and one measurement. Give 0/1 for exactly two observations, 1/1 for two explanations and 1/1 for the measurement. Keep the HTTP status and finish reason alongside the full text.
+Count the items and quote each supporting event. Give one point each for two supported observations, two distinct conditional explanations and a measurement that separates them. Record HTTP status and finish reason alongside the three scores.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.
