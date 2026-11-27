@@ -3,13 +3,13 @@
   "files": [
     {
       "path": "EXERCISE_EVIDENCE_MAP.json",
-      "bytes": 161995,
-      "sha256": "80b71c74e6ca6aebe2811d731d284f43c2089bd10bac7028f381b669c9c502fc"
+      "bytes": 161996,
+      "sha256": "cfb053eac0f933e4cd70cbb661c8e04d3d243ec8163d41094b8a5575707f2436"
     },
     {
       "path": "README.txt",
-      "bytes": 1849,
-      "sha256": "c404e4c0f5f9b8815a392163ac7c9e2b1fd762f21d3e67a05297e4adc17ded6a"
+      "bytes": 1874,
+      "sha256": "faee9cd85857cd41b4b5fc1cbce9ab3acfebb250c0d3ada9395267f16231d397"
     },
     {
       "path": "TRANSCRIPT_POLICY.txt",
@@ -1813,13 +1813,13 @@
     },
     {
       "path": "reader/START_HERE.txt",
-      "bytes": 5795,
-      "sha256": "3d12356d82022d4915dbf2b0728afa53746f863d7b84e3389373d850e72e1dec"
+      "bytes": 5839,
+      "sha256": "6d946610b54a5812255a479790543cb356051d877f1c17db727b6b0a9c07bc7e"
     },
     {
       "path": "reader/TECHNOLOGY_OVERVIEWS.md",
       "bytes": 139367,
-      "sha256": "af3cea043a73ac53780e3f6fbcc263083f6a90f595592d950c2ced0e1096a57a"
+      "sha256": "43f5b395116dcec3da4cb849388c82d614d45afddb95be6dc55aa5cf70029deb"
     },
     {
       "path": "reader/TROUBLESHOOTING.txt",
@@ -3169,7 +3169,7 @@
     {
       "path": "reader/recorded-runs.json",
       "bytes": 249177,
-      "sha256": "50302cc5860443a0013c540e6e5a1824a61f6a2dfee4ef3aabd6b9e3d3b39945"
+      "sha256": "61a703d6a574e6501145e154b0ab3798ef970c66479409789c80f68b52cfea80"
     },
     {
       "path": "reader/records.py",
@@ -3184,7 +3184,7 @@
     {
       "path": "reader/technology-overviews.json",
       "bytes": 176064,
-      "sha256": "c4e040b48323fbefc1d5246dc6b27a4fce97b9881a3012137e724260e0e0de09"
+      "sha256": "649fbc5d13eeaf966ca7996a08df080526f2bfa765e90f4c9496bc1d6299b107"
     },
     {
       "path": "reader/verify_package.py",

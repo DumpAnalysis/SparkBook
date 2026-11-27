@@ -22,14 +22,14 @@ your project, including the revised programs in memory_budget/ and embeddings/. 
 copy of a working experiment. A new archive cannot remove obsolete files from
 an older extraction.
 
-For a first installation, extract the matching Version 59 ZIP into a WSL2 staging
+For a first installation, extract the Version 59 illustrated revision 2 ZIP into a WSL2 staging
 directory. You can also use https://github.com/DumpAnalysis/SparkBook when its
 README identifies Version 59. From the release’s spark-book directory, run:
 
 python3 reader/verify_package.py
 
 To verify the matching book files, supply one or both local paths.
-python3 reader/verify_package.py --book /path/to/Local_AI_on_RTX_Spark_Laptops_Version59.docx --book /path/to/Local_AI_on_RTX_Spark_Laptops_Version59.pdf
+python3 reader/verify_package.py --book /path/to/Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R2.docx --book /path/to/Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R2.pdf
 
 Then create your working directory.
 

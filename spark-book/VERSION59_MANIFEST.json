@@ -1,12 +1,29 @@
 {
   "book": {
-    "name": "Local_AI_on_RTX_Spark_Laptops_Version59.docx",
-    "sha256": "3018ca45a9582a78b4477387d0409651f33540c1395974d910c0012cadead8c6"
+    "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R2.docx",
+    "sha256": "296ad2952ca7ce5ef55286046845a47c335861875a73e34cb87b44a18c07eae7"
   },
-  "compatible_books": [],
+  "compatible_books": [
+    {
+      "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated.docx",
+      "sha256": "f96d006d2d3022f4ea5143b01fd5df68f5364c35d25511dc8e9fd20b708137e6"
+    },
+    {
+      "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated.pdf",
+      "sha256": "12e97e1f1b251ff31aadb166da57ea9ac9d4bcd3a22aa1ee9d7819f45fc07a4e"
+    },
+    {
+      "name": "Local_AI_on_RTX_Spark_Laptops_Version59.docx",
+      "sha256": "3018ca45a9582a78b4477387d0409651f33540c1395974d910c0012cadead8c6"
+    },
+    {
+      "name": "Local_AI_on_RTX_Spark_Laptops_Version59.pdf",
+      "sha256": "ed118df1322cace29f9e4ee44afbbf171acd32810b0f17ea0f8b85734413d8b3"
+    }
+  ],
   "print_pdf": {
-    "name": "Local_AI_on_RTX_Spark_Laptops_Version59.pdf",
-    "sha256": "ed118df1322cace29f9e4ee44afbbf171acd32810b0f17ea0f8b85734413d8b3"
+    "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R2.pdf",
+    "sha256": "9977f6d0ffa47fd7fd28bee63f4bd99d58d2367cf2be3909a9ec0d49864a9a64"
   },
   "version": 59,
   "profile": "learner",
@@ -17,13 +34,13 @@
   "files": [
     {
       "path": "EXERCISE_EVIDENCE_MAP.json",
-      "bytes": 161995,
-      "sha256": "80b71c74e6ca6aebe2811d731d284f43c2089bd10bac7028f381b669c9c502fc"
+      "bytes": 161996,
+      "sha256": "cfb053eac0f933e4cd70cbb661c8e04d3d243ec8163d41094b8a5575707f2436"
     },
     {
       "path": "README.txt",
-      "bytes": 1849,
-      "sha256": "c404e4c0f5f9b8815a392163ac7c9e2b1fd762f21d3e67a05297e4adc17ded6a"
+      "bytes": 1874,
+      "sha256": "faee9cd85857cd41b4b5fc1cbce9ab3acfebb250c0d3ada9395267f16231d397"
     },
     {
       "path": "TRANSCRIPT_POLICY.txt",
@@ -1827,13 +1844,13 @@
     },
     {
       "path": "reader/START_HERE.txt",
-      "bytes": 5795,
-      "sha256": "3d12356d82022d4915dbf2b0728afa53746f863d7b84e3389373d850e72e1dec"
+      "bytes": 5839,
+      "sha256": "6d946610b54a5812255a479790543cb356051d877f1c17db727b6b0a9c07bc7e"
     },
     {
       "path": "reader/TECHNOLOGY_OVERVIEWS.md",
       "bytes": 139367,
-      "sha256": "af3cea043a73ac53780e3f6fbcc263083f6a90f595592d950c2ced0e1096a57a"
+      "sha256": "43f5b395116dcec3da4cb849388c82d614d45afddb95be6dc55aa5cf70029deb"
     },
     {
       "path": "reader/TROUBLESHOOTING.txt",
@@ -3183,7 +3200,7 @@
     {
       "path": "reader/recorded-runs.json",
       "bytes": 249177,
-      "sha256": "50302cc5860443a0013c540e6e5a1824a61f6a2dfee4ef3aabd6b9e3d3b39945"
+      "sha256": "61a703d6a574e6501145e154b0ab3798ef970c66479409789c80f68b52cfea80"
     },
     {
       "path": "reader/records.py",
@@ -3198,7 +3215,7 @@
     {
       "path": "reader/technology-overviews.json",
       "bytes": 176064,
-      "sha256": "c4e040b48323fbefc1d5246dc6b27a4fce97b9881a3012137e724260e0e0de09"
+      "sha256": "649fbc5d13eeaf966ca7996a08df080526f2bfa765e90f4c9496bc1d6299b107"
     },
     {
       "path": "reader/verify_package.py",
@@ -3208,7 +3225,7 @@
     {
       "path": "reader/workspace-files.json",
       "bytes": 122644,
-      "sha256": "93d0083175b02700990656721427b69c703f0bf2cca4c7277c9c59a0bd01f703"
+      "sha256": "6f992cfef38c2ae777c6a3de269deb9aa9f69957707edd052a77da7d2bc00ced"
     },
     {
       "path": "requirements-exercises.lock",
@@ -3776,5 +3793,5 @@
       "sha256": "0fcee98c6027427f04c4e4169931645a2d0a63f21609fc0676fb880307ab7290"
     }
   ],
-  "revision_validation": "Version 59 reader checks on an RTX Spark N1X under WSL2 included native restarts, vLLM on K3s, Triton version switching, CUDA vision, SDXL adaptation and the local MMS service. The 483 historical captures retain their original scope."
+  "revision_validation": "Illustrated revision 2. The reader guides include matched native requests, the pinned 2026.5.1 profiler and worked scoring examples. Historical transcripts retain their original scope."
 }
