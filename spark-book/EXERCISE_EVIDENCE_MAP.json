@@ -167,7 +167,8 @@
         "serve.sh",
         "setup_wsl.py",
         "spark_lab.py",
-        "reader/ANSWER_RUBRICS.txt"
+        "reader/ANSWER_RUBRICS.txt",
+        "reader/compare_quant.py"
       ]
     },
     {

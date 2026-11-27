@@ -17,8 +17,8 @@
   "files": [
     {
       "path": "EXERCISE_EVIDENCE_MAP.json",
-      "bytes": 161960,
-      "sha256": "88c5c5e2cc04f40979d8fbd09fa0cb356b533de590d8362f0998e0be910e27ed"
+      "bytes": 161995,
+      "sha256": "80b71c74e6ca6aebe2811d731d284f43c2089bd10bac7028f381b669c9c502fc"
     },
     {
       "path": "README.txt",
@@ -507,8 +507,8 @@
     },
     {
       "path": "cuda/trace_sqlite.py",
-      "bytes": 6846,
-      "sha256": "de2d2eaa2a09a0b1ee3ad86170dda2920be851416b15fc26e25777d5532194ea"
+      "bytes": 6869,
+      "sha256": "3b2c72b6738cb17ee03d837173db6171a455ecd2d450721dc8a0b8a21dd63ae3"
     },
     {
       "path": "cuda/validate_cuda_helpers.py",
@@ -1851,6 +1851,11 @@
       "sha256": "9d0f81175424d0704589b877e418c7767c34b2e20985aa1eb281ff5d0e96224a"
     },
     {
+      "path": "reader/compare_quant.py",
+      "bytes": 1233,
+      "sha256": "bad337cd572dd81fdfc1bab6ff8b4999fbfb546abe6fa8bf373a564b6b2f7396"
+    },
+    {
       "path": "reader/dependency-repair/DEPENDENCY-REPAIR.md",
       "bytes": 2684,
       "sha256": "c8b55ce26856432c3f238f2be936fd4724d30f868902af28c630462bac34bbdd"
@@ -1862,8 +1867,8 @@
     },
     {
       "path": "reader/exercise-guide.json",
-      "bytes": 597145,
-      "sha256": "817bfb29611f763d7f8e67d16815e7b81411eff959473cac5bc83be4de1e7d5e"
+      "bytes": 597257,
+      "sha256": "ebe5a4134b43388c934a6b5f4dd7dd34404121b04f477e6c64f4082e01f75dcd"
     },
     {
       "path": "reader/exercises/001.txt",
@@ -1917,8 +1922,8 @@
     },
     {
       "path": "reader/exercises/011.txt",
-      "bytes": 3548,
-      "sha256": "2671d8f5de2ad1689ffe1bccca27fa9355d6020be1abf027c5bd5099a5e34c4c"
+      "bytes": 3631,
+      "sha256": "44d4f9885f6e6c06aacab120f5313d14520b90b726877426c949bbacbfc5048b"
     },
     {
       "path": "reader/exercises/012.txt",
@@ -2717,8 +2722,8 @@
     },
     {
       "path": "reader/exercises/171.txt",
-      "bytes": 4645,
-      "sha256": "99759097b03c9d82d4e035092bc7fe08b8d1b58c7d80b2e79df7b0db2217445e"
+      "bytes": 4669,
+      "sha256": "3b460b84ee2a20f92ae4e28b477557f05566a7b2c797542dba4e1f04fe032353"
     },
     {
       "path": "reader/exercises/172.txt",
@@ -3202,8 +3207,8 @@
     },
     {
       "path": "reader/workspace-files.json",
-      "bytes": 122486,
-      "sha256": "bd419839d65d6fa69cc81243874cd9aaf5571c98ef7b101f777311300f506cf1"
+      "bytes": 122644,
+      "sha256": "93d0083175b02700990656721427b69c703f0bf2cca4c7277c9c59a0bd01f703"
     },
     {
       "path": "requirements-exercises.lock",

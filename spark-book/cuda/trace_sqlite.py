@@ -75,7 +75,7 @@ def request_check(con, path):
         WHERE p.pid=? AND start>=? AND end<=? AND {VALID} GROUP BY p.name''',
         (receipt['pid'], receipt['start_utc_ns'] - epoch, receipt['end_utc_ns'] - epoch)).fetchall()
     expected = receipt['command'][0]
-    count = sum(n for name, n in rows if name == expected)
+    count = sum(n for name, n in rows if name in (expected, Path(expected).name))
     print(f"owner_pid={receipt['pid']} request_window_kernels={count}")
     if not count:
         raise ValueError('No matching owner kernel entirely inside the request window')

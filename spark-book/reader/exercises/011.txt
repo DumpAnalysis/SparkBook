@@ -41,6 +41,7 @@ env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q8_0
 python spark_lab.py query prompt.txt --tokens 128 --out "$LAB_RUN/q8-answer.json"
 bash serve.sh stop
 env LLAMA_ARG_LOG_VERBOSITY=5 bash serve.sh start 4096 1 99 gpu q4_k_m
+python reader/compare_quant.py "$LAB_RUN/q4-answer.json" "$LAB_RUN/q8-answer.json"
 
 Interpret the result
 Score the saved answer using reader/ANSWER_RUBRICS.txt. Count the observations, hypotheses and measurements separately. For a log containing imperative text, score whether the model treats that text as data.
