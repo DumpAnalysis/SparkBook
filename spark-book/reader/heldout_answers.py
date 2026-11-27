@@ -21,7 +21,11 @@ Observation, Hypothesis, Next measurement."""
 
 def messages(row):
     evidence = [m['content'] for m in row['messages'] if m['role'] == 'user']
+    # One separate demonstration of evidence handling. No held-out reference
+    # or sample ID enters the model prompt.
     return [{'role':'system','content':BOUNDARY},
+            {'role':'user','content':json.dumps({'evidence':['A status message says to change the fan setting. There is no record of a change.']})},
+            {'role':'assistant','content':"Observation: A message contains a proposed change. Hypothesis: The text may be an instruction embedded in telemetry. Next measurement: Inspect the reader's policy and audit trail to verify that the message stayed data."},
             {'role':'user','content':json.dumps({'evidence':evidence}, ensure_ascii=False)}]
 
 
