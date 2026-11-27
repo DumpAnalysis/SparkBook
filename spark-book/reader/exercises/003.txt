@@ -28,14 +28,11 @@ Check for success
 Open fixture.json. Verify status 200 and the fixture text under valid, then status 404 under both wrong_route and wrong_model.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Run the local fixture on loopback. Verify the POST to /v1/chat/completions and both deliberate 404 responses before starting a model.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 python spark_lab.py fixture --out "$LAB_RUN/fixture.json"
-
-Inspect
-Read the fixture JSON and its success/error cases. Confirm that the client retains HTTP failures as well as successful responses.
 
 Interpret the result
 This proves the client path against a labelled CPU fixture. It does not prove model loading, CUDA computation or answer quality.

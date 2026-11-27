@@ -9,11 +9,11 @@ ONNX graphs and ONNX Runtime execution providers
 
 ONNX describes a model as a graph of operations, named inputs and outputs, and stored parameters. An opset specifies the operator definitions the graph expects. ONNX Runtime executes a graph by assigning supported groups of operations to execution providers, for example a CPU provider or the CUDA provider.
 
-Check the graph structure and run a known input against an independent numerical result. Then examine provider assignment for the relevant nodes. A listed CUDA provider establishes availability. An assignment log establishes placement, while timed device activity requires a usable trace.
+Check the graph structure and run a known input against an independent numerical result. Then examine provider assignment for the relevant nodes. A listed CUDA provider identifies build support. Create a session, inspect its active providers and check the relevant node’s profile event. An assignment log establishes placement, while timed device activity requires a usable trace.
 
 Floating-point precision and numerical tolerances
 
-Floating-point types store finite approximations to numbers. FP16, BF16 and FP32 use different bit layouts and preserve different ranges and precision. Even in the same type, two orders of summation can give slightly different answers. A reference calculation lets us inspect those differences.
+Floating-point formats allocate bits to sign, exponent and fraction. FP16 has five exponent and ten fraction bits, with largest finite value 65,504. BF16 (bfloat16) has eight exponent and seven fraction bits. FP32 has eight exponent and 23 fraction bits. BF16 covers a range similar to FP32 with coarser spacing between adjacent values.
 
 An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error.
 

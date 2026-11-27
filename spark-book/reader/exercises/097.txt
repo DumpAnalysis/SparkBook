@@ -7,7 +7,7 @@ Technology background
 
 GPU metrics, samples and missing observations
 
-A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+The NVIDIA Management Library (NVML) reports supported sampled device fields. GPU utilization is the fraction of the device sample period during which one or more kernels ran. Memory utilization measures the fraction of that period in which device memory was read or written. A small continuously active kernel can register high busy time. Occupancy, throughput and bytes per second require their own measurements.
 
 Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
 
@@ -15,7 +15,7 @@ Latency, throughput and repeatable timing
 
 Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
 
-A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+Use a monotonic clock for durations. Its readings never go backwards and changing the wall clock does not shift its origin. Record wall-clock timestamps for correlation between records. For nearest-rank p95, sort n observations and select rank ceil(0.95 × n), counting from one. For five requests this selects the slowest. Report individual timings for short runs.
 
 Plotting GPU activity against a workload
 

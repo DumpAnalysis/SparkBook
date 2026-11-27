@@ -9,7 +9,7 @@ vLLM and serving language models
 
 vLLM is an inference engine and server for language models. It schedules generation for active requests and manages memory used by their attention caches. Continuous batching lets the set of active sequences change as requests arrive or finish. A compatible HTTP API lets the lab use a familiar client.
 
-Qualify the chosen image, model and device together. Check the server’s ready model identity, make one bounded generation request, then raise concurrency. Separate time in the queue, time to first content and completion. More available weight memory alone does not determine the number of concurrent sequences it can serve.
+Qualify the chosen image, model and device together. Check the server’s ready model identity, make one bounded generation request, then raise concurrency. Separate time in the queue, time to first content and completion. After weights and runtime workspace, remaining space and the configured KV-cache limit bound the cached tokens that concurrent sequences can share.
 
 Model weights, tokens and the context window
 

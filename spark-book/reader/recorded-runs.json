@@ -899,7 +899,7 @@
       "scope": "CPU read-only analysis of GPU trace export | UTC 2026-10-30T12:16:32.621541+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “ValueError: Expected kernel/StringIds tables absent; inspect export schema”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 181,
+      "book_page": 182,
       "printed_sha256": "aabc7610d593828f31928d13151e0444a2463a17823b4a0724967cf2c8addc8f"
     },
     {
@@ -1549,7 +1549,7 @@
       "scope": "CPU portable collector tests; intentional malformed input and timeout controls | UTC 2026-10-30T12:54:30.685428+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The portable collector suite reports 21 passing tests on stderr. Check how the control represents an unavailable field.",
-      "book_page": 325,
+      "book_page": 324,
       "printed_sha256": "d55e9284454e6d9acc942332d3a53ea3ad814014b465bc9b95e2db16660e5e79"
     },
     {
@@ -1689,7 +1689,7 @@
       "scope": "CPU | UTC 2026-10-30T16:04:00.505456+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "captured_graphs=1 belongs to the FX eager backend in this dynamic-shape control.",
-      "book_page": 353,
+      "book_page": 354,
       "printed_sha256": "748e7e191d1acb5fcf40e46f84e99180bc7c16778e3f104f8979fb5664d5fdfd"
     },
     {
@@ -1889,7 +1889,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:06.769607+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 012-110-deadlines.json. These settings identify the case being compared.",
-      "book_page": 377,
+      "book_page": 378,
       "printed_sha256": "82351d04e08ef63c529e0bba809808a8f54a19d285bf47f2c2e0e18c761f4adf"
     },
     {
@@ -2049,7 +2049,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:00.301841+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “status=PASS” in the output. Compare sample coverage, parameters and losses with the serial reference for both worker counts.",
-      "book_page": 409,
+      "book_page": 410,
       "printed_sha256": "e42682fa377d4b28c2efa108bc82fea6abd291065dd45a87d4b5e01a9fdf9681"
     },
     {
@@ -2099,7 +2099,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:20.000359+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “status=EXPECTED_FAILURE” in the output. Match exit 17, the mismatch record and the timeout to their separate injections.",
-      "book_page": 414,
+      "book_page": 415,
       "printed_sha256": "9d352d9e953b2d27bc89c156fa9e1011a800841518bcb2ab734010ee41d73635"
     },
     {
@@ -2119,7 +2119,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:33.989143+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find “status=PASS”. Open distributed/evidence/09-checkpoint/first/checkpoint-0.pt for state after update 2 and distributed/evidence/09-checkpoint/resume/checkpoint-0.pt for state after update 4.",
-      "book_page": 416,
+      "book_page": 417,
       "printed_sha256": "815803e3ff509e0f3633aec035f1e72005e1b00f93526e5da770b9a32c83d42e"
     },
     {
@@ -2159,7 +2159,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:48.338473+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “training=PASS max_reference_error=7.431e-13” in the output. Record the outcome of each CPU, loopback and one-device launch.",
-      "book_page": 420,
+      "book_page": 421,
       "printed_sha256": "6483df3aaa3db530f918196b8914b541f834ccf5357389cd112151e32ec98bd7"
     },
     {
@@ -2179,7 +2179,7 @@
       "scope": "GPU | UTC 2026-10-30T16:11:09.501839+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "stdout reports “UNAVAILABLE: need NCCL and one distinct CUDA device per worker”. Compare this with exit 2 and the exercise criterion.",
-      "book_page": 421,
+      "book_page": 422,
       "printed_sha256": "41a5adb6900fb4a518ce9df5fe229d480e55b6303a6679649b1d7fe487f2c9dd"
     },
     {
@@ -2189,7 +2189,7 @@
       "scope": "GPU and CPU workers | UTC 2026-10-30T16:11:58.127067+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “PASS shared device=cuda clients=2 owners=1” in the output. Check the owner count, accepted request IDs and independent vector comparisons for each worker configuration.",
-      "book_page": 426,
+      "book_page": 427,
       "printed_sha256": "5043f87bed2bfc83119a834a68b3731f18cda1920bc0374fd51fec8875517acb"
     },
     {
@@ -2199,7 +2199,7 @@
       "scope": "GPU and CPU workers | UTC 2026-10-30T16:12:06.365995+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “PASS replicas device=cuda clients=2 owners=2” in the output. Count owners and weight bytes, then inspect each process's allocator record.",
-      "book_page": 427,
+      "book_page": 429,
       "printed_sha256": "943c90972be513417a4570c221939adc4d325ddccbe603c7717be2d34cf20540"
     },
     {
@@ -2209,7 +2209,7 @@
       "scope": "GPU and CPU workers | UTC 2026-10-30T16:12:10.204793+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “PASS shared device=cuda clients=2 owners=1” in the output. Count owners and weight bytes, then inspect each process's allocator record.",
-      "book_page": 428,
+      "book_page": 429,
       "printed_sha256": "de485a031bc314131096d60da388bcd31c17c9016232db75d4ac858d2b8bfb5e"
     },
     {
@@ -2219,7 +2219,7 @@
       "scope": "GPU and CPU workers | UTC 2026-10-30T16:12:17.439525+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “PASS shared device=cuda clients=4 owners=1” in the output. Compare owner calls, queue delay, p50 and p95 under matched request counts.",
-      "book_page": 430,
+      "book_page": 431,
       "printed_sha256": "0c277d8c3c773bfa90c39cf8e1073ba04edba8b62a2d9f112927e8f1d99ad64e"
     },
     {
@@ -2229,7 +2229,7 @@
       "scope": "GPU and CPU workers | UTC 2026-10-30T16:12:22.403492+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “PASS shared device=cuda clients=4 owners=1” in the output. Compare owner calls, queue delay, p50 and p95 under matched request counts.",
-      "book_page": 430,
+      "book_page": 431,
       "printed_sha256": "f1aacb23dcd31596de4c3ab01128daabb037a034d9962743e32677ca78884578"
     },
     {
@@ -2239,7 +2239,7 @@
       "scope": "GPU and CPU workers | UTC 2026-10-30T16:12:47.160275+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “PASS device=cuda CPU_preparers=2 training_owners=1 updates=4”. The workers prepare data.",
-      "book_page": 432,
+      "book_page": 433,
       "printed_sha256": "c89919b72cb1b5bac327d35b0c8370285d5ae059b3e0cdc72c0fcf29048d0761"
     },
     {
@@ -2249,7 +2249,7 @@
       "scope": "CPU | UTC 2026-10-30T16:12:55.929353+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find “PASS host timeline spans=80 device=cuda”. Both streams returned numerically correct outputs.",
-      "book_page": 433,
+      "book_page": 434,
       "printed_sha256": "2a23512076d4c4a754eb2d40167433d2b2f277ea3b2396282414ed38d20d2a89"
     },
     {
@@ -2259,7 +2259,7 @@
       "scope": "CPU | UTC 2026-10-30T16:12:56.451832+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “PASS two stream outputs match CPU reference” in the output. Verify the numerical stream results, then inspect device event intervals.",
-      "book_page": 434,
+      "book_page": 435,
       "printed_sha256": "a13cb8f5f55d256a7df7d5cfc6d3d4cf93b2c54908d84c690b486bfb0e1cf089"
     },
     {
@@ -2269,7 +2269,7 @@
       "scope": "CPU | UTC 2026-10-30T16:12:59.757207+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “PASS CPU control plane capacity=2” in the output. Distinguish rejection, cancellation, expiry and a lost reply by request ID.",
-      "book_page": 436,
+      "book_page": 437,
       "printed_sha256": "3d5a92f2acaddd737060262124a4831d4945920eaeb263589344de091638379d"
     },
     {
@@ -2279,7 +2279,7 @@
       "scope": "CPU | UTC 2026-10-30T16:13:01.174281+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “PASS live HTTP contract statuses=200,200,404,400,413” in the output. Verify HTTP status, response schema, vector count and numerical agreement with the independent oracle.",
-      "book_page": 440,
+      "book_page": 441,
       "printed_sha256": "cea5eb2428ab42110555408cbc885ceaea983bc4dc18caf63bb296251c682b97"
     },
     {
@@ -2289,7 +2289,7 @@
       "scope": "CPU | UTC 2026-10-30T16:13:01.599806+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “PASS loading live=200 ready=503; after warmup ready=200” in the output. Observe liveness and readiness at each lifecycle transition.",
-      "book_page": 441,
+      "book_page": 442,
       "printed_sha256": "3b210775f20171234a105013afdbdec4cb0267c50ecbe7c00374fd0a0474729e"
     },
     {
@@ -2299,7 +2299,7 @@
       "scope": "CPU | UTC 2026-10-30T16:13:02.789972+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “PASS simultaneous_requests=8 accepted=2 rejected_429=6” in the output. Count accepted responses and 429 replies, inspect retry information, and verify that admitted requests still complete.",
-      "book_page": 443,
+      "book_page": 444,
       "printed_sha256": "c67e8f5866a7323553d3af0de53a01428ce1d33b8cf1858067246be3c165a008"
     },
     {
@@ -2309,7 +2309,7 @@
       "scope": "CPU | UTC 2026-10-30T16:13:03.497000+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --concurrency 2, --out load-2. These settings identify the case being compared.",
-      "book_page": 443,
+      "book_page": 444,
       "printed_sha256": "0f0e53d560386b5133f191b826abe0b13c2f289b9b51728b86034954d2c914bb"
     },
     {
@@ -2319,7 +2319,7 @@
       "scope": "CPU | UTC 2026-10-30T16:13:03.817545+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --concurrency 4, --out load-4. These settings identify the case being compared.",
-      "book_page": 444,
+      "book_page": 445,
       "printed_sha256": "39c30ad4f5e1982e515721245d3a118e1bcbef32fd65a35ae4d4b2179d1b9d38"
     },
     {
@@ -2329,7 +2329,7 @@
       "scope": "GPU generation, CPU HTTP streaming client | UTC 2026-10-30T16:13:15.049952+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find status = PASS in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 445,
+      "book_page": 446,
       "printed_sha256": "338f997c0a79aa9a8db289fb16e41fd2f55a03d2f0a02cff49903d8cd891eca8"
     },
     {
@@ -2339,7 +2339,7 @@
       "scope": "CPU | UTC 2026-10-30T16:23:55.281279+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The ARM64 image build completes with an InvalidDefaultArgInFrom warning. The build command supplied a pinned base image explicitly.",
-      "book_page": 448,
+      "book_page": 449,
       "printed_sha256": "44c25ba9420bafe7348b3414f6d45b4b00d91eaf38a1732f68b004d03278b171"
     },
     {
@@ -2349,7 +2349,7 @@
       "scope": "CPU | UTC 2026-10-30T16:24:07.682262+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out docker-embed. These settings identify the case being compared.",
-      "book_page": 452,
+      "book_page": 453,
       "printed_sha256": "9153ef8631333abcd98e28f8d69beb1e55867c9a0fa400f8e19ca226465b020d"
     },
     {
@@ -2359,7 +2359,7 @@
       "scope": "CPU | UTC 2026-10-30T16:24:09.018769+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Compose lists the encoder as Exited (0). Compare that stopped state with the earlier serving check.",
-      "book_page": 452,
+      "book_page": 453,
       "printed_sha256": "db9370dab3218e4ce5d877a840091273c9b2b8a46bb4208aceb03e5b5f2fdb23"
     },
     {
@@ -2369,7 +2369,7 @@
       "scope": "GPU CUDA vector addition in Docker container | UTC 2026-10-30T16:44:35.165802+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “mode=add n=1048576 block=256 verified=true” in the output. Check the in-container arithmetic result before testing the generation image.",
-      "book_page": 454,
+      "book_page": 455,
       "printed_sha256": "f8443b1042cabc0b137460efccd9811eb2873bd079f5503ae833ca25d7540806"
     },
     {
@@ -2379,7 +2379,7 @@
       "scope": "GPU Q4 model container | UTC 2026-10-30T17:06:44.324654+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The launch returns a container ID. Use the subsequent container log or probe to determine whether its GPU path worked.",
-      "book_page": 455,
+      "book_page": 456,
       "printed_sha256": "6024c5e66aaf131936c85d6ca264f1782deae5f27646c288ffcbf3c99064d0b4"
     },
     {
@@ -2389,7 +2389,7 @@
       "scope": "GPU generation with CPU streaming client | UTC 2026-10-30T17:06:49.180827+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find status = PASS in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 455,
+      "book_page": 456,
       "printed_sha256": "37f9ace0bfe7257d734c1ac0c1439982ede08fc21cf3edebe2a9f25ef0e362a6"
     },
     {
@@ -2399,7 +2399,7 @@
       "scope": "CPU | UTC 2026-10-30T16:30:48.698424+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “docker: Error response from daemon: failed to discover GPU vendor from CDI: no known GPU vendor found”. Compare this with exit 125 and the exercise criterion.",
-      "book_page": 457,
+      "book_page": 458,
       "printed_sha256": "66e5e942fe3aa4ee065755e4d3a6dbd24edfabc39ab0c2b27c3a3e4dc2e0af28"
     },
     {
@@ -2409,7 +2409,7 @@
       "scope": "CPU | UTC 2026-10-30T16:40:52.658816+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find status = PASSED in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 457,
+      "book_page": 458,
       "printed_sha256": "566fdddebc59f647ca84e2e3cfece5b3340b9dcb49b515e3dcf923fcab33c9a9"
     },
     {
@@ -2419,7 +2419,7 @@
       "scope": "CPU | UTC 2026-10-30T16:42:27.687153+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The fixture moves from zero available replicas to a successful rollout. Its numerical HTTP response is a separate observation.",
-      "book_page": 460,
+      "book_page": 461,
       "printed_sha256": "92ea35e1a745f395b43acc22f59a4e413f29e47a7b26ff8202c7dff0645ed8c7"
     },
     {
@@ -2429,7 +2429,7 @@
       "scope": "CPU | UTC 2026-10-30T16:42:35.492211+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out kube-embed. These settings identify the case being compared.",
-      "book_page": 461,
+      "book_page": 462,
       "printed_sha256": "5ca700d9b70af7c9d39a2836303786ff0c2f250c4c0da3593d509e28087cacfa"
     },
     {
@@ -2439,7 +2439,7 @@
       "scope": "CPU | UTC 2026-10-30T16:42:43.027155+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “error: timed out waiting for the condition”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 462,
+      "book_page": 463,
       "printed_sha256": "47e290a21353bdb5c3906caa1f73360028bfd8fca5492d890022d298e2d3769c"
     },
     {
@@ -2449,7 +2449,7 @@
       "scope": "CPU | UTC 2026-10-30T16:43:15.145894+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The recovered spark-fixture deployment rolls out successfully. Compare its new pod state with the failing deployment evidence.",
-      "book_page": 462,
+      "book_page": 463,
       "printed_sha256": "da4ddf15b889e91c099057706a97ce4e90acb85a0daea4b3721ff77b17428bf0"
     },
     {
@@ -2459,7 +2459,7 @@
       "scope": "CPU | UTC 2026-10-30T16:48:09.696226+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “STATUS: deployed” in the output. Check plugin placement, discovery and node allocatable resources.",
-      "book_page": 464,
+      "book_page": 465,
       "printed_sha256": "9e5235821f87ec3492fcaf7d2fbd9cee98790f78732b56bd128dcd8e303a2e4f"
     },
     {
@@ -2469,7 +2469,7 @@
       "scope": "CPU | UTC 2026-10-30T16:48:10.668525+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The NVIDIA device-plugin DaemonSet rolls out. Inspect the node’s allocatable GPU resource before admitting a model pod.",
-      "book_page": 464,
+      "book_page": 465,
       "printed_sha256": "13dee3475dea7cd4db75d6f502067b313515251fee2652eed347ce183ae82c3e"
     },
     {
@@ -2479,7 +2479,7 @@
       "scope": "GPU Q4 inference in Kubernetes; CPU client | UTC 2026-10-30T17:14:15.500751+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find status = PASS in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 466,
+      "book_page": 467,
       "printed_sha256": "5a0cdfeeda7ed6c6620120d46034b8967bc9bcbe48fd0bafb4d54787790c449e"
     },
     {
@@ -2489,7 +2489,7 @@
       "scope": "CPU | UTC 2026-10-30T17:14:17.460417+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “error: timed out waiting for the condition”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 466,
+      "book_page": 467,
       "printed_sha256": "fd6d2625f7d99d896932990fc0c42acbb3a09eb2d542504535a210b9b2fc4f43"
     },
     {
@@ -2499,7 +2499,7 @@
       "scope": "Triton JIT compilation and GPU numerical oracle | UTC 2026-10-30T17:35:43.894022+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The result reports max_abs_error = 0.0.",
-      "book_page": 470,
+      "book_page": 471,
       "printed_sha256": "6a3493e84fed276e21ef03d4dc8d769f9b05c18258be93872801333a897222ac"
     },
     {
@@ -2509,7 +2509,7 @@
       "scope": "GPU vLLM model startup | UTC 2026-10-30T17:37:13.472912+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The container ID proves that the vLLM container was started. Use its readiness and completion records to establish service behavior.",
-      "book_page": 471,
+      "book_page": 472,
       "printed_sha256": "c175c32897e121bbdbf6cf0ed094434cc87f9df0b9d149596666f81c2fcbd878"
     },
     {
@@ -2519,7 +2519,7 @@
       "scope": "GPU generation and CPU streaming client | UTC 2026-10-30T17:39:53.928909+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find status = PASS in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 471,
+      "book_page": 472,
       "printed_sha256": "3a853e09c5156930162fe97d531214e9532e77efd7056d7b3a4053bc2e223f8b"
     },
     {
@@ -2529,7 +2529,7 @@
       "scope": "GPU vLLM generation with bounded CPU clients | UTC 2026-10-30T17:39:54.841596+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In the command, locate --concurrency 1, --model local-model. These settings identify the case being compared.",
-      "book_page": 474,
+      "book_page": 475,
       "printed_sha256": "a958ff9599ae097c8e2d5ba1034792ffb575e48b93bf19c0e1e3b19c2200f9b5"
     },
     {
@@ -2539,7 +2539,7 @@
       "scope": "GPU vLLM generation with bounded CPU clients | UTC 2026-10-30T17:40:12.792409+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In the command, locate --concurrency 2, --model local-model. These settings identify the case being compared.",
-      "book_page": 474,
+      "book_page": 475,
       "printed_sha256": "ed85fc3eeb49dc66819b41476a55bfd5340173f421608a78cbfbe6734078d93a"
     },
     {
@@ -2549,7 +2549,7 @@
       "scope": "CPU | UTC 2026-10-30T17:40:28.864597+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The spark-vllm deployment rolls out after initially reporting zero available replicas. Follow the client through the service endpoint.",
-      "book_page": 475,
+      "book_page": 476,
       "printed_sha256": "91622fa979654fd21684e86e233926d46aee86070bf081bff26b7066a115c635"
     },
     {
@@ -2559,7 +2559,7 @@
       "scope": "GPU vLLM Kubernetes generation; CPU streaming client | UTC 2026-10-30T17:55:21.497717+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find status = PASS in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 475,
+      "book_page": 476,
       "printed_sha256": "a023fe9997fbe7eb0c2c9339f618d51c81ae785d40b71977de41f7d4138e3773"
     },
     {
@@ -2569,7 +2569,7 @@
       "scope": "CPU | UTC 2026-10-30T16:37:22.262479+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --model lab_embedding, --out triton. The API double checks request handling locally.",
-      "book_page": 477,
+      "book_page": 478,
       "printed_sha256": "42f6ca006f5d56b9cea7d93cf554768676f02b0e169b44fa11b3b0e98eb54c8c"
     },
     {
@@ -2579,7 +2579,7 @@
       "scope": "CPU | UTC 2026-10-30T16:37:22.687129+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --concurrency 4, --model lab_embedding. These settings identify the case being compared.",
-      "book_page": 478,
+      "book_page": 479,
       "printed_sha256": "a09df4d5e42509575127bb4ff0ca2368fe8bec4d5339839b989edf57440e1406"
     },
     {
@@ -2589,7 +2589,7 @@
       "scope": "CPU | UTC 2026-10-30T16:44:38.512036+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “PASS Triton response vectors rows=1 tolerance=1e-5” in the output. Start the qualified Triton server with the repository mounted.",
-      "book_page": 478,
+      "book_page": 479,
       "printed_sha256": "5236e819222ccb8628d7aa53d09f5ad85eae3360f2e6be745de18a4cdcde6b1d"
     },
     {
@@ -2599,7 +2599,7 @@
       "scope": "CPU | UTC 2026-10-30T16:44:38.681402+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “PASS Triton response vectors rows=32 tolerance=1e-5” in the output. Start the qualified Triton server with the repository mounted.",
-      "book_page": 479,
+      "book_page": 480,
       "printed_sha256": "98eb221f5559c102f6e58eb7c775e732fa8453872ec6cd099a73b73f8b361c3e"
     },
     {
@@ -2609,7 +2609,7 @@
       "scope": "CPU | UTC 2026-10-30T16:54:24.935063+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Kubernetes reports that spark-triton rolled out. The next vector test checks whether the deployed model returns the expected values.",
-      "book_page": 479,
+      "book_page": 480,
       "printed_sha256": "f29da490570a30ae83e08da0c34928aeb8b198c02df34fbf7f09619cda0a7f7b"
     },
     {
@@ -2619,7 +2619,7 @@
       "scope": "CPU | UTC 2026-10-30T16:54:26.906212+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “PASS Triton response vectors rows=1 tolerance=1e-5” in the output. Start the qualified Triton server with the repository mounted.",
-      "book_page": 479,
+      "book_page": 480,
       "printed_sha256": "a9a1db3a86453e7afc622eac33a140c5c502624ba381ced330cf798d4da560d2"
     },
     {
@@ -2629,7 +2629,7 @@
       "scope": "CPU | UTC 2026-10-31T10:08:59.793115+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Read administrator_enabled to determine the Windows launcher’s privilege. The published user field masks the Windows account name.",
-      "book_page": 905,
+      "book_page": 913,
       "printed_sha256": "2c0eda9650c5efa7508a58d106886eed5b76fde35afb2c5d588043738736f4a4"
     },
     {
@@ -2639,7 +2639,7 @@
       "scope": "CPU | UTC 2026-10-31T10:09:00.735004+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "This command builds the timestamp probe. A compiled executable still needs a timed run with usable activity records.",
-      "book_page": 906,
+      "book_page": 914,
       "printed_sha256": "73d3078d6396a75e1f9c0453078d901ba25e56d4e7be71b8f0b5159fd234c49a"
     },
     {
@@ -2649,7 +2649,7 @@
       "scope": "GPU through current Windows token, explicit same WSL user; comparison control | UTC 2026-10-31T10:09:03.172635+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The numerical check passed and the CUDA event measured about 1.67 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 906,
+      "book_page": 914,
       "printed_sha256": "c8ad542e1f201e4e783871d44605805f12efe43693ecb715c18a3aadc7438bd9"
     },
     {
@@ -2659,7 +2659,7 @@
       "scope": "GPU through current Windows token, explicit same WSL user; comparison control | UTC 2026-10-31T10:09:04.566888+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The numerical check passed and the CUDA event measured about 1.08 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 907,
+      "book_page": 915,
       "printed_sha256": "2d63ecc37741bd3460b1b2437483f69faaca134c625eb449ce5a97f30ad8711a"
     },
     {
@@ -2669,7 +2669,7 @@
       "scope": "Windows child process; failed WSL launch, no GPU | UTC 2026-10-31T10:12:05.3992439Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Recorded operation",
       "read_first": "The shell reports “-d: command not found.” The launch failed before the timestamp probe could run.",
-      "book_page": 908,
+      "book_page": 916,
       "printed_sha256": "80218a0ca75178a8d984d0cd2175b5b0a4b58891a5346e78db6514df3225e19d"
     },
     {
@@ -2679,7 +2679,7 @@
       "scope": "CPU WSL identity using corrected ProcessStartInfo quoting; not elevated | UTC 2026-10-31T10:13:53.880006+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The corrected Windows launch reaches /usr/bin/id in Ubuntu and returns UID 1000. This establishes the guest identity for the next probe.",
-      "book_page": 909,
+      "book_page": 917,
       "printed_sha256": "ff2cf9d122a251d343da6bdba66fa46c2f9b9690fc46fda867e57fc15c67fdaf"
     },
     {
@@ -2689,7 +2689,7 @@
       "scope": "Windows child process; WSL identity | UTC 2026-10-31T10:14:11.3974913Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Recorded operation",
       "read_first": "The retained identity is UID 1000 in the guest. Compare it with the following root identity before reading the timing trials.",
-      "book_page": 910,
+      "book_page": 918,
       "printed_sha256": "e7327110f0c1e0517143f135958ab9a59ddc689201977e165571a4acf2ddf120"
     },
     {
@@ -2699,7 +2699,7 @@
       "scope": "Windows child process; GPU timestamp probe | UTC 2026-10-31T10:14:11.6681697Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 1.41 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 910,
+      "book_page": 918,
       "printed_sha256": "71a2d896956b73cbfc8a0f69c31951206afae0eba61c9c7f1e38b4d10ec25a12"
     },
     {
@@ -2709,7 +2709,7 @@
       "scope": "Windows child process; GPU timestamp probe | UTC 2026-10-31T10:14:12.9923717Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 0.84 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 911,
+      "book_page": 919,
       "printed_sha256": "2ddde3e2aa25b37e402a7f88c8c69cd14667c001ed15867b495c258076f7a254"
     },
     {
@@ -2719,7 +2719,7 @@
       "scope": "Windows child process; WSL identity | UTC 2026-10-31T10:14:14.2275697Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Recorded operation",
       "read_first": "Locate “uid=0(root) gid=0(root) groups=0(root)” in the output. Check repository values, provider placement and the version switch separately.",
-      "book_page": 911,
+      "book_page": 919,
       "printed_sha256": "81a9409e861c17572ab41df79b7fd8b28d325416a067666e5e457efd6d3665f9"
     },
     {
@@ -2729,7 +2729,7 @@
       "scope": "Windows child process; GPU timestamp probe | UTC 2026-10-31T10:14:14.5467577Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 1.17 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 912,
+      "book_page": 920,
       "printed_sha256": "67a781b07fe54d7254f934fe6c094730a88da18ae2a17eba3914ea28a49a9fe0"
     },
     {
@@ -2739,7 +2739,7 @@
       "scope": "Windows child process; GPU timestamp probe | UTC 2026-10-31T10:14:15.7227878Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 2.29 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 912,
+      "book_page": 920,
       "printed_sha256": "a1893c496f74b1589adfe5a125bbe905d6e7fe5fd656ca0c4a0979d89103a8be"
     },
     {
@@ -2749,7 +2749,7 @@
       "scope": "GPU native numerical/event-clock/CUPTI timestamp probe | UTC 2026-10-30T23:38:40.447817+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 1.91 ms. The profiler returned no kernel activity records. The timing criterion ended with exit 2.",
-      "book_page": 916,
+      "book_page": 924,
       "printed_sha256": "1e90abd2c83e6ecc7314cd3c9f9b603c066bc59cc23796a0db68284ade797caf"
     },
     {
@@ -2759,7 +2759,7 @@
       "scope": "CPU | UTC 2026-10-30T23:40:36.365175+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The loader resolves libcupti.so.13 from the candidate redistribution. Check the candidate’s activity output separately.",
-      "book_page": 916,
+      "book_page": 924,
       "printed_sha256": "8dcb0aa3bed7b96bc8170e309bf13e4da28baf3d9e00d793831ed075759560ce"
     },
     {
@@ -2769,7 +2769,7 @@
       "scope": "GPU native timestamp probe using isolated publisher CUPTI 13.4.58 | UTC 2026-10-30T23:40:36.395602+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 0.91 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 917,
+      "book_page": 925,
       "printed_sha256": "7f6da638ad7356ff32c7448c2e43bcc9b519e7626f3be8ee1a14dedaaa4028c4"
     },
     {
@@ -2779,7 +2779,7 @@
       "scope": "GPU numerical and Torch-profiler qualification | UTC 2026-10-30T23:40:41.307886+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "stderr includes “USDT:2026-10-30 23:40:43 149816:149816 SyncActivityProfilerHandler.cpp:39] profiler_start”.",
-      "book_page": 918,
+      "book_page": 926,
       "printed_sha256": "1d433cc6154a41a6e4d9e3048756f90352f83faba5fdcdd2bbc7e7c57ab0fc70"
     },
     {
@@ -2789,7 +2789,7 @@
       "scope": "CPU driver/CUPTI capability queries; no GPU workload | UTC 2026-10-30T23:45:45.076887+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “cuInit=0” in the output. Check repository values, provider placement and the version switch separately.",
-      "book_page": 918,
+      "book_page": 926,
       "printed_sha256": "d44deec2e17865b1d6acd5e3ed0b0a007840724ab0abf43460a77e9744fd47e6"
     },
     {
@@ -2799,7 +2799,7 @@
       "scope": "CPU | UTC 2026-10-30T18:09:31.887843+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “AssertionError”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 482,
+      "book_page": 483,
       "printed_sha256": "35462974ecc1ac28457c5a9ed4180eea942eb7dfc3d9b78dc427bf0c37eb5ee8"
     },
     {
@@ -2809,7 +2809,7 @@
       "scope": "CPU | UTC 2026-10-30T18:11:11.514040+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Model version 1 returns a maximum error of about 0.000000060, below the unchanged 0.00001 tolerance.",
-      "book_page": 483,
+      "book_page": 484,
       "printed_sha256": "9cd5e8ce0713954c8a5cf1cb52cc24f158f46b605620de84cd1de808ef4fadcc"
     },
     {
@@ -2819,7 +2819,7 @@
       "scope": "CPU | UTC 2026-10-30T18:11:22.498270+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Version 2 differs from version 1 by about 0.215 and still matches its own reference within tolerance.",
-      "book_page": 483,
+      "book_page": 484,
       "printed_sha256": "66d26e793d6c0ed8f3c1d5eb1499ec53dad58777184b9ee9853c8bf79a4c9b47"
     },
     {
@@ -2829,7 +2829,7 @@
       "scope": "CPU | UTC 2026-10-30T18:11:32.508117+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "After rollback, the returned version is 1 and difference_from_v1 is zero. The numerical identity and version agree.",
-      "book_page": 484,
+      "book_page": 485,
       "printed_sha256": "83ef00aee6de575b2fbf0d7cc5543782802fbfdf104d8fd6ee20f2088411459f"
     },
     {
@@ -2839,7 +2839,7 @@
       "scope": "CPU | UTC 2026-10-30T18:11:53.519204+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “PASS Triton response vectors rows=1 tolerance=1e-5” in the output. Check repository values, provider placement and the version switch separately.",
-      "book_page": 484,
+      "book_page": 485,
       "printed_sha256": "c7375df2eaadf2b35cca830a0e4a7ac1ab70f5698b7299292dfbfb3d88a40f44"
     },
     {
@@ -2849,7 +2849,7 @@
       "scope": "CPU | UTC 2026-10-30T18:12:42.564023+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “test: clipped=0 MAE=0.001023 max_error=0.007568” in the output. Verify data identities, package or container identities and the reference outputs before comparing accelerators.",
-      "book_page": 488,
+      "book_page": 489,
       "printed_sha256": "7e34e8654076c6caa3080b3abe2a95cb8c50d11ff1a4d57e850810d3361dce16"
     },
     {
@@ -2859,7 +2859,7 @@
       "scope": "CPU | UTC 2026-10-30T18:12:50.943822+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “20 CPU/evidence checks passed; target GPU qualification remains pending” in the output. Verify data identities, package or container identities and the reference outputs before comparing accelerators.",
-      "book_page": 489,
+      "book_page": 490,
       "printed_sha256": "f63b4f5857ec3dd81d8e8a5b8d7119594f480b2ad775d9c44b086fdb322b2591"
     },
     {
@@ -2869,7 +2869,7 @@
       "scope": "GPU | UTC 2026-10-30T18:12:51.120555+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In the command, locate --out result. These settings identify the case being compared.",
-      "book_page": 491,
+      "book_page": 492,
       "printed_sha256": "9a14737a26f8e8a71014af1a155349b8e8d0d149711cc57ecd5783b4d449824a"
     },
     {
@@ -2879,7 +2879,7 @@
       "scope": "GPU | UTC 2026-10-30T18:13:16.258542+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In the command, locate --out result. These settings identify the case being compared.",
-      "book_page": 495,
+      "book_page": 496,
       "printed_sha256": "0870a58135a3053d1006c492fbc9987c06abe56264c03195bf72b7476cc76ec9"
     },
     {
@@ -2889,7 +2889,7 @@
       "scope": "GPU | UTC 2026-10-30T18:13:33.640081+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "stderr reports “AssertionError”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 500,
+      "book_page": 501,
       "printed_sha256": "ca4ca43ff5b7b0bb522f9c7fbc53bbb0465d9effec5cccfcf69061c606a8fe1d"
     },
     {
@@ -2899,7 +2899,7 @@
       "scope": "GPU | UTC 2026-10-30T18:14:59.469557+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “batch=1 shape=(1, 4) max_abs_error=5.960e-08” in the output. Check named providers and the runtime profile for placement.",
-      "book_page": 501,
+      "book_page": 502,
       "printed_sha256": "fd2206db00f5015d74ec0400e146766aaa56405f062f6fa0b214f98304dfdfde"
     },
     {
@@ -2909,7 +2909,7 @@
       "scope": "CPU | UTC 2026-10-30T18:13:37.886272+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “\"max_error\": 1.341104507446289e-07,” in the output. Use matched tokens and masks, then compare vector error and cosine with the PyTorch output for each control batch.",
-      "book_page": 503,
+      "book_page": 504,
       "printed_sha256": "f48e0b486efde0b55ffa1181ac97b7af9136c2021c7def19ceaaa6ace0858a13"
     },
     {
@@ -2919,7 +2919,7 @@
       "scope": "GPU | UTC 2026-10-30T19:54:26.825609+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The ARM64 inventory reports TensorRT 11.3.0.99 and numerical_GPU_check=True. Building the specific engine is the next boundary.",
-      "book_page": 506,
+      "book_page": 507,
       "printed_sha256": "68995f95ff9bc7490dd63b64124bf368e6e0bdd1fc399f665216b9858d807cee"
     },
     {
@@ -2929,7 +2929,7 @@
       "scope": "GPU | UTC 2026-10-30T19:54:31.265060+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "stderr reports “AssertionError”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 508,
+      "book_page": 509,
       "printed_sha256": "260f938dff3c9ba610499a55ca47212b637e98b6f99df7d918b0c16f25a6d0d4"
     },
     {
@@ -2939,7 +2939,7 @@
       "scope": "GPU | UTC 2026-10-30T20:02:27.404467+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "At batch size one, the corrected profile yields a device time of about 21.4 μs. Check the maximum absolute error alongside the timing.",
-      "book_page": 509,
+      "book_page": 510,
       "printed_sha256": "08863bbd18c920a3d03a281fbff5e168a47d10c121b4e225be7f8b2aa5a8a3ac"
     },
     {
@@ -2949,7 +2949,7 @@
       "scope": "GPU with optional Nsight instrumentation | UTC 2026-10-30T20:11:23.918846+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "At batch size one, the device interval is about 40.1 μs. The optional trace has its own acceptance criterion.",
-      "book_page": 512,
+      "book_page": 513,
       "printed_sha256": "1fcf965e2475e4b9343fdb694817f94eed4c4d4124a487a92a1c7d227663ca32"
     },
     {
@@ -2959,7 +2959,7 @@
       "scope": "GPU | UTC 2026-10-30T20:05:06.933597+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find max_abs_error = 1.1920928966180355e-08 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 515,
+      "book_page": 516,
       "printed_sha256": "e1123b3f5c6d9565bbc775a3276c977f2145305c1aeb819f5152e99eb33ad235"
     },
     {
@@ -2969,7 +2969,7 @@
       "scope": "GPU | UTC 2026-10-30T20:05:23.011479+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find max_abs_error = 1.1920928966180355e-08 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 515,
+      "book_page": 516,
       "printed_sha256": "d2147328bd4fed4b185719fda357b2ead8599db45b5af1d12a3f1daebccceb8e"
     },
     {
@@ -2979,7 +2979,7 @@
       "scope": "CPU | UTC 2026-10-30T18:19:54.093730+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “\"max_error\": 0.007567644119262695,” in the output. Inspect channel ranges, scales and reconstructed values against the original tensor.",
-      "book_page": 518,
+      "book_page": 519,
       "printed_sha256": "a00953b437bdd40fb08ecc75e91009ab608cd5a2d64469bba9ee6a48eb9a1742"
     },
     {
@@ -2989,7 +2989,7 @@
       "scope": "GPU | UTC 2026-10-30T20:02:46.047805+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "At batch size one, the QDQ engine reports about 56.9 μs of device time. Compare its numerical error with the reference for this graph.",
-      "book_page": 521,
+      "book_page": 522,
       "printed_sha256": "553fbb03d0894ef493f0cba27ae20ad03a533712e9c5474411bb158139c63474"
     },
     {
@@ -2999,7 +2999,7 @@
       "scope": "GPU | UTC 2026-10-30T18:24:06.062445+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In the command, locate --concurrency 1, --model local-model. These settings identify the case being compared.",
-      "book_page": 524,
+      "book_page": 525,
       "printed_sha256": "597cf39ba2696b06d42cbd75a10e46fd05392bd9010b6e4b724cb140c61b7121"
     },
     {
@@ -3009,7 +3009,7 @@
       "scope": "GPU | UTC 2026-10-30T18:24:38.554774+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In the command, locate --concurrency 1, --model local-model. These settings identify the case being compared.",
-      "book_page": 525,
+      "book_page": 526,
       "printed_sha256": "b10017a76ce64431885ed154cce6aac4e258b404809fd9d85f7e08b3d97909af"
     },
     {
@@ -3019,7 +3019,7 @@
       "scope": "GPU | UTC 2026-10-30T18:24:11.153255+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Read the four held-out responses by case ID. Compare completion, evidence use and answer quality with the other quantization.",
-      "book_page": 525,
+      "book_page": 526,
       "printed_sha256": "c37311c067be19a1db8d5bbabebccce0f128ca7ed357c26b31db35c184cb7ae1"
     },
     {
@@ -3029,7 +3029,7 @@
       "scope": "GPU | UTC 2026-10-30T20:08:08.907018+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “recipe: TrainFinetuneRecipeForNextTokenPrediction” in the output. Inspect effective recipe, finite losses, completed steps and trainable tensor identities.",
-      "book_page": 531,
+      "book_page": 532,
       "printed_sha256": "092ccd0783550c44072491979afee9f77b081c7d69abd0783ef683c513b29fbc"
     },
     {
@@ -3039,7 +3039,7 @@
       "scope": "CPU | UTC 2026-10-30T23:19:18.828830+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The mismatched RNG or next-draw state is the fault under investigation, even when adapter tensors match.",
-      "book_page": 540,
+      "book_page": 541,
       "printed_sha256": "7745e98c0db26b09697ee64070ea88d5d7da0c5a1593ab4c6941fff44b21a2b7"
     },
     {
@@ -3049,7 +3049,7 @@
       "scope": "GPU NeMo recovery with narrow unused-worker-seed correction | UTC 2026-10-30T23:19:21.494084+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “recipe: TrainFinetuneRecipeForNextTokenPrediction” in the output. Compare adapters, optimizer, scheduler, iterator position and next RNG draws.",
-      "book_page": 541,
+      "book_page": 542,
       "printed_sha256": "e4426da126c533d184c4553acd544c066c80d741ba95eabc5d0741ebf53cca24"
     },
     {
@@ -3059,7 +3059,7 @@
       "scope": "CPU | UTC 2026-10-30T23:20:18.059102+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The corrected resumed run reports adapter_equal=true. The comparison separately checks scheduler, data-loader, RNG and optimizer state.",
-      "book_page": 547,
+      "book_page": 548,
       "printed_sha256": "b947e4fb3f31cf962079be46a5fea193959ed03246fc6ece32ed3bcf8f600e37"
     },
     {
@@ -3069,7 +3069,7 @@
       "scope": "CPU FP32 merge and logit comparison | UTC 2026-10-30T20:41:55.337980+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out export. Record both the FP32 merge comparison and the held-out task score.",
-      "book_page": 551,
+      "book_page": 552,
       "printed_sha256": "024424b16ca9ad60770154148432b282e0e559eeb5914286f093d064a3a56deb"
     },
     {
@@ -3079,7 +3079,7 @@
       "scope": "GPU merged-model generation | UTC 2026-10-30T20:42:17.020322+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Model workload",
       "read_first": "Compare each generated answer with the reference for the same case ID. A training checkpoint alone cannot answer the held-out questions.",
-      "book_page": 551,
+      "book_page": 552,
       "printed_sha256": "dd85390ee7272bfc0ec15d7ebe2765a9711acd184aff4990869be1bda8113149"
     },
     {
@@ -3089,7 +3089,7 @@
       "scope": "GPU | UTC 2026-10-30T18:26:52.742424+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The probe reports capability 12.1 and matmul_correct=true. The compiled architecture list and the arithmetic result are distinct observations.",
-      "book_page": 557,
+      "book_page": 558,
       "printed_sha256": "9e3535b937d81c36c8e599c289ece936451c65789f0a097d83fcce566838dcd5"
     },
     {
@@ -3099,7 +3099,7 @@
       "scope": "GPU | UTC 2026-10-30T18:26:58.388389+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find device = cuda:0 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 557,
+      "book_page": 558,
       "printed_sha256": "620208ee20e02a5c479a3e4549ea1b5c2b276b6e3f2f0c11743b59ed803b9c10"
     },
     {
@@ -3109,7 +3109,7 @@
       "scope": "CPU | UTC 2026-10-30T18:27:11.587883+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out fixtures. These settings identify the case being compared.",
-      "book_page": 558,
+      "book_page": 559,
       "printed_sha256": "888cc549a95cd7cbe9679b18eea9935c682965346fca2a6ca324708065223f38"
     },
     {
@@ -3119,7 +3119,7 @@
       "scope": "CPU | UTC 2026-10-30T18:20:37.123076+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The MMS acquisition covers six files at a pinned revision, totalling 145,233,902 bytes. Use the publisher comparison in 174.02.",
-      "book_page": 560,
+      "book_page": 561,
       "printed_sha256": "6431550a872df776d29dc2a4c4ebdef74df9f017eab7f64f8573ca764faaafba"
     },
     {
@@ -3129,7 +3129,7 @@
       "scope": "CPU | UTC 2026-10-30T18:20:49.831854+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The publisher comparison lists six MMS files and one LFS match. Distinguish that content-digest match from the file count.",
-      "book_page": 560,
+      "book_page": 561,
       "printed_sha256": "ac75f89f46c8bdea02d0caaba873488ecabcf0b1e2ccf14b64fa3c2ccebc1130"
     },
     {
@@ -3139,7 +3139,7 @@
       "scope": "CPU | UTC 2026-10-30T18:20:49.059585+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “VERIFIED mms” in the output. Bind revision, selected files and fingerprints before loading.",
-      "book_page": 561,
+      "book_page": 562,
       "printed_sha256": "f13ae9eaa210c40886154801a6ff768c5a83ac0d9d7bd5b5d71a5c24e55f9884"
     },
     {
@@ -3149,7 +3149,7 @@
       "scope": "CPU | UTC 2026-10-30T18:20:50.553043+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The Whisper receipt records 12 files and 155,454,211 bytes. Match the revision with the following repository check.",
-      "book_page": 561,
+      "book_page": 562,
       "printed_sha256": "ca3c54afadc8f3623b777b5d998262f02b19c1f2789650f4e11627862ffbdbe4"
     },
     {
@@ -3159,7 +3159,7 @@
       "scope": "CPU | UTC 2026-10-30T18:21:01.660111+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The publisher record names openai/whisper-tiny and the 12-file revision. Inspect the LFS count before describing integrity coverage.",
-      "book_page": 562,
+      "book_page": 563,
       "printed_sha256": "eebbbbe878a3abc72bb04e392ca7f711a2b8e35eeb43bbf7a48e3a629f626678"
     },
     {
@@ -3169,7 +3169,7 @@
       "scope": "CPU | UTC 2026-10-30T18:21:00.938869+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “VERIFIED whisper” in the output. Bind revision, selected files and fingerprints before loading.",
-      "book_page": 562,
+      "book_page": 563,
       "printed_sha256": "dde874a57001ee6698a469da245504e8d605599764e38657bd46d16708c29040"
     },
     {
@@ -3179,7 +3179,7 @@
       "scope": "CPU | UTC 2026-10-30T18:27:12.921357+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The media contract suite reports 25 passing tests. Locate the digital-silence guard before proceeding to generated audio.",
-      "book_page": 563,
+      "book_page": 564,
       "printed_sha256": "c1d87367802b46071a92065878bddb438727dd9d5f6f3c18f913ff296c4ff7e6"
     },
     {
@@ -3189,7 +3189,7 @@
       "scope": "GPU | UTC 2026-10-30T18:29:43.733507+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Compare the red square, blue circle and green triangle in the answer against the source image. Score position independently of shape and color.",
-      "book_page": 567,
+      "book_page": 568,
       "printed_sha256": "de2f3b42aad275f8957bfb04cae56eb65b16af3341f56e1029c17254721797e3"
     },
     {
@@ -3199,7 +3199,7 @@
       "scope": "GPU | UTC 2026-10-30T19:58:09.609496+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The larger pixel allowance still yields the original three named shapes on the small input. Check the processor grid before interpreting a change in cost.",
-      "book_page": 569,
+      "book_page": 570,
       "printed_sha256": "15081a2d61aaedba85204f80f1a033cc1b2b47d0f348651b7f00f3d1b90e05ae"
     },
     {
@@ -3209,7 +3209,7 @@
       "scope": "GPU | UTC 2026-10-30T19:58:42.953062+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The low-budget run on the larger diagram calls the red square top-left. Compare its processed grid with the high-budget run.",
-      "book_page": 570,
+      "book_page": 571,
       "printed_sha256": "6b490cf535775994e80d9e5d287798d88730cc83c3114fbcac01029640a97284"
     },
     {
@@ -3219,7 +3219,7 @@
       "scope": "GPU | UTC 2026-10-30T19:59:09.910377+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The high-budget run also identifies the red square at top left. Check whether the other positions changed before comparing the answers.",
-      "book_page": 570,
+      "book_page": 571,
       "printed_sha256": "485733fbf939453af8b57a93ab90c9bcb0ff7dc243fb55a4af0d1253ee76de31"
     },
     {
@@ -3229,7 +3229,7 @@
       "scope": "GPU | UTC 2026-10-30T19:59:36.217543+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The response gives the three shape colors and positions despite the text written on the image. Compare it with the clean control.",
-      "book_page": 572,
+      "book_page": 573,
       "printed_sha256": "65bbcd9851a13156ed6c6cc266801f2ca5cc9b79d23b36d2516d98b1313ea0e5"
     },
     {
@@ -3239,7 +3239,7 @@
       "scope": "GPU | UTC 2026-10-30T20:00:04.555533+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The rotated answer starts with a blue circle at top left. Re-score the positions against the rotated image.",
-      "book_page": 572,
+      "book_page": 573,
       "printed_sha256": "b38dc70e9e18645deb1dbcfa3f3287ebfbffd71a7ce67c6c8aaa2096c87fc08e"
     },
     {
@@ -3249,7 +3249,7 @@
       "scope": "GPU | UTC 2026-10-30T20:00:34.620217+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The low-resolution answer still identifies the top-left red square. Check its remaining details against this reduced input.",
-      "book_page": 573,
+      "book_page": 574,
       "printed_sha256": "825860c5879e3968034dc49d58d19df0321aa359fdbed0fedf493b166f494337"
     },
     {
@@ -3259,7 +3259,7 @@
       "scope": "GPU | UTC 2026-10-30T20:01:05.949317+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "After the triangle is cropped out, the answer says that it is unavailable. Compare this with the visible-triangle control.",
-      "book_page": 574,
+      "book_page": 575,
       "printed_sha256": "08824641de1ab0278b1a9d98f94139aa3b72189dbb26ac28b7fe12d049cbd283"
     },
     {
@@ -3269,7 +3269,7 @@
       "scope": "GPU | UTC 2026-10-30T20:05:43.698161+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The model produced a response. Use the trace rows to check device timestamps before attributing time to vision encoding.",
-      "book_page": 576,
+      "book_page": 577,
       "printed_sha256": "b07c25496bef92f3abe834b02e646471ef5ffa25f70e279decb6e950fa51b6e8"
     },
     {
@@ -3279,7 +3279,7 @@
       "scope": "CPU | UTC 2026-10-30T18:27:16.859447+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “step=1 noise_mse=0.922010” in the output. Compare held-out noise error before and after training using the same fixed evaluation input.",
-      "book_page": 580,
+      "book_page": 581,
       "printed_sha256": "a5a8e831ad131860bf6efbdce8f204dba261f6634de4a7b21db59b131cb5d1a7"
     },
     {
@@ -3289,7 +3289,7 @@
       "scope": "CPU | UTC 2026-10-30T18:27:26.332046+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Compare nearest-center occupancy with the count outside all eight disks. Assigning a nearest center alone can hide poorly placed samples.",
-      "book_page": 581,
+      "book_page": 582,
       "printed_sha256": "f539e0b11bcf07f0633b2dede135f68f5400609ee04d4ea960bfdcfb9e079045"
     },
     {
@@ -3299,7 +3299,7 @@
       "scope": "CPU | UTC 2026-10-30T18:27:27.760251+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find max_abs_error = 7.748603820800781e-07 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 584,
+      "book_page": 585,
       "printed_sha256": "c601d53a2501968dfd4802b990ea545e153c4ee77f171e723d62fea6b5f923b7"
     },
     {
@@ -3309,7 +3309,7 @@
       "scope": "CPU | UTC 2026-10-30T18:27:28.931098+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “AssertionError: Oracle reconstruction failed its unchanged numerical tolerance”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 585,
+      "book_page": 586,
       "printed_sha256": "5f994c8d39e2afc3f1a04ed615ff2375abba1540e443195a8a49345a47d05757"
     },
     {
@@ -3319,7 +3319,7 @@
       "scope": "GPU | UTC 2026-10-30T20:12:26.799951+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The resident SDXL run records about 38.6 s elapsed and a guest-process peak of 5.64 GiB. These are the baseline for the offload trials.",
-      "book_page": 587,
+      "book_page": 588,
       "printed_sha256": "fbefa4954183fe52712247c650fc150501b5710486c6ce2a7d69ba0beaebbea6"
     },
     {
@@ -3329,7 +3329,7 @@
       "scope": "GPU | UTC 2026-10-30T20:13:07.807710+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Model offload records about 40.1 s and a guest-process peak of 8.52 GiB. Compare the separately reported CUDA counters.",
-      "book_page": 590,
+      "book_page": 591,
       "printed_sha256": "a509fc563d24ec3bfdd03f79b94bf50a35abf4fea114d51057ae59b6769bfbed"
     },
     {
@@ -3339,7 +3339,7 @@
       "scope": "GPU | UTC 2026-10-30T20:13:49.917686+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Sequential offload takes about 57.6 s and reaches a guest-process peak of 8.74 GiB. Compare both with the resident baseline.",
-      "book_page": 591,
+      "book_page": 592,
       "printed_sha256": "598e4da9763ea213ace387f02d130de088881449f86aa5baafb737f9f832b448"
     },
     {
@@ -3349,7 +3349,7 @@
       "scope": "GPU | UTC 2026-10-30T20:14:48.961404+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find the profiled run with VAE tiling enabled. Check for usable kernel intervals before assigning time to denoising or decoding.",
-      "book_page": 595,
+      "book_page": 597,
       "printed_sha256": "9c81c3116e3effb2fe6b7633acb209b059a11e8e618ff9eac7f5d48a2e3e7fc9"
     },
     {
@@ -3359,7 +3359,7 @@
       "scope": "GPU | UTC 2026-10-30T20:20:37.117148+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "This run keeps tiling enabled without the profiling option. Use it as the comparison for instrumentation overhead.",
-      "book_page": 596,
+      "book_page": 598,
       "printed_sha256": "3ce6130e34caeb5c3d2f235f35e7a472d95d90e5e4c95ab5a3311c1eb852bc57"
     },
     {
@@ -3369,7 +3369,7 @@
       "scope": "GPU | UTC 2026-10-30T20:21:27.812242+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "This unprofiled run disables tiling. Compare it with 186.02 to isolate the tiling setting.",
-      "book_page": 598,
+      "book_page": 600,
       "printed_sha256": "6ef572df8b2a4e14c14973ad1fb0208286584bc3cbb76c26487069f6d254ea72"
     },
     {
@@ -3379,7 +3379,7 @@
       "scope": "GPU | UTC 2026-10-30T20:22:20.339419+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The strength-0.4 image completes. In Figure 84.1 the foreground cup remains red, so the requested attribute edit fails.",
-      "book_page": 602,
+      "book_page": 604,
       "printed_sha256": "a309caf17a100213a3d2b6c10cd7b0309c87d4fade4e24bfe28f09aea42633ac"
     },
     {
@@ -3389,7 +3389,7 @@
       "scope": "GPU | UTC 2026-10-30T20:22:58.904121+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "At strength 0.7 a green background vessel appears while the foreground cup remains red. Score the requested object separately.",
-      "book_page": 603,
+      "book_page": 605,
       "printed_sha256": "f0a4b2522e889f120713cf72919334f9f33d011828acab78893e7a85909184a0"
     },
     {
@@ -3399,7 +3399,7 @@
       "scope": "GPU | UTC 2026-10-30T20:25:43.115210+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "stderr reports “AttributeError: 'MusicgenDecoderConfig' object has no attribute 'decoder'. Did you mean: 'is_decoder'?”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 606,
+      "book_page": 608,
       "printed_sha256": "645ef0fa2ea0e810a5f305fdcb61a34b1c5ce3c55695e84839ecc791b4f60498"
     },
     {
@@ -3409,7 +3409,7 @@
       "scope": "GPU | UTC 2026-10-30T20:36:00.675371+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The short music file has 161,920 mono frames and lasts 5.06 s. Check the waveform and listening observation separately.",
-      "book_page": 607,
+      "book_page": 609,
       "printed_sha256": "25b2dc279151d5cb2705cc4c8bc44eba5a1ff0f63a83b640cee51d3fe28bd021"
     },
     {
@@ -3419,7 +3419,7 @@
       "scope": "CPU | UTC 2026-10-30T20:36:29.284429+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 189-music-analysis. These settings identify the case being compared.",
-      "book_page": 609,
+      "book_page": 611,
       "printed_sha256": "7abda385ea2ed391ba6a59d85302316d7303860b1da611fb784aaeb11e9b2d71"
     },
     {
@@ -3429,7 +3429,7 @@
       "scope": "GPU | UTC 2026-10-30T20:36:30.371461+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The longer generation has 325,760 frames and lasts 10.18 s. Compare that with the 5.06 s short output.",
-      "book_page": 610,
+      "book_page": 612,
       "printed_sha256": "47c54cb25163db713afdfe2fc7cdbce014b14345b96f96d3ba1ac7a7f3634c8b"
     },
     {
@@ -3439,7 +3439,7 @@
       "scope": "GPU | UTC 2026-10-30T20:36:53.203906+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The profiled second-seed music contains 161,920 frames. Compare its peak and RMS with its unprofiled pair.",
-      "book_page": 612,
+      "book_page": 614,
       "printed_sha256": "83d0c0df9aba2729bb694fca8a35623a08bcce71be833b3f808fa751f225d151"
     },
     {
@@ -3449,7 +3449,7 @@
       "scope": "GPU | UTC 2026-10-30T20:37:35.350197+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The unprofiled pair has the same duration, peak and RMS as 191.01. Use the waveform comparison for sample-level equality.",
-      "book_page": 613,
+      "book_page": 615,
       "printed_sha256": "77e98428b42f936c1c94c0dde3710ed2e2366ff301f6fd5d524c1a50052d8ab6"
     },
     {
@@ -3459,7 +3459,7 @@
       "scope": "GPU | UTC 2026-10-30T20:33:45.581919+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The synthesized voice contains 62,464 samples at 16 kHz, or 3.904 s. Duration alone cannot tell you how the words sounded.",
-      "book_page": 616,
+      "book_page": 618,
       "printed_sha256": "aeba58eed0e5431f7856b0161b3eaa13a90fdf1cb5a9f65091056f0988464de4"
     },
     {
@@ -3469,7 +3469,7 @@
       "scope": "CPU | UTC 2026-10-30T20:34:03.394860+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 193-speech-analysis. These settings identify the case being compared.",
-      "book_page": 618,
+      "book_page": 620,
       "printed_sha256": "2c6d01f61ec316c9d0c89089d990677b45cea70c4bea420e081bf662093b0b87"
     },
     {
@@ -3479,7 +3479,7 @@
       "scope": "GPU | UTC 2026-10-30T20:34:05.532578+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The symbolic input produces 55,808 samples. Compare its pronunciation and duration with the expanded wording.",
-      "book_page": 620,
+      "book_page": 622,
       "printed_sha256": "693a6593486de772b9ebbd750ac9c0e0f13bed665d2a7d9a7d2d41ecc00024bb"
     },
     {
@@ -3489,7 +3489,7 @@
       "scope": "GPU | UTC 2026-10-30T20:34:23.095166+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Expanding the text produces 113,664 samples, about 7.1 s. Use that same input for the seed comparison.",
-      "book_page": 620,
+      "book_page": 622,
       "printed_sha256": "e703d77d9fec070186e47e1b8365647ccec10207338d2b39755c065e3fce3107"
     },
     {
@@ -3499,7 +3499,7 @@
       "scope": "GPU | UTC 2026-10-30T20:34:34.999499+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The same-seed repeat again produces 113,664 samples. Compare the sample identity with 194.02 before calling it deterministic.",
-      "book_page": 621,
+      "book_page": 623,
       "printed_sha256": "29d15317303045013cc0e037b981bb28659e56a41b3cf0c2f01289742b43d231"
     },
     {
@@ -3509,7 +3509,7 @@
       "scope": "GPU | UTC 2026-10-30T20:34:44.983036+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Changing the seed gives 111,360 samples instead of 113,664. Compare the output with the same-seed repeat.",
-      "book_page": 621,
+      "book_page": 623,
       "printed_sha256": "e83c4544be51aebd99cb13de2d882e0c1a931959f7de8e896396f9ab6d6a2344"
     },
     {
@@ -3519,7 +3519,7 @@
       "scope": "CPU intentional invalid-input guard | UTC 2026-10-30T20:34:57.290837+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Fault control",
       "read_first": "stderr reports “targets.py: error: TTS text limit is 256 characters”. Compare this with exit 2 and the exercise criterion.",
-      "book_page": 623,
+      "book_page": 625,
       "printed_sha256": "2516eeae1ca5821edbfca04ce9c097fbf6c3418677c69262995765a0eb8e61ec"
     },
     {
@@ -3529,7 +3529,7 @@
       "scope": "CPU | UTC 2026-10-30T20:35:38.748315+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “\"text\": \"The graphics processor is ready for the next local experiment.\",” in the output. Check over-limit rejection, chunk coverage and joined pauses.",
-      "book_page": 624,
+      "book_page": 626,
       "printed_sha256": "d8b0d9d4eaaf7b4671fd9daa05c31a1222819484d261e5f7b740935e86cb6d69"
     },
     {
@@ -3539,7 +3539,7 @@
       "scope": "GPU | UTC 2026-10-30T20:35:39.272708+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The profiled utterance returns 65,024 samples. Completing synthesis does not supply a missing kernel interval.",
-      "book_page": 625,
+      "book_page": 627,
       "printed_sha256": "a77e3f7ef657e7ca32cf90e939f0281743d472588447bb15233e6f261dbc64f7"
     },
     {
@@ -3549,7 +3549,7 @@
       "scope": "GPU | UTC 2026-10-30T20:35:50.726566+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The unprofiled utterance also lasts 4.064 s. Use the matched output to separate profiling effects from audio duration.",
-      "book_page": 626,
+      "book_page": 628,
       "printed_sha256": "94fd371619ccc5577c1852c8b632af07c36e50bc981efe472bbfd217d6c5b71a"
     },
     {
@@ -3559,7 +3559,7 @@
       "scope": "GPU | UTC 2026-10-30T20:39:49.029713+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The recognizer returns “30G” in the sentence. Compare the entire transcript with the spoken reference, including the unit.",
-      "book_page": 629,
+      "book_page": 631,
       "printed_sha256": "eea7e2b224aceac13712a2f3db6327ebbd4e1e2e6cdea7ebce4892e6712ac3c2"
     },
     {
@@ -3569,7 +3569,7 @@
       "scope": "CPU | UTC 2026-10-30T20:39:59.271204+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 197-scoring-controls. These settings identify the case being compared.",
-      "book_page": 631,
+      "book_page": 633,
       "printed_sha256": "a32febc856e74f96f740ca9ac828e27f4d25f55aa0dd83c2d5589f7fabdbfaf2"
     },
     {
@@ -3579,7 +3579,7 @@
       "scope": "GPU | UTC 2026-10-30T20:40:00.081144+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "At lower input level the peak falls to about 0.0815. Compare the returned text with the clean transcription.",
-      "book_page": 631,
+      "book_page": 633,
       "printed_sha256": "438f3a2fd331a34710f5bd4bab54f6e759450be318a0a606fa2b115dac4a50dd"
     },
     {
@@ -3589,7 +3589,7 @@
       "scope": "GPU | UTC 2026-10-30T20:40:07.414273+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The fixed-noise version still returns “30G”. Separate the changed samples from any change in recognized words.",
-      "book_page": 632,
+      "book_page": 634,
       "printed_sha256": "5deab60a6409fbd71fcc775009e8f76b9eb2d4c5ea39bf99e2fde97e310568d1"
     },
     {
@@ -3599,7 +3599,7 @@
       "scope": "GPU | UTC 2026-10-30T20:40:14.630785+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The clipped input yields “30GB”. Inspect the amplitude statistics and compare the words with the reference.",
-      "book_page": 633,
+      "book_page": 635,
       "printed_sha256": "1e418e8b1427385bf3195da3f9929682d5058da7b939c2dc5d15367f4cbe7fd9"
     },
     {
@@ -3609,7 +3609,7 @@
       "scope": "GPU | UTC 2026-10-30T20:40:20.779503+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Changing the sample-rate header produces a repeated “the boss” phrase. Inspect the declared rate before diagnosing the model.",
-      "book_page": 633,
+      "book_page": 635,
       "printed_sha256": "f5785cba27bc97b6de83f0fa2897b315ce0c39e68052c7abdcda7d0ce31c80a8"
     },
     {
@@ -3619,7 +3619,7 @@
       "scope": "GPU | UTC 2026-10-30T20:40:35.398575+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The recognizer returns “you” for two seconds of exact silence. The measured peak and RMS are both zero.",
-      "book_page": 635,
+      "book_page": 637,
       "printed_sha256": "f1f770c2f0b963607fc34221030488202999129185aa84f5221c87d8b95b11d2"
     },
     {
@@ -3629,7 +3629,7 @@
       "scope": "GPU | UTC 2026-10-30T20:40:41.558852+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The quiet-noise control also returns “you”, but its RMS is nonzero. Keep it distinct from the exact-silence case.",
-      "book_page": 636,
+      "book_page": 638,
       "printed_sha256": "67285be22a7e24024d07edfbeff85a9cc6d777e19a5aa01116af23a056f4a8b3"
     },
     {
@@ -3639,7 +3639,7 @@
       "scope": "GPU | UTC 2026-10-30T20:40:47.562762+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The one-word control is recognized as “At Knowledge in.” Compare its reference and duration with the hallucinated silence output.",
-      "book_page": 636,
+      "book_page": 638,
       "printed_sha256": "359617498630b6916617b8f7374bbdc61f0e281d126aebfbae7c5d941bd30012"
     },
     {
@@ -3649,7 +3649,7 @@
       "scope": "CPU | UTC 2026-10-30T20:40:54.374415+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 199-chunks. These settings identify the case being compared.",
-      "book_page": 638,
+      "book_page": 640,
       "printed_sha256": "b7db6c7b720e789cb5a1ed33cf5a04075b35463b8f6b75ea40e60db7e3843e3e"
     },
     {
@@ -3659,7 +3659,7 @@
       "scope": "GPU | UTC 2026-10-30T20:40:54.956836+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The first chunk begins with the graphics processor. Keep the end of its transcription when inspecting the join with the next chunk.",
-      "book_page": 638,
+      "book_page": 640,
       "printed_sha256": "e823b42ec67679e1bec3cb15bbcf619cafc4a6860092c45260c7d398a50ede2c"
     },
     {
@@ -3669,7 +3669,7 @@
       "scope": "GPU | UTC 2026-10-30T20:41:01.726589+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The second chunk starts “inside the corrected run”. Check the words at the join before scoring the assembled transcription.",
-      "book_page": 639,
+      "book_page": 641,
       "printed_sha256": "977e00ad967da9528bf97c440a578a1da3c86d849dc3b2fe275360fd8d85e1b1"
     },
     {
@@ -3679,7 +3679,7 @@
       "scope": "CPU | UTC 2026-10-30T20:41:35.496056+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “prepare_adaptation.py: error: train and dev audio must differ”. Compare this with exit 2 and the exercise criterion.",
-      "book_page": 641,
+      "book_page": 644,
       "printed_sha256": "8c53416139fefd0f602be21d226bff4a78743b92037aa603ce7f61fc06d0df1c"
     },
     {
@@ -3689,7 +3689,7 @@
       "scope": "CPU | UTC 2026-10-30T20:41:36.172497+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 200-adaptation-data. These settings identify the case being compared.",
-      "book_page": 642,
+      "book_page": 644,
       "printed_sha256": "e793fa277fe225467303c813a0b824b46106a8dd496f0afe0bd754806c96de07"
     },
     {
@@ -3699,7 +3699,7 @@
       "scope": "GPU training, frozen-weight CPU equality | UTC 2026-10-30T20:41:36.704216+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In the command, locate --steps 4, --model whisper. These settings identify the case being compared.",
-      "book_page": 642,
+      "book_page": 645,
       "printed_sha256": "1e6f16f862fbb58b0b7e58b8259460c96f7e0e5da7678cf58deb9f77b40a6359"
     },
     {
@@ -3709,7 +3709,7 @@
       "scope": "GPU SDXL two-step LoRA training; CPU preparation | UTC 2026-10-30T21:06:09.201815+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Model workload",
       "read_first": "stderr includes “Device: cuda”.",
-      "book_page": 645,
+      "book_page": 648,
       "printed_sha256": "9a2fb197466ad611c05700b40b3169d8366c5e9e50e6efb9957bd36dca33bd99"
     },
     {
@@ -3719,7 +3719,7 @@
       "scope": "GPU SDXL two-step LoRA training; CPU preparation | UTC 2026-10-30T22:08:48.056856+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Model workload",
       "read_first": "stderr includes “Device: cuda”.",
-      "book_page": 647,
+      "book_page": 649,
       "printed_sha256": "71fab1f2df0942b340465a0b8ac8eca50dc7d3d51eeb60fecf5d62883e546177"
     },
     {
@@ -3729,7 +3729,7 @@
       "scope": "GPU SDXL matched base/LoRA generation with CPU model offload | UTC 2026-10-30T22:26:26.616557+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "stdout records “saved base.png and adapter.png”.",
-      "book_page": 650,
+      "book_page": 653,
       "printed_sha256": "bc0359bbeca34c5d5ba9af89f9098a503bde4d8dd483b2dfcf4f33cecbb94692"
     },
     {
@@ -3739,7 +3739,7 @@
       "scope": "GPU ASR, native GPU text, GPU speech in serial child stages | UTC 2026-10-30T21:35:14.841503+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In the command, locate --out 202-voice. These settings identify the case being compared.",
-      "book_page": 654,
+      "book_page": 657,
       "printed_sha256": "4c11ed119cb051300cfee4fc0f9da01f8e4de6e05a18d2397196bcaa34e16939"
     },
     {
@@ -3749,7 +3749,7 @@
       "scope": "CPU unit controls, API doubles and synthetic fixtures | UTC 2026-10-30T21:35:48.105981+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "All 25 media contract tests pass. Locate the negative controls before interpreting a synthesized or recognized instruction.",
-      "book_page": 654,
+      "book_page": 657,
       "printed_sha256": "753869ac04bc503bd7a1d7ef937f3648870cb14cc5a5ece4f270453b89c294fe"
     },
     {
@@ -3759,7 +3759,7 @@
       "scope": "CUDA synthesis; intentional expired/oversize/concurrent-busy controls | UTC 2026-10-30T22:51:44.655340+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “\"text\": \"The processor is ready.\",” in the output. Match request IDs to acceptance, rejection and completion, then verify owner identity and orderly shutdown.",
-      "book_page": 657,
+      "book_page": 660,
       "printed_sha256": "bf84d009fa429b8fa32638cab1f7fe4619ed878cf5a79a7694ff8fe9e56adc3d"
     },
     {
@@ -3769,7 +3769,7 @@
       "scope": "CPU | UTC 2026-10-30T22:51:45.280549+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The stop returns the name of the media container. Use the retained shutdown state to check the owned process after the stop.",
-      "book_page": 659,
+      "book_page": 662,
       "printed_sha256": "4a4b8efcc0fa13232bf65091dccb32f9c2bdfc810f83c71f60f7ec0475582cd9"
     },
     {
@@ -3779,7 +3779,7 @@
       "scope": "CPU public metadata or byte acquisition | UTC 2026-10-30T21:33:51.982945+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Measurement or check",
       "read_first": "Locate “resource: nvidia/ngc-apps/ngc_cli” in the output. Check publisher, version, file size and architecture in the retained NGC metadata.",
-      "book_page": 664,
+      "book_page": 667,
       "printed_sha256": "cb579a8ed660f57b95f323f946c9753aa2be1ec6c2ac2bc4396c19c40b352ddd"
     },
     {
@@ -3789,7 +3789,7 @@
       "scope": "CPU | UTC 2026-10-30T21:33:58.735285+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The CLI identifies itself as NGC 4.34.10. This establishes the client version for the catalog query.",
-      "book_page": 666,
+      "book_page": 669,
       "printed_sha256": "50485d4ac83383f13827452207bee21d2aa651accf40f98bc467b30ef14e01e1"
     },
     {
@@ -3799,7 +3799,7 @@
       "scope": "CPU | UTC 2026-10-30T21:33:59.618523+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “Status: UPLOAD_COMPLETE” in the output. Match archive checksum and ELF architecture, then retain the native invocation and exit separately.",
-      "book_page": 666,
+      "book_page": 669,
       "printed_sha256": "68ab8bbbd3d896241d0514a999b29bc37b5665094f58ef1136c88f5ed7106f77"
     },
     {
@@ -3809,7 +3809,7 @@
       "scope": "Native ARM64 container with mapped Windows CUDA driver; arithmetic oracle | UTC 2026-10-30T21:35:52.019985+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “fc4edbbdf546: Already exists”. Keep the entire ngc-image output directory.",
-      "book_page": 671,
+      "book_page": 674,
       "printed_sha256": "461e47418d367ff3175b9f8da2aabc1a5ef603f0265a083dbe67388361651474"
     },
     {
@@ -3819,7 +3819,7 @@
       "scope": "CPU | UTC 2026-10-30T21:39:10.255151+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find the missing ARM64, duplicate ARM64 and changed-digest cases. All three should be rejected before GPU execution.",
-      "book_page": 676,
+      "book_page": 679,
       "printed_sha256": "ffa7e58170fbb5cf33d43b9359231ef0de4935c5125139eecaa3077a00697a00"
     },
     {
@@ -3829,7 +3829,7 @@
       "scope": "CPU public metadata or byte acquisition | UTC 2026-10-30T21:34:06.416064+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Measurement or check",
       "read_first": "Locate “type: model” in the output. Check repository type, immutable revision and the card's stated conditions.",
-      "book_page": 680,
+      "book_page": 683,
       "printed_sha256": "49dda55509d5ff6c130085836c097657d395999770b05cdf028bd7df13f65201"
     },
     {
@@ -3839,7 +3839,7 @@
       "scope": "CPU public metadata or byte acquisition | UTC 2026-10-30T21:34:07.004074+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Measurement or check",
       "read_first": "Locate “repo_type: model” in the output. Inspect the selected file list, sizes and per-file hashes against the pinned snapshot.",
-      "book_page": 682,
+      "book_page": 685,
       "printed_sha256": "2638aaa7757f4f2c2ea1c8ff3cad8368618e11aafbda30b37e07274cf24c3f60"
     },
     {
@@ -3849,7 +3849,7 @@
       "scope": "CPU | UTC 2026-10-30T21:39:10.374511+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “device: cpu” in the output. Use the local-only path, inspect tensor shapes and compare repeated outputs under the stated tolerance.",
-      "book_page": 684,
+      "book_page": 687,
       "printed_sha256": "bb278ba93262954d37b51adcb0a3c98710dd49318df9a13966091e70b07b0f8e"
     },
     {
@@ -3859,7 +3859,7 @@
       "scope": "GPU | UTC 2026-10-30T21:39:14.563699+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “device: cuda” in the output. Use the local-only path, inspect tensor shapes and compare repeated outputs under the stated tolerance.",
-      "book_page": 684,
+      "book_page": 687,
       "printed_sha256": "dbda2fa3a17f0f37e50b569ea3e8e269548b778243fbb1354547c3909a2edf88"
     },
     {
@@ -3869,7 +3869,7 @@
       "scope": "CPU | UTC 2026-10-30T21:39:20.859801+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “verified_files: 3” in the output. Verify schema and original split membership, then confirm that the injected duplicate is rejected.",
-      "book_page": 687,
+      "book_page": 690,
       "printed_sha256": "239fcd094d54c2b304011cf24fa2302d1d74e483e8d96a516fcfb0e6844f0b2f"
     },
     {
@@ -3879,7 +3879,7 @@
       "scope": "CPU | UTC 2026-10-30T21:39:45.193775+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find the two SHA256 verified lines for Prometheus and Grafana. The digests identify the downloaded binaries.",
-      "book_page": 691,
+      "book_page": 694,
       "printed_sha256": "ed31e29498c31b0825063c0ed4e96cf70105fa61bbbd941a41bb5e95eb8721ca"
     },
     {
@@ -3889,7 +3889,7 @@
       "scope": "CPU simulated counters and histogram controls | UTC 2026-10-30T21:48:23.411460+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "The exporter suite reports 16 passing tests. Inspect the separate cases for a missing busy gauge and a measured zero.",
-      "book_page": 693,
+      "book_page": 696,
       "printed_sha256": "e6934dad2bd53664fe9642f80d253d5e06c22d0fea0d320465c945b9b7c938db"
     },
     {
@@ -3899,7 +3899,7 @@
       "scope": "Native ARM64 CPU Prometheus/Grafana; GPU counters intentional fixtures | UTC 2026-10-30T21:48:23.936743+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS Prometheus ready” in the output. Check target identity, up and raw metric availability after startup.",
-      "book_page": 695,
+      "book_page": 698,
       "printed_sha256": "f372c46f6c60a55a9811694c91417dd8c5b90abd745cb41d78a131bcb9c5aca1"
     },
     {
@@ -3909,7 +3909,7 @@
       "scope": "CPU | UTC 2026-10-30T22:03:59.225400+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stdout records “Saved rendered Grafana dashboard; password was read privately, never logged.”.",
-      "book_page": 698,
+      "book_page": 701,
       "printed_sha256": "013e294e3e6463b36acbac25ab4806296d2bf4019b0ecec1f632fbf31baec0e4"
     },
     {
@@ -3919,7 +3919,7 @@
       "scope": "CPU | UTC 2026-10-30T22:04:36.682630+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stdout records “Saved rendered Grafana dashboard; password was read privately, never logged.”.",
-      "book_page": 699,
+      "book_page": 702,
       "printed_sha256": "a2728559f20b96802c524b99aecc0256e9fbf8241bd371c3947440c75ebb3fee"
     },
     {
@@ -3929,7 +3929,7 @@
       "scope": "CPU | UTC 2026-10-30T22:05:13.428641+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The browser saved the real-zero dashboard state. Compare that panel with the missing-field capture in 215.02.",
-      "book_page": 699,
+      "book_page": 702,
       "printed_sha256": "ea4306669caa83aba7952c459c865c2859183d66848d7f1443e526ba8d5638ae"
     },
     {
@@ -3939,7 +3939,7 @@
       "scope": "CPU | UTC 2026-10-30T21:50:57.608914+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --count 20. These settings identify the case being compared.",
-      "book_page": 701,
+      "book_page": 704,
       "printed_sha256": "004c2477d2e21ea760d9a5f1d8d06bdc5c502eebc7c7194c850b2539c44dbbf7"
     },
     {
@@ -3949,7 +3949,7 @@
       "scope": "CPU | UTC 2026-10-30T21:51:08.186013+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find status = success in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 702,
+      "book_page": 705,
       "printed_sha256": "e6b0a9a4c8146ccf71bdaaafe59762d16ea88522de84fb00c7f362f47b021731"
     },
     {
@@ -3959,7 +3959,7 @@
       "scope": "CPU | UTC 2026-10-30T21:51:08.273468+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Read --count 20 and --delay-ms 100 in the command separately. The value 100 is a delay in milliseconds.",
-      "book_page": 702,
+      "book_page": 705,
       "printed_sha256": "910be671e5759991b2c225c4db8634297d64a0cc45e511c2296a99dc15292423"
     },
     {
@@ -3969,7 +3969,7 @@
       "scope": "CPU | UTC 2026-10-30T21:51:20.464104+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find status = success in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 703,
+      "book_page": 706,
       "printed_sha256": "2449ffdb856cacc8dae2fa00cbecf259511ace2c5d9b5130f071b7ca4767c803"
     },
     {
@@ -3979,7 +3979,7 @@
       "scope": "CPU | UTC 2026-10-30T21:51:20.588129+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “lab_demo_requests_total{source=\"synthetic\",status=\"200\"} 36” in the output. Recompute the weighted mean from sums and counts and identify the histogram bucket containing the requested quantile.",
-      "book_page": 703,
+      "book_page": 706,
       "printed_sha256": "e0e5d0991e6c0d0dd97d9776180e7c72462d8946c269560cde09192621878500"
     },
     {
@@ -3989,7 +3989,7 @@
       "scope": "CPU | UTC 2026-10-30T21:48:23.535589+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “SUCCESS: 6 rules found” in the output. Follow pending, firing and resolved states under each rule fixture.",
-      "book_page": 705,
+      "book_page": 709,
       "printed_sha256": "c5981526b4dfa4f4cac43125eed3369e246eefed49d42341b3f3885202a6a511"
     },
     {
@@ -3999,7 +3999,7 @@
       "scope": "CPU | UTC 2026-10-30T21:48:23.762442+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "promtool returns SUCCESS for the rule tests. Compare the rule’s hold interval with the later observed alert transition.",
-      "book_page": 706,
+      "book_page": 709,
       "printed_sha256": "d0811116a34c9c0898c6d24604e3bcc0af4bf147e94cff447badfb0e48646857"
     },
     {
@@ -4009,7 +4009,7 @@
       "scope": "GPU numerical 32-request trial | UTC 2026-10-30T21:55:00.529743+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find max_abs_error = 1.1920928966180355e-08 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 708,
+      "book_page": 712,
       "printed_sha256": "40c77fcf8f6f5877dd6db0e8fc8ca436c21fe158fd9a42d16a3ce0c61a45f94d"
     },
     {
@@ -4019,7 +4019,7 @@
       "scope": "GPU numerical 32-request trial | UTC 2026-10-30T21:55:01.053602+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find max_abs_error = 1.1920928966180355e-08 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 709,
+      "book_page": 712,
       "printed_sha256": "25a0d0cc8914cb88c8ee3ac923b6019ab617a0e485b5a2f0cf169d2e77d8a8d9"
     },
     {
@@ -4029,7 +4029,7 @@
       "scope": "GPU numerical 32-request trial | UTC 2026-10-30T21:55:01.325370+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find max_abs_error = 1.1920928966180355e-08 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 710,
+      "book_page": 713,
       "printed_sha256": "3352834687649bf75d28981889a886845d7f5dbb273306e6c546efd543ef29d5"
     },
     {
@@ -4039,7 +4039,7 @@
       "scope": "GPU numerical 32-request trial with five-second telemetry | UTC 2026-10-30T21:55:27.944881+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find max_abs_error = 1.1920928966180355e-08 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 710,
+      "book_page": 714,
       "printed_sha256": "f3615343a4c1fabfce189f11d370231508e2c2e7458de02f97351689fc4e7af8"
     },
     {
@@ -4049,7 +4049,7 @@
       "scope": "GPU numerical 32-request trial with five-second telemetry | UTC 2026-10-30T21:55:31.293693+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find max_abs_error = 1.1920928966180355e-08 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 711,
+      "book_page": 714,
       "printed_sha256": "d207edfbe911c6c249462a88fd5cda993077fd48a845ec640fee4ed56404e792"
     },
     {
@@ -4059,7 +4059,7 @@
       "scope": "GPU numerical 32-request trial with five-second telemetry | UTC 2026-10-30T21:55:34.570661+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find max_abs_error = 1.1920928966180355e-08 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 712,
+      "book_page": 715,
       "printed_sha256": "0c279dd1207a2de245ed9107631dd9dc21f169698ce0b23a348b5b55a6dd3152"
     },
     {
@@ -4069,7 +4069,7 @@
       "scope": "CPU | UTC 2026-10-30T21:55:38.209796+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “\"datasource_health\": \"OK\",” in the output. Compare matched monitored and unmonitored trials and their server counters.",
-      "book_page": 712,
+      "book_page": 716,
       "printed_sha256": "a30ea4fe34f92e5b135fb209c725e6739a9bbb02fd37d634fa47fae1ae5ec664"
     },
     {
@@ -4079,7 +4079,7 @@
       "scope": "CPU | UTC 2026-10-30T21:56:51.647643+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The output names compose.json. Inspect the saved artifact as well as the process exit.",
-      "book_page": 715,
+      "book_page": 718,
       "printed_sha256": "9541587b5d1a4ba1b54be01113fca7a30cf79b534eb58b365921bbdc676b5e15"
     },
     {
@@ -4089,7 +4089,7 @@
       "scope": "CPU | UTC 2026-10-30T21:57:10.486655+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “\"datasource_health\": \"OK\",” in the output. Inspect network namespace, scrape target and backend responses.",
-      "book_page": 715,
+      "book_page": 719,
       "printed_sha256": "480678fc898ff65881fb31ad281d730f62bb7f1c30376abc4d4ad77e980818ed"
     },
     {
@@ -4099,7 +4099,7 @@
       "scope": "GPU numerical Triton requests in Kubernetes | UTC 2026-10-30T21:57:45.658694+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find max_abs_error = 1.1920928966180355e-08 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 716,
+      "book_page": 719,
       "printed_sha256": "12b3277c8cf4d3d06a645876d3afefabe8f8990beddc9b7d1126f527dbeee6fb"
     },
     {
@@ -4109,7 +4109,7 @@
       "scope": "CPU | UTC 2026-10-30T21:57:58.180691+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find status = success in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 716,
+      "book_page": 720,
       "printed_sha256": "b2d6aece216352c8e5a08614e947bb6ecc97ae9fe1e9f55a01ae48a4210eb18e"
     },
     {
@@ -4119,7 +4119,7 @@
       "scope": "CPU | UTC 2026-10-30T21:58:10.318368+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find status = success in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 717,
+      "book_page": 720,
       "printed_sha256": "1dc62d30a1b1e6a54278bdfd7b6fb3fea368a0a56f81fe31bafd1ba6e98eff3a"
     },
     {
@@ -4129,7 +4129,7 @@
       "scope": "CPU | UTC 2026-10-30T21:39:45.075641+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out environment.json. These settings identify the case being compared.",
-      "book_page": 722,
+      "book_page": 726,
       "printed_sha256": "ab1420b0c1112d13c89d8fe1bf012e627f808b43e65c3e0952ec7b62554d6b4e"
     },
     {
@@ -4139,7 +4139,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:07.934730+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS real create_agent loop: human -> ai -> tool -> ai” in the output. Follow the valid receipt, invalid key and endless-loop controls.",
-      "book_page": 723,
+      "book_page": 727,
       "printed_sha256": "b2d94862daf69de84b26bbc44805226034cbe4f74b8ce6bb40f93fad4e129339"
     },
     {
@@ -4149,7 +4149,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:09.311441+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS endless tool loop stopped by recursion_limit=6” in the output. Follow the valid receipt, invalid key and endless-loop controls.",
-      "book_page": 724,
+      "book_page": 728,
       "printed_sha256": "5b5f51e7b905eaac7bdec941fc8f04cf75ed3c68a3d3b5dbf2998c0ee871cd4d"
     },
     {
@@ -4159,7 +4159,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:09.930393+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “Structured validity checked; factual correctness and calibration require separate evaluation.” in the output. Check the loopback contract first, then inspect real-model messages and validate tool arguments separately.",
-      "book_page": 725,
+      "book_page": 729,
       "printed_sha256": "9116b289810128052c08352a7a1e736912c7fb9d1a9cd7e80c3bf300c0e049a9"
     },
     {
@@ -4169,7 +4169,7 @@
       "scope": "GPU local model; real CPU framework with simulated evidence read-only tools | UTC 2026-10-30T21:51:31.434457+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Teaching input",
       "read_first": "In the command, locate --model local-model, --out result.json. These settings identify the case being compared.",
-      "book_page": 726,
+      "book_page": 730,
       "printed_sha256": "430bb3d53dd9750bb4058bd762956fdb73461657097317c977cf01837f5f12d3"
     },
     {
@@ -4179,7 +4179,7 @@
       "scope": "Exercise orchestration; nested captures identify CPU/GPU/simulation | UTC 2026-10-30T22:11:17.438761+00:00",
       "label": "LAPTOP  ·  Orchestration  ·  Recorded operation",
       "read_first": "The agent record counts 12 tool calls but only two unique ones. Compare the repeated calls with the final diagnosis.",
-      "book_page": 726,
+      "book_page": 730,
       "printed_sha256": "d5433ccfc23a501037d69e6db2da4d3a5fd3e6d059a957759efe9a71348c9174"
     },
     {
@@ -4189,7 +4189,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:12.561771+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “\"status\": \"paused\",” in the output. Compare thread identity, checkpoint and next node across the process boundary.",
-      "book_page": 730,
+      "book_page": 734,
       "printed_sha256": "0893c090e6e805586d586947104e2a512c4432488e1818400677bd162ebead31"
     },
     {
@@ -4199,7 +4199,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:13.797079+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “\"status\": \"paused\",” in the output. Preserve the wrong-thread and duplicate-resume rejections, then verify the intended continuation exactly once.",
-      "book_page": 732,
+      "book_page": 736,
       "printed_sha256": "07a1396f8c93ca85a1701e2e3ef0f6baaab03d0818e32569d95a0402a01c6efa"
     },
     {
@@ -4209,7 +4209,7 @@
       "scope": "GPU model call behind application review for read-only simulated evidence | UTC 2026-10-30T21:51:41.725314+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Teaching input",
       "read_first": "Find status = paused in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 734,
+      "book_page": 738,
       "printed_sha256": "a233f32e0bbe072b9d1b68d13ed8c1f140d3a61077b4b09f87dd792e6601e7da"
     },
     {
@@ -4219,7 +4219,7 @@
       "scope": "GPU model call behind application review for read-only simulated evidence | UTC 2026-10-30T21:51:42.348988+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Teaching input",
       "read_first": "Find status = complete in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 734,
+      "book_page": 738,
       "printed_sha256": "ce633b8a61867d6730ce65a9bb7e71b7aa6c62c1a0de15ed2111a9d6511e319d"
     },
     {
@@ -4229,7 +4229,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:16.042035+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS 2 root traces, 2 child spans, parent IDs preserved” in the output. Follow parent/child trace IDs, retained error state and redacted values.",
-      "book_page": 737,
+      "book_page": 741,
       "printed_sha256": "e4c7f24b077a96c2ffc16278c1fe1aa32de0160e94317d77fb7002349283573f"
     },
     {
@@ -4239,7 +4239,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:16.463332+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS upload_results=False; zero network connections”. The literal %s in the opening LangSmith message is a formatting artefact. The retained experiment name and outcomes identify this offline run in the output. Recompute rubric counts with the stated denominator and keep failed examples alongside passed examples.",
-      "book_page": 739,
+      "book_page": 743,
       "printed_sha256": "21523180476dd75cef9c4c2d610b744fcfecc47e7856253571123ed498006d88"
     },
     {
@@ -4249,7 +4249,7 @@
       "scope": "CPU | UTC 2026-10-30T23:22:45.755739+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 228-unsent-plan.json. Read the prepared LangSmith request and its fields.",
-      "book_page": 740,
+      "book_page": 744,
       "printed_sha256": "02f5f9c28e282bd8a7e83ed445a4a732e5736e85b02429f700b47e41835edd84"
     },
     {
@@ -4259,7 +4259,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:17.308932+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS model_requests=2; validation retries=1” in the output. Inspect the first validation error, feedback to the model and the accepted structured output.",
-      "book_page": 743,
+      "book_page": 747,
       "printed_sha256": "df3248a76610c57718d80f01113726a58719d56165495c71b774db6fe2c118c4"
     },
     {
@@ -4269,7 +4269,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:17.880097+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS persistent invalid output stopped before request 3” in the output. Count requests and retries against the configured limit.",
-      "book_page": 744,
+      "book_page": 748,
       "printed_sha256": "71ab0a7fbb61c6e4fbc8ae0caeeae57874d2d7235ba94ef2d265884ba6f09240"
     },
     {
@@ -4279,7 +4279,7 @@
       "scope": "GPU local model; real CPU framework with simulated evidence read-only tools | UTC 2026-10-30T21:51:39.799488+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Teaching input",
       "read_first": "Locate “Structured validity checked; factual correctness and calibration require separate evaluation.” in the output. Validate the typed output, then check its factual claim against the supplied evidence.",
-      "book_page": 746,
+      "book_page": 750,
       "printed_sha256": "9073a081d4df4ce82d28ba524db5c5fd925c1fd088477aaf10c808dd52b9298b"
     },
     {
@@ -4289,7 +4289,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:18.498405+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS no network call, no Jev model, no GPU inference” in the output. Run the fabricated-response controls and match each injected fault to its rejection.",
-      "book_page": 749,
+      "book_page": 753,
       "printed_sha256": "3c426afab154155613a4d11802a761f25a2a3dcb59549d59c6f1b40b3ace52fa"
     },
     {
@@ -4299,7 +4299,7 @@
       "scope": "CPU real frameworks with intentional scripted model or fabricated-response controls | UTC 2026-10-30T21:41:18.614862+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS high confidence still contains wrong decisions; no model accuracy measured” in the output. Recompute Brier score, accepted count and risk from the six labelled examples at each threshold.",
-      "book_page": 752,
+      "book_page": 756,
       "printed_sha256": "88c786b7673df3b87beeb5e3bff810f051b34c497922825975d62476a57cd071"
     },
     {
@@ -4309,7 +4309,7 @@
       "scope": "CPU | UTC 2026-10-30T23:22:46.579867+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 234-unsent-plan.json. Inspect the versioned Jev request plan before sending it.",
-      "book_page": 754,
+      "book_page": 758,
       "printed_sha256": "357f8cdcaaf172d47c0fc1390a41d945b21afd81bdd488a4a5e37be5f3a9245f"
     },
     {
@@ -4319,7 +4319,7 @@
       "scope": "CPU | UTC 2026-10-30T21:52:51.025044+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “Warning: could not connect to a running Ollama instance” in the output. Check binary architecture and version, then establish daemon readiness before querying model state.",
-      "book_page": 758,
+      "book_page": 762,
       "printed_sha256": "f9a9271f8ff097fac25a23cc17a1eb327d73e0e500913124a15e911fe50afcf5"
     },
     {
@@ -4329,7 +4329,7 @@
       "scope": "CPU | UTC 2026-10-30T21:52:51.226264+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “2026-10-30T21:52:54.272568+00:00 TimeoutError('timed out')” in the output. Check binary architecture and version, then establish daemon readiness before querying model state.",
-      "book_page": 758,
+      "book_page": 762,
       "printed_sha256": "24bf7eb4419f695f700510c142a735e8db0037b1934ba6da1b68b53669ade2eb"
     },
     {
@@ -4339,7 +4339,7 @@
       "scope": "GPU Ollama inference | UTC 2026-10-30T21:53:00.999885+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "total_duration is in nanoseconds. Compare load_duration, prompt_eval_duration and eval_duration before explaining the 47.27-second request.",
-      "book_page": 760,
+      "book_page": 764,
       "printed_sha256": "9e745a56ca6fe2e7f04f81233550e1e296f0b3de4896b4be69357546f72e08f6"
     },
     {
@@ -4349,7 +4349,7 @@
       "scope": "GPU Ollama inference | UTC 2026-10-30T21:54:12.815498+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find http_status = 200 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 764,
+      "book_page": 768,
       "printed_sha256": "632851d07823faee497e6e9318e8e70fee77fd55504bef806bc8e9a6e7bb91fc"
     },
     {
@@ -4359,7 +4359,7 @@
       "scope": "GPU Ollama inference | UTC 2026-10-30T21:53:48.503277+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "prompt_eval_cached_count is 44. The warm request reused prompt work.",
-      "book_page": 766,
+      "book_page": 770,
       "printed_sha256": "f068aa973c5f6c9488125e1e0286b801c06a9e6849cee302c111f4062996a68d"
     },
     {
@@ -4369,7 +4369,7 @@
       "scope": "CPU | UTC 2026-10-30T21:53:48.974575+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “lab-chat:latest    5db8d5ec5ca7    1.1 GB    100% GPU     2048       llamacpp    4 minutes from now” in the output. Inspect resident owners, load duration and cached prompt count before comparing cold and warm worker timings.",
-      "book_page": 768,
+      "book_page": 772,
       "printed_sha256": "68c21dce10c35b5621d426667a5ede4fc4f2f3c77b9084891ff8f36fa0844410"
     },
     {
@@ -4379,7 +4379,7 @@
       "scope": "CPU | UTC 2026-10-30T21:53:49.124048+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The stop command names lab-chat:latest. Inspect the owner list after unloading before interpreting a later request as cold.",
-      "book_page": 768,
+      "book_page": 772,
       "printed_sha256": "641b4658ade066dfab774327517daf8625f1930c3b22c2e5c7590dd9e8cd130f"
     },
     {
@@ -4389,7 +4389,7 @@
       "scope": "CPU intentional simulation / fixture contracts; no runtime or learned GPU model | UTC 2026-10-30T21:41:19.319992+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “PASS data partition; no optimizer step executed” in the output. Verify base hashes, family split and supervised labels before starting the bounded QLoRA experiment.",
-      "book_page": 771,
+      "book_page": 775,
       "printed_sha256": "3c1f39e16e4039a9895d54e9d25fd5f3d1d2e988089500cd13ad91c37c8d00eb"
     },
     {
@@ -4399,7 +4399,7 @@
       "scope": "CPU | UTC 2026-10-30T22:00:07.732549+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The isolated overlay passes pip check. Keep its package result separate from the model’s training and held-out behavior.",
-      "book_page": 772,
+      "book_page": 776,
       "printed_sha256": "09d9a446f4342dccf2b7a93ad8c1f98bf1b78e3afa9ccac06d854bc87e07daa8"
     },
     {
@@ -4409,7 +4409,7 @@
       "scope": "GPU native Unsloth four-bit-base LoRA training attempt | UTC 2026-10-30T22:00:13.402816+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Model workload",
       "read_first": "Locate “\"status\": \"complete\",” in the output. Check device placement, trainable adapters, finite updates and checkpoint-5.",
-      "book_page": 774,
+      "book_page": 778,
       "printed_sha256": "1f08fc311f2d2b9254f8a355bb8b7c0263656fe6912347df0d2bed095c8c1354"
     },
     {
@@ -4419,7 +4419,7 @@
       "scope": "GPU native Unsloth optimizer checkpoint recovery | UTC 2026-10-30T22:01:35.149986+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “\"status\": \"complete\",” in the output. Bind the resume to its checkpoint step and base identities, then verify the next update and resulting checkpoint.",
-      "book_page": 778,
+      "book_page": 782,
       "printed_sha256": "cb1dded3ca9a9493680489a9c3277516b967789ffbbf3605283c012f22f0d5d2"
     },
     {
@@ -4429,7 +4429,7 @@
       "scope": "GPU inference on two existing experimental representations | UTC 2026-10-30T23:27:11.825791+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The driver retains separate unconstrained and grammar-constrained runs. Score the output contract independently of answer quality.",
-      "book_page": 782,
+      "book_page": 786,
       "printed_sha256": "73f547931fff7211e24be14d165383e708d7b78632724994e618dce285f652ce"
     },
     {
@@ -4439,7 +4439,7 @@
       "scope": "GPU/CPU checked adapter merge | UTC 2026-10-30T22:02:31.834153+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “Unsloth: compiling each transformer block as one region (Qwen2DecoderLayer).” in the output. Score format validity and semantic accuracy separately on the same paired evaluation inputs.",
-      "book_page": 785,
+      "book_page": 789,
       "printed_sha256": "360041b16e2967b8fb4fb5212057f6044b0fdb4e7c59972d406a0a8ca85627ae"
     },
     {
@@ -4449,7 +4449,7 @@
       "scope": "CPU | UTC 2026-10-30T22:11:31.133434+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “Installation finished successfully! llmster is ready to launch.” in the output. Verify recovery from the storage failure, inspect native backend identity, and compare model inventory with lms ps.",
-      "book_page": 789,
+      "book_page": 793,
       "printed_sha256": "4a0f462638f0bd4453a15860db5250e851d7a19b5d2b7b76cef8fe6342df2e97"
     },
     {
@@ -4459,7 +4459,7 @@
       "scope": "CPU | UTC 2026-10-30T22:11:35.595268+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The CLI identifies commit 43d4b26. The next inventory identifies which model runtime is selected.",
-      "book_page": 789,
+      "book_page": 793,
       "printed_sha256": "5f306ab127fe9f948035803c570c6b43315832bef946cf5adbe46d1d2dec7d72"
     },
     {
@@ -4469,7 +4469,7 @@
       "scope": "CPU | UTC 2026-10-30T22:11:47.218350+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The selection mark is beside the ARM64 CUDA 13 engine. Both listed engines support GGUF, so the format alone cannot distinguish placement.",
-      "book_page": 790,
+      "book_page": 794,
       "printed_sha256": "66696895deef716b09b6f225383a4ed0d7fd72558570c9f1a12aeb9b3084cdc3"
     },
     {
@@ -4479,7 +4479,7 @@
       "scope": "Native LM Studio model inference; requested 25% CUDA-layer offload | UTC 2026-10-30T22:38:13.623423+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Model workload",
       "read_first": "Find http_status = 200 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 791,
+      "book_page": 795,
       "printed_sha256": "7e0e47966d430b03e74d24fcf5cc9357728e63d990143e9833a99d47de6e08b4"
     },
     {
@@ -4489,7 +4489,7 @@
       "scope": "CPU | UTC 2026-10-30T22:41:11.616560+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The pre-load device sample reports 2690 MiB used. Keep this baseline next to the CPU- and GPU-loaded samples.",
-      "book_page": 792,
+      "book_page": 796,
       "printed_sha256": "381ccec09690c961f9012f15eca473aa94e939ec4435aa3a31bed26f20ececa9"
     },
     {
@@ -4499,7 +4499,7 @@
       "scope": "CPU | UTC 2026-10-30T22:41:15.629709+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The CPU-loaded sample reports 2923 MiB used on the device. This is a device-wide reading even under the CPU placement control.",
-      "book_page": 792,
+      "book_page": 796,
       "printed_sha256": "4bc83f3f739dd9815e4806192f0cc0afee14941c19b82139a8751c735af0f65a"
     },
     {
@@ -4509,7 +4509,7 @@
       "scope": "CPU | UTC 2026-10-30T22:41:30.041922+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The GPU-loaded sample reports 3924 MiB used, compared with 2690 MiB before loading. Check the runtime’s own placement record as well.",
-      "book_page": 792,
+      "book_page": 796,
       "printed_sha256": "b1c629b4b7cedf43a217b1f86264557d531aa7cf010306ceb70f190639b76035"
     },
     {
@@ -4519,7 +4519,7 @@
       "scope": "Requested full GPU native LM Studio inference; placement and counters captured | UTC 2026-10-30T22:41:30.118513+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find http_status = 200 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 793,
+      "book_page": 797,
       "printed_sha256": "c0b05282b8f90bd0fbb0a48417c0c51e9fd3368312326e18947ef3d1139515cc"
     },
     {
@@ -4529,7 +4529,7 @@
       "scope": "Native LM Studio inference | UTC 2026-10-30T22:38:21.524403+00:00",
       "label": "LAPTOP  ·  See recorded scope  ·  Recorded operation",
       "read_first": "Find http_status = 200 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 794,
+      "book_page": 798,
       "printed_sha256": "ffd3ecf6dad7de9c5e56b936343f6d89520bc3b352e9f7304de0de17c8bdaf6e"
     },
     {
@@ -4539,7 +4539,7 @@
       "scope": "Native LM Studio inference | UTC 2026-10-30T22:38:37.768789+00:00",
       "label": "LAPTOP  ·  See recorded scope  ·  Recorded operation",
       "read_first": "Find http_status = 200 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 795,
+      "book_page": 799,
       "printed_sha256": "2a7f9f21b83199c2ffb849a3ab48f7e2f7348240eb5fa3e420173693d3260760"
     },
     {
@@ -4549,7 +4549,7 @@
       "scope": "Native LM Studio embedding inference | UTC 2026-10-30T22:38:51.083776+00:00",
       "label": "LAPTOP  ·  See recorded scope  ·  Recorded operation",
       "read_first": "Find http_status = 200 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 797,
+      "book_page": 801,
       "printed_sha256": "a5a7d3fa435691babf7fcf6c5be5672092a2404d586f001f92fd23d83446bb9e"
     },
     {
@@ -4559,7 +4559,7 @@
       "scope": "Native LM Studio model with CPU agent and simulated evidence | UTC 2026-10-30T22:34:11.357893+00:00",
       "label": "LAPTOP  ·  Host / tool  ·  Teaching input",
       "read_first": "In the command, locate --model lab-chat, --out result.json. These settings identify the case being compared.",
-      "book_page": 797,
+      "book_page": 801,
       "printed_sha256": "4aeddda635341c390176189a76e19be64495f860d8879cd7ab886ce7fd457af3"
     },
     {
@@ -4569,7 +4569,7 @@
       "scope": "Native LM Studio model with CPU agent and simulated evidence | UTC 2026-10-30T22:34:30.632180+00:00",
       "label": "LAPTOP  ·  Host / tool  ·  Teaching input",
       "read_first": "Locate “Structured validity checked; factual correctness and calibration require separate evaluation.” in the output. Verify index-ordered vectors first, then inspect the agent's tool messages and task outcome as a separate test.",
-      "book_page": 798,
+      "book_page": 802,
       "printed_sha256": "0a103fbb9d046203d3e5ce69d10938adbed6eea7c019bbb9f8b9521af4dbb8eb"
     },
     {
@@ -4579,7 +4579,7 @@
       "scope": "CPU | UTC 2026-10-30T21:47:32.826630+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out nemotron-q4-014. These settings identify the case being compared.",
-      "book_page": 800,
+      "book_page": 804,
       "printed_sha256": "3c79eb5c2824b183c45c2b4f67360a76b0708ce8c755a1c96f0464eae15279ea"
     },
     {
@@ -4589,7 +4589,7 @@
       "scope": "CPU | UTC 2026-10-30T21:47:32.895953+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out nemotron-q8-014. These settings identify the case being compared.",
-      "book_page": 801,
+      "book_page": 805,
       "printed_sha256": "cc378a92c9e1348c98d38cc8f7ca3a211129daaf9bc8e3f03ed3e8946986ef65"
     },
     {
@@ -4599,7 +4599,7 @@
       "scope": "CPU | UTC 2026-10-30T22:34:54.936460+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “VERIFIED NVIDIA-Nemotron-3-Nano-30B-A3B-Q8_0.gguf” in the output. Record upstream and conversion identities, selected file size and hash before interpreting its loading behavior.",
-      "book_page": 801,
+      "book_page": 805,
       "printed_sha256": "830922cc836cdcbd2d1393c77cab58572163995f874ee237f039b8042788f54e"
     },
     {
@@ -4609,7 +4609,7 @@
       "scope": "CPU | UTC 2026-10-30T22:11:58.894123+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Windows reports a module capacity of 68,719,476,736 bytes and a smaller OS-visible total. Keep those scopes separate in admission arithmetic.",
-      "book_page": 803,
+      "book_page": 807,
       "printed_sha256": "8f4e1593cf94ec342be7a6248db870f8ee0af1c1ee7b25f79451c0fb27825ddd"
     },
     {
@@ -4619,7 +4619,7 @@
       "scope": "CPU | UTC 2026-10-30T22:12:00.269984+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The NVML sample gives 31,232 MiB total and 28,889 MiB free. Use the free reading from the chosen sampling time.",
-      "book_page": 804,
+      "book_page": 808,
       "printed_sha256": "b8e71ebd3ea8d43c796ee3dc9b9b2f25852620f42c85a30a6d583ab00a6ee17b"
     },
     {
@@ -4629,7 +4629,7 @@
       "scope": "Exercise orchestration; nested captures identify CPU/GPU/simulation | UTC 2026-10-30T22:13:13.446653+00:00",
       "label": "LAPTOP  ·  Orchestration  ·  Recorded operation",
       "read_first": "Read the repeated Windows and dedicated-memory samples before the revised admission decision. A single favorable sample is insufficient.",
-      "book_page": 804,
+      "book_page": 808,
       "printed_sha256": "a0776fb22863d6fe94ae62fcbd89d0abe0c8ba1322fbcade50712dca8ce05bab"
     },
     {
@@ -4639,7 +4639,7 @@
       "scope": "Exercise orchestration; nested captures identify CPU/GPU/simulation | UTC 2026-10-30T22:34:51.182002+00:00",
       "label": "LAPTOP  ·  Orchestration  ·  Recorded operation",
       "read_first": "The header-based plan selects a 45-layer candidate. Compare it with the later guarded 43-layer request and observed placement.",
-      "book_page": 805,
+      "book_page": 809,
       "printed_sha256": "f0978e8b1d86c3e4fd7541e3fbf1fdc3ac69e8d8c386d185ae39ab9d59a749b3"
     },
     {
@@ -4649,7 +4649,7 @@
       "scope": "Exercise orchestration; nested captures identify CPU/GPU/simulation | UTC 2026-10-30T22:53:51.637605+00:00",
       "label": "LAPTOP  ·  Orchestration  ·  Recorded operation",
       "read_first": "The wrapper retains the pre-launch headroom checks and both cold and warm requests. Use the child records for their individual outcomes.",
-      "book_page": 808,
+      "book_page": 812,
       "printed_sha256": "1bc4090e0608bfaa304406a01f3eb30ced8727105311223abdd23efa1899d802"
     },
     {
@@ -4659,7 +4659,7 @@
       "scope": "Nemotron GPU-heavy model request | UTC 2026-10-30T22:54:55.065705+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Model workload",
       "read_first": "Find http_status = 200 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 808,
+      "book_page": 812,
       "printed_sha256": "7bae4a9f2d38b44063d0adedc87e570d3605222d52e03d384a2f353540fba712"
     },
     {
@@ -4669,7 +4669,7 @@
       "scope": "Nemotron GPU-heavy model request | UTC 2026-10-30T22:55:24.269488+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Model workload",
       "read_first": "Find http_status = 200 in the recorded result. Check the scope before using it in a comparison.",
-      "book_page": 809,
+      "book_page": 813,
       "printed_sha256": "9c1e1989dca793da69fc05aab8455aa83c4a9ab78692ae03fa9a9e76c080d8de"
     },
     {
@@ -4679,7 +4679,7 @@
       "scope": "Exercise orchestration; nested captures identify CPU/GPU/simulation | UTC 2026-10-30T22:56:52.947827+00:00",
       "label": "LAPTOP  ·  Orchestration  ·  Recorded operation",
       "read_first": "The final receipt records both Q4 and Q8 qualification. Truncated answers still carry their own quality outcome.",
-      "book_page": 809,
+      "book_page": 813,
       "printed_sha256": "78fc9f027bc5ed0e74251bfc63b4cde2da0692f61d2131c0092f135f50e58cb5"
     },
     {
@@ -4689,7 +4689,7 @@
       "scope": "GPU deployment runner with guarded native/Ollama owners | UTC 2026-10-30T23:21:37.156069+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The wrapper retained a blocked comparison. The compressed wording in its summary refers to a 512-token output cap. Read each request’s finish reason before scoring the answer.",
-      "book_page": 812,
+      "book_page": 816,
       "printed_sha256": "e791e64152dba194ef50c9a2122e9179555919cf8aed2a100244b6c6f2108ebd"
     },
     {
@@ -4699,7 +4699,7 @@
       "scope": "CPU | UTC 2026-10-30T23:25:09.073290+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “SyntaxError: unterminated string literal (detected at line 11)”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 813,
+      "book_page": 817,
       "printed_sha256": "4e78193277c8a85b402b2c824a0a66ad15c522491e69ef0935fc5aaa7d88715f"
     },
     {
@@ -4709,7 +4709,7 @@
       "scope": "CPU | UTC 2026-10-30T23:25:30.650755+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The corrected report prints 4,321,742,848 host-available bytes and 12,874,706,944 guest-available bytes. Keep the two scopes separate.",
-      "book_page": 813,
+      "book_page": 817,
       "printed_sha256": "9420953f4e143f52b17602375c2a9c1bb8162bdf9e44c56515b9c2a43869582e"
     },
     {
@@ -4719,7 +4719,7 @@
       "scope": "GPU Ollama continuation after fresh scoped headroom admission | UTC 2026-10-30T23:26:07.053367+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The Ollama continuation retains readiness, model identity, residency and unload separately. Consult each child before scoring the runtime.",
-      "book_page": 814,
+      "book_page": 818,
       "printed_sha256": "fcf7c59ff3e90a7902f2008690b0102604227f4a8c6dc44b1d3e06771f1f027a"
     },
     {
@@ -4729,7 +4729,7 @@
       "scope": "CPU | UTC 2026-10-30T23:26:16.142079+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The Modelfile identifies the model blob plus the Nemotron renderer and parser. Compare these identities before comparing response formats.",
-      "book_page": 814,
+      "book_page": 818,
       "printed_sha256": "5089fde5024cd984850b83c9497b938a09313ec3539366a06b15cf3c164fbd02"
     },
     {
@@ -4739,7 +4739,7 @@
       "scope": "CPU | UTC 2026-10-30T23:26:37.255710+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Ollama reports 100% GPU with context 2048 for this loaded owner. The scope is the runtime’s residency report for this model.",
-      "book_page": 815,
+      "book_page": 819,
       "printed_sha256": "7c08fa4aa4bdc69541670ca572fa87dd35f859cef2c5a5ac94ea7e30df84d9a4"
     },
     {
@@ -4749,7 +4749,7 @@
       "scope": "CPU | UTC 2026-10-30T23:26:37.291583+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The named Ollama owner is asked to unload. Check the post-stop residency observation before starting a cold comparison.",
-      "book_page": 815,
+      "book_page": 819,
       "printed_sha256": "72d94f82f1024090e9ead95176d9ddd4857915c7f46ef924a65c9e6f0802d364"
     },
     {
@@ -4759,7 +4759,7 @@
       "scope": "GPU context and query-only observations | UTC 2026-10-31T10:28:45.205265+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Measurement or check",
       "read_first": "The result reports status = OBSERVED.",
-      "book_page": 820,
+      "book_page": 824,
       "printed_sha256": "0643984a99632e5f8eba46452371c30a1862067c13425bf8dc7913dc7181453c"
     },
     {
@@ -4769,7 +4769,7 @@
       "scope": "CPU wrapper for GPU child | UTC 2026-10-31T10:31:10.139717+00:00",
       "label": "LAPTOP  ·  Orchestration  ·  Recorded operation",
       "read_first": "Read wrapper_exit_code, child_exit_code and timed_out. Run 251.03 gives the pilot’s verified byte count and release.",
-      "book_page": 823,
+      "book_page": 827,
       "printed_sha256": "398f3f716d0d7ba75b8ef3c3518df3cee8db6f44c08d7d3efbb8fd72f8c4c72a"
     },
     {
@@ -4779,7 +4779,7 @@
       "scope": "GPU allocation and every-byte verification | UTC 2026-10-31T10:31:10.178033+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Measurement or check",
       "read_first": "The pilot requests 1,073,741,824 bytes and completes. Locate the write and verification events before moving to the larger trial.",
-      "book_page": 824,
+      "book_page": 828,
       "printed_sha256": "2bdad111156216ad87dcf692a0e4f9d2d1490790cd8b2235634ea4fb1f452f41"
     },
     {
@@ -4789,7 +4789,7 @@
       "scope": "CPU monitor | UTC 2026-10-31T10:31:06.106678+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The pilot’s vmstat capture includes swap already in use. Compare subsequent si and so intervals with the allocation timestamps.",
-      "book_page": 827,
+      "book_page": 831,
       "printed_sha256": "39c5113d7000d6c3f675bc9ef4a4d7762ccae2400d30a6bad7b9fbcb03a1f8ee"
     },
     {
@@ -4799,7 +4799,7 @@
       "scope": "CPU wrapper for GPU child | UTC 2026-10-31T10:32:08.950384+00:00",
       "label": "LAPTOP  ·  Orchestration  ·  Recorded operation",
       "read_first": "In the command, locate --out memory-above-guest. These settings identify the case being compared.",
-      "book_page": 828,
+      "book_page": 832,
       "printed_sha256": "8671d238d5e490b465079edd08aba05fbbcfcde3a88854c5c80a4d8230b2b594"
     },
     {
@@ -4809,7 +4809,7 @@
       "scope": "GPU allocation and every-byte verification | UTC 2026-10-31T10:32:08.985725+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Measurement or check",
       "read_first": "Compare allocated_written_verified_bytes with guest MemTotal. Check the after_release observation and the final process exit.",
-      "book_page": 829,
+      "book_page": 833,
       "printed_sha256": "075e4fb06347b34efc27cfedfe7cdb3af1b0a5d338f197799d0a66e6b7d83cdb"
     },
     {
@@ -4819,7 +4819,7 @@
       "scope": "CPU monitor | UTC 2026-10-31T10:32:05.119514+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Inspect the eight post-baseline rate intervals. Zero sampled swap-out has a narrower meaning than proof of physical residency.",
-      "book_page": 834,
+      "book_page": 838,
       "printed_sha256": "eff8d2b83c614d99d3107a9983986e91855c7faff8a9a7faf476422514a757e1"
     },
     {
@@ -4829,7 +4829,7 @@
       "scope": "CPU inventory plus CUDA capability and free/total query | UTC 2026-10-30T13:03:02.991240+00:00",
       "label": "LAPTOP  ·  CPU and CUDA  ·  Measurement or check",
       "read_first": "Locate “status=COLLECTED; inspect each return code” in the output. Inspect the five command records and their exits.",
-      "book_page": 900,
+      "book_page": 908,
       "printed_sha256": "c0be8fd7a38a249a8d210fb6f71d92723d86419dc8a3d084931b8d7d094add45"
     }
   ]

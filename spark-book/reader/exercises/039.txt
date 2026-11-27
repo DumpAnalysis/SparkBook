@@ -32,7 +32,7 @@ bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/timeline.sqlite" 
 python cuda/trace_sqlite.py "$LAB_RUN/timeline.sqlite" --ranges iteration --launches iteration
 
 Interpret the result
-For each iteration, match the host-thread CUDA launch and device kernel by process and correlation ID. Compare that list with kernels wholly inside the host range. A kernel can finish after its launch range closes.
+Read host CUDA API and NVTX ranges separately from device kernels. The historical 2026.3.2 host run lacked usable kernel timing. The pinned 2026.5.1 reader run joined four launches to four positive device intervals by correlation ID. Record the version, image digest and interval counts for your run.
 
 If the check fails
 Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.
@@ -43,8 +43,8 @@ Keep original Nsight Systems report.
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
 
-Recorded result  BLOCKED — GPU workload with attempted CUDA/NVTX collection.
-Scope  A valid device interval is needed to assign time to a kernel.
+Historical record and later reader check  Historical host 2026.3.2 control blocked. The separate pinned 2026.5.1 reader capture correlated four launches with positive kernel intervals.
+Scope  The transform workload and this collector version.
 
 Recorded files
 python reader/records.py 39 --files

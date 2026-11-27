@@ -9,7 +9,7 @@ Stable Diffusion XL, Diffusers and the VAE
 
 Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.
 
-Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change.
+Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change. In the pinned VAE, enabling tiling leaves a full 1024-pixel frame at the default threshold. Exercise 186 keeps that size, sets a smaller tile edge and counts the actual decoder calls.
 
 CPU execution and partial GPU offload
 

@@ -7,13 +7,13 @@ Technology background
 
 Sentence embeddings and semantic similarity
 
-An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment. An input token embedding represents a vocabulary item; its position and surrounding tokens contribute to the contextual representation. For nonzero vectors, cosine similarity is their dot product divided by the product of their lengths.
 
 For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
 
 PyTorch tensors and synchronized CUDA execution
 
-A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A Python package called a wheel supplies the installed framework build.
+A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A wheel is an installable package archive containing this framework build.
 
 A CUDA kernel is a function that runs on the GPU. PyTorch launches kernels for tensor operations. GPU work can continue after the Python call that launched it returns. The probe performs a small calculation, synchronizes and checks its result. Read the interpreter path, device name, tensor device and result together. They connect a particular Python environment with an operation that completed.
 

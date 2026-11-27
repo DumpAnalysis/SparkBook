@@ -19,9 +19,9 @@ A guard samples available memory and can stop a load before it reaches readiness
 
 Bytes, memory budgets and unified memory
 
-One GiB is 1,073,741,824 bytes. On this 64 GB unified-memory laptop, Windows, the WSL2 guest and a CUDA process describe memory from different positions. The free command reports guest RAM. nvidia-smi reports the management interface’s GPU memory view. PyTorch can query the CUDA runtime for free and total bytes visible to its process.
+One GiB is 1,073,741,824 bytes. The installed module in this machine is 64 GiB. Windows reports about 32.23 GiB visible to the OS and NVML reports a dedicated segment of 31,232 MiB, or 30.50 GiB (32.75 decimal GB). The two figures sum to about 62.73 GiB and have different accounting scopes. Guest MemTotal is a separate limit.
 
-Keep the name, unit, time and calling process beside each value. The recorded 31,232 MiB management total and 45.97 GiB CUDA total overlap. Adding them would count some of the same capacity twice. Exercise 251 tests what an allocation can actually write and verify.
+Record the API, units, time and process beside each value. CUDA reported 45.97 GiB across its dedicated and shareable budget. Adding the NVML and CUDA totals counts overlapping memory. Exercise 248 and the memory investigation explain the measured scopes. For an allocation decision query current free bytes and allow for working storage.
 
 Before you start
 Exercise 247 (record the upstream and conversion identities) · Exercise 2 (calculate before allocating) · Exercise 28 (learn partial offload with the small model)

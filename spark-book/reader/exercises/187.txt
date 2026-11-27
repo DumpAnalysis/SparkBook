@@ -9,11 +9,11 @@ Stable Diffusion XL, Diffusers and the VAE
 
 Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.
 
-Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change.
+Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change. In the pinned VAE, enabling tiling leaves a full 1024-pixel frame at the default threshold. Exercise 186 keeps that size, sets a smaller tile edge and counts the actual decoder calls.
 
 Diffusion, noise prediction and a sampling schedule
 
-A diffusion exercise starts with clean data and adds noise at a chosen level according to a schedule. A denoising model learns to estimate a quantity needed to step back toward a sample. Generation begins with noise and repeatedly updates it using the model and scheduler.
+In the epsilon-prediction control, clean x₀ and sampled noise ε are mixed at time t as xₜ = √ᾱₜ x₀ + √(1 − ᾱₜ) ε. Alpha-bar is the cumulative product of the schedule’s retained-signal factors. A model learns to estimate ε. With the exact noise, recover x₀ by subtracting √(1 − ᾱₜ) ε from xₜ and dividing by √ᾱₜ.
 
 The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved.
 

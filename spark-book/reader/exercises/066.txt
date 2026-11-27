@@ -15,7 +15,7 @@ Quantization and weight formats
 
 Quantization represents numbers using fewer possible values. A weight group can share a scale so a small integer represents an approximate weight. Four bits can encode sixteen patterns. A real Q4 file also stores scales, metadata and sometimes tensors at other precisions, so its byte count need not be exactly half that of Q8.
 
-The smaller file is easier to place in memory. Approximation can change the generated tokens. Compare the same prompt with the same context, output cap and runtime settings. Keep the finish reason alongside reply quality and measured latency.
+The smaller file is easier to place in memory. Approximation can change the generated tokens. Compare the same prompt with the same context, output cap and runtime settings. Keep the finish reason alongside reply quality and measured latency. Nominal bits and a rounded parameter count give a lower-complexity estimate. Q8_0 stores 32 eight-bit codes and one 16-bit scale per block, or 8.5 bits per weight. Q4_K_M mixes tensor types. Use verified shard bytes for a storage budget and measure buffers separately after loading.
 
 Before you start
 Exercise 3 (verify the client without a model)

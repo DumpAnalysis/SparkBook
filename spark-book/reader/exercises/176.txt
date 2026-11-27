@@ -7,7 +7,7 @@ Technology background
 
 Vision-language models and visual grounding
 
-A vision-language model combines a visual representation with text so that a language component can generate an answer about an image. The processor resizes or tiles the pixels and prepares the visual input expected by the model. Increasing the visual input size can affect token count, memory use and latency.
+A vision-language model combines a visual representation with text so that a language component can generate an answer about an image. The processor resizes or tiles the pixels and prepares the visual input expected by the model. Increasing the visual input size can affect token count, memory use and latency. For the pinned Qwen2.5-VL-3B processor, 14-pixel patches merge in 2 × 2 groups. This gives the 28-pixel unit in the image-budget calculations.
 
 Ask for a property you can verify in the source image, such as the position of a colored shape. Compare the answer with the image itself. Words printed inside a picture are also input data. They can test whether the model follows the caller’s task when the picture contains conflicting text.
 

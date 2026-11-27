@@ -99,7 +99,7 @@ def answer(result):
 
 
 def budget(args):
-    print("Weights only, decimal parameter counts")
+    print("Weights only, rounded decimal parameter counts and nominal bits per weight")
     for billions in [7, 14, 32, 70]:
         values = [billions * 1e9 * bits / 8 / 2**30
                   for bits in [4, 8, 16]]
@@ -109,9 +109,11 @@ def budget(args):
     for context in [4096, 8192, 16384, 32768]:
         kv = 2 * 28 * 4 * 128 * 2 * context
         print(f"context={context:5d} KV={kv / 2**20:7.1f} MiB")
-    print(f"30 decimal GB = {30 * 10**9 / 2**30:.2f} GiB")
-    print(f"64 decimal GB = {64e9 / 2**30:.2f} GiB")
-    print("Estimates exclude quantization metadata and runtime overhead.")
+    print(f"Unit conversion example: 30 decimal GB = {30e9 / 2**30:.2f} GiB")
+    print(f"Unit conversion example: 64 decimal GB = {64e9 / 2**30:.2f} GiB")
+    print("Recorded laptop: 64 GiB installed; NVML 31,232 MiB = 30.50 GiB = 32.75 GB.")
+    print("Q4_K_M mixes tensor types. Q8_0 stores 32 codes and one FP16 scale per block.")
+    print("Budget for the verified file sizes, then measure cache, buffers and runtime workspace.")
 
 
 def inspect(args):

@@ -60,6 +60,7 @@ class Tests(unittest.TestCase):
             lab.budget(None)
         self.assertIn('context= 4096 KV=  224.0 MiB', out.getvalue())
         self.assertIn('30 decimal GB = 27.94 GiB', out.getvalue())
+        self.assertIn('64 GiB installed; NVML 31,232 MiB = 30.50 GiB = 32.75 GB', out.getvalue())
 
     def test_loopback_boundary(self):
         with self.assertRaises(ValueError):

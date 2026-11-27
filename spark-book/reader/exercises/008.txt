@@ -9,13 +9,13 @@ Latency, throughput and repeatable timing
 
 Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
 
-A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+Use a monotonic clock for durations. Its readings never go backwards and changing the wall clock does not shift its origin. Record wall-clock timestamps for correlation between records. For nearest-rank p95, sort n observations and select rank ceil(0.95 × n), counting from one. For five requests this selects the slowest. Report individual timings for short runs.
 
 Loading a model with llama.cpp
 
 llama.cpp is a native inference runtime. Its llama-server executable opens the model file, prepares memory for inference and listens for requests. The file on disk, the running process and the address clients call are three different things. A downloaded model alone cannot answer a prompt.
 
-Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server.
+Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server. Here -b is the maximum logical token batch submitted to llama.cpp and -ub bounds the physical microbatch processed together. Training uses microbatch for the example group contributing one accumulated gradient.
 
 Before you start
 Exercise 5 (start the baseline server) · Exercise 6 (submit the complete prompt) · Exercise 7 (understand the arithmetic first)

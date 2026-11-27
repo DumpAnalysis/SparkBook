@@ -9,13 +9,13 @@ Loading a model with llama.cpp
 
 llama.cpp is a native inference runtime. Its llama-server executable opens the model file, prepares memory for inference and listens for requests. The file on disk, the running process and the address clients call are three different things. A downloaded model alone cannot answer a prompt.
 
-Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server.
+Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server. Here -b is the maximum logical token batch submitted to llama.cpp and -ub bounds the physical microbatch processed together. Training uses microbatch for the example group contributing one accumulated gradient.
 
 Model downloads, Git revisions and GGUF
 
 A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
 
-The early exercises use Qwen models. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+The early exercises use Qwen models. Their GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
 
 Diagnostic observations, controls and written conclusions
 

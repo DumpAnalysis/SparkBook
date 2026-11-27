@@ -9,7 +9,7 @@ Text-to-speech with MMS and VITS
 
 A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.
 
-Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard.
+Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard. The pinned English MMS vocabulary contains digits zero through six and omits seven, eight and nine. Its normalizer drops characters outside its vocabulary. Inspect token IDs for the digit string and for the equivalent words before judging the sound.
 
 Prompts, generated answers and acceptance checks
 

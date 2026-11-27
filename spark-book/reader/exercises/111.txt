@@ -7,7 +7,7 @@ Technology background
 
 OpenTelemetry traces, spans and correlated logs
 
-A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it.
+A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it. Trace sampling selects requests or spans to retain. Metric sampling polls a measured field at successive times. Preserve the trace policy and the metric interval separately.
 
 Follow one synthetic request from its root span through retrieval and generation. Match a log to its span ID and look for a second attempt after a failure. Adding all span durations can double-count time when a parent includes a child or two operations overlap.
 

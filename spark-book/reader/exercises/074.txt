@@ -9,7 +9,7 @@ Latency, throughput and repeatable timing
 
 Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
 
-A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+Use a monotonic clock for durations. Its readings never go backwards and changing the wall clock does not shift its origin. Record wall-clock timestamps for correlation between records. For nearest-rank p95, sort n observations and select rank ceil(0.95 × n), counting from one. For five requests this selects the slowest. Report individual timings for short runs.
 
 The CUDA driver, toolkit and runtime
 
@@ -19,9 +19,9 @@ Version labels at these layers can differ. Record the mapped driver query, nvcc 
 
 Bytes, memory budgets and unified memory
 
-One GiB is 1,073,741,824 bytes. On this 64 GB unified-memory laptop, Windows, the WSL2 guest and a CUDA process describe memory from different positions. The free command reports guest RAM. nvidia-smi reports the management interface’s GPU memory view. PyTorch can query the CUDA runtime for free and total bytes visible to its process.
+One GiB is 1,073,741,824 bytes. The installed module in this machine is 64 GiB. Windows reports about 32.23 GiB visible to the OS and NVML reports a dedicated segment of 31,232 MiB, or 30.50 GiB (32.75 decimal GB). The two figures sum to about 62.73 GiB and have different accounting scopes. Guest MemTotal is a separate limit.
 
-Keep the name, unit, time and calling process beside each value. The recorded 31,232 MiB management total and 45.97 GiB CUDA total overlap. Adding them would count some of the same capacity twice. Exercise 251 tests what an allocation can actually write and verify.
+Record the API, units, time and process beside each value. CUDA reported 45.97 GiB across its dedicated and shareable budget. Adding the NVML and CUDA totals counts overlapping memory. Exercise 248 and the memory investigation explain the measured scopes. For an allocation decision query current free bytes and allow for working storage.
 
 Before you start
 Exercise 1 (inventory the existing environment) · Exercise 14 (run a small synchronized computation)

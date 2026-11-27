@@ -1,7 +1,7 @@
 Exercise 186  Record denoising activity and isolate VAE pressure
 
 Question
-Can denoising and VAE decoding be separated in the available trace?
+Does the VAE actually tile a 1024-pixel frame, and what changes when the tile edge is reduced?
 
 Technology background
 
@@ -9,7 +9,7 @@ Stable Diffusion XL, Diffusers and the VAE
 
 Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.
 
-Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change.
+Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change. In the pinned VAE, enabling tiling leaves a full 1024-pixel frame at the default threshold. Exercise 186 keeps that size, sets a smaller tile edge and counts the actual decoder calls.
 
 PyTorch allocator snapshots and tensor ownership
 
@@ -31,36 +31,38 @@ Recorded step time
 5 min 46 s for Profiled tiling (record 186.01).
 
 Check for success
-Compare the tiling control and per-step observations. Assign device times only when the trace supplies valid device intervals.
+Match the final latent digest in all three uninstrumented trials. Count one full-frame decoder call in each control and multiple smaller calls at the reduced threshold. Compare RGB output and peak allocated bytes.
 
 Reading the result
 Compare the earlier denoising observations and the matched VAE tiling runs. The later tiny-kernel probe supplied no usable device timestamps for dividing time between the denoiser and decoder.
 
 Run in your lab
-These three 1024 × 1024 trials use model offload. Recheck current host and CUDA headroom first. Compare profiled versus plain with tiling enabled, then plain with versus without tiling.
+Keep the image at 1024 × 1024, seed 1606 and model offload. The pinned VAE begins tiling only above its default 1024-pixel edge. Compare untiled, default-enabled, and 512-pixel tiles. Each trial records the final denoising latent and the spatial dimensions sent to the decoder. Use separate processes for profiling and uninstrumented generation.
 
 : "${LAB_RUN:?Start a new lab run first}"
-python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/profiled-tiling" --tiling --trace-steps --profile --snapshot
-python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/plain-tiling" --tiling
-python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/plain-no-tiling"
-bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none -o "$LAB_RUN/denoising-timeline" python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/denoising-timeline-media" --tiling --trace-steps --nvtx --snapshot
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/profiled-tiling" --tiling --trace-steps --profile --snapshot --audit-vae --vae-tile-pixels 512
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/plain-tiling" --tiling --audit-vae --vae-tile-pixels 512
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/plain-no-tiling" --audit-vae
+python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/default-tiling" --audit-vae --tiling
+python media/compare_vae.py --plain "$LAB_RUN/plain-no-tiling" --default "$LAB_RUN/default-tiling" --tiled "$LAB_RUN/plain-tiling" --out "$LAB_RUN/vae-comparison.json"
+bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none -o "$LAB_RUN/denoising-timeline" python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/denoising-timeline-media" --tiling --trace-steps --nvtx --snapshot --audit-vae --vae-tile-pixels 512
 bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/denoising-timeline.sqlite" "$LAB_RUN/denoising-timeline.nsys-rep"
 python cuda/trace_sqlite.py "$LAB_RUN/denoising-timeline.sqlite" --ranges media/
 
 Interpret the result
-Compare profiled and plain trials at the same 1024 × 1024 resolution. The synchronized media/infer range contains the pipeline’s work. Use the separate boundary and step records to identify denoising and VAE activity before attributing peaks.
+Read vae-comparison.json. Matching latent hashes control what the VAE received. A full-frame decoder call on each control and multiple smaller calls on the 512-pixel treatment demonstrate the branch. Compare the actual pixel differences and inference peaks. The synchronized media/infer range includes the denoiser and VAE.
 
 If the check fails
-Compare the plain and tiled outputs at the same size and seed. The reader retained 20 finite latent snapshots from the instrumented run. Record the shape and step for each snapshot, and report device time only for a trace with a valid device interval.
+If the latent hashes differ, check the model revision, scheduler, prompt, seed and steps before interpreting output pixels. If every decoder call covers the full latent, check the actual tile threshold and dimensions.
 
 Finish
-Keep profiled-tiling, plain-tiling, plain-no-tiling with their output images and result files. Record timings and placement for each separate process.
+Keep the four image-run receipts, comparison JSON, profiler trace and same-version SQLite export with their run identities.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
 
-Recorded result  BLOCKED — The Windows-elevated tiny-kernel retry still fails the activity-timestamp gate. Earlier diffusion, tiling and paging results retain their original workload scope; no new diffusion workload or denoiser/VAE timing was measured.
-Scope  Usable kernel intervals are required to apportion device time between denoising and decoding.
+Historical record and later reader check  Historical driver probe lacked usable activity timestamps. The R5 reader trial compared three decodes of the same latent; the reduced tile edge gave nine decoder calls.
+Scope  Matched output pixels, inference peak and an aggregate device range. The range includes denoising and decode.
 
 Recorded files
 python reader/records.py 186 --files

@@ -1,20 +1,41 @@
 For beginner explanations and worked examples, open reader/TECHNOLOGY_OVERVIEWS.md
 or run python3 reader/technologies.py NUMBER from the working lab.
 
+1-minimal reproducer
+A failing input for which removing any one remaining element stops the specified failure. A smaller failing input can exist elsewhere.
+
 Allocation and residency
-An allocation grants storage through an API. Residency describes where its backing is currently located; a successful allocation does not establish physical placement.
+Allocation grants storage. Page residency describes its current physical backing. For a serving process, model residency describes whether weights remain loaded between requests.
 
 Architecture and ABI
 Architecture identifies the instruction set, such as aarch64. The application binary interface also constrains how compiled components interact; a matching architecture alone is insufficient.
 
-Recorded run
-A command capture with metadata, output and execution scope. Label 025.01 means the first printed capture for Exercise 25; use its guide for a new run.
+Backend
+A compute backend implements operators on a device. A serving backend owns a model behind an endpoint. An ONNX execution provider implements supported graph nodes in a session.
+
+BF16
+Bfloat16 has one sign bit, eight exponent bits and seven fraction bits. Its exponent range is comparable to FP32. Its representable values have wider spacing.
 
 Checkpoint and recovery state
 An inference checkpoint contains selected model parameters. Faithful training recovery can also require optimizer, scheduler, scaler, RNG and data-position state.
 
+Classifier-free guidance
+Combine conditional and unconditional noise estimates as εᵤ + s(ε꜀ − εᵤ), where s is the guidance scale.
+
+Context
+A language model’s context is the sequence of token positions available to it. A CUDA context holds device execution state and resources for a process.
+
+Control
+A comparison condition with a known or deliberately changed input. State which variable changes and what observation would distinguish the outcomes.
+
 CUDA driver toolkit and runtime
 The mapped Windows driver supplies device access. The toolkit includes development tools such as NVCC. An application/framework can carry a different set of user-space CUDA libraries.
+
+DCGM
+NVIDIA Data Center GPU Manager provides supported monitoring and diagnostic facilities.
+
+ELF
+Executable and Linkable Format, the binary object format used for the Linux executables and device objects discussed here.
 
 Embedding and pooling
 An embedding represents an item as a vector. Pooling combines token-level values into one vector; masks determine which tokens participate.
@@ -23,10 +44,31 @@ Epoch step and batch
 A batch is a group of examples processed together. A step advances the configured training operation; an epoch traverses a dataset according to its sampling rules.
 
 Execution origin
-The environment and mechanism that produced a record: laptop GPU, laptop CPU, simulation, historical preparation, illustration or an owner report.
+LAPTOP identifies the recorded laptop run. READER identifies a dated reader execution or comparison. Preparation, simulation, illustration and owner reports carry their respective origins. A figure caption identifies the underlying source.
+
+Fixture
+A deliberately constructed input, service or data set with known behavior that can be replayed.
+
+FP16
+IEEE binary16 uses one sign bit, five exponent bits and ten fraction bits. Its largest finite value is 65,504.
+
+Fragmentation
+Free space is split into blocks that cannot satisfy the requested size or allocation constraints even when the sum of free bytes would suffice.
+
+GPU offload
+See Offload. In the llama.cpp exercises the named destination is the GPU.
+
+Guard
+A compiler guard checks whether a graph can be reused. An admission guard checks workload or resource limits before accepting a request.
 
 Held-out evaluation
 Evaluation on data excluded from the relevant training or selection stage. Repeatedly choosing settings on that same data can compromise its independence.
+
+Host
+Windows runs the WSL2 virtual machine. In CUDA, host means the CPU side of a program. A container shares its container host’s kernel, here the Linux guest kernel.
+
+IPC
+Inter-process communication transfers data or signals between processes.
 
 KV cache
 Saved attention keys and values for retained tokens. Its allocation depends on model architecture, precision, context and concurrent sequences.
@@ -34,23 +76,92 @@ Saved attention keys and values for retained tokens. Its allocation depends on m
 Latency and throughput
 Latency measures elapsed time for a defined operation. Throughput measures completed work per time interval; errors and workload definitions must accompany both.
 
+LFS
+Git Large File Storage tracks a pointer in Git and stores the large object separately. Verify the downloaded object size and digest.
+
+Logits
+Unnormalized model scores for the possible output classes or next tokens, before softmax.
+
+LoRA
+Low-rank adaptation freezes the base in these exercises and trains two added factors for each selected weight matrix. Rank is their inner dimension. Standard LoRA scales their product by alpha divided by rank.
+
+Manifest
+A companion manifest identifies distributed files and digests. A model snapshot manifest identifies model files and their revision. A container image manifest identifies its configuration and ordered layers.
+
 Masked language modeling
 Predicting selected token identities from surrounding context. This objective does not by itself establish sentence-retrieval quality.
 
+Microbatch
+In llama.cpp, -ub limits the tokens processed in a physical batch and -b limits a logical batch. In training, a microbatch is the group of examples contributing one gradient before accumulation.
+
+MMS
+Massively Multilingual Speech, the family that includes the English text-to-speech checkpoint used here.
+
+NCCL
+NVIDIA Collective Communications Library implements supported multi-device communication operations.
+
+NF4
+4-bit NormalFloat encodes a block-scaled weight with an index into a 16-value codebook designed for normally distributed weights.
+
+NVML
+The NVIDIA Management Library supplies supported management queries. Use the field name, sampling interval, scope and unit with every measurement.
+
+OCI
+The Open Container Initiative specifies image formats and runtime interfaces.
+
 Offload
-Placing part of the workload or model outside the GPU execution/storage path. Host memory and transfer costs remain part of the experiment.
+Moving computation or data to a named destination. GPU layer offload in llama.cpp moves eligible layers to the GPU. CPU offload moves named components to CPU memory. Disk offload uses storage as a backing tier.
+
+Oracle
+An independently computed or explicitly known expected result against which to check an output.
+
+PEFT
+Parameter-efficient fine-tuning updates a small trainable parameter set. With LoRA in this book the trainable parameters are newly added factors.
+
+Percentile and p95
+A percentile describes a position in an ordered sample. Nearest-rank p95 selects the one-based observation at ceil(0.95 × n). A bucketed histogram estimates it by a different rule.
+
+Pinned
+A pinned revision or image fixes an artifact identity. Pinned host memory means page-locked CPU memory used for supported device transfers.
+
+Predicate
+A test that classifies an input or observation, for example whether a reduced input still reproduces a specified failure.
 
 Provider and backend
-The component selected to execute an operation or model. Requesting one does not prove that every operation actually used it.
+See Backend and Execution provider for serving, compute and graph placement.
+
+QLoRA
+LoRA trained with a frozen quantized base. The original method combines NF4, double quantization and paged optimizers. Report the actual features used by the run.
 
 Quantization
 Representing values with a restricted numerical format and associated scales or metadata. File size, execution support and quality must be checked separately.
 
+Rank (LoRA)
+The inner dimension of the two added low-rank factors. In a distributed job rank identifies a worker.
+
+Receipt
+A saved record of inputs, identity, result and execution status. An action receipt records validation or dispatch. A result receipt can also record a local experiment.
+
+Recorded run
+A command capture with metadata, output and execution scope. Label 025.01 means the first printed capture for Exercise 25; use its guide for a new run.
+
 RNG state
 State of a random-number generator. A seed alone may not reconstruct its position after a partially completed run.
 
+Roofline
+The modeled ceiling is the lesser of peak compute and bandwidth times arithmetic intensity. The ridge point is compute ceiling divided by bandwidth, in operations per byte.
+
+RSS
+Resident set size, the amount of a process’s mapped memory currently resident in RAM. Shared pages can appear in more than one process.
+
+Sampling interval
+For a metric, the requested or observed time between polls. A trace-sampling policy selects requests or spans for retention. A device field can have its own provider sampling interval.
+
 Stream and synchronization
-A CUDA stream orders submitted work within that stream. Dependencies between streams require appropriate synchronization.
+See Stream. An event wait orders work across streams. A host synchronization waits for the selected work to complete.
+
+TF32
+TensorFloat-32 uses FP32-range inputs rounded to ten fraction bits for supported Tensor Core multiplies, with FP32 accumulation. State the backend setting in a precision comparison.
 
 Token and tokenizer
 A tokenizer converts text into model-specific units and IDs. The same text can produce different IDs under a different tokenizer or template.
@@ -58,5 +169,20 @@ A tokenizer converts text into model-specific units and IDs. The same text can p
 Trace and sample
 A trace records selected events or spans. A sample observes state at a point or interval; neither provides evidence for unobserved activity automatically.
 
+Training checkpoint
+See Checkpoint and recovery state. A recovery checkpoint can include optimizer, scheduler, random-generator and data-position state.
+
+Unified memory
+Distinguish three concepts. The laptop shares physical memory between CPU and GPU. CUDA managed allocations can use cudaMallocManaged under platform rules. Unified virtual addressing (UVA) relates address spaces. CUDA shared memory is separate on-chip storage scoped to a thread block in these exercises.
+
 Unified physical memory
-Shared physical backing does not make Windows, WSL, NVML, CUDA and framework counters interchangeable. Compare their scopes before doing arithmetic.
+See Unified memory for the laptop’s common physical backing and the distinct programming interfaces.
+
+UVA
+Unified virtual addressing provides a unified address-space model for supported host and device allocations. Accessibility depends on the allocation and platform.
+
+VITS
+Variational Inference with adversarial learning for end-to-end Text-to-Speech, the speech synthesis architecture used with the English MMS model.
+
+Warp
+A group of 32 CUDA threads on this device. Collective operations require the correct participating lanes.
