@@ -1,7 +1,7 @@
 {
   "book": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R5.docx",
-    "sha256": "418fc50badf6892aeea7bb10b902235b98bbd8076b14a561cfc543904ddcc0ec"
+    "sha256": "1ad3089e47b3bcc3527bd0eadc63adca35f39478fd81dc7faff25ae5474055c3"
   },
   "compatible_books": [
     {
@@ -47,7 +47,7 @@
   ],
   "print_pdf": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R5.pdf",
-    "sha256": "dff5b43263cd38e2944f1c0ff2a2ceb28f7881fd8bdaaadf21b654085a889ad3"
+    "sha256": "66a742f064dab25460a7a390bd9e4b3d0d14ee1b1495c37034ed8d11994364f5"
   },
   "version": 59,
   "profile": "learner",
@@ -59,7 +59,7 @@
     {
       "path": "EXERCISE_EVIDENCE_MAP.json",
       "bytes": 162877,
-      "sha256": "06e09ce302e672e29535b252f99aba1690c5e3f5f532d5c131b054b5b0c70ec6"
+      "sha256": "66a0d8868812b5e373ff4b93d25edc2e294fd1958dcb835cb56040fbca12652e"
     },
     {
       "path": "README.txt",
@@ -3259,7 +3259,7 @@
     {
       "path": "reader/recorded-runs.json",
       "bytes": 249177,
-      "sha256": "b9fc3882dc726b978280a24d80f2e3067446a161a68df6a180eadd1d403ec039"
+      "sha256": "a881fcf2e1d17faed970c53b6dda3f2bc6461141d052bd8c88dafa0c9dab14f8"
     },
     {
       "path": "reader/records.py",
@@ -3289,7 +3289,7 @@
     {
       "path": "reader/workspace-files.json",
       "bytes": 123912,
-      "sha256": "6d3555d60e87948eb0af0207859b2e48f999422f6dda78f1680196dfffbbab24"
+      "sha256": "7bc5a992fee5f55fdacb0f79894953086e31b4beff1f0c0c8a21c51545714457"
     },
     {
       "path": "requirements-exercises.lock",

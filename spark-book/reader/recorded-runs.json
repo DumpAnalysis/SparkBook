@@ -3679,7 +3679,7 @@
       "scope": "CPU | UTC 2026-10-30T20:41:35.496056+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “prepare_adaptation.py: error: train and dev audio must differ”. Compare this with exit 2 and the exercise criterion.",
-      "book_page": 643,
+      "book_page": 644,
       "printed_sha256": "8c53416139fefd0f602be21d226bff4a78743b92037aa603ce7f61fc06d0df1c"
     },
     {
@@ -3699,7 +3699,7 @@
       "scope": "GPU training, frozen-weight CPU equality | UTC 2026-10-30T20:41:36.704216+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In the command, locate --steps 4, --model whisper. These settings identify the case being compared.",
-      "book_page": 644,
+      "book_page": 645,
       "printed_sha256": "1e6f16f862fbb58b0b7e58b8259460c96f7e0e5da7678cf58deb9f77b40a6359"
     },
     {

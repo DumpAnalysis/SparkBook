@@ -4,7 +4,7 @@
     {
       "path": "EXERCISE_EVIDENCE_MAP.json",
       "bytes": 162877,
-      "sha256": "06e09ce302e672e29535b252f99aba1690c5e3f5f532d5c131b054b5b0c70ec6"
+      "sha256": "66a0d8868812b5e373ff4b93d25edc2e294fd1958dcb835cb56040fbca12652e"
     },
     {
       "path": "README.txt",
@@ -3204,7 +3204,7 @@
     {
       "path": "reader/recorded-runs.json",
       "bytes": 249177,
-      "sha256": "b9fc3882dc726b978280a24d80f2e3067446a161a68df6a180eadd1d403ec039"
+      "sha256": "a881fcf2e1d17faed970c53b6dda3f2bc6461141d052bd8c88dafa0c9dab14f8"
     },
     {
       "path": "reader/records.py",
