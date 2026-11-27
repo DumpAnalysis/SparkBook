@@ -78,4 +78,6 @@ Exercise 11 now stops the Q4 owner before preparing Q8 and restores Q4 after the
 
 ### Version 59 illustrated revision 5
 
+Developed with AI assistance (GPT-6.2 Astra and Claude Fable 5.2)
+
 The [chapter self-check key](spark-book/reader/SELF_CHECKS.txt) covers 200 questions. [Exercise 186](spark-book/reader/exercises/186.txt) compares three VAE settings on matching latents and records each decoder call. Exercises 39–40 identify the historical and reader Nsight Systems results, Exercise 104 separates the two batch configurations, and Exercise 200 identifies the Whisper parameters being fine-tuned.

@@ -1,6 +1,8 @@
 Local AI on RTX Spark Laptops
 Learner companion · Version 59 illustrated revision 5 · 27 November 2026
 
+Developed with AI assistance (GPT-6.2 Astra and Claude Fable 5.2)
+
 START HERE
 Read reader/START_HERE.txt. Clone https://github.com/DumpAnalysis/SparkBook or unzip the companion
 in a staging directory in WSL2. Open spark-book/ and create the working lab:
