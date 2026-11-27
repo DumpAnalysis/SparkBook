@@ -35,7 +35,7 @@ compute-sanitizer --tool initcheck --error-exitcode 86 ./cuda/bin/cuda-lab unini
 compute-sanitizer --tool synccheck --error-exitcode 86 ./cuda/bin/cuda-lab sync
 
 Interpret the result
-A successful workload does not establish usable debugger, counter or trace data.
+Qualify the clean control for each sanitizer first. Keep the uninitialized read, race and correct barrier as separate results. A successful Systems capture does not grant sanitizer access.
 
 If the check fails
 Record the Windows driver, GPU debugger-interface state, tool version and the result on a known-good kernel before the fault control. If device inspection or sanitizer initialization fails on the good control, record the prerequisite as blocked. The host breakpoint still has its own result.

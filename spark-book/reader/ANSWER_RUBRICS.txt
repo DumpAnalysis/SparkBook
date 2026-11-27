@@ -19,3 +19,15 @@ E01 checks the interpreter and missing framework. E02 asks whether records from 
 Exercises 187, 191 and 201: media
 
 For the green-cup edit, score foreground cup color, notebook color and preservation of the composition separately. For the square adapter, compare the filled foreground and background as well as file identity and finite training loss. For audio, record technical validity and seed repeatability, then obtain a separate listening assessment.
+
+Worked reader scores
+
+6. R17 produced four supported observations, two proposed explanations and one next measurement. For the requested counts, award 0/1, 1/1 and 1/1 respectively. Preserve the full answer and finish reason.
+
+16. The model cited [E2] and wrote “because there are no logs from service B in the evidence set.” Citation present earns 1/1. The causal claim earns 0/1. Missing logs leave B’s behavior unknown.
+
+19–20. Record each tool result the planner actually read and quote the span supporting each claim. HTTP 400 in the request tool earns 1/1 for observing the oversized-request rejection and 0/1 for inferring model readiness. In a snapshot, the HTTP status and timestamps in the receipt describe the local exchange. An incident described inside the model’s generated answer needs independent incident evidence.
+
+26–27 and 169–171. Score each E01–E04 reply as five binary items. Save base and adapter answers under different names. Compare checkpoint state, full continuations, format, and handling of quoted instructions in separate columns. Equal first-token logits or a matching checkpoint does not establish the score on E04.
+
+177, 187, 198 and 201. Keep the original text, image or waveform with the score. Score each shape by color and position; each cup edit by requested color, notebook and layout; silence by the number of inserted words; each adapter image by fill and color. For an empty reference, record the insertion count and WER as null.

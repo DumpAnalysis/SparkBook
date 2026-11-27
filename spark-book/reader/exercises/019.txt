@@ -35,7 +35,7 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 python agent.py --out "$LAB_RUN/agent-live.json"
 
 Interpret the result
-Match each claimed tool result to a saved tool receipt. In the reader run, the planner cited a read request and also claimed that a load succeeded. The receipts supported only the read.
+Read the tool history before grading the final diagnosis. In the reader trial the only tool result said the client received HTTP 400 for an oversized prompt. Score that observation 1/1 and the additional claim that the model loaded 0/1. Runtime evidence was available to read but the planner never requested it.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.

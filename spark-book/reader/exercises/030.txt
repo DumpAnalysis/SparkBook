@@ -34,7 +34,7 @@ Use the directory from Exercise 29 in the same LAB_RUN, or supply its absolute p
 python memory_budget/guarded.py report --run "$LAB_RUN/model32"
 
 Interpret the result
-If the guarded run stops before the pressure-labelled request, report that interval as unavailable. Preserve the Windows and guest samples from completed requests and record the minimum headroom with its timestamp.
+Read admission.json and result.json from the same run. A guard stop before launch supplies a baseline and stop reason. A request-time pressure curve needs samples during an admitted generation. Keep the existing floors.
 
 If the check fails
 Check dataset/tokenizer identity and memory at the failing phase before changing precision.

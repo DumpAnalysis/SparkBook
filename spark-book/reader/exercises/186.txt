@@ -43,9 +43,12 @@ These three 1024 × 1024 trials use model offload. Recheck current host and CUDA
 python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/profiled-tiling" --tiling --trace-steps --profile --snapshot
 python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/plain-tiling" --tiling
 python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/plain-no-tiling"
+bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none -o "$LAB_RUN/denoising-timeline" python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a red ceramic cup" --width 1024 --height 1024 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/denoising-timeline-media" --tiling --trace-steps --nvtx --snapshot
+bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/denoising-timeline.sqlite" "$LAB_RUN/denoising-timeline.nsys-rep"
+python cuda/trace_sqlite.py "$LAB_RUN/denoising-timeline.sqlite" --ranges media/
 
 Interpret the result
-Separate signal validity, task quality, listening/visual review and profiler availability.
+Compare profiled and plain trials at the same 1024 × 1024 resolution. The synchronized media/infer range contains the pipeline’s work. Use the separate boundary and step records to identify denoising and VAE activity before attributing peaks.
 
 If the check fails
 Compare the plain and tiled outputs at the same size and seed. The reader retained 20 finite latent snapshots from the instrumented run. Record the shape and step for each snapshot, and report device time only for a trace with a valid device interval.

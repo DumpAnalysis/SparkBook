@@ -35,9 +35,12 @@ Run the labelled arithmetic fixture first. Build the reference with bash kernels
 python kernels/timing_summary.py "$LAB_RUN/arithmetic-fixture.csv" --fixture
 ./kernels/bin/kernel-lab bench 1048576 256 100 "$LAB_RUN/timing.csv"
 python kernels/timing_summary.py "$LAB_RUN/timing.csv"
+bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none -o "$LAB_RUN/kernel-bench" ./kernels/bin/kernel-lab bench 1048576 256 100 "$LAB_RUN/profiled-timing.csv"
+bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/kernel-bench.sqlite" "$LAB_RUN/kernel-bench.nsys-rep"
+python cuda/trace_sqlite.py "$LAB_RUN/kernel-bench.sqlite"
 
 Interpret the result
-Validate values and bounds before comparing performance.
+Pair each named kernel with its CUDA-event timing rows for the same shape and launch settings. Use the unprofiled and profiled CSVs separately. Check the device event count and duration for each variant.
 
 If the check fails
 Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.

@@ -39,7 +39,7 @@ python finetune.py merge --adapter "$ADAPTER" --output "$LAB_RUN/merged"
 python compare_merge.py --adapter "$ADAPTER" --merged "$LAB_RUN/merged/merged" --out "$LAB_RUN/merge-check"
 
 Interpret the result
-Compare the maximum absolute logit difference, the first greedy token and the complete greedy continuation. The reader reproduced a maximum difference of 0.375 and matching first-token argmax. All four held-out continuations diverged.
+Check the four prompts in merge-check. Record finite logits, maximum absolute difference, first-token agreement and each complete continuation. In the reader trial all four first tokens agreed, maximum logit difference was 0.375, and zero of four full continuations matched. Score the deployment for the behavior your application actually needs.
 
 If the check fails
 Check dataset/tokenizer identity and memory at the failing phase before changing precision.

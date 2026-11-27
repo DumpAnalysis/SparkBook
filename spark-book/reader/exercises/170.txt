@@ -37,7 +37,7 @@ Run in your lab
 Use the saved-state comparison procedure in Chapter 80. Preserve model, adapter, optimizer, RNG and iterator state. The recovery comparison covers a map-style dataset with zero workers and shuffling disabled.
 
 Interpret the result
-Compare against an independent reference and retain provider/build identities.
+Compare named tensors in resumed and uninterrupted checkpoints and report the count and largest difference. The reader compared 392 tensors with maximum difference zero. Separately check optimizer, scheduler, iterator and RNG state for the claimed recovery scope.
 
 If the check fails
 Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.

@@ -35,7 +35,7 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 ncu --set basic --kernel-name regex:transform --launch-skip 1 --launch-count 1 --clock-control none --cache-control none --export "$LAB_RUN/kernel" ./cuda/bin/cuda-lab work
 
 Interpret the result
-A successful workload does not establish usable debugger, counter or trace data.
+Require a counter report for the transform kernel and the metric units. Record a permissions error as a counter prerequisite. Nsight Systems device durations measure time only.
 
 If the check fails
 Retain the exact Nsight Compute permission error and the passing workload result. Record the requested GPU counter and the Windows driver permission state before repeating the same measurement.

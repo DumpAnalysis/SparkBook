@@ -42,7 +42,7 @@ python large_model.py --download
 python memory_budget/guarded.py model --out "$LAB_RUN/model32"
 
 Interpret the result
-Retain the native placement line and each HTTP reply, including evidence from a guard stop. In the reader trial 51/65 layers appeared on GPU and four requests returned 200 before Windows fell below the 2 GiB active floor.
+After --download, inspect runs/large-model-manifest.json for all nine verified shards. Record the Windows and guest admission decision separately. Count a generation only when a request receipt contains a completion from this model.
 
 If the check fails
 Check dataset/tokenizer identity and memory at the failing phase before changing precision.
