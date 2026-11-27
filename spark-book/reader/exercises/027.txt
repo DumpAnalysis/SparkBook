@@ -15,7 +15,7 @@ Fine-tuning, LoRA and trainable parameters
 
 In a training step the model makes a prediction. A loss measures its disagreement with the target. Backpropagation computes gradients, and an optimizer uses them to adjust trainable parameters. Fine-tuning starts from a pretrained model. The Transformers library loads the model and tokenizer, while PEFT provides parameter-efficient training methods.
 
-LoRA freezes selected base weights and learns a smaller update represented by two matrices. An adapter stores these learned changes. Inspect the trainable parameter count, the base revision and a held-out answer. A fall in training loss is evidence about the training examples.
+LoRA freezes the pretrained weights in this exercise. For each selected matrix, it learns two new factors with inner dimension r. With input width d and output width k, the two factors train r × (d + k) parameters. The update is scaled by alpha/r, here 16/8 = 2. The 28 layers’ query and value projections account for 1,089,536 trainable parameters. Keep the factors, tokenizer identity and exact base revision together.
 
 Before you start
 Exercise 26 (compare complete held-out answers)

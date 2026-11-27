@@ -15,7 +15,7 @@ Loading a model with llama.cpp
 
 llama.cpp is a native inference runtime. Its llama-server executable opens the model file, prepares memory for inference and listens for requests. The file on disk, the running process and the address clients call are three different things. A downloaded model alone cannot answer a prompt.
 
-Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server.
+Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server. Here -b is the maximum logical token batch submitted to llama.cpp and -ub bounds the physical microbatch processed together. Training uses microbatch for the example group contributing one accumulated gradient.
 
 Before you start
 Exercise 1 (inventory the existing environment)

@@ -7,7 +7,7 @@ Technology background
 
 Roofline models of kernel performance
 
-A roofline relates work performed to data moved. Arithmetic intensity is operations divided by bytes transferred at a stated memory boundary. Multiplying that intensity by bandwidth gives a memory-based ceiling. The smaller of that number and the compute ceiling gives the model’s upper bound for that intensity.
+A roofline relates work performed to data moved. Arithmetic intensity is operations divided by bytes transferred at a stated memory boundary. Multiplying that intensity by bandwidth gives a memory-based ceiling. The smaller of that number and the compute ceiling gives the model’s upper bound for that intensity. The ridge point is compute ceiling divided by bandwidth. With 10 TFLOP/s and 100 GB/s it is 100 operations per byte. The illustrative add is below that crossover, and the 1024-square ideal matrix product is above it.
 
 For example, two operations per byte and an assumed 100 GB/s give a 200 billion operations/s memory ceiling. Those are teaching inputs. An achieved point for this laptop requires measured work, time and an appropriate account of memory traffic. Keep estimated and measured values labeled.
 

@@ -6,6 +6,7 @@ from PIL import Image
 from scipy.io import wavfile
 import torch
 from contracts import *
+from compare_vae import compare as compare_vae
 from diffusion_control import schedule,mix,reconstruct
 from adapt_asr import dataset
 from voice import local_url
@@ -69,4 +70,41 @@ class Contracts(unittest.TestCase):
         f=self.audio(np.zeros(16000,np.int16));out=self.p/'voice'
         cp=subprocess.run([sys.executable,str(ROOT/'voice.py'),'--audio',str(f),'--model-name','unused','--out',str(out)],capture_output=True,text=True)
         self.assertNotEqual(cp.returncode,0);self.assertIn('digital silence',cp.stderr);self.assertFalse(out.exists())
+class VAETilingEvidence(unittest.TestCase):
+    def test_controls_must_share_a_latent_and_actually_decode_tiles(self):
+        from hashlib import sha256
+        with tempfile.TemporaryDirectory() as temp:
+            directories = [Path(temp) / name for name in ('plain', 'default', 'tiled')]
+            for index, directory in enumerate(directories):
+                directory.mkdir()
+                png = directory / 'output.png'
+                Image.new('RGB', (8, 8)).save(png)
+                fields = ['alpha', 'beta'] if index == 0 else ['beta', 'alpha']
+                receipt = {
+                    'status': 'ok', 'model': {'revision': 'test'}, 'scheduler': 'test',
+                    'scheduler_config': {'_use_default_values': fields, 'beta': 0.2},
+                    'arguments': {'text': 'fixture', 'seed': 0, 'width': 8, 'height': 8,
+                                  'steps': 1, 'guidance': 1, 'placement': 'cpu', 'input': None, 'strength': 1},
+                    'output_sha256': {'output.png': sha256(png.read_bytes()).hexdigest()},
+                    'phases': [{'name': 'infer', 'peak_allocated': 64}],
+                    'vae_decode': {'enabled': index > 0, 'tile_latents': 2 if index == 2 else 4,
+                                   'latent_sha256': 'a' * 64, 'latent_shape': [1, 4, 4, 4],
+                                   'decoder_inputs': [[2, 2]] * 4 if index == 2 else [[4, 4]]},
+                }
+                (directory / 'result.json').write_text(json.dumps(receipt))
+            report = compare_vae(directories)
+            self.assertEqual(len(report['runs']['tiled']['decoder_inputs']), 4)
+            path = directories[2] / 'result.json'
+            for key, value, message in [('decoder_inputs', [[4, 4]], 'bounded decoder'),
+                                         ('latent_sha256', 'b' * 64, 'latent differ'),
+                                         ('latent_sha256', None, 'digest')]:
+                original = path.read_text()
+                data = json.loads(original)
+                data['vae_decode'][key] = value
+                path.write_text(json.dumps(data))
+                with self.assertRaisesRegex(ValueError, message):
+                    compare_vae(directories)
+                path.write_text(original)
+
+
 if __name__=='__main__':unittest.main(verbosity=2)

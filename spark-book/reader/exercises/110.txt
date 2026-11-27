@@ -9,7 +9,7 @@ Stalled workers and stack traces
 
 A process can be alive while it makes no progress. A stack trace lists the active chain of function calls in a thread. A heartbeat records progress or liveness at intervals, depending on what it measures. A supervisor can impose a deadline and collect a stack from a deliberately stalled teaching worker.
 
-Read the last completed step, stack and child exit together. If several samples show the worker waiting at the same point, inspect what would release that wait. The supervisor can complete successfully after recording a child failure, so retain both exits.
+Read the last completed step, stack and child exit together. If several samples show the worker waiting at the same point, inspect what would release that wait. The supervisor can complete successfully after recording a child failure, so retain both exits. A heartbeat from a separate monitor shows that monitor is alive. A completed-step counter emitted by the worker tests its progress.
 
 Client workers, queues and concurrency
 

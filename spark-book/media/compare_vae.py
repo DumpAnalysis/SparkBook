@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 
 import numpy as np
@@ -14,7 +15,13 @@ def load(directory):
     if receipt['status'] != 'ok' or hashlib.sha256(png.read_bytes()).hexdigest() != receipt['output_sha256']['output.png']:
         raise ValueError(f'Incomplete or mismatched image in {directory}')
     with Image.open(png) as im:
+        args = receipt['arguments']
+        if im.size != (args['width'], args['height']):
+            raise ValueError(f'Request and output dimensions differ in {directory}')
         pixels = np.array(im.convert('RGB'), dtype=np.int16)
+    digest = receipt['vae_decode'].get('latent_sha256')
+    if not isinstance(digest, str) or not re.fullmatch(r'[0-9a-f]{64}', digest):
+        raise ValueError(f'Missing final-latent digest in {directory}')
     return receipt, pixels
 
 

@@ -9,7 +9,7 @@ Docker images, containers and volumes
 
 An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.
 
-Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content.
+Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content. Here the container host shares the WSL guest’s kernel. A container memory limit above the measured 15.70 GiB guest RAM cannot grant additional physical guest RAM. Swap policy and current availability also matter.
 
 The NVIDIA Container Toolkit and GPU visibility
 

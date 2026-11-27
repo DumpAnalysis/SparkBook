@@ -13,7 +13,7 @@ A CUDA Graph records a set of operations and their dependencies for replay with 
 
 Sharing a GPU and owning a model
 
-Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers.
+Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers. The Multi-Process Service (MPS) lets eligible work from several client processes use the GPU concurrently. Each client still owns its model parameters. This laptop’s serving checks use their recorded ownership policy.
 
 NVIDIA Multi-Process Service, or MPS, is a separate GPU scheduling facility with platform requirements. It does not automatically merge separate model copies. The single-owner queue in this lab lets us study waiting, cancellations and sharing on the available laptop without assuming MPS support.
 

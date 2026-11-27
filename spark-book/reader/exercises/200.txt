@@ -1,13 +1,13 @@
 Exercise 200  Adapt a small speech recognizer and inspect frozen weights
 
 Question
-Can a small adapter update selected recognizer weights while the base remains frozen?
+What changes when only the final Whisper decoder block is fine-tuned?
 
 Technology background
 
 Adapting speech and image models
 
-A speech recognizer can learn from recordings paired with verified transcripts. An image adapter can learn from images paired with descriptions. In both cases the examples define what the training objective rewards. Two recordings of the same utterance or nearly identical image captions can make a held-out comparison misleading.
+A speech recognizer can learn from recordings paired with verified transcripts. An image adapter can learn from images paired with descriptions. In both cases the examples define what the training objective rewards. Two recordings of the same utterance or nearly identical image captions can make a held-out comparison misleading. Exercise 200 updates existing parameters in Whisper’s final decoder block. Exercise 201 instead adds trainable low-rank factors to the image model.
 
 For speech, inspect the audio and its actual reference words before training. For images, hold the base, prompt, seed and sampling settings fixed when enabling or disabling the adapter. Score the requested change and what should be preserved. A changed waveform or image fingerprint establishes a different output.
 
@@ -31,7 +31,7 @@ Recorded step time
 18.4 s for Four step ASR adaptation (record 200.03).
 
 Check for success
-Compare the trainable set and base identities, train/dev split and before/after hypotheses on held-out audio.
+Verify 2,365,824 trainable final-block parameters, unchanged frozen weights, four finite updates, distinct recording digests and a held-out transcript scored before and after training.
 
 Run in your lab
 Use distinct train and development recordings. Inspect the generated asr.jsonl and correct its reference text to match your recordings before running adaptation. The trainer reads that JSONL file.
@@ -43,13 +43,13 @@ python media/prepare_adaptation.py --train-audio "$TRAIN_AUDIO" --dev-audio "$DE
 python media/adapt_asr.py --model models/media/whisper --data "$LAB_RUN/adaptation-data/asr.jsonl" --steps 4 --out "$LAB_RUN/asr-adapter"
 
 Interpret the result
-Separate signal validity, task quality, listening/visual review and profiler availability.
+Inspect the trainable parameter count, frozen-weight check and held-out transcript. This procedure updates existing parameters of the last decoder block. Exercise 201 trains a separate image adapter. A smaller training loss alone cannot establish a held-out improvement.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.
 
 Finish
-Keep $LAB_RUN/adaptation-data, $LAB_RUN/asr-adapter with the command and exit that produced it.
+Keep the split manifest, both source recordings, result.json, saved fine-tuned model, processor and optimizer state in the adaptation-data and asr-adapter directories.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

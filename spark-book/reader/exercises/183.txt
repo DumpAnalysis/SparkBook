@@ -7,7 +7,7 @@ Technology background
 
 Diffusion, noise prediction and a sampling schedule
 
-A diffusion exercise starts with clean data and adds noise at a chosen level according to a schedule. A denoising model learns to estimate a quantity needed to step back toward a sample. Generation begins with noise and repeatedly updates it using the model and scheduler.
+In the epsilon-prediction control, clean x₀ and sampled noise ε are mixed at time t as xₜ = √ᾱₜ x₀ + √(1 − ᾱₜ) ε. Alpha-bar is the cumulative product of the schedule’s retained-signal factors. A model learns to estimate ε. With the exact noise, recover x₀ by subtracting √(1 − ᾱₜ) ε from xₜ and dividing by √ᾱₜ.
 
 The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved.
 

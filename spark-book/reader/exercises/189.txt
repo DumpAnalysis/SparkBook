@@ -13,7 +13,7 @@ Start with the known tone and a silent interval. Check the sample rate, time axi
 
 MusicGen and discrete audio tokens
 
-MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file.
+MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file. At 32,000 samples/s and 50 codec frames/s, one codec frame covers 640 waveform samples. The four-codebook delay pattern in this run uses three steps. For 256 generation steps the 253 frames yield 161,920 samples, or 5.06 s.
 
 Generate one short clip and record the prompt, seed, number of generated steps, waveform shape and sample rate. Derive playback duration from the waveform. Listening answers questions about music or artifacts that a successful WAV write and the model’s timing numbers cannot settle.
 

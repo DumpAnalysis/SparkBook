@@ -27,7 +27,7 @@ Each entry explains a technology used in the WSL2 laboratory and gives an exampl
 - [DataLoader, queues and prefetching](#topic-supply)
 - [Datasets, labels and independent evaluation](#topic-splits)
 - [Decision calibration, risk and coverage](#topic-calibration)
-- [A device buffer, a tensor snapshot and a GPU core dump](#topic-dumps)
+- [Device buffer exports, allocator snapshots and GPU core dumps](#topic-dumps)
 - [Diagnostic observations, controls and written conclusions](#topic-reasoning)
 - [Diagnostic patterns and evidence cards](#topic-casebook)
 - [Diffusion, noise prediction and a sampling schedule](#topic-diffusion)
@@ -125,7 +125,7 @@ Each entry explains a technology used in the WSL2 laboratory and gives an exampl
 
 [Exercise 200](exercises/200.txt) · book page 640
 
-A speech recognizer can learn from recordings paired with verified transcripts. An image adapter can learn from images paired with descriptions. In both cases the examples define what the training objective rewards. Two recordings of the same utterance or nearly identical image captions can make a held-out comparison misleading.
+A speech recognizer can learn from recordings paired with verified transcripts. An image adapter can learn from images paired with descriptions. In both cases the examples define what the training objective rewards. Two recordings of the same utterance or nearly identical image captions can make a held-out comparison misleading. Exercise 200 updates existing parameters in Whisper’s final decoder block. Exercise 201 instead adds trainable low-rank factors to the image model.
 
 For speech, inspect the audio and its actual reference words before training. For images, hold the base, prompt, seed and sampling settings fixed when enabling or disabling the adapter. Score the requested change and what should be preserved. A changed waveform or image fingerprint establishes a different output.
 
@@ -192,9 +192,9 @@ Further reading
 
 [Exercise 2](exercises/002.txt) · book page 27
 
-One GiB is 1,073,741,824 bytes. On this 64 GB unified-memory laptop, Windows, the WSL2 guest and a CUDA process describe memory from different positions. The free command reports guest RAM. nvidia-smi reports the management interface’s GPU memory view. PyTorch can query the CUDA runtime for free and total bytes visible to its process.
+One GiB is 1,073,741,824 bytes. The installed module in this machine is 64 GiB. Windows reports about 32.23 GiB visible to the OS and NVML reports a dedicated segment of 31,232 MiB, or 30.50 GiB (32.75 decimal GB). The two figures sum to about 62.73 GiB and have different accounting scopes. Guest MemTotal is a separate limit.
 
-Keep the name, unit, time and calling process beside each value. The recorded 31,232 MiB management total and 45.97 GiB CUDA total overlap. Adding them would count some of the same capacity twice. Exercise 251 tests what an allocation can actually write and verify.
+Record the API, units, time and process beside each value. CUDA reported 45.97 GiB across its dedicated and shareable budget. Adding the NVML and CUDA totals counts overlapping memory. Exercise 248 and the memory investigation explain the measured scopes. For an allocation decision query current free bytes and allow for working storage.
 
 Further reading
 
@@ -202,6 +202,8 @@ Further reading
 - [NVIDIA. NVIDIA System Management Interface documentation](https://docs.nvidia.com/deploy/nvidia-smi/index.html)
 - [PyTorch. CUDA semantics and memory management](https://docs.pytorch.org/docs/2.14/notes/cuda.html)
 - [Linux Kernel. The proc filesystem and memory accounting](https://docs.kernel.org/filesystems/proc.html)
+- [PyTorch. torch.cuda.memory.mem_get_info](https://docs.pytorch.org/docs/2.14/generated/torch.cuda.memory.mem_get_info.html)
+- [NVIDIA. CUDA Programming Guide, unified and virtual memory](https://docs.nvidia.com/cuda/cuda-programming-guide/04-special-topics/unified-memory.html)
 
 <a id="topic-qdq"></a>
 
@@ -232,7 +234,7 @@ Further reading
 
 - [Python. time and monotonic clocks](https://docs.python.org/3/library/time.html)
 - [OpenTelemetry. Python manual instrumentation](https://opentelemetry.io/docs/languages/python/instrumentation/)
-- [Prometheus. Query functions including rate resets and histogram_quantile. Consulted 28 October 2026](https://prometheus.io/docs/prometheus/latest/querying/functions/)
+- [Prometheus. Histograms and summaries. Consulted 28 October 2026](https://prometheus.io/docs/practices/histograms/)
 
 <a id="topic-checkpoints"></a>
 
@@ -263,8 +265,8 @@ Compare the same number of requests first with one worker and then with two. Rec
 Further reading
 
 - [ggml-org. llama.cpp HTTP server documentation, pinned tag b11898](https://github.com/ggml-org/llama.cpp/blob/b11898/tools/server/README.md)
-- [PyTorch. Multiprocessing best practices, version 2.14](https://docs.pytorch.org/docs/2.14/notes/multiprocessing.html)
 - [NVIDIA. Triton dynamic batching. Consulted 27 October 2026](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/batcher.html)
+- [Python. ThreadPoolExecutor](https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor)
 
 <a id="topic-http"></a>
 
@@ -306,12 +308,13 @@ Further reading
 
 In eager mode Python issues framework operations as execution reaches them. With torch.compile, TorchDynamo can capture compatible operations into a graph, and a backend such as TorchInductor can optimize and generate executable code. On GPUs that code may include kernels written using the Triton programming language. NVIDIA Triton Inference Server, used in Exercise 150, serves models over a network interface.
 
-Compare two input shapes. Inspect the compiler’s guards, recompilation and graph-break messages. Keep the initial compilation time separate from the timings of later calls. A graph break can return part of the computation to eager execution.
+Read five calls over three input sizes. Inspect the compiler’s guards, recompilation and graph-break messages. Keep the initial compilation time separate from the timings of later calls. A graph break can return part of the computation to eager execution. A graph break ends a captured graph. Unsupported work can execute eagerly before capture resumes. A leading size of zero or one can change broadcasting and stride behavior, so a dynamic graph can still carry a lower-bound guard of two.
 
 Further reading
 
 - [PyTorch. Compiler observability and TORCH_LOGS, 2.14 guide](https://docs.pytorch.org/docs/2.14/user_guide/torch_compiler/compile/programming_model.observability.html)
 - [PyTorch. PyTorch compiler](https://docs.pytorch.org/docs/stable/torch.compiler.html)
+- [PyTorch. Dynamic shapes and specialization of zero and one](https://docs.pytorch.org/docs/stable/user_guide/torch_compiler/torch.compiler_dynamic_shapes.html)
 
 <a id="topic-sanitizer"></a>
 
@@ -435,7 +438,7 @@ An exception core permits later inspection of state that the platform captured a
 
 Further reading
 
-- [NVIDIA. CUDA-GDB 13.4 manual, sections 4.5, 13.14 and 16](https://docs.nvidia.com/cuda/cuda-gdb/index.html#known-issues)
+- [NVIDIA. CUDA-GDB manual, WSL and GPU core dump sections](https://docs.nvidia.com/cuda/cuda-gdb/index.html#known-issues)
 
 <a id="topic-operators"></a>
 
@@ -459,7 +462,7 @@ Further reading
 
 [Exercise 124](exercises/124.txt) · book page 408
 
-In data parallelism, each worker owns a model replica and processes part of the batch. An all-reduce combines contributions across ranks. PyTorch DistributedDataParallel synchronizes gradients so replicas can take consistent updates. Unequal local batch sizes require care when relating those updates to a full-batch reference.
+In data parallelism, each worker owns a model replica and processes part of the batch. An all-reduce combines contributions across ranks. PyTorch DistributedDataParallel synchronizes gradients so replicas can take consistent updates. Unequal local batch sizes require care when relating those updates to a full-batch reference. DistributedDataParallel (DDP) averages gradients across participating ranks. Fully Sharded Data Parallel (FSDP) partitions training state. With unequal example counts, an average of rank means needs sample-count weighting to recover the global example mean.
 
 Sharding divides storage or computation, such as assigning different columns of a matrix to different workers. Fully Sharded Data Parallel uses sharding for training state. Compare a small partitioned calculation and its gradients with an unpartitioned reference. That mathematical check can run on CPU before any multi-GPU communication test.
 
@@ -484,7 +487,7 @@ Further reading
 
 - [PyTorch. DataLoader and data processing, version 2.14](https://docs.pytorch.org/docs/2.14/data.html)
 - [PyTorch. Multiprocessing best practices, version 2.14](https://docs.pytorch.org/docs/2.14/notes/multiprocessing.html)
-- [PyTorch data loading with worker processes. See (85)](https://docs.pytorch.org/docs/2.14/data.html)
+- [PyTorch data loading with worker processes. See [85]](https://docs.pytorch.org/docs/2.14/data.html)
 
 <a id="topic-splits"></a>
 
@@ -498,7 +501,6 @@ If two prompts paraphrase the same incident, putting one in training and the oth
 
 Further reading
 
-- [Hugging Face. Tokenizers quicktour](https://huggingface.co/docs/tokenizers/en/quicktour)
 - [Hugging Face. Dataset cards. Consulted 28 October 2026](https://huggingface.co/docs/hub/main/datasets-cards)
 - [Hugging Face. lhoestq demo1 dataset at the selected revision. Consulted 28 October 2026](https://huggingface.co/datasets/lhoestq/demo1/tree/87ecf163bedca9d80598b528940a9c4f99e14c11)
 
@@ -518,7 +520,7 @@ Further reading
 
 <a id="topic-dumps"></a>
 
-## A device buffer, a tensor snapshot and a GPU core dump
+## Device buffer exports, allocator snapshots and GPU core dumps
 
 [Exercise 34](exercises/034.txt) · book page 160
 
@@ -529,7 +531,7 @@ Begin with a buffer initialized to a known pattern. Synchronize, export just tha
 Further reading
 
 - [NVIDIA. CUDA Runtime API: Memory Management](https://docs.nvidia.com/cuda/cuda-runtime-api/cuda_runtime_api/group__CUDART__MEMORY.html)
-- [NVIDIA. CUDA-GDB 13.4 manual, sections 4.5, 13.14 and 16](https://docs.nvidia.com/cuda/cuda-gdb/index.html#known-issues)
+- [NVIDIA. CUDA-GDB manual, WSL and GPU core dump sections](https://docs.nvidia.com/cuda/cuda-gdb/index.html#known-issues)
 - [PyTorch. Understanding CUDA Memory Usage, version 2.14](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html)
 
 <a id="topic-reasoning"></a>
@@ -558,7 +560,7 @@ For an evidence card, identify the observed state first and write your competing
 
 [Exercise 180](exercises/180.txt) · book page 578
 
-A diffusion exercise starts with clean data and adds noise at a chosen level according to a schedule. A denoising model learns to estimate a quantity needed to step back toward a sample. Generation begins with noise and repeatedly updates it using the model and scheduler.
+In the epsilon-prediction control, clean x₀ and sampled noise ε are mixed at time t as xₜ = √ᾱₜ x₀ + √(1 − ᾱₜ) ε. Alpha-bar is the cumulative product of the schedule’s retained-signal factors. A model learns to estimate ε. With the exact noise, recover x₀ by subtracting √(1 − ᾱₜ) ε from xₜ and dividing by √ᾱₜ.
 
 The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved.
 
@@ -607,7 +609,7 @@ Further reading
 
 An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.
 
-Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content.
+Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content. Here the container host shares the WSL guest’s kernel. A container memory limit above the measured 15.70 GiB guest RAM cannot grant additional physical guest RAM. Swap policy and current availability also matter.
 
 Further reading
 
@@ -638,14 +640,13 @@ Further reading
 
 In a training step the model makes a prediction. A loss measures its disagreement with the target. Backpropagation computes gradients, and an optimizer uses them to adjust trainable parameters. Fine-tuning starts from a pretrained model. The Transformers library loads the model and tokenizer, while PEFT provides parameter-efficient training methods.
 
-LoRA freezes selected base weights and learns a smaller update represented by two matrices. An adapter stores these learned changes. Inspect the trainable parameter count, the base revision and a held-out answer. A fall in training loss is evidence about the training examples.
+LoRA freezes the pretrained weights in this exercise. For each selected matrix, it learns two new factors with inner dimension r. With input width d and output width k, the two factors train r × (d + k) parameters. The update is scaled by alpha/r, here 16/8 = 2. The 28 layers’ query and value projections account for 1,089,536 trainable parameters. Keep the factors, tokenizer identity and exact base revision together.
 
 Further reading
 
 - [Hu, E. J., et al. LoRA: Low-Rank Adaptation of Large Language Models. 2021](https://arxiv.org/abs/2106.09685)
 - [Dettmers, T., et al. QLoRA: Efficient Finetuning of Quantized LLMs. 2023](https://arxiv.org/abs/2305.14314)
 - [Hugging Face. PEFT LoRA documentation](https://huggingface.co/docs/peft/en/developer_guides/lora)
-- [PyTorch. Automatic Mixed Precision package, version 2.14](https://docs.pytorch.org/docs/2.14/amp.html)
 
 <a id="topic-precision"></a>
 
@@ -653,15 +654,15 @@ Further reading
 
 [Exercise 99](exercises/099.txt) · book page 347
 
-Floating-point types store finite approximations to numbers. FP16, BF16 and FP32 use different bit layouts and preserve different ranges and precision. Even in the same type, two orders of summation can give slightly different answers. A reference calculation lets us inspect those differences.
+Floating-point formats allocate bits to sign, exponent and fraction. FP16 has five exponent and ten fraction bits, with largest finite value 65,504. BF16 (bfloat16) has eight exponent and seven fraction bits. FP32 has eight exponent and 23 fraction bits. BF16 covers a range similar to FP32 with coarser spacing between adjacent values.
 
 An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error.
 
 Further reading
 
 - [NVIDIA. Floating Point and IEEE 754](https://docs.nvidia.com/cuda/floating-point/index.html)
-- [PyTorch. Automatic Mixed Precision package, version 2.14](https://docs.pytorch.org/docs/2.14/amp.html)
 - [PyTorch. Numerical accuracy, version 2.14](https://docs.pytorch.org/docs/2.14/notes/numerical_accuracy.html)
+- [PyTorch. Tensor data types](https://docs.pytorch.org/docs/stable/tensor_attributes.html#torch-dtype)
 
 <a id="topic-identifiers"></a>
 
@@ -685,16 +686,16 @@ Further reading
 
 [Exercise 91](exercises/091.txt) · book page 323
 
-A metric assigns a number to a measured property and unit. A sampler polls the source at intervals. NVIDIA’s management interface can report supported fields such as device memory or utilization. A utilization percentage usually describes activity over the device’s sampling window. A short burst can fall between the observations retained by the lab.
+The NVIDIA Management Library (NVML) reports supported sampled device fields. GPU utilization is the fraction of the device sample period during which one or more kernels ran. Memory utilization measures the fraction of that period in which device memory was read or written. A small continuously active kernel can register high busy time. Occupancy, throughput and bytes per second require their own measurements.
 
 Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
 
 Further reading
 
 - [NVIDIA. NVIDIA System Management Interface documentation](https://docs.nvidia.com/deploy/nvidia-smi/index.html)
-- [NVIDIA. NVIDIA System Management Interface and field definitions](https://docs.nvidia.com/deploy/nvidia-smi/)
 - [NVIDIA. Useful nvidia-smi Queries](https://nvidia.custhelp.com/app/answers/detail/a_id/3751)
 - [NVIDIA. CUDA on WSL User Guide and NVML limitations](https://docs.nvidia.com/cuda/wsl-user-guide/)
+- [NVIDIA. NVML utilization field definitions](https://docs.nvidia.com/deploy/nvml-api/structnvmlUtilization__t.html)
 
 <a id="topic-scheduling"></a>
 
@@ -758,7 +759,7 @@ Take one claim in the answer and find the exact log line that supports it. If th
 Further reading
 
 - [Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., and Cao, Y. ReAct Synergizing Reasoning and Acting in Language Models. ICLR 2023](https://arxiv.org/abs/2210.03629)
-- [Reimers, N., and Gurevych, I. Sentence-BERT. 2019](https://arxiv.org/abs/1908.10084)
+- [Lewis et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)
 
 <a id="topic-paging"></a>
 
@@ -776,6 +777,7 @@ Further reading
 - [PyTorch. torch.cuda.memory.mem_get_info](https://docs.pytorch.org/docs/2.14/generated/torch.cuda.memory.mem_get_info.html)
 - [procps-ng. free(1)](https://man7.org/linux/man-pages/man1/free.1.html)
 - [procps-ng. vmstat(8)](https://man7.org/linux/man-pages/man8/vmstat.8.html)
+- [Microsoft. PERFORMANCE_INFORMATION structure and system commit counters](https://learn.microsoft.com/en-us/windows/win32/api/psapi/ns-psapi-performance_information)
 
 <a id="topic-hfhub"></a>
 
@@ -937,12 +939,13 @@ Further reading
 
 Latency measures the elapsed time for one operation. Throughput measures completed work per unit of time. For an arithmetic example, 20 generated tokens in two seconds is 10 tokens per second for that measured interval. A client timing the whole request also includes waiting, prompt processing and transport.
 
-A monotonic clock measures elapsed time without changes to the wall clock. Identify precisely where timing starts and stops, retain individual trials and mark any warm-up. A median describes the middle trial. A 95th percentile describes the upper tail, which is hard to estimate from a handful of requests.
+Use a monotonic clock for durations. Its readings never go backwards and changing the wall clock does not shift its origin. Record wall-clock timestamps for correlation between records. For nearest-rank p95, sort n observations and select rank ceil(0.95 × n), counting from one. For five requests this selects the slowest. Report individual timings for short runs.
 
 Further reading
 
 - [ggml-org. llama.cpp HTTP server documentation, pinned tag b11898](https://github.com/ggml-org/llama.cpp/blob/b11898/tools/server/README.md)
 - [Python. time and monotonic clocks](https://docs.python.org/3/library/time.html)
+- [Python. Monotonic clocks and wall time](https://docs.python.org/3/library/time.html#time.monotonic)
 
 <a id="topic-lmstudio"></a>
 
@@ -987,7 +990,7 @@ Further reading
 
 llama.cpp is a native inference runtime. Its llama-server executable opens the model file, prepares memory for inference and listens for requests. The file on disk, the running process and the address clients call are three different things. A downloaded model alone cannot answer a prompt.
 
-Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server.
+Follow the startup log in order. Find the model identity, the CPU or GPU placement of layers, and the readiness message. Then send the small request. Record the process ID with the log so a later restart or shutdown can be associated with this particular server. Here -b is the maximum logical token batch submitted to llama.cpp and -ub bounds the physical microbatch processed together. Training uses microbatch for the example group contributing one accumulated gradient.
 
 Further reading
 
@@ -1051,7 +1054,7 @@ Further reading
 
 A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
 
-The early exercises use Qwen models. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+The early exercises use Qwen models. Their GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
 
 Further reading
 
@@ -1083,7 +1086,7 @@ Further reading
 
 [Exercise 188](exercises/188.txt) · book page 605
 
-MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file.
+MusicGen generates a sequence of audio codes conditioned on text. A codec represents sound using entries from learned codebooks and decodes those codes into a waveform. Audio tokens index the codec representation. They have a different relationship to time from either text tokens or individual PCM samples in a WAV file. At 32,000 samples/s and 50 codec frames/s, one codec frame covers 640 waveform samples. The four-codebook delay pattern in this run uses three steps. For 256 generation steps the 253 frames yield 161,920 samples, or 5.06 s.
 
 Generate one short clip and record the prompt, seed, number of generated steps, waveform shape and sample rate. Derive playback duration from the waveform. Listening answers questions about music or artifacts that a successful WAV write and the model’s timing numbers cannot settle.
 
@@ -1254,7 +1257,7 @@ Further reading
 
 ONNX describes a model as a graph of operations, named inputs and outputs, and stored parameters. An opset specifies the operator definitions the graph expects. ONNX Runtime executes a graph by assigning supported groups of operations to execution providers, for example a CPU provider or the CUDA provider.
 
-Check the graph structure and run a known input against an independent numerical result. Then examine provider assignment for the relevant nodes. A listed CUDA provider establishes availability. An assignment log establishes placement, while timed device activity requires a usable trace.
+Check the graph structure and run a known input against an independent numerical result. Then examine provider assignment for the relevant nodes. A listed CUDA provider identifies build support. Create a session, inspect its active providers and check the relevant node’s profile event. An assignment log establishes placement, while timed device activity requires a usable trace.
 
 Further reading
 
@@ -1269,7 +1272,7 @@ Further reading
 
 [Exercise 111](exercises/111.txt) · book page 379
 
-A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it.
+A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it. Trace sampling selects requests or spans to retain. Metric sampling polls a measured field at successive times. Preserve the trace policy and the metric interval separately.
 
 Follow one synthetic request from its root span through retrieval and generation. Match a log to its span ID and look for a second attempt after a failure. Adding all span durations can double-count time when a parent includes a child or two operations overlap.
 
@@ -1363,7 +1366,7 @@ Further reading
 
 [Exercise 216](exercises/216.txt) · book page 700
 
-PromQL is Prometheus’s query language. A rate over a counter estimates change per second across a time window. Histogram buckets accumulate observations up to specified boundaries. From those counts we can estimate a percentile such as p95, with precision limited by the bucket boundaries and available events.
+PromQL is Prometheus’s query language. A rate over a counter estimates the average increase per second after accounting for counter resets across a time window. Histogram buckets accumulate observations up to specified boundaries. From those counts we can estimate a percentile such as p95, with precision limited by the bucket boundaries and available events.
 
 An alert rule evaluates an expression repeatedly and can require it to remain true for a specified duration. Follow a teaching sequence from pending to firing and recovery. Test absent samples as a separate case. A missing series might otherwise suppress the very alert you hoped would reveal a lost measurement.
 
@@ -1387,7 +1390,7 @@ Use cuobjdump to identify which images an executable actually contains. If it co
 Further reading
 
 - [NVIDIA. CUDA Binary Utilities](https://docs.nvidia.com/cuda/cuda-binary-utilities/index.html)
-- [NVIDIA. CUDA-GDB 13.4 manual, sections 4.5, 13.14 and 16](https://docs.nvidia.com/cuda/cuda-gdb/index.html#known-issues)
+- [NVIDIA. CUDA-GDB manual, WSL and GPU core dump sections](https://docs.nvidia.com/cuda/cuda-gdb/index.html#known-issues)
 - [NVIDIA. Parallel Thread Execution ISA 9.4](https://docs.nvidia.com/cuda/parallel-thread-execution/index.html)
 
 <a id="topic-pydantic"></a>
@@ -1438,7 +1441,7 @@ Further reading
 
 - [PyTorch. CUDA semantics and memory management](https://docs.pytorch.org/docs/2.14/notes/cuda.html)
 - [PyTorch. Understanding CUDA Memory Usage, version 2.14](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html)
-- [PyTorch CUDA memory snapshots. See (39)](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html)
+- [PyTorch CUDA memory snapshots. See [39]](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html)
 
 <a id="topic-profiler"></a>
 
@@ -1462,7 +1465,7 @@ Further reading
 
 [Exercise 14](exercises/014.txt) · book page 85
 
-A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A Python package called a wheel supplies the installed framework build.
+A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A wheel is an installable package archive containing this framework build.
 
 A CUDA kernel is a function that runs on the GPU. PyTorch launches kernels for tensor operations. GPU work can continue after the Python call that launched it returns. The probe performs a small calculation, synchronizes and checks its result. Read the interpreter path, device name, tensor device and result together. They connect a particular Python environment with an operation that completed.
 
@@ -1471,7 +1474,6 @@ Further reading
 - [PyTorch. Local installation guidance and platform selection](https://pytorch.org/get-started/locally/)
 - [PyTorch. CUDA semantics and memory management](https://docs.pytorch.org/docs/2.14/notes/cuda.html)
 - [NVIDIA. CUDA Runtime API: Memory Management](https://docs.nvidia.com/cuda/cuda-runtime-api/cuda_runtime_api/group__CUDART__MEMORY.html)
-- [PyTorch. Automatic differentiation with torch.autograd](https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html)
 
 <a id="topic-quant"></a>
 
@@ -1481,7 +1483,7 @@ Further reading
 
 Quantization represents numbers using fewer possible values. A weight group can share a scale so a small integer represents an approximate weight. Four bits can encode sixteen patterns. A real Q4 file also stores scales, metadata and sometimes tensors at other precisions, so its byte count need not be exactly half that of Q8.
 
-The smaller file is easier to place in memory. Approximation can change the generated tokens. Compare the same prompt with the same context, output cap and runtime settings. Keep the finish reason alongside reply quality and measured latency.
+The smaller file is easier to place in memory. Approximation can change the generated tokens. Compare the same prompt with the same context, output cap and runtime settings. Keep the finish reason alongside reply quality and measured latency. Nominal bits and a rounded parameter count give a lower-complexity estimate. Q8_0 stores 32 eight-bit codes and one 16-bit scale per block, or 8.5 bits per weight. Q4_K_M mixes tensor types. Use verified shard bytes for a storage budget and measure buffers separately after loading.
 
 Further reading
 
@@ -1489,6 +1491,7 @@ Further reading
 - [Dettmers, T., et al. QLoRA: Efficient Finetuning of Quantized LLMs. 2023](https://arxiv.org/abs/2305.14314)
 - [ONNX Runtime. Quantize ONNX models. Consulted 27 October 2026](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html)
 - [ONNX. QuantizeLinear operator. Consulted 27 October 2026](https://onnx.ai/onnx/operators/onnx__QuantizeLinear.html)
+- [ggml. Block quantization types and layouts](https://github.com/ggml-org/llama.cpp/blob/b11898/ggml/src/ggml-common.h)
 
 <a id="topic-rmm"></a>
 
@@ -1546,6 +1549,10 @@ A reproducer is an input and procedure that reliably expose a chosen failure. It
 
 When comparing configurations, test the same predicate on the same input. Bisection can narrow a transition if the ordered candidates separate passing from failing consistently. Keep the actual observation at each step. An unrelated crash during reduction would otherwise count as success for the wrong reason.
 
+Further reading
+
+- [Zeller and Hildebrandt. Simplifying and Isolating Failure-Inducing Input](https://doi.org/10.1109/32.988498)
+
 <a id="topic-reductions"></a>
 
 ## Reductions, histograms and atomic updates
@@ -1576,7 +1583,7 @@ Further reading
 
 - [Reimers, N., and Gurevych, I. Sentence-BERT. 2019](https://arxiv.org/abs/1908.10084)
 - [Sentence Transformers. SentenceTransformer API](https://sbert.net/docs/package_reference/sentence_transformer/model.html)
-- [Sentence Transformers. Loss functions](https://sbert.net/docs/package_reference/sentence_transformer/losses.html)
+- [Sentence Transformers. InformationRetrievalEvaluator](https://sbert.net/docs/package_reference/sentence_transformer/evaluation.html#sentence_transformers.evaluation.InformationRetrievalEvaluator)
 
 <a id="topic-normalization"></a>
 
@@ -1600,7 +1607,7 @@ Further reading
 
 [Exercise 105](exercises/105.txt) · book page 365
 
-A roofline relates work performed to data moved. Arithmetic intensity is operations divided by bytes transferred at a stated memory boundary. Multiplying that intensity by bandwidth gives a memory-based ceiling. The smaller of that number and the compute ceiling gives the model’s upper bound for that intensity.
+A roofline relates work performed to data moved. Arithmetic intensity is operations divided by bytes transferred at a stated memory boundary. Multiplying that intensity by bandwidth gives a memory-based ceiling. The smaller of that number and the compute ceiling gives the model’s upper bound for that intensity. The ridge point is compute ceiling divided by bandwidth. With 10 TFLOP/s and 100 GB/s it is 100 operations per byte. The illustrative add is below that crossover, and the 1024-square ideal matrix product is above it.
 
 For example, two operations per byte and an assumed 100 GB/s give a 200 billion operations/s memory ceiling. Those are teaching inputs. An achieved point for this laptop requires measured work, time and an appropriate account of memory traffic. Keep estimated and measured values labeled.
 
@@ -1615,7 +1622,7 @@ Further reading
 
 [Exercise 75](exercises/075.txt) · book page 277
 
-An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment. An input token embedding represents a vocabulary item; its position and surrounding tokens contribute to the contextual representation. For nonzero vectors, cosine similarity is their dot product divided by the product of their lengths.
 
 For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
 
@@ -1631,7 +1638,7 @@ Further reading
 
 [Exercise 130](exercises/130.txt) · book page 425
 
-Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers.
+Several requests can share one GPU through a single process that owns the loaded model. Other workers send it inputs and receive results. Independent model-owning processes can instead allocate their own copies of the weights and runtime state. Count resident owners as well as client workers. The Multi-Process Service (MPS) lets eligible work from several client processes use the GPU concurrently. Each client still owns its model parameters. This laptop’s serving checks use their recorded ownership policy.
 
 NVIDIA Multi-Process Service, or MPS, is a separate GPU scheduling facility with platform requirements. It does not automatically merge separate model copies. The single-owner queue in this lab lets us study waiting, cancellations and sharing on the available laptop without assuming MPS support.
 
@@ -1666,13 +1673,14 @@ Further reading
 
 Stable Diffusion XL generates an image in stages. Text encoders represent the prompt. A denoiser and scheduler iteratively update a smaller numerical image representation called a latent. A variational autoencoder, or VAE, decodes the result into pixels. The Diffusers library assembles those components into a pipeline.
 
-Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change.
+Keep prompt, seed, resolution and step count fixed while changing placement or VAE tiling. Offload can move components between CPU and GPU, while tiling changes how part of the image is decoded. Inspect the final image as well as peak memory. A changed pixel alone tells little about the requested visual change. In the pinned VAE, enabling tiling leaves a full 1024-pixel frame at the default threshold. Exercise 186 keeps that size, sets a smaller tile edge and counts the actual decoder calls.
 
 Further reading
 
 - [Hugging Face. Stable Diffusion XL Diffusers 0.35.1. Consulted 27 October 2026](https://huggingface.co/docs/diffusers/v0.35.1/en/using-diffusers/sdxl)
 - [Hugging Face. Reducing diffusion memory use. Consulted 27 October 2026](https://huggingface.co/docs/diffusers/v0.35.1/en/optimization/memory)
 - [Hugging Face. LoRA training with Diffusers 0.35.1. Consulted 27 October 2026](https://huggingface.co/docs/diffusers/v0.35.1/en/training/lora)
+- [Diffusers. AutoencoderKL decoder and tile limits, v0.35.1](https://github.com/huggingface/diffusers/blob/v0.35.1/src/diffusers/models/autoencoders/autoencoder_kl.py)
 
 <a id="topic-stalls"></a>
 
@@ -1682,12 +1690,11 @@ Further reading
 
 A process can be alive while it makes no progress. A stack trace lists the active chain of function calls in a thread. A heartbeat records progress or liveness at intervals, depending on what it measures. A supervisor can impose a deadline and collect a stack from a deliberately stalled teaching worker.
 
-Read the last completed step, stack and child exit together. If several samples show the worker waiting at the same point, inspect what would release that wait. The supervisor can complete successfully after recording a child failure, so retain both exits.
+Read the last completed step, stack and child exit together. If several samples show the worker waiting at the same point, inspect what would release that wait. The supervisor can complete successfully after recording a child failure, so retain both exits. A heartbeat from a separate monitor shows that monitor is alive. A completed-step counter emitted by the worker tests its progress.
 
 Further reading
 
 - [Python. faulthandler traceback collection](https://docs.python.org/3/library/faulthandler.html)
-- [PyTorch. Distributed communication package and debugging, version 2.14](https://docs.pytorch.org/docs/2.14/distributed.html)
 
 <a id="topic-streaming"></a>
 
@@ -1745,12 +1752,13 @@ Further reading
 
 A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.
 
-Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard.
+Keep the exact written sentence and the model’s sample rate with the WAV output. Compare a number written as digits with its spelled-out form. A nonempty, finite waveform establishes that audio was produced. For a pronunciation claim, listen to the specific word and record what you heard. The pinned English MMS vocabulary contains digits zero through six and omits seven, eight and nine. Its normalizer drops characters outside its vocabulary. Inspect token IDs for the digit string and for the equivalent words before judging the sound.
 
 Further reading
 
 - [Hugging Face. VITS Transformers 4.57.1. Consulted 27 October 2026](https://huggingface.co/docs/transformers/v4.57.1/en/model_doc/vits)
 - [Meta. MMS English text to speech model card. Consulted 27 October 2026](https://huggingface.co/facebook/mms-tts-eng/tree/c71de0fe7204c83f1c10820a7d696d0b450048ba)
+- [Hugging Face. MMS English speech model vocabulary](https://huggingface.co/facebook/mms-tts-eng/blob/main/vocab.json)
 
 <a id="topic-pooling"></a>
 
@@ -1876,7 +1884,7 @@ Further reading
 
 [Exercise 176](exercises/176.txt) · book page 565
 
-A vision-language model combines a visual representation with text so that a language component can generate an answer about an image. The processor resizes or tiles the pixels and prepares the visual input expected by the model. Increasing the visual input size can affect token count, memory use and latency.
+A vision-language model combines a visual representation with text so that a language component can generate an answer about an image. The processor resizes or tiles the pixels and prepares the visual input expected by the model. Increasing the visual input size can affect token count, memory use and latency. For the pinned Qwen2.5-VL-3B processor, 14-pixel patches merge in 2 × 2 groups. This gives the 28-pixel unit in the image-budget calculations.
 
 Ask for a property you can verify in the source image, such as the position of a colored shape. Compare the answer with the image itself. Words printed inside a picture are also input data. They can test whether the model follows the caller’s task when the picture contains conflicting text.
 
@@ -1894,7 +1902,7 @@ Further reading
 
 vLLM is an inference engine and server for language models. It schedules generation for active requests and manages memory used by their attention caches. Continuous batching lets the set of active sequences change as requests arrive or finish. A compatible HTTP API lets the lab use a familiar client.
 
-Qualify the chosen image, model and device together. Check the server’s ready model identity, make one bounded generation request, then raise concurrency. Separate time in the queue, time to first content and completion. More available weight memory alone does not determine the number of concurrent sequences it can serve.
+Qualify the chosen image, model and device together. Check the server’s ready model identity, make one bounded generation request, then raise concurrency. Separate time in the queue, time to first content and completion. After weights and runtime workspace, remaining space and the configured KV-cache limit bound the cached tokens that concurrent sequences can share.
 
 Further reading
 

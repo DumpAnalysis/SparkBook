@@ -11,7 +11,7 @@ A debugger can stop an executing program at a breakpoint so you can inspect its 
 
 An exception core permits later inspection of state that the platform captured at a fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
 
-A device buffer, a tensor snapshot and a GPU core dump
+Device buffer exports, allocator snapshots and GPU core dumps
 
 Each of these artifacts answers a different question. A buffer dump copies bytes from a selected allocation after the program finishes writing it. To decode the bytes you need their element type, shape and byte order. A framework allocator snapshot describes allocations and their histories. A GPU exception core records supported debugging state when execution faults.
 

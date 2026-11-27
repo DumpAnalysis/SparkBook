@@ -7,13 +7,13 @@ Technology background
 
 Floating-point precision and numerical tolerances
 
-Floating-point types store finite approximations to numbers. FP16, BF16 and FP32 use different bit layouts and preserve different ranges and precision. Even in the same type, two orders of summation can give slightly different answers. A reference calculation lets us inspect those differences.
+Floating-point formats allocate bits to sign, exponent and fraction. FP16 has five exponent and ten fraction bits, with largest finite value 65,504. BF16 (bfloat16) has eight exponent and seven fraction bits. FP32 has eight exponent and 23 fraction bits. BF16 covers a range similar to FP32 with coarser spacing between adjacent values.
 
 An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error.
 
 PyTorch tensors and synchronized CUDA execution
 
-A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A Python package called a wheel supplies the installed framework build.
+A tensor is a rectangular collection of numbers described by its shape, numeric type and device. A vector can have shape (3,), a matrix (2, 3). PyTorch can create these objects on the CPU or through CUDA on the GPU. A wheel is an installable package archive containing this framework build.
 
 A CUDA kernel is a function that runs on the GPU. PyTorch launches kernels for tensor operations. GPU work can continue after the Python call that launched it returns. The probe performs a small calculation, synchronizes and checks its result. Read the interpreter path, device name, tensor device and result together. They connect a particular Python environment with an operation that completed.
 

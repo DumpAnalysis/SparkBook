@@ -9,7 +9,7 @@ Compiling PyTorch with Dynamo, Inductor and Triton
 
 In eager mode Python issues framework operations as execution reaches them. With torch.compile, TorchDynamo can capture compatible operations into a graph, and a backend such as TorchInductor can optimize and generate executable code. On GPUs that code may include kernels written using the Triton programming language. NVIDIA Triton Inference Server, used in Exercise 150, serves models over a network interface.
 
-Compare two input shapes. Inspect the compiler’s guards, recompilation and graph-break messages. Keep the initial compilation time separate from the timings of later calls. A graph break can return part of the computation to eager execution.
+Read five calls over three input sizes. Inspect the compiler’s guards, recompilation and graph-break messages. Keep the initial compilation time separate from the timings of later calls. A graph break can return part of the computation to eager execution. A graph break ends a captured graph. Unsupported work can execute eagerly before capture resumes. A leading size of zero or one can change broadcasting and stride behavior, so a dynamic graph can still carry a lower-bound guard of two.
 
 PTX, SASS and device registers
 

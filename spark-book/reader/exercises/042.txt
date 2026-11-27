@@ -11,7 +11,7 @@ When a program creates a CUDA tensor, PyTorch obtains storage for it. Its alloca
 
 An allocator snapshot records blocks and their state, and can include allocation history if recording was enabled. To inspect numerical content, explicitly copy a small selected tensor. When diagnosing growth, first release the object that owns it, then compare live and reserved bytes in the same process.
 
-A device buffer, a tensor snapshot and a GPU core dump
+Device buffer exports, allocator snapshots and GPU core dumps
 
 Each of these artifacts answers a different question. A buffer dump copies bytes from a selected allocation after the program finishes writing it. To decode the bytes you need their element type, shape and byte order. A framework allocator snapshot describes allocations and their histories. A GPU exception core records supported debugging state when execution faults.
 

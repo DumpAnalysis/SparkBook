@@ -28,7 +28,7 @@ Check for success
 Check queue capacity, record order and output equality. Compare steady-state completion times after startup.
 
 Run in your lab
-After the prefetch run, compare zero and two DataLoader workers in a saved Python script. Its main guard supports spawned workers. Both settings should yield the same 1,024 ordered values in 32 batches. Compare first-batch latency separately from the time for the remaining batches.
+The prefetch pipeline produces 48 records in 12 batches of four. The separate DataLoader script below uses 1,024 ordered values in 32 batches of 32 for each worker count. Compare first-batch startup and the remaining batches within that second experiment.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
@@ -42,7 +42,7 @@ If the check fails
 Reduce the input or remove one variable; do not infer a cause from a single symptom.
 
 Finish
-Keep $LAB_RUN/pipeline-prefetch with the command and exit that produced it.
+Keep the pipeline-prefetch directory and dataloader-matched.json. Record the dataset size and batch size alongside each comparison.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

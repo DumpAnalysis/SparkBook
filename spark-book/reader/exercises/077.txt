@@ -13,7 +13,7 @@ If two prompts paraphrase the same incident, putting one in training and the oth
 
 Sentence embeddings and semantic similarity
 
-An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment.
+An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment. An input token embedding represents a vocabulary item; its position and surrounding tokens contribute to the contextual representation. For nonzero vectors, cosine similarity is their dot product divided by the product of their lengths.
 
 For an intuition, the example vectors (1, 0) and (0, 1) point at right angles and have cosine similarity zero. Two identical unit vectors have similarity one. Real vectors have many dimensions. Encode a diagnostic query and two candidate descriptions, then inspect which description ranks first and whether it answers the query.
 

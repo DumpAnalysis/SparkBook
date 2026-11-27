@@ -1,0 +1,1003 @@
+Chapter self-checks · Version 59 illustrated revision 5
+
+Each question has a model answer. Evidence from your own run can differ. Use the named chapter to check the method and scope.
+
+Chapter 1 · The laptop as an observable system
+
+1. Which observation places a fault before the model loads?
+   A failed import, missing model file or rejected HTTP request can stop the request before model loading. Identify the earliest failing receipt.
+   Source · Chapter 1, The laptop as an observable system.
+
+2. What would establish that a request reached CUDA?
+   A correlated CUDA activity record or synchronized device result from that request establishes device execution.
+   Source · Exercise 14.
+
+Chapter 2 · Establishing the WSL2 baseline
+
+1. What did the mapped driver query prove?
+   The mapped management interface answered a device query from the WSL guest.
+   Source · Exercise 1.
+
+2. Which small experiment would separately prove arithmetic?
+   Run a known tensor operation on CUDA, synchronize and compare its value with an independent expected result.
+   Source · Exercise 14.
+
+Chapter 3 · Accounting for 64 GB of unified memory
+
+1. Which dimensions determine KV storage?
+   Include layers, KV heads, head width, stored element size, cached positions and active sequences. Count both keys and values.
+   Source · Exercise 2.
+
+2. Why can two memory APIs report different totals for the same laptop?
+   NVML and the CUDA runtime expose different memory budgets on this platform. Record the API, units and time of each query.
+   Source · Exercise 248.
+
+Chapter 4 · Preparing a reproducible laboratory
+
+1. Which HTTP boundary can the fixture test without weights?
+   The loopback fixture tests HTTP routing, request parsing, model-name validation and response handling.
+   Source · Exercise 3.
+
+2. What still requires a learned response?
+   Only a loaded learned model can demonstrate actual generation, answer quality and its device placement.
+   Source · Exercise 6.
+
+Chapter 5 · Installing the pinned Linux runtime and model
+
+1. Which receipt binds the model to a revision?
+   The immutable model revision, filenames, byte counts and verified digests identify the weights.
+   Source · Exercise 4.
+
+2. Which evidence distinguishes a fresh download from a cache check?
+   A transfer receipt records bytes acquired. A matching checksum of an existing file establishes a verified cache hit.
+   Source · Exercise 4.
+
+Chapter 6 · Loading a model and proving the execution path
+
+1. Which log line places model layers on CUDA?
+   Read the startup line reporting how many layers were offloaded and the named CUDA model buffer.
+   Source · Exercise 5.
+
+2. Which buffers remain in CPU-side (host) memory after all supported layers are offloaded?
+   Read the CPU or CUDA_Host entries, including the host-side model buffer. Host here means CPU-side storage in the WSL process.
+   Source · Exercise 5.
+
+Chapter 7 · Asking a diagnostic question
+
+1. Which part of the answer contract failed?
+   The historical R17 reply gave four observations when two were requested. HTTP 200 and a normal stop did not satisfy that count.
+   Source · Exercise 6.
+
+2. How would you test a revised prompt while preserving the first answer?
+   Retain the first reply. Repeat the case with the same model, template and decoding settings in a new run, then score both with the same rubric.
+   Source · Exercise 6.
+
+Chapter 8 · Measuring latency and throughput
+
+1. What interval does time to first content include?
+   Time from client request start to the first nonempty content event includes queueing, transport, prompt work and the first generation step.
+   Source · Exercise 8.
+
+2. Why can a five-request p95 coincide with the slowest request?
+   Nearest-rank p95 uses sorted rank ceil(0.95 × n). With five timings that is the fifth, or largest, observation.
+   Source · Exercise 7.
+
+Chapter 9 · Context as a controlled resource
+
+1. Which allocation doubled with context?
+   The KV cache grew with the context window. Compare its logged buffer sizes at 4,096 and 8,192 positions.
+   Source · Exercise 10.
+
+2. What observation shows the original configuration was restored?
+   A new readiness or properties response and startup log identifying the restored 4,096-token owner confirm the original setting.
+   Source · Exercise 10.
+
+Chapter 10 · Quantization and model selection
+
+1. Did higher weight precision correct the answer?
+   The historical Q8 answer stopped at the token ceiling. Higher weight precision did not complete the requested answer.
+   Source · Exercise 11.
+
+2. How would you separate length truncation from quantization effects?
+   Repeat both quantizations with the same larger output ceiling. Compare complete replies, finish reasons and rubric items.
+   Source · Exercise 11.
+
+Chapter 11 · Placement and memory pressure
+
+1. How large was the measured change in median latency?
+   The historical five-request median fell from 24.944 s on CPU to 2.650 s on GPU, about a 9.4-fold ratio.
+   Source · Exercise 12.
+
+2. Which matched settings make that ratio interpretable?
+   Hold model shards, runtime, prompt, template, context, slots, cache types, batch sizes and generation settings fixed.
+   Source · Exercise 12.
+
+Chapter 12 · Diagnosing failures by their first failed boundary
+
+1. What identifies an invalid GGUF header?
+   A failed magic/header check or parser diagnostic at file open identifies an invalid GGUF header.
+   Source · Exercise 13.
+
+2. What would look different in an allocation failure?
+   An allocation failure follows a valid model read and reports insufficient memory or a failed buffer allocation at placement.
+   Source · Exercise 13.
+
+Chapter 13 · Testing a CUDA kernel with Python
+
+1. Which CUDA version belongs to the framework?
+   The recorded PyTorch build used CUDA 13.0. The separate compiler toolkit was 13.4.
+   Source · Exercise 14.
+
+2. Which result requires the GPU to finish its work?
+   A synchronized device calculation with a checked numerical result requires the GPU operation to have completed.
+   Source · Exercise 14.
+
+Chapter 14 · Grounding answers in local evidence
+
+1. Was the relevant record in the prompt?
+   Read the exact messages sent to the model and locate the relevant record and ID in them.
+   Source · Exercise 16.
+
+2. Which claim goes beyond the evidence the model received?
+   A timeout at the caller does not establish why the absent downstream service failed. The model can only cite evidence it received.
+   Source · Exercise 16.
+
+Chapter 15 · A bounded diagnostic agent
+
+1. What does a replay prove about a tool validator?
+   A replay checks how the controller validates a known sequence of proposed tools and arguments.
+   Source · Exercise 17.
+
+2. Which action must the controller reject before execution?
+   Reject a tool outside the allowlist or a read outside the permitted evidence scope before dispatch.
+   Source · Exercise 18.
+
+Chapter 16 · Letting the local model choose actions
+
+1. Can valid JSON still contain a wrong diagnosis?
+   Yes. Fields can satisfy a schema while a claim contradicts a tool result or lacks supporting evidence.
+   Source · Exercise 20.
+
+2. Which observation would justify asking for another tool read?
+   Ask for another authorized read when a necessary identity, event or measurement is absent from the records already read.
+   Source · Exercise 19.
+
+Chapter 17 · Concurrency and the memory cost of agents
+
+1. Which latency statistic could improve while throughput falls?
+   Median or tail request latency can fall even as total completions per second fall. Measure both over the same workload.
+   Source · Exercise 21.
+
+2. What extra memory can concurrent requests consume?
+   Concurrent sequences can require additional KV storage, work buffers and per-request state.
+   Source · Exercise 21.
+
+Chapter 18 · Offline operation and a repeatable working practice
+
+1. Which boundary must be closed to demonstrate offline operation?
+   Close external network access and verify a local-only request with the exact cached weights and runtime.
+   Source · Exercise 22.
+
+2. What observation would change your conclusion about R17?
+   A downstream record with R17’s identity and a matching time window could distinguish causes of the timeout.
+   Source · Exercise 23.
+
+Chapter 19 · Diagnostic patterns for local models
+
+1. Which pattern fits a fluent unsupported cause?
+   A fluent cause that the supplied records do not support is an unsupported diagnosis.
+   Source · Chapter 19, Diagnostic patterns for local models.
+
+2. Which exercise contains a counterexample to trusting a successful tool call?
+   Exercise 16 separates the information returned by a tool from the claim made about it. Quote the record and test the inference.
+   Source · Exercise 71.
+
+Chapter 20 · Extending the laboratory
+
+1. Which next experiment needs a new kind of evidence?
+   For a placement hypothesis, for example, collect the owner’s layer and buffer log rather than another generated answer.
+   Source · Chapter 20, Extending the laboratory.
+
+2. What established baseline would you carry into that experiment?
+   Carry forward the same known-good request, model revision and runtime. Other choices are valid when the new observation separates competing explanations.
+   Source · Chapter 20, Extending the laboratory.
+
+Chapter 21 · Fine-tuning within the observed memory budget
+
+1. Which training allocations are absent from an inference weight estimate?
+   Gradients, optimizer state, saved activations and temporary training buffers add to the weight budget.
+   Source · Chapter 21, Fine-tuning within the observed memory budget.
+
+2. How can accumulation reduce activation pressure without changing the effective update size?
+   Use smaller forward/backward microbatches and accumulate their scaled gradients over the same total examples before updating.
+   Source · Chapter 21, Fine-tuning within the observed memory budget.
+
+Chapter 22 · Preparing data and training a LoRA adapter
+
+1. Could the same incident family occur in two splits?
+   Group all paraphrases of one incident family into one split before generating examples. An overlap check verifies that grouping.
+   Source · Exercise 24.
+
+2. Which first failure preceded the ten successful LoRA updates?
+   The first Triton helper build failed because the matching Python.h header was absent. The later ten updates used the repaired environment.
+   Source · Exercise 25.
+
+Chapter 23 · Evaluating, retaining, and deploying the adapter
+
+1. When would you reject an adapter with lower training loss?
+   Reject promotion when the independent held-out answers or boundary checks regress, even if training loss falls.
+   Source · Exercise 26.
+
+2. How would you bind the merged checkpoint to its tokenizer?
+   Save the original base revision, tokenizer files and hashes with the merge. Reload and compare token IDs and generated continuations on fixed inputs.
+   Source · Exercise 27.
+
+Chapter 24 · Models that do not fit entirely on the GPU
+
+1. Which allocation moves when fewer weights are offloaded?
+   Fewer GPU-resident layers move more weight storage and computation to the CPU path. Compare named model buffers.
+   Source · Exercise 28.
+
+2. What remains on the GPU even in a partial-placement session?
+   CUDA-side weights, cache blocks for GPU layers and runtime work buffers can remain. Read each logged pool independently.
+   Source · Exercise 28.
+
+Chapter 25 · Running beyond the GPU budget and diagnosing paging
+
+1. Why did the first guarded attempt stop?
+   Windows available physical memory fell to 1.893 GiB, below the 2 GiB guard, before readiness.
+   Source · Exercise 29.
+
+2. What did the seven requests establish about this placement?
+   Seven completed requests qualified the tested placement under those settings. Their latency and memory readings apply to that workload.
+   Source · Exercise 30.
+
+Chapter 26 · Studying the CUDA ecosystem through evidence
+
+1. Which installed tool still lacks workload qualification?
+   An installed profiler such as Nsight Compute still needs a valid hardware-counter result on this host.
+   Source · Exercise 31.
+
+2. What command would distinguish access to the device from access to counters?
+   Compare a known-good CUDA arithmetic control with the bounded ncu request in Exercise 41. Record the counter permission result.
+   Source · Exercise 41.
+
+Chapter 27 · Building and examining a small CUDA program
+
+1. How do you match SASS to its exact binary?
+   Keep the executable digest, GPU target and exact cuobjdump or disassembler command with the instruction listing.
+   Source · Exercise 33.
+
+2. Why should timing use a different build from source debugging?
+   Debug instrumentation and optimization settings change the generated instructions and their timing.
+   Source · Exercise 32.
+
+Chapter 28 · Capturing and interpreting GPU memory contents
+
+1. At which operation was the buffer synchronized?
+   Synchronize after the producing kernel before taking the recorded host-visible export. Same-stream operations preserve their order.
+   Source · Exercise 34.
+
+2. What can the raw values establish that an allocator summary cannot?
+   Decoded bytes reveal the actual elements, order and anomalies. Allocator statistics describe storage ownership and size.
+   Source · Exercise 34.
+
+Chapter 29 · Live device inspection and exception core dumps
+
+1. Which prerequisite failed before debugger inspection?
+   The Windows debugging interface and WSL driver path prevented a qualified device inspection on this host.
+   Source · Exercise 35.
+
+2. What identities are needed to interpret an exception core?
+   Retain the exact executable and symbols, architecture, driver, debugger version and the originating workload with the exception core.
+   Source · Exercise 36.
+
+Chapter 30 · Finding CUDA memory and synchronization errors
+
+1. Which report identifies an overrun?
+   A Memcheck report naming an invalid access, kernel and source or instruction location identifies the overrun.
+   Source · Exercise 37.
+
+2. How would an initialization failure differ from a clean sanitizer result?
+   An initialization failure occurs before instrumentation can inspect the kernel. A clean result requires a completed instrumented control.
+   Source · Exercise 38.
+
+Chapter 31 · Collecting and reading CUDA execution traces
+
+1. Which trace lanes belong to the host?
+   CPU threads, NVTX ranges and CUDA runtime calls occupy host lanes.
+   Source · Exercise 39.
+
+2. Which two timestamps are needed to compute a device interval?
+   A device start and end timestamp for the same kernel instance establish its duration.
+   Source · Exercise 40.
+
+Chapter 32 · Studying individual kernels with Nsight Compute
+
+1. Which kernel and metric set were requested?
+   The bounded request targeted the transform kernel with the basic Nsight Compute metric set.
+   Source · Exercise 41.
+
+2. What should be reported if the counters never became available?
+   Report the attempted command, permission or availability diagnostic and the missing measurements. Keep the numerical control separately.
+   Source · Exercise 41.
+
+Chapter 33 · Framework memory evidence and a model tracing capstone
+
+1. Which process owns the model's kernels?
+   The serving worker owns the CUDA context and launches its kernels. Correlate the process ID rather than attributing them to the client.
+   Source · Exercise 44.
+
+2. How would you tell a tensor-value export from a process memory history?
+   A tensor export contains values with shape and dtype. Process allocation history records blocks, lifetimes and owners.
+   Source · Exercise 42.
+
+Chapter 34 · Writing and validating a first CUDA kernel
+
+1. Which threads should do no write for 1003 elements?
+   Threads whose calculated indices are 1003 or greater must skip the write.
+   Source · Exercise 45.
+
+2. How does a grid-stride loop preserve ownership when the grid shrinks?
+   Thread i processes i, i + grid stride and subsequent in-range indices. Each in-range index has one owner.
+   Source · Exercise 46.
+
+Chapter 35 · Writing kernels for matrix layout and shared memory
+
+1. Which indices swap during transpose?
+   Transpose maps input row r, column c to output row c, column r, using the respective leading dimensions.
+   Source · Exercise 47.
+
+2. Why can padding a shared row by one word change its bank mapping?
+   Adding a word changes the stride between shared rows and hence which of the 32 banks a warp addresses.
+   Source · Exercise 48.
+
+Chapter 36 · Reductions and atomic updates
+
+1. Why must an out-of-range thread still reach the barrier?
+   All participating threads in the block must reach its barrier even when a thread contributes no input.
+   Source · Exercise 49.
+
+2. How could a correct histogram total hide incorrect bins?
+   A wrong bin mapping can preserve the total count. Compare every bin with the independent histogram.
+   Source · Exercise 50.
+
+Chapter 37 · Writing a tiled matrix multiplication
+
+1. Which threads zero-fill the final tile?
+   Threads whose tile coordinates fall beyond the valid A or B dimensions load zero and still join the barrier.
+   Source · Exercise 51.
+
+2. Which dimensions in a nonsquare test reveal a swapped index?
+   Use unequal M, K and N and a partial edge tile, as in the 17 × 23 × 19 test. Compare the full M × N result.
+   Source · Exercise 52.
+
+Chapter 38 · Measuring kernel changes and writing a fused operation
+
+1. Can a faster kernel report lower effective bandwidth?
+   Yes. Effective bandwidth divides the bytes counted by elapsed time; fusion can remove enough traffic to reduce that ratio while finishing sooner.
+   Source · Exercise 53.
+
+2. Which bytes did the fused and split calculations count?
+   Count input and output arrays for the fused operation, and include the intermediate write and read for the split operation.
+   Source · Exercise 54.
+
+Chapter 39 · Writing normalization kernels for model workloads
+
+1. Which numerical choice keeps softmax finite?
+   Subtract the row maximum before exponentiating softmax scores.
+   Source · Exercise 56.
+
+2. Why does a barrier follow the maximum reduction?
+   The maximum reduction must be visible to every thread before each thread normalizes its own values.
+   Source · Exercise 56.
+
+Chapter 40 · Integrating a CUDA kernel with PyTorch
+
+1. What does forward agreement leave untested?
+   Matching forward values leaves gradients, stream ordering and unsupported-input behavior to be checked.
+   Source · Exercise 57.
+
+2. Which test could expose use of the wrong CUDA stream?
+   Run the operator on a nondefault stream after a dependent producer, then compare its result with the ordered reference.
+   Source · Exercise 58.
+
+Chapter 41 · Building and diagnosing a small transformer block
+
+1. At which prefix does the position defect first appear?
+   Token zero agrees. The reset-to-zero position defect first appears at token index one, the two-token prefix.
+   Source · Exercise 60.
+
+2. Which intermediate tensor localizes it before the final prediction?
+   Compare the position and rotary-transformed query or key at that token before tracing the output projection.
+   Source · Exercise 60.
+
+Chapter 42 · Warp programming and Tensor Core operations
+
+1. Which lanes participate in the final warp?
+   Only lanes whose element indices are in range contribute; the collective must use the corresponding participation mask.
+   Source · Exercise 61.
+
+2. Which reference would catch a transposed GEMM result?
+   Compare every element of a nonsquare GEMM against an independent correctly indexed matrix product.
+   Source · Exercise 62.
+
+Chapter 43 · Streams events and CUDA Graphs
+
+1. When can the host reuse a double-buffer slot?
+   Reuse a slot after its previous transfer and consumption have completed, as recorded by its completion event.
+   Source · Exercise 63.
+
+2. Where should the producer record the event the consumer waits on?
+   Record the ready event on the producer stream immediately after producing the data. Make the consumer stream wait on that event.
+   Source · Exercise 64.
+
+Chapter 44 · Writing a teaching INT4 representation
+
+1. Which nibble holds the first signed code?
+   The first signed code occupies the low four bits of its packed byte in the teaching format.
+   Source · Exercise 66.
+
+2. What should happen to an odd tail during packing?
+   Pad the unused high nibble and retain the logical element count so unpacking discards the padding.
+   Source · Exercise 66.
+
+Chapter 45 · Diagnosing training gradients memory and recovery
+
+1. Which owner can keep an activation live?
+   An output reference, a saved backward tensor or a container holding either can keep the storage live.
+   Source · Exercise 68.
+
+2. Which saved state determines the first resumed update?
+   Check weights, optimizer, scheduler, random state and the data iterator’s next batch before comparing the next update.
+   Source · Exercise 69.
+
+Chapter 46 · A CUDA diagnostic casebook
+
+1. Which case has a correct-looking value at the wrong address?
+   The wrong-leading-dimension example reads a plausible value from a neighboring location in a nonsquare or strided buffer.
+   Source · Exercise 70.
+
+2. What comparison would distinguish that case from a bad arithmetic operation?
+   Compare expected and observed offsets at the first mismatch with known input values, then repeat under the opposite layout.
+   Source · Exercise 70.
+
+Chapter 47 · Agent assisted GPU diagnosis
+
+1. Can an exact tool quote support an incorrect inference?
+   Yes. A verbatim tool quote establishes where the words came from. The conclusion still needs a valid inference.
+   Source · Exercise 71.
+
+2. When should the agent finish with insufficient evidence?
+   Finish with insufficient evidence when the required observation is absent and the permitted tools or budget cannot supply it.
+   Source · Exercise 72.
+
+Chapter 48 · Inspecting PTX, SASS, and device registers
+
+1. What binds the stopped instruction to its source?
+   Use matching executable and device-code identities, debug line information and the actual instruction address.
+   Source · Exercise 73.
+
+2. Which inspection still requires debugger access?
+   Inspecting a live CUDA thread, its program counter or a device variable requires a qualified debugger session.
+   Source · Exercise 73.
+
+Chapter 49 · Sentence embeddings and masked pooling
+
+1. Why should padding leave a sentence vector unchanged?
+   Masked pooling excludes padding from both numerator and denominator.
+   Source · Exercise 76.
+
+2. Which model settings must match before comparing vectors?
+   Match encoder revision, tokenizer, truncation, pooling, normalization and evaluation mode.
+   Source · Exercise 75.
+
+Chapter 50 · Retrieval data and evaluation
+
+1. What is the unit of the train/test split?
+   Assign the whole meaning or incident family to one split before creating paraphrases.
+   Source · Exercise 77.
+
+2. Which held-out rank tells you more than a training loss?
+   Use the first relevant document’s rank on an independent query and aggregate over held-out queries with MRR or recall at k.
+   Source · Exercise 78.
+
+Chapter 51 · Inspecting embeddings with PCA
+
+1. What fraction of variance did the two axes retain?
+   The two PCA axes retained 15.92% of the variance in the 54-embedding run.
+   Source · Exercise 79.
+
+2. Which saved arrays let you place a new sentence on the same axes?
+   Save the fitted training mean and component vectors. Center a new vector with that mean and project onto those same components.
+   Source · Exercise 80.
+
+Chapter 52 · Comparing t-SNE and UMAP
+
+1. Which apparent neighbor was distant in the original space?
+   For allocation:document the nearest displayed PCA neighbor was checkpoint:query1, ninth in the original space with cosine about 0.217.
+   Source · Exercise 81.
+
+2. Which comparison isolates the effect of the seed?
+   Hold input vectors, order, method and other parameters fixed and vary only the random seed.
+   Source · Exercise 81.
+
+Chapter 53 · Training a custom BERT model
+
+1. Which texts were used to fit WordPiece?
+   Fit WordPiece on the training texts only. Preserve the vocabulary and the family-level split.
+   Source · Exercise 82.
+
+2. Why can the selected checkpoint precede the final update?
+   Monitor validation loss on the same fixed masks. The best validation checkpoint can occur before the last update.
+   Source · Exercise 83.
+
+Chapter 54 · Continuing pretraining and building sentence encoders
+
+1. Which tokenizer identity must survive continued training?
+   Keep the vocabulary, token-to-ID mapping, special tokens and tokenizer revision paired with the checkpoint.
+   Source · Exercise 84.
+
+2. What operation turns token representations into a sentence vector?
+   Apply the specified attention-mask-aware pooling, then any documented normalization.
+   Source · Exercise 85.
+
+Chapter 55 · Fine tuning embedding models
+
+1. Did the wrong-pair control change loss and retrieval equally?
+   The wrong-pair control still reached 0.9167 development and test MRR on small splits. Loss and retrieval rank need separate measurements.
+   Source · Exercise 86.
+
+2. Which new held-out queries would expose the corrupted relationship?
+   Add independently judged paraphrases for the swapped families that require distinguishing the corrupted positive from a hard negative.
+   Source · Exercise 87.
+
+Chapter 56 · Diagnosing and deploying embedding workloads
+
+1. How could an index silently use the wrong encoder?
+   Matching vector dimensions do not identify a model. Compare the encoder, tokenizer, pooling and normalization fingerprints in the index.
+   Source · Exercise 89.
+
+2. Which stage's memory peak was actually observed?
+   Read the stage name and boundaries beside peak allocated memory. A measured encoding peak covers only the instrumented encoding stage.
+   Source · Exercise 90.
+
+Chapter 57 · Monitoring GPU metrics and visualizing activity
+
+1. Which zero has an accompanying availability flag?
+   A returned numeric 0 accompanied by an available status is a measured idle value. Missing or unsupported fields have a separate status.
+   Source · Exercise 95.
+
+2. What additional observation would identify the kernel responsible for a utilization change?
+   Capture a device timeline covering the same interval and correlate kernel instances with the sampled workload.
+   Source · Exercise 94.
+
+Chapter 58 · Locating numerical divergence
+
+1. Why can argmax agree when pooling is broken?
+   The winning class can stay the same while pooled vectors and logits change. Compare the first divergent tensor.
+   Source · Exercise 97.
+
+2. Which tolerance is appropriate at the first divergent boundary?
+   Choose absolute and relative tolerances for that tensor’s dtype, scale and reference calculation, then report the measured error.
+   Source · Exercise 99.
+
+Chapter 59 · Diagnosing compiled model execution
+
+1. Which input dimension caused a guard change?
+   Changing the leading input dimension changed the size guard. Sizes zero and one may specialize separately.
+   Source · Exercise 101.
+
+2. Which reported time includes compilation?
+   The first invocation includes capture and compilation. Separate cold calls from warmed calls reusing a compatible graph.
+   Source · Exercise 102.
+
+Chapter 60 · Diagnosing GPU starvation and input pipelines
+
+1. Who waited when input supply slowed?
+   The consumer waited for its next batch when the producer slowed.
+   Source · Exercise 103.
+
+2. How would you separate queueing from compute time?
+   Time next-batch waiting separately from synchronized compute. Hold work and dataset order fixed while changing prefetch or worker count.
+   Source · Exercise 104.
+
+Chapter 61 · Reasoning with roofline models
+
+1. Which ceiling limits the hypothetical point?
+   In the hypothetical model the ridge is 100 operations/byte. Vector addition is bandwidth-limited and the illustrated ideal matrix product is compute-limited.
+   Source · Exercise 105.
+
+2. Which missing counter prevents a laptop-specific conclusion?
+   The blocked hardware-counter collection left actual device throughput and memory traffic unmeasured.
+   Source · Exercise 106.
+
+Chapter 62 · Diagnosing memory growth across requests
+
+1. What memory disappeared when the owner was cleared?
+   Releasing the final owner frees the live tensor allocation. Compare equal post-release points across iterations.
+   Source · Exercise 108.
+
+2. Why might the reserved value stay high?
+   The allocator can retain unused blocks in reserved segments for reuse, including segments that still contain other live blocks.
+   Source · Exercise 108.
+
+Chapter 63 · Diagnosing stalled progress
+
+1. Which host wait appeared in the bounded stack?
+   The bounded stack identifies the worker’s host-side blocking wait. Match the waiting frame to the queue or synchronization primitive in the capture.
+   Source · Exercise 109.
+
+2. What event demonstrates resumed progress?
+   An advancing completed-step counter or a delivered item followed by worker completion demonstrates progress.
+   Source · Exercise 110.
+
+Chapter 64 · Tracing complete AI requests
+
+1. Which records share a request identity?
+   Join the request log and its spans by trace/request identifier, with the relevant span ID and timestamps.
+   Source · Exercise 111.
+
+2. How would repeated attempts differ from one long retrieval span?
+   Repeated attempts have separate attempt spans or events. One long retrieval span has one interval and no such retry boundaries.
+   Source · Exercise 112.
+
+Chapter 65 · Diagnosing model quality regressions
+
+1. At which boundary did the answer first become wrong?
+   Compare source, retrieved IDs, rendered context and answer in order. The first mismatch with the independent oracle locates the failing boundary.
+   Source · Exercise 113.
+
+2. Which one-factor comparison could justify changing retrieval?
+   Keep the query, generator, prompt builder and decoding settings fixed; vary the index alone and inspect both ranks and final evidence support.
+   Source · Exercise 114.
+
+Chapter 66 · Reducing failures and isolating regressions
+
+1. What does one-minimal mean for this failure predicate?
+   Removing any one remaining item makes this particular failure predicate false.
+   Source · Exercise 115.
+
+2. Which adjacent configurations bracket the regression?
+   Configuration 2 passed and 3 failed. The sequence later returns to pass, so a monotonic binary-search assumption would be unsafe.
+   Source · Exercise 116.
+
+Chapter 67 · Debugging the observations themselves
+
+1. Which injected observation fault could produce a plausible chart?
+   A duplicate event can inflate a plausible rate, and an omitted span can make a trace look shorter.
+   Source · Exercise 117.
+
+2. How would you check the time units independently?
+   Inspect raw timestamps with a known-duration control and convert stated units before comparing the computed duration.
+   Source · Exercise 118.
+
+Chapter 68 · A diagnostic pattern catalog
+
+1. Which catalog boundary rules out your first hypothesis?
+   Use the named catalog boundary and the actual artifact to test your chosen hypothesis. Several choices can fit the initial symptom.
+   Source · Exercise 119.
+
+2. What observation would distinguish the runner-up pattern?
+   State an observation that the runner-up and your first explanation predict differently, then collect it under matched conditions.
+   Source · Exercise 120.
+
+Chapter 69 · Blind diagnostic investigations
+
+1. What did you write before opening the worked account?
+   A complete response records an observation, tentative explanation and a discriminating check before revealing the worked case.
+   Source · Exercise 121.
+
+2. Which observation changed your diagnosis after comparison?
+   Name the specific later artifact that changed or confirmed your interpretation and explain why it separates the alternatives.
+   Source · Exercise 122.
+
+Chapter 70 · Distributed training on one laptop
+
+1. Which local experiment truly performed a collective?
+   The multi-process Gloo control performed collectives. The one-device NCCL control qualifies only its own topology.
+   Source · Exercise 128.
+
+2. What extra hardware is needed to measure two-device scaling?
+   Measuring scaling across two CUDA devices requires two physical devices and a matched multi-device launch.
+   Source · Exercise 129.
+
+Chapter 71 · Sharing one GPU among workers
+
+1. How many model copies does each ownership policy require?
+   Independent serving workers each load a replica. A shared owner serves multiple clients from one model copy.
+   Source · Exercise 130.
+
+2. Which latency percentile would reveal a cost hidden by the median?
+   Inspect p95 together with individual latencies. With 16 requests nearest-rank p95 is the observed maximum.
+   Source · Exercise 134.
+
+Chapter 72 · Inference services and request diagnostics
+
+1. When can a live process fail readiness?
+   A process can be alive while weights are loading or while its dependencies cannot serve a valid request.
+   Source · Exercise 137.
+
+2. How does counting rejected work distort a latency comparison?
+   Quick rejections can shorten a pooled latency statistic. Report rejection counts and successful-request latency separately.
+   Source · Exercise 138.
+
+Chapter 73 · Docker deployment inside WSL2
+
+1. Which layer supplied libcuda to the container?
+   The container runtime exposed the existing Windows/WSL driver interface and its libraries to the container.
+   Source · Exercise 142.
+
+2. Which check established computation inside the image?
+   A checked numerical tensor operation on CUDA inside the identified image qualified computation.
+   Source · Exercise 142.
+
+Chapter 74 · Kubernetes deployment and GPU scheduling
+
+1. What can a single node teach about a failed rollout?
+   One node can demonstrate a bad image or configuration, event diagnosis, rollback and return to readiness.
+   Source · Exercise 145.
+
+2. Which observation demonstrates GPU resource advertisement?
+   Inspect the node’s advertised allocatable nvidia.com/gpu resource and a pod that actually requests and receives it.
+   Source · Exercise 146.
+
+Chapter 75 · vLLM and NVIDIA Triton Inference Server
+
+1. What made vLLM ready on this image?
+   A compatible image, functioning driver path, bounded memory/KV settings and a successful model request qualified this owner.
+   Source · Exercise 148.
+
+2. Which Triton result proves numerical agreement after a version change?
+   Compare the known Triton input and numerical output for the explicitly loaded version before and after the version change.
+   Source · Exercise 150.
+
+Chapter 76 · RAPIDS data pipelines and GPU memory
+
+1. Why compare PCA projectors rather than component signs?
+   PCA vectors may flip sign while spanning the same subspace. Compare the projectors or reconstruction error.
+   Source · Exercise 153.
+
+2. Which allocator counters belong to a single process?
+   RMM live and peak statistics describe allocations through the monitored resource in that process.
+   Source · Exercise 155.
+
+Chapter 77 · ONNX export providers and fallback diagnostics
+
+1. Which profile event identifies the execution provider?
+   The ONNX Runtime profiling event for the specific node names its assigned execution provider.
+   Source · Exercise 158.
+
+2. How could an exported encoder lose its pooling contract?
+   Exporting only the token-level encoder can omit masked pooling and normalization. Compare the final sentence vector on padded inputs.
+   Source · Exercise 159.
+
+Chapter 78 · TensorRT engines profiles and execution traces
+
+1. Why does batch nine fail before enqueue?
+   Batch nine exceeds the optimized profile’s maximum batch of eight, so the shape check fails before execution.
+   Source · Exercise 161.
+
+2. What does an enqueue time omit from service latency?
+   Enqueue time alone omits completion, transfers, queueing and client-side service overhead.
+   Source · Exercise 163.
+
+Chapter 79 · Quantization calibration and quality diagnosis
+
+1. Which calibration range clips the outlier?
+   The range estimated from the clean calibration distribution can clip an outlier beyond its endpoints. Including the outlier broadens the range and coarsens resolution.
+   Source · Exercise 164.
+
+2. What does a numerically valid quantized engine leave to the answer rubric?
+   A valid quantized engine leaves semantic quality, including a justified diagnosis and a safe next measurement, for the held-out answer rubric.
+   Source · Exercise 167.
+
+Chapter 80 · NeMo fine tuning recovery and deployment handoff
+
+1. Which state differed despite identical adapter tensors?
+   Matching adapter tensors still leaves optimizer, scheduler, iterator and random-generator state to compare.
+   Source · Exercise 169.
+
+2. What was special about the iterator used for the corrected recovery?
+   The corrected recovery used a separately controlled data iterator/generator so iterator construction did not consume the training RNG stream.
+   Source · Exercise 170.
+
+Chapter 81 · Images audio and multimodal evidence
+
+1. Which fixture properties can be checked without a model?
+   Check hashes, image dimensions and shapes, sample rate, channel count and reference labels without inference.
+   Source · Exercise 172.
+
+2. What evidence would distinguish a decoding error from a bad model answer?
+   Inspect decoded pixels or waveform values first. A valid decoded fixture followed by a wrong description localizes the error downstream.
+   Source · Exercise 174.
+
+Chapter 82 · Vision language inference and visual grounding
+
+1. What is in the top-left of the actual input image?
+   Check the upper-left object in the supplied shapes fixture against its label: the red square is upper-left in the large grid control. Read the actual fixture used in your run.
+   Source · Exercise 176.
+
+2. Which processor field tells you whether the pixel-budget change took effect?
+   Inspect image_grid_thw and processed pixel tensor shape at both pixel budgets.
+   Source · Exercise 178.
+
+Chapter 83 · Diffusion models through a small executable experiment
+
+1. What does reconstruction with the exact noise test?
+   Exact known noise tests the forward mix, coefficients and inverse reconstruction algebra.
+   Source · Exercise 180.
+
+2. Why would finite generated points still have poor coverage?
+   Generated points can be finite yet collapse into one mode. Compare coverage of the reference distribution.
+   Source · Exercise 182.
+
+Chapter 84 · Image generation memory and denoising traces
+
+1. Where did CPU offload move pressure?
+   Model CPU offload shifts weights and transfers into CPU-side guest memory and the transfer path.
+   Source · Exercise 185.
+
+2. Which visible change answers the requested image edit?
+   The foreground cup should become green while the notebook stays blue and the surrounding layout is preserved.
+   Source · Exercise 187.
+
+Chapter 85 · Music generation and audio token diagnostics
+
+1. How many audio samples did the longer run generate?
+   The longer 512-step run produced 325,760 mono samples at 32 kHz, about 10.18 s.
+   Source · Exercise 190.
+
+2. Which claim needs a human listening judgment?
+   Musical coherence, perceived artifacts and listening preference require a listener and a stated scorecard.
+   Source · Exercise 191.
+
+Chapter 86 · Text to speech as a reproducible signal pipeline
+
+1. Which timing ends at the first playable audio?
+   Time to first playable audio ends when the first PCM samples reach the playback sink. Phrase completion and speaker latency have different endpoints.
+   Source · Exercise 193.
+
+2. How can the waveform help locate an apparent speech gap?
+   Inspect timestamped low-energy intervals and listen at the corresponding positions with the text normalization held fixed.
+   Source · Exercise 194.
+
+Chapter 87 · Speech recognition and transcript reliability
+
+1. What was the acoustic evidence in the silence control?
+   Digital silence had zero signal amplitude. A decoded word on it is an insertion.
+   Source · Exercise 198.
+
+2. Which normalization decision changed the word-error calculation?
+   Read both scoring policies, including case, punctuation and whitespace normalization. Compare reference and hypothesis under the same tokenization.
+   Source · Exercise 197.
+
+Chapter 88 · Adapting and serving multimodal pipelines
+
+1. Which failed stage should prevent a voice pipeline from issuing its next request?
+   A failed transcription or an empty/invalid upstream result should stop the dependent generation or synthesis stage.
+   Source · Exercise 203.
+
+2. What visual comparison would justify promoting the image adapter?
+   Compare adapter enabled and disabled on the same base, prompt, seed and size, scoring the held-out target and an unrelated control.
+   Source · Exercise 201.
+
+Chapter 89 · The NGC catalog as a source of reproducible GPU assets
+
+1. Which digest identifies the native child image?
+   Use the linux/arm64 child manifest digest recorded as arm64_digest in Exercise 206. The index digest identifies the platform list.
+   Source · Exercise 206.
+
+2. Which manifest fault can be diagnosed before a GPU is involved?
+   Missing or duplicate ARM64 descriptors and a digest mismatch are detectable from manifest bytes before starting a container.
+   Source · Exercise 204.
+
+Chapter 90 · The Hugging Face Hub as a source of models and datasets
+
+1. Which files were needed for a local-only reload?
+   Retain the exact local snapshot, weights, configuration, tokenizer and any required processor files. Record their identities.
+   Source · Exercise 210.
+
+2. Which injected data error crossed a split boundary?
+   A training example or family also appearing in the test split compromises the independent test.
+   Source · Exercise 211.
+
+Chapter 91 · Prometheus and Grafana for GPU observability
+
+1. How can up equal one while a GPU field is absent?
+   An exporter can answer the scrape while a particular field is unsupported, disabled or missing.
+   Source · Exercise 215.
+
+2. What does the histogram's le label mean at the quantile boundary?
+   The le label gives an inclusive upper boundary of a cumulative histogram bucket. Use adjacent bucket counts to interpolate a quantile.
+   Source · Exercise 216.
+
+Chapter 92 · LangChain agents and local model adapters
+
+1. Which component enforces a tool-call budget?
+   The application controller validates tool names, arguments and budget before dispatch.
+   Source · Exercise 220.
+
+2. Can the local model return a valid action with a wrong final answer?
+   Yes. A permitted call can return valid data and still be followed by an unsupported final diagnosis.
+   Source · Exercise 222.
+
+Chapter 93 · LangGraph state, interrupts and recovery
+
+1. Which checkpoint identifies the pending action?
+   Use the saved thread and checkpoint identity together with the pending action from that checkpoint.
+   Source · Exercise 223.
+
+2. Which two replay attempts should the resume validator reject?
+   Reject a resume for the wrong thread/action and a repeated approval or resume that would apply an already consumed action again.
+   Source · Exercise 224.
+
+Chapter 94 · LangSmith traces and evaluation
+
+1. Which trace fields can be inspected offline?
+   An offline trace can retain run IDs, parent/child relationships, timestamps, inputs and outputs from the local exercise.
+   Source · Exercise 226.
+
+2. What would count as evidence of hosted ingestion?
+   An authorized hosted write with a matching server-side readback would establish hosted ingestion.
+   Source · Chapter 94, LangSmith traces and evaluation.
+
+Chapter 95 · PydanticAI typed outputs and retry diagnosis
+
+1. Which output triggered the validator's retry?
+   The typed validator retried when a superficially plausible finding violated its evidence constraints. Inspect the validation error in the saved exchange.
+   Source · Exercise 230.
+
+2. Why does schema success still leave a quality question?
+   Schema validation checks structure and declared constraints. The reader still checks the claim against the supplied record.
+   Source · Exercise 231.
+
+Chapter 96 · Jev decision models and calibrated routing
+
+1. What price in coverage did the confidence threshold exact?
+   In the six-row control coverage fell from 6/6 at 0.5 to 5/6 at 0.7 and 2/6 at 0.9. Selective risk did not improve monotonically.
+   Source · Exercise 233.
+
+2. Which hosted-model claims require a real service response?
+   Claims about a hosted model’s answers, identity and latency require a response from that service.
+   Source · Chapter 96, Jev decision models and calibrated routing.
+
+Chapter 97 · Ollama as a local model owner
+
+1. Which field separates load time from generation time?
+   Ollama reports load_duration separately from prompt_eval_duration and eval_duration. Retain their counts and units.
+   Source · Exercise 236.
+
+2. How can a warm prompt change the worker comparison?
+   Cached prompt work can shorten a later request. Separate cold and warm trials and match owner settings and prompt order.
+   Source · Exercise 237.
+
+Chapter 98 · Unsloth adaptation with measurable training boundaries
+
+1. Which identity binds the adapter to its base?
+   Record the adapter’s exact base revision, tokenizer identity and checkpoint hash before loading it.
+   Source · Exercise 240.
+
+2. Can constrained decoding improve format while leaving semantic accuracy unchanged?
+   Yes. Constraining structure can improve parsing while leaving unsupported claims or missing diagnostic measurements.
+   Source · Exercise 242.
+
+Chapter 99 · LM Studio inside WSL2 with a headless service
+
+1. What distinguishes inventory from residency?
+   Inventory lists model files known to the service. Residency requires a loaded owner and a successful request bound to its identity.
+   Source · Exercise 243.
+
+2. How can a timeout occur before the service has completed its work?
+   A client deadline can expire while indexing, loading or inference continues. Inspect service state and timestamped receipts before retrying.
+   Source · Exercise 246.
+
+Chapter 100 · Nemotron models beyond the GPU weight budget
+
+1. Which of the four memory figures is a file size?
+   The GGUF artifact’s byte count is a file size. The NVML, CUDA and guest memory readings describe different scopes.
+   Source · Exercise 248.
+
+2. Which recorded error would better data or fine-tuning need to address?
+   Use the saved unsupported diagnostic claim or invented CUDA error name as a held-out target. Verify the proposed change on new evidence.
+   Source · Exercise 250.
