@@ -23,7 +23,11 @@ def compare(directories):
     plain, default, tiled = [r['vae_decode'] for r, _ in rows]
     keys = ('text', 'seed', 'width', 'height', 'steps', 'guidance', 'placement', 'input', 'strength')
     def identity(receipt):
-        return [receipt['model'], receipt['scheduler'], receipt['scheduler_config'],
+        config = dict(receipt['scheduler_config'])
+        # Diffusers serializes this set of field names in process-dependent order.
+        if '_use_default_values' in config:
+            config['_use_default_values'] = sorted(config['_use_default_values'])
+        return [receipt['model'], receipt['scheduler'], config,
                 *[receipt['arguments'][k] for k in keys], receipt['vae_decode']['latent_sha256'],
                 receipt['vae_decode']['latent_shape']]
     if any(identity(r) != identity(rows[0][0]) for r, _ in rows[1:]):
@@ -34,7 +38,9 @@ def compare(directories):
     if plain['decoder_inputs'] != [full] or default['decoder_inputs'] != [full]:
         raise ValueError('Both full-frame controls must actually decode the complete latent once')
     tiles = tiled['decoder_inputs']
-    if len(tiles) < 2 or any(max(shape) > tiled['tile_latents'] for shape in tiles):
+    if not 0 < tiled['tile_latents'] < min(full) or len(tiles) < 2 or any(
+        len(shape) != 2 or min(shape) <= 0 or max(shape) > tiled['tile_latents'] for shape in tiles
+    ):
         raise ValueError('Reduced tile size did not produce multiple bounded decoder calls')
     result = dict(latent_sha256=plain['latent_sha256'], latent_shape=plain['latent_shape'], runs={})
     for name, directory, (receipt, pixels) in zip(('plain', 'default', 'tiled'), directories, rows, strict=True):
