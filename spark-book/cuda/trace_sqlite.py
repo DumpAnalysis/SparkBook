@@ -91,8 +91,27 @@ def ranges_check(con, prefix):
                                  (start, end)).fetchone()
             print(f'range={name} contained_kernels={count}')
             found.append(count)
-    if not found or not any(found):
-        raise ValueError('No matching NVTX range contains a timed kernel')
+    if not found:
+        raise ValueError('No matching NVTX ranges')
+
+
+def launch_check(con, prefix):
+    # Nsight encodes the thread ID in the low 24 bits of globalTid.
+    rows = con.execute("""SELECT coalesce(n.text, label.value), rt.correlationId,
+           kernel.value, k.start, k.end, n.start, n.end
+        FROM NVTX_EVENTS n LEFT JOIN StringIds label ON label.id=n.textId
+        JOIN CUPTI_ACTIVITY_KIND_RUNTIME rt ON rt.globalTid=n.globalTid
+            AND rt.start>=n.start AND rt.end<=n.end
+        JOIN StringIds api ON api.id=rt.nameId
+        JOIN CUPTI_ACTIVITY_KIND_KERNEL k ON k.correlationId=rt.correlationId
+            AND k.globalPid=(rt.globalTid & ~16777215) AND k.start>0 AND k.end>k.start
+        JOIN StringIds kernel ON kernel.id=k.demangledName
+        WHERE substr(coalesce(n.text,label.value),1,length(?))=? AND api.value LIKE '%LaunchKernel%'
+        ORDER BY n.start,rt.start,k.start""", (prefix,prefix)).fetchall()
+    for name,corr,kernel,start,end,left,right in rows:
+        print(f'range={name} launch_id={corr} kernel={kernel} wholly_contained={left<=start and end<=right}')
+    print(f'correlated_launches={len(rows)}')
+    if not rows:raise ValueError('No device kernels correlated with a launch in the selected ranges')
 
 
 def fixture(path):
@@ -115,6 +134,7 @@ def main():
     p.add_argument('--overlap', choices=('kernels', 'copies'), default='kernels')
     p.add_argument('--request', type=Path, help='request.json from trace_server.py')
     p.add_argument('--ranges', help='list NVTX ranges starting with this prefix and their contained device events')
+    p.add_argument('--launches',help='correlate in-range CUDA launches with kernels, including kernels outside the host range')
     args = p.parse_args()
     if args.fixture:
         fixture(args.path)
@@ -130,6 +150,8 @@ def main():
                 stream_check(con, args.match, args.overlap, tables)
             if args.request:
                 request_check(con, args.request)
+            if args.launches:
+                launch_check(con, args.launches)
             if args.ranges:
                 ranges_check(con, args.ranges)
     except (ValueError, sqlite3.Error) as exc:

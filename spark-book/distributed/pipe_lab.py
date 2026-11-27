@@ -7,11 +7,14 @@ import argparse
 from contextlib import contextmanager
 import json
 import multiprocessing as mp
+import os
 from multiprocessing.connection import wait
 from pathlib import Path
 import time
 import traceback
 import sys
+if __name__ in ('__main__', '__mp_main__'):
+    os.environ['CUDA_VISIBLE_DEVICES'] = ''  # Only this CPU coordinator and its spawned ranks.
 import numpy as np
 import torch
 from model import make_model, batch, loss, flat, optimizer
@@ -47,7 +50,15 @@ def worker(rank, world, conn, out, case, steps, resume):
         return response["values"]
     try:
         collective("barrier",None)
-        if case in ["crash","mismatch","timeout"]:
+        rank_errors = {}
+    for rank,code in enumerate(codes):
+        if code:
+            trace = out/f"error-{rank}.txt"
+            rank_errors[str(rank)] = {"exit":code,"stderr":str(out/f"stderr-{rank}.txt"),
+                "exception":trace.read_text(errors="replace").splitlines()[-1][:500] if trace.exists() else None}
+    if failure or rank_errors:
+        save(out/"worker-diagnosis.json", {"coordinator":failure,"ranks":rank_errors})
+    if case in ["crash","mismatch","timeout"]:
             event("fault_boundary",case=case)
             if rank==1 and case=="crash":
                 event("injected_exit",code=17)
@@ -164,6 +175,14 @@ def run(case,out,world=2,steps=4,resume_dir=None):
             if proc.is_alive():proc.kill();proc.join()
         for c in parents:c.close()
     codes=[p.exitcode for p in processes]
+    rank_errors = {}
+    for rank,code in enumerate(codes):
+        if code:
+            trace = out/f"error-{rank}.txt"
+            rank_errors[str(rank)] = {"exit":code,"stderr":str(out/f"stderr-{rank}.txt"),
+                "exception":trace.read_text(errors="replace").splitlines()[-1][:500] if trace.exists() else None}
+    if failure or rank_errors:
+        save(out/"worker-diagnosis.json", {"coordinator":failure,"ranks":rank_errors})
     if case in ["crash","mismatch","timeout"]:
         expected={"crash":"worker_exit","mismatch":"collective_mismatch","timeout":"timeout"}[case]
         ok=bool(failure and failure["kind"]==expected and all(c is not None for c in codes))
@@ -173,7 +192,7 @@ def run(case,out,world=2,steps=4,resume_dir=None):
         save(out/"result.json",result)
         if not ok:raise AssertionError(result)
         return result
-    if failure or any(c!=0 for c in codes):raise AssertionError(dict(failure=failure,exitcodes=codes))
+    if failure or any(c!=0 for c in codes):raise AssertionError(dict(failure=failure,exitcodes=codes,rank_errors=rank_errors))
     if case=="shard":
         rows=[json.loads((out/f"shard-{r}.json").read_text()) for r in range(world)]
         result=dict(status="PASS",forward_and_gradient_errors=[r["errors"] for r in rows],local_weights=12,full_weights=24)
