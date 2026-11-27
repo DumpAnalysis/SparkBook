@@ -34,19 +34,19 @@ Check for success
 Compare complete held-out answers, placement, memory and latency under matched settings. Keep semantic failures visible.
 
 Run in your lab
-Prepare both pinned model shard sets in Exercise 11. Use the same 4096-token context, single slot and 99 requested GPU layers for both. Run each owner alone. Inspect its runs/server-*/stderr.txt for the actual offload count and model buffer size.
+Prepare both pinned shard sets in Exercise 11. Compare the direct prompt with a textbook-assisted answer on each quantization. Each of the four owners starts with 4096 tokens of context, one slot and 99 requested GPU layers. It answers the same four cases and serves eight serial timing requests. The worksheet matches case words to one of ten topics and supplies guiding questions. Its three model replies share the same total output allowance as the direct answer.
 
 : "${LAB_RUN:?Source reader/new_run.sh first}"
 bash reader/quant_quality.sh
 
 Interpret the result
-Grade the four raw answers using the five items in reader/ANSWER_RUBRICS.txt. Keep all five items for E04, including the handling of quoted text. Compare per-model latency, memory and offload only for the settings you measured.
+Before reading the replies, open reader/ANSWER_RUBRICS.txt. Give each final answer five separate marks. Underline the observation, circle any unsupported event and write down two outcomes the proposed check could distinguish. For conflicting records, look for a shared identity and time window. For concurrent requests, look for both per-request latency and total completions per elapsed time. Grade the actual answer even if the background reading names the right check.
 
 If the check fails
-Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+When a reply sounds plausible, ask what its proposed measurement would show if the hypothesis were wrong. Compare the saved full prompts, finish reasons and responses for the same case. Keep a blank, truncated or unsupported answer visible.
 
 Finish
-Keep both answer sets, both load summaries, the device-memory snapshots and native startup logs.
+Keep all four answer files, load summaries, memory readings and placement logs. Record the time for a complete diagnostic answer separately from the eight-request serving benchmark.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

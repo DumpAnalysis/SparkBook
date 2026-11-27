@@ -34,28 +34,34 @@ Check for success
 Bind adapter and base identities, inspect the complete generated answer, and score its claims against the held-out evidence.
 
 Reading the result
-Record both the FP32 merge comparison and the held-out task score. The merge passed numerical fidelity. The CUDA generation scored 13/20 and failed the untrusted-log action boundary.
+The original transcript below records a 13/20 generation and its merge check. In this paired procedure, a matching export identifies the weights. The scored answers show what the direct prompt and the guided questions each elicited.
 
 Run in your lab
-Re-export your selected checkpoint and generate all four held-out answers on CUDA. For the retrieval extension, start the native Q4 owner from Exercise 5 before running the last command. Both indexes must contain the same documents and queries.
+Stop the native owner before exporting the Exercise 170 checkpoint. Generate direct and textbook-assisted answers on the same merged weights. The last commands start a Q4 owner for the retrieval extension. Supply base and tuned indexes containing the same rows.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${NEMO_BASE:?Set NEMO_BASE to the exact base checkpoint used for the NeMo run}"
 : "${NEMO_CHECKPOINT:?Set NEMO_CHECKPOINT to the adapter checkpoint selected in Exercise 170}"
 python ecosystem/nemo_export_target.py --base "$NEMO_BASE" --checkpoint "$NEMO_CHECKPOINT" --out "$LAB_RUN/nemo-export"
-python reader/heldout_answers.py --checkpoint "$LAB_RUN/nemo-export/merged" --out "$LAB_RUN/nemo-heldout"
+MERGED="$LAB_RUN/nemo-export/merged"
+python reader/heldout_answers.py --checkpoint "$MERGED" --protocol direct --out "$LAB_RUN/nemo-heldout-direct"
+python reader/heldout_answers.py --checkpoint "$MERGED" --protocol review --out "$LAB_RUN/nemo-heldout"
 : "${BASE_VECTORS:?Set BASE_VECTORS to the original index directory}"
 : "${TUNED_VECTORS:?Set TUNED_VECTORS to the tuned index from Exercise 114}"
-python reader/retrieval_citations.py --base-vectors "$BASE_VECTORS" --tuned-vectors "$TUNED_VECTORS" --out "$LAB_RUN/citations"
+bash serve.sh start 4096 1 99 gpu q4_k_m
+(
+  trap 'bash serve.sh stop' EXIT
+  python reader/retrieval_citations.py --base-vectors "$BASE_VECTORS" --tuned-vectors "$TUNED_VECTORS" --out "$LAB_RUN/citations"
+)
 
 Interpret the result
-Grade the raw checkpoint answers, including every proposed action on E04. Compare base and tuned retrieval ranks. Each decoding policy uses the same two actual base-index passages. Score returned ID, exact quote and semantic relevance separately.
+Match the base, selected adapter and merged weights in handoff.json. Score each saved final reply against the five original rubric items. For instruction-like log text, identify the passive controller evidence that could distinguish a rejected proposal from a dispatched action. The words in a log alone establish neither. Grade retrieval separately for a supplied ID, exact quotation and an answer supported by its passage.
 
 If the check fails
-Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
+If merge fidelity passes while a diagnosis fails, quote the unsupported claim or the missing comparison. Compare direct and assisted replies on the same export before attributing a change to adapter training.
 
 Finish
-Keep handoff.json, model answers, the two source indexes and all per-query receipts. Stop the native owner after the extension.
+Keep handoff.json, both answer files, the base and tuned index identities and all retrieval receipts. Record each proposed measurement and whether its outcome would discriminate between explanations.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.
