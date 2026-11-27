@@ -24,7 +24,7 @@
         160,
         164
       ],
-      "book_page": 638
+      "book_page": 640
     },
     {
       "slug": "agent",
@@ -333,7 +333,7 @@
         154,
         156
       ],
-      "book_page": 651
+      "book_page": 653
     },
     {
       "slug": "oci",
@@ -357,7 +357,7 @@
         174,
         175
       ],
-      "book_page": 668
+      "book_page": 670
     },
     {
       "slug": "contrast",
@@ -583,7 +583,7 @@
       "references": [
         223
       ],
-      "book_page": 748
+      "book_page": 750
     },
     {
       "slug": "dumps",
@@ -667,7 +667,7 @@
         148,
         150
       ],
-      "book_page": 576
+      "book_page": 578
     },
     {
       "slug": "dist",
@@ -935,7 +935,7 @@
         192,
         193
       ],
-      "book_page": 695
+      "book_page": 697
     },
     {
       "slug": "grounding",
@@ -1009,7 +1009,7 @@
         183,
         184
       ],
-      "book_page": 677
+      "book_page": 679
     },
     {
       "slug": "media",
@@ -1036,7 +1036,7 @@
         156,
         159
       ],
-      "book_page": 554
+      "book_page": 556
     },
     {
       "slug": "serving",
@@ -1088,7 +1088,7 @@
         222,
         223
       ],
-      "book_page": 746
+      "book_page": 748
     },
     {
       "slug": "fusion",
@@ -1161,7 +1161,7 @@
         206,
         226
       ],
-      "book_page": 719
+      "book_page": 721
     },
     {
       "slug": "langgraph",
@@ -1185,7 +1185,7 @@
         208,
         209
       ],
-      "book_page": 727
+      "book_page": 729
     },
     {
       "slug": "langsmith",
@@ -1211,7 +1211,7 @@
         212,
         213
       ],
-      "book_page": 734
+      "book_page": 736
     },
     {
       "slug": "timing",
@@ -1261,7 +1261,7 @@
         247,
         248
       ],
-      "book_page": 786
+      "book_page": 788
     },
     {
       "slug": "bigmodel",
@@ -1457,7 +1457,7 @@
         152,
         153
       ],
-      "book_page": 603
+      "book_page": 605
     },
     {
       "slug": "nemotron",
@@ -1483,7 +1483,7 @@
         251,
         252
       ],
-      "book_page": 797
+      "book_page": 799
     },
     {
       "slug": "ncu",
@@ -1605,7 +1605,7 @@
         141,
         144
       ],
-      "book_page": 528
+      "book_page": 529
     },
     {
       "slug": "ngc",
@@ -1630,7 +1630,7 @@
         172,
         173
       ],
-      "book_page": 661
+      "book_page": 663
     },
     {
       "slug": "tritonserver",
@@ -1682,7 +1682,7 @@
         232,
         233
       ],
-      "book_page": 755
+      "book_page": 757
     },
     {
       "slug": "onnx",
@@ -1824,7 +1824,7 @@
         191,
         194
       ],
-      "book_page": 688
+      "book_page": 690
     },
     {
       "slug": "prompt",
@@ -1873,7 +1873,7 @@
         196,
         197
       ],
-      "book_page": 698
+      "book_page": 700
     },
     {
       "slug": "instructions",
@@ -1921,7 +1921,7 @@
         216,
         217
       ],
-      "book_page": 740
+      "book_page": 742
     },
     {
       "slug": "pythonpackages",
@@ -2291,7 +2291,7 @@
         157,
         159
       ],
-      "book_page": 626
+      "book_page": 628
     },
     {
       "slug": "sdxl",
@@ -2316,7 +2316,7 @@
         149,
         160
       ],
-      "book_page": 584
+      "book_page": 586
     },
     {
       "slug": "stalls",
@@ -2430,7 +2430,7 @@
         154,
         155
       ],
-      "book_page": 613
+      "book_page": 615
     },
     {
       "slug": "pooling",
@@ -2551,7 +2551,7 @@
         236,
         237
       ],
-      "book_page": 768
+      "book_page": 770
     },
     {
       "slug": "vectorindex",
@@ -2599,7 +2599,7 @@
         258,
         259
       ],
-      "book_page": 814
+      "book_page": 816
     },
     {
       "slug": "vlm",
@@ -2622,7 +2622,7 @@
         147,
         166
       ],
-      "book_page": 563
+      "book_page": 565
     },
     {
       "slug": "vllm",
@@ -2692,7 +2692,7 @@
         159,
         168
       ],
-      "book_page": 606
+      "book_page": 608
     },
     {
       "slug": "wsl",
@@ -2740,7 +2740,7 @@
         156,
         158
       ],
-      "book_page": 628
+      "book_page": 630
     },
     {
       "slug": "kernels",
