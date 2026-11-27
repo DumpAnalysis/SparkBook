@@ -133,6 +133,17 @@ def inspect(args):
     print("sha256=" + digest(p))
 
 
+def matches_schema(value, spec):
+    kind = spec["type"]
+    if kind == "string":
+        return isinstance(value,str) and bool(value.strip()) and ("enum" not in spec or value in spec["enum"])
+    if kind == "array":
+        return (isinstance(value,list) and spec["minItems"] <= len(value) <= spec["maxItems"]
+                and all(matches_schema(x,spec["items"]) for x in value))
+    return (isinstance(value,dict) and set(value)==set(spec["required"])
+            and all(matches_schema(value[key],field) for key,field in spec["properties"].items()))
+
+
 def query(args):
     prompt = pathlib.Path(args.prompt).read_text(encoding="utf-8")
     schema = None
@@ -143,7 +154,10 @@ def query(args):
                                 "next_measurement": item})
         prompt += "\nUse short strings. Report one directly observed event per observation."
     elif args.format == "grounded":
-        schema = object_schema({"observed_with_citations": item, "cause_assessment": item,
+        passages = re.findall(r"^(\[[A-Za-z0-9_-]+\]) (.+)$",prompt,re.MULTILINE)
+        quotes = {key:string_choice(re.split(r"(?<=[.!?])\s+", passage)) for key,passage in passages}
+        observations = object_schema(quotes) if quotes else string_choice(["No retrieved passages"])
+        schema = object_schema({"observed_with_citations": observations, "cause_assessment": item,
                                 "missing_measurement": item})
         prompt += ("\nDistinguish a gap in coverage from a causal event. Only identify a cause "
                    "when a passage directly establishes it. Identify the missing measurement separately.")
@@ -161,15 +175,8 @@ def query(args):
         if finish != "stop":
             return 2
         obj = json.loads(text)
-        if set(obj) != set(schema["required"]):
+        if not matches_schema(obj,schema):
             return 2
-        for key, spec in schema["properties"].items():
-            value = obj[key]
-            if spec["type"] == "array":
-                if not isinstance(value, list) or len(value) != 2 or not all(isinstance(x, str) and x.strip() for x in value):
-                    return 2
-            elif not isinstance(value, str) or not value.strip():
-                return 2
     return 0
 
 
