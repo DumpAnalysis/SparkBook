@@ -15,7 +15,7 @@ Model downloads, Git revisions and GGUF
 
 A model repository holds weights, configuration and a description called a model card. A revision identifies a particular state of that repository. A SHA-256 digest is a fingerprint of a file’s bytes. Compare it with the expected digest before loading. Two similarly named files may contain different weights.
 
-The model family in this exercise is Qwen. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
+The early exercises use Qwen models. Its GGUF files contain tensors and metadata in a format the llama.cpp runtime can read. A large model can be split into numbered shards. Keep the runtime identity, model revision and complete shard list together so another reader can reconstruct the same load.
 
 Before you start
 Exercise 208 (inspect pinned model and dataset identities)
@@ -28,7 +28,7 @@ Check for success
 Record upstream and conversion identities, selected file size and hash before interpreting its loading behavior.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Plan mode writes acquisition-plan.json locally, including the pinned revision, filenames, sizes and publisher hashes. After checking disk and headroom, repeat the same command with --download. An interrupted transfer keeps its .partial file. The next run starts at the retained byte offset and checks the full publisher hash before making the file available.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 

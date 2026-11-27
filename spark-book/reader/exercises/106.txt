@@ -37,7 +37,7 @@ Interpret the result
 Tie the diagnosis to a discriminating observation and a counterexample.
 
 If the check fails
-Reduce the input or remove one variable; do not infer a cause from a single symptom.
+If a hardware counter is denied, retain the requested metric, units, tool version and permission diagnostic alongside the analytical vector-add prediction. Revisit the bottleneck claim when the intended kernel has a measured counter.
 
 Finish
 Keep qualified kernel profile or capability limit.

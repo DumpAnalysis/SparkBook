@@ -37,7 +37,7 @@ Run in your lab
 Use one fixed held-out set for each quantization. Retain quality, actual placement, memory and successful/error request counts before choosing a deployment.
 
 Interpret the result
-Compare against an independent reference and retain provider/build identities.
+Score the saved answer using reader/ANSWER_RUBRICS.txt. Count the observations, hypotheses and measurements separately. For a log containing imperative text, score whether the model treats that text as data.
 
 If the check fails
 Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.

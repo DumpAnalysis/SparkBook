@@ -1,5 +1,5 @@
 HISTORICAL PROCEDURE NOTES
-Book Version 58 and reader/exercises/ are the current reader instructions.
+Book Version 59 and reader/exercises/ are the current reader instructions.
 These retained source-era notes explain concepts and repeat procedures; their
 old environment and execution-status statements are historical. Superseded
 preparation transcript blocks remain omitted. Use the evidence map for current
@@ -527,37 +527,13 @@ python -m pip install peft==0.17.1 datasets==3.6.0 tensorboard==2.20.0 \
 
 python -m pip check
 
-git clone --depth 1 --branch v0.35.1 \
+python media/prepare_adaptation.py --out "$LAB_RUN/image-data"
 
-  https://github.com/huggingface/diffusers.git tools/diffusers-v0351
+bash media/train_image_adapter.sh models/media/sdxl "$LAB_RUN/image-data" "$LAB_RUN/image-adapter"
 
-git -C tools/diffusers-v0351 rev-parse HEAD \
+python media/image_adapter.py --model models/media/sdxl --adapter "$LAB_RUN/image-adapter" --out "$LAB_RUN/image-adapter-check"
 
-  > runs/media/diffusers-training-commit.txt
-
-python media/prepare_adaptation.py --out runs/media/image-data
-
-python media/capture.py --out runs/media/image-adapt-log -- \
-
-  accelerate launch --num_processes 1 --mixed_precision fp16 \
-
-  tools/diffusers-v0351/examples/text_to_image/train_text_to_image_lora_sdxl.py \
-
-  --pretrained_model_name_or_path models/media/sdxl \
-
-  --variant fp16 --train_data_dir runs/media/image-data \
-
-  --caption_column text --resolution 512 \
-
-  --train_batch_size 1 --gradient_accumulation_steps 1 \
-
-  --gradient_checkpointing --mixed_precision fp16 \
-
-  --rank 4 --learning_rate 1e-4 --max_train_steps 2 \
-
-  --checkpointing_steps 2 --seed 1610 \
-
-  --output_dir runs/media/image-adapter
+The launcher checks both the upstream and patched SHA-256 values. To run entirely offline, pass the pinned v0.35.1 upstream training file as the fourth argument. Compare the foreground shape and color with the target after the two updates.
 
 TARGET procedure, not executed during preparation. Inspect the retained upstream command and errors before changing package versions. The example deliberately avoids an unqualified 8-bit optimizer or FlashAttention extension on ARM64. A full training run needs a larger, permissioned captioned dataset, a held-out prompt set, a selection criterion and a recovery test. Keep caption identity attached to each image after cropping or augmentation. [164]
 
@@ -588,6 +564,14 @@ ASR and TTS run in separate child processes and release their local model state 
 Trace the same request identifier through audio acquisition, ASR, text inference and synthesis when adapting this baseline into a service. Measure queue wait, recognition time, language-model time, synthesis time and end-to-end time separately. A fluent spoken answer can still contain an earlier recognition error. Replay the saved intermediate text to determine whether a failure belongs to recognition, reasoning or synthesis.
 
 Exercise 203  Share GPU ownership and deploy bounded media requests
+
+In Version 59, build and test the MMS speech service from the working lab:
+
+docker build --platform linux/arm64 -f media/service/Dockerfile -t local/spark-mms:v59 .
+bash media/service/run.sh local/spark-mms:v59 models/media/mms "$LAB_RUN/mms-service"
+
+The Dockerfile pins the ARM64 NVIDIA base by digest. The build checks every wheel against its SHA-256. The reader-tested build produced ARM64 manifest sha256:9bdaf6cce87d9b1da6262dc8f9e037b07e73ed301ad8b815d3e0de680ea4e3b9 and local image index sha256:8185c17e0065e58668e92bfcf49ca71da39f499e6d57faf1a0177d4380d00a79. Build metadata can give another local index. Keep the identity from your own build and its requests.json, service.log and exit.txt beside the two WAV files.
+
 
 
 This executed CPU simulation admits short recognition, image and speech requests, rejects a music request over the token budget, and observes at most one active owner. It is an admission and ownership control, not a measurement of GPU scheduling or application throughput. To build a service, put actual model execution behind the bounded owner and add cancellation, deadlines and output retention from Chapters 71–72.

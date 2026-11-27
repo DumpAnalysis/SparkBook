@@ -7,7 +7,7 @@ Run the following commands in your working spark-book directory.
   python3 reader/import_transcripts.py
   python3 reader/records.py 25 --files
 
-The matching Version 58 print and Word editions and the companion use the same
+The matching Version 59 print and Word editions and the companion use the same
 run identifiers. The exporter verifies every SHA-256 and writes 483 UTF-8 files
 in runs/book-transcripts/. Search for 025.01.txt or use a text search across the
 directory. All material comes with the ZIP. The archive reader/published-transcripts.zip
@@ -16,7 +16,7 @@ also opens directly in standard ZIP tools.
 To compare text extracted from an unedited Word manuscript, use a fresh output
 directory in your working lab.
 
-  python3 reader/import_transcripts.py /path/to/Local_AI_on_RTX_Spark_Laptops_Version58.docx --out runs/transcripts-from-word
+  python3 reader/import_transcripts.py /path/to/Local_AI_on_RTX_Spark_Laptops_Version59.docx --out runs/transcripts-from-word
 
 Some exercises share a run or have a worked answer without a terminal command.
 Their lookup gives the run IDs and pages or points to the written assessment.

@@ -31,7 +31,7 @@ Reading the result
 In the activated environment, run python -c "import sys; print(sys.executable)". Use that interpreter for the import, pip check and synchronized CUDA operation. Record each outcome separately.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Use the active framework interpreter for the synchronized CUDA control. Before the later native training or extension exercises, follow the compiler check in reader/FRESH_SETUP.txt. A successful matrix multiplication does not exercise the build headers.
 
 python gpu_probe.py
 

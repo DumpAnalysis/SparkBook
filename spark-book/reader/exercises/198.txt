@@ -38,7 +38,7 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 python media/targets.py asr --model models/media/whisper --input "$SILENCE_WAV" --out "$LAB_RUN/silence-asr"
 
 Interpret the result
-Separate signal validity, task quality, listening/visual review and profiler availability.
+Measure peak and RMS before running the silence control. The reader’s two-second input had zero RMS, yet Whisper emitted “you”. Save the exact hypothesis and count any emitted words as insertions against silence.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.

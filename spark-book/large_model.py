@@ -23,8 +23,13 @@ def main():
         return
     dest = ROOT / 'models/32b-q8_0'
     dest.mkdir(parents=True, exist_ok=True)
-    remaining = sum(item['bytes'] for item in parts if not (dest / item['name']).exists())
-    if shutil.disk_usage(dest).free < remaining + 2 * 2**30:
+    remaining = 0
+    for item in parts:
+        path = dest / item['name']
+        partial = path.with_name(path.name + '.partial')
+        if not path.exists():
+            remaining += max(0, item['bytes'] - (partial.stat().st_size if partial.is_file() else 0))
+    if remaining and shutil.disk_usage(dest).free < remaining + 2 * 2**30:
         raise SystemExit('Insufficient free disk for the remaining shards and a 2 GiB margin.')
     base = f"https://huggingface.co/{profile['repository']}/resolve/{profile['revision']}"
     for item in parts:

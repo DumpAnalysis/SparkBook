@@ -22,8 +22,13 @@ Check for success
 Inspect image identity, architecture and build receipt. Retain the failed build separately from the successful image.
 
 Run in your lab
-Docker must already be qualified under WSL2. Review serving/docker/BOOTSTRAP.txt before any installation; building the CPU fixture is separate from GPU runtime setup.
+Use the qualified Docker daemon from serving/docker/BOOTSTRAP.txt. Run the first two lines to pull the ARM64 base and display its digest. Export the matching Python repository@sha256 entry as PYTHON_IMAGE, then run the build. Exercise 141 uses the resulting local/spark-serving:book-fixture tag.
 
+: "${LAB_RUN:?Run source reader/new_run.sh first}"
+
+bash serving/docker/qualify_image.sh python:3.12-slim "$LAB_RUN/python-image"
+cat "$LAB_RUN/python-image/digests.txt"
+# Select the Python repository digest printed above and export PYTHON_IMAGE.
 : "${PYTHON_IMAGE:?Set PYTHON_IMAGE to the inspected native Python base image with an immutable digest, as described in serving/docker/BOOTSTRAP.txt}"
 docker build --build-arg PYTHON_IMAGE="$PYTHON_IMAGE" -f serving/docker/Dockerfile -t local/spark-serving:book-fixture .
 

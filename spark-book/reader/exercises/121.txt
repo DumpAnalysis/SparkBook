@@ -25,8 +25,7 @@ Reading the result
 Use the six familiar cards for guided comparison. Card C05 is illustrative. Score blind performance only on a new set that the investigator has never seen.
 
 Run in your lab
-Save a dated independent account for all six cards before opening Exercise 122.
-Read diagnostics/blind/cases.json without opening answers.json. Write your diagnosis and next discriminating observation before comparing with Exercise 122.
+Write and save each diagnosis before opening the worked answers. If any of the six cards are familiar, label the result a guided comparison and reserve a new set of unseen cards for a blind score.
 
 Interpret the result
 Tie the diagnosis to a discriminating observation and a counterexample.

@@ -95,3 +95,7 @@ Version 17 corrections and evidence continuity
   hashes still refer to the unchanged media files. Do not treat that
   historical record as a hash manifest for the current runner.
   See review-v17/RESPONSE.txt and evidence/ for the new checks and limits.
+
+Version 59 reader resources
+  train_image_adapter.sh and sdxl-v0351.patch reproduce the two-update FP16 LoRA trial.
+  service/Dockerfile pins the NVIDIA ARM64 base and service/requirements.txt pins the added wheels. Build from the lab root and run service/run.sh as shown in Exercise 203. The runner records the image ID, each request, WAVs and final container exit.

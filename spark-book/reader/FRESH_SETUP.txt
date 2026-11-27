@@ -43,6 +43,22 @@ placement; request completion and answer quality are separate criteria. The
 procedure above is a fresh-run recipe, not a claim that a new laptop ran it
 during this editorial revision. The book retains the owner’s executed runs.
 
+Before a compiled exercise
+
+Use the same interpreter that will launch training or build the extension.
+Exercise 25 needs its matching Python.h. Exercise 57 also needs Ninja.
+The native quantized model route can run without either component.
+
+python -c 'import sys,sysconfig; print(sys.executable, sys.version); print(sysconfig.get_path("include"))'
+python reader/preflight.py --check-headers
+python reader/preflight.py --check-headers --check-ninja
+
+On Ubuntu, install the development package for that interpreter's major and
+minor version (for example python3.14-dev for the system Python 3.14) and
+ninja-build for Exercise 57. For a custom interpreter, use headers from its
+own build. CPATH may point to the matching locally extracted includes.
+Repeat the preflight in the active environment and save its exit status.
+
 Branch C  Add the CUDA framework
 Use a separate candidate environment while preserving a working native route.
 From the project root, source reader/new_run.sh if LAB_RUN is not already set.

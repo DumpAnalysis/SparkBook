@@ -43,7 +43,7 @@ Inspect
 Read the collected snapshot, its timestamp, available fields and the agent’s evidence references.
 
 Interpret the result
-A snapshot has a time and scope. Missing fields stay unavailable and cannot be filled by model speculation.
+Separate events in the fictional incident text from events in the captured snapshot. The reader’s selected HTTP exchange succeeded even though its prompt described a timeout. Check the final diagnosis against the exchange and its timestamp.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.

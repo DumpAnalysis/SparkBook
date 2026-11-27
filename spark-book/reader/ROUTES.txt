@@ -28,7 +28,7 @@ Keep the same fixed encoder reference. At Triton send TOKENS and compare EMBEDDI
 
 Follow the linear calculation from export to quantized execution
 152 fixture.npz → 156 linear.onnx → 157–158 ONNX Runtime CPU/CUDA → 161 TensorRT → 166 linear-qdq.onnx.
-Keep the same test inputs. Compare each result with the independent reference; inspect the quantized engine to establish actual INT8 execution.
+Use $LAB_RUN/fixture from 152, $LAB_RUN/onnx from 156 and $LAB_RUN/quantization from 164. For a replay, explicitly name the matching directories under ecosystem/controls. Keep the same test inputs. Compare each result with the independent reference; inspect the quantized engine to establish actual INT8 execution.
 
 Multimodal work
 Exercises 172–203

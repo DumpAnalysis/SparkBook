@@ -28,7 +28,7 @@ Check for success
 Verify base hashes, family split and supervised labels before starting the bounded QLoRA experiment.
 
 Run in your lab
-This is a CPU data/identity control. Acquire the pinned training-base separately before running Unsloth.
+Run the local split and identity control, then verify the pinned training-base acquisition receipt. The tested Unsloth distribution was 2026.10.10 in a separate environment using the qualified CUDA framework. Save the pip installation report, run python -m pip check, and retain python -m pip freeze with the checkpoint and 12/4 split.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 

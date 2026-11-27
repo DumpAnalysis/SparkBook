@@ -36,7 +36,7 @@ python media/targets.py image --model models/media/sdxl --text "A desk with a bl
 python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a green ceramic cup" --width 512 --height 512 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/edit-07" --strength 0.7 --input "$IMAGE_184"
 
 Interpret the result
-Separate signal validity, task quality, listening/visual review and profiler availability.
+Score the front cup, notebook, and background separately for each seed-matched edit. In the reader trial both strength settings changed the scene but left the front cup red. Keep the source and both output images beside the score.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.

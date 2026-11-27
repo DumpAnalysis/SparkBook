@@ -37,7 +37,9 @@ def main():
     check('CPU deployment has no GPU claim','nvidia.com/gpu' not in spec['containers'][0]['resources']['limits'] and 'runtimeClassName' not in spec)
     check('CPU service is internal ClusterIP',docs[2]['spec']['type']=='ClusterIP')
     fake='example.invalid/lab@sha256:'+'a'*64
-    gpu=documents('vllm',fake,'/srv/spark-models');g=gpu[1]['spec'];pod=g['template']['spec']
+    gpu=documents('vllm',fake,'/srv/spark-models');g=next(doc['spec'] for doc in gpu if doc['kind']=='Deployment');pod=g['template']['spec']
+    bootstrap=next(doc for doc in gpu if doc['kind']=='ConfigMap')
+    check('WSL vLLM entrypoint',pod['containers'][0]['command']==['python3','/bootstrap/entry.py','vllm','serve'] and 'TRITON_LIBCUDA_PATH' in bootstrap['data']['entry.py'])
     check('GPU rollout uses one whole device and Recreate',g['replicas']==1 and g['strategy']['type']=='Recreate' and pod['containers'][0]['resources']['limits']['nvidia.com/gpu']==1 and pod['runtimeClassName']=='nvidia')
     check('model volume read only and no service token',pod['containers'][0]['volumeMounts'][0]['readOnly'] and not pod['automountServiceAccountToken'])
     rejected=False

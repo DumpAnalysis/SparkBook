@@ -34,11 +34,11 @@ Check for success
 Locate QuantizeLinear and DequantizeLinear in the graph, then compare runtime output with the matching numerical reference.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Continue with the fixture and graph generated earlier in this LAB_RUN. For a stand-alone replay, select the corresponding files under ecosystem/controls and record their paths and hashes.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
-python ecosystem/tensorrt_target.py --model ecosystem/controls/quantize/linear-qdq.onnx --src ecosystem/controls/fixture --out "$LAB_RUN/trt-qdq" --qdq
+python ecosystem/tensorrt_target.py --model "$LAB_RUN/quantization/linear-qdq.onnx" --src "$LAB_RUN/fixture" --out "$LAB_RUN/trt-qdq" --qdq
 
 Interpret the result
 Compare against an independent reference and retain provider/build identities.

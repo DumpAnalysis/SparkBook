@@ -47,7 +47,7 @@ Interpret the result
 Separate signal validity, task quality, listening/visual review and profiler availability.
 
 If the check fails
-Check decoding/preprocessing before model behavior; isolate one pipeline stage.
+Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.
 
 Finish
 Keep $LAB_RUN/vlm-profile with the command and exit that produced it.

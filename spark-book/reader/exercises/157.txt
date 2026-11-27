@@ -28,11 +28,11 @@ Check for success
 Compare supported batches with the NumPy oracle. Preserve the actual wrong-width and wrong-dtype errors.
 
 Run in your lab
-Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
+Continue with the fixture and graph generated earlier in this LAB_RUN. For a stand-alone replay, select the corresponding files under ecosystem/controls and record their paths and hashes.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
-python ecosystem/lab.py ort --src ecosystem/controls/fixture --models ecosystem/controls/onnx --out "$LAB_RUN/ort-cpu"
+python ecosystem/lab.py ort --src "$LAB_RUN/fixture" --models "$LAB_RUN/onnx" --out "$LAB_RUN/ort-cpu"
 
 Interpret the result
 Compare against an independent reference and retain provider/build identities.

@@ -1,16 +1,18 @@
 # Local AI on RTX Spark Laptops
 
-Version 58 of the learner companion supplies the code, fixtures and guides for all 251 exercises in *Local AI on RTX Spark Laptops*. The worked system is a 64 GB unified-memory RTX Spark laptop with the Windows NVIDIA driver mapped into WSL2.
+Version 59 of the learner companion supplies the code, fixtures and guides for all 251 exercises in *Local AI on RTX Spark Laptops*. The worked system is a 64 GB unified-memory RTX Spark laptop with the Windows NVIDIA driver mapped into WSL2.
 
 ## Start in WSL2
 
-Extract the matching Version 58 release in WSL2, or clone the repository when its README identifies Version 58. From the release’s spark-book directory, run the integrity check before creating a working lab. Supply --book /path/to/Local_AI_on_RTX_Spark_Laptops_Version58.docx to check the exact manuscript as well.
+Extract the matching Version 59 release in WSL2, or clone the repository when its README identifies Version 59. From the release’s spark-book directory, run the integrity check before creating a working lab. Add `--book` for each edition file you have. The manifest checks both the DOCX and print PDF by SHA-256.
 
 ```bash
 mkdir -p ~/work
 git clone https://github.com/DumpAnalysis/SparkBook.git ~/work/SparkBook
 cd ~/work/SparkBook/spark-book
 python3 reader/verify_package.py
+# Optional paired check, using your local book files
+# python3 reader/verify_package.py --book /path/to/book.docx --book /path/to/book.pdf
 python3 reader/guide.py 1
 ```
 

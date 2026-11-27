@@ -5,13 +5,14 @@ import pathlib
 import re
 import time
 import urllib.request
-from spark_lab import save
+from spark_lab import require_new_output, save
 
 p = argparse.ArgumentParser()
 p.add_argument("prompt")
 p.add_argument("--base", default="http://127.0.0.1:8080")
 p.add_argument("--out", required=True)
 a = p.parse_args()
+require_new_output(a.out)
 if not re.fullmatch(r"http://127\.0\.0\.1:[0-9]+", a.base):
     raise SystemExit("Use an explicit IPv4 loopback URL")
 prompt = pathlib.Path(a.prompt).read_text(encoding="utf-8")

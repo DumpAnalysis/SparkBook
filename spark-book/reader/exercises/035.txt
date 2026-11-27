@@ -36,7 +36,7 @@ Interpret the result
 A successful workload does not establish usable debugger, counter or trace data.
 
 If the check fails
-Distinguish unsupported tooling from a kernel failure; preserve diagnostics and missing fields.
+Record the Windows driver, GPU debugger-interface state, tool version and the result on a known-good kernel before the fault control. If device inspection or sanitizer initialization fails on the good control, record the prerequisite as blocked. The host breakpoint still has its own result.
 
 Finish
 Keep complete debugger session.

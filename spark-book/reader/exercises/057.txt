@@ -30,6 +30,7 @@ Check registration, dtype/device validation and output agreement. Keep the build
 Run in your lab
 Begin with the entry procedure below, then complete the variations and acceptance checks in the chapter.
 
+python reader/preflight.py --check-headers --check-ninja
 MAX_JOBS=2 python advanced/torch_operator.py
 
 Interpret the result

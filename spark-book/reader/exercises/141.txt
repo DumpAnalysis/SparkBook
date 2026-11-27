@@ -28,11 +28,11 @@ Check for success
 Test readiness and a numerical request, inspect configured limits, then verify the owned container's termination.
 
 Run in your lab
-This starts the named Compose lab in the background. Inspect readiness before the client request; finish with docker compose -f serving/docker/compose.yaml down.
+Start the named Compose project and wait for its container health check before issuing the embedding request. Keep the first connection error if readiness times out. Finish with docker compose -f serving/docker/compose.yaml down.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
-docker compose -f serving/docker/compose.yaml up -d
+docker compose -f serving/docker/compose.yaml up -d --wait --wait-timeout 90
 python serving/client.py embed --out "$LAB_RUN/container-request"
 
 Interpret the result

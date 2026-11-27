@@ -34,7 +34,7 @@ Check for success
 Inspect network namespace, scrape target and backend responses. Verify cleanup of the owned port-forward and services.
 
 Run in your lab
-This generates configuration only. Inspect it and the image identities before starting containers; follow the chapter’s cluster connectivity procedure separately.
+For the Docker route, run serving/docker/qualify_image.sh for prom/prometheus:v3.15.1 and grafana/grafana:13.3.0. Verify linux/arm64 and pass each matching repo@sha256 digest from digests.txt to observability/docker_config.py. The scrape should show the service moving from up=1 to up=0 after shutdown.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${GRAFANA_IMAGE:?Set GRAFANA_IMAGE to the qualified Grafana image pinned by digest}"

@@ -28,7 +28,7 @@ Check for success
 Match each panel to its backend query. Inspect baseline, missing-field and real-zero states separately.
 
 Run in your lab
-Use a separate WSL Python environment for the browser. The recorded environment used Playwright 1.64.1. Install it with python -m pip install playwright==1.64.1, then run python -m playwright install chromium in that environment. Check the native browser libraries before retrying a failed launch. This helper starts a fresh fixture stack, waits for each state in Prometheus, opens Grafana and saves three pairs of screenshots. It stops its own stack on exit.
+Use a separate browser environment with Playwright 1.64.1. Run python -m playwright install chromium. On Ubuntu 26.04, the review also needed libnspr4, libnss3 and libasound2t64. Use python -m playwright install-deps chromium for the distribution dependency list and installation. The helper launches Chromium before starting the fixture stack.
 
 : "${LAB_RUN:?Start a new lab run first}"
 : "${TOOLS_JSON:?Set TOOLS_JSON to the qualified tools.json from Exercise 212}"

@@ -1,0 +1,17 @@
+--- upstream.py
++++ trainer.py
+@@ -574 +574 @@
+-        log_with=args.report_to,
++        log_with=None if args.report_to == 'none' else args.report_to,
+@@ -634 +634 @@
+-        args.pretrained_model_name_or_path, subfolder="text_encoder", revision=args.revision, variant=args.variant
++        args.pretrained_model_name_or_path, subfolder="text_encoder", revision=args.revision, variant=args.variant, torch_dtype=torch.float16
+@@ -637 +637 @@
+-        args.pretrained_model_name_or_path, subfolder="text_encoder_2", revision=args.revision, variant=args.variant
++        args.pretrained_model_name_or_path, subfolder="text_encoder_2", revision=args.revision, variant=args.variant, torch_dtype=torch.float16
+@@ -651 +651 @@
+-        args.pretrained_model_name_or_path, subfolder="unet", revision=args.revision, variant=args.variant
++        args.pretrained_model_name_or_path, subfolder="unet", revision=args.revision, variant=args.variant, torch_dtype=torch.float16
+@@ -1314 +1314 @@
+-        pipeline.load_lora_weights(args.output_dir)
++        pipeline.load_lora_weights(args.output_dir, weight_name='pytorch_lora_weights.safetensors', local_files_only=True)
