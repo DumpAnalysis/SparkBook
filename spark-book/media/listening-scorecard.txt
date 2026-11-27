@@ -1,0 +1,9 @@
+Listening scorecard for Exercises 191, 192 and 194
+Record the WAV filename and SHA-256, listener, playback device and date.
+Listen before inspecting seed or model identity when comparing variants.
+For each item enter yes, no, or uncertain, with an audible example and time offset.
+191  Is the main instrument recognizably piano? Is the pulse slow and steady?
+192  Transcribe the speech as heard. Compare the words with the prompt. Mark any unclear syllable or dropout.
+194  Transcribe the abbreviation and the rest of the sentence. Identify which pronunciation you heard.
+Machine transcript, waveform validity and repeatability each have separate fields.
+If playback has not been assessed by a listener, record “unassessed” for that field.

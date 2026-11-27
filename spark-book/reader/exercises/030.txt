@@ -28,13 +28,13 @@ Check for success
 Align request timestamps with host and guest pressure samples. Mark the smallest observed headroom and any guard event.
 
 Run in your lab
-Use the directory from Exercise 29 in the same LAB_RUN, or supply its absolute path. The session already ran a pressure request with concurrent Windows and guest sampling. The report reads that request interval and the captured measurements.
+Point the report at the directory from Exercise 29. It can also read a run that stopped at admission or partway through its requests.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 python memory_budget/guarded.py report --run "$LAB_RUN/model32"
 
 Interpret the result
-Read admission.json and result.json from the same run. A guard stop before launch supplies a baseline and stop reason. A request-time pressure curve needs samples during an admitted generation. Keep the existing floors.
+Read failed_checks, completed_requests and each matched host/guest interval. A missing pressure request has no pressure window. Exit 3 preserves a guarded outcome. A failure before the placement check can leave admission empty.
 
 If the check fails
 Check dataset/tokenizer identity and memory at the failing phase before changing precision.

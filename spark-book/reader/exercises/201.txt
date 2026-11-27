@@ -34,22 +34,25 @@ Check for success
 Compare adapter-enabled and disabled images with the same base, prompt and seed. Score the requested visual change independently of pixel differences.
 
 Run in your lab
-Activate the SDXL training environment from Chapter 88. The launcher verifies the upstream trainer and the supplied patch, loads the frozen weights in FP16 and runs two offline updates. An optional fourth argument selects a local copy of the pinned upstream script. Compare the filled-square target with both images and score the shape separately from the training loss.
+Train 72 updates on 21 filled shapes. Every green square is withheld from training. A cached, checksum-matched Diffusers trainer can be supplied via SDXL_TRAINER. Evaluate both adapter settings with identical text, resolution, seed and diffusion budget.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 python media/prepare_adaptation.py --out "$LAB_RUN/image-data"
 bash media/train_image_adapter.sh models/media/sdxl "$LAB_RUN/image-data" "$LAB_RUN/image-adapter"
-python media/image_adapter.py --model models/media/sdxl --adapter "$LAB_RUN/image-adapter" --out "$LAB_RUN/image-adapter-check"
+PROMPT="One plain, solid green square, filled edge to edge with flat green ink, centered on an otherwise blank white page."
+NEGATIVE="outline, hollow center, frames, stripes, border, texture, shadow, lettering, pattern, gradient"
+python media/image_adapter.py --model models/media/sdxl --adapter "$LAB_RUN/image-adapter" --text "$PROMPT" --negative "$NEGATIVE" --size 1024 --out "$LAB_RUN/image-adapter-check"
+python media/image_adapter.py --model models/media/sdxl --adapter "$LAB_RUN/image-adapter" --text "A blue ceramic bowl on a wooden table" --size 1024 --out "$LAB_RUN/adapter-unrelated"
 
 Interpret the result
-Compare base.png and adapter.png at the same seed against a filled green square on white. In Figure 88.1 both show green frames around a pale center. Green is present (1/1), the center is filled green (0/1). Record the raw images, the unrelated-prompt control and two-update loss separately.
+Award one point for green and one for a filled square on white. Score the base and adapter independently. Compare the unrelated bowl under the same two adapter settings. An equal score demonstrates no gain on this rubric.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.
 
 Finish
-Keep the two losses, adapter weights, base.png and adapter.png from this LAB_RUN. A changed image is evidence of an adapter effect. Mark the shape criterion separately.
+Keep the loss trace, adapter weights and both paired image directories.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

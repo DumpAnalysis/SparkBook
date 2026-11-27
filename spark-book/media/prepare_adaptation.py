@@ -15,8 +15,21 @@ def main():
         (a.out/'asr.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows));print('ASR teaching rows 2; verify their transcripts')
     else:
         rows=[]
-        for i,(color,name) in enumerate([((220,30,30),'red'),((30,60,220),'blue')]):
-            im=Image.new('RGB',(512,512),'white');ImageDraw.Draw(im).rectangle((130,130,382,382),fill=color)
-            f=f'{i:03d}.png';im.save(a.out/f);rows.append(dict(file_name=f,text='A '+name+' square on a white background'))
-        (a.out/'metadata.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows));print('Image plumbing examples 2; not a quality corpus')
+        # Withhold every green square. Green occurs on circles, and square
+        # geometry occurs in other colors at several sizes and positions.
+        palette={'red':(210,35,35),'blue':(35,65,210),'green':(30,155,50),'orange':(225,125,25)}
+        for name,color in palette.items():
+            for shape in ('circle','square'):
+                if (name,shape)==('green','square'):
+                    continue
+                for side,dx,dy in [(250,0,0),(300,-22,12),(210,18,-18)]:
+                    x=(512-side)//2+dx; y=(512-side)//2+dy
+                    im=Image.new('RGB',(512,512),'white'); draw=ImageDraw.Draw(im)
+                    paint=draw.ellipse if shape=='circle' else draw.rectangle
+                    paint((x,y,x+side-1,y+side-1),fill=color)
+                    filename=f'{name}-{shape}-{side}.png';im.save(a.out/filename)
+                    rows.append(dict(file_name=filename,text=f'A {name} {shape} on a white background'))
+        (a.out/'metadata.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in rows))
+        print(f'{len(rows)} training images; held out all green squares')
+
 if __name__=='__main__':main()

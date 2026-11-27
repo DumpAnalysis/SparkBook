@@ -34,16 +34,19 @@ Check for success
 Compare complete held-out answers, placement, memory and latency under matched settings. Keep semantic failures visible.
 
 Run in your lab
-Use one fixed held-out set for each quantization. Retain quality, actual placement, memory and successful/error request counts before choosing a deployment.
+Prepare both pinned model shard sets in Exercise 11. Use the same 4096-token context, single slot and 99 requested GPU layers for both. Run each owner alone. Inspect its runs/server-*/stderr.txt for the actual offload count and model buffer size.
+
+: "${LAB_RUN:?Source reader/new_run.sh first}"
+bash reader/quant_quality.sh
 
 Interpret the result
-Score the saved answer using reader/ANSWER_RUBRICS.txt. Count the observations, hypotheses and measurements separately. For a log containing imperative text, score whether the model treats that text as data.
+Grade the four raw answers using the five items in reader/ANSWER_RUBRICS.txt. Keep all five items for E04, including the handling of quoted text. Compare per-model latency, memory and offload only for the settings you measured.
 
 If the check fails
 Check shapes, dtypes, provider fallback and calibration scope before changing tolerances.
 
 Finish
-Save compatible engine/profile or adapter/base identities; close owned services.
+Keep both answer sets, both load summaries, the device-memory snapshots and native startup logs.
 
 Handoff
 Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.

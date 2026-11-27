@@ -33,9 +33,14 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 
 python catalogs/ngc_lab.py cli --dest "$LAB_RUN/ngc-cli" --record "$LAB_RUN/ngc-cli-receipt.json"
+mkdir "$LAB_RUN/ngc-extracted" "$LAB_RUN/ngc-guest-config"
+unzip -q "$LAB_RUN/ngc-cli/ngccli_arm64.zip" -d "$LAB_RUN/ngc-extracted"
+CLI="$LAB_RUN/ngc-extracted/ngc-cli/ngc"
+"$CLI" --version
+env -u NGC_CLI_API_KEY -u NGC_API_KEY NGC_CLI_CONFIG_PATH="$LAB_RUN/ngc-guest-config/config" "$CLI" registry resource info nvidia/ngc-apps/ngc_cli:4.34.10 --files
 
 Interpret the result
-A catalog listing or correct checksum is not GPU qualification.
+Compare the native executable version with the archive receipt. The anonymous catalog lookup uses a fresh configuration directory. Record the publisher, resource version and ARM64 filename.
 
 If the check fails
 Check access, identity, architecture and completeness before runtime changes.

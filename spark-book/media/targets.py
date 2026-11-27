@@ -148,11 +148,19 @@ def tts(a,r):
 
 def asr(a,r):
     from transformers import WhisperProcessor,WhisperForConditionalGeneration
+    with r.stage('inspect_audio'):
+        rate,w,source=read_audio(a.input,16000,max_seconds=30)
+        r.result.update(audio=audio_stats(w,rate),source=source)
+    if r.result['audio']['peak']==0 and not a.decode_silence:
+        r.result.update(text='',decision='abstained_digital_silence',decoder_called=False,inference_rtf=None)
+        (a.out/'output.txt').write_text('')
+        if a.reference:r.result['score']=word_error(a.reference.read_text(),'')
+        return
+    r.result.update(decision='whisper_decode',decoder_called=True)
     with r.stage('load'):
         proc=WhisperProcessor.from_pretrained(a.model,local_files_only=True)
         model=WhisperForConditionalGeneration.from_pretrained(a.model,local_files_only=True,use_safetensors=True,dtype=torch.float32).eval().to(a.device)
     with r.stage('preprocess'):
-        rate,w,source=read_audio(a.input,16000,max_seconds=30)
         inputs=proc(w,sampling_rate=rate,return_tensors='pt',return_attention_mask=True).to(a.device)
         r.result.update(audio=audio_stats(w,rate),source=source,feature_shape=list(inputs['input_features'].shape))
     with r.profile(),r.stage('infer'),torch.inference_mode():
@@ -168,6 +176,7 @@ def main():
     p.add_argument('--device',choices=['cpu','cuda'],default='cuda');p.add_argument('--input',type=Path);p.add_argument('--text',default='The graphics processor has thirty gigabytes available.')
     p.add_argument('--reference',type=Path);p.add_argument('--seed',type=int,default=1606);p.add_argument('--tokens',type=int,default=128)
     p.add_argument('--max-pixels',type=int,default=512*28*28);p.add_argument('--width',type=int,default=512);p.add_argument('--height',type=int,default=512);p.add_argument('--steps',type=int,default=20)
+    p.add_argument('--decode-silence',action='store_true',help='send digital silence to the raw Whisper decoder for comparison')
     p.add_argument('--guidance',type=float,default=3.0);p.add_argument('--strength',type=float,default=.5)
     p.add_argument('--nvtx', action='store_true', help='mark synchronized CUDA phases for an external Nsight Systems capture')
     p.add_argument('--placement',choices=['resident','model-offload','sequential-offload'],default='resident');p.add_argument('--tiling',action='store_true');p.add_argument('--trace-steps',action='store_true');p.add_argument('--profile',action='store_true');p.add_argument('--snapshot',action='store_true');a=p.parse_args()

@@ -19,7 +19,9 @@ import spark_lab
 
 
 def save(path, value):
-    path.write_text(json.dumps(value,indent=2)+'\n')
+    tmp=path.with_suffix(path.suffix+'.tmp')
+    tmp.write_text(json.dumps(value,indent=2)+'\n')
+    tmp.replace(path)
 
 
 def fingerprint(path, record):
@@ -108,7 +110,7 @@ def run(out):
                 if answer['status']!=200 or not spark_lab.answer(answer)[0]:raise RuntimeError('No completed answer for '+label)
                 replies.append(dict(label=label,started_utc=start,ended_utc=end,elapsed_s=answer['elapsed_s'],
                                     finish_reason=spark_lab.answer(answer)[1]))
-            save(out/'requests.json',{'placement':list(map(int,found.groups())),'requests':replies})
+                save(out/'requests.json',{'placement':list(map(int,found.groups())),'requests':replies})
         finally:
             if process.poll() is None: process.terminate()
             try: process.wait(timeout=10)

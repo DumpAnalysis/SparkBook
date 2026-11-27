@@ -31,15 +31,15 @@ Reading the result
 The merged checkpoint saved and reopened. Its maximum absolute logit difference was 0.375, and all four greedy continuations differed from the adapter reference. Score persistence and equivalence separately.
 
 Run in your lab
-The first command saves the checkpoint. The second loads the adapter and merged models sequentially on CUDA, compares last-token logits and saves the four greedy answers. A nonzero comparison exit keeps both sets of responses.
+Stop other model owners. Merge in FP32 and compare against the unmerged adapter in FP32 with TF32 disabled. The FP32 weights require about 6 GiB each on disk and adequate working memory. To study BF16 rounding separately, switch both dtype options to bfloat16 and choose new output directories.
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${ADAPTER:?Set ADAPTER to the selected adapter directory from Exercise 25}"
-python finetune.py merge --adapter "$ADAPTER" --output "$LAB_RUN/merged"
-python compare_merge.py --adapter "$ADAPTER" --merged "$LAB_RUN/merged/merged" --out "$LAB_RUN/merge-check"
+python finetune.py merge --merge-dtype float32 --adapter "$ADAPTER" --output "$LAB_RUN/merged"
+python compare_merge.py --dtype float32 --adapter "$ADAPTER" --merged "$LAB_RUN/merged/merged" --out "$LAB_RUN/merge-check"
 
 Interpret the result
-Check the four prompts in merge-check. Record finite logits, maximum absolute difference, first-token agreement and each complete continuation. In the reader trial all four first tokens agreed, maximum logit difference was 0.375, and zero of four full continuations matched. Score the deployment for the behavior your application actually needs.
+Check the exported tokenizer, base revision, finite logits, first token and all generated token IDs on the four fixed cases. Record the maximum difference and every mismatching case. The earlier BF16 test had four divergent continuations.
 
 If the check fails
 Check dataset/tokenizer identity and memory at the failing phase before changing precision.

@@ -28,15 +28,21 @@ Check for success
 Compare the source and both outputs at the same prompt and seed. Score the requested object separately from background changes.
 
 Run in your lab
-Both edits begin from the same generated image in Exercise 184 ($LAB_RUN/image/output.png if you used its guide in this run). Change only strength, from 0.4 to 0.7. Grade the foreground cup against the green-cup prompt.
+Run the two global edits as baselines. For the matching 512 × 512 Exercise 184 source, the polygon selects the foreground cup. Inspect mask.png over your source. For another layout, pass your own same-size grayscale mask with --mask in place of --polygon. The hue guide supplies the color change; SDXL denoises it and the final composite preserves pixels outside the mask.
 
 : "${LAB_RUN:?Start a new lab run first}"
 : "${IMAGE_184:?Set IMAGE_184 to the verified output.png from Exercise 184}"
 python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a green ceramic cup" --width 512 --height 512 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/edit-04" --strength 0.4 --input "$IMAGE_184"
 python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a green ceramic cup" --width 512 --height 512 --steps 20 --guidance 5 --seed 1606 --placement model-offload --out "$LAB_RUN/edit-07" --strength 0.7 --input "$IMAGE_184"
+python media/local_edit.py guide --source "$IMAGE_184" --polygon 121,242 123,232 132,224 148,217 166,216 181,219 191,225 196,234 195,242 201,248 201,257 189,272 183,283 180,298 171,305 151,308 137,304 131,298 128,285 --out "$LAB_RUN/cup-region"
+for pair in "04 0.4" "07 0.7"; do
+  read -r label strength <<< "$pair"
+  python media/targets.py image --model models/media/sdxl --text "A desk with a blue notebook and a green ceramic cup" --width 512 --height 512 --steps 20 --guidance 5 --seed 1606 --placement model-offload --input "$LAB_RUN/cup-region/guide.png" --strength "$strength" --out "$LAB_RUN/cup-denoised-$label"
+  python media/local_edit.py compose --source "$IMAGE_184" --mask "$LAB_RUN/cup-region/mask.png" --generated "$LAB_RUN/cup-denoised-$label/output.png" --out "$LAB_RUN/cup-final-$label"
+done
 
 Interpret the result
-Score three attributes per output: green cup, blue notebook and preserved layout. Figure 84.1 shows a red cup at both strengths, a blue notebook and the same foreground layout. Score 2/3 at each strength. The altered background vessel is a separate change.
+Grade the raw global edit and the guided composite separately for cup color, notebook color and layout. Also compare the hue guide with the raw denoised image. Read changed_outside in each final comparison.json.
 
 If the check fails
 Check decoding/preprocessing before model behavior; isolate one pipeline stage.

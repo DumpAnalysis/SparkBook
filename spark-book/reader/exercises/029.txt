@@ -42,7 +42,7 @@ python large_model.py --download
 python memory_budget/guarded.py model --out "$LAB_RUN/model32"
 
 Interpret the result
-After --download, inspect runs/large-model-manifest.json for all nine verified shards. Record the Windows and guest admission decision separately. Count a generation only when a request receipt contains a completion from this model.
+Read result.json and admission.json. Entry requires every placement and host-headroom check. Requests are recorded as they complete. A guard stop exits 3. Preserve the directory for Exercise 30.
 
 If the check fails
 Check dataset/tokenizer identity and memory at the failing phase before changing precision.

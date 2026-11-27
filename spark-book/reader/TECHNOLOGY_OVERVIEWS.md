@@ -123,7 +123,7 @@ Each entry explains a technology used in the WSL2 laboratory and gives an exampl
 
 ## Adapting speech and image models
 
-[Exercise 200](exercises/200.txt) · book page 636
+[Exercise 200](exercises/200.txt) · book page 638
 
 A speech recognizer can learn from recordings paired with verified transcripts. An image adapter can learn from images paired with descriptions. In both cases the examples define what the training objective rewards. Two recordings of the same utterance or nearly identical image captions can make a held-out comparison misleading.
 
@@ -331,7 +331,7 @@ Further reading
 
 ## Connecting speech recognition, generation and synthesis
 
-[Exercise 202](exercises/202.txt) · book page 649
+[Exercise 202](exercises/202.txt) · book page 651
 
 A speech assistant can contain three independent model calls. The recognizer produces text, the language model answers it, and the synthesizer produces speech from that answer. A plausible final recording can hide a transcription error or a changed instruction in an intermediate step.
 
@@ -347,7 +347,7 @@ Further reading
 
 ## Container registries, manifests and platform selection
 
-[Exercise 206](exercises/206.txt) · book page 665
+[Exercise 206](exercises/206.txt) · book page 668
 
 An image tag can point to an index of builds for several platforms. An entry in that index identifies an operating system, an architecture and a manifest digest. The selected manifest in turn identifies the image’s contents. The ARM64 laptop needs the appropriate Linux ARM64 entry.
 
@@ -506,7 +506,7 @@ Further reading
 
 ## Decision calibration, risk and coverage
 
-[Exercise 233](exercises/233.txt) · book page 745
+[Exercise 233](exercises/233.txt) · book page 748
 
 A probability forecast can be checked against labeled outcomes. For a binary event with outcome one and predicted probability 0.8, the squared error is 0.04. Averaging squared probability errors gives the binary Brier score. A single confident prediction cannot establish that a model is calibrated.
 
@@ -733,7 +733,7 @@ Further reading
 
 ## Grafana dashboards and data sources
 
-[Exercise 215](exercises/215.txt) · book page 692
+[Exercise 215](exercises/215.txt) · book page 695
 
 Grafana displays results queried from a data source, here Prometheus. A dashboard contains panels. Each panel applies a query, a time range and display settings such as units. Provisioning describes these connections and panels in files that another installation can reproduce.
 
@@ -781,7 +781,7 @@ Further reading
 
 ## Hugging Face Hub, snapshots and dataset cards
 
-[Exercise 208](exercises/208.txt) · book page 674
+[Exercise 208](exercises/208.txt) · book page 677
 
 Hugging Face Hub hosts versioned repositories for models, datasets and other artifacts. A model card documents a model’s purpose and usage. A dataset card describes data and its intended scope. A snapshot collects files at one revision. A moving branch name can later select different bytes.
 
@@ -832,7 +832,7 @@ Further reading
 
 ## Jev decision models and typed questions
 
-[Exercise 232](exercises/232.txt) · book page 743
+[Exercise 232](exercises/232.txt) · book page 746
 
 Jev takes supplied state and typed questions about it. Choice selects from named options. Score represents a result on an ordered rubric. Noul answers a yes-or-no question with a probability of yes. The response fields differ, so the caller must use the contract for the particular question type.
 
@@ -884,7 +884,7 @@ Further reading
 
 ## LangChain agents and local model adapters
 
-[Exercise 220](exercises/220.txt) · book page 716
+[Exercise 220](exercises/220.txt) · book page 719
 
 LangChain supplies interfaces for chat models and tools and can assemble them into an agent loop. A model adapter translates between the framework’s messages and a provider’s request and response format. The application still decides which tools are available and validates the arguments it receives.
 
@@ -900,7 +900,7 @@ Further reading
 
 ## LangGraph state, checkpoints and human review
 
-[Exercise 223](exercises/223.txt) · book page 724
+[Exercise 223](exercises/223.txt) · book page 727
 
 LangGraph represents an agent workflow as a graph. A node performs a step, an edge selects the next step and shared state carries information between them. A checkpointer saves state for a particular thread identifier. An interrupt can pause execution until the application supplies a review decision.
 
@@ -916,7 +916,7 @@ Further reading
 
 ## LangSmith tracing and evaluation
 
-[Exercise 226](exercises/226.txt) · book page 731
+[Exercise 226](exercises/226.txt) · book page 734
 
 LangSmith provides tracing and evaluation for model applications. A trace can group a request, model call and tool use as related runs. An evaluator applies a defined test to an output, perhaps comparing it with a reference or checking that a required field is present. Preserve the inputs and criterion behind each score.
 
@@ -948,7 +948,7 @@ Further reading
 
 ## LM Studio, llmster and the lms command line
 
-[Exercise 243](exercises/243.txt) · book page 783
+[Exercise 243](exercises/243.txt) · book page 786
 
 LM Studio can run a headless service called llmster. In this book that service and its lms command-line client run in WSL2. Importing a model makes its files available to the runtime. Loading creates an active model instance. The server then exposes an endpoint that a separate client can call.
 
@@ -1097,7 +1097,7 @@ Further reading
 
 ## Nemotron, mixtures of experts and hybrid state
 
-[Exercise 247](exercises/247.txt) · book page 794
+[Exercise 247](exercises/247.txt) · book page 797
 
 Nemotron names a family of models. The Nemotron 3 Nano variant used here combines expert routing with different kinds of sequence-processing layers. A mixture of experts selects part of the model for each token. The active parameter count describes work selected per token. The full stored model can still be much larger.
 
@@ -1196,7 +1196,7 @@ Further reading
 
 ## NVIDIA NGC Catalog, resources and container images
 
-[Exercise 204](exercises/204.txt) · book page 659
+[Exercise 204](exercises/204.txt) · book page 661
 
 NGC Catalog is NVIDIA’s catalog of GPU software and other assets. A resource entry can describe a downloadable file or tool. A container entry identifies an image in a registry. Reading a catalog page, acquiring an asset and executing it are three distinct operations.
 
@@ -1231,7 +1231,7 @@ Further reading
 
 ## Ollama, local model names and residency
 
-[Exercise 235](exercises/235.txt) · book page 752
+[Exercise 235](exercises/235.txt) · book page 755
 
 Ollama runs a local service that manages models and exposes generation and embedding endpoints. A local model name identifies what to request. Importing a GGUF file creates a usable model entry, while loading it creates a running model that consumes resources. A residency setting influences how long it can stay loaded between calls.
 
@@ -1329,7 +1329,7 @@ Further reading
 
 ## Prometheus, exporters and time series
 
-[Exercise 212](exercises/212.txt) · book page 685
+[Exercise 212](exercises/212.txt) · book page 688
 
 Prometheus asks configured targets for metrics at intervals called scrapes. An exporter translates another system’s measurements into named values that Prometheus can read. Labels distinguish series, for example by device. A gauge can rise or fall, while a counter usually accumulates events until its process restarts.
 
@@ -1361,7 +1361,7 @@ Further reading
 
 ## PromQL rates, histograms and alert rules
 
-[Exercise 216](exercises/216.txt) · book page 695
+[Exercise 216](exercises/216.txt) · book page 698
 
 PromQL is Prometheus’s query language. A rate over a counter estimates change per second across a time window. Histogram buckets accumulate observations up to specified boundaries. From those counts we can estimate a percentile such as p95, with precision limited by the bucket boundaries and available events.
 
@@ -1394,7 +1394,7 @@ Further reading
 
 ## PydanticAI and typed model outputs
 
-[Exercise 229](exercises/229.txt) · book page 737
+[Exercise 229](exercises/229.txt) · book page 740
 
 Pydantic models describe fields, types and validation rules for data. PydanticAI uses such contracts in agents, including for a model’s final output. A structured finding might require a named observation and a reference to evidence. A plausible paragraph or a well-formed JSON object can still fail that contract.
 
@@ -1646,7 +1646,7 @@ Further reading
 
 ## Speech recognition with Whisper
 
-[Exercise 196](exercises/196.txt) · book page 624
+[Exercise 196](exercises/196.txt) · book page 626
 
 Automatic speech recognition turns sound into text. Whisper processes acoustic features from audio, then decodes text tokens. The expected sampling rate, language and decoding settings affect the input or output. A fluent sentence is possible even when the audio contains little evidence for it.
 
@@ -1741,7 +1741,7 @@ Further reading
 
 ## Text-to-speech with MMS and VITS
 
-[Exercise 192](exercises/192.txt) · book page 612
+[Exercise 192](exercises/192.txt) · book page 613
 
 A text-to-speech system turns written input into a speech waveform. The English MMS model in the lab uses VITS, a neural synthesis architecture. The text-processing step determines how the model receives numbers, abbreviations and punctuation. Those choices can affect pronunciation, pauses and length.
 
@@ -1823,7 +1823,7 @@ Further reading
 
 ## Unsloth, QLoRA and a training smoke test
 
-[Exercise 239](exercises/239.txt) · book page 765
+[Exercise 239](exercises/239.txt) · book page 768
 
 Unsloth provides training integrations for supported models and environments. QLoRA stores a frozen base model in low precision and trains small LoRA adapter parameters with higher-precision computation where required. This reduces the storage needed for base weights, while activations and optimizer state still require memory.
 
@@ -1856,7 +1856,7 @@ Further reading
 
 ## Verifying a CUDA allocation above guest RAM
 
-[Exercise 251](exercises/251.txt) · book page 811
+[Exercise 251](exercises/251.txt) · book page 814
 
 A memory query returns the number reported by one interface at one moment. An allocation test makes a different observation. To show that several blocks were usable together, the program must retain them simultaneously, write distinguishable patterns, read them back and check the results before releasing them.
 
@@ -1955,7 +1955,7 @@ Further reading
 
 ## Word error rate and transcript alignment
 
-[Exercise 197](exercises/197.txt) · book page 626
+[Exercise 197](exercises/197.txt) · book page 628
 
 Word error rate compares a recognition hypothesis with reference words. Count substitutions, deletions and insertions in an alignment, then divide their sum by the number of reference words. With four reference words and one substitution, the rate is 0.25. Extra inserted words can even make a rate exceed one.
 

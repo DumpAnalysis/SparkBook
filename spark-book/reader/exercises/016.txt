@@ -35,10 +35,10 @@ Begin with the entry procedure below, then complete the variations and acceptanc
 
 : "${LAB_RUN:?Run source reader/new_run.sh first}"
 : "${GROUNDED_PROMPT:?Set GROUNDED_PROMPT to the grounded.txt produced by Exercise 15}"
-python spark_lab.py query "$GROUNDED_PROMPT" --out "$LAB_RUN/grounded-answer.json"
+python spark_lab.py query "$GROUNDED_PROMPT" --format grounded --tokens 256 --out "$LAB_RUN/grounded-answer.json"
 
 Interpret the result
-Worked reader answer: “because there are no logs from service B in the evidence set.” It cited [E2], which supports the timeout and the gap in coverage. Score citation present 1/1 and causal claim supported 0/1. [E1] records A waiting. Neither passage establishes what B did.
+Check the observation, cause assessment and missing measurement independently against the passages in your own prompt. A timeout is observable. Missing B logs leave the cause open. Record the cited passage and exact answer span for each claim.
 
 If the check fails
 Check the first failed boundary: file, loader, service health, request, then answer.

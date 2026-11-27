@@ -63,7 +63,16 @@ def http(base, route, payload=None, timeout=120):
         return {"status": status, "body": raw}
 
 
-def request(base, prompt, limit=128):
+def object_schema(fields):
+    return {"type": "object", "properties": fields, "required": list(fields),
+            "additionalProperties": False}
+
+
+def string_choice(values):
+    return {"type": "string", "enum": list(values)}
+
+
+def request(base, prompt, limit=128, *, schema=None):
     payload = {"model": "local-model", "messages": [
         {"role": "system", "content":
          "Use supplied evidence. Separate observations from hypotheses. "
@@ -71,6 +80,9 @@ def request(base, prompt, limit=128):
         {"role": "user", "content": prompt}],
         "temperature": 0, "seed": 42, "max_tokens": limit,
         "stream": False}
+    if schema is not None:
+        payload["response_format"] = {"type": "json_schema", "json_schema": {
+            "name": "reader_response", "strict": True, "schema": schema}}
     start = time.perf_counter()
     result = http(base, "/v1/chat/completions", payload)
     result["elapsed_s"] = time.perf_counter() - start
@@ -121,9 +133,35 @@ def inspect(args):
     print("sha256=" + digest(p))
 
 
+def matches_schema(value, spec):
+    kind = spec["type"]
+    if kind == "string":
+        return isinstance(value,str) and bool(value.strip()) and ("enum" not in spec or value in spec["enum"])
+    if kind == "array":
+        return (isinstance(value,list) and spec["minItems"] <= len(value) <= spec["maxItems"]
+                and all(matches_schema(x,spec["items"]) for x in value))
+    return (isinstance(value,dict) and set(value)==set(spec["required"])
+            and all(matches_schema(value[key],field) for key,field in spec["properties"].items()))
+
+
 def query(args):
     prompt = pathlib.Path(args.prompt).read_text(encoding="utf-8")
-    result = request(args.base, prompt, args.tokens)
+    schema = None
+    item = {"type": "string", "minLength": 1}
+    if args.format == "r17":
+        pair = {"type": "array", "items": item, "minItems": 2, "maxItems": 2}
+        schema = object_schema({"observations": pair, "possible_explanations": pair,
+                                "next_measurement": item})
+        prompt += "\nUse short strings. Report one directly observed event per observation."
+    elif args.format == "grounded":
+        passages = re.findall(r"^(\[[A-Za-z0-9_-]+\]) (.+)$",prompt,re.MULTILINE)
+        quotes = {key:string_choice(re.split(r"(?<=[.!?])\s+", passage)) for key,passage in passages}
+        observations = object_schema(quotes) if quotes else string_choice(["No retrieved passages"])
+        schema = object_schema({"observed_with_citations": observations, "cause_assessment": item,
+                                "missing_measurement": item})
+        prompt += ("\nDistinguish a gap in coverage from a causal event. Only identify a cause "
+                   "when a passage directly establishes it. Identify the missing measurement separately.")
+    result = request(args.base, prompt, args.tokens, schema=schema)
     save(args.out, result)
     print("status=" + str(result["status"]))
     text, finish = answer(result)
@@ -133,6 +171,12 @@ def query(args):
     print("finish=" + str(finish))
     print(text)
     print("saved=" + args.out)
+    if schema is not None:
+        if finish != "stop":
+            return 2
+        obj = json.loads(text)
+        if not matches_schema(obj,schema):
+            return 2
     return 0
 
 
@@ -279,6 +323,8 @@ def main():
         p.add_argument("--base", default="http://127.0.0.1:8080")
         p.add_argument("--tokens", type=int, default=128)
         p.add_argument("--out", required=True)
+        if name == "query":
+            p.add_argument("--format", choices=["text", "r17", "grounded"], default="text")
         if name == "bench":
             p.add_argument("--runs", type=int, default=5)
             p.add_argument("--workers", type=int, default=1)

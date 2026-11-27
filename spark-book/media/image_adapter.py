@@ -5,7 +5,10 @@ import torch
 from assets import verify
 from contracts import digest
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--model',type=Path,required=True);p.add_argument('--adapter',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--text',default='A green square on a white background');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--model',type=Path,required=True);p.add_argument('--adapter',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--text',default='A green square on a white background')
+    p.add_argument('--size',type=int,choices=[512,768,1024],default=512)
+    p.add_argument('--negative',default='')
+    a=p.parse_args()
     verify(a.model,'sdxl')
     if not torch.cuda.is_available():raise RuntimeError('CUDA target required')
     from diffusers import StableDiffusionXLPipeline
@@ -19,7 +22,7 @@ def main():
         if enabled:pipe.enable_lora()
         else:pipe.disable_lora()
         with torch.no_grad():
-            image=pipe(a.text,width=512,height=512,num_inference_steps=20,guidance_scale=5,generator=torch.Generator('cpu').manual_seed(1610)).images[0]
+            image=pipe(a.text,negative_prompt=a.negative or None,width=a.size,height=a.size,num_inference_steps=20,guidance_scale=5,generator=torch.Generator('cpu').manual_seed(1610)).images[0]
         image.save(a.out/(name+'.png'))
-    (a.out/'comparison.json').write_text(json.dumps(dict(prompt=a.text,seed=1610,scale=1.0,adapter_files=files),indent=2));print('saved base.png and adapter.png')
+    (a.out/'comparison.json').write_text(json.dumps(dict(prompt=a.text,negative_prompt=a.negative,size=a.size,seed=1610,scale=1.0,adapter_files=files),indent=2));print('saved base.png and adapter.png')
 if __name__=='__main__':main()

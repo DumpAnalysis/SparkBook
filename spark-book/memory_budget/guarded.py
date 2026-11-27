@@ -57,21 +57,25 @@ def interval(rows, low, high):
 
 def report(run):
     result = json_file(run/'result.json')
-    if result.get('mode') != 'model' or result['status'] != 'PASSED':
-        print(json.dumps(result, indent=2))
-        return 3
-    requests = json_file(run/'requests.json')
-    pressure = next(r for r in requests['requests'] if r['label'] == 'pressure')
-    low, high = stamp(pressure['started_utc']), stamp(pressure['ended_utc'])
+    if result.get('mode') != 'model':
+        raise ValueError('A supervised model run is required')
+    def optional_json(name, default):
+        path = run/name
+        return json_file(path) if path.is_file() else default
+    requests = optional_json('requests.json', {'requests':[],'placement':None})
+    admission = optional_json('admission.json', {})
+    def lines(name, encoding='utf-8'):
+        path=run/name
+        return path.read_text(encoding=encoding).splitlines() if path.is_file() else []
     host = []
-    for line in (run/'host.jsonl').read_text(encoding='utf-8-sig').splitlines():
+    for line in lines('host.jsonl','utf-8-sig'):
         row = json.loads(line)
         host.append((stamp(row['utc']), dict(utc=row['utc'], available_bytes=row['available_bytes'],
                     commit_headroom_bytes=row['commit_limit_bytes']-row['committed_bytes'])))
     guest = []
     since_boot = True
     swap_in = swap_out = None
-    for line in (run/'vmstat.txt').read_text().splitlines():
+    for line in lines('vmstat.txt'):
         fields = line.split()
         if 'si' in fields and 'so' in fields:
             swap_in, swap_out = fields.index('si'), fields.index('so')
@@ -81,11 +85,21 @@ def report(run):
                 continue
             at = fields[-2]+'T'+fields[-1]+'+00:00'
             guest.append((stamp(at), dict(utc=at, si=int(fields[swap_in]), so=int(fields[swap_out]))))
-    print(json.dumps(dict(placement=requests['placement'], completed_requests=len(requests['requests']),
-        pressure_request=pressure, host_samples=result['host_samples'], host_window=interval(host,low,high),
-        guest_window=interval(guest,low,high), guest_file=str(run/'vmstat.txt'), host_file=str(run/'host.jsonl'),
-        native_exit=json_file(run/'native-exit.json')), indent=2))
-    return 0
+    windows=[]
+    for row in requests['requests']:
+        low,high=stamp(row['started_utc']),stamp(row['ended_utc'])
+        windows.append(dict(request=row,host=interval(host,low,high),guest=interval(guest,low,high)))
+    pressure=next((w for w in windows if w['request']['label']=='pressure'),None)
+    summary=dict(status=result['status'],reason=result.get('reason'),admission=admission,
+        failed_checks=[k for k,v in admission.get('checks',{}).items() if not v],
+        placement=requests['placement'],completed_requests=len(windows),request_windows=windows,
+        pressure_request=pressure['request'] if pressure else None,
+        host_window=pressure['host'] if pressure else None,guest_window=pressure['guest'] if pressure else None,
+        host_samples=result.get('host_samples',len(host)),guest_file=str(run/'vmstat.txt'),
+        host_file=str(run/'host.jsonl'),native_exit=optional_json('native-exit.json',None))
+    print(json.dumps(summary,indent=2))
+    return {'PASSED':0,'BLOCKED':3,'FAILED':1}[result['status']]
+
 
 def supervised(args):
     out=args.out.expanduser().resolve()

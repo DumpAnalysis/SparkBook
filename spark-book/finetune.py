@@ -46,16 +46,22 @@ def main():
     p.add_argument('--adapter')
     p.add_argument('--steps', type=int, default=10)
     p.add_argument('--max-length', type=int, default=512)
+    p.add_argument('--merge-dtype', choices=['float32','bfloat16'], default='bfloat16')
     args=p.parse_args()
+    dtype = torch.float32 if args.mode == 'merge' and args.merge_dtype == 'float32' else torch.bfloat16
+    if dtype == torch.float32:
+        torch.set_float32_matmul_precision('highest')
+        torch.backends.cuda.matmul.allow_tf32 = False
     out=pathlib.Path(args.output)
     if out.exists(): raise SystemExit('Use a new output path')
     if not torch.cuda.is_available(): raise SystemExit('CUDA unavailable')
-    if not torch.cuda.is_bf16_supported(): raise SystemExit('BF16 unavailable')
+    if dtype == torch.bfloat16 and not torch.cuda.is_bf16_supported(): raise SystemExit('BF16 unavailable')
     random.seed(42);torch.manual_seed(42);torch.cuda.manual_seed_all(42)
     tokenizer=AutoTokenizer.from_pretrained(MODEL,revision=REVISION)
+    placement={'device_map':{'':'cuda'}} if args.mode=='merge' and dtype==torch.float32 else {}
     base=AutoModelForCausalLM.from_pretrained(MODEL,
-        revision=REVISION, dtype=torch.bfloat16,
-        attn_implementation='sdpa', low_cpu_mem_usage=True)
+        revision=REVISION, dtype=dtype,
+        attn_implementation='sdpa', low_cpu_mem_usage=True, **placement)
     base.to('cuda')
     if args.mode=='train':
         if args.adapter: raise SystemExit('This lab starts a fresh adapter')
@@ -78,10 +84,10 @@ def main():
               'arguments':vars(args),'seed':42}
     (out/'manifest.json').write_text(json.dumps(manifest,indent=2))
     print('base='+MODEL,flush=True)
-    print('precision=BF16 device=CUDA',flush=True)
+    print(f'precision={dtype} device=CUDA',flush=True)
     if args.mode=='merge':
         if not args.adapter: raise SystemExit('Merge needs --adapter')
-        merged=model.merge_and_unload()
+        merged=model.merge_and_unload(safe_merge=True)
         merged.save_pretrained(out/'merged',safe_serialization=True)
         tokenizer.save_pretrained(out/'merged')
         print('merged='+str(out/'merged'),flush=True)

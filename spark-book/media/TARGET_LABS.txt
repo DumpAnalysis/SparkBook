@@ -519,7 +519,7 @@ adapt_asr.py freezes the model and then enables gradients only in the final deco
 
 Exercise 201  Run a bounded image adapter experiment
 
-SDXL LoRA is a separate target exercise using the versioned upstream training script. Prepare a separate training virtual environment using Exercise 172, then add the dependencies below. Consult the pinned requirements_sdxl.txt as well: it includes ftfy and Jinja2 and pins PEFT 0.7.0. Our candidate uses PEFT 0.17.1 explicitly; do not apply that upstream file afterward and silently replace the selected pin. Retain pip check and the resolved environment. Keep the inference environment intact. The two supplied square images test dataset and training plumbing; they do not support a claim that a useful image model has been fine-tuned. [160, 164, 167]
+SDXL LoRA is a separate target exercise using the versioned upstream training script. Prepare a separate training virtual environment using Exercise 172, then add the dependencies below. Consult the pinned requirements_sdxl.txt as well: it includes ftfy and Jinja2 and pins PEFT 0.7.0. Our candidate uses PEFT 0.17.1 explicitly; do not apply that upstream file afterward and silently replace the selected pin. Retain pip check and the resolved environment. Keep the inference environment intact. The 21 synthetic training images include filled circles and squares. Green squares are withheld from training.
 
 python -m pip install peft==0.17.1 datasets==3.6.0 tensorboard==2.20.0 \
 
@@ -531,9 +531,11 @@ python media/prepare_adaptation.py --out "$LAB_RUN/image-data"
 
 bash media/train_image_adapter.sh models/media/sdxl "$LAB_RUN/image-data" "$LAB_RUN/image-adapter"
 
-python media/image_adapter.py --model models/media/sdxl --adapter "$LAB_RUN/image-adapter" --out "$LAB_RUN/image-adapter-check"
+python reader/guide.py 201
 
-The launcher checks both the upstream and patched SHA-256 values. To run entirely offline, pass the pinned v0.35.1 upstream training file as the fourth argument. Compare the foreground shape and color with the target after the two updates.
+Use the two image_adapter.py commands in that guide for the matched square and bowl comparisons.
+
+The launcher checks both the upstream and patched SHA-256 values. To run entirely offline, pass the pinned v0.35.1 upstream training file as the fourth argument. Compare the foreground shape and color with the target after 72 updates, with the paired prompt and 1024-pixel evaluation in reader/exercises/201.txt.
 
 TARGET procedure, not executed during preparation. Inspect the retained upstream command and errors before changing package versions. The example deliberately avoids an unqualified 8-bit optimizer or FlashAttention extension on ARM64. A full training run needs a larger, permissioned captioned dataset, a held-out prompt set, a selection criterion and a recovery test. Keep caption identity attached to each image after cropping or augmentation. [164]
 

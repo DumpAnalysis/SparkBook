@@ -45,9 +45,10 @@ python media/targets.py tts --model models/media/mms --profile --out "$LAB_RUN/s
 bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none -o "$LAB_RUN/speech-timeline" python media/targets.py tts --model models/media/mms --nvtx --out "$LAB_RUN/speech-timeline-media"
 bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/speech-timeline.sqlite" "$LAB_RUN/speech-timeline.nsys-rep"
 python cuda/trace_sqlite.py "$LAB_RUN/speech-timeline.sqlite" --ranges media/
+python media/phrase_pcm.py --model models/media/mms --phrase "The processor is ready." --phrase "Retain the complete diagnostic record." --out "$LAB_RUN/phrase-pcm"
 
 Interpret the result
-Read media/infer with the generated WAV duration and inference wall time. The external trace can localize device work; request queuing and transport require their own timing evidence.
+Read first_pcm_s after the first 16-bit sample reaches the unbuffered local sink. Compare it with last-phrase delivery. MMS synthesizes each complete phrase before PCM is available. The timing excludes model load and speaker playback.
 
 If the check fails
 Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.
