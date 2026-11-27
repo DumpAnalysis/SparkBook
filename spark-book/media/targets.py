@@ -3,7 +3,7 @@
 No implicit downloads. CUDA runs require the actual laptop. CPU is allowed for
 the small TTS/ASR controls, not as an unnoticed fallback from a requested GPU.
 """
-import argparse,contextlib,json,os,platform,time,traceback,importlib.metadata
+import argparse,contextlib,hashlib,json,os,platform,time,traceback,importlib.metadata
 from pathlib import Path
 import numpy as np
 import torch
@@ -78,7 +78,13 @@ def image_generate(a,r):
     with r.stage('load'):
         cls=StableDiffusionXLImg2ImgPipeline if a.input else StableDiffusionXLPipeline
         pipe=cls.from_pretrained(a.model,local_files_only=True,use_safetensors=True,variant='fp16',torch_dtype=torch.float16)
-        if a.tiling:pipe.enable_vae_tiling()
+        if a.tiling:
+            pipe.enable_vae_tiling()
+        if a.vae_tile_pixels is not None:
+            # Diffusers 0.35.1 uses the latent limit for branching and the
+            # matching sample limit for overlap and stitching.
+            pipe.vae.tile_sample_min_size = a.vae_tile_pixels
+            pipe.vae.tile_latent_min_size = a.vae_tile_pixels // pipe.vae_scale_factor
         if a.placement=='resident':pipe.to('cuda')
         elif a.placement=='model-offload':pipe.enable_model_cpu_offload()
         else:pipe.enable_sequential_cpu_offload()
@@ -89,6 +95,15 @@ def image_generate(a,r):
         components[name]={'parameter_dtypes':sorted({str(p.dtype) for p in module.parameters()}),'parameter_devices':sorted({str(p.device) for p in module.parameters()})}
     r.result['pipeline_components_after_placement']=components
     r.result['vae_force_upcast']=pipe.vae.config.force_upcast
+    decoder_inputs = []
+    if a.audit_vae:
+        def record_decode(module, args):
+            decoder_inputs.append(list(args[0].shape[-2:]))
+        pipe.vae.decoder.register_forward_pre_hook(record_decode)
+        r.result['vae_decode'] = dict(enabled=pipe.vae.use_tiling,
+                                      tile_pixels=pipe.vae.tile_sample_min_size,
+                                      tile_latents=pipe.vae.tile_latent_min_size,
+                                      decoder_inputs=decoder_inputs)
     boundaries={}
     def tensor_meta(x):
         if isinstance(x,torch.Tensor):return {'shape':list(x.shape),'dtype':str(x.dtype),'device':str(x.device)}
@@ -104,7 +119,14 @@ def image_generate(a,r):
             module.register_forward_pre_hook(lambda m,args,kwargs,name=name:observe(name,m,args,kwargs),with_kwargs=True)
     steps=[]
     def callback(pipeline,i,t,kwargs):
-        z=kwargs['latents'];finite=bool(torch.isfinite(z).all())
+        z = kwargs['latents']
+        if a.audit_vae and i + 1 == pipeline.num_timesteps:
+            raw = z.detach().contiguous().view(torch.uint8).cpu().numpy()
+            r.result['vae_decode']['latent_sha256'] = hashlib.sha256(raw.tobytes()).hexdigest()
+            r.result['vae_decode']['latent_shape'] = list(z.shape)
+        if not a.trace_steps:
+            return kwargs
+        finite=bool(torch.isfinite(z).all())
         steps.append({'step':i,'timestep':float(t),'rms':float(z.float().square().mean().sqrt()),'finite':finite,'shape':list(z.shape),'dtype':str(z.dtype),'device':str(z.device)})
         if not finite:raise FloatingPointError('nonfinite diffusion latent')
         return kwargs
@@ -112,7 +134,7 @@ def image_generate(a,r):
     if a.input:
         with r.stage('preprocess'):kw.update(image=image_rgb(a.input).resize((a.width,a.height)),strength=a.strength)
     else:kw.update(height=a.height,width=a.width)
-    if a.trace_steps:kw.update(callback_on_step_end=callback,callback_on_step_end_tensor_inputs=['latents'])
+    if a.trace_steps or a.audit_vae:kw.update(callback_on_step_end=callback,callback_on_step_end_tensor_inputs=['latents'])
     try:
         with r.profile(),r.stage('infer'),torch.inference_mode():result=pipe(**kw).images[0]
         with r.stage('encode'):result.save(a.out/'output.png')
@@ -178,8 +200,15 @@ def main():
     p.add_argument('--max-pixels',type=int,default=512*28*28);p.add_argument('--width',type=int,default=512);p.add_argument('--height',type=int,default=512);p.add_argument('--steps',type=int,default=20)
     p.add_argument('--decode-silence',action='store_true',help='send digital silence to the raw Whisper decoder for comparison')
     p.add_argument('--guidance',type=float,default=3.0);p.add_argument('--strength',type=float,default=.5)
+    p.add_argument('--vae-tile-pixels', type=int, help='SDXL tile edge for --tiling, in image pixels')
+    p.add_argument('--audit-vae', action='store_true', help='save final latent identity and actual decoder input sizes')
     p.add_argument('--nvtx', action='store_true', help='mark synchronized CUDA phases for an external Nsight Systems capture')
     p.add_argument('--placement',choices=['resident','model-offload','sequential-offload'],default='resident');p.add_argument('--tiling',action='store_true');p.add_argument('--trace-steps',action='store_true');p.add_argument('--profile',action='store_true');p.add_argument('--snapshot',action='store_true');a=p.parse_args()
+    if a.vae_tile_pixels is not None:
+        if a.kind != 'image' or not a.tiling or not 128 <= a.vae_tile_pixels <= 1024 or a.vae_tile_pixels % 64:
+            p.error('--vae-tile-pixels requires image --tiling and a multiple of 64 in 128..1024')
+    if a.audit_vae and a.kind != 'image':
+        p.error('--audit-vae requires an image run')
     if a.kind in ('vlm','asr') and not a.input:p.error('this modality needs --input')
     if a.device=='cpu' and a.kind not in ('tts','asr'):p.error('CPU target controls are limited to tts and asr')
     if a.kind=='tts' and not 1<=len(a.text)<=256:p.error('TTS text limit is 256 characters')
