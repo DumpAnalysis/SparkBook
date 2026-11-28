@@ -11,7 +11,7 @@ A custom operator exposes compiled code as a named PyTorch operation. Its regist
 
 First call the operator from Python on a small tensor and compare its output against a familiar operation. Check registration and gradient behavior separately. Then run on the caller’s selected stream. An operation can return the right value on the default stream while mishandling ordering elsewhere.
 
-CUDA streams, events and graphs
+CUDA streams and custom operators
 
 A CUDA stream is an ordered queue of GPU work. A PyTorch caller can select a stream before invoking a custom operator. Launch the operator on that stream so its reads and writes follow the work the caller already queued.
 

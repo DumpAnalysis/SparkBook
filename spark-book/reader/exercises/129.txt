@@ -53,7 +53,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Recorded result  BLOCKED — Native CPU DDP failed with rank 0 SIGSEGV in both the initial run and diagnostic retry. Two logical CPU nodes on loopback passed, and NCCL with world_size=1 on the one physical GPU passed. Two-device DDP and sharding remained unavailable. An independent reviewer on x86-64 Linux reproduced a CPU/Gloo failure under DETAIL and obtained successful two-worker runs under INFO and OFF. A follow-up x86-64 CPU review reports that DDP and logical nodes both met the 1e-09 reference tolerance with INFO.
 Scope  The exercise stays BLOCKED for its complete target scope; one-GPU success does not emulate two independent devices.
-READER run · 28 Nov 2026 UTC. On this WSL2 laptop both two-worker native CPU DDP and the two-node loopback trial passed at INFO. Maximum reference error was 7.431 × 10⁻¹³ in both. The two-device NCCL prerequisite returned unavailable.
+READER run · 28 Nov 2026, 00:20:57 UTC. On this WSL2 laptop both two-worker native CPU DDP and the two-node loopback trial passed at INFO. Maximum reference error was 7.431 × 10⁻¹³ in both. The two-device NCCL prerequisite returned unavailable.
 Reader record 129.R1 · reader/reader-runs/129.txt
 
 Recorded files

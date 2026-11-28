@@ -24,7 +24,7 @@
         160,
         164
       ],
-      "book_page": 642
+      "book_page": 643
     },
     {
       "slug": "agent",
@@ -97,7 +97,7 @@
         74,
         75
       ],
-      "book_page": 299
+      "book_page": 300
     },
     {
       "slug": "budgets",
@@ -149,7 +149,7 @@
         137,
         138
       ],
-      "book_page": 518
+      "book_page": 519
     },
     {
       "slug": "obschecks",
@@ -172,7 +172,7 @@
         89,
         195
       ],
-      "book_page": 392
+      "book_page": 393
     },
     {
       "slug": "checkpoints",
@@ -292,7 +292,7 @@
         270,
         287
       ],
-      "book_page": 353
+      "book_page": 354
     },
     {
       "slug": "sanitizer",
@@ -335,7 +335,7 @@
         154,
         156
       ],
-      "book_page": 656
+      "book_page": 657
     },
     {
       "slug": "oci",
@@ -359,7 +359,7 @@
         174,
         175
       ],
-      "book_page": 673
+      "book_page": 674
     },
     {
       "slug": "contrast",
@@ -380,7 +380,7 @@
         76,
         77
       ],
-      "book_page": 307
+      "book_page": 308
     },
     {
       "slug": "placement",
@@ -430,24 +430,59 @@
       "book_page": 151
     },
     {
-      "slug": "streams",
-      "title": "CUDA streams, events and graphs",
-      "first_exercise": 58,
+      "slug": "buffers",
+      "title": "CUDA events and double buffering",
+      "first_exercise": 63,
       "aliases": [
         "asynchronous copy",
-        "stream dependencies",
         "double buffering",
-        "CUDA Graphs",
+        "event ordering",
+        "stream dependencies",
+        "buffer reuse"
+      ],
+      "paragraphs": [
+        "Double buffering gives the producer a second slot while the consumer works on the first. Record a completion event after each slot’s last use. Wait for that event before reusing the slot. An overlap claim requires overlapping device intervals.",
+        "Across streams, record an event after the producer writes and have the consumer wait on it before reading. Exercise 64 tests this dependency by comparing a stale read with the value after the wait."
+      ],
+      "references": [
+        28
+      ],
+      "book_page": 243
+    },
+    {
+      "slug": "graphs",
+      "title": "CUDA Graphs",
+      "first_exercise": 65,
+      "aliases": [
         "graph replay",
-        "event ordering"
+        "CUDA graph replay",
+        "stream capture",
+        "graph launch"
+      ],
+      "paragraphs": [
+        "A CUDA Graph captures operations and their dependencies for replay. Keep the shapes and storage addresses used during capture fixed, then check replayed values against ordinary execution.",
+        "The exercise replays two transforms on the same buffers. Check the output value after replay, then compare host submission time and device execution time separately."
+      ],
+      "references": [
+        55
+      ],
+      "book_page": 248
+    },
+    {
+      "slug": "streams",
+      "title": "CUDA streams and custom operators",
+      "first_exercise": 58,
+      "aliases": [
+        "current CUDA stream",
+        "caller-selected stream",
+        "PyTorch stream selection"
       ],
       "paragraphs": [
         "A CUDA stream is an ordered queue of GPU work. A PyTorch caller can select a stream before invoking a custom operator. Launch the operator on that stream so its reads and writes follow the work the caller already queued.",
         "Test the derivative and stream ordering separately. An operator can pass a forward-value check and still return the wrong gradient or run on the wrong stream. Chapter 43 applies stream ordering to buffer reuse in Exercise 63 and graph replay in Exercise 65."
       ],
       "references": [
-        28,
-        55
+        28
       ],
       "book_page": 228
     },
@@ -518,7 +553,7 @@
         99,
         100
       ],
-      "book_page": 409
+      "book_page": 410
     },
     {
       "slug": "supply",
@@ -541,7 +576,7 @@
         101,
         102
       ],
-      "book_page": 360
+      "book_page": 361
     },
     {
       "slug": "splits",
@@ -584,7 +619,7 @@
       "references": [
         223
       ],
-      "book_page": 754
+      "book_page": 755
     },
     {
       "slug": "dumps",
@@ -647,7 +682,7 @@
         "For an evidence card, identify the observed state first and write your competing explanation before revealing the worked answer. A deliberately injected delay can test how your method responds to a known fault. Keep that distinction when you later investigate a real stall with an unknown cause."
       ],
       "references": [],
-      "book_page": 260
+      "book_page": 261
     },
     {
       "slug": "diffusion",
@@ -669,7 +704,7 @@
         148,
         150
       ],
-      "book_page": 579
+      "book_page": 580
     },
     {
       "slug": "dist",
@@ -696,7 +731,7 @@
         98,
         100
       ],
-      "book_page": 408
+      "book_page": 409
     },
     {
       "slug": "compose",
@@ -718,7 +753,7 @@
         200,
         268
       ],
-      "book_page": 452
+      "book_page": 453
     },
     {
       "slug": "docker",
@@ -744,7 +779,7 @@
         120,
         272
       ],
-      "book_page": 448
+      "book_page": 449
     },
     {
       "slug": "batching",
@@ -767,7 +802,7 @@
         114,
         118
       ],
-      "book_page": 430
+      "book_page": 431
     },
     {
       "slug": "lora",
@@ -817,7 +852,7 @@
         83,
         286
       ],
-      "book_page": 348
+      "book_page": 349
     },
     {
       "slug": "identifiers",
@@ -866,7 +901,7 @@
         82,
         283
       ],
-      "book_page": 324
+      "book_page": 325
     },
     {
       "slug": "scheduling",
@@ -889,7 +924,7 @@
         109,
         111
       ],
-      "book_page": 464
+      "book_page": 465
     },
     {
       "slug": "trainingstate",
@@ -913,7 +948,7 @@
         61,
         264
       ],
-      "book_page": 255
+      "book_page": 256
     },
     {
       "slug": "grafana",
@@ -936,7 +971,7 @@
         192,
         193
       ],
-      "book_page": 700
+      "book_page": 701
     },
     {
       "slug": "grounding",
@@ -1011,7 +1046,7 @@
         183,
         184
       ],
-      "book_page": 682
+      "book_page": 683
     },
     {
       "slug": "media",
@@ -1038,7 +1073,7 @@
         156,
         159
       ],
-      "book_page": 557
+      "book_page": 558
     },
     {
       "slug": "serving",
@@ -1062,7 +1097,7 @@
         110,
         262
       ],
-      "book_page": 440
+      "book_page": 441
     },
     {
       "slug": "jev",
@@ -1090,7 +1125,7 @@
         222,
         223
       ],
-      "book_page": 752
+      "book_page": 753
     },
     {
       "slug": "fusion",
@@ -1140,7 +1175,7 @@
         110,
         123
       ],
-      "book_page": 460
+      "book_page": 461
     },
     {
       "slug": "langchain",
@@ -1163,7 +1198,7 @@
         206,
         226
       ],
-      "book_page": 725
+      "book_page": 726
     },
     {
       "slug": "langgraph",
@@ -1187,7 +1222,7 @@
         208,
         209
       ],
-      "book_page": 733
+      "book_page": 734
     },
     {
       "slug": "langsmith",
@@ -1213,7 +1248,7 @@
         212,
         213
       ],
-      "book_page": 740
+      "book_page": 741
     },
     {
       "slug": "timing",
@@ -1264,7 +1299,7 @@
         247,
         248
       ],
-      "book_page": 792
+      "book_page": 793
     },
     {
       "slug": "bigmodel",
@@ -1460,7 +1495,7 @@
         152,
         153
       ],
-      "book_page": 607
+      "book_page": 608
     },
     {
       "slug": "nemotron",
@@ -1486,7 +1521,7 @@
         251,
         252
       ],
-      "book_page": 803
+      "book_page": 804
     },
     {
       "slug": "ncu",
@@ -1559,7 +1594,7 @@
         266,
         273
       ],
-      "book_page": 488
+      "book_page": 489
     },
     {
       "slug": "containersgpu",
@@ -1582,7 +1617,7 @@
         106,
         109
       ],
-      "book_page": 454
+      "book_page": 455
     },
     {
       "slug": "nemo",
@@ -1608,7 +1643,7 @@
         141,
         144
       ],
-      "book_page": 530
+      "book_page": 531
     },
     {
       "slug": "ngc",
@@ -1633,7 +1668,7 @@
         172,
         173
       ],
-      "book_page": 666
+      "book_page": 667
     },
     {
       "slug": "tritonserver",
@@ -1658,7 +1693,7 @@
         118,
         119
       ],
-      "book_page": 477
+      "book_page": 478
     },
     {
       "slug": "ollama",
@@ -1685,7 +1720,7 @@
         232,
         233
       ],
-      "book_page": 761
+      "book_page": 762
     },
     {
       "slug": "onnx",
@@ -1710,7 +1745,7 @@
         129,
         130
       ],
-      "book_page": 481
+      "book_page": 482
     },
     {
       "slug": "otel",
@@ -1732,7 +1767,7 @@
         89,
         271
       ],
-      "book_page": 380
+      "book_page": 381
     },
     {
       "slug": "packing",
@@ -1754,7 +1789,7 @@
         137,
         138
       ],
-      "book_page": 250
+      "book_page": 251
     },
     {
       "slug": "pca",
@@ -1777,7 +1812,7 @@
         68,
         126
       ],
-      "book_page": 289
+      "book_page": 290
     },
     {
       "slug": "plots",
@@ -1801,7 +1836,7 @@
         80,
         269
       ],
-      "book_page": 328
+      "book_page": 329
     },
     {
       "slug": "prometheus",
@@ -1827,7 +1862,7 @@
         191,
         194
       ],
-      "book_page": 693
+      "book_page": 694
     },
     {
       "slug": "prompt",
@@ -1876,7 +1911,7 @@
         196,
         197
       ],
-      "book_page": 703
+      "book_page": 704
     },
     {
       "slug": "instructions",
@@ -1924,7 +1959,7 @@
         216,
         217
       ],
-      "book_page": 746
+      "book_page": 747
     },
     {
       "slug": "pythonpackages",
@@ -2068,7 +2103,7 @@
         16,
         127
       ],
-      "book_page": 495
+      "book_page": 496
     },
     {
       "slug": "rapids",
@@ -2092,7 +2127,7 @@
         125,
         126
       ],
-      "book_page": 491
+      "book_page": 492
     },
     {
       "slug": "sqlite",
@@ -2136,7 +2171,7 @@
       "references": [
         282
       ],
-      "book_page": 389
+      "book_page": 390
     },
     {
       "slug": "reductions",
@@ -2180,7 +2215,7 @@
         65,
         285
       ],
-      "book_page": 286
+      "book_page": 287
     },
     {
       "slug": "normalization",
@@ -2223,7 +2258,7 @@
         45,
         86
       ],
-      "book_page": 366
+      "book_page": 367
     },
     {
       "slug": "embeddings",
@@ -2247,7 +2282,7 @@
         64,
         65
       ],
-      "book_page": 278
+      "book_page": 279
     },
     {
       "slug": "ownership",
@@ -2272,7 +2307,7 @@
         103,
         104
       ],
-      "book_page": 426
+      "book_page": 427
     },
     {
       "slug": "asr",
@@ -2296,7 +2331,7 @@
         157,
         159
       ],
-      "book_page": 630
+      "book_page": 631
     },
     {
       "slug": "sdxl",
@@ -2322,7 +2357,7 @@
         160,
         284
       ],
-      "book_page": 587
+      "book_page": 588
     },
     {
       "slug": "stalls",
@@ -2344,7 +2379,7 @@
       "references": [
         88
       ],
-      "book_page": 376
+      "book_page": 377
     },
     {
       "slug": "streaming",
@@ -2386,7 +2421,7 @@
         67,
         68
       ],
-      "book_page": 294
+      "book_page": 295
     },
     {
       "slug": "tensorrt",
@@ -2412,7 +2447,7 @@
         135,
         136
       ],
-      "book_page": 506
+      "book_page": 507
     },
     {
       "slug": "tts",
@@ -2436,7 +2471,7 @@
         155,
         290
       ],
-      "book_page": 617
+      "book_page": 618
     },
     {
       "slug": "pooling",
@@ -2458,7 +2493,7 @@
         65,
         73
       ],
-      "book_page": 282
+      "book_page": 283
     },
     {
       "slug": "attention",
@@ -2475,7 +2510,7 @@
         "cache position"
       ],
       "paragraphs": [
-        "Self-attention lets one token combine information from other allowed positions. It produces a query for the current position, compares it with keys, and uses the resulting weights to combine values. A causal language model can attend to earlier positions while generating the next token.",
+        "Self-attention lets one token combine information from other allowed positions. It produces a query for the current position, compares it with keys, and uses the resulting weights to combine values. With causal self-attention, each position can attend only to itself and earlier positions when predicting the next token.",
         "During incremental decoding, saved keys and values avoid recomputing the whole prefix. Their positions must agree with the model’s position encoding. Feed the same short sequence once as a whole and once token by token. Compare the scores at each position to locate the first departure."
       ],
       "references": [
@@ -2531,7 +2566,7 @@
         70,
         71
       ],
-      "book_page": 294
+      "book_page": 295
     },
     {
       "slug": "unsloth",
@@ -2557,7 +2592,7 @@
         236,
         237
       ],
-      "book_page": 774
+      "book_page": 775
     },
     {
       "slug": "vectorindex",
@@ -2578,7 +2613,7 @@
         63,
         65
       ],
-      "book_page": 317
+      "book_page": 318
     },
     {
       "slug": "retained",
@@ -2605,7 +2640,7 @@
         258,
         259
       ],
-      "book_page": 820
+      "book_page": 821
     },
     {
       "slug": "vlm",
@@ -2628,7 +2663,7 @@
         147,
         166
       ],
-      "book_page": 566
+      "book_page": 567
     },
     {
       "slug": "vllm",
@@ -2651,7 +2686,7 @@
         113,
         114
       ],
-      "book_page": 469
+      "book_page": 470
     },
     {
       "slug": "warps",
@@ -2698,7 +2733,7 @@
         159,
         168
       ],
-      "book_page": 610
+      "book_page": 611
     },
     {
       "slug": "wsl",
@@ -2746,7 +2781,7 @@
         156,
         158
       ],
-      "book_page": 632
+      "book_page": 633
     },
     {
       "slug": "kernels",
@@ -3022,15 +3057,15 @@
       "matmul"
     ],
     "63": [
-      "streams",
+      "buffers",
       "fusion"
     ],
     "64": [
-      "streams",
+      "buffers",
       "nsys"
     ],
     "65": [
-      "streams"
+      "graphs"
     ],
     "66": [
       "packing",
@@ -3307,7 +3342,7 @@
       "supply"
     ],
     "134": [
-      "streams",
+      "buffers",
       "ownership",
       "nsys"
     ],

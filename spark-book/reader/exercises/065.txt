@@ -5,11 +5,11 @@ Does replaying a captured graph reproduce the work and its outputs?
 
 Technology background
 
-CUDA streams, events and graphs
+CUDA Graphs
 
-A CUDA stream is an ordered queue of GPU work. A PyTorch caller can select a stream before invoking a custom operator. Launch the operator on that stream so its reads and writes follow the work the caller already queued.
+A CUDA Graph captures operations and their dependencies for replay. Keep the shapes and storage addresses used during capture fixed, then check replayed values against ordinary execution.
 
-Test the derivative and stream ordering separately. An operator can pass a forward-value check and still return the wrong gradient or run on the wrong stream. Chapter 43 applies stream ordering to buffer reuse in Exercise 63 and graph replay in Exercise 65.
+The exercise replays two transforms on the same buffers. Check the output value after replay, then compare host submission time and device execution time separately.
 
 Before you start
 Exercise 64 (reproduce a missing dependency and repair it)
@@ -43,7 +43,6 @@ Record the absolute paths and identities of any selected output before changing 
 
 Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.
 Scope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.
-A CUDA Graph captures operations and their dependencies for replay. Keep the shapes and storage addresses used during capture fixed, then check replayed values against ordinary execution.
 
 Recorded files
 python reader/records.py 65 --files

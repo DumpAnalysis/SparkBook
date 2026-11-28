@@ -175,7 +175,7 @@ docker stop spark-llama
 
 docker rm spark-llama
 
-Replace the two path placeholders with existing qualified files. Wait for actual readiness before sending inference; if the health request fails, inspect logs and repeat it after the load completes. The wrapper uses one server slot, context 4,096 and GPU offload. These are initial qualification settings, not optimal settings or a promise that every model fits. The 20 GiB container host-memory limit and approximately 30 GB GPU report measure different accounting domains; neither is an isolated 30 GB allocation for this process.
+Replace the two path placeholders with existing qualified files. Wait for actual readiness before sending inference; if the health request fails, inspect logs and repeat it after the load completes. The wrapper uses one server slot, context 4,096 and GPU offload. These are initial qualification settings, not optimal settings or a promise that every model fits. The 20 GiB container memory limit caps its cgroup. The NVML dedicated segment is 30.50 GiB and CUDA reports the free and total device memory separately.
 
 Exercise 143 Classify container failures before changing limits
 
@@ -191,7 +191,7 @@ docker events --since 10m --until 0s \
 
   --filter container=spark-llama
 
-Run these inspection commands before removing a failed container. Read State.OOMKilled and available cgroup/daemon evidence; compare framework allocation logs with external GPU counters where supported. A larger host-memory limit will not fix an unsupported CUDA kernel. Reduce model size, context or concurrency only after recording the failure. A large-model CPU offload experiment must budget host allocations and transfers, and is separate from the baseline GPU container qualification.
+Run these inspection commands before removing a failed container. Read State.OOMKilled and available cgroup/daemon evidence; compare framework allocation logs with external GPU counters where supported. For an unsupported CUDA kernel, check image and device compatibility. Inspect the container memory limit when diagnosing a cgroup allocation failure. Reduce model size, context or concurrency only after recording the failure. A large-model CPU offload experiment must budget host allocations and transfers, and is separate from the baseline GPU container qualification.
 
 The preparation environment has no Docker daemon or NVIDIA device tools. Its complete executable inventory is retained below. UNAVAILABLE is a preparation limitation, not a verdict on the laptop.
 
@@ -483,7 +483,7 @@ sudo k3s kubectl -n spark-lab port-forward \
 
   --address 127.0.0.1 service/spark-vllm 8000:8000
 
-Remove or scale down the previous GPU Deployment before this step. The generator uses one GPU, Recreate, a bounded shared-memory mount, read-only model files and startup/readiness probes. It deliberately omits a liveness probe based only on /health; qualify a failure detector before enabling automatic restarts of a heavily loaded model. The 20 GiB host-memory limit is a starting budget to adjust from measured peaks, not a GPU memory quota. Retain the generated YAML and server-side validation result. K3s pulls the digest-pinned image into its separate store when absent; Docker’s copy is not visible there. Allow for this download in the rollout timeout and K3s service proxy settings. Retain kubectl describe pod output if the pull fails. The manifest includes the Docker WSL driver bootstrap in a ConfigMap, the USER and cache settings needed by UID 10001, the 1 GiB KV budget and GPU utilization of 0.12. Probe GGUF file access with serving/docker/check_model_access.sh before the llama deployment. [108]
+Remove or scale down the previous GPU Deployment before this step. The generator uses one GPU, Recreate, a bounded shared-memory mount, read-only model files and startup/readiness probes. It deliberately omits a liveness probe based only on /health; qualify a failure detector before enabling automatic restarts of a heavily loaded model. The 20 GiB container memory limit caps cgroup memory. Adjust it using measured container peaks and budget GPU memory separately. Retain the generated YAML and server-side validation result. K3s pulls the digest-pinned image into its separate store when absent; Docker’s copy is not visible there. Allow for this download in the rollout timeout and K3s service proxy settings. Retain kubectl describe pod output if the pull fails. The manifest includes the Docker WSL driver bootstrap in a ConfigMap, the USER and cache settings needed by UID 10001, the 1 GiB KV budget and GPU utilization of 0.12. Probe GGUF file access with serving/docker/check_model_access.sh before the llama deployment. [108]
 
 Exercise 150 Build and serve a versioned Triton embedding model
 

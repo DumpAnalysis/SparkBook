@@ -78,7 +78,8 @@ Target GPU continuation
   python3 catalogs/capture.py --out runs/catalogs/206-gpu -- bash catalogs/run_ngc_probe.sh runs/catalogs/206/image.json
   This pulls about 11.43 GiB of compressed image layers for the retained
   candidate, with additional disk room needed for extraction and caches.
-  The Docker --memory 12g limit is a host-memory limit, not a GPU quota.
+  Docker --memory 12g caps memory charged to the container’s cgroup at 12 GiB.
+  The CUDA probe checks device memory separately.
   Run the Hub CUDA continuation in the already-qualified CUDA environment:
   python catalogs/capture.py --out runs/catalogs/210-cuda-log -- python catalogs/hf_lab.py offline --snapshot downloads/catalogs/hf-model --out runs/catalogs/210-cuda --device cuda
 

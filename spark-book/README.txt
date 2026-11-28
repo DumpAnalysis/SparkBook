@@ -1,5 +1,5 @@
 Local AI on RTX Spark Laptops
-Learner companion · Version 59 illustrated revision 6 · 27 November 2026
+Learner companion · Version 59 illustrated revision 7 · 28 November 2026
 
 Developed with AI assistance (GPT-6.2 Astra and Claude Fable 5.2)
 

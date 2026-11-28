@@ -21,7 +21,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument('exercise', nargs='?', type=int, help='number from 1 to 251')
-    mode.add_argument('--find', metavar='TEXT', help='match words in topic titles and alternate names')
+    mode.add_argument('--find', metavar='TEXT', help='open an exact topic title or search words in titles and alternate names')
     mode.add_argument('--list', action='store_true', help='list all topics alphabetically')
     args = parser.parse_args()
     catalog = json.loads(CATALOG.read_text(encoding='utf-8'))
@@ -34,11 +34,12 @@ def main():
         words = args.find.casefold().split()
         if not words:
             parser.error('enter a technology name, such as UMAP or Triton')
-        matches = []
-        for topic in topics:
-            names = ' '.join([topic['title'], *topic['aliases']]).casefold()
-            if all(word in names for word in words):
-                matches.append(topic)
+        matches = [topic for topic in topics if topic['title'].casefold().split() == words]
+        if not matches:
+            for topic in topics:
+                names = ' '.join([topic['title'], *topic['aliases']]).casefold()
+                if all(word in names for word in words):
+                    matches.append(topic)
         if not matches:
             parser.exit(1,'No topic matched. Use --list to browse the topic names.\n')
     else:

@@ -110,7 +110,7 @@ print('CUDA free delta:',
 
 RMM
 
-Repeat the target process with a new output directory and compare cold initialization separately from steady operations. Configure allocation policy before arrays exist; never reinitialize the resource beneath live buffers. A container’s 20 GB host-memory limit is not a GPU reservation. Do not add 64 GB and 30 GB into a 94 GB budget. Keep one GPU owner while qualifying this pipeline, and use the earlier memory and WSL telemetry chapters for the host-wide view.
+Repeat the target process with a new output directory and compare cold initialization separately from steady operations. Configure allocation policy before arrays exist; never reinitialize the resource beneath live buffers. The 20 GiB container memory limit caps cgroup memory. The NVML dedicated segment of 30.50 GiB shares the laptop’s 64 GiB of physical memory. Check CUDA free and total memory when budgeting a device allocation. Keep one GPU owner while qualifying this pipeline, and use the earlier memory and WSL telemetry chapters for the host-wide view.
 
 For a dataset too large for the available device budget, begin with partitioned ingestion and bounded batches. Dask workers on this one device still share its capacity; they do not create multiple GPUs. Any spill or managed-memory route must be supported by the chosen library/device/WSL combination and measured for transfer or paging stalls. A successful tiny cuDF result does not qualify an out-of-core pipeline.
 
