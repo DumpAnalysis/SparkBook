@@ -1,9 +1,17 @@
 {
   "book": {
-    "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R7.docx",
-    "sha256": "7391a7f9c3baded7f0f2afc0f3dab19c934b4559c609ff98c257020bc3b56ca2"
+    "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R8.docx",
+    "sha256": "3de26b139f33c1253039d3a6eb458d15ef471ed214ef8ed36e4d886068872ef5"
   },
   "compatible_books": [
+    {
+      "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R7.docx",
+      "sha256": "7391a7f9c3baded7f0f2afc0f3dab19c934b4559c609ff98c257020bc3b56ca2"
+    },
+    {
+      "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R7.pdf",
+      "sha256": "cb3afa16bdd7c7f101875ee907f1b98e48b8220e59947f20f37e9b7316aca534"
+    },
     {
       "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R6.docx",
       "sha256": "9114269f4d1f49b9d6d35333f5893b5055feec361c9622d6d9eb3543bb50da38"
@@ -62,8 +70,8 @@
     }
   ],
   "print_pdf": {
-    "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R7.pdf",
-    "sha256": "cb3afa16bdd7c7f101875ee907f1b98e48b8220e59947f20f37e9b7316aca534"
+    "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R8.pdf",
+    "sha256": "013aad410635d5c0011d737ec0a4c9a4570d2b609b224f9fff1871448d609daa"
   },
   "version": 59,
   "profile": "learner",
@@ -80,7 +88,7 @@
     {
       "path": "README.txt",
       "bytes": 2292,
-      "sha256": "21ee32156a3a3f10f68becb9ce7667393f01e113e2120b104a2924cc880e1907"
+      "sha256": "40c33cab245e011301d90755521a9337f01c957a26a38a65be9fb7f1d95298d4"
     },
     {
       "path": "TRANSCRIPT_POLICY.txt",
@@ -214,8 +222,8 @@
     },
     {
       "path": "catalogs/TARGET_LABS.txt",
-      "bytes": 27858,
-      "sha256": "c1c36fe102eb03ec317a4d4eebec564d5ac356ddb3c3853fb99607f07f8e37a0"
+      "bytes": 27888,
+      "sha256": "7602f837ee2b47472d0c9e125c28836166a9a00ed9c0c4f38597567ee2710fb0"
     },
     {
       "path": "catalogs/VALIDATION.txt",
@@ -779,8 +787,8 @@
     },
     {
       "path": "ecosystem/TARGET_LABS.txt",
-      "bytes": 37628,
-      "sha256": "023755b7bcca742336c6a7a831daba09961f0b3916c9d45fe9a90d21c740af6b"
+      "bytes": 37659,
+      "sha256": "d23183d9b40e9fb8b884acb11f37dc80710ff8ba0653eeb47c51febdce879fa1"
     },
     {
       "path": "ecosystem/capture.py",
@@ -1905,12 +1913,12 @@
     {
       "path": "reader/SELF_CHECKS.txt",
       "bytes": 47955,
-      "sha256": "7fcaccaa81ac71ea2ebcd630108d971740ac22e61bb5afbfa9f97272544a9f49"
+      "sha256": "3ee28a07551ec2dbe0376478c7dd378b8db9de8a5ca815ec4842dc2a6b7794d1"
     },
     {
       "path": "reader/START_HERE.txt",
       "bytes": 6190,
-      "sha256": "b75610e1a095b5964d81c384d3fb3778554f9342bd9ac4eb0f074540d7314306"
+      "sha256": "dc79480e89cd74d4644eb06a9e1d11e79cd7815abd712499ff7fab2fc4d9135a"
     },
     {
       "path": "reader/TECHNOLOGY_OVERVIEWS.md",
@@ -3325,7 +3333,7 @@
     {
       "path": "reader/workspace-files.json",
       "bytes": 124555,
-      "sha256": "91df91716efc7fc2e4eb7c1ad08d393b1901b210646875cebbcd8cbe11514d76"
+      "sha256": "44bdd09c55de7b55f54d28c12727dd81ad38a949a405af12c3972d8983931168"
     },
     {
       "path": "requirements-exercises.lock",
@@ -3454,8 +3462,8 @@
     },
     {
       "path": "serving/TARGET_LABS.txt",
-      "bytes": 37952,
-      "sha256": "dc789638c529c4fb1b54b22f24e8457993c6e848a1bb5945197c38d92f1c3499"
+      "bytes": 37974,
+      "sha256": "8280bcf9e4313a9f63d588ab070794ce52f1390c1e50ad7ca4142e930b3b7f74"
     },
     {
       "path": "serving/backend_control.py",
@@ -3893,5 +3901,5 @@
       "sha256": "0fcee98c6027427f04c4e4169931645a2d0a63f21609fc0676fb880307ab7290"
     }
   ],
-  "revision_validation": "Illustrated revision 7. Verified the custom-operator, CUDA event and CUDA Graph destinations, TF32 index spacing, dated reader labels, causal attention wording and container memory limits. See the paired book and its reader verification report."
+  "revision_validation": "Illustrated revision 8 clarifies cgroup memory limits in Exercises 143, 169 and 206. The companion is paired with the R8 book files and uses their verified page index."
 }

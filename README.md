@@ -89,3 +89,7 @@ The [chapter self-check key](spark-book/reader/SELF_CHECKS.txt) gives the correc
 ### Version 59 illustrated revision 7
 
 The technology guide routes [custom-operator streams](spark-book/reader/TECHNOLOGY_OVERVIEWS.md#topic-streams) to Exercise 58, [CUDA events and double buffering](spark-book/reader/TECHNOLOGY_OVERVIEWS.md#topic-buffers) to Exercise 63, and [CUDA Graphs](spark-book/reader/TECHNOLOGY_OVERVIEWS.md#topic-graphs) to Exercise 65. The reader records identify the dated runs behind the printed results.
+
+### Version 59 illustrated revision 8
+
+Exercises 143, 169 and 206 clarify how to diagnose container memory pressure and interpret the 24 GiB NeMo and 12 GiB NGC limits alongside CUDA device measurements.

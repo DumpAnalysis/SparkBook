@@ -432,7 +432,7 @@ python ecosystem/capture.py --out runs/nemo-train-log -- \
 
   --nproc-per-node 1
 
-Require finite loss, the intended trainable adapter parameters, four completed updates and at least one complete checkpoint. Retain full stdout/stderr, the final effective configuration and training metrics. If import, kernel, NCCL initialization or memory allocation fails, preserve that first failure. Reduce data-loader pressure, batch or sequence size only after identifying the limiting stage. A 24 GB container limit is host-memory accounting, not a 24 GB GPU quota. The preflight text-length check is not the recipe’s final chat-template length; inspect actual batches before a longer run.
+Require finite loss, the intended trainable adapter parameters, four completed updates and at least one complete checkpoint. Retain full stdout/stderr, the final effective configuration and training metrics. If import, kernel, NCCL initialization or memory allocation fails, preserve that first failure. Reduce data-loader pressure, batch or sequence size only after identifying the limiting stage. The 24 GiB limit caps memory charged to the container’s cgroup. CUDA reports device memory separately. The preflight text-length check is not the recipe’s final chat-template length; inspect actual batches before a longer run.
 
 Exercise 170 Verify frozen weights and checkpoint recovery
 
