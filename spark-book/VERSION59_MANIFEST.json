@@ -1,7 +1,7 @@
 {
   "book": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R7.docx",
-    "sha256": "47f8a3de8327848b28fe6a15563069f29c9c7a0f1a18404e4e01cd29862fc9a2"
+    "sha256": "7391a7f9c3baded7f0f2afc0f3dab19c934b4559c609ff98c257020bc3b56ca2"
   },
   "compatible_books": [
     {
@@ -63,7 +63,7 @@
   ],
   "print_pdf": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R7.pdf",
-    "sha256": "7da97bdabcdb4e8e5fb0584fe912597ee9d4578fa07e7549b864898a81849eea"
+    "sha256": "cb3afa16bdd7c7f101875ee907f1b98e48b8220e59947f20f37e9b7316aca534"
   },
   "version": 59,
   "profile": "learner",
