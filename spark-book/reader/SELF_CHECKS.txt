@@ -709,7 +709,7 @@ Chapter 71 · Sharing one GPU among workers
    Source · Exercise 130.
 
 2. Which latency percentile would reveal a cost hidden by the median?
-   Inspect p95 together with individual latencies. With 16 requests nearest-rank p95 is the observed maximum.
+   Compare p95 with the median and the individual latencies. Exercise 130 reports NumPy’s linearly interpolated p95. With 16 requests the nearest-rank rule would instead select the slowest request.
    Source · Exercise 130. Supporting passage on R6 book p. 428.
 
 Chapter 72 · Inference services and request diagnostics

@@ -1,7 +1,7 @@
 {
   "book": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R6.docx",
-    "sha256": "8848a6ee7a0fac9b3d343ef0ef57333d4deb8931e76f7ae43b21eed63055407a"
+    "sha256": "ab08a27593ca98c8618236542c6403eccf39c717c351e34d149fda3d65665125"
   },
   "compatible_books": [
     {
@@ -55,7 +55,7 @@
   ],
   "print_pdf": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R6.pdf",
-    "sha256": "5cbdc1a92cb5d58f59573fd8d9e08373039ec3b009076834538b305b3347faac"
+    "sha256": "e99a1d47ee3bd2ffa66e11110798a4c12be2d8f178bfb388085be8e38318360b"
   },
   "version": 59,
   "profile": "learner",
@@ -66,8 +66,8 @@
   "files": [
     {
       "path": "EXERCISE_EVIDENCE_MAP.json",
-      "bytes": 164539,
-      "sha256": "19c7fff28d034754f5746fb48355aba0be059b3f481c09464fde0d6b1795682a"
+      "bytes": 164748,
+      "sha256": "9ac7c3a386013429348211c4c43de35cff16464e96ebaf1a1a908dedb6fa46db"
     },
     {
       "path": "README.txt",
@@ -1896,8 +1896,8 @@
     },
     {
       "path": "reader/SELF_CHECKS.txt",
-      "bytes": 47865,
-      "sha256": "fe05c70c04dcc8e9dd5bbf78e4637436b9cc79cffc659cb1db1ab3931975de4b"
+      "bytes": 47955,
+      "sha256": "f75c98f7609b2f78862459595b2eef837c3dea69c07159deda5f69a8c1b8c5ee"
     },
     {
       "path": "reader/START_HERE.txt",
@@ -1941,8 +1941,8 @@
     },
     {
       "path": "reader/exercise-guide.json",
-      "bytes": 605598,
-      "sha256": "dbfb7526e1083c653efcd402d28ff5dfe813de65355523b77d597d67d35d41b0"
+      "bytes": 605807,
+      "sha256": "a8a76ac703538bf9b3dc77a32d38f6fc5c945bed65c11a15e7bfad9f354783af"
     },
     {
       "path": "reader/exercises/001.txt",
@@ -2591,8 +2591,8 @@
     },
     {
       "path": "reader/exercises/130.txt",
-      "bytes": 3150,
-      "sha256": "c269337396b86f908df59863085389be4affca7b421653f209acd89406fca7e6"
+      "bytes": 3358,
+      "sha256": "1a28f12eef80298ef5df5f53af131f2a6315ec8cba4c46f3309bb1cf2e28e412"
     },
     {
       "path": "reader/exercises/131.txt",
@@ -3317,7 +3317,7 @@
     {
       "path": "reader/workspace-files.json",
       "bytes": 124555,
-      "sha256": "46a73938472ef9ce3dae093f9d1ad6ee6fd23828020e0d04f72f08c15c02eb15"
+      "sha256": "817b9187ab1b689be0c8290c7e7a94444578d25914854d9833436fe8893457cc"
     },
     {
       "path": "requirements-exercises.lock",

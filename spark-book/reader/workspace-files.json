@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "EXERCISE_EVIDENCE_MAP.json",
-      "bytes": 164539,
-      "sha256": "19c7fff28d034754f5746fb48355aba0be059b3f481c09464fde0d6b1795682a"
+      "bytes": 164748,
+      "sha256": "9ac7c3a386013429348211c4c43de35cff16464e96ebaf1a1a908dedb6fa46db"
     },
     {
       "path": "README.txt",
@@ -1833,8 +1833,8 @@
     },
     {
       "path": "reader/SELF_CHECKS.txt",
-      "bytes": 47865,
-      "sha256": "fe05c70c04dcc8e9dd5bbf78e4637436b9cc79cffc659cb1db1ab3931975de4b"
+      "bytes": 47955,
+      "sha256": "f75c98f7609b2f78862459595b2eef837c3dea69c07159deda5f69a8c1b8c5ee"
     },
     {
       "path": "reader/START_HERE.txt",
@@ -1878,8 +1878,8 @@
     },
     {
       "path": "reader/exercise-guide.json",
-      "bytes": 605598,
-      "sha256": "dbfb7526e1083c653efcd402d28ff5dfe813de65355523b77d597d67d35d41b0"
+      "bytes": 605807,
+      "sha256": "a8a76ac703538bf9b3dc77a32d38f6fc5c945bed65c11a15e7bfad9f354783af"
     },
     {
       "path": "reader/exercises/001.txt",
@@ -2528,8 +2528,8 @@
     },
     {
       "path": "reader/exercises/130.txt",
-      "bytes": 3150,
-      "sha256": "c269337396b86f908df59863085389be4affca7b421653f209acd89406fca7e6"
+      "bytes": 3358,
+      "sha256": "1a28f12eef80298ef5df5f53af131f2a6315ec8cba4c46f3309bb1cf2e28e412"
     },
     {
       "path": "reader/exercises/131.txt",
