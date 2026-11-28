@@ -1,4 +1,4 @@
-Chapter self-checks · Version 59 illustrated revision 6
+Chapter self-checks · Version 59 illustrated revision 7
 
 Each question has a model answer. Evidence from your own run can differ. Use the named chapter to check the method and scope.
 
@@ -76,7 +76,7 @@ Chapter 8 · Measuring latency and throughput
 
 1. What interval does time to first content include?
    Time from client request start to the first nonempty content event includes queueing, transport, prompt work and the first generation step.
-   Source · Exercise 9. Supporting passage on R6 book p. 53.
+   Source · Exercise 9. Supporting passage on R7 book p. 53.
 
 2. Why can a five-request p95 coincide with the slowest request?
    Nearest-rank p95 uses sorted rank ceil(0.95 × n). With five timings that is the fifth, or largest, observation.
@@ -160,7 +160,7 @@ Chapter 16 · Letting the local model choose actions
 
 2. Which observation would justify asking for another tool read?
    In record 019.01 the planner stopped after reading the request. To verify the 5,000-token input against the 4,096-token limit, read the limits record. To verify model loading, read the runtime record.
-   Source · Exercise 19. Supporting passage on R6 book p. 99.
+   Source · Exercise 19. Supporting passage on R7 book p. 99.
 
 Chapter 17 · Concurrency and the memory cost of agents
 
@@ -190,7 +190,7 @@ Chapter 19 · Diagnostic patterns for local models
 
 2. Which exercise contains a counterexample to trusting a successful tool call?
    In record 016.02 the returned records contain no service-B logs. The historical answer inferred a service-B outcome anyway. Checking the inference against the retrieved records exposes the error.
-   Source · Exercise 16. Supporting passage on R6 book p. 93.
+   Source · Exercise 16. Supporting passage on R7 book p. 93.
 
 Chapter 20 · Extending the laboratory
 
@@ -366,7 +366,7 @@ Chapter 37 · Writing a tiled matrix multiplication
 
 1. Which threads zero-fill the final tile?
    Threads whose tile coordinates fall beyond the valid A or B dimensions load zero and still join the barrier.
-   Source · Exercise 52. Supporting passage on R6 book p. 210.
+   Source · Exercise 52. Supporting passage on R7 book p. 210.
 
 2. Which dimensions in a nonsquare test reveal a swapped index?
    Use unequal M, K and N and a partial edge tile, as in the 17 × 23 × 19 test. Compare the full M × N result.
@@ -526,7 +526,7 @@ Chapter 53 · Training a custom BERT model
 
 1. Which texts were used to fit WordPiece?
    Fit WordPiece on the training texts only. Preserve the vocabulary and the family-level split.
-   Source · Exercise 83. Supporting passage on R6 book p. 300.
+   Source · Exercise 83. Supporting passage on R7 book p. 300.
 
 2. Why can the selected checkpoint precede the final update?
    Monitor validation loss on the same fixed masks. The best validation checkpoint can occur before the last update.
@@ -536,21 +536,21 @@ Chapter 54 · Continuing pretraining and building sentence encoders
 
 1. Which tokenizer identity must survive continued training?
    Keep the vocabulary, token-to-ID mapping, special tokens and tokenizer revision paired with the checkpoint.
-   Source · Exercise 85. Supporting passage on R6 book p. 305.
+   Source · Exercise 85. Supporting passage on R7 book p. 305.
 
 2. What operation turns token representations into a sentence vector?
    Apply the specified attention-mask-aware pooling, then any documented normalization.
-   Source · Exercise 86. Supporting passage on R6 book p. 307.
+   Source · Exercise 86. Supporting passage on R7 book p. 307.
 
 Chapter 55 · Fine tuning embedding models
 
 1. Did the wrong-pair control change loss and retrieval equally?
    The wrong-pair control still reached 0.9167 development and test MRR on small splits. Loss and retrieval rank need separate measurements.
-   Source · Exercise 88. Supporting passage on R6 book p. 314.
+   Source · Exercise 88. Supporting passage on R7 book p. 314.
 
 2. Which new held-out queries would expose the corrupted relationship?
    Add independently judged paraphrases for the swapped families that require distinguishing the corrupted positive from a hard negative.
-   Source · Exercise 88. Supporting passage on R6 book p. 314.
+   Source · Exercise 88. Supporting passage on R7 book p. 314.
 
 Chapter 56 · Diagnosing and deploying embedding workloads
 
@@ -570,13 +570,13 @@ Chapter 57 · Monitoring GPU metrics and visualizing activity
 
 2. What additional observation would identify the kernel responsible for a utilization change?
    Capture a device timeline covering the same interval and correlate kernel instances with the sampled workload.
-   Source · Exercise 98. Supporting passage on R6 book p. 345.
+   Source · Exercise 98. Supporting passage on R7 book p. 345.
 
 Chapter 58 · Locating numerical divergence
 
 1. Why can argmax agree when pooling is broken?
    The winning class can stay the same while pooled vectors and logits change. Compare the first divergent tensor.
-   Source · Exercise 100. Supporting passage on R6 book p. 350.
+   Source · Exercise 100. Supporting passage on R7 book p. 350.
 
 2. Which tolerance is appropriate at the first divergent boundary?
    Choose absolute and relative tolerances for that tensor’s dtype, scale and reference calculation, then report the measured error.
@@ -696,7 +696,7 @@ Chapter 70 · Distributed training on one laptop
 
 1. Which local experiment truly performed a collective?
    In record 129.03 two CPU workers on loopback used Gloo and passed the reference check. Record 129.04 qualifies single-rank NCCL on one GPU.
-   Source · Exercise 129. Supporting passage on R6 book p. 421.
+   Source · Exercise 129. Supporting passage on R7 book p. 421.
 
 2. What extra hardware is needed to measure two-device scaling?
    Measuring scaling across two CUDA devices requires two physical devices and a matched multi-device launch.
@@ -710,7 +710,7 @@ Chapter 71 · Sharing one GPU among workers
 
 2. Which latency percentile would reveal a cost hidden by the median?
    Compare p95 with the median and the individual latencies. Exercise 130 reports NumPy’s linearly interpolated p95. With 16 requests the nearest-rank rule would instead select the slowest request.
-   Source · Exercise 130. Supporting passage on R6 book p. 428.
+   Source · Exercise 130. Supporting passage on R7 book p. 428.
 
 Chapter 72 · Inference services and request diagnostics
 
@@ -810,7 +810,7 @@ Chapter 81 · Images audio and multimodal evidence
 
 2. What evidence would distinguish a decoding error from a bad model answer?
    Inspect decoded pixels or waveform values first. A valid decoded fixture followed by a wrong description localizes the error downstream.
-   Source · Exercise 173. Supporting passage on R6 book p. 560.
+   Source · Exercise 173. Supporting passage on R7 book p. 560.
 
 Chapter 82 · Vision language inference and visual grounding
 
@@ -856,11 +856,11 @@ Chapter 86 · Text to speech as a reproducible signal pipeline
 
 1. Which timing ends at the first playable audio?
    Time to first playable audio ends when the first PCM samples reach the playback sink. Phrase completion and speaker latency have different endpoints.
-   Source · Exercise 195. Supporting passage on R6 book p. 624.
+   Source · Exercise 195. Supporting passage on R7 book p. 624.
 
 2. How can the waveform help locate an apparent speech gap?
    Inspect timestamped low-energy intervals and listen at the corresponding positions with the text normalization held fixed.
-   Source · Exercise 193. Supporting passage on R6 book p. 620.
+   Source · Exercise 193. Supporting passage on R7 book p. 620.
 
 Chapter 87 · Speech recognition and transcript reliability
 
@@ -890,7 +890,7 @@ Chapter 89 · The NGC catalog as a source of reproducible GPU assets
 
 2. Which manifest fault can be diagnosed before a GPU is involved?
    Missing or duplicate ARM64 descriptors and a digest mismatch are detectable from manifest bytes before starting a container.
-   Source · Exercise 207. Supporting passage on R6 book p. 679.
+   Source · Exercise 207. Supporting passage on R7 book p. 679.
 
 Chapter 90 · The Hugging Face Hub as a source of models and datasets
 
@@ -916,7 +916,7 @@ Chapter 92 · LangChain agents and local model adapters
 
 1. Which component stops a repeating tool loop, and what does the configured limit count?
    The application configures the limit and the LangGraph runtime enforces it. In record 221.02 the repeated tool proposal reaches recursion_limit=6 and stops. That limit counts graph steps.
-   Source · Exercise 221. Supporting passage on R6 book p. 728.
+   Source · Exercise 221. Supporting passage on R7 book p. 728.
 
 2. Can the local model return a valid action with a wrong final answer?
    Yes. A permitted call can return valid data and still be followed by an unsupported final diagnosis.
@@ -970,7 +970,7 @@ Chapter 97 · Ollama as a local model owner
 
 2. How can a warm prompt change the worker comparison?
    Cached prompt work can shorten a later request. Separate cold and warm trials and match owner settings and prompt order.
-   Source · Exercise 238. Supporting passage on R6 book p. 769.
+   Source · Exercise 238. Supporting passage on R7 book p. 769.
 
 Chapter 98 · Unsloth adaptation with measurable training boundaries
 

@@ -48,7 +48,7 @@ Handoff
 Keep the image identity and reference vector for the K3s deployment in Exercise 144.
 
 Recorded result  PASSED — Actual Compose execution bound the CPU service to 127.0.0.1:8088 with nonroot identity, read-only filesystem and explicit resource limits. Request, log, state and cleanup records passed.
-Scope  Container host-memory limits are not CUDA-memory quotas.
+Scope  Docker’s memory limit caps memory charged to the container’s cgroup. CUDA reports device memory separately.
 
 Recorded files
 python reader/records.py 141 --files

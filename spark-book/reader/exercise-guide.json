@@ -1118,7 +1118,7 @@
       "troubleshoot": "Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.",
       "finish": "Keep original Nsight Systems report.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Historical record and later reader check  Historical host 2026.3.2 control blocked. The separate pinned 2026.5.1 reader capture correlated four launches with positive kernel intervals.\nScope  The transform workload and this collector version.\nReader record 039.R1 · reader/reader-runs/039.txt",
+      "evidence_note": "Historical result · BLOCKED with the original host collector. READER run · 27 Nov 2026 UTC · The pinned Nsight Systems 2026.5.1 transform capture passed the correlated launch and positive device-interval checks. The four kernel intervals summed to 27,924 ns.\nScope  The transform workload and this collector version.\nReader record 039.R1 · reader/reader-runs/039.txt",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Open the original trace and count the annotated iterations. Check whether each required device event has a usable interval.",
       "predict": "",
@@ -1147,7 +1147,7 @@
       "troubleshoot": "Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.",
       "finish": "Keep the original .nsys-rep, same-version SQLite export, and the reader output.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Historical record and later reader check  Historical host export lacked the kernel table. The 2026.5.1 reader export contained four actual transform events. The CPU fixture totals two events and 500 ns.\nScope  A supplied GPU export and a separately identified synthetic control.\nReader record 040.R1 · reader/reader-runs/040.txt",
+      "evidence_note": "Historical result · BLOCKED for the original host export. READER run · 27 Nov 2026 UTC · The reader query passed on the actual 2026.5.1 export. The no-argument CPU fixture is a separate control. The R5 reader export contains four transform intervals totaling 27,924 ns. The CPU fixture has two intervals totaling 500 ns.\nScope  A supplied GPU export and a separately identified synthetic control.\nReader record 040.R1 · reader/reader-runs/040.txt",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Enumerate the SQLite schema before querying. Verify the event type, timestamp units and row count against the export.",
       "predict": "",
@@ -1798,14 +1798,14 @@
       "troubleshoot": "Keep the successful numerical or host-range control. Record the driver, tool version, activity table and count of kernel intervals with end greater than start. If that count is zero, mark device duration unavailable. Use cuda/timestamp_probe/reproduce_timestamps.py for the independent CUPTI check.",
       "finish": "Keep ownership proof, values, and execution timeline.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.\nDouble buffering gives the producer a second slot while the consumer works on the first. Record a completion event after each slot’s last use. Wait for that event before reusing the slot. An overlap claim requires overlapping device intervals.",
+      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Follow each slot through its copy, kernel and completion event. Verify the values before claiming any overlap.",
       "predict": "",
       "timing": "0.67 s for Compare buffer ownership and reuse (record 063.01).",
       "reading_note": "First check both buffers against their references. To claim overlap, find device intervals that overlap on two streams. The recorded timings did not supply those intervals.",
       "background_topics": [
-        "streams",
+        "buffers",
         "fusion"
       ]
     },
@@ -1834,7 +1834,7 @@
       "timing": "0.57 s for Run with a missing stream dependency (record 064.01).",
       "reading_note": "Show that the repaired dependency produces the expected value, then look for the producer and consumer on the device timeline. The recorded timing evidence left their device intervals unresolved.",
       "background_topics": [
-        "streams",
+        "buffers",
         "nsys"
       ]
     },
@@ -1856,14 +1856,14 @@
       "troubleshoot": "Compare the smallest oracle first; inspect missing state or dependencies before adding concurrency.",
       "finish": "Keep verified output and separate submission/event intervals.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.\nA CUDA Graph captures operations and their dependencies for replay. Keep the shapes and storage addresses used during capture fixed, then check replayed values against ordinary execution.",
+      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Compare replayed values with ordinary execution. Keep submission time and device-event time in separate columns.",
       "predict": "",
       "timing": "0.57 s for Graphs (record 065.01).",
       "reading_note": "Keep the captured addresses and input shapes fixed during graph replay. Check the output on each replay. Device timing requires its own usable trace.",
       "background_topics": [
-        "streams"
+        "graphs"
       ]
     },
     {
@@ -3710,7 +3710,7 @@
       "troubleshoot": "Check rank identity, rendezvous, operation order and missing participants.",
       "finish": "Keep the CPU reference result and selected debug level. Report the one-GPU prerequisite rejection separately. A reviewer CPU pass cannot qualify the WSL2 laptop.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Recorded result  BLOCKED — Native CPU DDP failed with rank 0 SIGSEGV in both the initial run and diagnostic retry. Two logical CPU nodes on loopback passed, and NCCL with world_size=1 on the one physical GPU passed. Two-device DDP and sharding remained unavailable. An independent reviewer on x86-64 Linux reproduced a CPU/Gloo failure under DETAIL and obtained successful two-worker runs under INFO and OFF. A follow-up x86-64 CPU review reports that DDP and logical nodes both met the 1e-09 reference tolerance with INFO.\nScope  The exercise stays BLOCKED for its complete target scope; one-GPU success does not emulate two independent devices.\nREADER run · 28 Nov 2026 UTC. On this WSL2 laptop both two-worker native CPU DDP and the two-node loopback trial passed at INFO. Maximum reference error was 7.431 × 10⁻¹³ in both. The two-device NCCL prerequisite returned unavailable.\nReader record 129.R1 · reader/reader-runs/129.txt",
+      "evidence_note": "Recorded result  BLOCKED — Native CPU DDP failed with rank 0 SIGSEGV in both the initial run and diagnostic retry. Two logical CPU nodes on loopback passed, and NCCL with world_size=1 on the one physical GPU passed. Two-device DDP and sharding remained unavailable. An independent reviewer on x86-64 Linux reproduced a CPU/Gloo failure under DETAIL and obtained successful two-worker runs under INFO and OFF. A follow-up x86-64 CPU review reports that DDP and logical nodes both met the 1e-09 reference tolerance with INFO.\nScope  The exercise stays BLOCKED for its complete target scope; one-GPU success does not emulate two independent devices.\nREADER run · 28 Nov 2026, 00:20:57 UTC. On this WSL2 laptop both two-worker native CPU DDP and the two-node loopback trial passed at INFO. Maximum reference error was 7.431 × 10⁻¹³ in both. The two-device NCCL prerequisite returned unavailable.\nReader record 129.R1 · reader/reader-runs/129.txt",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Record the outcome of each CPU, loopback and one-device launch. Require distinct visible devices for a two-GPU result.",
       "predict": "",
@@ -3864,7 +3864,7 @@
       "timing": "3.3 s for Streams (record 134.02).",
       "reading_note": "Both streams returned numerically correct outputs. No device kernel or copy intervals were available to establish whether they ran simultaneously.",
       "background_topics": [
-        "streams",
+        "buffers",
         "ownership",
         "nsys"
       ]
@@ -4059,7 +4059,7 @@
       "troubleshoot": "Work through process, container, scheduling, backend and request boundaries.",
       "finish": "Keep $LAB_RUN/container-request with the command and exit that produced it.",
       "handoff": "Keep the image identity and reference vector for the K3s deployment in Exercise 144.",
-      "evidence_note": "Recorded result  PASSED — Actual Compose execution bound the CPU service to 127.0.0.1:8088 with nonroot identity, read-only filesystem and explicit resource limits. Request, log, state and cleanup records passed.\nScope  Container host-memory limits are not CUDA-memory quotas.",
+      "evidence_note": "Recorded result  PASSED — Actual Compose execution bound the CPU service to 127.0.0.1:8088 with nonroot identity, read-only filesystem and explicit resource limits. Request, log, state and cleanup records passed.\nScope  Docker’s memory limit caps memory charged to the container’s cgroup. CUDA reports device memory separately.",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Test readiness and a numerical request, inspect configured limits, then verify the owned container's termination.",
       "predict": "",
@@ -5390,7 +5390,7 @@
       "troubleshoot": "If the latent hashes differ, check the model revision, scheduler, prompt, seed and steps before interpreting output pixels. If every decoder call covers the full latent, check the actual tile threshold and dimensions.",
       "finish": "Keep the four image-run receipts, comparison JSON, profiler trace and same-version SQLite export with their run identities.",
       "handoff": "Record the absolute paths and identities of any selected output before changing terminals or starting a dependent exercise.",
-      "evidence_note": "Historical record and later reader check  Historical driver probe lacked usable activity timestamps. The R5 reader trial compared three decodes of the same latent; the reduced tile edge gave nine decoder calls.\nScope  Matched output pixels, inference peak and an aggregate device range. The range includes denoising and decode.\nReader record 186.R1 · reader/reader-runs/186.txt",
+      "evidence_note": "Historical result · BLOCKED for the separate elevated tiny-kernel probe. READER run · 27 Nov 2026 UTC · The revised 1024-pixel comparison recorded actual decoder calls on matching latents. Its Nsight timeline covers the aggregate media/infer range. Untiled, default and 512-pixel settings used one, one and nine decoder calls on the matching latent.\nScope  Matched output pixels, inference peak and an aggregate device range. The range includes denoising and decode.\nReader record 186.R1 · reader/reader-runs/186.txt",
       "origin": "NEW READER PROCEDURE; not a newly executed laptop transcript",
       "check": "Match the final latent digest in all three uninstrumented trials. Count one full-frame decoder call in each control and multiple smaller calls at the reduced threshold. Compare RGB output and peak allocated bytes.",
       "predict": "",

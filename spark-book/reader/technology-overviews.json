@@ -430,24 +430,59 @@
       "book_page": 151
     },
     {
-      "slug": "streams",
-      "title": "CUDA streams, events and graphs",
-      "first_exercise": 58,
+      "slug": "buffers",
+      "title": "CUDA events and double buffering",
+      "first_exercise": 63,
       "aliases": [
         "asynchronous copy",
-        "stream dependencies",
         "double buffering",
-        "CUDA Graphs",
+        "event ordering",
+        "stream dependencies",
+        "buffer reuse"
+      ],
+      "paragraphs": [
+        "Double buffering gives the producer a second slot while the consumer works on the first. Record a completion event after each slot’s last use. Wait for that event before reusing the slot. An overlap claim requires overlapping device intervals.",
+        "Across streams, record an event after the producer writes and have the consumer wait on it before reading. Exercise 64 tests this dependency by comparing a stale read with the value after the wait."
+      ],
+      "references": [
+        28
+      ],
+      "book_page": 244
+    },
+    {
+      "slug": "graphs",
+      "title": "CUDA Graphs",
+      "first_exercise": 65,
+      "aliases": [
         "graph replay",
-        "event ordering"
+        "CUDA graph replay",
+        "stream capture",
+        "graph launch"
+      ],
+      "paragraphs": [
+        "A CUDA Graph captures operations and their dependencies for replay. Keep the shapes and storage addresses used during capture fixed, then check replayed values against ordinary execution.",
+        "The exercise replays two transforms on the same buffers. Check the output value after replay, then compare host submission time and device execution time separately."
+      ],
+      "references": [
+        55
+      ],
+      "book_page": 248
+    },
+    {
+      "slug": "streams",
+      "title": "CUDA streams and custom operators",
+      "first_exercise": 58,
+      "aliases": [
+        "current CUDA stream",
+        "caller-selected stream",
+        "PyTorch stream selection"
       ],
       "paragraphs": [
         "A CUDA stream is an ordered queue of GPU work. A PyTorch caller can select a stream before invoking a custom operator. Launch the operator on that stream so its reads and writes follow the work the caller already queued.",
         "Test the derivative and stream ordering separately. An operator can pass a forward-value check and still return the wrong gradient or run on the wrong stream. Chapter 43 applies stream ordering to buffer reuse in Exercise 63 and graph replay in Exercise 65."
       ],
       "references": [
-        28,
-        55
+        28
       ],
       "book_page": 228
     },
@@ -2475,7 +2510,7 @@
         "cache position"
       ],
       "paragraphs": [
-        "Self-attention lets one token combine information from other allowed positions. It produces a query for the current position, compares it with keys, and uses the resulting weights to combine values. A causal language model can attend to earlier positions while generating the next token.",
+        "Self-attention lets one token combine information from other allowed positions. It produces a query for the current position, compares it with keys, and uses the resulting weights to combine values. With causal self-attention, each position can attend only to itself and earlier positions when predicting the next token.",
         "During incremental decoding, saved keys and values avoid recomputing the whole prefix. Their positions must agree with the model’s position encoding. Feed the same short sequence once as a whole and once token by token. Compare the scores at each position to locate the first departure."
       ],
       "references": [
@@ -3022,15 +3057,15 @@
       "matmul"
     ],
     "63": [
-      "streams",
+      "buffers",
       "fusion"
     ],
     "64": [
-      "streams",
+      "buffers",
       "nsys"
     ],
     "65": [
-      "streams"
+      "graphs"
     ],
     "66": [
       "packing",
@@ -3307,7 +3342,7 @@
       "supply"
     ],
     "134": [
-      "streams",
+      "buffers",
       "ownership",
       "nsys"
     ],

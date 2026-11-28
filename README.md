@@ -85,3 +85,7 @@ The [chapter self-check key](spark-book/reader/SELF_CHECKS.txt) covers 200 quest
 ### Version 59 illustrated revision 6
 
 The [chapter self-check key](spark-book/reader/SELF_CHECKS.txt) gives the corrected exercise sources. The dated reader records for [Exercise 39](spark-book/reader/reader-runs/039.txt), [Exercise 40](spark-book/reader/reader-runs/040.txt), [Exercise 129](spark-book/reader/reader-runs/129.txt), and [Exercise 186](spark-book/reader/reader-runs/186.txt) include the commands, outcomes and artifact identities behind the book’s reader results.
+
+### Version 59 illustrated revision 7
+
+The technology guide routes [custom-operator streams](spark-book/reader/TECHNOLOGY_OVERVIEWS.md#topic-streams) to Exercise 58, [CUDA events and double buffering](spark-book/reader/TECHNOLOGY_OVERVIEWS.md#topic-buffers) to Exercise 63, and [CUDA Graphs](spark-book/reader/TECHNOLOGY_OVERVIEWS.md#topic-graphs) to Exercise 65. The reader records identify the dated runs behind the printed results.

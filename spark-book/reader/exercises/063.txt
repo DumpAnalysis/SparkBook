@@ -5,11 +5,11 @@ When is a host buffer slot safe to reuse in a two-stream pipeline?
 
 Technology background
 
-CUDA streams, events and graphs
+CUDA events and double buffering
 
-A CUDA stream is an ordered queue of GPU work. A PyTorch caller can select a stream before invoking a custom operator. Launch the operator on that stream so its reads and writes follow the work the caller already queued.
+Double buffering gives the producer a second slot while the consumer works on the first. Record a completion event after each slot’s last use. Wait for that event before reusing the slot. An overlap claim requires overlapping device intervals.
 
-Test the derivative and stream ordering separately. An operator can pass a forward-value check and still return the wrong gradient or run on the wrong stream. Chapter 43 applies stream ordering to buffer reuse in Exercise 63 and graph replay in Exercise 65.
+Across streams, record an event after the producer writes and have the consumer wait on it before reading. Exercise 64 tests this dependency by comparing a stale read with the value after the wait.
 
 Kernel fusion and CUDA event timing
 
@@ -52,7 +52,6 @@ Record the absolute paths and identities of any selected output before changing 
 
 Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.
 Scope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.
-Double buffering gives the producer a second slot while the consumer works on the first. Record a completion event after each slot’s last use. Wait for that event before reusing the slot. An overlap claim requires overlapping device intervals.
 
 Recorded files
 python reader/records.py 63 --files

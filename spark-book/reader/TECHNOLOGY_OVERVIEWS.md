@@ -20,7 +20,9 @@ Each entry explains a technology used in the WSL2 laboratory and gives an exampl
 - [Contrastive training for sentence encoders](#topic-contrast)
 - [CPU execution and partial GPU offload](#topic-placement)
 - [The CUDA driver, toolkit and runtime](#topic-toolkit)
-- [CUDA streams, events and graphs](#topic-streams)
+- [CUDA events and double buffering](#topic-buffers)
+- [CUDA Graphs](#topic-graphs)
+- [CUDA streams and custom operators](#topic-streams)
 - [CUDA-GDB, breakpoints and exception cores](#topic-debugger)
 - [Custom PyTorch operators and gradients](#topic-operators)
 - [Data parallelism, sharding and gradient averaging](#topic-parallel)
@@ -410,9 +412,37 @@ Further reading
 - [NVIDIA. CUDA Programming Guide: The CUDA platform](https://docs.nvidia.com/cuda/cuda-programming-guide/01-introduction/cuda-platform.html)
 - [NVIDIA. CUDA Compiler Driver NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html)
 
+<a id="topic-buffers"></a>
+
+## CUDA events and double buffering
+
+[Exercise 63](exercises/063.txt) · book page 244
+
+Double buffering gives the producer a second slot while the consumer works on the first. Record a completion event after each slot’s last use. Wait for that event before reusing the slot. An overlap claim requires overlapping device intervals.
+
+Across streams, record an event after the producer writes and have the consumer wait on it before reading. Exercise 64 tests this dependency by comparing a stale read with the value after the wait.
+
+Further reading
+
+- [NVIDIA. CUDA Programming Guide: Asynchronous Execution](https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/asynchronous-execution.html)
+
+<a id="topic-graphs"></a>
+
+## CUDA Graphs
+
+[Exercise 65](exercises/065.txt) · book page 248
+
+A CUDA Graph captures operations and their dependencies for replay. Keep the shapes and storage addresses used during capture fixed, then check replayed values against ordinary execution.
+
+The exercise replays two transforms on the same buffers. Check the output value after replay, then compare host submission time and device execution time separately.
+
+Further reading
+
+- [NVIDIA. CUDA Programming Guide. CUDA Graphs](https://docs.nvidia.com/cuda/cuda-programming-guide/04-special-topics/cuda-graphs.html)
+
 <a id="topic-streams"></a>
 
-## CUDA streams, events and graphs
+## CUDA streams and custom operators
 
 [Exercise 58](exercises/058.txt) · book page 228
 
@@ -420,10 +450,11 @@ A CUDA stream is an ordered queue of GPU work. A PyTorch caller can select a str
 
 Test the derivative and stream ordering separately. An operator can pass a forward-value check and still return the wrong gradient or run on the wrong stream. Chapter 43 applies stream ordering to buffer reuse in Exercise 63 and graph replay in Exercise 65.
 
+Related topics · [CUDA events and double buffering](#topic-buffers) · [CUDA Graphs](#topic-graphs)
+
 Further reading
 
 - [NVIDIA. CUDA Programming Guide: Asynchronous Execution](https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/asynchronous-execution.html)
-- [NVIDIA. CUDA Programming Guide. CUDA Graphs](https://docs.nvidia.com/cuda/cuda-programming-guide/04-special-topics/cuda-graphs.html)
 
 <a id="topic-debugger"></a>
 
@@ -1781,7 +1812,7 @@ Further reading
 
 [Exercise 59](exercises/059.txt) · book page 233
 
-Self-attention lets one token combine information from other allowed positions. It produces a query for the current position, compares it with keys, and uses the resulting weights to combine values. A causal language model can attend to earlier positions while generating the next token.
+Self-attention lets one token combine information from other allowed positions. It produces a query for the current position, compares it with keys, and uses the resulting weights to combine values. With causal self-attention, each position can attend only to itself and earlier positions when predicting the next token.
 
 During incremental decoding, saved keys and values avoid recomputing the whole prefix. Their positions must agree with the model’s position encoding. Feed the same short sequence once as a whole and once token by token. Compare the scores at each position to locate the first departure.
 
