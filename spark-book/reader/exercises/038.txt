@@ -15,7 +15,7 @@ CUDA-GDB, breakpoints and exception cores
 
 A debugger can stop an executing program at a breakpoint so you can inspect its current state. For CUDA, selecting a kernel, block and thread identifies whose registers and variables you are examining. Symbols connect source names and line information with a particular build.
 
-An exception core permits later inspection of state that the platform captured at a fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
+A GPU core dump captured on an exception lets you inspect the state the platform saved at the fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
 
 Before you start
 Exercise 37 (compare a valid kernel with a deliberate overrun)

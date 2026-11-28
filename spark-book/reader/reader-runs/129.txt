@@ -1,0 +1,29 @@
+Reader record 129.R1
+Version 59 illustrated R6 reader run on the RTX Spark under WSL2
+
+Run native-ddp
+UTC start  2026-11-28T00:20:57.645271+00:00
+python distributed/lab.py ddp --workers 2 --debug-level INFO --out "$LAB_RUN/ddp-info"
+training=PASS workers=2 global_batch=8 masked_tokens=16
+parameters=22880 dtype=torch.float64
+max_reference_error=7.431e-13
+max_replica_error=0.000e+00
+retained=stdout.txt stderr.txt rank-*.jsonl launch.json
+Exit  0
+Receipt SHA-256  41e9ec859921e85f7d060c2585490eda6bfb21670d72209408af0cf43f813c60
+
+Run loopback
+UTC start  2026-11-28T00:21:01.623864+00:00
+python distributed/lab.py nodes --workers 2 --debug-level INFO --out "$LAB_RUN/nodes-info"
+logical_nodes=2 workers_per_node=1 host=one loopback=True
+training=PASS max_reference_error=7.431e-13
+retained=node-*-stdout.txt node-*-stderr.txt rank-*.jsonl
+Exit  0
+Receipt SHA-256  7d0d98f5e4d130b9d5a60f46950ded6381f65ff461e2363babde4645576e8dc2
+
+Run two-device-prerequisite
+UTC start  2026-11-28T00:21:05.951139+00:00
+python distributed/lab.py gpu-ddp --workers 2 --out "$LAB_RUN/gpu-ddp"
+UNAVAILABLE: need NCCL and one distinct CUDA device per worker
+Exit  2
+Receipt SHA-256  71f01bf57452d5eea38fd83ddaf56bc06605cdde8154e6f29f92799fc9bcb359

@@ -13,9 +13,9 @@ To test recovery, save at a known step, resume in a new process and compare the 
 
 Data parallelism, sharding and gradient averaging
 
-In data parallelism, each worker owns a model replica and processes part of the batch. An all-reduce combines contributions across ranks. PyTorch DistributedDataParallel synchronizes gradients so replicas can take consistent updates. Unequal local batch sizes require care when relating those updates to a full-batch reference. DistributedDataParallel (DDP) averages gradients across participating ranks. Fully Sharded Data Parallel (FSDP) partitions training state. With unequal example counts, an average of rank means needs sample-count weighting to recover the global example mean.
+In data parallelism each worker holds a model replica and processes part of the batch. PyTorch DistributedDataParallel (DDP) averages gradients across participating ranks through an all-reduce. When ranks process unequal numbers of examples, weight their mean gradients by sample count to recover the global example mean.
 
-Sharding divides storage or computation, such as assigning different columns of a matrix to different workers. Fully Sharded Data Parallel uses sharding for training state. Compare a small partitioned calculation and its gradients with an unpartitioned reference. That mathematical check can run on CPU before any multi-GPU communication test.
+Sharding divides storage or computation across workers. Fully Sharded Data Parallel (FSDP) partitions training state. The column-sharding exercise partitions a matrix and compares the resulting calculation and gradients with an unpartitioned CPU reference.
 
 Before you start
 Exercise 124 (compare process training with a full batch reference) · Exercise 69 (resume the next update with its complete state)

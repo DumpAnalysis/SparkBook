@@ -48,6 +48,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Recorded result  PASSED — Actual one-owner CUDA service used two CPU clients, accepted 16 requests and formed eight batches. Independent vector checks passed. The model’s 82,176 weight bytes exclude allocator/context overhead. A single owner can reduce duplicate weights, but admission and total memory still require measurement.
 Scope  Process count, client count and model-owner count are distinct quantities.
+sharing/service.py reports NumPy’s linearly interpolated p95. For 16 sorted timings it lies one quarter of the way from the 15th to the 16th observation. The nearest-rank definition selects observation 16.
 
 Recorded files
 python reader/records.py 130 --files

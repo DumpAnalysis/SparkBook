@@ -22,3 +22,5 @@ Some exercises share a run or have a worked answer without a terminal command.
 Their lookup gives the run IDs and pages or points to the written assessment.
 The plain text retains published historical paths, dates, scope and account
 mask. Capture a new execution in a separate local run directory.
+
+READER run gives the time of a reader execution. READER re-check gives the time an existing capture or comparison was inspected. Historical result gives the original criterion, environment and outcome. For Exercises 39, 40, 129 and 186, reader/records.py NUMBER --files identifies a dated reader receipt alongside the numbered transcripts.

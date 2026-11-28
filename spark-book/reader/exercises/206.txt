@@ -21,7 +21,7 @@ Docker images, containers and volumes
 
 An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.
 
-Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content. Here the container host shares the WSL guest’s kernel. A container memory limit above the measured 15.70 GiB guest RAM cannot grant additional physical guest RAM. Swap policy and current availability also matter.
+Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content. Here the WSL guest is the container host, so its containers share the guest’s Linux kernel. A container memory limit above the measured 15.70 GiB guest RAM cannot grant additional physical guest RAM. Swap policy and current availability also matter.
 
 Before you start
 Exercise 204 (inspect an NGC resource before downloading it)
@@ -57,6 +57,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Recorded result  PASSED — The immutable ARM64 NGC PyTorch image was pulled and ran the numerical CUDA probe successfully. Its PyTorch 2.14.0a0+b2c75dd062.nv26.09 reports framework CUDA 13.4, device capability 12.1 and zero error for the small oracle. Those container identities differ from host PyTorch 2.14.1+cu130.
 Scope  Successful execution of this image does not certify every NGC container or model.
+In the printed pull output, the Digest line identifies the selected child manifest. In the resolver’s image.json the same digest is arm64_digest and the child-qualified name is pinned_image.
 
 Recorded files
 python reader/records.py 206 --files

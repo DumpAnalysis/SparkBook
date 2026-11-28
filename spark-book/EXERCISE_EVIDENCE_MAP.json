@@ -18,7 +18,7 @@
     {
       "number": 2,
       "title": "Calculate before allocating",
-      "evidence_note": "Recorded result  For 4096 tokens the stated layer, head and element counts predict a 224 MiB KV cache.\nScope  The 224 MiB estimate covers the stated FP16 cache geometry at 4096 tokens.",
+      "evidence_note": "Recorded result  For 4096 tokens the stated layer, head and element counts predict a 224 MiB KV cache.\nScope  The 224 MiB estimate covers the stated FP16 cache geometry at 4096 tokens.\nRecord 002.01 also prints 30 and 64 decimal GB as unit-conversion examples. The measured NVML dedicated segment is 31,232 MiB (30.50 GiB).",
       "recorded_run_ids": [
         "002.01"
       ],
@@ -396,7 +396,7 @@
     {
       "number": 27,
       "title": "Save a merged deployment checkpoint",
-      "evidence_note": "Recorded result  Save and reload PASSED. Strict equivalence FAILED. The merged BF16 checkpoint was written and compared with its adapter reference. The maximum absolute logit difference was 0.375, and all four greedy continuations differed.\nScope  The merge comparison applies to the named adapter, base and tested inputs.",
+      "evidence_note": "Recorded result  Save and reload PASSED. Strict equivalence FAILED. The merged BF16 checkpoint was written and compared with its adapter reference. The maximum absolute logit difference was 0.375, and all four greedy continuations differed.\nScope  The merge comparison applies to the named adapter, base and tested inputs.\nIn the R5 FP32 reader comparison the maximum absolute logit difference was 4.00543 × 10⁻⁵ and all four greedy continuations matched. Record 027.01 used BF16 and a separate comparison.",
       "recorded_run_ids": [
         "027.01"
       ],
@@ -571,7 +571,7 @@
     {
       "number": 39,
       "title": "Capture four annotated iterations",
-      "evidence_note": "Recorded result  BLOCKED — GPU workload with attempted CUDA/NVTX collection.\nScope  A valid device interval is needed to assign time to a kernel.",
+      "evidence_note": "Historical record and later reader check  Historical host 2026.3.2 control blocked. The separate pinned 2026.5.1 reader capture correlated four launches with positive kernel intervals.\nScope  The transform workload and this collector version.",
       "recorded_run_ids": [
         "039.01",
         "039.02"
@@ -581,13 +581,15 @@
         "reader/new_run.sh",
         "cuda/nsys_2026.sh",
         "cuda/trace_sqlite.py",
-        "reader/technology-overviews.json"
-      ]
+        "reader/technology-overviews.json",
+        "reader/reader-runs/039.txt"
+      ],
+      "record_locator": "Reader record 039.R1 · reader/reader-runs/039.txt"
     },
     {
       "number": 40,
       "title": "Query an exported trace without assuming its schema",
-      "evidence_note": "Recorded result  BLOCKED — CPU intentional fixture and read-only actual trace analysis.\nScope  The fixture teaches the trace shape. The captured device rows determine what can be measured on this laptop.",
+      "evidence_note": "Historical record and later reader check  Historical host export lacked the kernel table. The 2026.5.1 reader export contained four actual transform events. The CPU fixture totals two events and 500 ns.\nScope  A supplied GPU export and a separately identified synthetic control.",
       "recorded_run_ids": [
         "040.01",
         "040.02"
@@ -595,8 +597,10 @@
       "book_page": 179,
       "companion_files": [
         "cuda/trace_sqlite.py",
-        "reader/technology-overviews.json"
-      ]
+        "reader/technology-overviews.json",
+        "reader/reader-runs/040.txt"
+      ],
+      "record_locator": "Reader record 040.R1 · reader/reader-runs/040.txt"
     },
     {
       "number": 41,
@@ -605,7 +609,7 @@
       "recorded_run_ids": [
         "041.01"
       ],
-      "book_page": 183,
+      "book_page": 184,
       "companion_files": [
         "reader/new_run.sh"
       ]
@@ -617,7 +621,7 @@
       "recorded_run_ids": [
         "042.01"
       ],
-      "book_page": 186,
+      "book_page": 187,
       "companion_files": [
         "cuda/torch_evidence.py",
         "reader/new_run.sh"
@@ -630,7 +634,7 @@
       "recorded_run_ids": [
         "043.01"
       ],
-      "book_page": 188,
+      "book_page": 189,
       "companion_files": [
         "cuda/torch_evidence.py",
         "reader/new_run.sh",
@@ -643,7 +647,7 @@
       "title": "Trace the process that actually runs the model",
       "evidence_note": "Recorded result  BLOCKED — No model profiling performed.\nScope  Profiling the actual model remains a separate execution.",
       "recorded_run_ids": [],
-      "book_page": 190,
+      "book_page": 191,
       "companion_files": [
         "cuda/profile_llama.sh",
         "cuda/nsys_2026.sh",
@@ -661,7 +665,7 @@
         "045.01",
         "045.02"
       ],
-      "book_page": 193,
+      "book_page": 194,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -673,7 +677,7 @@
       "recorded_run_ids": [
         "046.01"
       ],
-      "book_page": 195,
+      "book_page": 196,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -685,7 +689,7 @@
       "recorded_run_ids": [
         "047.01"
       ],
-      "book_page": 197,
+      "book_page": 198,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -697,7 +701,7 @@
       "recorded_run_ids": [
         "048.01"
       ],
-      "book_page": 199,
+      "book_page": 200,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -709,7 +713,7 @@
       "recorded_run_ids": [
         "049.01"
       ],
-      "book_page": 202,
+      "book_page": 203,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -721,7 +725,7 @@
       "recorded_run_ids": [
         "050.01"
       ],
-      "book_page": 205,
+      "book_page": 206,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -733,7 +737,7 @@
       "recorded_run_ids": [
         "051.01"
       ],
-      "book_page": 207,
+      "book_page": 208,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -745,7 +749,7 @@
       "recorded_run_ids": [
         "052.01"
       ],
-      "book_page": 209,
+      "book_page": 210,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -758,7 +762,7 @@
         "053.01",
         "053.02"
       ],
-      "book_page": 212,
+      "book_page": 213,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -771,7 +775,7 @@
         "054.01",
         "054.02"
       ],
-      "book_page": 214,
+      "book_page": 215,
       "companion_files": [
         "kernels/timing_summary.py",
         "reader/new_run.sh",
@@ -786,7 +790,7 @@
       "recorded_run_ids": [
         "055.01"
       ],
-      "book_page": 218,
+      "book_page": 219,
       "companion_files": [
         "kernels/build.sh"
       ]
@@ -798,7 +802,7 @@
       "recorded_run_ids": [
         "056.01"
       ],
-      "book_page": 220,
+      "book_page": 221,
       "companion_files": [
         "kernels/build.sh",
         "kernels/run_cases.py",
@@ -812,7 +816,7 @@
       "recorded_run_ids": [
         "057.01"
       ],
-      "book_page": 225,
+      "book_page": 226,
       "companion_files": [
         "advanced/torch_operator.py",
         "reader/preflight.py",
@@ -827,7 +831,7 @@
         "058.01",
         "058.02"
       ],
-      "book_page": 227,
+      "book_page": 228,
       "companion_files": [
         "advanced/torch_operator.py"
       ]
@@ -839,7 +843,7 @@
       "recorded_run_ids": [
         "059.01"
       ],
-      "book_page": 232,
+      "book_page": 233,
       "companion_files": [
         "advanced/transformer_torch.py",
         "reader/new_run.sh"
@@ -852,7 +856,7 @@
       "recorded_run_ids": [
         "060.01"
       ],
-      "book_page": 234,
+      "book_page": 235,
       "companion_files": []
     },
     {
@@ -862,7 +866,7 @@
       "recorded_run_ids": [
         "061.01"
       ],
-      "book_page": 236,
+      "book_page": 237,
       "companion_files": [
         "advanced/build.sh"
       ]
@@ -875,17 +879,17 @@
         "062.01",
         "062.02"
       ],
-      "book_page": 238,
+      "book_page": 239,
       "companion_files": []
     },
     {
       "number": 63,
       "title": "Implement a double buffer with explicit ownership",
-      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
+      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.\nDouble buffering gives the producer a second slot while the consumer works on the first. Record a completion event after each slot’s last use. Wait for that event before reusing the slot. An overlap claim requires overlapping device intervals.",
       "recorded_run_ids": [
         "063.01"
       ],
-      "book_page": 242,
+      "book_page": 243,
       "companion_files": [
         "cuda/nsys_2026.sh",
         "cuda/trace_sqlite.py"
@@ -899,17 +903,17 @@
         "064.01",
         "064.02"
       ],
-      "book_page": 244,
+      "book_page": 245,
       "companion_files": []
     },
     {
       "number": 65,
       "title": "Capture and replay a fixed operation graph",
-      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
+      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.\nA CUDA Graph captures operations and their dependencies for replay. Keep the shapes and storage addresses used during capture fixed, then check replayed values against ordinary execution.",
       "recorded_run_ids": [
         "065.01"
       ],
-      "book_page": 246,
+      "book_page": 247,
       "companion_files": []
     },
     {
@@ -919,7 +923,7 @@
       "recorded_run_ids": [
         "066.01"
       ],
-      "book_page": 249,
+      "book_page": 250,
       "companion_files": [
         "advanced/reference.py",
         "reader/new_run.sh"
@@ -932,7 +936,7 @@
       "recorded_run_ids": [
         "067.01"
       ],
-      "book_page": 251,
+      "book_page": 252,
       "companion_files": []
     },
     {
@@ -942,7 +946,7 @@
       "recorded_run_ids": [
         "068.01"
       ],
-      "book_page": 254,
+      "book_page": 255,
       "companion_files": [
         "advanced/training_diagnostics.py"
       ]
@@ -954,7 +958,7 @@
       "recorded_run_ids": [
         "069.01"
       ],
-      "book_page": 256,
+      "book_page": 257,
       "companion_files": [
         "advanced/training_diagnostics.py",
         "reader/new_run.sh"
@@ -967,7 +971,7 @@
       "recorded_run_ids": [
         "070.01"
       ],
-      "book_page": 259,
+      "book_page": 260,
       "companion_files": [
         "advanced/casebook.py"
       ]
@@ -979,7 +983,7 @@
       "recorded_run_ids": [
         "071.01"
       ],
-      "book_page": 265,
+      "book_page": 266,
       "companion_files": [
         "advanced/diagnostic_agent.py",
         "reader/new_run.sh"
@@ -994,7 +998,7 @@
         "072.02",
         "072.03"
       ],
-      "book_page": 267,
+      "book_page": 268,
       "companion_files": [
         "advanced/diagnostic_agent.py",
         "reader/new_run.sh",
@@ -1010,7 +1014,7 @@
         "073.02",
         "073.03"
       ],
-      "book_page": 271,
+      "book_page": 272,
       "companion_files": []
     },
     {
@@ -1020,7 +1024,7 @@
       "recorded_run_ids": [
         "074.01"
       ],
-      "book_page": 907,
+      "book_page": 908,
       "companion_files": [
         "advanced/measure.py",
         "reader/new_run.sh"
@@ -1035,7 +1039,7 @@
         "075.02",
         "075.03"
       ],
-      "book_page": 277,
+      "book_page": 278,
       "companion_files": [
         "embeddings/evidence/minilm-source.json",
         "embeddings/fetch_model.py"
@@ -1048,7 +1052,7 @@
       "recorded_run_ids": [
         "076.01"
       ],
-      "book_page": 281,
+      "book_page": 282,
       "companion_files": [
         "embeddings/pooling_demo.py"
       ]
@@ -1060,7 +1064,7 @@
       "recorded_run_ids": [
         "077.01"
       ],
-      "book_page": 283,
+      "book_page": 284,
       "companion_files": [
         "embeddings/data.py"
       ]
@@ -1072,7 +1076,7 @@
       "recorded_run_ids": [
         "078.01"
       ],
-      "book_page": 284,
+      "book_page": 285,
       "companion_files": [
         "embeddings/encode.py",
         "reader/new_run.sh"
@@ -1085,7 +1089,7 @@
       "recorded_run_ids": [
         "079.01"
       ],
-      "book_page": 288,
+      "book_page": 289,
       "companion_files": [
         "embeddings/project.py",
         "reader/new_run.sh"
@@ -1098,7 +1102,7 @@
       "recorded_run_ids": [
         "080.01"
       ],
-      "book_page": 290,
+      "book_page": 291,
       "companion_files": [
         "embeddings/heldout.py"
       ]
@@ -1111,7 +1115,7 @@
       "shared_capture_exercises": [
         79
       ],
-      "book_page": 293,
+      "book_page": 294,
       "companion_files": [],
       "shared_record_ids": [
         "079.01",
@@ -1128,7 +1132,7 @@
         "082.01",
         "082.02"
       ],
-      "book_page": 295,
+      "book_page": 296,
       "companion_files": [
         "embeddings/project.py",
         "reader/new_run.sh"
@@ -1141,7 +1145,7 @@
       "recorded_run_ids": [
         "083.01"
       ],
-      "book_page": 298,
+      "book_page": 299,
       "companion_files": [
         "embeddings/train_bert.py",
         "reader/new_run.sh"
@@ -1155,7 +1159,7 @@
         "084.01",
         "084.02"
       ],
-      "book_page": 300,
+      "book_page": 301,
       "companion_files": [
         "embeddings/inspect_bert.py"
       ]
@@ -1167,7 +1171,7 @@
       "recorded_run_ids": [
         "085.01"
       ],
-      "book_page": 303,
+      "book_page": 304,
       "companion_files": [
         "embeddings/train_bert.py",
         "reader/new_run.sh"
@@ -1182,7 +1186,7 @@
         "086.02",
         "086.03"
       ],
-      "book_page": 306,
+      "book_page": 307,
       "companion_files": [
         "embeddings/check_reload.py",
         "embeddings/encode.py",
@@ -1197,7 +1201,7 @@
       "recorded_run_ids": [
         "087.01"
       ],
-      "book_page": 310,
+      "book_page": 311,
       "companion_files": [
         "embeddings/check_reload.py",
         "embeddings/finetune.py",
@@ -1211,7 +1215,7 @@
       "recorded_run_ids": [
         "088.01"
       ],
-      "book_page": 312,
+      "book_page": 313,
       "companion_files": [
         "embeddings/check_reload.py",
         "embeddings/finetune.py",
@@ -1226,7 +1230,7 @@
         "089.01",
         "089.02"
       ],
-      "book_page": 316,
+      "book_page": 317,
       "companion_files": [
         "embeddings/diagnose.py",
         "embeddings/search.py",
@@ -1240,7 +1244,7 @@
       "recorded_run_ids": [
         "090.01"
       ],
-      "book_page": 319,
+      "book_page": 320,
       "companion_files": [
         "embeddings/encode.py",
         "reader/new_run.sh"
@@ -1253,7 +1257,7 @@
       "recorded_run_ids": [
         "091.01"
       ],
-      "book_page": 323,
+      "book_page": 324,
       "companion_files": [
         "metrics/validate_metrics.py"
       ]
@@ -1265,7 +1269,7 @@
       "recorded_run_ids": [
         "092.01"
       ],
-      "book_page": 327,
+      "book_page": 328,
       "companion_files": [
         "metrics/fixture.py",
         "metrics/plot.py",
@@ -1279,7 +1283,7 @@
       "recorded_run_ids": [
         "093.01"
       ],
-      "book_page": 331,
+      "book_page": 332,
       "companion_files": [
         "metrics/make_plan.py",
         "metrics/monitor.py",
@@ -1293,7 +1297,7 @@
       "recorded_run_ids": [
         "094.01"
       ],
-      "book_page": 333,
+      "book_page": 334,
       "companion_files": [
         "metrics/make_plan.py",
         "metrics/monitor.py",
@@ -1303,12 +1307,12 @@
     {
       "number": 95,
       "title": "Correlate inference requests with GPU activity",
-      "evidence_note": "Recorded result  PASSED — GPU actual Q4 inference and separate device-wide polling.\nScope  Device-wide polls cannot attribute each reading to a particular request.",
+      "evidence_note": "Recorded result  PASSED — GPU actual Q4 inference and separate device-wide polling.\nScope  Device-wide polls cannot attribute each reading to a particular request.\nA poll inside a request can return NVML utilization for a sample period that began before the request. The poll’s timestamps bound the query. The provider’s sampling period determines which activity contributes to the value.",
       "recorded_run_ids": [
         "095.01",
         "095.02"
       ],
-      "book_page": 335,
+      "book_page": 336,
       "companion_files": [
         "metrics/make_plan.py",
         "metrics/monitor.py",
@@ -1323,7 +1327,7 @@
         "096.01",
         "096.02"
       ],
-      "book_page": 339,
+      "book_page": 340,
       "companion_files": [
         "metrics/make_plan.py",
         "metrics/monitor.py",
@@ -1337,7 +1341,7 @@
       "recorded_run_ids": [
         "097.01"
       ],
-      "book_page": 342,
+      "book_page": 343,
       "companion_files": [
         "metrics/compare.py"
       ]
@@ -1349,7 +1353,7 @@
       "recorded_run_ids": [
         "098.01"
       ],
-      "book_page": 344,
+      "book_page": 345,
       "companion_files": []
     },
     {
@@ -1359,7 +1363,7 @@
       "recorded_run_ids": [
         "099.01"
       ],
-      "book_page": 347,
+      "book_page": 348,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1374,7 +1378,7 @@
         "100.02",
         "100.03"
       ],
-      "book_page": 348,
+      "book_page": 349,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1387,7 +1391,7 @@
       "recorded_run_ids": [
         "101.01"
       ],
-      "book_page": 352,
+      "book_page": 353,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1403,7 +1407,7 @@
         "102.03",
         "102.04"
       ],
-      "book_page": 356,
+      "book_page": 357,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1417,7 +1421,7 @@
         "103.01",
         "103.02"
       ],
-      "book_page": 359,
+      "book_page": 360,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1432,7 +1436,7 @@
         "104.02",
         "104.03"
       ],
-      "book_page": 361,
+      "book_page": 362,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh",
@@ -1447,7 +1451,7 @@
       "recorded_run_ids": [
         "105.01"
       ],
-      "book_page": 365,
+      "book_page": 366,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1461,7 +1465,7 @@
         "106.01",
         "106.02"
       ],
-      "book_page": 367,
+      "book_page": 368,
       "companion_files": []
     },
     {
@@ -1472,7 +1476,7 @@
         "107.01",
         "107.02"
       ],
-      "book_page": 370,
+      "book_page": 371,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1481,13 +1485,13 @@
     {
       "number": 108,
       "title": "Separate live bytes from allocator reserve",
-      "evidence_note": "Recorded result  PASSED — Actual CUDA retention, release and varying-size controls include allocator-history snapshots. Retained allocation grew to 2,097,152 bytes; clearing the owner left allocated=0 and reserved=2,097,152, then empty_cache left both zero. The captured snapshots concern this process’s allocator, not a device-wide GPU memory dump. The editor checked JSON counters without loading pickle snapshots.\nScope  Live tensor bytes and allocator reserve measure different lifetimes.",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA retention, release and varying-size controls include allocator-history snapshots. Retained allocation grew to 2,097,152 bytes; clearing the owner left allocated=0 and reserved=2,097,152, then empty_cache left both zero. The captured snapshots concern this process’s allocator, not a device-wide GPU memory dump. The editor checked JSON counters without loading pickle snapshots.\nScope  Live tensor bytes and allocator reserve measure different lifetimes.\nUse torch.cuda.mem_get_info() on the exercise device for the current free and total CUDA memory budget. Leave headroom below the reported free amount for the runtime and other allocations.",
       "recorded_run_ids": [
         "108.01",
         "108.02",
         "108.03"
       ],
-      "book_page": 372,
+      "book_page": 373,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1500,7 +1504,7 @@
       "recorded_run_ids": [
         "109.01"
       ],
-      "book_page": 375,
+      "book_page": 376,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1514,7 +1518,7 @@
         "110.01",
         "110.02"
       ],
-      "book_page": 376,
+      "book_page": 377,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1527,7 +1531,7 @@
       "recorded_run_ids": [
         "111.01"
       ],
-      "book_page": 379,
+      "book_page": 380,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1541,7 +1545,7 @@
         "112.01",
         "112.02"
       ],
-      "book_page": 381,
+      "book_page": 382,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1555,7 +1559,7 @@
         "113.01",
         "113.02"
       ],
-      "book_page": 384,
+      "book_page": 385,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1568,7 +1572,7 @@
       "recorded_run_ids": [
         "114.01"
       ],
-      "book_page": 385,
+      "book_page": 386,
       "companion_files": []
     },
     {
@@ -1578,7 +1582,7 @@
       "recorded_run_ids": [
         "115.01"
       ],
-      "book_page": 388,
+      "book_page": 389,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1591,7 +1595,7 @@
       "recorded_run_ids": [
         "116.01"
       ],
-      "book_page": 389,
+      "book_page": 390,
       "companion_files": []
     },
     {
@@ -1601,7 +1605,7 @@
       "recorded_run_ids": [
         "117.01"
       ],
-      "book_page": 391,
+      "book_page": 392,
       "companion_files": [
         "diagnostics/lab.py",
         "reader/new_run.sh"
@@ -1614,7 +1618,7 @@
       "recorded_run_ids": [
         "118.01"
       ],
-      "book_page": 393,
+      "book_page": 394,
       "companion_files": [
         "diagnostics/validate.py"
       ]
@@ -1626,7 +1630,7 @@
       "recorded_run_ids": [
         "119.01"
       ],
-      "book_page": 395,
+      "book_page": 396,
       "companion_files": [
         "diagnostics/casebook.py",
         "diagnostics/patterns.json"
@@ -1639,7 +1643,7 @@
       "recorded_run_ids": [
         "120.01"
       ],
-      "book_page": 399,
+      "book_page": 400,
       "companion_files": []
     },
     {
@@ -1649,7 +1653,7 @@
       "recorded_run_ids": [
         "121.01"
       ],
-      "book_page": 401,
+      "book_page": 402,
       "companion_files": []
     },
     {
@@ -1659,7 +1663,7 @@
       "recorded_run_ids": [
         "122.01"
       ],
-      "book_page": 403,
+      "book_page": 404,
       "companion_files": [
         "diagnostics/casebook.py"
       ]
@@ -1671,7 +1675,7 @@
       "recorded_run_ids": [
         "123.01"
       ],
-      "book_page": 407,
+      "book_page": 408,
       "companion_files": [
         "distributed/lab.py",
         "reader/new_run.sh"
@@ -1685,7 +1689,7 @@
         "124.01",
         "124.02"
       ],
-      "book_page": 408,
+      "book_page": 409,
       "companion_files": [
         "distributed/pipe_lab.py",
         "reader/new_run.sh"
@@ -1699,7 +1703,7 @@
         "125.01",
         "125.02"
       ],
-      "book_page": 411,
+      "book_page": 412,
       "companion_files": [
         "distributed/lab.py",
         "distributed/pipe_lab.py",
@@ -1715,7 +1719,7 @@
         "126.02",
         "126.03"
       ],
-      "book_page": 413,
+      "book_page": 414,
       "companion_files": [
         "distributed/pipe_lab.py",
         "reader/new_run.sh"
@@ -1743,7 +1747,7 @@
       "recorded_run_ids": [
         "128.01"
       ],
-      "book_page": 417,
+      "book_page": 418,
       "companion_files": [
         "distributed/pipe_lab.py",
         "reader/new_run.sh"
@@ -1752,7 +1756,7 @@
     {
       "number": 129,
       "title": "Qualify DDP and the transition to multiple GPUs",
-      "evidence_note": "Recorded result  BLOCKED — Native CPU DDP failed with rank 0 SIGSEGV in both the initial run and diagnostic retry. Two logical CPU nodes on loopback passed, and NCCL with world_size=1 on the one physical GPU passed. Two-device DDP and sharding remained unavailable. An independent reviewer on x86-64 Linux reproduced a CPU/Gloo failure under DETAIL and obtained successful two-worker runs under INFO and OFF. A follow-up x86-64 CPU review reports that DDP and logical nodes both met the 1e-09 reference tolerance with INFO. The matched WSL2 retry is outstanding.\nScope  The exercise stays BLOCKED for its complete target scope; one-GPU success does not emulate two independent devices.",
+      "evidence_note": "Recorded result  BLOCKED — Native CPU DDP failed with rank 0 SIGSEGV in both the initial run and diagnostic retry. Two logical CPU nodes on loopback passed, and NCCL with world_size=1 on the one physical GPU passed. Two-device DDP and sharding remained unavailable. An independent reviewer on x86-64 Linux reproduced a CPU/Gloo failure under DETAIL and obtained successful two-worker runs under INFO and OFF. A follow-up x86-64 CPU review reports that DDP and logical nodes both met the 1e-09 reference tolerance with INFO.\nScope  The exercise stays BLOCKED for its complete target scope; one-GPU success does not emulate two independent devices.\nREADER run · 28 Nov 2026 UTC. On this WSL2 laptop both two-worker native CPU DDP and the two-node loopback trial passed at INFO. Maximum reference error was 7.431 × 10⁻¹³ in both. The two-device NCCL prerequisite returned unavailable.",
       "recorded_run_ids": [
         "129.01",
         "129.02",
@@ -1764,13 +1768,15 @@
       "companion_files": [
         "distributed/lab.py",
         "distributed/nodes.py",
-        "distributed/worker.py"
-      ]
+        "distributed/worker.py",
+        "reader/reader-runs/129.txt"
+      ],
+      "record_locator": "Reader record 129.R1 · reader/reader-runs/129.txt"
     },
     {
       "number": 130,
       "title": "Share one encoder across request workers",
-      "evidence_note": "Recorded result  PASSED — Actual one-owner CUDA service used two CPU clients, accepted 16 requests and formed eight batches. Independent vector checks passed. The model’s 82,176 weight bytes exclude allocator/context overhead. A single owner can reduce duplicate weights, but admission and total memory still require measurement.\nScope  Process count, client count and model-owner count are distinct quantities.",
+      "evidence_note": "Recorded result  PASSED — Actual one-owner CUDA service used two CPU clients, accepted 16 requests and formed eight batches. Independent vector checks passed. The model’s 82,176 weight bytes exclude allocator/context overhead. A single owner can reduce duplicate weights, but admission and total memory still require measurement.\nScope  Process count, client count and model-owner count are distinct quantities.\nsharing/service.py reports NumPy’s linearly interpolated p95. For 16 sorted timings it lies one quarter of the way from the 15th to the 16th observation. The nearest-rank definition selects observation 16.",
       "recorded_run_ids": [
         "130.01"
       ],
@@ -2596,7 +2602,7 @@
     {
       "number": 186,
       "title": "Record denoising activity and isolate VAE pressure",
-      "evidence_note": "Recorded result  BLOCKED — The Windows-elevated tiny-kernel retry still fails the activity-timestamp gate. Earlier diffusion, tiling and paging results retain their original workload scope; no new diffusion workload or denoiser/VAE timing was measured.\nScope  Usable kernel intervals are required to apportion device time between denoising and decoding.",
+      "evidence_note": "Historical record and later reader check  Historical driver probe lacked usable activity timestamps. The R5 reader trial compared three decodes of the same latent; the reduced tile edge gave nine decoder calls.\nScope  Matched output pixels, inference peak and an aggregate device range. The range includes denoising and decode.",
       "recorded_run_ids": [
         "186.01",
         "186.02",
@@ -2609,8 +2615,10 @@
         "cuda/trace_sqlite.py",
         "media/compare_vae.py",
         "reader/technology-overviews.json",
-        "media/validate.py"
-      ]
+        "media/validate.py",
+        "reader/reader-runs/186.txt"
+      ],
+      "record_locator": "Reader record 186.R1 · reader/reader-runs/186.txt"
     },
     {
       "number": 187,
@@ -2714,7 +2722,7 @@
     {
       "number": 194,
       "title": "Test text normalization pronunciation and reproducibility",
-      "evidence_note": "Recorded result  PASSED — Actual symbol/expanded-text and same/changed-seed TTS requests completed. Identical seed and text produced equal waveform arrays in this environment; a changed seed changed output length. The retained capture preserves the full tokenization.\nScope  Tokenizer inspection does not establish pronunciation, and no human listening rating was supplied.",
+      "evidence_note": "Recorded result  PASSED — Actual symbol/expanded-text and same/changed-seed TTS requests completed. Identical seed and text produced equal waveform arrays in this environment; a changed seed changed output length. The retained capture preserves the full tokenization.\nScope  Tokenizer inspection does not establish pronunciation, and no human listening rating was supplied.\nThe pinned MMS vocabulary contains 38 symbols, including digits 0 through 6. In the R5 reader control the strings “a789b” and “ab” both encoded as [0, 26, 0, 24, 0].",
       "recorded_run_ids": [
         "194.01",
         "194.02",
@@ -2813,7 +2821,7 @@
     {
       "number": 200,
       "title": "Adapt a small speech recognizer and inspect frozen weights",
-      "evidence_note": "Recorded result  PASSED — The duplicate train/dev audio attempt was rejected. With distinct synthetic sentences, four CUDA updates trained only the final Whisper decoder block; the retained check reports unchanged frozen weights. Training loss decreased, but development WER stayed 0.4 with the same hypothesis. This qualifies training plumbing, not generalization or complete resume behavior.\nScope  The bounded adaptation is assessed on its specified split and outputs.",
+      "evidence_note": "Recorded result  PASSED — The duplicate train/dev audio attempt was rejected. With distinct synthetic sentences, four CUDA updates trained only the final Whisper decoder block; the retained check reports unchanged frozen weights. Training loss decreased, but development WER stayed 0.4 with the same hypothesis. This qualifies training plumbing, not generalization or complete resume behavior.\nScope  The bounded adaptation is assessed on its specified split and outputs.\nIn the R5 four-update trial the held-out five-word utterance had two errors before training and two afterward. Its word error rate was 0.40 in both cases.",
       "recorded_run_ids": [
         "200.01",
         "200.02",
@@ -2910,7 +2918,7 @@
     {
       "number": 206,
       "title": "Resolve a container to a native immutable identity",
-      "evidence_note": "Recorded result  PASSED — The immutable ARM64 NGC PyTorch image was pulled and ran the numerical CUDA probe successfully. Its PyTorch 2.14.0a0+b2c75dd062.nv26.09 reports framework CUDA 13.4, device capability 12.1 and zero error for the small oracle. Those container identities differ from host PyTorch 2.14.1+cu130.\nScope  Successful execution of this image does not certify every NGC container or model.",
+      "evidence_note": "Recorded result  PASSED — The immutable ARM64 NGC PyTorch image was pulled and ran the numerical CUDA probe successfully. Its PyTorch 2.14.0a0+b2c75dd062.nv26.09 reports framework CUDA 13.4, device capability 12.1 and zero error for the small oracle. Those container identities differ from host PyTorch 2.14.1+cu130.\nScope  Successful execution of this image does not certify every NGC container or model.\nIn the printed pull output, the Digest line identifies the selected child manifest. In the resolver’s image.json the same digest is arm64_digest and the child-qualified name is pinned_image.",
       "recorded_run_ids": [
         "206.01"
       ],

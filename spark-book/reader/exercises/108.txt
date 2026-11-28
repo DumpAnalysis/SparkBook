@@ -13,7 +13,7 @@ An allocator snapshot records blocks and their state, and can include allocation
 
 Bytes, memory budgets and unified memory
 
-One GiB is 1,073,741,824 bytes. The installed module in this machine is 64 GiB. Windows reports about 32.23 GiB visible to the OS and NVML reports a dedicated segment of 31,232 MiB, or 30.50 GiB (32.75 decimal GB). The two figures sum to about 62.73 GiB and have different accounting scopes. Guest MemTotal is a separate limit.
+Read free for the Linux guest’s memory, nvidia-smi for the NVML device report, and PyTorch’s torch.cuda.mem_get_info() for the current CUDA allocation budget. One GiB is 1,073,741,824 bytes. The installed module in this machine is 64 GiB. Windows reports about 32.23 GiB visible to the OS and NVML reports a dedicated segment of 31,232 MiB, or 30.50 GiB (32.75 decimal GB). The two figures sum to about 62.73 GiB and have different accounting scopes. Guest MemTotal is a separate limit.
 
 Record the API, units, time and process beside each value. CUDA reported 45.97 GiB across its dedicated and shareable budget. Adding the NVML and CUDA totals counts overlapping memory. Exercise 248 and the memory investigation explain the measured scopes. For an allocation decision query current free bytes and allow for working storage.
 
@@ -48,6 +48,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Recorded result  PASSED — Actual CUDA retention, release and varying-size controls include allocator-history snapshots. Retained allocation grew to 2,097,152 bytes; clearing the owner left allocated=0 and reserved=2,097,152, then empty_cache left both zero. The captured snapshots concern this process’s allocator, not a device-wide GPU memory dump. The editor checked JSON counters without loading pickle snapshots.
 Scope  Live tensor bytes and allocator reserve measure different lifetimes.
+Use torch.cuda.mem_get_info() on the exercise device for the current free and total CUDA memory budget. Leave headroom below the reported free amount for the runtime and other allocations.
 
 Recorded files
 python reader/records.py 108 --files

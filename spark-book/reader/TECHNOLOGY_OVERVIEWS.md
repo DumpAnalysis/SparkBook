@@ -173,7 +173,7 @@ Further reading
 
 ## BERT, WordPiece and masked language modeling
 
-[Exercise 83](exercises/083.txt) · book page 298
+[Exercise 83](exercises/083.txt) · book page 299
 
 BERT is a transformer encoder that builds a representation of a token using surrounding input on both sides. A WordPiece tokenizer splits text into vocabulary entries, sometimes parts of words, and maps them to integer IDs. A masked-language-model objective hides selected positions and trains the encoder to predict their original tokens.
 
@@ -192,7 +192,7 @@ Further reading
 
 [Exercise 2](exercises/002.txt) · book page 27
 
-One GiB is 1,073,741,824 bytes. The installed module in this machine is 64 GiB. Windows reports about 32.23 GiB visible to the OS and NVML reports a dedicated segment of 31,232 MiB, or 30.50 GiB (32.75 decimal GB). The two figures sum to about 62.73 GiB and have different accounting scopes. Guest MemTotal is a separate limit.
+Read free for the Linux guest’s memory, nvidia-smi for the NVML device report, and PyTorch’s torch.cuda.mem_get_info() for the current CUDA allocation budget. One GiB is 1,073,741,824 bytes. The installed module in this machine is 64 GiB. Windows reports about 32.23 GiB visible to the OS and NVML reports a dedicated segment of 31,232 MiB, or 30.50 GiB (32.75 decimal GB). The two figures sum to about 62.73 GiB and have different accounting scopes. Guest MemTotal is a separate limit.
 
 Record the API, units, time and process beside each value. CUDA reported 45.97 GiB across its dedicated and shareable budget. Adding the NVML and CUDA totals counts overlapping memory. Exercise 248 and the memory investigation explain the measured scopes. For an allocation decision query current free bytes and allow for working storage.
 
@@ -203,7 +203,6 @@ Further reading
 - [PyTorch. CUDA semantics and memory management](https://docs.pytorch.org/docs/2.14/notes/cuda.html)
 - [Linux Kernel. The proc filesystem and memory accounting](https://docs.kernel.org/filesystems/proc.html)
 - [PyTorch. torch.cuda.memory.mem_get_info](https://docs.pytorch.org/docs/2.14/generated/torch.cuda.memory.mem_get_info.html)
-- [NVIDIA. CUDA Programming Guide, unified and virtual memory](https://docs.nvidia.com/cuda/cuda-programming-guide/04-special-topics/unified-memory.html)
 
 <a id="topic-qdq"></a>
 
@@ -224,7 +223,7 @@ Further reading
 
 ## Checking the telemetry itself
 
-[Exercise 117](exercises/117.txt) · book page 391
+[Exercise 117](exercises/117.txt) · book page 392
 
 A monitoring pipeline can lose or distort evidence. A duplicate event can double a count, a wrong clock unit can stretch a duration a thousandfold, and a missing span can make a request look shorter. First check identities, timestamps, units and the relationship between related records.
 
@@ -304,7 +303,7 @@ Further reading
 
 ## Compiling PyTorch with Dynamo, Inductor and Triton
 
-[Exercise 101](exercises/101.txt) · book page 352
+[Exercise 101](exercises/101.txt) · book page 353
 
 In eager mode Python issues framework operations as execution reaches them. With torch.compile, TorchDynamo can capture compatible operations into a graph, and a backend such as TorchInductor can optimize and generate executable code. On GPUs that code may include kernels written using the Triton programming language. NVIDIA Triton Inference Server, used in Exercise 150, serves models over a network interface.
 
@@ -366,7 +365,7 @@ Further reading
 
 ## Contrastive training for sentence encoders
 
-[Exercise 86](exercises/086.txt) · book page 306
+[Exercise 86](exercises/086.txt) · book page 307
 
 A pretrained token encoder can produce sentence vectors without having learned which incident descriptions should match a query. Contrastive training supplies that relationship. A positive pair consists of a query and its relevant passage. Other passages in the batch can act as negatives.
 
@@ -415,11 +414,11 @@ Further reading
 
 ## CUDA streams, events and graphs
 
-[Exercise 58](exercises/058.txt) · book page 227
+[Exercise 58](exercises/058.txt) · book page 228
 
-A stream is an ordered queue of GPU work. Two streams may run work concurrently if dependencies and resources allow it. An event recorded after a producer lets a consumer stream wait for that producer. Double buffering lets one buffer accept new data while another is being processed.
+A CUDA stream is an ordered queue of GPU work. A PyTorch caller can select a stream before invoking a custom operator. Launch the operator on that stream so its reads and writes follow the work the caller already queued.
 
-A CUDA Graph records a set of operations and their dependencies for replay with lower submission overhead. Keep the test’s input shapes and storage addresses consistent with its capture. Verify the resulting values. Actual overlap between streams requires device intervals that overlap in time.
+Test the derivative and stream ordering separately. An operator can pass a forward-value check and still return the wrong gradient or run on the wrong stream. Chapter 43 applies stream ordering to buffer reuse in Exercise 63 and graph replay in Exercise 65.
 
 Further reading
 
@@ -434,7 +433,7 @@ Further reading
 
 A debugger can stop an executing program at a breakpoint so you can inspect its current state. For CUDA, selecting a kernel, block and thread identifies whose registers and variables you are examining. Symbols connect source names and line information with a particular build.
 
-An exception core permits later inspection of state that the platform captured at a fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
+A GPU core dump captured on an exception lets you inspect the state the platform saved at the fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
 
 Further reading
 
@@ -444,7 +443,7 @@ Further reading
 
 ## Custom PyTorch operators and gradients
 
-[Exercise 57](exercises/057.txt) · book page 225
+[Exercise 57](exercises/057.txt) · book page 226
 
 A custom operator exposes compiled code as a named PyTorch operation. Its registration describes inputs and outputs. The dispatcher selects the appropriate implementation for a device. If the operation is to take part in training, PyTorch also needs a rule for propagating gradients backwards.
 
@@ -460,11 +459,11 @@ Further reading
 
 ## Data parallelism, sharding and gradient averaging
 
-[Exercise 124](exercises/124.txt) · book page 408
+[Exercise 124](exercises/124.txt) · book page 409
 
-In data parallelism, each worker owns a model replica and processes part of the batch. An all-reduce combines contributions across ranks. PyTorch DistributedDataParallel synchronizes gradients so replicas can take consistent updates. Unequal local batch sizes require care when relating those updates to a full-batch reference. DistributedDataParallel (DDP) averages gradients across participating ranks. Fully Sharded Data Parallel (FSDP) partitions training state. With unequal example counts, an average of rank means needs sample-count weighting to recover the global example mean.
+In data parallelism each worker holds a model replica and processes part of the batch. PyTorch DistributedDataParallel (DDP) averages gradients across participating ranks through an all-reduce. When ranks process unequal numbers of examples, weight their mean gradients by sample count to recover the global example mean.
 
-Sharding divides storage or computation, such as assigning different columns of a matrix to different workers. Fully Sharded Data Parallel uses sharding for training state. Compare a small partitioned calculation and its gradients with an unpartitioned reference. That mathematical check can run on CPU before any multi-GPU communication test.
+Sharding divides storage or computation across workers. Fully Sharded Data Parallel (FSDP) partitions training state. The column-sharding exercise partitions a matrix and compares the resulting calculation and gradients with an unpartitioned CPU reference.
 
 Further reading
 
@@ -477,7 +476,7 @@ Further reading
 
 ## DataLoader, queues and prefetching
 
-[Exercise 103](exercises/103.txt) · book page 359
+[Exercise 103](exercises/103.txt) · book page 360
 
 Training often needs the CPU to read, decode and assemble examples before the GPU can use them. PyTorch’s DataLoader makes batches and can use worker processes. Prefetching lets the producer prepare future batches while the consumer processes the current one. Buffer space and memory place a limit on how much work can wait.
 
@@ -487,7 +486,7 @@ Further reading
 
 - [PyTorch. DataLoader and data processing, version 2.14](https://docs.pytorch.org/docs/2.14/data.html)
 - [PyTorch. Multiprocessing best practices, version 2.14](https://docs.pytorch.org/docs/2.14/notes/multiprocessing.html)
-- [PyTorch data loading with worker processes. See [85]](https://docs.pytorch.org/docs/2.14/data.html)
+- [PyTorch 2.14. Multi-process data loading](https://docs.pytorch.org/docs/2.14/data.html#multi-process-data-loading)
 
 <a id="topic-splits"></a>
 
@@ -495,7 +494,7 @@ Further reading
 
 [Exercise 24](exercises/024.txt) · book page 119
 
-A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
+A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation set, also called a development set, helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
 
 If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together.
 
@@ -524,7 +523,7 @@ Further reading
 
 [Exercise 34](exercises/034.txt) · book page 160
 
-Each of these artifacts answers a different question. A buffer dump copies bytes from a selected allocation after the program finishes writing it. To decode the bytes you need their element type, shape and byte order. A framework allocator snapshot describes allocations and their histories. A GPU exception core records supported debugging state when execution faults.
+Each of these artifacts answers a different question. A buffer dump copies bytes from a selected allocation after the program finishes writing it. To decode the bytes you need their element type, shape and byte order. A framework allocator snapshot describes allocations and their histories. A GPU core dump captures supported debugging state. This book calls a dump captured on a GPU exception an exception core.
 
 Begin with a buffer initialized to a known pattern. Synchronize, export just that allocation, decode a few elements and compare them with the pattern. A matching payload checks this buffer at that point in the program.
 
@@ -548,7 +547,7 @@ For the fictional R17 incident, start with one observed event. Name two explanat
 
 ## Diagnostic patterns and evidence cards
 
-[Exercise 70](exercises/070.txt) · book page 259
+[Exercise 70](exercises/070.txt) · book page 260
 
 A diagnostic pattern names a recurring structure in evidence, such as a worker repeatedly waiting on an empty queue. The same visible symptom can have several causes. A pattern suggests a question and a discriminating check. It becomes useful when you can point to the artifact that supports its application.
 
@@ -560,7 +559,7 @@ For an evidence card, identify the observed state first and write your competing
 
 [Exercise 180](exercises/180.txt) · book page 579
 
-In the epsilon-prediction control, clean x₀ and sampled noise ε are mixed at time t as xₜ = √ᾱₜ x₀ + √(1 − ᾱₜ) ε. Alpha-bar is the cumulative product of the schedule’s retained-signal factors. A model learns to estimate ε. With the exact noise, recover x₀ by subtracting √(1 − ᾱₜ) ε from xₜ and dividing by √ᾱₜ.
+Image generation starts with noise and repeatedly updates it toward an image. This exercise tests one step with known inputs. In the epsilon-prediction control, clean x₀ and sampled noise ε are mixed at time t as xₜ = √ᾱₜ x₀ + √(1 − ᾱₜ) ε. Alpha-bar is the cumulative product of the schedule’s retained-signal factors. A model learns to estimate ε. With the exact noise, recover x₀ by subtracting √(1 − ᾱₜ) ε from xₜ and dividing by √ᾱₜ.
 
 The tiny point experiment deliberately uses known clean values and known noise. Substitute that same noise into the reconstruction formula and compare the recovered points with the originals. Replacing it with wrong noise should disturb the answer. This tests the arithmetic before any learned denoiser or expensive image generation is involved.
 
@@ -573,7 +572,7 @@ Further reading
 
 ## Distributed training on one physical laptop
 
-[Exercise 123](exercises/123.txt) · book page 407
+[Exercise 123](exercises/123.txt) · book page 408
 
 Distributed training uses several processes that coordinate their work. Each process has a rank, its identifier within a group. World size is the number of participating processes. A rendezvous brings those ranks together. Gloo and NVIDIA’s NCCL are communication backends used in different configurations.
 
@@ -609,7 +608,7 @@ Further reading
 
 An image packages a program and its user-space files. A Dockerfile describes how to build that image. A container is a running instance with its own process and filesystem view, using the host kernel. A volume or bind mount makes selected files, such as model weights, available inside that view.
 
-Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content. Here the container host shares the WSL guest’s kernel. A container memory limit above the measured 15.70 GiB guest RAM cannot grant additional physical guest RAM. Swap policy and current availability also matter.
+Building an image checks the build instructions. Starting a container also tests its entry command, permissions and configuration. Publish the intended port, send one small request and retain the container’s logs and exit status. A tag is a convenient name. A digest identifies particular image content. Here the WSL guest is the container host, so its containers share the guest’s Linux kernel. A container memory limit above the measured 15.70 GiB guest RAM cannot grant additional physical guest RAM. Swap policy and current availability also matter.
 
 Further reading
 
@@ -652,11 +651,11 @@ Further reading
 
 ## Floating-point precision and numerical tolerances
 
-[Exercise 99](exercises/099.txt) · book page 347
+[Exercise 99](exercises/099.txt) · book page 348
 
 Floating-point formats allocate bits to sign, exponent and fraction. FP16 has five exponent and ten fraction bits, with largest finite value 65,504. BF16 (bfloat16) has eight exponent and seven fraction bits. FP32 has eight exponent and 23 fraction bits. BF16 covers a range similar to FP32 with coarser spacing between adjacent values.
 
-An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error.
+An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error. Exercise 129 shows how the TF32 matrix-multiplication setting affects the interpretation of an FP32 comparison.
 
 Further reading
 
@@ -684,9 +683,9 @@ Further reading
 
 ## GPU metrics, samples and missing observations
 
-[Exercise 91](exercises/091.txt) · book page 323
+[Exercise 91](exercises/091.txt) · book page 324
 
-The NVIDIA Management Library (NVML) reports supported sampled device fields. GPU utilization is the fraction of the device sample period during which one or more kernels ran. Memory utilization measures the fraction of that period in which device memory was read or written. A small continuously active kernel can register high busy time. Occupancy, throughput and bytes per second require their own measurements.
+A metric is a measured quantity. A sampler reads it at intervals, so a short burst can fall between two polls. The NVIDIA Management Library (NVML) reports supported sampled device fields. GPU utilization is the fraction of the device sample period during which one or more kernels ran. Memory utilization measures the fraction of that period in which device memory was read or written. A small continuously active kernel can register high busy time. Occupancy, throughput and bytes per second require their own measurements.
 
 Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
 
@@ -717,7 +716,7 @@ Further reading
 
 ## Gradients, optimizers and resuming an update
 
-[Exercise 68](exercises/068.txt) · book page 254
+[Exercise 68](exercises/068.txt) · book page 255
 
 A gradient tells an optimizer how the loss changes as a trainable value changes. AdamW also carries running estimates derived from earlier gradients. A training process may keep random-number state, a batch position and a scaler for limited-precision arithmetic. Live tensors retained by Python can change the memory picture.
 
@@ -853,7 +852,7 @@ Further reading
 
 ## Kernel fusion and CUDA event timing
 
-[Exercise 53](exercises/053.txt) · book page 212
+[Exercise 53](exercises/053.txt) · book page 213
 
 Kernel fusion combines operations that would otherwise run as separate kernels. For example, an addition followed by an activation may reuse a value already in a register, avoiding a write to and a read from an intermediate array. It can also change resource use or arithmetic order.
 
@@ -1002,7 +1001,7 @@ Further reading
 
 ## Matrix layout, tiles and shared memory
 
-[Exercise 47](exercises/047.txt) · book page 198
+[Exercise 47](exercises/047.txt) · book page 199
 
 A matrix has rows and columns but occupies a sequence of memory locations. In row-major storage, adjacent columns of one row sit beside each other. A transpose swaps rows with columns. For a rectangular input, reversing the shape as well as the indices helps expose a mistaken stride.
 
@@ -1017,7 +1016,7 @@ Further reading
 
 ## Matrix multiplication on the GPU
 
-[Exercise 51](exercises/051.txt) · book page 207
+[Exercise 51](exercises/051.txt) · book page 208
 
 Each entry of a matrix product is a dot product. Multiply elements from one row of the left matrix by the corresponding elements of one column of the right matrix and add them. An input with shape (2, 3) can multiply one with shape (3, 4) to produce a (2, 4) result.
 
@@ -1117,7 +1116,7 @@ Further reading
 
 ## Nsight Compute and hardware counters
 
-[Exercise 41](exercises/041.txt) · book page 183
+[Exercise 41](exercises/041.txt) · book page 184
 
 Nsight Compute examines selected GPU kernels in detail. Hardware counters record events such as memory traffic or executed operations. A profiler can combine counters into measures of achieved throughput and may need multiple passes to collect them. This differs from measuring the duration of an entire request.
 
@@ -1270,7 +1269,7 @@ Further reading
 
 ## OpenTelemetry traces, spans and correlated logs
 
-[Exercise 111](exercises/111.txt) · book page 379
+[Exercise 111](exercises/111.txt) · book page 380
 
 A trace follows one request across operations. Each span records a named operation, its time interval and its relationship to a parent span. A trace ID groups the operations belonging to one request. A span ID lets a log entry identify the particular operation that emitted it. Trace sampling selects requests or spans to retain. Metric sampling polls a measured field at successive times. Preserve the trace policy and the metric interval separately.
 
@@ -1285,7 +1284,7 @@ Further reading
 
 ## Packing INT4 values into bytes
 
-[Exercise 66](exercises/066.txt) · book page 249
+[Exercise 66](exercises/066.txt) · book page 250
 
 A byte has eight bits, so it can hold two four-bit codes. An INT4 representation must specify how a signed integer maps to a code, which half-byte comes first, and what happens to the last value when the count is odd. To represent real-valued weights, a scale maps codes back to approximate numbers.
 
@@ -1300,7 +1299,7 @@ Further reading
 
 ## PCA and a two-dimensional map of embeddings
 
-[Exercise 79](exercises/079.txt) · book page 288
+[Exercise 79](exercises/079.txt) · book page 289
 
 The scikit-learn library provides a Python implementation of principal component analysis (PCA). PCA finds directions in which centered data vary most. Plotting the first two components assigns a point to each sentence and retains only part of the original variation. The explained-variance ratios report how much the displayed components capture in the fitted data.
 
@@ -1316,7 +1315,7 @@ Further reading
 
 ## Plotting GPU activity against a workload
 
-[Exercise 92](exercises/092.txt) · book page 327
+[Exercise 92](exercises/092.txt) · book page 328
 
 Matplotlib is the Python plotting library used here. A time-series plot gives timestamps horizontal positions and measured values vertical positions. The plotting program reads the sampler’s records and draws lines or points for related quantities. Request start and finish markers show which part of the picture belongs to the workload.
 
@@ -1324,7 +1323,7 @@ Read the axis units before comparing curves. Bytes and percentages belong to dif
 
 Further reading
 
-- [NVIDIA. NVIDIA System Management Interface and field definitions](https://docs.nvidia.com/deploy/nvidia-smi/)
+- [NVIDIA. NVML GPU and memory utilization fields](https://docs.nvidia.com/deploy/nvml-api/620/api/structnvmlUtilization__t.html)
 - [Python. time and monotonic clocks](https://docs.python.org/3/library/time.html)
 - [Matplotlib. Quick start guide](https://matplotlib.org/stable/users/explain/quick_start.html)
 
@@ -1431,7 +1430,7 @@ Further reading
 
 ## PyTorch allocator snapshots and tensor ownership
 
-[Exercise 42](exercises/042.txt) · book page 186
+[Exercise 42](exercises/042.txt) · book page 187
 
 When a program creates a CUDA tensor, PyTorch obtains storage for it. Its allocator can retain unused blocks so that the next tensor can reuse them. Allocated bytes describe storage currently used by tensors. Reserved bytes include blocks held by the allocator. A management tool has a broader view again.
 
@@ -1441,13 +1440,13 @@ Further reading
 
 - [PyTorch. CUDA semantics and memory management](https://docs.pytorch.org/docs/2.14/notes/cuda.html)
 - [PyTorch. Understanding CUDA Memory Usage, version 2.14](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html)
-- [PyTorch CUDA memory snapshots. See [39]](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html)
+- [PyTorch 2.14. Generating a CUDA memory snapshot](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html#generating-a-snapshot)
 
 <a id="topic-profiler"></a>
 
 ## PyTorch Profiler and operators
 
-[Exercise 43](exercises/043.txt) · book page 188
+[Exercise 43](exercises/043.txt) · book page 189
 
 A framework operator is a named operation such as matrix multiplication. PyTorch Profiler can collect CPU-side operator events and, where supported, GPU activity. A trace viewer draws each event on the track of the thread or device that produced it. One Python operation can issue several kernels.
 
@@ -1543,7 +1542,7 @@ Further reading
 
 ## Reducing a failing case and isolating a change
 
-[Exercise 115](exercises/115.txt) · book page 388
+[Exercise 115](exercises/115.txt) · book page 389
 
 A reproducer is an input and procedure that reliably expose a chosen failure. Its predicate answers whether a candidate still fails in the required way. Reduction removes parts of an input and runs the predicate again. A result is 1-minimal when removing any single remaining element stops that failure.
 
@@ -1557,7 +1556,7 @@ Further reading
 
 ## Reductions, histograms and atomic updates
 
-[Exercise 49](exercises/049.txt) · book page 202
+[Exercise 49](exercises/049.txt) · book page 203
 
 A reduction combines many values into fewer values, such as summing a vector into one number. A GPU implementation can first write a partial sum per block and then sum those partials. Addition order affects floating-point rounding, so preserve the input type and comparison tolerance.
 
@@ -1573,7 +1572,7 @@ Further reading
 
 ## Retrieval, relevance labels and rank metrics
 
-[Exercise 78](exercises/078.txt) · book page 285
+[Exercise 78](exercises/078.txt) · book page 286
 
 A retrieval system compares a query with a collection of documents and returns an ordered list. Relevance labels tell the evaluator which documents answer a particular query. The top match can be semantically similar yet irrelevant to the question, so retain query and document identifiers alongside their scores.
 
@@ -1589,7 +1588,7 @@ Further reading
 
 ## RMS normalization, softmax and numerical stability
 
-[Exercise 55](exercises/055.txt) · book page 218
+[Exercise 55](exercises/055.txt) · book page 219
 
 RMS normalization scales a vector using the square root of its mean squared value and a small stabilizing constant. Softmax turns a row of scores into positive weights that sum to one. These operations appear inside neural networks and involve reductions across a row.
 
@@ -1605,7 +1604,7 @@ Further reading
 
 ## Roofline models of kernel performance
 
-[Exercise 105](exercises/105.txt) · book page 365
+[Exercise 105](exercises/105.txt) · book page 366
 
 A roofline relates work performed to data moved. Arithmetic intensity is operations divided by bytes transferred at a stated memory boundary. Multiplying that intensity by bandwidth gives a memory-based ceiling. The smaller of that number and the compute ceiling gives the model’s upper bound for that intensity. The ridge point is compute ceiling divided by bandwidth. With 10 TFLOP/s and 100 GB/s it is 100 operations per byte. The illustrative add is below that crossover, and the 1024-square ideal matrix product is above it.
 
@@ -1620,7 +1619,7 @@ Further reading
 
 ## Sentence embeddings and semantic similarity
 
-[Exercise 75](exercises/075.txt) · book page 277
+[Exercise 75](exercises/075.txt) · book page 278
 
 An encoder reads text and returns numbers. A sentence embedding represents a whole passage by one fixed-length vector, which can be compared with vectors for other passages. Sentence Transformers supplies the model interface used here. MiniLM is the compact pretrained encoder selected for the first experiment. An input token embedding represents a vocabulary item; its position and surrounding tokens contribute to the contextual representation. For nonzero vectors, cosine similarity is their dot product divided by the product of their lengths.
 
@@ -1686,7 +1685,7 @@ Further reading
 
 ## Stalled workers and stack traces
 
-[Exercise 109](exercises/109.txt) · book page 375
+[Exercise 109](exercises/109.txt) · book page 376
 
 A process can be alive while it makes no progress. A stack trace lists the active chain of function calls in a thread. A heartbeat records progress or liveness at intervals, depending on what it measures. A supervisor can impose a deadline and collect a stack from a deliberately stalled teaching worker.
 
@@ -1715,7 +1714,7 @@ Further reading
 
 ## t-SNE and neighbourhoods in a plot
 
-[Exercise 81](exercises/081.txt) · book page 293
+[Exercise 81](exercises/081.txt) · book page 294
 
 t-SNE builds a low-dimensional arrangement that tries to keep similar points near each other. Its perplexity parameter controls the effective neighbourhood size, and an optimization procedure finds the plotted coordinates. Both the parameter and the random initialization can affect the picture.
 
@@ -1758,13 +1757,13 @@ Further reading
 
 - [Hugging Face. VITS Transformers 4.57.1. Consulted 27 October 2026](https://huggingface.co/docs/transformers/v4.57.1/en/model_doc/vits)
 - [Meta. MMS English text to speech model card. Consulted 27 October 2026](https://huggingface.co/facebook/mms-tts-eng/tree/c71de0fe7204c83f1c10820a7d696d0b450048ba)
-- [Hugging Face. MMS English speech model vocabulary](https://huggingface.co/facebook/mms-tts-eng/blob/main/vocab.json)
+- [Hugging Face. MMS English speech model vocabulary](https://huggingface.co/facebook/mms-tts-eng/blob/c71de0fe7204c83f1c10820a7d696d0b450048ba/vocab.json)
 
 <a id="topic-pooling"></a>
 
 ## Token vectors, attention masks and pooling
 
-[Exercise 76](exercises/076.txt) · book page 281
+[Exercise 76](exercises/076.txt) · book page 282
 
 A token encoder produces one vector for each input position. To process sentences of different lengths in the same batch, the tokenizer can add padding. An attention mask identifies positions containing real input. In masked mean pooling we sum the real token vectors and divide by the number of real positions.
 
@@ -1780,7 +1779,7 @@ Further reading
 
 ## Transformer attention and cached decoding
 
-[Exercise 59](exercises/059.txt) · book page 232
+[Exercise 59](exercises/059.txt) · book page 233
 
 Self-attention lets one token combine information from other allowed positions. It produces a query for the current position, compares it with keys, and uses the resulting weights to combine values. A causal language model can attend to earlier positions while generating the next token.
 
@@ -1815,7 +1814,7 @@ Further reading
 
 ## UMAP and the neighbourhood graph
 
-[Exercise 81](exercises/081.txt) · book page 293
+[Exercise 81](exercises/081.txt) · book page 294
 
 UMAP builds a graph of nearby points and looks for a low-dimensional layout that preserves aspects of those relationships. The number of neighbours influences the scale at which it builds the graph. The minimum-distance setting influences how tightly points may be packed in the layout.
 
@@ -1849,7 +1848,7 @@ Further reading
 
 ## Vector indexes and model identity
 
-[Exercise 89](exercises/089.txt) · book page 316
+[Exercise 89](exercises/089.txt) · book page 317
 
 A vector index connects stored document vectors with stable document identifiers so a new query can retrieve the matching text. A small teaching index can score every row directly. Larger systems may trade exact search for speed. Either way, the query and document vectors must occupy compatible coordinate systems.
 
@@ -1914,7 +1913,7 @@ Further reading
 
 ## Warps, Tensor Cores, cuBLAS and CUTLASS
 
-[Exercise 61](exercises/061.txt) · book page 236
+[Exercise 61](exercises/061.txt) · book page 237
 
 A warp is a group of 32 CUDA threads. Warp instructions can exchange values among participating lanes, which is useful in a reduction. Tensor Cores carry out supported small matrix multiply-and-accumulate operations. CUDA’s WMMA interface exposes such operations to a cooperating warp.
 

@@ -63,6 +63,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Historical record and later reader check  Historical driver probe lacked usable activity timestamps. The R5 reader trial compared three decodes of the same latent; the reduced tile edge gave nine decoder calls.
 Scope  Matched output pixels, inference peak and an aggregate device range. The range includes denoising and decode.
+Reader record 186.R1 · reader/reader-runs/186.txt
 
 Recorded files
 python reader/records.py 186 --files

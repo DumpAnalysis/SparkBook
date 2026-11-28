@@ -13,7 +13,7 @@ Introduce a known delay before a batch is ready. Measure time waiting for input 
 
 GPU metrics, samples and missing observations
 
-The NVIDIA Management Library (NVML) reports supported sampled device fields. GPU utilization is the fraction of the device sample period during which one or more kernels ran. Memory utilization measures the fraction of that period in which device memory was read or written. A small continuously active kernel can register high busy time. Occupancy, throughput and bytes per second require their own measurements.
+A metric is a measured quantity. A sampler reads it at intervals, so a short burst can fall between two polls. The NVIDIA Management Library (NVML) reports supported sampled device fields. GPU utilization is the fraction of the device sample period during which one or more kernels ran. Memory utilization measures the fraction of that period in which device memory was read or written. A small continuously active kernel can register high busy time. Occupancy, throughput and bytes per second require their own measurements.
 
 Start with the idle baseline and note the field name, unit, timestamp, sample interval and provider. Preserve an unavailable field as missing. Zero is a measured value. The distinction matters when the dashboard shows a flat line during an otherwise successful request.
 

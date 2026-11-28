@@ -1,0 +1,23 @@
+Reader record 040.R1
+Version 59 illustrated R5 reader run on the RTX Spark under WSL2
+UTC start  2026-11-27T22:43:24.348328+00:00
+UTC finish  2026-11-27T22:43:24.414581+00:00
+
+Commands
+TRACE_SQLITE="${TRACE_SQLITE:-$LAB_RUN/timeline.sqlite}"
+python cuda/trace_sqlite.py "$TRACE_SQLITE"
+
+Selected stdout
+evidence=supplied SQLite export
+kernel=transform instances=4 summed_duration_ns=27924
+
+Exit  0
+
+The R5 export contains four transform kernels totaling 27,924 ns. The earlier export used for Figure 40 contains four totaling 29,340 ns. Each total sums device intervals.
+
+SHA-256
+c89ab71b894ecad980163ae85eca0ee2cd9d5d9d6f86f441fc76c710cec9b07b  timeline.sqlite
+e86c5dfc23e3e1218a53bbc36d33926155655ca2043b2e77300357f8606e20c8  earlier Figure 40 export
+
+R5 receipt SHA-256  8d75d1ef89bf4bd3d8519ba922735b3acb5d64f2ddc587436d0634867366ca85
+R5 stdout SHA-256  5c69df55f4950afc220e837b60d8508e67f1871edec23d53771402e334242d5a
