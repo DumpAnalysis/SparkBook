@@ -3238,8 +3238,8 @@
     },
     {
       "path": "reader/technologies.py",
-      "bytes": 2253,
-      "sha256": "fb96b38b23a526710e31d1688a3ffa6f4817fc1a2d3d506657db94ce7f1e8643"
+      "bytes": 2388,
+      "sha256": "6fc8037b67a1ddc5780e41c753fd3a3eb6abd14b3c511b222793f88afedf1166"
     },
     {
       "path": "reader/technology-overviews.json",

@@ -3309,8 +3309,8 @@
     },
     {
       "path": "reader/technologies.py",
-      "bytes": 2253,
-      "sha256": "fb96b38b23a526710e31d1688a3ffa6f4817fc1a2d3d506657db94ce7f1e8643"
+      "bytes": 2388,
+      "sha256": "6fc8037b67a1ddc5780e41c753fd3a3eb6abd14b3c511b222793f88afedf1166"
     },
     {
       "path": "reader/technology-overviews.json",
@@ -3325,7 +3325,7 @@
     {
       "path": "reader/workspace-files.json",
       "bytes": 124555,
-      "sha256": "fe6489d3892d9a6586da4d9e85f855c487d84c30c09b76b4b4aee3e8717c1230"
+      "sha256": "91df91716efc7fc2e4eb7c1ad08d393b1901b210646875cebbcd8cbe11514d76"
     },
     {
       "path": "requirements-exercises.lock",
