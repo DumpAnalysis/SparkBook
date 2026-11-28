@@ -191,7 +191,7 @@ docker events --since 10m --until 0s \
 
   --filter container=spark-llama
 
-Run these inspection commands before removing a failed container. Read State.OOMKilled and available cgroup/daemon evidence; compare framework allocation logs with external GPU counters where supported. For an unsupported CUDA kernel, check image and device compatibility. Inspect the container memory limit when diagnosing a cgroup allocation failure. Reduce model size, context or concurrency only after recording the failure. A large-model CPU offload experiment must budget host allocations and transfers, and is separate from the baseline GPU container qualification.
+Run these inspection commands before removing a failed container. Read State.OOMKilled and available cgroup/daemon evidence; compare framework allocation logs with external GPU counters where supported. For unsupported CUDA instructions or device discovery failures, check the image and GPU runtime. Use cgroup evidence to decide whether to raise the container memory limit. Reduce model size, context or concurrency only after recording the failure. A large-model CPU offload experiment must budget host allocations and transfers, and is separate from the baseline GPU container qualification.
 
 The preparation environment has no Docker daemon or NVIDIA device tools. Its complete executable inventory is retained below. UNAVAILABLE is a preparation limitation, not a verdict on the laptop.
 
