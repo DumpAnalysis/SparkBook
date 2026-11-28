@@ -909,7 +909,7 @@
       "scope": "CUDA workload under bounded Nsight Compute counter collection | UTC 2026-10-30T12:16:32.710071+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “checksum=1099511627776” in the output. Identify the requested kernel and metrics in the report.",
-      "book_page": 184,
+      "book_page": 185,
       "printed_sha256": "32f1de53b2fb1a6b4d44b928672999ebee2a5ffade848a751bc56425ffce6ba8"
     },
     {
@@ -919,7 +919,7 @@
       "scope": "PyTorch CUDA allocation history plus synchronized tensor copy | UTC 2026-10-30T12:16:34.548811+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “tensor_values=64 tensor_bytes=256” in the output. Pair the allocator snapshot with the explicitly saved values.",
-      "book_page": 187,
+      "book_page": 188,
       "printed_sha256": "20a129601293c5fb8e07f2e890a94634c62704d78577ed67721f4a342c9a8759"
     },
     {
@@ -929,7 +929,7 @@
       "scope": "PyTorch matrix/activation CUDA workload with CPU and CUDA profiler | UTC 2026-10-30T12:16:42.085911+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “saved=trace.json,operators.txt” in the output. Inspect the operator table and device-event lane separately.",
-      "book_page": 189,
+      "book_page": 190,
       "printed_sha256": "d861e2a449347efbcb1e2e1c1755fc33f4ccfc997d4fa877ecdeb5a47ff78a3e"
     },
     {
@@ -939,7 +939,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:18:41.582325+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "stderr reports “ERROR: Verification failed at index 0”. Compare this with exit 2 and the exercise criterion.",
-      "book_page": 194,
+      "book_page": 195,
       "printed_sha256": "cff86bb4da736c9a302d6e15ce5b8b83616cdc18b7a1ec73f8199c00341612a8"
     },
     {
@@ -949,7 +949,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:18:45.864408+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “mode=add n=1003 block=256 verified=true” in the output. Compare every output element, including the tail, for a positive length not divisible by the block size.",
-      "book_page": 195,
+      "book_page": 196,
       "printed_sha256": "1059d5409721658c0fd3ff4515acc211b8cab355a4ba705de7241d07a2a1d786"
     },
     {
@@ -959,7 +959,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:18:49.900796+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “mode=stride n=1003 block=256 verified=true” in the output. Follow a thread's index and grid stride.",
-      "book_page": 196,
+      "book_page": 197,
       "printed_sha256": "870d34597cba8569ebc9814c786e383dca27fa5cb4fde3c08b66aaa4f6296559"
     },
     {
@@ -969,7 +969,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:19:40.080733+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “transpose=naive rows=37 cols=65 verified=true” in the output. Trace one input element to its output address.",
-      "book_page": 199,
+      "book_page": 200,
       "printed_sha256": "4ea95c59dc84cc67974aa0b067b24b96fbd4d3c3cc2f2efcf3ca2fa7b890b44a"
     },
     {
@@ -979,7 +979,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:19:45.098769+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “transpose=tile rows=37 cols=65 verified=true”. Compare edge tiles with the CPU reference.",
-      "book_page": 200,
+      "book_page": 201,
       "printed_sha256": "975be39b50a922f8f014ec5c2eb8c0912b373b84f138a9ebfd5e3c140aac4f3a"
     },
     {
@@ -989,7 +989,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:19:58.755474+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “reduce n=1003 block=256 sum=0 verified=true”. Inspect the array of per-block partial sums before checking the single value from the second launch.",
-      "book_page": 204,
+      "book_page": 205,
       "printed_sha256": "9a0ebad9179bb7e79405233d7397c9f1f6a73f939d099578293fc36621be53f1"
     },
     {
@@ -999,7 +999,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:20:25.656538+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “histogram n=1003 bins=63,63,63,63,63,63,63,63,63,63,63,62,62,62,62,62 verified=true” in the output. Compare each histogram bin against the CPU histogram, then check that the bin sum equals the input length.",
-      "book_page": 206,
+      "book_page": 207,
       "printed_sha256": "d70fd5ca6cb83545946ce329166a5066689a8194fa705327fcd840dd9cad24b6"
     },
     {
@@ -1009,7 +1009,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:20:32.783113+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “matmul=naive m=17 k=23 n=19 verified=true” in the output. Check the dot product for one element by hand.",
-      "book_page": 209,
+      "book_page": 210,
       "printed_sha256": "38559f0d3eaf68848b46941c6e7040a9ffb151da8e7ba6197260b1eaaebd5a39"
     },
     {
@@ -1019,7 +1019,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:20:38.033750+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “matmul=tile m=17 k=23 n=19 verified=true”. Choose a shape whose edge falls inside a tile.",
-      "book_page": 210,
+      "book_page": 211,
       "printed_sha256": "21cee50d27c8132b32795be1e3f4509638e94934a057d824a53583ce9edf65ab"
     },
     {
@@ -1029,7 +1029,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:20:48.677804+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “mode=fused n=1003 block=256 verified=true” in the output. Verify fused and split values first.",
-      "book_page": 213,
+      "book_page": 214,
       "printed_sha256": "02495399ce51c36c79cab5e734bc60af1b3a61c5dc5a299aaa2c6ffba4a928df"
     },
     {
@@ -1039,7 +1039,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:20:49.455245+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “benchmark n=1048576 block=256 repeats=100 verified=true” in the output. Verify fused and split values first.",
-      "book_page": 214,
+      "book_page": 215,
       "printed_sha256": "d3532495f5c7ac1d824bd51cc75c219ef2a2a68c0d3f1f59498db6ea798240d8"
     },
     {
@@ -1049,7 +1049,7 @@
       "scope": "CPU arithmetic on uninstrumented CUDA-event measurements | UTC 2026-10-30T12:20:52.110325+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “records=2 arithmetic_valid=true” in the output. Check the timing unit and measured region.",
-      "book_page": 216,
+      "book_page": 217,
       "printed_sha256": "54af17113712c25b5a1cf1d4ac121f7d0e7163343ae370addd8eed229b013fe7"
     },
     {
@@ -1059,7 +1059,7 @@
       "scope": "CPU | UTC 2026-10-30T12:20:57.593947+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “ValueError: expected split and fused rows”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 216,
+      "book_page": 217,
       "printed_sha256": "d11a7f0b54d1acd08ce0dbf0161d436923797def10512bb09baf34b394e3b9a5"
     },
     {
@@ -1069,7 +1069,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:21:03.800824+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “rms rows=3 width=769 verified=true” in the output. Inspect the row reference, epsilon and finite checks.",
-      "book_page": 220,
+      "book_page": 221,
       "printed_sha256": "a102c7c31484bfcce129b13aa642bc434da69f1d31c8f3bc63135cf19ff1114b"
     },
     {
@@ -1079,7 +1079,7 @@
       "scope": "CUDA student/reference-guided kernel with independent CPU oracle | UTC 2026-10-30T12:21:09.170485+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “softmax rows=3 width=769 verified=true”. Run the row with large logits through the stable-softmax reference.",
-      "book_page": 222,
+      "book_page": 223,
       "printed_sha256": "47cb297f9b48858773492e53a3666399b5bc398ed8bcc97d2458abe0ed563b9d"
     },
     {
@@ -1089,7 +1089,7 @@
       "scope": "CPU ABI-matched extension compilation and CUDA forward, dispatcher, gradient and stream checks | UTC 2026-10-30T12:23:02.273033+00:00",
       "label": "LAPTOP  ·  CPU and CUDA  ·  Recorded operation",
       "read_first": "Locate “forward_and_opcheck shapes=3 PASS” in the output. Check registration, dtype/device validation and output agreement.",
-      "book_page": 227,
+      "book_page": 228,
       "printed_sha256": "657c03137b8cc43f1355c7930239a532ca13c38d7c0ebaca86395e3a8b5b7c74"
     },
     {
@@ -1099,7 +1099,7 @@
       "scope": "CUDA intentional wrong-gradient negative control in separate process | UTC 2026-10-30T12:23:48.687713+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Fault control",
       "read_first": "Locate “float64_gradcheck=FAIL expected_negative_control=true” in the output. Compare both input gradients to the reference.",
-      "book_page": 229,
+      "book_page": 230,
       "printed_sha256": "8a698a2e3d29aced0de37bfea747281758bc38bd4698829706d6cf31a85c034e"
     },
     {
@@ -1109,7 +1109,7 @@
       "scope": "CUDA correct derivative and current-stream regression | UTC 2026-10-30T12:23:55.500368+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “forward_and_opcheck shapes=3 PASS” in the output. Compare both input gradients to the reference.",
-      "book_page": 229,
+      "book_page": 230,
       "printed_sha256": "657c03137b8cc43f1355c7930239a532ca13c38d7c0ebaca86395e3a8b5b7c74"
     },
     {
@@ -1119,7 +1119,7 @@
       "scope": "CUDA float64 teaching transformer numerical validation | UTC 2026-10-30T12:24:01.442285+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “device=cuda dtype=float64 full_incremental_reference=PASS” in the output. Compare per-prefix outputs and intermediate tensors using the same weights and inputs.",
-      "book_page": 233,
+      "book_page": 234,
       "printed_sha256": "41931a46d3905d13ce6c1d5936ac32147cf0e7d6d6f82f611ea4ee84e1407781"
     },
     {
@@ -1129,7 +1129,7 @@
       "scope": "Intentional CPU teaching defect and repaired-prefix comparison | UTC 2026-10-30T12:24:11.182797+00:00",
       "label": "LAPTOP  ·  Host / tool  ·  Recorded operation",
       "read_first": "Locate “wrong_position_exposed=true every_repaired_prefix_matches=true” in the output. Identify the earliest mismatching query and prefix.",
-      "book_page": 235,
+      "book_page": 236,
       "printed_sha256": "aa3a82e6e897681ef013d288e876ae9d60abc58dfd48192463e688db555d49fe"
     },
     {
@@ -1139,7 +1139,7 @@
       "scope": "CUDA warp collectives with eight exact CPU comparisons | UTC 2026-10-30T12:24:25.098262+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “warp cases=8 full_participation=true verified=true”. Record the warp-reduction result for each tested boundary.",
-      "book_page": 238,
+      "book_page": 239,
       "printed_sha256": "d26a937a6ad622208689f99518bc2f37a3f1f3d835b5b7d8217957cfe7fbd4ad"
     },
     {
@@ -1149,7 +1149,7 @@
       "scope": "CUDA FP16 WMMA and cuBLAS vs every CPU reference value | UTC 2026-10-30T12:25:50.029791+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “wmma_vs_cpu=true cublas_vs_cpu=true shape=16x16x16”. The 16×16×16 WMMA and cuBLAS runs agreed with their CPU references.",
-      "book_page": 240,
+      "book_page": 241,
       "printed_sha256": "4beeefc62198a11d733444e788be5eac0de605d028f6278e3ea3b4691b27584c"
     },
     {
@@ -1159,7 +1159,7 @@
       "scope": "512-row CUDA GEMM, checked against cuBLAS with heuristic status logging | UTC 2026-10-30T13:52:59.811347+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “cutlass_cublas_verification=NOT_ESTABLISHED” in the output. Compare the tile result with both CPU and cuBLAS references under the stated precision.",
-      "book_page": 240,
+      "book_page": 241,
       "printed_sha256": "dcd6d42e3d25590c38ddd3a9678686221604d4fb87a1ae7eee5f4969636c5eef"
     },
     {
@@ -1169,7 +1169,7 @@
       "scope": "Bounded CUDA streams/events/graphs computation | UTC 2026-10-30T13:02:21.458620+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “double_buffer chunks=6 verified=true overlap=inspect_timeline”. First check both buffers against their references.",
-      "book_page": 244,
+      "book_page": 245,
       "printed_sha256": "28cc63442ae58986fe8b49b0515ede03be0ba60b26c0922cd647b5a6b7731209"
     },
     {
@@ -1179,7 +1179,7 @@
       "scope": "Bounded CUDA streams/events/graphs computation | UTC 2026-10-30T13:02:22.132203+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “controlled_stale_read=EXPOSED”. Show that the repaired dependency produces the expected value, then look for the producer and consumer on the device timeline.",
-      "book_page": 246,
+      "book_page": 247,
       "printed_sha256": "220746c5f8f4a62c21e44b323461803790e7487dcc85b9231c4b578c12aa0b1d"
     },
     {
@@ -1189,7 +1189,7 @@
       "scope": "Bounded CUDA streams/events/graphs computation | UTC 2026-10-30T13:02:22.701854+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “repair=PASS” in the output. Preserve the controlled stale read.",
-      "book_page": 246,
+      "book_page": 247,
       "printed_sha256": "653456d1ed9dfeb66a2325b43f33b9e4a2668661fbafe824c0291138717edf0d"
     },
     {
@@ -1199,7 +1199,7 @@
       "scope": "Bounded CUDA streams/events/graphs computation | UTC 2026-10-30T13:02:23.272221+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "For 100 ordinary submissions, the recorded device interval is about 3.30 ms and host submission takes about 621 μs. Compare the two intervals separately with graph execution.",
-      "book_page": 248,
+      "book_page": 249,
       "printed_sha256": "733ca07c96747a038512482d919e466d1be312ab0f4a996e575588168e55072f"
     },
     {
@@ -1209,7 +1209,7 @@
       "scope": "Intentional CPU signed INT4 teaching representation | UTC 2026-10-30T13:02:29.896033+00:00",
       "label": "LAPTOP  ·  Host / tool  ·  Recorded operation",
       "read_first": "Locate “evidence=CPU reference; no GPU execution” in the output. Work one pair through the code and packing order.",
-      "book_page": 250,
+      "book_page": 251,
       "printed_sha256": "112aff8ff3372db845011fdeb352756294d90edd750ee027616a62631eade9ae"
     },
     {
@@ -1219,7 +1219,7 @@
       "scope": "CUDA teaching INT4 packing/dequantization with byte and value oracle | UTC 2026-10-30T13:02:29.930155+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “int4 lengths=0..9 packed_bytes_and_values=true verified=true”. Inspect the packed bytes, unpack the values and calculate reconstruction error against the source values.",
-      "book_page": 252,
+      "book_page": 253,
       "printed_sha256": "bd25a37cf8fc237fb381fa01fa2df532a554214d7e022f12c42c8e087c3aa7f2"
     },
     {
@@ -1229,7 +1229,7 @@
       "scope": "CUDA training-state audit with intentional negative controls | UTC 2026-10-30T13:02:31.053682+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Fault control",
       "read_first": "Locate “missing_trainable_gradient_detected=0.weight repair=PASS” in the output. Match intended parameter names to optimizer membership and gradients.",
-      "book_page": 255,
+      "book_page": 256,
       "printed_sha256": "e6fe9ed35056c54cb25afa9bc96aec5eb7f58b12cbfa345efee41e6ba5fc8b15"
     },
     {
@@ -1239,7 +1239,7 @@
       "scope": "CUDA training-state resume with intentional negative controls | UTC 2026-10-30T13:02:37.649933+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Fault control",
       "read_first": "Locate “resumed_next_loss_and_parameters PASS” in the output. Compare the next loss and parameters with uninterrupted training.",
-      "book_page": 257,
+      "book_page": 258,
       "printed_sha256": "99bc439eb80ddd7539e4b6c534ef67b7a716131cf38c52b0c2a46543ef492c5d"
     },
     {
@@ -1249,7 +1249,7 @@
       "scope": "Intentional CPU diagnostic teaching fixtures; not historical GPU incidents | UTC 2026-10-30T13:02:40.881406+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Teaching input",
       "read_first": "Locate “stride: fault_exposed=true check=PASS” in the output. For each case, name the boundary, the discriminating observation and the check after repair.",
-      "book_page": 260,
+      "book_page": 261,
       "printed_sha256": "3e34aa5d76f0742ef43a3053056778606f6d5d29044c457493fddb5f406492f5"
     },
     {
@@ -1259,7 +1259,7 @@
       "scope": "Intentional deterministic controller replay with synthetic evidence; no model planning | UTC 2026-10-30T13:02:40.915757+00:00",
       "label": "LAPTOP  ·  See recorded scope  ·  Recorded operation",
       "read_first": "Locate “status=hypothesis human_review_required=true” in the output. Check action receipts, quoted values and explicit missing observations.",
-      "book_page": 266,
+      "book_page": 267,
       "printed_sha256": "fb55ef530750786f53f46702ee1aa9ca8e2c4094a75a68c16d72b30c7f3aac6b"
     },
     {
@@ -1269,7 +1269,7 @@
       "scope": "Intentional CPU controller missing replay; no external action tools | UTC 2026-10-30T13:02:40.983167+00:00",
       "label": "LAPTOP  ·  Host / tool  ·  Recorded operation",
       "read_first": "Find “status=insufficient_evidence human_review_required=true”. Score the missing-evidence replay and live planner separately.",
-      "book_page": 268,
+      "book_page": 269,
       "printed_sha256": "3e8089725b338347876f4f2538e4a6fc629ff1c681c6e336809ac27cf7f30a94"
     },
     {
@@ -1279,7 +1279,7 @@
       "scope": "Intentional CPU controller denied replay; no external action tools | UTC 2026-10-30T13:02:41.049269+00:00",
       "label": "LAPTOP  ·  Host / tool  ·  Fault control",
       "read_first": "stdout reports “saved=runs/advanced/009-agent-denied.json”. Compare this with exit 2 and the exercise criterion.",
-      "book_page": 268,
+      "book_page": 269,
       "printed_sha256": "6a7f3d390b55aa3fe8fbd0d60bc2612f00b5d4140f893deec992153c6f6971e6"
     },
     {
@@ -1289,7 +1289,7 @@
       "scope": "Existing Q4 GPU planner with deterministic read-only evidence controller | UTC 2026-10-30T13:02:56.900635+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "stdout reports “status=DENIED: invalid status human_review_required=true”. Compare this with exit 2 and the exercise criterion.",
-      "book_page": 269,
+      "book_page": 270,
       "printed_sha256": "f02482da44d67449f458003f01fe36a644f420c1f182f20fa0eb31619c3fd55a"
     },
     {
@@ -1299,7 +1299,7 @@
       "scope": "CUDA 32-element instruction numerical check | UTC 2026-10-30T13:03:00.592486+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “instruction result_first=1 result_last=63 verified=true”. Compare the debug and optimized binaries against the numerical oracle.",
-      "book_page": 272,
+      "book_page": 273,
       "printed_sha256": "da767ba3184dcee64ed8abca0855f5fdf405f7883b87c4ef44c8820835672caf"
     },
     {
@@ -1309,7 +1309,7 @@
       "scope": "CUDA 32-element instruction numerical check | UTC 2026-10-30T13:03:01.263058+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “instruction result_first=1 result_last=63 verified=true” in the output. Bind the binary, PTX, SASS and debugger focus to the same build.",
-      "book_page": 272,
+      "book_page": 273,
       "printed_sha256": "990a33cf3aef216e7da139e2ae1b94638fe27149712ff7c6b26fbe95c4e6d3f3"
     },
     {
@@ -1319,7 +1319,7 @@
       "scope": "CPU | UTC 2026-10-30T13:03:02.504358+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The PTX listing was compiled with -O2 for compute_121. Match it to the binary and disassembly before identifying a stopped instruction.",
-      "book_page": 273,
+      "book_page": 274,
       "printed_sha256": "9bf2e505ce2a90da3a851bf77ee4ac9a37d1b131840769201a95142b45cdb34e"
     },
     {
@@ -1329,7 +1329,7 @@
       "scope": "CPU prerequisite planning; original book pins tested against existing qualified environment; no installation | UTC 2026-10-30T12:30:57.231969+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr reports “ERROR: Cannot install tokenizers==0.22.1 because these package versions have conflicting dependencies.”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 278,
+      "book_page": 279,
       "printed_sha256": "82b32f7cc62638c579d48f335a272d35f179b56441800505206bdbe58db74bb6"
     },
     {
@@ -1339,7 +1339,7 @@
       "scope": "CPU | UTC 2026-10-30T12:33:05.921710+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The package check reports no broken requirements. Encoder loading and a successful CUDA computation have their own records.",
-      "book_page": 279,
+      "book_page": 280,
       "printed_sha256": "4c2e7b223b4d75cd44564a1534ad015f36b61fd68b0308007c27f60417e3ee41"
     },
     {
@@ -1349,7 +1349,7 @@
       "scope": "Small CUDA numerical execution after new package installation | UTC 2026-10-30T12:38:21.231310+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “machine=aarch64” in the output. Record the model revision and environment identities, run the probe and preserve any failed pin resolution.",
-      "book_page": 279,
+      "book_page": 280,
       "printed_sha256": "18cbbe04ace4ddb82754ca09d62b2945b393ce4c1edef5fcd017fc0c5aae5008"
     },
     {
@@ -1359,7 +1359,7 @@
       "scope": "CPU masked-pooling numerical control | UTC 2026-10-30T12:38:35.777450+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Masked pooling gives [1, 2]. Including the padded row changes the mean to approximately [34, 34.67].",
-      "book_page": 282,
+      "book_page": 283,
       "printed_sha256": "e71500aa1bf7b87f2ee81751ff116da7f3836217e8f596ec272872c33b707ced"
     },
     {
@@ -1369,7 +1369,7 @@
       "scope": "CPU original teaching corpus regeneration and leakage validation | UTC 2026-10-30T12:38:36.014181+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stdout records “wrote embeddings/data”.",
-      "book_page": 284,
+      "book_page": 285,
       "printed_sha256": "05e39b3f3c05a9256057ebb5beefbba082c7fd270c59bffabeff51c85468e556"
     },
     {
@@ -1379,7 +1379,7 @@
       "scope": "CPU real pinned MiniLM encoding and original-space retrieval evaluation; concurrent CPU build, not throughput benchmark | UTC 2026-10-30T12:38:36.081523+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stdout records “saved embeddings/runs/009-base-cpu”.",
-      "book_page": 286,
+      "book_page": 287,
       "printed_sha256": "664990a5e45cadc15786641c2b111b5b4ec06dce4163b8bf3917e1c56e1df72e"
     },
     {
@@ -1389,7 +1389,7 @@
       "scope": "CPU PCA, t-SNE and UMAP on new sentence vectors; labels only used for drawing | UTC 2026-10-30T12:38:40.326041+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “pca_variance=0.1592” in the output. Read explained variance and compare a plotted neighbor with its cosine and rank in the original vector space.",
-      "book_page": 289,
+      "book_page": 290,
       "printed_sha256": "515806624a2ea86ef7d277cde7a894bcff5c942f45c7cfdc0394fed8a5a2ea24"
     },
     {
@@ -1399,7 +1399,7 @@
       "scope": "CPU training-only projection transform verification | UTC 2026-10-30T12:38:48.676429+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Measurement or check",
       "read_first": "PCA and UMAP both return 18 held-out points in two dimensions. The selected t-SNE implementation offers no matching transform.",
-      "book_page": 291,
+      "book_page": 292,
       "printed_sha256": "dd415f7a531a7029d3e85fd637b561aad8fb543bcf16b30412b4d57e170c1635"
     },
     {
@@ -1409,7 +1409,7 @@
       "scope": "CPU map sensitivity check on unchanged original vectors | UTC 2026-10-30T12:38:48.798311+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “pca_variance=0.1592” in the output. Compare the parameter reports and row IDs.",
-      "book_page": 296,
+      "book_page": 297,
       "printed_sha256": "f4d5b0d22839edebadad3cf11a86292af8441748771882d7879f62c6406ec781"
     },
     {
@@ -1419,7 +1419,7 @@
       "scope": "CPU map sensitivity check on unchanged original vectors | UTC 2026-10-30T12:38:56.796280+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “pca_variance=0.1592” in the output. Compare the parameter reports and row IDs.",
-      "book_page": 297,
+      "book_page": 298,
       "printed_sha256": "cdc88d6dd40fcb9de29378073663c78e6d1a5cd361b824ec79db709634b544fe"
     },
     {
@@ -1429,7 +1429,7 @@
       "scope": "CPU new WordPiece and from-scratch BERT training; local run, not supplied historical checkpoint | UTC 2026-10-30T12:41:55.652098+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “initial_dev {\"loss\": 6.24280858039856, \"masked_accuracy\": 0.0, \"targets\": 48}” in the output. Inspect training-only vocabulary, fixed validation masks, selected checkpoint and reload agreement.",
-      "book_page": 300,
+      "book_page": 301,
       "printed_sha256": "bb15fedfe815a6f939181fc6a4364070638b7db4ad2f655a444bb3a2e9197544"
     },
     {
@@ -1439,7 +1439,7 @@
       "scope": "CPU newly trained tokenizer and masked-token predictions | UTC 2026-10-30T12:42:06.030637+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --model 009-tiny-bert. These settings identify the case being compared.",
-      "book_page": 301,
+      "book_page": 302,
       "printed_sha256": "1ccf64ba7b23dc05ec799c8f3333abef59816823d254fd9a6514f69d122bede4"
     },
     {
@@ -1449,7 +1449,7 @@
       "scope": "CPU invalid mask-count negative control | UTC 2026-10-30T12:42:09.362977+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Fault control",
       "read_first": "stderr reports “ValueError: provide exactly one [MASK]”. Compare this with exit 1 and the exercise criterion.",
-      "book_page": 302,
+      "book_page": 303,
       "printed_sha256": "64823c4b959d01b9e91b81b34d3b992ee37d2a6c983b92409ac7abe005145885"
     },
     {
@@ -1459,7 +1459,7 @@
       "scope": "CPU continued MLM with same tokenizer and explicit initial-model selection eligibility | UTC 2026-10-30T12:42:15.977305+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “initial_dev {\"loss\": 6.19138232866923, \"masked_accuracy\": 0.020833333333333332, \"targets\": 48}” in the output. Reload the saved tokenizer and model before updating.",
-      "book_page": 304,
+      "book_page": 305,
       "printed_sha256": "225d2f329f7d2be328a8b1f52519b3b88b59d0b8e51e2a9de25a35cf8e48c961"
     },
     {
@@ -1469,7 +1469,7 @@
       "scope": "CPU newly trained BERT mean-pooling retrieval baseline | UTC 2026-10-30T12:42:21.163042+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stdout records “saved embeddings/runs/009-custom-before”.",
-      "book_page": 307,
+      "book_page": 308,
       "printed_sha256": "d8e4bedf803dccfec067d743e3e690bbfa5176bb0f7dc29d95ac50dd21a35af8"
     },
     {
@@ -1479,7 +1479,7 @@
       "scope": "CPU custom sentence-encoder contrastive training | UTC 2026-10-30T12:42:25.093275+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Read the development score at each epoch, then compare it with the before and after retrieval runs.",
-      "book_page": 307,
+      "book_page": 308,
       "printed_sha256": "d3f49b6cd40e501fb2f50f6d89a3555768758abf22d907a430113f647310f9e7"
     },
     {
@@ -1489,7 +1489,7 @@
       "scope": "CPU selected custom sentence-encoder retrieval evaluation | UTC 2026-10-30T12:42:30.128262+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Model workload",
       "read_first": "stdout records “saved embeddings/runs/009-custom-after”.",
-      "book_page": 308,
+      "book_page": 309,
       "printed_sha256": "b6326c9293e771fbbeb100d62a224aaaf3ba6765697c94b5c6e35671d44304a2"
     },
     {
@@ -1499,7 +1499,7 @@
       "scope": "CPU MiniLM contrastive training | UTC 2026-10-30T12:42:33.610235+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Compare development and held-out MRR. The selected checkpoint improved development MRR while the test score fell.",
-      "book_page": 311,
+      "book_page": 312,
       "printed_sha256": "65a2457ed57121819cfdf916656770ea8460ce55b8698dc91f4d4efc03a1263e"
     },
     {
@@ -1509,7 +1509,7 @@
       "scope": "CPU MiniLM contrastive intentional corrupted-pair control | UTC 2026-10-30T12:42:47.594105+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Fault control",
       "read_first": "Compare the first-epoch loss with the correctly paired run in 087.01. The six-query test score alone does not expose the corrupted pairs.",
-      "book_page": 314,
+      "book_page": 315,
       "printed_sha256": "c71d0e2f820e30e2cba36c15b6df771ab26a6deaa94d7874ba254721a36b5b42"
     },
     {
@@ -1519,7 +1519,7 @@
       "scope": "CPU finite/variance/cosine diagnostics on baseline vectors | UTC 2026-10-30T12:43:02.078709+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out diagnosis.json. These settings identify the case being compared.",
-      "book_page": 317,
+      "book_page": 318,
       "printed_sha256": "f8b3ff2f288360b789a0936ff2dd4d32a3c465d82c8243dcf542c0997c59a968"
     },
     {
@@ -1529,7 +1529,7 @@
       "scope": "CPU query against newly built bound index | UTC 2026-10-30T12:43:05.835193+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Measurement or check",
       "read_first": "In the command, locate --device cpu, --model minilm. These settings identify the case being compared.",
-      "book_page": 318,
+      "book_page": 319,
       "printed_sha256": "d43ab4f62fbdf43adffeec10aa42049e538b7b831fb0019f25dc1239bf589e06"
     },
     {
@@ -1539,7 +1539,7 @@
       "scope": "CUDA baseline encoding, MiniLM pair training, selected-model encoding and CPU maps in same qualified environment | UTC 2026-10-30T12:58:12.622810+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The wrapper directs you to the embedding reports. Read their device, held-out metrics and trace coverage before grading the pipeline.",
-      "book_page": 320,
+      "book_page": 321,
       "printed_sha256": "b74b7b7f0569262f299747ea6992f3f8d77906bbfe031721c2b6144940017025"
     },
     {
@@ -1549,7 +1549,7 @@
       "scope": "CPU portable collector tests; intentional malformed input and timeout controls | UTC 2026-10-30T12:54:30.685428+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The portable collector suite reports 21 passing tests on stderr. Check how the control represents an unavailable field.",
-      "book_page": 324,
+      "book_page": 326,
       "printed_sha256": "d55e9284454e6d9acc942332d3a53ea3ad814014b465bc9b95e2db16660e5e79"
     },
     {
@@ -1559,7 +1559,7 @@
       "scope": "Intentional simulation: all GPU values invented | UTC 2026-10-30T12:54:31.807393+00:00",
       "label": "LAPTOP  ·  See recorded scope  ·  Teaching input",
       "read_first": "Locate “samples=43 phases=6” in the output. Trace one CSV row to each plotted series.",
-      "book_page": 328,
+      "book_page": 329,
       "printed_sha256": "d7ad9b038bd760f7ee997cdb5c48ebfc6d278fd6855fb37b19b685eb55480628"
     },
     {
@@ -1569,7 +1569,7 @@
       "scope": "CPU host phases and guest-memory observations; GPU disabled | UTC 2026-10-30T12:54:32.660154+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “saved=runs/metrics/009-cpu” in the output. Match the executed host markers to their timestamps and leave the disabled GPU fields explicitly unavailable.",
-      "book_page": 332,
+      "book_page": 333,
       "printed_sha256": "bef68d779de9d0f47daf4306825bbe1057f132103f6b19e88f8e89f351b66f62"
     },
     {
@@ -1579,7 +1579,7 @@
       "scope": "Host phases; GPU workloads only where declared in plan; telemetry values only status=ok | UTC 2026-10-30T13:06:31.849865+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “gpu_values=inspect field status and raw queries” in the output. Read raw management replies and successive timestamps.",
-      "book_page": 334,
+      "book_page": 335,
       "printed_sha256": "de7b5cd14664fa27d78990435169742f9c1c1f10dfd99977bcd9cb72b404bc82"
     },
     {
@@ -1589,7 +1589,7 @@
       "scope": "CPU | UTC 2026-10-30T13:20:35.968105+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “median_seconds=2.661” in the output. Match request start/end markers to sample timestamps and server state.",
-      "book_page": 336,
+      "book_page": 337,
       "printed_sha256": "c748063f1bf52efa4d294bbd3c8a0feffe4d7d2fabc6ae5e0ed506a2f33d28f2"
     },
     {
@@ -1599,7 +1599,7 @@
       "scope": "CPU | UTC 2026-10-30T13:21:04.280022+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “median_seconds=5.271” in the output. Match request start/end markers to sample timestamps and server state.",
-      "book_page": 336,
+      "book_page": 337,
       "printed_sha256": "0e5bba7af86bea75d640be376d986a5420f121b359d4f131f9b43724abecc1ef"
     },
     {
@@ -1609,7 +1609,7 @@
       "scope": "Host phases; GPU workloads only where declared in plan; telemetry values only status=ok | UTC 2026-10-30T13:06:46.786447+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “gpu_values=inspect field status and raw queries” in the output. Keep separate episode records and compare process allocator peaks with their corresponding device-wide samples.",
-      "book_page": 340,
+      "book_page": 341,
       "printed_sha256": "3dec977f6c31459397309da3aa73537c17df9b51db181031abf7831c8602eae7"
     },
     {
@@ -1619,7 +1619,7 @@
       "scope": "Host phases; GPU workloads only where declared in plan; telemetry values only status=ok | UTC 2026-10-30T13:07:07.967824+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “gpu_values=inspect field status and raw queries” in the output. Keep separate episode records and compare process allocator peaks with their corresponding device-wide samples.",
-      "book_page": 340,
+      "book_page": 341,
       "printed_sha256": "409ebfcf2ea27880479d6327c7cd84406aca97afb4e848d5ea1c5f2db361207c"
     },
     {
@@ -1629,7 +1629,7 @@
       "scope": "CPU | UTC 2026-10-30T13:18:26.678625+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The idle-control median moves from about 5.060 s to 5.061 s, a reported change of 0.014%. The request phase changes by −1.299%. These are host-command durations.",
-      "book_page": 343,
+      "book_page": 344,
       "printed_sha256": "0d6e0738157b358de49c2989439c58456c76ef814ee24b0206ece4ef0b2d6fbf"
     },
     {
@@ -1639,7 +1639,7 @@
       "scope": "Device-wide post-server-shutdown observation; separate timestamped query | UTC 2026-10-30T13:21:04.790803+00:00",
       "label": "LAPTOP  ·  Host / tool  ·  Measurement or check",
       "read_first": "After the stop, the device-wide query reports 4297 MiB used and 1% utilization. These values alone cannot identify an owning process.",
-      "book_page": 345,
+      "book_page": 346,
       "printed_sha256": "21ec2ea98489ee4e835ef6aec60c0672eff185f1a7dd7f7522fd1e4cc56597c2"
     },
     {
@@ -1649,7 +1649,7 @@
       "scope": "CUDA bounded precision path; masked reference control | UTC 2026-10-30T12:59:01.599342+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “first_failure=none” in the output. Compare the named stages under their own tolerances.",
-      "book_page": 348,
+      "book_page": 349,
       "printed_sha256": "8b246c78255b487420500607ed32b85f8731144dad5ab74183756c7e03b4d44a"
     },
     {
@@ -1659,7 +1659,7 @@
       "scope": "CUDA bounded precision path; intentional pooling defect | UTC 2026-10-30T12:59:08.498510+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “first_failure=pooled” in the output. Identify the first failing pooled value under the injected mask fault.",
-      "book_page": 349,
+      "book_page": 350,
       "printed_sha256": "cf70b2ff85555de24d061bc031e93c94f6afeaa93a8604e3a27b707140539ee9"
     },
     {
@@ -1669,7 +1669,7 @@
       "scope": "CUDA restored masking; original source retained | UTC 2026-10-30T12:59:11.981724+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “first_failure=none” in the output. Identify the first failing pooled value under the injected mask fault.",
-      "book_page": 350,
+      "book_page": 351,
       "printed_sha256": "405b7996b2661d1e49f54ae398d1a3eb69f71daba280852a2be9b47fff3c6ef9"
     },
     {
@@ -1679,7 +1679,7 @@
       "scope": "CUDA padding, zero-mask, near-zero and nonfinite controls; no timing claim | UTC 2026-10-30T12:59:14.209756+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “torch.float32_long_padding_False PASSED” in the output. Identify the first failing pooled value under the injected mask fault.",
-      "book_page": 350,
+      "book_page": 351,
       "printed_sha256": "96e83ffdab397176ba39318488b1ba71b883373e68486eb34092f5be4bed78a7"
     },
     {
@@ -1689,7 +1689,7 @@
       "scope": "CPU | UTC 2026-10-30T16:04:00.505456+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "captured_graphs=1 belongs to the FX eager backend in this dynamic-shape control.",
-      "book_page": 354,
+      "book_page": 355,
       "printed_sha256": "748e7e191d1acb5fcf40e46f84e99180bc7c16778e3f104f8979fb5664d5fdfd"
     },
     {
@@ -1699,7 +1699,7 @@
       "scope": "CPU | UTC 2026-10-30T16:04:04.828621+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “torch=2.14.1+cu130 device=cpu” in the output. Locate the break in the compiler record, inspect the affected graph and recheck output after the repair.",
-      "book_page": 357,
+      "book_page": 358,
       "printed_sha256": "95f3bbe7b1e87cfaa59749ca0f5d824286ca4091a0b274dc95440cd4fb551605"
     },
     {
@@ -1709,7 +1709,7 @@
       "scope": "CPU | UTC 2026-10-30T16:04:06.958380+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr includes “raw_cnt = _raw_device_count_nvml()”.",
-      "book_page": 357,
+      "book_page": 358,
       "printed_sha256": "3eec3b4b46a963c1446dd5c90868076b242521cd96677618b49369b403e4bf03"
     },
     {
@@ -1719,7 +1719,7 @@
       "scope": "CPU | UTC 2026-10-30T16:04:09.038912+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "stderr includes “raw_cnt = _raw_device_count_nvml()”.",
-      "book_page": 357,
+      "book_page": 358,
       "printed_sha256": "275678a94e0386915a2dc8e2610938846f6f7c59aaaeba717db183e84bc6e8c3"
     },
     {
@@ -1729,7 +1729,7 @@
       "scope": "CPU | UTC 2026-10-30T16:06:31.402638+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The process-wide scalar-capture flag is False. In this version, fullgraph=True allows scalar outputs. The explicit graph_break explains the rejection in the first trial.",
-      "book_page": 358,
+      "book_page": 359,
       "printed_sha256": "3e622dd5fa9b43af62218a92576f2f92da13770bca5289721dc49115a567a4c9"
     },
     {
@@ -1739,7 +1739,7 @@
       "scope": "GPU plus controlled host sleeps | UTC 2026-10-30T16:06:33.191687+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “mode=ready batches=12 records=48 queue_capacity=2” in the output. Compare input-ready and consumer-completion times for identical records with and without the controlled supply delay.",
-      "book_page": 360,
+      "book_page": 361,
       "printed_sha256": "b65fb0f11029570870a3ba9654082b7ba5fc629dbff16c8e5fa36041306d346d"
     },
     {
@@ -1749,7 +1749,7 @@
       "scope": "GPU plus controlled host sleeps | UTC 2026-10-30T16:06:35.795561+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The delayed CUDA trial processed 48 records. The consumer also includes 10 ms of host work per batch.",
-      "book_page": 360,
+      "book_page": 361,
       "printed_sha256": "cfbd7aa3e6b50bcd70476e9cb88fac118764b27519b605b554d7e40a09d4746b"
     },
     {
@@ -1759,7 +1759,7 @@
       "scope": "GPU plus controlled host sleeps | UTC 2026-10-30T16:06:38.435642+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "In this first delayed trial, waiting took about 250 ms. Compare its pair in 104.02 before combining all three pairs.",
-      "book_page": 362,
+      "book_page": 363,
       "printed_sha256": "67cdbb5ad6616406cbbdcc652e029afdc11281f1bc1c948ec397bdcdc6570458"
     },
     {
@@ -1769,7 +1769,7 @@
       "scope": "GPU plus controlled host sleeps | UTC 2026-10-30T16:06:41.177643+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "For the paired prefetch trial, waiting fell to about 69 ms over the same 48 records. Compare total time as well as waiting.",
-      "book_page": 362,
+      "book_page": 363,
       "printed_sha256": "056b6fd41fd6dca4783b101ed04e8899336b5ef2f7b3d73b6f09a20fad9963cb"
     },
     {
@@ -1779,7 +1779,7 @@
       "scope": "CPU | UTC 2026-10-30T16:06:54.166875+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 012-104-loader-retry.json. These settings identify the case being compared.",
-      "book_page": 363,
+      "book_page": 364,
       "printed_sha256": "d0bbe2a1016b5d6c5a1c745f901f23eafb4adb69139e2a2ecf34b05a85b1482c"
     },
     {
@@ -1789,7 +1789,7 @@
       "scope": "CPU | UTC 2026-10-30T16:04:52.324348+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 012-105-roofline. These settings identify the case being compared.",
-      "book_page": 366,
+      "book_page": 367,
       "printed_sha256": "0f20cda4e7096c63d49c7e28f20ba089c22dd61187294057ee11902c311ae9fc"
     },
     {
@@ -1799,7 +1799,7 @@
       "scope": "GPU | UTC 2026-10-30T16:06:58.111968+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Find “mode=add n=1048576 block=256 verified=true”. The native addition and matrix multiplication matched their numerical references.",
-      "book_page": 368,
+      "book_page": 369,
       "printed_sha256": "977d9aeb7cb350e57f49a6869dcbc2da9f46465236f33e17c937ae4bda311e29"
     },
     {
@@ -1809,7 +1809,7 @@
       "scope": "GPU counter qualification | UTC 2026-10-30T16:07:00.671508+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “mode=add n=1048576 block=256 verified=true” in the output. Require the intended kernel's measured counters and metric units.",
-      "book_page": 369,
+      "book_page": 370,
       "printed_sha256": "59e5a843ee3fde1193079a52663c41a8b959af8596b87af2742bdee3dae18eb9"
     },
     {
@@ -1819,7 +1819,7 @@
       "scope": "CPU | UTC 2026-10-30T16:04:58.859691+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “torch=2.14.1+cu130 device=cpu” in the output. Inspect the owner collection before and after clearing it.",
-      "book_page": 371,
+      "book_page": 372,
       "printed_sha256": "ac4ae10a8119574729d82874ff7653c7d6e8a8628271909650a118bf96d494ff"
     },
     {
@@ -1829,7 +1829,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:00.185549+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “torch=2.14.1+cu130 device=cpu” in the output. Inspect the owner collection before and after clearing it.",
-      "book_page": 371,
+      "book_page": 372,
       "printed_sha256": "c3d89851e4696365af6433014880e8b44a08eb0a1b1971a25d6059c3fd976c5d"
     },
     {
@@ -1839,7 +1839,7 @@
       "scope": "GPU | UTC 2026-10-30T16:07:05.269325+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Retaining references grows allocated storage to 2 MiB by step eight. Clearing the list frees the live allocation before the reserve falls.",
-      "book_page": 373,
+      "book_page": 374,
       "printed_sha256": "0474db2f984852f1b5faf63226ce48d560e832342f8f20493b988571b8b8c731"
     },
     {
@@ -1849,7 +1849,7 @@
       "scope": "GPU | UTC 2026-10-30T16:07:08.711921+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Allocated storage stays at zero at the recorded checkpoints while 2 MiB remains reserved until empty_cache.",
-      "book_page": 373,
+      "book_page": 374,
       "printed_sha256": "391f0657a06187c08dd78a20945e67cbdac3ff66789e8a11afb494265f839f91"
     },
     {
@@ -1859,7 +1859,7 @@
       "scope": "GPU | UTC 2026-10-30T16:07:11.847235+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "With varying request sizes the sampled live-byte count returns to zero. Compare the reserved counter with the retained-reference trial.",
-      "book_page": 374,
+      "book_page": 375,
       "printed_sha256": "3a8b08b42f5f60311aa4fe2b54a2e4f9f5d3f4d897af0a8249693a9c193724ad"
     },
     {
@@ -1869,7 +1869,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:05.064721+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Read timed_out=True together with stack_has_wait=True. Open stacks.txt to locate the wait.",
-      "book_page": 376,
+      "book_page": 377,
       "printed_sha256": "ed20f2310fa356264d6c06c57d913356ceb0b0f141205f6744720b4e5de6004d"
     },
     {
@@ -1879,7 +1879,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:06.650729+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “stage=loaded” in the output. Require the previously missing completion event and a clean child exit.",
-      "book_page": 377,
+      "book_page": 378,
       "printed_sha256": "473ae8be4d3240b21f07f66e090acb9079cd2a1121c0a9efe2fb21d0f662c089"
     },
     {
@@ -1889,7 +1889,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:06.769607+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 012-110-deadlines.json. These settings identify the case being compared.",
-      "book_page": 378,
+      "book_page": 379,
       "printed_sha256": "82351d04e08ef63c529e0bba809808a8f54a19d285bf47f2c2e0e18c761f4adf"
     },
     {
@@ -1899,7 +1899,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:07.998996+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find “fixture=True mode=normal spans=6”. Retain the whole request output directory.",
-      "book_page": 380,
+      "book_page": 381,
       "printed_sha256": "c34b2accfcf8dde8db531845fc67b6b370b128aa9672cfb21dcdcf7519c95ff2"
     },
     {
@@ -1909,7 +1909,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:08.625151+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “fixture=True mode=slow spans=6” in the output. Compare the retrieval span's duration with retry count and child spans.",
-      "book_page": 381,
+      "book_page": 382,
       "printed_sha256": "ef3530c4cce4b9dbb939aa756b8808f7087c3ecb22a162d8d4fe6101e8a4a33c"
     },
     {
@@ -1919,7 +1919,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:09.256093+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “fixture=True mode=retry spans=7” in the output. Compare the retrieval span's duration with retry count and child spans.",
-      "book_page": 382,
+      "book_page": 383,
       "printed_sha256": "85bcef3a3bfd4188320e0c9d2ac67ef15ee7ec8cbcb740a4c1ce6c238fa679f0"
     },
     {
@@ -1929,7 +1929,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:09.784157+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “fault=retrieval pass=False repairs=retrieval” in the output. Substitute one recorded stage at a time.",
-      "book_page": 385,
+      "book_page": 386,
       "printed_sha256": "b4103ca60e1efd6dd8e9dacabd5fe638299883967836218295fa58221dfc4795"
     },
     {
@@ -1939,7 +1939,7 @@
       "scope": "CPU | UTC 2026-10-30T16:05:09.851971+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "In the command, locate --out 012-113-validator.json. These settings identify the case being compared.",
-      "book_page": 385,
+      "book_page": 386,
       "printed_sha256": "8eaf8f386499d65f7dfd81ff0685cb46b79461e25a8d3f1e0e3e35a69dfa64a6"
     },
     {
@@ -1949,7 +1949,7 @@
       "scope": "GPU learned embedding and generation; CPU comparisons | UTC 2026-10-30T16:07:14.979397+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The base retriever has recall@1 of 0.75. Follow the per-query rank changes before attributing a generated answer to tuning.",
-      "book_page": 386,
+      "book_page": 387,
       "printed_sha256": "781b9aec85f0d651ed2ecda41f1e12913ab304ebd1c6a6861d011764db26cc88"
     },
     {
@@ -1959,7 +1959,7 @@
       "scope": "CPU | UTC 2026-10-30T16:09:56.577919+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find “initial=8 reduced=2”. A 1-minimal reproducer still triggers the oracle, and deleting any one remaining element removes that failure.",
-      "book_page": 389,
+      "book_page": 390,
       "printed_sha256": "fbb505ec6312bf30bf3660cb75cd10355afe80ce445d788602e7413c81462261"
     },
     {
@@ -1969,7 +1969,7 @@
       "scope": "CPU | UTC 2026-10-30T16:09:56.648836+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “one_minimal=True” in the output. Order the tested configurations and identify a passing/failing boundary.",
-      "book_page": 390,
+      "book_page": 391,
       "printed_sha256": "9acd945f710a1cec59973c5d62a48d4c7dc38ce873f72cd2f83bd01c5e25665d"
     },
     {
@@ -1979,7 +1979,7 @@
       "scope": "CPU | UTC 2026-10-30T16:09:56.720584+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Read each injected fault beside its detection result, then locate the unmodified control.",
-      "book_page": 392,
+      "book_page": 393,
       "printed_sha256": "f8a65ba41afed51c429da9445dad7661bc9ea740d33c8a3e4217f5aedaf25abf"
     },
     {
@@ -1989,7 +1989,7 @@
       "scope": "CPU | UTC 2026-10-30T16:09:56.791981+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The fresh diagnostic suite reports 24 passing tests. Its count applies to this invocation.",
-      "book_page": 393,
+      "book_page": 394,
       "printed_sha256": "2ea0d1ca7a68f905d336110be7336c149abebba17b023ca00393cd039d70b11a"
     },
     {
@@ -1999,7 +1999,7 @@
       "scope": "CPU | UTC 2026-10-30T16:09:58.166237+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find “patterns=12”. Read the catalog first.",
-      "book_page": 396,
+      "book_page": 397,
       "printed_sha256": "2ab64a0e1f2da7ae70b23b73ae51c429b4f31eb701932c5846a732183c28f1b1"
     },
     {
@@ -2009,7 +2009,7 @@
       "scope": "CPU | UTC 2026-10-30T16:09:58.232749+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “report=runs/012-120-diagnosis.json” in the output. Separate observation, hypothesis, discriminating test and repair.",
-      "book_page": 400,
+      "book_page": 401,
       "printed_sha256": "1e5ee448c9f07d4c91c105280fdbda06e6e9118f973736a3c930a341e8214791"
     },
     {
@@ -2019,7 +2019,7 @@
       "scope": "CPU | UTC 2026-10-30T16:09:58.267961+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Record the first different values and the final selected class on your worksheet before opening the worked answers.",
-      "book_page": 402,
+      "book_page": 403,
       "printed_sha256": "c83fc4563b45fd8f5ec77691db18479eef8d77f239aad63e9fe6224538327d00"
     },
     {
@@ -2029,7 +2029,7 @@
       "scope": "CPU | UTC 2026-10-30T16:09:58.573134+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “pattern: Silent Numerical Divergence” in the output. Compare accounts after saving yours.",
-      "book_page": 404,
+      "book_page": 405,
       "printed_sha256": "9b6911ea032e1bc69885f186ca36c5faf2ff49a5b47f246e8493f59f74cbdc7b"
     },
     {
@@ -2039,7 +2039,7 @@
       "scope": "CPU | UTC 2026-10-30T16:09:58.878642+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “python=3.14.4” in the output. Record device count and backend availability, then inspect the real process-group launch result separately.",
-      "book_page": 408,
+      "book_page": 409,
       "printed_sha256": "81add6032f8904d4db6cf9920b5c942ca453c4be506069ac21eafbb76306499f"
     },
     {
@@ -2059,7 +2059,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:05.250465+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “status=PASS” in the output. Compare sample coverage, parameters and losses with the serial reference for both worker counts.",
-      "book_page": 410,
+      "book_page": 411,
       "printed_sha256": "d22ec6d152b8becb027072ec66c14e1372b7b42d1d3715ae5a640463cb60ab0c"
     },
     {
@@ -2069,7 +2069,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:10.822338+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “status=PASS” in the output. Align per-rank host spans.",
-      "book_page": 412,
+      "book_page": 413,
       "printed_sha256": "4db7334f38b87c9121c292076d740e4bbc9743304d21e4939cd8d74f9ead8ea6"
     },
     {
@@ -2079,7 +2079,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:16.631929+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “spans=41 ranks=2” in the output. Align per-rank host spans.",
-      "book_page": 412,
+      "book_page": 413,
       "printed_sha256": "80738226215e009db20f1d9130a9e5f57b09e2f61341eee8d6236ae17fa3d211"
     },
     {
@@ -2089,7 +2089,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:17.110286+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “status=EXPECTED_FAILURE” in the output. Match exit 17, the mismatch record and the timeout to their separate injections.",
-      "book_page": 414,
+      "book_page": 415,
       "printed_sha256": "b551ca61ed54a7ce05952a3dc0502ec35282a0c6c4a745e5ebaac41e03898c71"
     },
     {
@@ -2109,7 +2109,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:23.032840+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “status=EXPECTED_FAILURE” in the output. Match exit 17, the mismatch record and the timeout to their separate injections.",
-      "book_page": 415,
+      "book_page": 416,
       "printed_sha256": "452f656135f90cfd24b5aeb5e17ae00dda373c521c1f70a891b75960707f9e02"
     },
     {
@@ -2129,7 +2129,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:41.802202+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “status=PASS” in the output. Reassemble the workers' output and gradients and compare each against the full matrix reference.",
-      "book_page": 418,
+      "book_page": 419,
       "printed_sha256": "8b554e01fe7433e2489fa77507b026028d3cc8b363bc70e1d3c8ae997144c896"
     },
     {
@@ -2139,7 +2139,7 @@
       "scope": "CPU | UTC 2026-10-30T16:10:44.689425+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Find the failed rank and its signal. Compare the distinct loopback and single-device configurations in 129.03 and 129.04.",
-      "book_page": 420,
+      "book_page": 421,
       "printed_sha256": "9dd69201c234a85bdcc03dd2f27f6e8832953e4d0bb2df2bb396434506d4668e"
     },
     {
@@ -2149,7 +2149,7 @@
       "scope": "CPU | UTC 2026-10-30T16:14:07.784468+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “FAIL: inspect stdout.txt stderr.txt launch.json” in the output. Record the outcome of each CPU, loopback and one-device launch.",
-      "book_page": 420,
+      "book_page": 421,
       "printed_sha256": "e11a6928aeab5807738b8209237405fed3aeee3a53000e413e90edc8a9bd0279"
     },
     {
@@ -2169,7 +2169,7 @@
       "scope": "GPU | UTC 2026-10-30T16:10:52.935829+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "Locate “training=PASS workers=1 global_batch=8 masked_tokens=16” in the output. Record the outcome of each CPU, loopback and one-device launch.",
-      "book_page": 421,
+      "book_page": 422,
       "printed_sha256": "7af63ce2097ab6c03c3255448444eedda99c2fe53e749d52ba394a2b8f22618a"
     },
     {
@@ -2629,7 +2629,7 @@
       "scope": "CPU | UTC 2026-10-31T10:08:59.793115+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Read administrator_enabled to determine the Windows launcher’s privilege. The published user field masks the Windows account name.",
-      "book_page": 913,
+      "book_page": 914,
       "printed_sha256": "2c0eda9650c5efa7508a58d106886eed5b76fde35afb2c5d588043738736f4a4"
     },
     {
@@ -2639,7 +2639,7 @@
       "scope": "CPU | UTC 2026-10-31T10:09:00.735004+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "This command builds the timestamp probe. A compiled executable still needs a timed run with usable activity records.",
-      "book_page": 914,
+      "book_page": 915,
       "printed_sha256": "73d3078d6396a75e1f9c0453078d901ba25e56d4e7be71b8f0b5159fd234c49a"
     },
     {
@@ -2649,7 +2649,7 @@
       "scope": "GPU through current Windows token, explicit same WSL user; comparison control | UTC 2026-10-31T10:09:03.172635+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The numerical check passed and the CUDA event measured about 1.67 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 914,
+      "book_page": 915,
       "printed_sha256": "c8ad542e1f201e4e783871d44605805f12efe43693ecb715c18a3aadc7438bd9"
     },
     {
@@ -2659,7 +2659,7 @@
       "scope": "GPU through current Windows token, explicit same WSL user; comparison control | UTC 2026-10-31T10:09:04.566888+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "The numerical check passed and the CUDA event measured about 1.08 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 915,
+      "book_page": 916,
       "printed_sha256": "2d63ecc37741bd3460b1b2437483f69faaca134c625eb449ce5a97f30ad8711a"
     },
     {
@@ -2669,7 +2669,7 @@
       "scope": "Windows child process; failed WSL launch, no GPU | UTC 2026-10-31T10:12:05.3992439Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Recorded operation",
       "read_first": "The shell reports “-d: command not found.” The launch failed before the timestamp probe could run.",
-      "book_page": 916,
+      "book_page": 917,
       "printed_sha256": "80218a0ca75178a8d984d0cd2175b5b0a4b58891a5346e78db6514df3225e19d"
     },
     {
@@ -2679,7 +2679,7 @@
       "scope": "CPU WSL identity using corrected ProcessStartInfo quoting; not elevated | UTC 2026-10-31T10:13:53.880006+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The corrected Windows launch reaches /usr/bin/id in Ubuntu and returns UID 1000. This establishes the guest identity for the next probe.",
-      "book_page": 917,
+      "book_page": 918,
       "printed_sha256": "ff2cf9d122a251d343da6bdba66fa46c2f9b9690fc46fda867e57fc15c67fdaf"
     },
     {
@@ -2689,7 +2689,7 @@
       "scope": "Windows child process; WSL identity | UTC 2026-10-31T10:14:11.3974913Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Recorded operation",
       "read_first": "The retained identity is UID 1000 in the guest. Compare it with the following root identity before reading the timing trials.",
-      "book_page": 918,
+      "book_page": 919,
       "printed_sha256": "e7327110f0c1e0517143f135958ab9a59ddc689201977e165571a4acf2ddf120"
     },
     {
@@ -2699,7 +2699,7 @@
       "scope": "Windows child process; GPU timestamp probe | UTC 2026-10-31T10:14:11.6681697Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 1.41 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 918,
+      "book_page": 919,
       "printed_sha256": "71a2d896956b73cbfc8a0f69c31951206afae0eba61c9c7f1e38b4d10ec25a12"
     },
     {
@@ -2709,7 +2709,7 @@
       "scope": "Windows child process; GPU timestamp probe | UTC 2026-10-31T10:14:12.9923717Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 0.84 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 919,
+      "book_page": 920,
       "printed_sha256": "2ddde3e2aa25b37e402a7f88c8c69cd14667c001ed15867b495c258076f7a254"
     },
     {
@@ -2719,7 +2719,7 @@
       "scope": "Windows child process; WSL identity | UTC 2026-10-31T10:14:14.2275697Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Recorded operation",
       "read_first": "Locate “uid=0(root) gid=0(root) groups=0(root)” in the output. Check repository values, provider placement and the version switch separately.",
-      "book_page": 919,
+      "book_page": 920,
       "printed_sha256": "81a9409e861c17572ab41df79b7fd8b28d325416a067666e5e457efd6d3665f9"
     },
     {
@@ -2729,7 +2729,7 @@
       "scope": "Windows child process; GPU timestamp probe | UTC 2026-10-31T10:14:14.5467577Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 1.17 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 920,
+      "book_page": 921,
       "printed_sha256": "67a781b07fe54d7254f934fe6c094730a88da18ae2a17eba3914ea28a49a9fe0"
     },
     {
@@ -2739,7 +2739,7 @@
       "scope": "Windows child process; GPU timestamp probe | UTC 2026-10-31T10:14:15.7227878Z",
       "label": "LAPTOP  ·  Windows host / WSL boundary  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 2.29 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 920,
+      "book_page": 921,
       "printed_sha256": "a1893c496f74b1589adfe5a125bbe905d6e7fe5fd656ca0c4a0979d89103a8be"
     },
     {
@@ -2749,7 +2749,7 @@
       "scope": "GPU native numerical/event-clock/CUPTI timestamp probe | UTC 2026-10-30T23:38:40.447817+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 1.91 ms. The profiler returned no kernel activity records. The timing criterion ended with exit 2.",
-      "book_page": 924,
+      "book_page": 925,
       "printed_sha256": "1e90abd2c83e6ecc7314cd3c9f9b603c066bc59cc23796a0db68284ade797caf"
     },
     {
@@ -2759,7 +2759,7 @@
       "scope": "CPU | UTC 2026-10-30T23:40:36.365175+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "The loader resolves libcupti.so.13 from the candidate redistribution. Check the candidate’s activity output separately.",
-      "book_page": 924,
+      "book_page": 925,
       "printed_sha256": "8dcb0aa3bed7b96bc8170e309bf13e4da28baf3d9e00d793831ed075759560ce"
     },
     {
@@ -2769,7 +2769,7 @@
       "scope": "GPU native timestamp probe using isolated publisher CUPTI 13.4.58 | UTC 2026-10-30T23:40:36.395602+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Measurement or check",
       "read_first": "The numerical check passed and the CUDA event measured about 0.91 ms. Both kernel activity records had invalid timestamps. The timing criterion ended with exit 2.",
-      "book_page": 925,
+      "book_page": 926,
       "printed_sha256": "7f6da638ad7356ff32c7448c2e43bcc9b519e7626f3be8ee1a14dedaaa4028c4"
     },
     {
@@ -2779,7 +2779,7 @@
       "scope": "GPU numerical and Torch-profiler qualification | UTC 2026-10-30T23:40:41.307886+00:00",
       "label": "LAPTOP  ·  GPU path  ·  Recorded operation",
       "read_first": "stderr includes “USDT:2026-10-30 23:40:43 149816:149816 SyncActivityProfilerHandler.cpp:39] profiler_start”.",
-      "book_page": 926,
+      "book_page": 927,
       "printed_sha256": "1d433cc6154a41a6e4d9e3048756f90352f83faba5fdcdd2bbc7e7c57ab0fc70"
     },
     {
@@ -2789,7 +2789,7 @@
       "scope": "CPU driver/CUPTI capability queries; no GPU workload | UTC 2026-10-30T23:45:45.076887+00:00",
       "label": "LAPTOP  ·  CPU / host  ·  Recorded operation",
       "read_first": "Locate “cuInit=0” in the output. Check repository values, provider placement and the version switch separately.",
-      "book_page": 926,
+      "book_page": 927,
       "printed_sha256": "d44deec2e17865b1d6acd5e3ed0b0a007840724ab0abf43460a77e9744fd47e6"
     },
     {
@@ -4829,7 +4829,7 @@
       "scope": "CPU inventory plus CUDA capability and free/total query | UTC 2026-10-30T13:03:02.991240+00:00",
       "label": "LAPTOP  ·  CPU and CUDA  ·  Measurement or check",
       "read_first": "Locate “status=COLLECTED; inspect each return code” in the output. Inspect the five command records and their exits.",
-      "book_page": 908,
+      "book_page": 909,
       "printed_sha256": "c0be8fd7a38a249a8d210fb6f71d92723d86419dc8a3d084931b8d7d094add45"
     }
   ]

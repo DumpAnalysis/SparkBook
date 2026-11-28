@@ -1,0 +1,27 @@
+Reader record 039.R1
+Version 59 illustrated R5 reader run on the RTX Spark under WSL2
+UTC start  2026-11-27T22:43:20.754218+00:00
+UTC finish  2026-11-27T22:43:24.347035+00:00
+
+Commands
+: "${LAB_RUN:?Source reader/new_run.sh first}"
+bash cuda/nsys_2026.sh --image
+bash cuda/nsys_2026.sh --version
+bash cuda/nsys_2026.sh profile --trace=cuda,nvtx --sample=none --cpuctxsw=none --capture-range=cudaProfilerApi --capture-range-end=stop -o "$LAB_RUN/timeline" ./cuda/bin/cuda-lab trace
+bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/timeline.sqlite" "$LAB_RUN/timeline.nsys-rep"
+python cuda/trace_sqlite.py "$LAB_RUN/timeline.sqlite" --ranges iteration --launches iteration
+
+Selected stdout
+evidence=supplied SQLite export
+kernel=transform instances=4 summed_duration_ns=27924
+correlated_launches=4
+
+Exit  0
+
+Four distinct iteration ranges correlated with four transform launches. Four device kernel intervals summed to 27,924 ns. The CPU annotation ranges closed before the asynchronous kernels completed.
+
+SHA-256
+c89ab71b894ecad980163ae85eca0ee2cd9d5d9d6f86f441fc76c710cec9b07b  timeline.sqlite
+
+R5 receipt SHA-256  c18943bbaf9ea2d28249f27ceba376fede0cc247110d365d4d3b72b5c4f5bc1f
+R5 stdout SHA-256  40566b2a649baf942c53954fe9d09b79351a47078352dd08b77270f13a3a5e98

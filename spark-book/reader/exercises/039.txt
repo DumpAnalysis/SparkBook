@@ -45,6 +45,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Historical record and later reader check  Historical host 2026.3.2 control blocked. The separate pinned 2026.5.1 reader capture correlated four launches with positive kernel intervals.
 Scope  The transform workload and this collector version.
+Reader record 039.R1 · reader/reader-runs/039.txt
 
 Recorded files
 python reader/records.py 39 --files

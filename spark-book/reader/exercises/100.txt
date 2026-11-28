@@ -9,7 +9,7 @@ Floating-point precision and numerical tolerances
 
 Floating-point formats allocate bits to sign, exponent and fraction. FP16 has five exponent and ten fraction bits, with largest finite value 65,504. BF16 (bfloat16) has eight exponent and seven fraction bits. FP32 has eight exponent and 23 fraction bits. BF16 covers a range similar to FP32 with coarser spacing between adjacent values.
 
-An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error.
+An absolute tolerance bounds a difference in value. A relative tolerance scales with the reference magnitude. Near zero, the absolute term is especially important. Compare intermediate values on matched inputs to find the first divergence. A final predicted class can still match after an earlier numerical error. Exercise 129 shows how the TF32 matrix-multiplication setting affects the interpretation of an FP32 comparison.
 
 Token vectors, attention masks and pooling
 

@@ -1,0 +1,30 @@
+Reader record 186.R1
+Version 59 illustrated R5 reader run on the RTX Spark under WSL2
+UTC start  2026-11-27T23:20:58.554016+00:00
+UTC finish  2026-11-27T23:20:59.322875+00:00
+
+Commands
+python media/compare_vae.py --plain "$LAB_RUN/plain-no-tiling" --default "$LAB_RUN/default-tiling" --tiled "$LAB_RUN/plain-tiling" --out "$LAB_RUN/vae-rechecked.json"
+bash cuda/nsys_2026.sh export --type sqlite --output "$LAB_RUN/verified-timeline.sqlite" "$LAB_RUN/denoising-timeline.nsys-rep"
+python cuda/trace_sqlite.py "$LAB_RUN/verified-timeline.sqlite" --ranges media/
+
+Selected stdout
+Decoder calls {'plain': 1, 'default': 1, 'tiled': 9}
+evidence=supplied SQLite export
+range=media/infer contained_kernels=52843
+
+Exit  0
+
+Untiled, default tiling and 512-pixel tiling used the same final latent. The decoder received one, one and nine calls respectively. Against the untiled control the default image changed zero pixels and the 512-pixel image changed 941,748 pixels. The maximum RGB-channel difference was 44. Each trial recorded 5,618,140,672 allocated bytes at the inference peak.
+
+The original collection wrapper exited 143 after the image and profiler artifacts were written. The independent comparison and same-version export above completed with exit 0. The media/infer range includes denoising and VAE work.
+
+SHA-256
+dfb2e9c75e70f8e1782f0bc41da44be3922a391e2acf1f34bce1dad5cbe8e352  vae-rechecked.json
+09b429b912e60ff49d0f19b6d3d14a3269b6c2ed7c718b0d7f96aea903781c8e  final denoising latent
+3158bd154108441b2f9b37eb8e0f3574528b6d902b263a03d567441684e992c7  plain-no-tiling/output.png
+3158bd154108441b2f9b37eb8e0f3574528b6d902b263a03d567441684e992c7  default-tiling/output.png
+3d67633db2c6cb9ddb5a13838e4b636dfa18a2a53f360f19f75d4f4fd088c1ca  plain-tiling/output.png
+
+R5 receipt SHA-256  d6d55c162461ceaf14a96212016ce78434e53ecb15b6904d6c7d4e8f14d67892
+R5 stdout SHA-256  1fe4747e724cef43a597f9aac2def37a21db1344e67d78ebb14bb1d836b5409a

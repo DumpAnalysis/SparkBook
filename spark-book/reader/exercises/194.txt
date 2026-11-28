@@ -49,6 +49,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Recorded result  PASSED — Actual symbol/expanded-text and same/changed-seed TTS requests completed. Identical seed and text produced equal waveform arrays in this environment; a changed seed changed output length. The retained capture preserves the full tokenization.
 Scope  Tokenizer inspection does not establish pronunciation, and no human listening rating was supplied.
+The pinned MMS vocabulary contains 38 symbols, including digits 0 through 6. In the R5 reader control the strings “a789b” and “ab” both encoded as [0, 26, 0, 24, 0].
 
 Recorded files
 python reader/records.py 194 --files

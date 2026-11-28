@@ -47,6 +47,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Historical record and later reader check  Historical host export lacked the kernel table. The 2026.5.1 reader export contained four actual transform events. The CPU fixture totals two events and 500 ns.
 Scope  A supplied GPU export and a separately identified synthetic control.
+Reader record 040.R1 · reader/reader-runs/040.txt
 
 Recorded files
 python reader/records.py 40 --files

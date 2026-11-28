@@ -52,6 +52,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Recorded result  Save and reload PASSED. Strict equivalence FAILED. The merged BF16 checkpoint was written and compared with its adapter reference. The maximum absolute logit difference was 0.375, and all four greedy continuations differed.
 Scope  The merge comparison applies to the named adapter, base and tested inputs.
+In the R5 FP32 reader comparison the maximum absolute logit difference was 4.00543 × 10⁻⁵ and all four greedy continuations matched. Record 027.01 used BF16 and a separate comparison.
 
 Recorded files
 python reader/records.py 27 --files

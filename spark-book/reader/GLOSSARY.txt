@@ -161,7 +161,7 @@ Stream and synchronization
 See Stream. An event wait orders work across streams. A host synchronization waits for the selected work to complete.
 
 TF32
-TensorFloat-32 uses FP32-range inputs rounded to ten fraction bits for supported Tensor Core multiplies, with FP32 accumulation. State the backend setting in a precision comparison.
+TensorFloat-32 uses FP32-range inputs rounded to ten fraction bits for supported Tensor Core multiplies, with FP32 accumulation. State the backend setting in a precision comparison. Exercise 129 shows the IEEE matrix-multiplication control.
 
 Token and tokenizer
 A tokenizer converts text into model-specific units and IDs. The same text can produce different IDs under a different tokenizer or template.
@@ -173,7 +173,7 @@ Training checkpoint
 See Checkpoint and recovery state. A recovery checkpoint can include optimizer, scheduler, random-generator and data-position state.
 
 Unified memory
-Distinguish three concepts. The laptop shares physical memory between CPU and GPU. CUDA managed allocations can use cudaMallocManaged under platform rules. Unified virtual addressing (UVA) relates address spaces. CUDA shared memory is separate on-chip storage scoped to a thread block in these exercises.
+Distinguish three concepts. The laptop shares physical memory between CPU and GPU. CUDA managed allocations can use cudaMallocManaged under platform rules. Unified virtual addressing (UVA) relates address spaces. See NVIDIA’s CUDA Driver API, Unified Addressing (reference 291). CUDA shared memory is separate on-chip storage scoped to a thread block in these exercises.
 
 Unified physical memory
 See Unified memory for the laptop’s common physical backing and the distinct programming interfaces.

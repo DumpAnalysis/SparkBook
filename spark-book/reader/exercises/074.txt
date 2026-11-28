@@ -19,7 +19,7 @@ Version labels at these layers can differ. Record the mapped driver query, nvcc 
 
 Bytes, memory budgets and unified memory
 
-One GiB is 1,073,741,824 bytes. The installed module in this machine is 64 GiB. Windows reports about 32.23 GiB visible to the OS and NVML reports a dedicated segment of 31,232 MiB, or 30.50 GiB (32.75 decimal GB). The two figures sum to about 62.73 GiB and have different accounting scopes. Guest MemTotal is a separate limit.
+Read free for the Linux guest’s memory, nvidia-smi for the NVML device report, and PyTorch’s torch.cuda.mem_get_info() for the current CUDA allocation budget. One GiB is 1,073,741,824 bytes. The installed module in this machine is 64 GiB. Windows reports about 32.23 GiB visible to the OS and NVML reports a dedicated segment of 31,232 MiB, or 30.50 GiB (32.75 decimal GB). The two figures sum to about 62.73 GiB and have different accounting scopes. Guest MemTotal is a separate limit.
 
 Record the API, units, time and process beside each value. CUDA reported 45.97 GiB across its dedicated and shareable budget. Adding the NVML and CUDA totals counts overlapping memory. Exercise 248 and the memory investigation explain the measured scopes. For an allocation decision query current free bytes and allow for working storage.
 
