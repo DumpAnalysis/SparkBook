@@ -885,7 +885,7 @@
     {
       "number": 63,
       "title": "Implement a double buffer with explicit ownership",
-      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
+      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.\nDouble buffering gives the producer a second slot while the consumer works on the first. Record a completion event after each slot’s last use. Wait for that event before reusing the slot. An overlap claim requires overlapping device intervals.",
       "recorded_run_ids": [
         "063.01"
       ],
@@ -909,7 +909,7 @@
     {
       "number": 65,
       "title": "Capture and replay a fixed operation graph",
-      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.",
+      "evidence_note": "Recorded result  BLOCKED — GPU numerical controls and uninstrumented timings; timeline blocked.\nScope  The retained timings are uninstrumented. The missing device timeline limits phase attribution.\nA CUDA Graph captures operations and their dependencies for replay. Keep the shapes and storage addresses used during capture fixed, then check replayed values against ordinary execution.",
       "recorded_run_ids": [
         "065.01"
       ],
@@ -1307,7 +1307,7 @@
     {
       "number": 95,
       "title": "Correlate inference requests with GPU activity",
-      "evidence_note": "Recorded result  PASSED — GPU actual Q4 inference and separate device-wide polling.\nScope  Device-wide polls cannot attribute each reading to a particular request.",
+      "evidence_note": "Recorded result  PASSED — GPU actual Q4 inference and separate device-wide polling.\nScope  Device-wide polls cannot attribute each reading to a particular request.\nA poll inside a request can return NVML utilization for a sample period that began before the request. The poll’s timestamps bound the query. The provider’s sampling period determines which activity contributes to the value.",
       "recorded_run_ids": [
         "095.01",
         "095.02"
@@ -1485,7 +1485,7 @@
     {
       "number": 108,
       "title": "Separate live bytes from allocator reserve",
-      "evidence_note": "Recorded result  PASSED — Actual CUDA retention, release and varying-size controls include allocator-history snapshots. Retained allocation grew to 2,097,152 bytes; clearing the owner left allocated=0 and reserved=2,097,152, then empty_cache left both zero. The captured snapshots concern this process’s allocator, not a device-wide GPU memory dump. The editor checked JSON counters without loading pickle snapshots.\nScope  Live tensor bytes and allocator reserve measure different lifetimes.",
+      "evidence_note": "Recorded result  PASSED — Actual CUDA retention, release and varying-size controls include allocator-history snapshots. Retained allocation grew to 2,097,152 bytes; clearing the owner left allocated=0 and reserved=2,097,152, then empty_cache left both zero. The captured snapshots concern this process’s allocator, not a device-wide GPU memory dump. The editor checked JSON counters without loading pickle snapshots.\nScope  Live tensor bytes and allocator reserve measure different lifetimes.\nUse torch.cuda.mem_get_info() on the exercise device for the current free and total CUDA memory budget. Leave headroom below the reported free amount for the runtime and other allocations.",
       "recorded_run_ids": [
         "108.01",
         "108.02",

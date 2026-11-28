@@ -13,7 +13,7 @@ An ONNX QDQ graph marks where values are quantized and dequantized. Measure reco
 
 Datasets, labels and independent evaluation
 
-A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
+A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation set, also called a development set, helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
 
 If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together.
 

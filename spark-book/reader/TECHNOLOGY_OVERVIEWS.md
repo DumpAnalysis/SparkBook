@@ -416,9 +416,9 @@ Further reading
 
 [Exercise 58](exercises/058.txt) · book page 228
 
-A stream is an ordered queue of GPU work. Two streams may run work concurrently if dependencies and resources allow it. An event recorded after a producer lets a consumer stream wait for that producer. Double buffering lets one buffer accept new data while another is being processed.
+A CUDA stream is an ordered queue of GPU work. A PyTorch caller can select a stream before invoking a custom operator. Launch the operator on that stream so its reads and writes follow the work the caller already queued.
 
-A CUDA Graph records a set of operations and their dependencies for replay with lower submission overhead. Keep the test’s input shapes and storage addresses consistent with its capture. Verify the resulting values. Actual overlap between streams requires device intervals that overlap in time.
+Test the derivative and stream ordering separately. An operator can pass a forward-value check and still return the wrong gradient or run on the wrong stream. Chapter 43 applies stream ordering to buffer reuse in Exercise 63 and graph replay in Exercise 65.
 
 Further reading
 
@@ -433,7 +433,7 @@ Further reading
 
 A debugger can stop an executing program at a breakpoint so you can inspect its current state. For CUDA, selecting a kernel, block and thread identifies whose registers and variables you are examining. Symbols connect source names and line information with a particular build.
 
-An exception core permits later inspection of state that the platform captured at a fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
+A GPU core dump captured on an exception lets you inspect the state the platform saved at the fault. Preserve the matching executable and symbols with it. On this WSL2 configuration, building the program, attaching the debugger and producing a usable core are independent checks. Record the first operation that actually succeeded or stopped.
 
 Further reading
 
@@ -486,7 +486,7 @@ Further reading
 
 - [PyTorch. DataLoader and data processing, version 2.14](https://docs.pytorch.org/docs/2.14/data.html)
 - [PyTorch. Multiprocessing best practices, version 2.14](https://docs.pytorch.org/docs/2.14/notes/multiprocessing.html)
-- [PyTorch data loading with worker processes. See [85]](https://docs.pytorch.org/docs/2.14/data.html)
+- [PyTorch 2.14. Multi-process data loading](https://docs.pytorch.org/docs/2.14/data.html#multi-process-data-loading)
 
 <a id="topic-splits"></a>
 
@@ -494,7 +494,7 @@ Further reading
 
 [Exercise 24](exercises/024.txt) · book page 119
 
-A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation or development set helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
+A dataset contains examples. In supervised training an example pairs an input with a desired target. The training set updates the model. A validation set, also called a development set, helps select settings or checkpoints. A held-out test set estimates how the selected model behaves on unseen examples.
 
 If two prompts paraphrase the same incident, putting one in training and the other in test can make generalization look better than it is. Split by incident family before generating variants. JSON Lines stores one JSON record per line, so you can inspect the family identifier, input and target together.
 
@@ -523,7 +523,7 @@ Further reading
 
 [Exercise 34](exercises/034.txt) · book page 160
 
-Each of these artifacts answers a different question. A buffer dump copies bytes from a selected allocation after the program finishes writing it. To decode the bytes you need their element type, shape and byte order. A framework allocator snapshot describes allocations and their histories. A GPU exception core records supported debugging state when execution faults.
+Each of these artifacts answers a different question. A buffer dump copies bytes from a selected allocation after the program finishes writing it. To decode the bytes you need their element type, shape and byte order. A framework allocator snapshot describes allocations and their histories. A GPU core dump captures supported debugging state. This book calls a dump captured on a GPU exception an exception core.
 
 Begin with a buffer initialized to a known pattern. Synchronize, export just that allocation, decode a few elements and compare them with the pattern. A matching payload checks this buffer at that point in the program.
 
@@ -1323,7 +1323,7 @@ Read the axis units before comparing curves. Bytes and percentages belong to dif
 
 Further reading
 
-- [NVIDIA. NVIDIA System Management Interface and field definitions](https://docs.nvidia.com/deploy/nvidia-smi/)
+- [NVIDIA. NVML GPU and memory utilization fields](https://docs.nvidia.com/deploy/nvml-api/620/api/structnvmlUtilization__t.html)
 - [Python. time and monotonic clocks](https://docs.python.org/3/library/time.html)
 - [Matplotlib. Quick start guide](https://matplotlib.org/stable/users/explain/quick_start.html)
 
@@ -1440,7 +1440,7 @@ Further reading
 
 - [PyTorch. CUDA semantics and memory management](https://docs.pytorch.org/docs/2.14/notes/cuda.html)
 - [PyTorch. Understanding CUDA Memory Usage, version 2.14](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html)
-- [PyTorch CUDA memory snapshots. See [39]](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html)
+- [PyTorch 2.14. Generating a CUDA memory snapshot](https://docs.pytorch.org/docs/2.14/torch_cuda_memory.html#generating-a-snapshot)
 
 <a id="topic-profiler"></a>
 

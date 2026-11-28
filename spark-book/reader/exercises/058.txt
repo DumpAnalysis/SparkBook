@@ -13,9 +13,9 @@ First call the operator from Python on a small tensor and compare its output aga
 
 CUDA streams, events and graphs
 
-A stream is an ordered queue of GPU work. Two streams may run work concurrently if dependencies and resources allow it. An event recorded after a producer lets a consumer stream wait for that producer. Double buffering lets one buffer accept new data while another is being processed.
+A CUDA stream is an ordered queue of GPU work. A PyTorch caller can select a stream before invoking a custom operator. Launch the operator on that stream so its reads and writes follow the work the caller already queued.
 
-A CUDA Graph records a set of operations and their dependencies for replay with lower submission overhead. Keep the test’s input shapes and storage addresses consistent with its capture. Verify the resulting values. Actual overlap between streams requires device intervals that overlap in time.
+Test the derivative and stream ordering separately. An operator can pass a forward-value check and still return the wrong gradient or run on the wrong stream. Chapter 43 applies stream ordering to buffer reuse in Exercise 63 and graph replay in Exercise 65.
 
 Before you start
 Exercise 57 (register and build the operator)

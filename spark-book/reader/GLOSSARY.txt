@@ -55,6 +55,9 @@ IEEE binary16 uses one sign bit, five exponent bits and ten fraction bits. Its l
 Fragmentation
 Free space is split into blocks that cannot satisfy the requested size or allocation constraints even when the sum of free bytes would suffice.
 
+GPU core dump
+A GPU core dump contains the execution and memory state the platform captured. This book calls a dump captured on a GPU exception an exception core.
+
 GPU offload
 See Offload. In the llama.cpp exercises the named destination is the GPU.
 

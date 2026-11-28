@@ -1,7 +1,7 @@
 {
   "book": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R6.docx",
-    "sha256": "ab08a27593ca98c8618236542c6403eccf39c717c351e34d149fda3d65665125"
+    "sha256": "9114269f4d1f49b9d6d35333f5893b5055feec361c9622d6d9eb3543bb50da38"
   },
   "compatible_books": [
     {
@@ -55,7 +55,7 @@
   ],
   "print_pdf": {
     "name": "Local_AI_on_RTX_Spark_Laptops_Version59_Illustrated_R6.pdf",
-    "sha256": "e99a1d47ee3bd2ffa66e11110798a4c12be2d8f178bfb388085be8e38318360b"
+    "sha256": "8172466d616279754d2301285118790fc7f28cb0ba441da47a4ee6289dfb06aa"
   },
   "version": 59,
   "profile": "learner",
@@ -66,8 +66,8 @@
   "files": [
     {
       "path": "EXERCISE_EVIDENCE_MAP.json",
-      "bytes": 164748,
-      "sha256": "9ac7c3a386013429348211c4c43de35cff16464e96ebaf1a1a908dedb6fa46db"
+      "bytes": 165604,
+      "sha256": "193def5b8c92d990ad870c4115d1843eb802059e74dd53532495d5657288317b"
     },
     {
       "path": "README.txt",
@@ -1886,8 +1886,8 @@
     },
     {
       "path": "reader/GLOSSARY.txt",
-      "bytes": 10130,
-      "sha256": "bf549d7fd18f2b4c6e958926ca1b1b126ae58a5e7d7cc403c02fe5d488adc191"
+      "bytes": 10294,
+      "sha256": "2de6f05588051b8b3c562423791d64f1c6b1bcb45a3096d5b0d683c022b07a7f"
     },
     {
       "path": "reader/ROUTES.txt",
@@ -1906,8 +1906,8 @@
     },
     {
       "path": "reader/TECHNOLOGY_OVERVIEWS.md",
-      "bytes": 144096,
-      "sha256": "c7fb30998ab499c42e06010bf7a5e2c2c0651ad76e033e6f4f03e6e7c79efc50"
+      "bytes": 144126,
+      "sha256": "4fa5fe75b06cd6b0bab366025da9b56be2762b1fe31d5c4cb5e9137f9bf1e215"
     },
     {
       "path": "reader/TROUBLESHOOTING.txt",
@@ -1941,8 +1941,8 @@
     },
     {
       "path": "reader/exercise-guide.json",
-      "bytes": 605807,
-      "sha256": "a8a76ac703538bf9b3dc77a32d38f6fc5c945bed65c11a15e7bfad9f354783af"
+      "bytes": 606663,
+      "sha256": "cd02b485c332311bc7d7fe7690893926ba6034317d95752e509b69f298ef31f8"
     },
     {
       "path": "reader/exercises/001.txt",
@@ -2061,8 +2061,8 @@
     },
     {
       "path": "reader/exercises/024.txt",
-      "bytes": 2003,
-      "sha256": "233b8266b64bf811ddbd26f3439304525985046245c19978a76ac38637dcd5f5"
+      "bytes": 2020,
+      "sha256": "365a1a4f815ff4d350cb172232f0d172b1e54449bffdbe834fe9e7b2f8fbdb7e"
     },
     {
       "path": "reader/exercises/025.txt",
@@ -2071,8 +2071,8 @@
     },
     {
       "path": "reader/exercises/026.txt",
-      "bytes": 3843,
-      "sha256": "671be9c664a2b5030cd93a3f9adda63fd22c8f412d75b4be2fda7f31efb6af1f"
+      "bytes": 3860,
+      "sha256": "22b1607e79b5e2ec7c59a47447be57c01d68e047f7506e100f9cec545ac0d023"
     },
     {
       "path": "reader/exercises/027.txt",
@@ -2111,18 +2111,18 @@
     },
     {
       "path": "reader/exercises/034.txt",
-      "bytes": 2834,
-      "sha256": "268c63e3a44bf44cbb7d5ae0919bc23590dd978ef18825c6f5ee0315b08bedfa"
+      "bytes": 2878,
+      "sha256": "43bbc698e2eb91b8a5ff61e782f5c36d7e5047b450a79389468b5f66d3f4b5c8"
     },
     {
       "path": "reader/exercises/035.txt",
-      "bytes": 2996,
-      "sha256": "66ce6cc7fc3fa0aa5200aa94601ffc1284adc8a761bf454bdbbf428d81c3d222"
+      "bytes": 3050,
+      "sha256": "26ce017589cc43efa4fe833b9c0feab0b9d8767cd82eea97db7e77041f884e66"
     },
     {
       "path": "reader/exercises/036.txt",
-      "bytes": 2993,
-      "sha256": "b8f88eac0080e10f735a96bbe45de81fbfb8be0e72455eba398cbb4824c7defd"
+      "bytes": 3047,
+      "sha256": "17d8d668ab2bed73b392df14f9bd88606491271606299022f155ee0e96dfbccd"
     },
     {
       "path": "reader/exercises/037.txt",
@@ -2131,8 +2131,8 @@
     },
     {
       "path": "reader/exercises/038.txt",
-      "bytes": 3197,
-      "sha256": "992bd0f6db9f0afcf3c1220e44db546d7298f3d40a98fefb8b81a25ce9bec3d1"
+      "bytes": 3207,
+      "sha256": "bdc0a751f6dfcc8ad4de9ea1c5c3438ce337ea936f40b2627a83b9783ae30ef0"
     },
     {
       "path": "reader/exercises/039.txt",
@@ -2151,8 +2151,8 @@
     },
     {
       "path": "reader/exercises/042.txt",
-      "bytes": 2894,
-      "sha256": "319cfc737da61626e7bc66dbbdd9b37dea0af369e6f979eef7e8a75608211535"
+      "bytes": 2938,
+      "sha256": "b6200cfc5c6e9cee6b610ff24b9a90730c79b778f7795919ba6294638c8337e5"
     },
     {
       "path": "reader/exercises/043.txt",
@@ -2231,8 +2231,8 @@
     },
     {
       "path": "reader/exercises/058.txt",
-      "bytes": 2667,
-      "sha256": "201743e44e1729176904f2a6c9e6dfbaf7dc237dc786d9c7649137504f9cfaad"
+      "bytes": 2564,
+      "sha256": "6d31bb377a6979134bad96f1d0fc07941411b0f1662d73f95b1d106d752138e0"
     },
     {
       "path": "reader/exercises/059.txt",
@@ -2256,18 +2256,18 @@
     },
     {
       "path": "reader/exercises/063.txt",
-      "bytes": 3568,
-      "sha256": "0e3f564f239f3d8540e03b5c992eda48446d4dfe125ab4a0002add5427462c55"
+      "bytes": 3711,
+      "sha256": "340da35eafe6867046830e25391f4158ec35aa2d30f532c3ace0b7de852422f2"
     },
     {
       "path": "reader/exercises/064.txt",
-      "bytes": 2888,
-      "sha256": "4d1395173bb154e7b002de7aa1ea6e49a1b4b210e97574bfe80903b4889d268d"
+      "bytes": 2785,
+      "sha256": "96acd66fedcc4d19dd10baa0c745d2b35b5ab89c6c04f3f5e864ae3d9da2ea55"
     },
     {
       "path": "reader/exercises/065.txt",
-      "bytes": 2167,
-      "sha256": "d4d9e5a59ca37453d1f8195b0fd04b37503b860705fe069e959165c147715b23"
+      "bytes": 2252,
+      "sha256": "76d5091595096bbbf3b43f6f5646eb883c6d0e51c809180f9e9af46858487512"
     },
     {
       "path": "reader/exercises/066.txt",
@@ -2306,8 +2306,8 @@
     },
     {
       "path": "reader/exercises/073.txt",
-      "bytes": 3109,
-      "sha256": "6f27f2bddb8acee966d4f4e81f56400f2de829fa40e54b3e95238f55bf1cb423"
+      "bytes": 3119,
+      "sha256": "6981fb917b0c33b9a64b14e296d42403ce0336861d257df3d6276f204ef33328"
     },
     {
       "path": "reader/exercises/074.txt",
@@ -2326,8 +2326,8 @@
     },
     {
       "path": "reader/exercises/077.txt",
-      "bytes": 2807,
-      "sha256": "167109b35ceb34f2494154c46466d18ed6a9ed1084fcb3c04080c4197b461706"
+      "bytes": 2824,
+      "sha256": "fe1f0338152b2bd9e7aad335fb747064a19c07dcad1c7da2e0418cbf2433e347"
     },
     {
       "path": "reader/exercises/078.txt",
@@ -2341,8 +2341,8 @@
     },
     {
       "path": "reader/exercises/080.txt",
-      "bytes": 2809,
-      "sha256": "329c5e6e78fdeb16f230314315eb34bf6ba296ca80f475a9e7dee5fb72ae23a9"
+      "bytes": 2826,
+      "sha256": "65bfbf0390d29fbcbf8d03287bcd51739db44bd5d0ebbe43603c00b6e0cb4274"
     },
     {
       "path": "reader/exercises/081.txt",
@@ -2356,8 +2356,8 @@
     },
     {
       "path": "reader/exercises/083.txt",
-      "bytes": 3012,
-      "sha256": "bcb423ea4073dd1b41a195a3ddf76e12383b39e2be4904f65fac61c170bfab30"
+      "bytes": 3029,
+      "sha256": "8f321f86a46da42497c2bedd5134721a2f955b98316459e958e5e5fa767c065c"
     },
     {
       "path": "reader/exercises/084.txt",
@@ -2416,8 +2416,8 @@
     },
     {
       "path": "reader/exercises/095.txt",
-      "bytes": 3863,
-      "sha256": "b9fcdb341de6ae3f9237feabb0b61c1cac46c5db7254c94e4a88175300f88f94"
+      "bytes": 4092,
+      "sha256": "5b86d2daa27198eaec32b621eed49276373d3cc0523b953c50e04a3bc3437a01"
     },
     {
       "path": "reader/exercises/096.txt",
@@ -2481,8 +2481,8 @@
     },
     {
       "path": "reader/exercises/108.txt",
-      "bytes": 3274,
-      "sha256": "024cc7e08830c86e2accc39888109a990f84ac4d72c04d5895bc22b064ee9d92"
+      "bytes": 3463,
+      "sha256": "0e9c4dbdd8272461e5b6d395120e4527d33851327aab4f41a9412a290d7ab0fa"
     },
     {
       "path": "reader/exercises/109.txt",
@@ -2511,8 +2511,8 @@
     },
     {
       "path": "reader/exercises/114.txt",
-      "bytes": 3020,
-      "sha256": "3dbaeb33aa4b407115b45bd5800cb859b97906e2267dac72ec5f37185de8d2f6"
+      "bytes": 3037,
+      "sha256": "6e875d525cf40b43b81152f4d46dac045c3c5ad35a024b3a3e604b8ba61a3f9c"
     },
     {
       "path": "reader/exercises/115.txt",
@@ -2611,8 +2611,8 @@
     },
     {
       "path": "reader/exercises/134.txt",
-      "bytes": 4887,
-      "sha256": "47c3187319419a6b0009a86da6e3c791a21cd0e994b6c3f32c3e7e01b31fd053"
+      "bytes": 4784,
+      "sha256": "763611c244dd60791e5513ce87b8caf066649b7c638d8d82c12e78e5e634bd04"
     },
     {
       "path": "reader/exercises/135.txt",
@@ -2766,8 +2766,8 @@
     },
     {
       "path": "reader/exercises/165.txt",
-      "bytes": 2973,
-      "sha256": "170f599cfb6716c65cd6ad5eecf5de8058255054755ce67f013bd0982ee376fd"
+      "bytes": 2990,
+      "sha256": "339fb5f9b90c0c28ee07ad59ec91e83ca29bbcdfbde9cc3e9b190a565ca994c4"
     },
     {
       "path": "reader/exercises/166.txt",
@@ -2781,8 +2781,8 @@
     },
     {
       "path": "reader/exercises/168.txt",
-      "bytes": 3178,
-      "sha256": "16669ec162a4a9f5359b5968b6e62b2abd34d15b6dcfc62a8da391b971be1016"
+      "bytes": 3195,
+      "sha256": "170e77e83b6cd11ad980698475f89747b1442b3056c6798904d62b6ff61fb2dd"
     },
     {
       "path": "reader/exercises/169.txt",
@@ -2996,8 +2996,8 @@
     },
     {
       "path": "reader/exercises/211.txt",
-      "bytes": 3624,
-      "sha256": "c4b1f05b4498fd69d8bd01b5288f99527a523a977c1b1c83ec26b6f51e406fab"
+      "bytes": 3641,
+      "sha256": "3610d10ba56a5770676c40a6f2d3c205f9a8fc3bc7a7b436934bc1ca171146be"
     },
     {
       "path": "reader/exercises/212.txt",
@@ -3076,8 +3076,8 @@
     },
     {
       "path": "reader/exercises/227.txt",
-      "bytes": 2878,
-      "sha256": "3bcdb0b6a0a76d2157242054ad9e147791a21437a9fcdde413080a418d20cee1"
+      "bytes": 2895,
+      "sha256": "a59b7127f0d91d1338c8ffc037ca9e91697720bf4d7da3e8089164af8c443218"
     },
     {
       "path": "reader/exercises/228.txt",
@@ -3136,8 +3136,8 @@
     },
     {
       "path": "reader/exercises/239.txt",
-      "bytes": 3354,
-      "sha256": "254596f9ca0f98be4024dd7b2108ad0ace7b3770dc2a197348cb99ea5307dda1"
+      "bytes": 3371,
+      "sha256": "3e5bece41a6af1e82ece1ff2200677f418a4bf2c3d1f7e235ab25a3ca8f8a9f6"
     },
     {
       "path": "reader/exercises/240.txt",
@@ -3306,8 +3306,8 @@
     },
     {
       "path": "reader/technology-overviews.json",
-      "bytes": 182770,
-      "sha256": "342834d9af7e3cd64ce868f376ce6266f7af07f4ffeebd291d3e166db45f6b00"
+      "bytes": 182800,
+      "sha256": "c66ff0b72c423105f8d294a2d76691685c0f9401d0c5f6aef0164eaf7762c5ea"
     },
     {
       "path": "reader/verify_package.py",
@@ -3317,7 +3317,7 @@
     {
       "path": "reader/workspace-files.json",
       "bytes": 124555,
-      "sha256": "817b9187ab1b689be0c8290c7e7a94444578d25914854d9833436fe8893457cc"
+      "sha256": "9cffa1592cda1ef6c6852e25dec71103ec24b4beb6ca76c5ce946358b26ecddd"
     },
     {
       "path": "requirements-exercises.lock",

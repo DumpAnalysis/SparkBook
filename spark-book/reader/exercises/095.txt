@@ -55,6 +55,7 @@ Record the absolute paths and identities of any selected output before changing 
 
 Recorded result  PASSED — GPU actual Q4 inference and separate device-wide polling.
 Scope  Device-wide polls cannot attribute each reading to a particular request.
+A poll inside a request can return NVML utilization for a sample period that began before the request. The poll’s timestamps bound the query. The provider’s sampling period determines which activity contributes to the value.
 
 Recorded files
 python reader/records.py 95 --files
